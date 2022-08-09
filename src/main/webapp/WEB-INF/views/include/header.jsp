@@ -29,11 +29,14 @@
 	crossorigin="anonymous">
 </script>
 
-<link rel="stylesheet" href="${contextPath}/resources/css/header.css">
+<link rel="stylesheet" href="${contextPath}/resources/custom_css/header.css">
 </head>
 <body>
 	<div class="container banner">
 		<img src="${contextPath}/resources/images/banner.png">
+		<div class="logo">
+			<img src="${contextPath}/resources/images/logo.gif">
+		</div>
 		<div class="login-area">
 			<c:if test="${empty userId }">
 				<form class="form-horizontal" id="loginForm" action="login" method="post">
