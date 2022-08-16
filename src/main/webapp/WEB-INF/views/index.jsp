@@ -22,27 +22,8 @@
 <link rel="stylesheet" href="${contextPath}/resources/assets/css/style.min.css">
 <!-- Modernizr JS -->
 <script src="${contextPath}/resources/assets/js/vendor/modernizr-3.10.0.min.js"></script>
-<style>
-	#sub-title2 {
-		font-size: 35px;
-	}
-	#urgency-title {
-		font-size: 20px;
-	}
-	#urgency-icon {
-		color: #ff0909;
-	}
-	#balance {
-		color: #0898d5;
-		font-size: 50px;
-	}
-	#balance-table {
-		text-align: center;
-	}
-	#balance-table-row {
-		justify-content: center;
-	}
-</style>
+<!-- custom css -->
+<link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css">
 </head>
 <body class="template-color-3">
 	<div id="main-wrapper">
@@ -61,66 +42,19 @@
 						<!--Menu start-->
 						<div class="col-xl-7 col-lg-7 col-12">
 							<nav class="main-menu padding-16">
-								<ul>
-									<li><a href="index.html">Home <small class="icon-arrow"></small></a>
+								<ul class="menu-ul">
+									<li><a href="#">일반 구인</a></li>
+									<li><a href="#">선호 구인</a></li>
+									<li><a href="#">긴급 구인</a></li>
+									<li><a href="#">농어촌</a></li>
+									<li><a href="#">돌봄</a></li>
+									<li><a href="#">게시판<small class="icon-arrow"></small></a>
 										<ul class="sub-menu">
-											<li><a href="index.html">Home V1</a></li>
-											<li><a href="index-2.html">Home V2</a></li>
-											<li><a href="index-3.html">Home V3</a></li>
-											<li><a href="index-4.html">Home V4</a></li>
-										</ul></li>
-									<li><a href="job-listing.html">Jobs <small class="icon-arrow"></small></a>
-										<ul class="sub-menu">
-											<li><a href="job-listing.html">Jobs Listing</a></li>
-											<li><a href="job-with-map.html">Jobs With Map</a></li>
-											<li><a href="job-details.html">Job Detail <small class="icon-arrow"></small></a>
-												<ul class="sub-menu">
-													<li><a href="job-details.html">Job Detail V1</a></li>
-													<li><a href="job-details-two.html">Job Detail V2</a></li>
-												</ul></li>
-										</ul></li>
-									<li><a href="candidates-listing.html">Candidates <small class="icon-arrow"></small></a>
-										<ul class="sub-menu">
-											<li><a href="candidates-listing.html">Candidates Listing</a></li>
-											<li><a href="candidate-details.html">Candidate Detail <small class="icon-arrow"></small>
-											</a>
-												<ul class="sub-menu">
-													<li><a href="candidate-details.html">Candidate Details V1</a></li>
-													<li><a href="candidate-details-two.html">Candidate Details V2</a></li>
-												</ul></li>
-										</ul></li>
-									<li><a href="#">Employers <small class="icon-arrow"></small></a>
-										<ul class="sub-menu">
-											<li><a href="employer-listing.html">Employers Listing</a></li>
-											<li><a href="employer-details.html">Employer Details <small class="icon-arrow"></small>
-											</a>
-												<ul class="sub-menu">
-													<li><a href="employer-details.html">Employer Detail V1</a></li>
-													<li><a href="employer-details-two.html">Employer Detail V2</a></li>
-												</ul></li>
-										</ul></li>
-									<li><a href="blog.html">Blog <small class="icon-arrow"></small></a>
-										<ul class="sub-menu">
-											<li><a href="blog-details.html">Single Post</a></li>
-										</ul></li>
-									<li><a href="#">Pages <small class="icon-arrow"></small></a>
-										<ul class="sub-menu">
-											<li><a href="about.html">About us</a></li>
-											<li><a href="contact.html">Contact Us</a></li>
-											<li><a href="faq.html">FAQS</a></li>
-											<li><a href="pricing.html">Pricing & Plan</a></li>
-											<li><a href="login-register.html">Login & Register</a></li>
-											<li><a href="adminPage">Dashboard(Admin Page)</a></li>
-											<li><a href="404.html">404 Error</a></li>
-											<li><a href="shop.html">Shop <small class="icon-arrow"></small></a>
-												<ul class="sub-menu">
-													<li><a href="shop.html">Shop</a></li>
-													<li><a href="product-details.html">Product Details</a></li>
-													<li><a href="cart.html">Cart</a></li>
-													<li><a href="checkout.html">Checkout</a></li>
-													<li><a href="wishlist.html">Wishlist</a></li>
-												</ul></li>
-										</ul></li>
+											<li><a href="#">자유게시판</a></li>
+											<li><a href="#">땜빵게시판</a></li>
+											<li><a href="adminPage">관리자 화면</a></li>
+										</ul>
+									</li>
 								</ul>
 							</nav>
 						</div>
@@ -130,10 +64,10 @@
 							<div class="header-btn-action d-flex justify-content-end">
 								<div class="btn-action-wrap d-flex">
 									<div class="jp-author item">
-										<a href="login-register.html"><i class="lnr lnr-user"></i><span>Login</span></a>
+										<a href="#"><i class="lnr lnr-user"></i><span>로그인</span></a>
 									</div>
 									<div class="jp-author-action-two item">
-										<a class="ht-btn header-btn" href="#quick-view-modal-container" data-toggle="modal">Post A Job</a>
+										<a class="ht-btn header-btn" href="#">회원가입</a>
 									</div>
 								</div>
 							</div>
@@ -311,7 +245,7 @@
 		</div>
 		<!-- Bottom Navbar Mobile Popup End -->
 		
-		<!--slider section start-->
+		<!-- 급구 리스트 start-->
 		<div class="hero-section section position-relative">
 			<!--Hero Item start-->
 			<div class="hero-item hero-item-three bg_image-v3">
@@ -324,14 +258,14 @@
 									<div class="col-lg-12">
 										<div class="hero-content-4 left">
 											<h2 class="title">대타가 필요할 땐 대타천국</h2>
-											<h3 class="sub-title"><span id="sub-title2">오늘 할 대타를 내일로 미루지 말라!</span></h3>
+											<h3 class="sub-title"><span id="sub-title2">오늘 할 대타를 내일로 미루지 말자!!</span></h3>
 											<p id="urgency-title"><i class="lnr lnr-bullhorn" id="urgency-icon"></i>&nbsp;지금 뜨는 급구 리스트</p>
 										</div>
 									</div>
 								</div>
 								<div class="row employer-slider-two">
 									<div class="col-lg-4">
-										<!-- Single Employer Item Start -->
+										<!-- 급구 항목 Start -->
 										<div class="single-employer-item">
 											<div class="image-featured">
 												<img src="${contextPath}/resources/assets/images/employer/cover-image-employer-1.jpg" alt="">
@@ -341,20 +275,20 @@
 													<img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo1.jpg" alt="">
 												</div>
 												<h4 class="title">
-													<a href="employer-details.html">Shippo Company </a>
+													<a href="employer-details.html">밥스터치 수원점</a>
 												</h4>
 												<div class="meta">
 													<div class="star">
-														<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+														<i class="fas fa-star"></i> <span class="score">4.3</span>
 													</div>
-													<span class="location"><i class="lnr lnr-map-marker"></i>Nanba,Chuo Ward,Osaka,Japan </span><span class="count-job theme-color">2 Jobs </span>
+													<span class="location"><i class="lnr lnr-map-marker"></i>경기도 수원시 팔달구 덕영대로 899 </span><span class="count-job theme-color">2 Jobs </span>
 												</div>
 											</div>
 										</div>
-										<!-- Single Employer Item End -->
+										<!-- 급구 항목 End -->
 									</div>
 									<div class="col-lg-4">
-										<!-- Single Employer Item Start -->
+										<!-- 급구 항목 Start -->
 										<div class="single-employer-item">
 											<div class="image-featured">
 												<img src="${contextPath}/resources/assets/images/employer/cover-image-employer-2.jpg" alt="">
@@ -364,20 +298,20 @@
 													<img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo2.jpg" alt="">
 												</div>
 												<h4 class="title">
-													<a href="employer-details.html">Digital Asset</a>
+													<a href="employer-details.html">에튀드 네일 평택점</a>
 												</h4>
 												<div class="meta">
 													<div class="star">
-														<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+														<i class="fas fa-star"></i> <span class="score">4.8</span>
 													</div>
-													<span class="location"><i class="lnr lnr-map-marker"></i>Beijing,China </span><span class="count-job theme-color">1 Jobs </span>
+													<span class="location"><i class="lnr lnr-map-marker"></i>경기도 평택시 비전동 EA아울렛 7층 </span><span class="count-job theme-color">1 Jobs </span>
 												</div>
 											</div>
 										</div>
-										<!-- Single Employer Item End -->
+										<!-- 급구 항목 End -->
 									</div>
 									<div class="col-lg-4">
-										<!-- Single Employer Item Start -->
+										<!-- 급구 항목 Start -->
 										<div class="single-employer-item">
 											<div class="image-featured">
 												<img src="${contextPath}/resources/assets/images/employer/cover-image-employer-3.jpg" alt="">
@@ -387,20 +321,20 @@
 													<img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo3.jpg" alt="">
 												</div>
 												<h4 class="title">
-													<a href="employer-details.html">Inwave Studio </a>
+													<a href="employer-details.html">루트 스튜디오 군포점 </a>
 												</h4>
 												<div class="meta">
 													<div class="star">
-														<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+														<i class="fas fa-star"></i> <span class="score">4.2</span>
 													</div>
-													<span class="location"><i class="lnr lnr-map-marker"></i>Chicago,IL,USA </span><span class="count-job theme-color">2 Jobs </span>
+													<span class="location"><i class="lnr lnr-map-marker"></i>경기도 군포시 당동 740-2번지 </span><span class="count-job theme-color">2 Jobs </span>
 												</div>
 											</div>
 										</div>
-										<!-- Single Employer Item End -->
+										<!-- 급구 항목 End -->
 									</div>
 									<div class="col-lg-4">
-										<!-- Single Employer Item Start -->
+										<!-- 급구 항목 Start -->
 										<div class="single-employer-item">
 											<div class="image-featured">
 												<img src="${contextPath}/resources/assets/images/employer/cover-image-employer-4.jpg" alt="">
@@ -414,16 +348,16 @@
 												</h4>
 												<div class="meta">
 													<div class="star">
-														<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+														<i class="fas fa-star"></i> <span class="score">3.9</span>
 													</div>
 													<span class="location"><i class="lnr lnr-map-marker"></i>London Euston,London,UK </span><span class="count-job theme-color">1 Jobs </span>
 												</div>
 											</div>
 										</div>
-										<!-- Single Employer Item End -->
+										<!-- 급구 항목 End -->
 									</div>
 									<div class="col-lg-4">
-										<!-- Single Employer Item Start -->
+										<!-- 급구 항목 Start -->
 										<div class="single-employer-item">
 											<div class="image-featured">
 												<img src="${contextPath}/resources/assets/images/employer/cover-image-employer-5.jpg" alt="">
@@ -437,13 +371,13 @@
 												</h4>
 												<div class="meta">
 													<div class="star">
-														<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+														<i class="fas fa-star"></i> <span class="score">4.5</span>
 													</div>
 													<span class="location"><i class="lnr lnr-map-marker"></i>New York,NY,USA </span><span class="count-job theme-color">2 Jobs </span>
 												</div>
 											</div>
 										</div>
-										<!-- Single Employer Item End -->
+										<!-- 급구 항목 End -->
 									</div>
 								</div>
 							</div>
@@ -454,9 +388,14 @@
 			</div>
 			<!--Hero Item end-->
 		</div>
-		<!--slider section end-->
-		
-		<!-- Job Section Start -->
+		<!-- 급구 리스트 end-->
+		<div class="container">
+			<div class="row">
+				<hr class="hr-style">
+			</div>
+		</div>
+
+		<!-- 일반구인 리스트 Start -->
 		<div class="job-section section pt-115 pt-lg-95 pt-md-75 pt-sm-55 pt-xs-45 pb-120 pb-lg-100 pb-md-80 pb-sm-60 pb-xs-50">
 			<div class="container">
 				<div class="row">
@@ -732,75 +671,80 @@
 				</div>
 			</div>
 		</div>
-		<!-- Job Section End -->
+		<!-- 일반구인 리스트 End -->
 		
-		<!-- Featured Employer Start -->
-		<div class="featured-employer section bg-image-proparty bg_image--2 pt-110 pt-lg-90 pt-md-70 pt-sm-50 pt-xs-45 pb-120 pb-lg-100 pb-md-80 pb-sm-60 pb-xs-50">
+		<!-- 최저시급 Start -->
+		<div class="featured-employer section bg-image-proparty bg_image--2 pt-110 pt-lg-90 pt-md-70 pt-sm-50 pt-xs-45 pb-120 pb-lg-100 pb-md-80 pb-sm-60 pb-xs-50 balance-area">
 			<div class="container">
-				<div class="row" id="balance-table-row">
+				<div class="row">
 					<div class="col-lg-12">
 						<div class="section-title-two mb-45 mb-xs-30">
 							<h3 class="title">2022년도 최저시급 : <span id="balance">9,160</span>원</h3>
 						</div>
 					</div>
-					<div class="col-lg-6">
-						<table class="table table-bordered" id="balance-table">
-							<thead class="thead-dark">
-								<tr>
-									<th scope="col"></th>
-									<th scope="col">주간</th>
-									<th scope="col">야간</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">시급</th>
-									<td><strong>9,160</strong>원</td>
-									<td><strong>13,740원</strong></td>
-								</tr>
-								<tr>
-									<th scope="row">일급</th>
-									<td><strong>73,280원</strong></td>
-									<td><strong>109,920원</strong></td>
-								</tr>
-							</tbody>
-						</table>
+					<div class="col-lg-12 middle-align">
+						<div class="col-lg-6">
+							<table class="table table-bordered" id="balance-table">
+								<thead class="thead-dark">
+									<tr>
+										<th scope="col"></th>
+										<th scope="col">주간</th>
+										<th scope="col">야간</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="tr-background">
+										<th scope="row">시급</th>
+										<td><strong>9,160</strong>원</td>
+										<td><strong>13,740</strong>원</td>
+									</tr>
+									<tr class="tr-background">
+										<th scope="row">일급</th>
+										<td><strong>73,280</strong>원</td>
+										<td><strong>109,920</strong>원</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
-					<div class="col-lg-12">
-						<span><strong>일급</strong> 하루 8시간 근무 기준</span>
+					<div class="col-lg-12 middle-align">
+						<div class="col-lg-6">
+							<span>*<strong>일급</strong> 하루 8시간 근무 기준</span>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Featured Employer End -->
+		<!-- 최저시급 End -->
 		
-		<!-- Blog Section Start -->
+		<!-- 직업추천 & 대타자 평점 랭킹 Start -->
 		<div class="blog-section section pb-120 pb-lg-100 pb-md-80 pb-sm-50 pb-xs-40">
 			<div class="container st-border">
 				<div class="row no-gutters">
 					<div class="col-lg-6">
-						<!-- Simple Work Start -->
+						<!-- 직업추천 Start -->
 						<div class="simple-work">
 							<div class="section-title-two text-left">
 								<h3 class="title">직업 추천</h3>
 							</div>
-							<div class="work-video-image">
-								<div class="video-popup-content">
-									<a class="link-video d-flex venobox" data-autoplay="true" data-vbtype="video" href="https://www.youtube.com/watch?v=XSGBVzeBUbk"> <span class="icon d-flex align-items-center justify-content-center flex-grow-1"> <i class="fa fa-play"></i>
-									</span>
-									</a>
-								</div>
-							</div>
 							<div class="work-list-wrap">
-
+								<div class="single-list-work mb-20">
+									<div class="work-content">
+										<h4 class="title">오늘 당신에게 맞는 직업은?</h4>
+									</div>
+									<div class="work-content margin-middle">
+										<a class="ht-btn header-btn" href="#">직업 추천받기</a>
+									</div>
+								</div>
+								
 								<!-- Single List Work Start -->
 								<div class="single-list-work mb-20">
 									<div class="work-icon">
 										<img src="${contextPath}/resources/assets/images/work/work-icon1.png" alt="">
 									</div>
 									<div class="work-content">
-										<h4 class="title">Understand</h4>
-										<p>Everything about developers, inside your organization and out.</p>
+										<h4 class="title">활동성</h4>
+										<p>당신은 몸을 많이 움직이는 활동적인 일을 원하거나, 그렇지 않은 사무적인 일을 원할 수 있습니다.</p>
 									</div>
 								</div>
 								<!-- Single List Work End -->
@@ -811,8 +755,8 @@
 										<img src="${contextPath}/resources/assets/images/work/work-icon2.png" alt="">
 									</div>
 									<div class="work-content">
-										<h4 class="title">Source</h4>
-										<p>The right talent on the platform they trust the most.</p>
+										<h4 class="title">고객 응대</h4>
+										<p>당신은 고객들을 직접 응대하는 일을 원하거나, 그렇지 않은 비대면 업무를 원할 수 있습니다.</p>
 									</div>
 								</div>
 								<!-- Single List Work End -->
@@ -823,21 +767,21 @@
 										<img src="${contextPath}/resources/assets/images/work/work-icon3.png" alt="">
 									</div>
 									<div class="work-content">
-										<h4 class="title">Optimize</h4>
-										<p>Your hiring efforts with our team of experts.</p>
+										<h4 class="title">접근성</h4>
+										<p>당신은 거주지 주변의 가까운 곳을 선호하거나, 오늘 하루는 멀리 나가보는 것을 선호할 수 있습니다.</p>
 									</div>
 								</div>
 								<!-- Single List Work End -->
 
 							</div>
 						</div>
-						<!-- Simple Work End -->
+						<!-- 직업추천 End -->
 					</div>
 					<div class="col-lg-6">
-						<!-- Blog Wrap Start -->
+						<!-- 대타자 평점 랭킹 Start -->
 						<div class="blog-area">
 							<div class="section-title-two text-left">
-								<h3>랭킹</h3>
+								<h3>대타자 평점 랭킹</h3>
 							</div>
 
 							<div class="blog-wrap">
@@ -906,34 +850,36 @@
 								<a href="#">Browse all articles <i class="lnr lnr-chevron-right"></i></a>
 							</div>
 						</div>
-						<!-- Blog Wrap End -->
+						<!-- 대타자 평점 랭킹 End -->
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Blog Section End -->
+		<!-- 직업추천 & 대타자 평점 랭킹 End -->
 
-		<!-- CTA Section Start -->
+		<!-- 농어촌 & 돌봄 구인 Start -->
 		<div class="cta-section section bg_color--4 pt-50 pb-50">
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-lg-8 col-sm-12 col-12">
 						<div class="call-content text-center text-lg-left">
+							<h3 class="title"><span>대타천국에서는</span></h3>
 							<h3 class="title">
-								Upload Your CV <span>& connect Top Employers</span>
+								농어촌 구인 <span>&</span> 돌봄 구인<span>에도 지원할 수 있습니다.</span>
 							</h3>
-							<p>Upload your CV today to be headhunted by thousands companies</p>
+							<p>사회적 인식이 얕은 곳 까지 도움의 손길을 내어 드리고 싶습니다.</p>
 						</div>
 					</div>
 					<div class="col-lg-4 col-sm-12 col-12">
 						<div class="call-btn text-center text-lg-right">
-							<a class="ht-btn green-btn" href="#">Upload Your CV</a>
+							<a class="ht-btn green-btn link-btn" href="#">농어촌 구인 지원하기</a>
+							<a class="ht-btn green-btn link-btn" href="#">돌봄 구인 지원하기</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- CTA Section End -->
+		<!-- 농어촌 & 돌봄 구인 End -->
 		
 		<!--Footer section start-->
 		<footer class="footer-section section bg-image-proparty bg_image--2">

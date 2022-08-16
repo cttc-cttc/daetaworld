@@ -1,0 +1,64 @@
+@charset "UTF-8";
+.hr-style {
+	width: 100%;
+	outline: 1px solid #eee;
+}
+
+.menu-ul {
+	justify-content: center;
+}
+
+.menu-ul > li {
+	padding: 0 16px !important;
+}
+
+#sub-title2 {
+	font-size: 35px;
+	color: #aaa;
+}
+
+#urgency-title {
+	font-size: 20px;
+}
+
+#urgency-icon {
+	color: #ff0909;
+}
+
+.score {
+	color: #333;
+}
+
+.balance-area {
+	padding: 4rem 0 !important;
+}
+
+#balance {
+	color: #0898d5;
+	font-size: 50px;
+}
+
+#balance-table {
+	text-align: center;
+}
+
+.tr-background {
+	background: #fefefe;
+}
+
+.middle-align {
+	display: flex;
+	justify-content: center;
+}
+
+.link-btn {
+	width: 17rem !important;
+	height: 4rem !important;
+	text-align: center;
+	margin: 0.5rem;
+	line-height: 1.8 !important;
+}
+
+.margin-middle {
+	margin: 0 auto;
+}
