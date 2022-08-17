@@ -18,15 +18,30 @@
 }
 
 #urgency-title {
-	font-size: 20px;
+	font-size: 19px;
+	margin-bottom: 1rem;
+	padding-top: 1rem;
 }
 
 #urgency-icon {
-	color: #ff0909;
+	color: #ff5e5e;
+}
+
+.urgency-money {
+	color: #ff2626;
+	font-weight: 600;
 }
 
 .score {
 	color: #333;
+}
+
+.shop-image {
+	width: 20rem;
+}
+
+.tag-cursor {
+	cursor: context-menu;
 }
 
 .balance-area {
@@ -34,16 +49,62 @@
 }
 
 #balance {
+	display: inline-flex;
+	width: 8rem;
+	justify-content: center;
 	color: #0898d5;
 	font-size: 50px;
+}
+
+#money1 {
+	display: inline-flex;
+	width: 2.7rem;
+	justify-content: center;
+}
+
+#money2 {
+	display: inline-flex;
+	width: 3.1rem;
+	justify-content: center;
+}
+
+#money3 {
+	display: inline-flex;
+	width: 3.4rem;
+	justify-content: center;
+}
+
+#money4 {
+	display: inline-flex;
+	width: 3.9rem;
+	justify-content: center;
 }
 
 .ranking {
 	text-align: center;
 }
 
+.trophy-gold {
+	color: #ffbf02;
+}
+
+.trophy-silver {
+	color: #bbb;
+}
+
+.trophy-bronze {
+	color: #d17a2f;
+}
+
 .star-color {
 	color: #ffbf02;
+}
+
+.ranking-info {
+	margin: 0;
+	font-size: 14px;
+	color: #888;
+	text-align: left;
 }
 
 #balance-table {
@@ -71,6 +132,6 @@
 	margin: 0 auto;
 }
 
-#icon-hidden {
+.icon-hidden {
 	visibility: hidden;
 }
