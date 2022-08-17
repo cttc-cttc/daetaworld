@@ -602,8 +602,8 @@
 								</div>
 								<!-- 랭킹 정보 End -->
 								<div class="col-lg-12">
-									<p class="ranking-info">*랭킹은 <strong>매 월 1일</strong>에 초기화 됩니다.</p>
-									<p class="ranking-info">*랭킹 1, 2, 3등 회원께는 <strong>매 월 말일</strong> 소정의 상품을 지급합니다.</p>
+									<p class="ranking-info">*랭킹은 <strong>매월 1일</strong>에 초기화, <strong>매월 말일</strong>에 정산을 진행합니다.</p>
+									<p class="ranking-info">*정산 직후 랭킹 <strong>1, 2, 3등</strong>의 회원분께는 소정의 상품을 지급합니다.</p>
 								</div>
 							</div>
 						</div>

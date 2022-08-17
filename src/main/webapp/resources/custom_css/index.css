@@ -107,6 +107,10 @@
 	text-align: left;
 }
 
+.ranking-info:nth-child(1) {
+	margin-top: 1rem;
+}
+
 #balance-table {
 	text-align: center;
 }
