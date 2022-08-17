@@ -38,6 +38,14 @@
 	font-size: 50px;
 }
 
+.ranking {
+	text-align: center;
+}
+
+.star-color {
+	color: #ffbf02;
+}
+
 #balance-table {
 	text-align: center;
 }
@@ -61,4 +69,8 @@
 
 .margin-middle {
 	margin: 0 auto;
+}
+
+#icon-hidden {
+	visibility: hidden;
 }

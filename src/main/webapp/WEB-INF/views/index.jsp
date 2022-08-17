@@ -784,70 +784,42 @@
 								<h3>대타자 평점 랭킹</h3>
 							</div>
 
-							<div class="blog-wrap">
-								<!-- Single List Blog Start -->
+							<div class="blog-wrap ranking">
+								<!-- 랭킹 정보 Start -->
 								<div class="single-list-blog">
-									<div class="blog-image">
-										<a href="blog-details.html"><img src="${contextPath}/resources/assets/images/blog/blog1.jpg" alt="blog"></a>
-									</div>
-									<div class="blog-content">
-										<div class="blog-meta">
-											<p class="blog-author">
-												<i class="lnr lnr-user"></i> <span class="text">Posted:</span> <span class="author">Hien Tran</span>
-											</p>
-											<p class="blog-date-post">
-												<i class="lnr lnr-clock"></i>Oct 24, 2019
-											</p>
-										</div>
-										<h4 class="title">
-											<a href="blog-details.html">The Reason Why Software Developer Repeats As ‘Best Job’</a>
-										</h4>
-									</div>
+									<div class="col-lg-4">1등</div>
+									<div class="col-lg-4"><i class="lnr lnr-user"></i> 닉네임1</div>
+									<div class="col-lg-4"><i class="fas fa-star star-color"></i> 4.4</div>
 								</div>
-								<!-- Single List Blog End -->
-								<!-- Single List Blog Start -->
+								<!-- 랭킹 정보 End -->
+								<!-- 랭킹 정보 Start -->
 								<div class="single-list-blog">
-									<div class="blog-image">
-										<a href="blog-details.html"><img src="${contextPath}/resources/assets/images/blog/blog2.jpg" alt="blog"></a>
-									</div>
-									<div class="blog-content">
-										<div class="blog-meta">
-											<p class="blog-author">
-												<i class="lnr lnr-user"></i> <span class="text">Posted:</span> <span class="author">Hien Tran</span>
-											</p>
-											<p class="blog-date-post">
-												<i class="lnr lnr-clock"></i>Oct 24, 2019
-											</p>
-										</div>
-										<h4 class="title">
-											<a href="blog-details.html">7 Answers to the Most Frequently Asked Questions About Job</a>
-										</h4>
-									</div>
+									<div class="col-lg-4">2등</div>
+									<div class="col-lg-4"><i class="lnr lnr-user"></i> 닉네임2</div>
+									<div class="col-lg-4"><i class="fas fa-star star-color"></i> 4.1</div>
 								</div>
-								<!-- Single List Blog End -->
-								<!-- Single List Blog Start -->
+								<!-- 랭킹 정보 End -->
+								<!-- 랭킹 정보 Start -->
 								<div class="single-list-blog">
-									<div class="blog-image">
-										<a href="blog-details.html"><img src="${contextPath}/resources/assets/images/blog/blog1.jpg" alt="blog"></a>
-									</div>
-									<div class="blog-content">
-										<div class="blog-meta">
-											<p class="blog-author">
-												<i class="lnr lnr-user"></i> <span class="text">Posted:</span> <span class="author">Hien Tran</span>
-											</p>
-											<p class="blog-date-post">
-												<i class="lnr lnr-clock"></i>Oct 24, 2019
-											</p>
-										</div>
-										<h4 class="title">
-											<a href="blog-details.html">The Question Everyone Working in Job Should Know to Answer</a>
-										</h4>
-									</div>
+									<div class="col-lg-4">3등</div>
+									<div class="col-lg-4"><i class="lnr lnr-user"></i> 닉네임3</div>
+									<div class="col-lg-4"><i class="fas fa-star star-color"></i> 3.9</div>
 								</div>
-								<!-- Single List Blog End -->
-							</div>
-							<div class="all-articale">
-								<a href="#">Browse all articles <i class="lnr lnr-chevron-right"></i></a>
+								<!-- 랭킹 정보 End -->
+								<!-- 랭킹 정보 Start -->
+								<div class="single-list-blog">
+									<div class="col-lg-4">4등</div>
+									<div class="col-lg-4"><i class="lnr lnr-user"></i> 닉네임4</div>
+									<div class="col-lg-4"><i class="fas fa-star star-color"></i> 3.6</div>
+								</div>
+								<!-- 랭킹 정보 End -->
+								<!-- 랭킹 정보 Start -->
+								<div class="single-list-blog">
+									<div class="col-lg-4">5등</div>
+									<div class="col-lg-4"><i class="lnr lnr-user"></i> 닉네임5</div>
+									<div class="col-lg-4"><i class="fas fa-star star-color"></i> 3.3</div>
+								</div>
+								<!-- 랭킹 정보 End -->
 							</div>
 						</div>
 						<!-- 대타자 평점 랭킹 End -->
@@ -890,16 +862,25 @@
 						<div class="col-xl-4 col-lg-3 col-md-6">
 							<!-- Footer Widget Start -->
 							<div class="footer-widget mb-30">
-								<h6 class="title">Contact Info</h6>
+								<h6 class="title">회사정보</h6>
 								<div class="address">
-									<i class="lnr lnr-map-marker"></i><span>8375 E. Heather Drive Tonawanda,Manchester 14150,United Kingdom</span>
+									<i class="lnr lnr-map-marker"></i><span>주소 경기도 성남시 분당구 판교로 652번길 21</span>
+								</div>
+								<div class="address">
+									<i class="lnr lnr-file-empty"></i><span>사업자등록번호 213-111032-434</span>
 								</div>
 								<div class="email">
-									<i class="lnr lnr-envelope"></i><span>jopota@recruitment.com</span>
+									<i class="lnr lnr-envelope"></i><span>이메일 deataworld@deata.co.kr</span>
 								</div>
-								<div class="phone theme-color fz-17">(+1) 000 987-1234</div>
-								<div class="footer-social justify-content-start mt-35">
-									<a href="#"><i class="fab fa-facebook-square"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-google-plus-g"></i></a><a href="#"><i class="fab fa-pinterest-square"></i></a><a href="#"><i class="fab fa-youtube"></i></a>
+								<div class="address">
+									<i class="lnr lnr-clock"></i>평일 09:00 ~ 19:00<br>
+									<i class="lnr lnr-clock" id="icon-hidden"></i>토요일 09:00 ~ 15:00 (일요일, 공휴일 휴무)
+								</div>
+								<div class="address">
+									<i class="lnr lnr-printer"></i><span>팩스 031-987-4443</span>
+								</div>
+								<div class="phone theme-color fz-17">
+									<i class="lnr lnr-phone-handset"></i> 031-987-1234
 								</div>
 							</div>
 							<!-- Footer Widget End -->
@@ -907,15 +888,12 @@
 						<div class="col-xl-2 col-lg-2 col-md-6">
 							<!-- Footer Widget Start -->
 							<div class="footer-widget mb-30">
-								<h6 class="title">Company</h6>
+								<h6 class="title">대타천국</h6>
 								<div class="footer-widget-link">
 									<ul>
-										<li><a href="#">Press Corner</a></li>
-										<li><a href="#">Policy Privacy</a></li>
-										<li><a href="#">Terms And Conditions</a></li>
-										<li><a href="#">Partner</a></li>
-										<li><a href="#">Help Center</a></li>
-										<li><a href="#">Contact Us</a></li>
+										<li><a href="#">회사소개</a></li>
+										<li><a href="#">이용약관</a></li>
+										<li><a href="#">개인정보처리방침</a></li>
 									</ul>
 								</div>
 							</div>
@@ -924,15 +902,12 @@
 						<div class="col-xl-2 col-lg-3 col-md-6">
 							<!-- Footer Widget Start -->
 							<div class="footer-widget mb-30">
-								<h6 class="title">Help Center</h6>
+								<h6 class="title">고객지원</h6>
 								<div class="footer-widget-link">
 									<ul>
-										<li><a href="#">Teachers</a></li>
-										<li><a href="#">Accounting</a></li>
-										<li><a href="#">Customer Service</a></li>
-										<li><a href="#">Digital Marketing</a></li>
-										<li><a href="#">Web & Software Dev</a></li>
-										<li><a href="#">Science & Analitycs</a></li>
+										<li><a href="#">이용 가이드</a></li>
+										<li><a href="#">자주 묻는 질문(FAQ)</a></li>
+										<li><a href="#">이메일 문의</a></li>
 									</ul>
 								</div>
 							</div>
@@ -941,15 +916,13 @@
 						<div class="col-xl-4 col-lg-4 col-md-6">
 							<!-- Footer Widget Start -->
 							<div class="footer-widget mb-30">
-								<h6 class="title">Newsletter</h6>
+								<h6 class="title">뉴스레터</h6>
 								<div class="newsletter">
-									<p>
-										Join our email subscription now to get updates on <strong>new jobs</strong>and <strong>notifications</strong>.
-									</p>
+									<p>이메일 구독에 가입하시면 <strong>새 구인정보</strong>와 <strong>중요 공지</strong>에 대한 알림을 받아 보실 수 있습니다.</p>
 									<div class="newsletter-form">
 										<form id="mc-form" class="mc-form">
-											<input type="email" placeholder="Enter Your email..." required="" name="EMAIL">
-											<button class="ht-btn small-btn" type="submit" value="submit">Subscribe</button>
+											<input type="email" placeholder="이메일을 입력하세요" required="" name="EMAIL">
+											<button class="ht-btn small-btn" type="submit" value="submit">구독하기</button>
 										</form>
 									</div>
 									<!-- mailchimp-alerts Start -->
@@ -977,19 +950,8 @@
 						<div class="col-lg-6 col-md-6">
 							<div class="copyright">
 								<p>
-									&copy;2020 <a href="http://www.bootstrapmb.com">Jetapo</a>. All rights reserved.
+									&copy;2022 <a href="${contextPath}/">대타천국</a>. All rights reserved.
 								</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-6">
-							<div class="footer-nav">
-								<nav>
-									<ul>
-										<li><a href="#">Find Work</a></li>
-										<li><a href="#">Candicates</a></li>
-										<li><a href="#">Employers</a></li>
-									</ul>
-								</nav>
 							</div>
 						</div>
 					</div>
@@ -998,149 +960,7 @@
 			<!--Footer bottom end-->
 		</footer>
 		<!--Footer section end-->
-		<!-- Modal Area Strat -->
-		<div class="modal fade quick-view-modal-container" id="quick-view-modal-container" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="col-xl-12 col-lg-12">
-							<div class="row no-gutters">
-								<div class="col-lg-4">
-									<div class="login-register-form-area">
-										<div class="login-tab-menu">
-											<ul class="nav">
-												<li><a class="active show" data-toggle="tab" href="#login">Login</a></li>
-												<li><a data-toggle="tab" href="#register">Register</a></li>
-											</ul>
-										</div>
-										<div class="tab-content">
-											<div id="login" class="tab-pane fade show active">
-												<div class="login-register-form">
-													<form action="#" method="post">
-														<p>Login to Jotopa with your registered account</p>
-														<div class="row">
-															<div class="col-12">
-																<div class="single-input">
-																	<input type="text" placeholder="Username or Email" name="name">
-																</div>
-															</div>
-															<div class="col-12">
-																<div class="single-input">
-																	<input type="password" placeholder="Password" name="password">
-																</div>
-															</div>
-															<div class="col-12">
-																<div class="checkbox-input">
-																	<input type="checkbox" name="login-form-remember" id="login-form-remember"><label for="login-form-remember">Remember me</label>
-																</div>
-															</div>
-															<div class="col-12 mb-25">
-																<button class="ht-btn">Login</button>
-															</div>
-														</div>
-													</form>
-													<div class="divider">
-														<span class="line"></span><span class="circle">or login with</span>
-													</div>
-													<div class="social-login">
-														<ul class="social-icon">
-															<li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-															<li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-															<li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
-															<li><a class="google" href="#"><i class="fab fa-google-plus"></i></a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div id="register" class="tab-pane fade">
-												<div class="login-register-form">
-													<form action="#" method="post">
-														<p>Create Your account</p>
-														<div class="row row-5">
-															<div class="col-12">
-																<div class="single-input">
-																	<input type="text" placeholder="Your Username" name="name">
-																</div>
-															</div>
-															<div class="col-12">
-																<div class="single-input">
-																	<input type="email" placeholder="Your Email Address" name="emain">
-																</div>
-															</div>
-															<div class="col-sm-6">
-																<div class="single-input">
-																	<input type="password" placeholder="Password" name="password">
-																</div>
-															</div>
-															<div class="col-sm-6">
-																<div class="single-input">
-																	<input type="password" placeholder="Confirm Password" name="conPassword">
-																</div>
-															</div>
-															<div class="col-6">
-																<div class="checkbox-input">
-																	<input type="checkbox" name="login-form-candidate" id="login-form-candidate"><label for="login-form-candidate">I am a candidate</label>
-																</div>
-															</div>
-															<div class="col-6">
-																<div class="checkbox-input">
-																	<input type="checkbox" name="login-form-employer" id="login-form-employer"><label for="login-form-employer">I am a employer</label>
-																</div>
-															</div>
-															<div class="col-12">
-																<div class="register-account">
-																	<input id="register-terms-conditions" type="checkbox" class="checkbox" checked="" required=""><label for="register-terms-conditions">I read and agree to the <a href="#">Terms &amp;Conditions</a>and <a href="#">Privacy Policy</a>
-																	</label>
-																</div>
-															</div>
-															<div class="col-12 mb-25">
-																<button class="ht-btn">Register</button>
-															</div>
-														</div>
-													</form>
-													<div class="divider">
-														<span class="line"></span><span class="circle">or login with</span>
-													</div>
-													<div class="social-login">
-														<ul class="social-icon">
-															<li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-															<li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-															<li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
-															<li><a class="google" href="#"><i class="fab fa-google-plus"></i></a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-8">
-									<div class="login-instruction">
-										<div class="login-instruction-content">
-											<h3 class="title">Why Login To Us</h3>
-											<p>It’s important for you to have an account and login in order to have full access at Jotopa. We need to know your account details in order to allow work together</p>
-											<ul class="list-reasons">
-												<li class="reason">Be alerted to the latest jobs</li>
-												<li class="reason">Apply for jobs with a single click</li>
-												<li class="reason">Showcase your CV to thousands of employers</li>
-												<li class="reason">Keep a record of all your applications</li>
-											</ul>
-											<span class="sale-text theme-color border-color">Login today &amp;Get 15% Off Coupon for the first planning purchase</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Modal Area End -->
+		
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->
