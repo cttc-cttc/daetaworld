@@ -15,27 +15,22 @@
     margin: 0;
 }
 
-.alarm-area {
-	width: 20rem;
-	left: -140px !important;
-	padding: 0;
+.alarm-hover:hover {
+	color: #dc3545;
 }
 
-.alarm-header {
-	border-bottom: 1px solid #cfcfcf;
-	padding: 10px;
+.drdn-item {
+	font-weight: 100 !important;
 }
 
-.alarm-body > li {
-	border-bottom: 1px solid #cfcfcf;
-	padding: 10px;
-}
-
-.alarm-body > li:hover {
-	background: #f4f4f4;
-}
-
-.alarm-footer {
-	padding: 10px;
+.last {
 	text-align: center;
+}
+
+.profile-image {
+	width: 2rem;
+}
+
+.user-hover:hover {
+	color: #007bff;
 }

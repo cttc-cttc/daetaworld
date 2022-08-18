@@ -36,7 +36,7 @@
 						<!--Logo start-->
 						<div class="col-xl-2 col-lg-2 col-12">
 							<div class="logo">
-								<a href="./"><img src="${contextPath}/resources/images/banner.png" alt=""></a>
+								<a href="./"><img src="${contextPath}/resources/images/logo.png" alt=""></a>
 							</div>
 						</div>
 						<!--Logo end-->

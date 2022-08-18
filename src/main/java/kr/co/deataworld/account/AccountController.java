@@ -22,6 +22,16 @@ public class AccountController {
 		logger.info("name : " + name + " / password : " + password);
 		if(name.equals("admin") && password.equals("admin123")) {
 			session.setAttribute("loginUser", name);
+			session.setAttribute("loginType", 0);
+			
+		} else if(name.equals("user") && password.equals("user123")) {
+			session.setAttribute("loginUser", name);
+			session.setAttribute("loginType", 1);
+			
+		} else if(name.equals("owner") && password.equals("owner123")) {
+			session.setAttribute("loginUser", name);
+			session.setAttribute("loginType", 2);
+			
 		} else {
 			return "redirect:login";
 		}
