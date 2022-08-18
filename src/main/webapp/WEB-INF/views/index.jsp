@@ -1,30 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>대타천국</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Place favicon.ico in the root directory -->
-<link href="${contextPath}/resources/assets/images/favicon.ico" type="img/x-icon" rel="shortcut icon">
-<!-- All css files are included here. -->
-<link rel="stylesheet" href="${contextPath}/resources/assets/css/vendor/bootstrap.min.css">
-<link rel="stylesheet" href="${contextPath}/resources/assets/css/vendor/iconfont.min.css">
-<link rel="stylesheet" href="${contextPath}/resources/assets/css/vendor/helper.css">
-<!-- <link rel="stylesheet" href="${contextPath}/resources/assets/css/plugins/plugins.css">-->
-<!-- <link rel="stylesheet" href="${contextPath}/resources/assets/css/style.css">-->
-<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-<link rel="stylesheet" href="${contextPath}/resources/assets/css/plugins/plugins.min.css">
-<link rel="stylesheet" href="${contextPath}/resources/assets/css/style.min.css">
-<!-- Modernizr JS -->
-<script src="${contextPath}/resources/assets/js/vendor/modernizr-3.10.0.min.js"></script>
+<title>오늘의 대타</title>
+<%@ include file="include/head.jsp" %>
 <!-- custom css -->
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css">
-</head>
 <body class="template-color-3">
 	<div id="main-wrapper">
 		<%@ include file="include/header.jsp" %>
@@ -41,7 +22,7 @@
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="hero-content-4 left">
-											<h2 class="title">대타가 필요할 땐 대타천국</h2>
+											<h2 class="title">대타가 필요할 땐 오늘의 대타</h2>
 											<h3 class="sub-title"><span id="sub-title2">오늘 할 대타를 내일로 미루지 말자!!</span></h3>
 											<p id="urgency-title"><i class="fas fa-bullhorn" id="urgency-icon"></i>&nbsp;지금 뜨는 급구 리스트</p>
 										</div>
@@ -620,7 +601,7 @@
 				<div class="row align-items-center">
 					<div class="col-lg-8 col-sm-12 col-12">
 						<div class="call-content text-center text-lg-left">
-							<h3 class="title"><span>대타천국에서는</span></h3>
+							<h3 class="title"><span>오늘의 대타에서는</span></h3>
 							<h3 class="title">
 								농어촌 구인 <span>&</span> 돌봄 구인<span>에도 지원할 수 있습니다.</span>
 							</h3>

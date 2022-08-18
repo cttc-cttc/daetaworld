@@ -40,28 +40,4 @@ public class HomeController {
 		mav.setViewName("adminPage");
 		return mav;
 	}
-	
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam Map<String, String> loginData) {
-		ModelAndView mav = new ModelAndView();
-		String userId = loginData.get("userId");
-		session.setAttribute("userId", userId);
-		
-		if(userId.equals("cpy"))
-			session.setAttribute("userType", "company");
-		else
-			session.setAttribute("userType", "person");
-		
-		mav.setViewName("main");
-		return mav;
-	}
-	
-	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public ModelAndView logout() {
-		ModelAndView mav = new ModelAndView();
-		session.invalidate();
-		mav.setViewName("main");
-		return mav;
-	}
-	
 }

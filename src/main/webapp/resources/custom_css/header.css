@@ -1,0 +1,41 @@
+@charset "UTF-8";
+.label-alarm {
+	background-color: #ff2626;
+	position: absolute;
+    top: -15px;
+    right: -8px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    text-transform: capitalize;
+    padding: 0 10px;
+    border-radius: 3px;
+    color: #fff;
+    margin: 0;
+}
+
+.alarm-area {
+	width: 20rem;
+	left: -140px !important;
+	padding: 0;
+}
+
+.alarm-header {
+	border-bottom: 1px solid #cfcfcf;
+	padding: 10px;
+}
+
+.alarm-body > li {
+	border-bottom: 1px solid #cfcfcf;
+	padding: 10px;
+}
+
+.alarm-body > li:hover {
+	background: #f4f4f4;
+}
+
+.alarm-footer {
+	padding: 10px;
+	text-align: center;
+}

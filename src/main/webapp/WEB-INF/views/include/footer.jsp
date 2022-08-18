@@ -34,7 +34,7 @@
 				<div class="col-xl-2 col-lg-2 col-md-6">
 					<!-- Footer Widget Start -->
 					<div class="footer-widget mb-30">
-						<h6 class="title">대타천국</h6>
+						<h6 class="title">오늘의 대타</h6>
 						<div class="footer-widget-link">
 							<ul>
 								<li><a href="#">회사소개</a></li>
@@ -98,7 +98,7 @@
 				<div class="col-lg-6 col-md-6">
 					<div class="copyright">
 						<p>
-							&copy;2022 <a href="${contextPath}/">대타천국</a>. All rights reserved.
+							&copy;2022 <a href="${contextPath}/">오늘의 대타</a>. All rights reserved.
 						</p>
 					</div>
 				</div>
