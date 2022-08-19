@@ -75,7 +75,7 @@
 									&nbsp;<span class="user-hover">${loginUser }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">
-									<a class="dropdown-item drdn-item" href="adminPage">관리자 화면</a>
+									<a class="dropdown-item drdn-item" href="employee_info">관리자 화면</a>
 								</div>
 							</div>
 							<!-- 유저메뉴 토글 End -->

@@ -14,6 +14,7 @@ public class AccountController {
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String loginForm() {
+		logger.info("로그인화면 접속");
 		return "loginForm";
 	}
 	
@@ -40,6 +41,7 @@ public class AccountController {
 	
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
+		logger.info("로그아웃");
 		session.invalidate();
 		return "redirect:/";
 	}

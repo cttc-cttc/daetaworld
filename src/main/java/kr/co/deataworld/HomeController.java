@@ -29,15 +29,33 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView index() {
+		logger.info("메인화면 접속");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
 		return mav;
 	}
 	
-	@RequestMapping(value = "adminPage", method = RequestMethod.GET)
-	public ModelAndView adminPage() {
+	@RequestMapping(value = "employee_info", method = RequestMethod.GET)
+	public ModelAndView employeeInfo() {
+		logger.info("관리자화면 접속 : 구직자 회원정보");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminPage");
+		mav.setViewName("adminPage/employee_info");
+		return mav;
+	}
+	
+	@RequestMapping(value = "employer_info", method = RequestMethod.GET)
+	public ModelAndView employerInfo() {
+		logger.info("관리자화면 접속 : 구인자 회원정보");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("adminPage/employer_info");
+		return mav;
+	}
+	
+	@RequestMapping(value = "blacklist", method = RequestMethod.GET)
+	public ModelAndView blacklist() {
+		logger.info("관리자화면 접속 : 블랙리스트");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("adminPage/blacklist");
 		return mav;
 	}
 }
