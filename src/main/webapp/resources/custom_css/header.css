@@ -1,4 +1,12 @@
 @charset "UTF-8";
+.menu-ul {
+	justify-content: center;
+}
+
+.menu-ul > li {
+	padding: 0 16px !important;
+}
+
 .label-alarm {
 	background-color: #ff2626;
 	position: absolute;

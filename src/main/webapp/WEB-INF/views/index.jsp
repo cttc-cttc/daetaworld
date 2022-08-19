@@ -8,7 +8,11 @@
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css">
 <body class="template-color-3">
 	<div id="main-wrapper">
-		<%@ include file="include/header.jsp" %>
+		<!-- 상단 메뉴 start-->
+		<header class="header-absolute black-logo-version header-sticky sticky-white no-padding d-none d-lg-block pt-25 pb-25">
+			<%@ include file="include/header.jsp" %>
+		</header>
+		<!-- 싱딘 메뉴 end-->
 		
 		<!-- 급구 리스트 start-->
 		<div class="hero-section section position-relative">
@@ -494,8 +498,8 @@
 									<div class="work-content">
 										<h4 class="title">오늘 당신에게 맞는 직업은?</h4>
 									</div>
-									<div class="work-content margin-middle">
-										<a class="ht-btn header-btn" href="#">직업 추천받기</a>
+									<div class="work-content margin-left-auto">
+										<a class="ht-btn header-btn btn-style" href="#">직업 추천받기</a>
 									</div>
 								</div>
 								

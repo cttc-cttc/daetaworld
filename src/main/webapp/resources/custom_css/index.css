@@ -4,14 +4,6 @@
 	outline: 1px solid #eee;
 }
 
-.menu-ul {
-	justify-content: center;
-}
-
-.menu-ul > li {
-	padding: 0 16px !important;
-}
-
 #sub-title2 {
 	font-size: 35px;
 	color: #aaa;
@@ -132,8 +124,13 @@
 	line-height: 1.8 !important;
 }
 
-.margin-middle {
-	margin: 0 auto;
+.margin-left-auto {
+	margin-left: auto;
+}
+
+.btn-style {
+	width: 14rem !important;
+	text-align: center;
 }
 
 .icon-hidden {
