@@ -6,7 +6,7 @@
 <title>관리자 페이지</title>
 <%@ include file="../include/head.jsp" %>
 <!-- custom css -->
-<link rel="stylesheet" href="${contextPath}/resources/custom_css/adminPage/member_management.css">
+<link rel="stylesheet" href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -27,19 +27,19 @@
 									<li>
 										<h3>회원 관리</h3>
 										<ul>
-											<li><a href="employee_info"><i class="lnr lnr-users"></i>구직자</a></li>
-											<li><a href="employer_info"><i class="lnr lnr-user"></i>구인자</a></li>
-											<li><a class="active" href="blacklist"><i class="lnr lnr-thumbs-down"></i>블랙리스트</a></li>
+											<li><a href="${contextPath }/admin/employee_info"><i class="lnr lnr-users"></i>구직자</a></li>
+											<li><a href="${contextPath }/admin/employer_info"><i class="lnr lnr-user"></i>구인자</a></li>
+											<li><a class="active" href="${contextPath }/admin/blacklist"><i class="lnr lnr-thumbs-down"></i>블랙리스트</a></li>
 										</ul>
 									</li>
 									<li>
 										<h3>신고 관리</h3>
 										<ul>
-											<li><a href="follows.html"><i class="lnr lnr-briefcase"></i>구인공고</a></li>
-											<li><a href="applications.html"><i class="lnr lnr-file-empty"></i>자유게시판 글</a></li>
-											<li><a href="bookmarks.html"><i class="lnr lnr-pencil"></i>자유게시판 댓글</a></li>
-											<li><a href="follows.html"><i class="lnr lnr-file-empty"></i>땜빵게시판 글</a></li>
-											<li><a href="follows.html"><i class="lnr lnr-pencil"></i>땜빵게시판 댓글</a></li>
+											<li><a href="${contextPath }/admin/job_ads"><i class="lnr lnr-briefcase"></i>구인공고</a></li>
+											<li><a href="${contextPath }/admin/free_board"><i class="lnr lnr-file-empty"></i>자유게시판 글</a></li>
+											<li><a href="${contextPath }/admin/free_comment"><i class="lnr lnr-pencil"></i>자유게시판 댓글</a></li>
+											<li><a href="${contextPath }/admin/temping_board"><i class="lnr lnr-file-empty"></i>땜빵게시판 글</a></li>
+											<li><a href="${contextPath }/admin/temping_comment"><i class="lnr lnr-pencil"></i>땜빵게시판 댓글</a></li>
 										</ul>
 									</li>
 								</ul>
@@ -59,7 +59,7 @@
 							</div>
 							<div class="dashboard-overview">
 								<div class="row">
-									<div class="col-xl-10 col-12">
+									<div class="col-xl-12 col-12">
 										<!-- 블랙리스트 Start -->
 										<div class="submited-applications mb-50">
 											<div class="applications-heading">
@@ -74,7 +74,7 @@
 																<th class="width-15">이름</th>
 																<th class="width-12">가입일</th>
 																<th class="width-35">신고사유</th>
-																<th class="width-23 text-right">상세정보</th>
+																<th class="width-23">상세정보</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -87,8 +87,8 @@
 																	<a href="#"><span class="rejected report-tag-hover">불법성 게시글</span></a>
 																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
 																</td>
-																<td class="view-application text-xl-right">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
+																<td class="view-application">
+																	<a href="${contextPath }/admin/profile" class="view-application">상세 회원정보 보기</a>
 																</td>
 															</tr>
 															<tr class="application-item">
@@ -100,7 +100,7 @@
 																	<a href="#"><span class="rejected report-tag-hover">비속어 댓글</span></a>
 																	<a href="#"><span class="rejected report-tag-hover">비속어 댓글</span></a>
 																</td>
-																<td class="view-application text-xl-right">
+																<td class="view-application">
 																	<a href="#" class="view-application">상세 회원정보 보기</a>
 																</td>
 															</tr>
@@ -111,9 +111,9 @@
 																<td class="status">
 																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
 																	<a href="#"><span class="rejected report-tag-hover">불법성 게시글</span></a>
-																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
+																	<a href="#"><span class="rejected report-tag-hover">최저시급 미준수</span></a>
 																</td>
-																<td class="view-application text-xl-right">
+																<td class="view-application">
 																	<a href="#" class="view-application">상세 회원정보 보기</a>
 																</td>
 															</tr>
@@ -126,7 +126,7 @@
 																	<a href="#"><span class="rejected report-tag-hover">불법성 게시글</span></a>
 																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
 																</td>
-																<td class="view-application text-xl-right">
+																<td class="view-application">
 																	<a href="#" class="view-application">상세 회원정보 보기</a>
 																</td>
 															</tr>
@@ -139,7 +139,7 @@
 																	<a href="#"><span class="rejected report-tag-hover">불법성 게시글</span></a>
 																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
 																</td>
-																<td class="view-application text-xl-right">
+																<td class="view-application">
 																	<a href="#" class="view-application">상세 회원정보 보기</a>
 																</td>
 															</tr>

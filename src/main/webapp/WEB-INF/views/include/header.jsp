@@ -7,7 +7,7 @@
 			<!--Logo start-->
 			<div class="col-xl-2 col-lg-2 col-12">
 				<div class="logo">
-					<a href="./"><img src="${contextPath}/resources/images/logo.png" alt=""></a>
+					<a href="${contextPath }/"><img src="${contextPath}/resources/images/logo.png" alt=""></a>
 				</div>
 			</div>
 			<!--Logo end-->
@@ -75,7 +75,7 @@
 									&nbsp;<span class="user-hover">${loginUser }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">
-									<a class="dropdown-item drdn-item" href="employee_info">관리자 화면</a>
+									<a class="dropdown-item drdn-item" href="${contextPath }/admin/employee_info">관리자 화면</a>
 								</div>
 							</div>
 							<!-- 유저메뉴 토글 End -->

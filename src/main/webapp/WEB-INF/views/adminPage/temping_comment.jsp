@@ -28,7 +28,7 @@
 										<h3>회원 관리</h3>
 										<ul>
 											<li><a href="${contextPath }/admin/employee_info"><i class="lnr lnr-users"></i>구직자</a></li>
-											<li><a class="active" href="${contextPath }/admin/employer_info"><i class="lnr lnr-user"></i>구인자</a></li>
+											<li><a href="${contextPath }/admin/employer_info"><i class="lnr lnr-user"></i>구인자</a></li>
 											<li><a href="${contextPath }/admin/blacklist"><i class="lnr lnr-thumbs-down"></i>블랙리스트</a></li>
 										</ul>
 									</li>
@@ -39,7 +39,7 @@
 											<li><a href="${contextPath }/admin/free_board"><i class="lnr lnr-file-empty"></i>자유게시판 글</a></li>
 											<li><a href="${contextPath }/admin/free_comment"><i class="lnr lnr-pencil"></i>자유게시판 댓글</a></li>
 											<li><a href="${contextPath }/admin/temping_board"><i class="lnr lnr-file-empty"></i>땜빵게시판 글</a></li>
-											<li><a href="${contextPath }/admin/temping_comment"><i class="lnr lnr-pencil"></i>땜빵게시판 댓글</a></li>
+											<li><a class="active" href="${contextPath }/admin/temping_comment"><i class="lnr lnr-pencil"></i>땜빵게시판 댓글</a></li>
 										</ul>
 									</li>
 								</ul>
@@ -53,65 +53,59 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>회원 관리</h1>
+										<h1>신고 관리</h1>
 									</div>
 								</div>
 							</div>
 							<div class="dashboard-overview">
 								<div class="row">
 									<div class="col-xl-12 col-12">
-										<!-- 구인자 리스트 Start -->
+										<!-- 자유게시판 신고 댓글 리스트 Start -->
 										<div class="submited-applications mb-50">
 											<div class="applications-heading">
-												<h3>구인자 회원정보</h3>
+												<h3>땜빵게시판 댓글</h3>
 											</div>
 											<div class="applications-main-block">
 												<div class="applications-table text-middle">
 													<table class="table">
 														<thead>
 															<tr>
-																<th class="width-15">ID</th>
-																<th class="width-15">이름</th>
-																<th class="width-12">가입일</th>
-																<th class="width-35">상태</th>
-																<th class="width-23">상세정보</th>
+																<th class="width-35 text-left">댓글내용</th>
+																<th class="width-15">작성자</th>
+																<th class="width-12">작성일</th>
+																<th class="width-15">신고사유</th>
+																<th class="width-23">추가작업</th>
 															</tr>
 														</thead>
 														<tbody>
 															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">owner1</span></h3></td>
-																<td class="application-employer"><span>김김김</span></td>
-																<td class="application-created"><span>2020.06.02</span></td>
-																<td class="status"><span class="approved">정상</span></td>
+																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">댓글내용111</a></h3></td>
+																<td class="application-employer"><a class="dotted" href="#">user661</a></td>
+																<td class="application-created"><span>2021.09.17</span></td>
+																<td class="status">광고성 댓글</td>
 																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
+																	<a href="#" class="view-application">댓글삭제</a>&nbsp;&nbsp;
+																	<a href="#" class="view-application">신고취소</a>
 																</td>
 															</tr>
 															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">owner2</span></h3></td>
-																<td class="application-employer"><span>이이이</span></td>
-																<td class="application-created"><span>2020.11.22</span></td>
-																<td class="status"><span class="pending">경고 2회</span></td>
+																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">댓글내용222</a></h3></td>
+																<td class="application-employer"><a class="dotted" href="#">user65</a></td>
+																<td class="application-created"><span>2021.12.01</span></td>
+																<td class="status">광고성 댓글</td>
 																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
+																	<a href="#" class="view-application">댓글삭제</a>&nbsp;&nbsp;
+																	<a href="#" class="view-application">신고취소</a>
 																</td>
 															</tr>
 															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">owner3</span></h3></td>
-																<td class="application-employer"><span>박박박</span></td>
-																<td class="application-created"><span>2020.08.12</span></td>
-																<td class="status"><span class="approved">정상</span></td>
+																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">댓글내용333</a></h3></td>
+																<td class="application-employer"><a class="dotted" href="#">user875</a></td>
+																<td class="application-created"><span>2021.12.25</span></td>
+																<td class="status">광고성 댓글</td>
 																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">owner4</span></h3></td>
-																<td class="application-employer"><span>정정정</span></td>
-																<td class="application-created"><span>2020.01.17</span></td>
-																<td class="status"><span class="rejected">정지</span></td>
-																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
+																	<a href="#" class="view-application">댓글삭제</a>&nbsp;&nbsp;
+																	<a href="#" class="view-application">신고취소</a>
 																</td>
 															</tr>
 														</tbody>
@@ -131,7 +125,7 @@
 												</div>
 											</div>
 										</div>
-										<!-- 구인자 리스트 End -->
+										<!-- 땜빵게시판 신고 댓글 리스트 End -->
 									</div>
 								</div>
 							</div>

@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/*
+ * 계정관련 컨트롤러 (회원가입, 로그인/로그아웃, ID찾기/PW찾기)
+ */
 @Controller
 public class AccountController {
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
