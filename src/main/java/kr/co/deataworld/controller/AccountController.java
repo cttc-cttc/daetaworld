@@ -1,4 +1,4 @@
-package kr.co.deataworld.account;
+package kr.co.deataworld.controller;
 
 import javax.servlet.http.HttpSession;
 
