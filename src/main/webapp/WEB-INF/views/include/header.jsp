@@ -36,11 +36,9 @@
 				<c:if test="${loginUser == null }">
 					<div class="header-btn-action d-flex justify-content-end">
 						<div class="btn-action-wrap d-flex">
-							<div class="jp-author item">
-								<a href="${contextPath}/login"><i class="lnr lnr-user"></i><span>로그인</span></a>
-							</div>
+
 							<div class="jp-author-action-two item">
-								<a class="ht-btn header-btn" href="#">회원가입</a>
+								<a class="ht-btn header-btn" href="${contextPath}/login">로그인 또는 회원가입</a>
 							</div>
 						</div>
 					</div>
@@ -116,7 +114,7 @@
 									<a class="dropdown-item drdn-item" href="#">포인트 점수 : 230점</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item drdn-item" href="#">내 지원 현황</a>
-									<a class="dropdown-item drdn-item" href="#">마이페이지</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employee/myInfo">마이페이지</a>
 								</div>
 							</div>
 							<!-- 유저메뉴 토글 End -->
@@ -156,9 +154,9 @@
 								<div class="dropdown-menu" aria-labelledby="userMenu">
 									<a class="dropdown-item drdn-item" href="#">포인트 점수 : 540점</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item drdn-item" href="#">공고 등록</a>
-									<a class="dropdown-item drdn-item" href="#">지원자 확인</a>
-									<a class="dropdown-item drdn-item" href="#">마이페이지</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employer/adsRegister">공고 등록</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employer/candidates">지원자 확인</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employer/myInfo">마이페이지</a>
 								</div>
 							</div>
 							<!-- 유저메뉴 토글 End -->
