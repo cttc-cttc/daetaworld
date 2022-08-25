@@ -6,6 +6,7 @@
 <%@ include file="include/head.jsp" %>
 <!-- custom css -->
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css">
+
 <body class="template-color-3">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
