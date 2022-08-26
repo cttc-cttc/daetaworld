@@ -6,6 +6,10 @@
 <html class="no-js" lang="zxx">
 <title>공고 등록</title>
 <%@ include file="../include/head.jsp"%>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -51,23 +55,17 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="date">날짜 <span>*</span></label><input
-																				type="date" id="a_date" name="a_date"
-																				placeholder="a_date" value="날짜">
-																		</div>																		
+																			<label for="date">날짜 <span>*</span></label>
+																				<input type="text" name="datefilter" value="" />
+																		</div>					
+																													
 																		<!-- Single Input End -->
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->																		
 																		<div class="single-input mb-25">
-																			<label for="time" class = "row">시간 <span>*</span></label>
-																			<input
-																				type="time" id="a_time1" name="a_time1"
-																				placeholder="a_time1" value="시간1">
-																			부터
-																			<input
-																				type="time" id="a_time2" name="a_time2"
-																				placeholder="a_time2" value="시간2">까지
+																			<label for="time">시간 <span>*</span></label>
+																				<input type="text" name="timefilter" value="" />
 																		</div>																		
 																		<!-- Single Input End -->
 																	</div>
@@ -110,37 +108,40 @@
 																	</div>
 																</div>
 															</div>
-														</div>
-														<div class="row">
-															<div class="col-12">
-																<div
-																	class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																	<button class="ht-btn theme-btn theme-btn-two mb-xs-20">일반 등록</button>
-																	<button class="ht-btn theme-btn theme-btn-two mb-xs-20">급구 등록</button>	
-																	<button
+														
+															<div class="row">
+																<div class="col-12">
+																	<div
+																		class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+																		<button class="ht-btn theme-btn theme-btn-two mb-xs-20">일반 등록</button>
+																		<button class="ht-btn theme-btn theme-btn-two mb-xs-20">급구 등록</button>	
+																		<button
 																		class="ht-btn theme-btn theme-btn-two transparent-btn-two">마이페이지로</button>
+																	</div>
 																</div>
 															</div>
-														</div>
-													</form>
+														</form>
+													</div>													
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+								</div>									
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
-		</div>
+		</div>	
 		<!-- Dashboard Content Section End -->
 		<%@ include file="../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
-	</div>
+
 	<!-- Placed js at the end of the document so the pages load faster -->
 	<!-- All jquery file included here -->
+	
+
+	
 	<script
 		src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
 	<script
@@ -151,5 +152,52 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	
+	
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+
+			$('input[name="datefilter"]').daterangepicker({
+				autoUpdateInput : false,
+				locale : {
+					cancelLabel : 'Clear'
+				}
+			});
+
+			$('input[name="datefilter"]').on(
+					'apply.daterangepicker',
+					function(ev, picker) {
+						$(this).val(
+								picker.startDate.format('MM/DD/YYYY') + ' - '
+										+ picker.endDate.format('MM/DD/YYYY'));
+					});
+
+			$('input[name="datefilter"]').on('cancel.daterangepicker',
+					function(ev, picker) {
+						$(this).val('');
+					});
+
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(function() {
+			$('input[name="timefilter"]').daterangepicker({
+				timePicker : true,
+				timePicker12Hour : true,
+				timePickerIncrement : 10,
+				timePickerSeconds : false,
+				locale : {
+					format : 'HH:mm'
+				}
+			}).on('show.daterangepicker', function(ev, picker) {
+				picker.container.find(".calendar-table").hide();
+			});
+		})
+	</script>
 </body>
 </html>

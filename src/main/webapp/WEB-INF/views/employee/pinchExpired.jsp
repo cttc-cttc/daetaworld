@@ -4,8 +4,8 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>포인트 관리</title>
-<%@ include file="include/head.jsp"%>
+<title>종료된 공고</title>
+<%@ include file="../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -14,7 +14,7 @@
 		<!-- 상단 메뉴 start-->
 		<header
 			class="black-logo-version header-sticky sticky-white d-none d-lg-block">
-			<%@ include file="include/header.jsp"%>
+			<%@ include file="../include/header.jsp"%>
 		</header>
 		<!-- 상단 메뉴 end-->
 		<hr class="header-hr">
@@ -22,13 +22,13 @@
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
-					<%@ include file="include/dashBoard.jsp"%>
+					<%@ include file="../include/dashBoard.jsp"%>
 					<div class="col-xl-10 col-lg-9">
 						<div class="dashboard-main-inner">
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>포인트</h1>
+										<h1>종료된 공고</h1>
 									</div>
 								</div>
 							</div>
@@ -38,14 +38,15 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="pointManagement">포인트</a></li>
-													<li><a href="pointHistory">포인트 적립 및 차감 내역</a></li>
-													<li><a href="pointUse">포인트 사용</a></li>													
+													<li><a href="pinchHistory">대타 내역</a></li>
+													<li><a href="pinchStatus">지원 현황</a></li>
+													<li><a href="requests">알바 요청 확인</a></li>
+													<li><a class="active" href="pinchExpired">종료된 공고</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													현재 보유 중인 포인트
+													공고 올린 전체 내역
 													
 												</div>
 											</div>
@@ -60,7 +61,7 @@
 			</div>
 		</div>
 		<!-- Dashboard Content Section End -->
-		<%@ include file="include/footer.jsp"%>
+		<%@ include file="../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->

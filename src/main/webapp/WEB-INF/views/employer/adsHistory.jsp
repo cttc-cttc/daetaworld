@@ -39,9 +39,9 @@
 											<div class="profile-applications-heading">
 												<ul class="nav">
 													<li><a class="active" href="adsHistory">공고 내역</a></li>
-													<li><a href="adsHistory">등록 중인 공고</a></li>
+													<li><a href="adsPending">등록 중인 공고</a></li>
 													<li><a href="candidates">지원자 확인</a></li>
-													<li><a href="adsHistory">만료된 공고</a></li>
+													<li><a href="adsExpired">만료된 공고</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
