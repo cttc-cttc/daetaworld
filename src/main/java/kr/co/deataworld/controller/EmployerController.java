@@ -3,6 +3,7 @@ package kr.co.deataworld.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -11,7 +12,8 @@ public class EmployerController {
 	private static final Logger logger = LoggerFactory.getLogger(EmployerController.class);
 	
 	@GetMapping(value="employer/myInfo")
-	public String myInfo() {
+	public String myInfo(Model model) {
+		model.addAttribute("leftMenu", "myInfo");
 		return "employer/myInfo";
 	}
 	
@@ -21,7 +23,8 @@ public class EmployerController {
 	}
 	
 	@GetMapping(value="employer/adsRegister")
-	public String adsRegister() {
+	public String adsRegister(Model model) {
+		model.addAttribute("leftMenu", "adsRegister");
 		return "employer/adsRegister";		
 	}
 	
@@ -31,12 +34,14 @@ public class EmployerController {
 	}
 
 	@GetMapping(value="employer/candidates")
-	public String candidates() {
+	public String candidates(Model model) {
+		model.addAttribute("leftMenu", "candidates");
 		return "employer/candidates";
 	}	
 	
 	@GetMapping(value="employer/shopManagement")
-	public String shopManagement() {
+	public String shopManagement(Model model) {
+		model.addAttribute("leftMenu", "shopManagement");
 		return "employer/shopManagement";
 	}
 	
@@ -46,7 +51,8 @@ public class EmployerController {
 	}
 	
 	@GetMapping(value="employer/adsHistory")
-	public String adsHistory() {
+	public String adsHistory(Model model) {
+		model.addAttribute("leftMenu", "adsHistory");
 		return "employer/adsHistory";
 	}
 	

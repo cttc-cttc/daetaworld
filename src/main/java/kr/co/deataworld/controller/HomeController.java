@@ -3,6 +3,7 @@ package kr.co.deataworld.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,7 +64,8 @@ public class HomeController {
 	}
 	
 	@GetMapping(value="point/pointManagement")
-	public String pointManagement() {
+	public String pointManagement(Model model) {
+		model.addAttribute("leftMenu", "pointManagement");
 		return "point/pointManagement";
 	}
 	
