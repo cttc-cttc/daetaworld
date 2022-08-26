@@ -18,32 +18,7 @@
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
 					<!-- 좌측 메뉴 Start -->
-					<div class="col-xl-2 col-lg-3">
-						<div class="dashboard-sidebar">
-							<div class="dashboard-menu">
-								<ul class="nav">
-									<li>
-										<h3>회원 관리</h3>
-										<ul>
-											<li><a href="${contextPath }/admin/employee_info"><i class="lnr lnr-users"></i>구직자</a></li>
-											<li><a href="${contextPath }/admin/employer_info"><i class="lnr lnr-user"></i>구인자</a></li>
-											<li><a class="active" href="${contextPath }/admin/blacklist"><i class="lnr lnr-thumbs-down"></i>블랙리스트</a></li>
-										</ul>
-									</li>
-									<li>
-										<h3>신고 관리</h3>
-										<ul>
-											<li><a href="${contextPath }/admin/job_ads"><i class="lnr lnr-briefcase"></i>구인공고</a></li>
-											<li><a href="${contextPath }/admin/free_board"><i class="lnr lnr-file-empty"></i>자유게시판 글</a></li>
-											<li><a href="${contextPath }/admin/free_comment"><i class="lnr lnr-pencil"></i>자유게시판 댓글</a></li>
-											<li><a href="${contextPath }/admin/temping_board"><i class="lnr lnr-file-empty"></i>땜빵게시판 글</a></li>
-											<li><a href="${contextPath }/admin/temping_comment"><i class="lnr lnr-pencil"></i>땜빵게시판 댓글</a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+					<%@ include file="../include/admin/left_menu.jsp" %>
 					<!-- 좌측 메뉴 End -->
 					
 					<div class="col-xl-10 col-lg-9">
@@ -51,7 +26,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>프로필 정보</h1>
+										<h1>구인자 프로필 정보</h1>
 									</div>
 								</div>
 							</div>
@@ -71,7 +46,7 @@
 														<div class="row mb-30">
 															<div class="col-lg-2">
 																<div class="profile-avatar mb-30">
-																	<label class="d-block"><span>Avatar</span></label><img src="${contextPath}/resources/assets/images/author/author1.jpg" alt="">
+																	<label class="d-block"><span>Avatar</span></label><img src="${contextPath}/resources/assets/images/author/author2.jpg" alt="">
 																</div>
 															</div>
 															<div class="col-lg-10">

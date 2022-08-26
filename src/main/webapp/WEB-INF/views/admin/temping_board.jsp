@@ -20,32 +20,7 @@
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
 					<!-- 좌측 메뉴 Start -->
-					<div class="col-xl-2 col-lg-3">
-						<div class="dashboard-sidebar">
-							<div class="dashboard-menu">
-								<ul class="nav">
-									<li>
-										<h3>회원 관리</h3>
-										<ul>
-											<li><a href="${contextPath }/admin/employee_info"><i class="lnr lnr-users"></i>구직자</a></li>
-											<li><a href="${contextPath }/admin/employer_info"><i class="lnr lnr-user"></i>구인자</a></li>
-											<li><a href="${contextPath }/admin/blacklist"><i class="lnr lnr-thumbs-down"></i>블랙리스트</a></li>
-										</ul>
-									</li>
-									<li>
-										<h3>신고 관리</h3>
-										<ul>
-											<li><a href="${contextPath }/admin/job_ads"><i class="lnr lnr-briefcase"></i>구인공고</a></li>
-											<li><a href="${contextPath }/admin/free_board"><i class="lnr lnr-file-empty"></i>자유게시판 글</a></li>
-											<li><a class="active" href="${contextPath }/admin/free_comment"><i class="lnr lnr-pencil"></i>자유게시판 댓글</a></li>
-											<li><a href="${contextPath }/admin/temping_board"><i class="lnr lnr-file-empty"></i>땜빵게시판 글</a></li>
-											<li><a href="${contextPath }/admin/temping_comment"><i class="lnr lnr-pencil"></i>땜빵게시판 댓글</a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+					<%@ include file="../include/admin/left_menu.jsp" %>
 					<!-- 좌측 메뉴 End -->
 					
 					<div class="col-xl-10 col-lg-9">
@@ -60,17 +35,17 @@
 							<div class="dashboard-overview">
 								<div class="row">
 									<div class="col-xl-12 col-12">
-										<!-- 자유게시판 신고 댓글 리스트 Start -->
+										<!-- 땜빵게시판 신고 글 리스트 Start -->
 										<div class="submited-applications mb-50">
 											<div class="applications-heading">
-												<h3>자유게시판 댓글</h3>
+												<h3>땜빵게시판 글</h3>
 											</div>
 											<div class="applications-main-block">
 												<div class="applications-table text-middle">
 													<table class="table">
 														<thead>
 															<tr>
-																<th class="width-35 text-left">댓글내용</th>
+																<th class="width-35 text-left">제목</th>
 																<th class="width-15">작성자</th>
 																<th class="width-12">작성일</th>
 																<th class="width-15">신고사유</th>
@@ -79,32 +54,42 @@
 														</thead>
 														<tbody>
 															<tr class="application-item">
-																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">♚♚히어로즈 오브 더 스☆톰♚♚가입시$$전원 카드팩☜☜뒷면100%증정※ ♜월드오브 워크래프트♜펫 무료증정￥ 특정조건 §§디아블로3§§★공허의유산★초상화획득기회@@ 즉시이동http://kr.badttle.net/herofes/ko/</a></h3></td>
+																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">땜빵게시글 11</a></h3></td>
 																<td class="application-employer"><a class="dotted" href="#">user661</a></td>
 																<td class="application-created"><span>2021.09.17</span></td>
-																<td class="status">광고성 댓글</td>
+																<td class="status">광고성 게시글</td>
 																<td class="view-application">
-																	<a href="#" class="view-application">댓글삭제</a>&nbsp;&nbsp;
+																	<a href="#" class="view-application">글삭제</a>&nbsp;&nbsp;
 																	<a href="#" class="view-application">신고취소</a>
 																</td>
 															</tr>
 															<tr class="application-item">
-																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">ㅁ니ㅏㅇ러ㅣ나어리마넝ㄹ;ㅣㅏ먼ㅇ;ㅣㅏ러;ㅁ나ㅣ어리ㅏ;ㅁㄴ;어리마너아리ㅓㄴ;런이</a></h3></td>
-																<td class="application-employer"><a class="dotted" href="#">user54</a></td>
-																<td class="application-created"><span>2021.12.01</span></td>
-																<td class="status">광고성 댓글</td>
+																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">땜빵게시글 22</a></h3></td>
+																<td class="application-employer"><a class="dotted" href="#">user83</a></td>
+																<td class="application-created"><span>2021.05.08</span></td>
+																<td class="status">불법성 게시글</td>
 																<td class="view-application">
-																	<a href="#" class="view-application">댓글삭제</a>&nbsp;&nbsp;
+																	<a href="#" class="view-application">글삭제</a>&nbsp;&nbsp;
 																	<a href="#" class="view-application">신고취소</a>
 																</td>
 															</tr>
 															<tr class="application-item">
-																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">ㅁ;ㅣㄹㄴ아ㅓ리ㅏㄴ얼;ㅣㅏㄴ어ㅣ라ㅓㄴㅇ;ㅣㅏ러</a></h3></td>
-																<td class="application-employer"><a class="dotted" href="#">user54</a></td>
-																<td class="application-created"><span>2021.12.25</span></td>
-																<td class="status">광고성 댓글</td>
+																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">땜빵게시글 22</a></h3></td>
+																<td class="application-employer"><a class="dotted" href="#">user83</a></td>
+																<td class="application-created"><span>2021.05.08</span></td>
+																<td class="status">광고성 게시글</td>
 																<td class="view-application">
-																	<a href="#" class="view-application">댓글삭제</a>&nbsp;&nbsp;
+																	<a href="#" class="view-application">글삭제</a>&nbsp;&nbsp;
+																	<a href="#" class="view-application">신고취소</a>
+																</td>
+															</tr>
+															<tr class="application-item">
+																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">땜빵게시글 33</a></h3></td>
+																<td class="application-employer"><a class="dotted" href="#">user75</a></td>
+																<td class="application-created"><span>2021.11.22</span></td>
+																<td class="status">비속어 사용</td>
+																<td class="view-application">
+																	<a href="#" class="view-application">글삭제</a>&nbsp;&nbsp;
 																	<a href="#" class="view-application">신고취소</a>
 																</td>
 															</tr>
@@ -125,7 +110,7 @@
 												</div>
 											</div>
 										</div>
-										<!-- 자유게시판 신고 댓글 리스트 End -->
+										<!-- 땜빵게시판 신고 글 리스트 End -->
 									</div>
 								</div>
 							</div>

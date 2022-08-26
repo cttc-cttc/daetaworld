@@ -14,19 +14,39 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@RequestMapping(value = "admin/employee_info", method = RequestMethod.GET)
-	public ModelAndView employeeInfo() {
-		logger.info("관리자화면 접속 : 구직자 회원정보");
+	@RequestMapping(value = "admin/employee_list", method = RequestMethod.GET)
+	public ModelAndView employeeList() {
+		logger.info("관리자화면 접속 : 구직자 회원 리스트");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminPage/employee_info");
+		mav.addObject("leftMenu", "employee_list");
+		mav.setViewName("admin/employee_list");
 		return mav;
 	}
 	
-	@RequestMapping(value = "admin/employer_info", method = RequestMethod.GET)
-	public ModelAndView employerInfo() {
-		logger.info("관리자화면 접속 : 구인자 회원정보");
+	@RequestMapping(value = "admin/employee_profile", method = RequestMethod.GET)
+	public ModelAndView employeeProfile() {
+		logger.info("관리자화면 접속 : 구직자 회원 프로필");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminPage/employer_info");
+		mav.addObject("leftMenu", "employee_list");
+		mav.setViewName("admin/employee_profile");
+		return mav;
+	}
+	
+	@RequestMapping(value = "admin/employer_list", method = RequestMethod.GET)
+	public ModelAndView employerList() {
+		logger.info("관리자화면 접속 : 구인자 회원 리스트");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("leftMenu", "employer_list");
+		mav.setViewName("admin/employer_list");
+		return mav;
+	}
+	
+	@RequestMapping(value = "admin/employer_profile", method = RequestMethod.GET)
+	public ModelAndView employerProfile() {
+		logger.info("관리자화면 접속 : 구인자 회원 프로필");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("leftMenu", "employer_list");
+		mav.setViewName("admin/employer_profile");
 		return mav;
 	}
 	
@@ -34,7 +54,8 @@ public class AdminController {
 	public ModelAndView blacklist() {
 		logger.info("관리자화면 접속 : 블랙리스트");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminPage/blacklist");
+		mav.addObject("leftMenu", "blacklist");
+		mav.setViewName("admin/blacklist");
 		return mav;
 	}
 	
@@ -42,7 +63,8 @@ public class AdminController {
 	public ModelAndView jobAds() {
 		logger.info("관리자화면 접속 : 구인공고 신고");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminPage/job_ads");
+		mav.addObject("leftMenu", "job_ads");
+		mav.setViewName("admin/job_ads");
 		return mav;
 	}
 	
@@ -50,7 +72,8 @@ public class AdminController {
 	public ModelAndView freeBoard() {
 		logger.info("관리자화면 접속 : 자유게시판 글 신고");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminPage/free_board");
+		mav.addObject("leftMenu", "free_board");
+		mav.setViewName("admin/free_board");
 		return mav;
 	}
 	
@@ -58,7 +81,8 @@ public class AdminController {
 	public ModelAndView freeComment() {
 		logger.info("관리자화면 접속 : 자유게시판 댓글 신고");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminPage/free_comment");
+		mav.addObject("leftMenu", "free_comment");
+		mav.setViewName("admin/free_comment");
 		return mav;
 	}
 	
@@ -66,7 +90,8 @@ public class AdminController {
 	public ModelAndView tempingBoard() {
 		logger.info("관리자화면 접속 : 땜빵게시판 글 신고");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminPage/temping_board");
+		mav.addObject("leftMenu", "temping_board");
+		mav.setViewName("admin/temping_board");
 		return mav;
 	}
 	
@@ -74,15 +99,9 @@ public class AdminController {
 	public ModelAndView tempingComment() {
 		logger.info("관리자화면 접속 : 땜빵게시판 댓글 신고");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminPage/temping_comment");
+		mav.addObject("leftMenu", "temping_comment");
+		mav.setViewName("admin/temping_comment");
 		return mav;
 	}
-	
-	@RequestMapping(value = "admin/profile", method = RequestMethod.GET)
-	public ModelAndView profile() {
-		logger.info("관리자화면 접속 : 유저 프로필");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminPage/profile");
-		return mav;
-	}
+
 }
