@@ -38,13 +38,31 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="myInfo">내 정보</a></li>
+													<li><a style="color:green" class="active" href="myInfo">내 정보</a></li>
 													<li><a href="myInfoUpdate">내 정보 수정</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													내 정보 보기
+														<ul>
+															<li>회원정보는 <a href="/customer/privacy.asp" target="_blank" class="link" style="color:blue">개인정보처리방침</a>
+																에 따라 안전하게 보호되며, 회원님의 동의 없이 공개 또는 제 3자에게 제공되지 않습니다.
+															</li>
+															<li>
+																<b class="point">이름, 생년월일, 성별</b>
+																정보는 본인확인을 통해 수정하실 수 있습니다.&nbsp;&nbsp;
+																<a href="javascript:;" class="link" onclick="openwinNameChg()" style="color:blue"><small>[본인인증 하기]</small></a>
+															</li>
+														</ul>
+														<hr>
+														<b>아이디 :</b> ${loginUser}<br><br>
+														<b>닉네임 :</b> 대타맨<br><br>
+														<b>이름 :</b> 홍길동<br><br>
+														<b>생년월일/성별 :</b> 1995/04/07 [남자]<br><br>
+														<b>휴대폰 :</b> 010-5498-1097 <button>ds</button> <br><br>
+														<b>이메일 :</b> abc123@naver.com<br><br>
+														<b>주소 :</b> 경기도 평택시 어쩌구
+													<hr>
 													
 												</div>
 											</div>
