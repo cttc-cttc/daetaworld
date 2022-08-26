@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>내 정보 수정</title>
+<title>자유 게시판</title>
 <%@ include file="../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
@@ -22,35 +22,18 @@
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
-					<%@ include file="../include/dashBoard.jsp"%>
+					<%@ include file="../include/boardSidebar.jsp"%>
 					<div class="col-xl-10 col-lg-9">
 						<div class="dashboard-main-inner">
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>내 정보 수정</h1>
+										<h1>자유 게시판</h1>
 									</div>
 								</div>
 							</div>
 							<div class="dashboard-overview">
-								<div class="row">
-									<div class="col-xl-12 col-12">
-										<div class="profile-applications mb-50">
-											<div class="profile-applications-heading">
-												<ul class="nav">
-													<li><a href="myInfo">내 정보</a></li>
-													<li><a class="active" href="myInfoUpdate">내 정보 수정</a></li>
-												</ul>
-											</div>
-											<div class="profile-applications-main-block">
-												<div class="profile-applications-form">
-													정보 수정
-													
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+								자유 게시판 목록
 							</div>
 						</div>
 					</div>

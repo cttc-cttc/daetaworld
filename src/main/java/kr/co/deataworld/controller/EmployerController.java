@@ -50,4 +50,13 @@ public class EmployerController {
 		return "employer/adsHistory";
 	}
 	
+	@GetMapping(value="employer/adsPending")
+	public String adsPending() {
+		return "employer/adsPending";
+	}
+	
+	@GetMapping(value="employer/adsExpired")
+	public String adsExpired() {
+		return "employer/adsExpired";
+	}
 }

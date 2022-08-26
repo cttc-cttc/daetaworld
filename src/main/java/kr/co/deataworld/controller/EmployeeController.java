@@ -14,4 +14,40 @@ public class EmployeeController {
 	public String myInfo() {
 		return "employee/myInfo";
 	}
+	
+	@GetMapping(value="employee/myInfoUpdate")
+	public String myInfoUpdate() {
+		return "employee/myInfoUpdate";
+	}
+	
+	@GetMapping(value="employee/resumeManagement")
+	public String resumeManagement() {
+		return "employee/resumeManagement";
+	}
+	
+	@GetMapping(value="employee/resumeRegister")
+	public String resumeRegister() {
+		return "employee/resumeRegister";
+	}
+	
+	@GetMapping(value="employee/pinchHistory")
+	public String pinchHistory() {
+		return "employee/pinchHistory";
+	}
+	
+	@GetMapping(value="employee/pinchStatus")
+	public String pinchStatus() {
+		return "employee/pinchStatus";
+	}
+	
+	@GetMapping(value="employee/requests")
+	public String requests() {
+		return "employee/requests";
+	}
+	
+	@GetMapping(value="employee/pinchExpired")
+	public String pinchExpired() {
+		return "employee/pinchExpired";
+	}
+	
 }

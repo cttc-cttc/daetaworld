@@ -15,15 +15,15 @@
 			<div class="col-xl-7 col-lg-7 col-12">
 				<nav class="main-menu padding-16">
 					<ul class="menu-ul">
-						<li><a href="#">일반구인</a></li>
-						<li><a href="#">선호구인</a></li>
-						<li><a href="#">긴급구인</a></li>
-						<li><a href="#">농어촌</a></li>
-						<li><a href="#">돌봄</a></li>
+						<li><a href="${contextPath }/jobLists/listAll">일반구인</a></li>
+						<li><a href="${contextPath }/jobLists/listFavorite">선호구인</a></li>
+						<li><a href="${contextPath }/jobLists/listUrgency">긴급구인</a></li>
+						<li><a href="${contextPath }/jobLists/listCountry">농어촌</a></li>
+						<li><a href="${contextPath }/jobLists/listCare">돌봄</a></li>
 						<li><a>게시판<small class="icon-arrow"></small></a>
 							<ul class="sub-menu">
-								<li><a href="#">자유게시판</a></li>
-								<li><a href="#">땜빵게시판</a></li>
+								<li><a href="${contextPath }/boards/board">자유게시판</a></li>
+								<li><a href="${contextPath }/boards/tempingBoard">땜빵게시판</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -111,9 +111,9 @@
 									&nbsp;<span class="user-hover">${loginUser }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">
-									<a class="dropdown-item drdn-item" href="#">포인트 점수 : 230점</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/point/pointManagement">포인트 점수 : 230점</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item drdn-item" href="#">내 지원 현황</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employee/pinchStatus">내 지원 현황</a>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employee/myInfo">마이페이지</a>
 								</div>
 							</div>
@@ -152,7 +152,7 @@
 									&nbsp;<span class="user-hover">${loginUser }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">
-									<a class="dropdown-item drdn-item" href="#">포인트 점수 : 540점</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/point/pointManagement">포인트 점수 : 540점</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employer/adsRegister">공고 등록</a>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employer/candidates">지원자 확인</a>

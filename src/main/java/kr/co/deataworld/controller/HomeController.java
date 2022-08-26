@@ -26,18 +26,56 @@ public class HomeController {
 		return "myPage";
 	}
 	
-	@GetMapping(value="pointManagement")
+	@GetMapping(value="/jobLists/listAll")
+	public String listAll() {
+		logger.info("구인목록 페이지 접속");
+		return "jobLists/listAll";
+	}
+	
+	@GetMapping(value="/jobLists/listFavorite")
+	public String listFavorite() {
+		logger.info("구인목록 페이지 접속");
+		return "jobLists/listFavorite";
+	}
+	
+	@GetMapping(value="/jobLists/listUrgency")
+	public String listUrgency() {
+		logger.info("구인목록 페이지 접속");
+		return "jobLists/listUrgency";
+	}
+	
+	@GetMapping(value="/jobLists/listCountry")
+	public String listCountry() {
+		logger.info("구인목록 페이지 접속");
+		return "jobLists/listCountry";
+	}
+	
+	@GetMapping(value="/jobLists/listCare")
+	public String listCare() {
+		logger.info("구인목록 페이지 접속");
+		return "jobLists/listCare";
+	}
+	
+	@GetMapping(value="/jobLists/listRecommendation")
+	public String listRecommendation() {
+		logger.info("구인목록 페이지 접속");
+		return "jobLists/listRecommendation";
+	}
+	
+	@GetMapping(value="point/pointManagement")
 	public String pointManagement() {
-		return "pointManagement";
+		return "point/pointManagement";
 	}
 	
-	@GetMapping(value="pointHistory")
+	@GetMapping(value="point/pointHistory")
 	public String pointHistory() {
-		return "pointHistory";
+		return "point/pointHistory";
 	}
 	
-	@GetMapping(value="pointUse")
+	@GetMapping(value="point/pointUse")
 	public String pointUse() {
-		return "pointUse";
+		return "point/pointUse";
 	}
+	
+	
 }
