@@ -21,6 +21,15 @@ public class AccountController {
 		return "loginForm";
 	}
 	
+	@RequestMapping(value = "Join", method = RequestMethod.GET)
+	public String Join() {
+		logger.info("회원가입화면 접속");
+		return "JoinRegist";
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(String name, String password, HttpSession session) {
 		logger.info("name : " + name + " / password : " + password);

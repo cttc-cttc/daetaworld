@@ -39,7 +39,13 @@
 
 							<div class="jp-author-action-two item">
 								<a class="ht-btn header-btn" href="${contextPath}/login">로그인 또는 회원가입</a>
+								
 							</div>
+							
+							<div class="jp-author-action-two item">
+								<a class="ht-btn header-btn" href="${contextPath}/Join">회원가입</a>
+							</div>
+							
 						</div>
 					</div>
 				</c:if>
