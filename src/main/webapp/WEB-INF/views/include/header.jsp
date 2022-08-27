@@ -15,15 +15,15 @@
 			<div class="col-xl-7 col-lg-7 col-12">
 				<nav class="main-menu padding-16">
 					<ul class="menu-ul">
-						<li><a href="${contextPath }/jobLists/listAll">일반구인</a></li>
-						<li><a href="${contextPath }/jobLists/listFavorite">선호구인</a></li>
-						<li><a href="${contextPath }/jobLists/listUrgency">긴급구인</a></li>
-						<li><a href="${contextPath }/jobLists/listCountry">농어촌</a></li>
-						<li><a href="${contextPath }/jobLists/listCare">돌봄</a></li>
+						<li><a href="${contextPath }/jobAds/listAll">일반구인</a></li>
+						<li><a href="${contextPath }/jobAds/listUrgency">긴급구인</a></li>
+						<li><a href="${contextPath }/jobAds/listUrgency">직업추천</a></li>
+						<li><a href="${contextPath }/jobAds/listCountry">농어촌</a></li>
+						<li><a href="${contextPath }/jobAds/listCare">랭킹</a></li>
 						<li><a>게시판<small class="icon-arrow"></small></a>
 							<ul class="sub-menu">
-								<li><a href="${contextPath }/boards/board">자유게시판</a></li>
-								<li><a href="${contextPath }/boards/tempingBoard">땜빵게시판</a></li>
+								<li><a href="${contextPath }/board/free">자유게시판</a></li>
+								<li><a href="${contextPath }/board/temping">땜빵게시판</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -36,16 +36,12 @@
 				<c:if test="${loginUser == null }">
 					<div class="header-btn-action d-flex justify-content-end">
 						<div class="btn-action-wrap d-flex">
-
-							<div class="jp-author-action-two item">
-								<a class="ht-btn header-btn" href="${contextPath}/login">로그인 또는 회원가입</a>
-								
+							<div class="jp-author item">
+								<a href="${contextPath}/login"><i class="lnr lnr-user"></i><span>로그인</span></a>
 							</div>
-							
 							<div class="jp-author-action-two item">
 								<a class="ht-btn header-btn" href="${contextPath}/Join">회원가입</a>
 							</div>
-							
 						</div>
 					</div>
 				</c:if>

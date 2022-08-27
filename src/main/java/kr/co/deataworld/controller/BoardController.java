@@ -10,14 +10,14 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
-	@GetMapping(value="boards/board")
+	@GetMapping(value="board/free")
 	String board() {
-		return "boards/board";
+		return "board/free";
 	}
 	
-	@GetMapping(value="boards/tempingBoard")
+	@GetMapping(value="board/temping")
 	String tempingBoard() {
-		return "boards/tempingBoard";
+		return "board/temping";
 	}
 
 }

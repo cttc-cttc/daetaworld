@@ -27,40 +27,40 @@ public class HomeController {
 		return "myPage";
 	}
 	
-	@GetMapping(value="/jobLists/listAll")
+	@GetMapping(value="/jobAds/listAll")
 	public String listAll() {
 		logger.info("구인목록 페이지 접속");
-		return "jobLists/listAll";
+		return "jobAds/listAll";
 	}
 	
-	@GetMapping(value="/jobLists/listFavorite")
+	@GetMapping(value="/jobAds/listFavorite")
 	public String listFavorite() {
 		logger.info("구인목록 페이지 접속");
-		return "jobLists/listFavorite";
+		return "jobAds/listFavorite";
 	}
 	
-	@GetMapping(value="/jobLists/listUrgency")
+	@GetMapping(value="/jobAds/listUrgency")
 	public String listUrgency() {
 		logger.info("구인목록 페이지 접속");
-		return "jobLists/listUrgency";
+		return "jobAds/listUrgency";
 	}
 	
-	@GetMapping(value="/jobLists/listCountry")
+	@GetMapping(value="/jobAds/listCountry")
 	public String listCountry() {
 		logger.info("구인목록 페이지 접속");
-		return "jobLists/listCountry";
+		return "jobAds/listCountry";
 	}
 	
-	@GetMapping(value="/jobLists/listCare")
+	@GetMapping(value="/jobAds/listCare")
 	public String listCare() {
 		logger.info("구인목록 페이지 접속");
-		return "jobLists/listCare";
+		return "jobAds/listCare";
 	}
 	
-	@GetMapping(value="/jobLists/listRecommendation")
+	@GetMapping(value="/jobAds/listRecommendation")
 	public String listRecommendation() {
 		logger.info("구인목록 페이지 접속");
-		return "jobLists/listRecommendation";
+		return "jobAds/listRecommendation";
 	}
 	
 	@GetMapping(value="point/pointManagement")

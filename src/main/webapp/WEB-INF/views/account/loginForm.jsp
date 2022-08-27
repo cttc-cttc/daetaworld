@@ -3,14 +3,14 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <title>오늘의 대타</title>
-<%@ include file="include/head.jsp" %>
+<%@ include file="../include/head.jsp" %>
 <!-- custom css -->
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css">
 <body class="template-color-3">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
 		<header class="header-absolute black-logo-version header-sticky sticky-white no-padding d-none d-lg-block pt-25 pb-25">
-			<%@ include file="include/header.jsp" %>
+			<%@ include file="../include/header.jsp" %>
 		</header>
 		<!-- 상단 메뉴 end-->
 		
@@ -164,7 +164,7 @@
 			</div>
 		</div>
 		<!-- Login Register Section End -->
-		<%@ include file="include/footer.jsp" %>
+		<%@ include file="../include/footer.jsp" %>
 		
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>

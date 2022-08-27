@@ -18,13 +18,13 @@ public class AccountController {
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String loginForm() {
 		logger.info("로그인화면 접속");
-		return "loginForm";
+		return "account/loginForm";
 	}
 	
 	@RequestMapping(value = "Join", method = RequestMethod.GET)
 	public String Join() {
 		logger.info("회원가입화면 접속");
-		return "JoinRegist";
+		return "account/JoinRegist";
 	}
 	
 	

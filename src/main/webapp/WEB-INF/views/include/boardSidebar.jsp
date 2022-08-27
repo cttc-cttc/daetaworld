@@ -10,9 +10,9 @@
 									<li>
 										<h3>게시판 메뉴</h3>
 										<ul>
-											<li><a href="${contextPath}/boards/board"><i 
+											<li><a href="${contextPath}/board/free"><i 
 													class="lnr lnr-thumbs-down"></i>자유 게시판</a></li>											
-											<li><a href="${contextPath}/boards/tempingBoard"><i 
+											<li><a href="${contextPath}/board/temping"><i 
 													class="lnr lnr-thumbs-down"></i>땜빵 게시판</a></li>
 										</ul>
 									</li>									
