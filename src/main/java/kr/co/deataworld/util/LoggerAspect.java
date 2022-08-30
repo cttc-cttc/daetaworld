@@ -1,4 +1,4 @@
-package kr.co.deataworld.common;
+package kr.co.deataworld.util;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

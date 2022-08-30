@@ -1,4 +1,4 @@
-package kr.co.deataworld.common;
+package kr.co.deataworld.util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

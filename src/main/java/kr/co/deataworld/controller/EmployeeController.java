@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+/*
+ * 구직자 컨트롤러 (마이페이지)
+ */
 @Controller
 public class EmployeeController {
 

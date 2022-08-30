@@ -19,7 +19,7 @@
 								class="lnr lnr-thumbs-down"></i>지원 현황</a></li>
 						<li><a id="pinchHistory" href="${contextPath}/employee/pinchHistory"><i 
 								class="lnr lnr-thumbs-down"></i>대타 내역</a></li>
-						<li><a id="pointManagement_e" href="${contextPath}/point/pointManagement"><i 
+						<li><a id="pointManagement_e" href="${contextPath}/pointMapper/pointManagement"><i 
 								class="lnr lnr-thumbs-down"></i>포인트</a></li>
 					</ul>
 				</li>
@@ -38,7 +38,7 @@
 								class="lnr lnr-thumbs-down"></i>공고 등록</a></li>
 						<li><a id="adsHistory" href="${contextPath}/employer/adsHistory"><i 
 								class="lnr lnr-thumbs-down"></i>공고 내역</a></li>											
-						<li><a id="pointManagement_r" href="${contextPath}/point/pointManagement"><i 
+						<li><a id="pointManagement_r" href="${contextPath}/pointMapper/pointManagement"><i 
 								class="lnr lnr-thumbs-down"></i>포인트 관리</a></li>
 					</ul>
 				</li>

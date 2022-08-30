@@ -24,7 +24,7 @@
 	</beans:bean>
 	
 	<!-- 인터셉터 설정 -->
-	<beans:bean class="kr.co.deataworld.common.AuthenticationInterceptor" id="auth"/>
+	<beans:bean class="kr.co.deataworld.util.AuthenticationInterceptor" id="auth"/>
 	
 	<!-- 인터셉터를 위한 매핑경로 설정해서 auth의 메소드를 수행하게 한다 -->
 	<interceptors>

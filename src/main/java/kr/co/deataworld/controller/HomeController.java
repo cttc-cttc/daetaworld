@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 메인화면 접속 컨트롤러
+ * Header, 메인화면, Footer 관련 컨트롤러
  */
 @Controller
 public class HomeController {
@@ -63,20 +63,20 @@ public class HomeController {
 		return "jobAds/listRecommendation";
 	}
 	
-	@GetMapping(value="point/pointManagement")
+	@GetMapping(value="pointMapper/pointManagement")
 	public String pointManagement(Model model) {
 		model.addAttribute("leftMenu", "pointManagement");
-		return "point/pointManagement";
+		return "common/point/pointManagement";
 	}
 	
-	@GetMapping(value="point/pointHistory")
+	@GetMapping(value="pointMapper/pointHistory")
 	public String pointHistory() {
-		return "point/pointHistory";
+		return "common/point/pointHistory";
 	}
 	
-	@GetMapping(value="point/pointUse")
+	@GetMapping(value="pointMapper/pointUse")
 	public String pointUse() {
-		return "point/pointUse";
+		return "common/point/pointUse";
 	}
 	
 	
