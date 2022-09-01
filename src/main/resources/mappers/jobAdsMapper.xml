@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.deataworld.jobAds">
+
+	<!-- 메인화면 일반구인 조회 6개  -->
+	<select id="main_common_list" resultType="JobAdsEntity">
+		select * from job_ads
+		where a_type = 0 and a_urgency = 0
+		order by a_number desc
+		limit 0, 6
+	</select>
+
+	<!-- 구인공고 등록 -->
+	<insert id="insert" parameterType="JobAdsEntity">
+		insert into job_ads
+			(
+			a_number,
+			a_date,
+			a_time,
+			a_wage,
+			a_urgency,
+			a_status,
+			ua_date,
+			a_type,
+			r_id,
+			r_code
+			)
+		values
+			(
+			#{a_number},
+			#{a_date},
+			#{a_time},
+			#{a_wage},
+			#{a_urgency},
+			#{a_status},
+			#{ua_date},
+			#{a_type},
+			#{r_id},
+			#{r_code}
+			)
+	</insert>
+</mapper>

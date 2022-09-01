@@ -180,47 +180,49 @@
 					</div>
 				</div>
 				<div class="row">
-					<!-- 일반구인 항목 Start -->
-					<div class="col-lg-12">
-						<div class="single-job style-two">
-							<div class="info-top">
-								<div class="job-info">
-									<div class="job-info-inner">
-										<div class="job-info-top">
-											<div class="title-name">
-												<h3 class="job-title">
-													<a href="#">할리바게트 매탄점</a>
-												</h3>
-												<div class="employer-name">
-													<!-- <a href="employer-details.html">구인자id</a> -->
-													<span>할리사장 <i class="fas fa-star star-color"></i>3.8</span>
+					<c:forEach var="common_ads" items="${common_list }">
+						<!-- 일반구인 항목 Start -->
+						<div class="col-lg-12">
+							<div class="single-job style-two">
+								<div class="info-top">
+									<div class="job-info">
+										<div class="job-info-inner">
+											<div class="job-info-top">
+												<div class="title-name">
+													<h3 class="job-title">
+														<a href="#">${common_ads.a_number }</a>
+													</h3>
+													<div class="employer-name">
+														<!-- <a href="employer-details.html">구인자id</a> -->
+														<span>할리사장 <i class="fas fa-star star-color"></i>3.8</span>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="job-meta-two">
-											<div class="field-salary_from">
-												<i class="gj-icon gj-icon-money"></i>시급 - &#8361;10,000 / 대타시간 - 4시간
+											<div class="job-meta-two">
+												<div class="field-salary_from">
+													<i class="gj-icon gj-icon-money"></i>시급 - &#8361;10,000 / 대타시간 - 4시간
+												</div>
+												<div class="field-datetime">
+													<i class="lnr lnr-clock"></i>37분 전
+												</div>
+												<div class="field-map">
+													<i class="lnr lnr-map-marker"></i>경기도 수원시 영통구 매탄동 133-5
+												</div>
 											</div>
-											<div class="field-datetime">
-												<i class="lnr lnr-clock"></i>37분 전
+											<div class="job-skill-tag">
+												<a class="tag-cursor">베이커리</a><a class="tag-cursor">할리바게트</a><a class="tag-cursor">제품포장</a><a class="tag-cursor">쉬워요</a>
 											</div>
-											<div class="field-map">
-												<i class="lnr lnr-map-marker"></i>경기도 수원시 영통구 매탄동 133-5
-											</div>
-										</div>
-										<div class="job-skill-tag">
-											<a class="tag-cursor">베이커리</a><a class="tag-cursor">할리바게트</a><a class="tag-cursor">제품포장</a><a class="tag-cursor">쉬워요</a>
 										</div>
 									</div>
-								</div>
-								<div class="shop-image">
-									<img src="${contextPath}/resources/assets/images/blog/blog2.jpg">
+									<div class="shop-image">
+										<img src="${contextPath}/resources/assets/images/blog/blog2.jpg">
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<!-- 일반구인 항목 End -->
-					<!-- 일반구인 항목 Start -->
+						<!-- 일반구인 항목 End -->
+					</c:forEach>
+					<%-- <!-- 일반구인 항목 Start -->
 					<div class="col-lg-12">
 						<div class="single-job style-two">
 							<div class="info-top">
@@ -425,7 +427,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- 일반구인 항목 End -->
+					<!-- 일반구인 항목 End --> --%>
 				</div>
 				<div class="row">
 					<div class="col-12">

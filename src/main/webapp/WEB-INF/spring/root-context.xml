@@ -12,8 +12,8 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSourceSpied" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/scott?serverTimezone=UTC"></property>
-		<property name="username" value="root"></property>
+		<property name="url" value="jdbc:mysql://192.168.0.158:3306/daetaworld?serverTimezone=UTC"></property>
+		<property name="username" value="daetaworld"></property>
 		<property name="password" value="123456"></property>
 	</bean>
 	

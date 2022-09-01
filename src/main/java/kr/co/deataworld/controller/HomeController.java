@@ -1,5 +1,9 @@
 package kr.co.deataworld.controller;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -8,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.co.deataworld.entity.JobAdsEntity;
+import kr.co.deataworld.service.JobAdsService;
+
 /**
  * Header, 메인화면, Footer 관련 컨트롤러
  */
@@ -15,9 +22,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+	@Inject
+	JobAdsService service;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
+	public String index(Model model) {
 		logger.info("메인화면 접속");
+		// 메인화면 일반구인 목록 6개
+		List<JobAdsEntity> commonList = service.mainCommonList();
+		model.addAttribute("common_list", commonList);
+		
 		return "index";
 	}
 	
