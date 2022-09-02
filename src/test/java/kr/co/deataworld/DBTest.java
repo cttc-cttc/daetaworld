@@ -8,7 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.co.deataworld.dao.JobAdsDAO;
-import kr.co.deataworld.entity.JobAdsEntity;
 //현재 테스트 코드를 실행할 때 스프링이 로딩 되도록 하는 부분.
 
 @RunWith(SpringJUnit4ClassRunner.class)
