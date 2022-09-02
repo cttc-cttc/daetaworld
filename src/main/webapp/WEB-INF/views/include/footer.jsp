@@ -37,9 +37,9 @@
 						<h6 class="title">오늘의 대타</h6>
 						<div class="footer-widget-link">
 							<ul>
-								<li><a href="#">회사소개</a></li>
-								<li><a href="#">이용약관</a></li>
-								<li><a href="#">개인정보처리방침</a></li>
+								<li><a href="${contextPath}/dataFooter/introCom">회사소개</a></li>
+								<li><a href="${contextPath}/daetaFooter/terms">이용약관</a></li>
+								<li><a href="${contextPath}/daetaFooter/psPoli">개인정보처리방침</a></li>
 							</ul>
 						</div>
 					</div>
@@ -51,9 +51,9 @@
 						<h6 class="title">고객지원</h6>
 						<div class="footer-widget-link">
 							<ul>
-								<li><a href="#">이용 가이드</a></li>
-								<li><a href="#">자주 묻는 질문(FAQ)</a></li>
-								<li><a href="#">이메일 문의</a></li>
+								<li><a href="${contextPath}/daetaFooter/userGuide">이용 가이드</a></li>
+								<li><a href="${contextPath}/daetaFooter/oftenFAQ">자주 묻는 질문(FAQ)</a></li>
+								<li><a href="${contextPath}/daetaFooter/emailFAQ">이메일 문의</a></li>
 							</ul>
 						</div>
 					</div>

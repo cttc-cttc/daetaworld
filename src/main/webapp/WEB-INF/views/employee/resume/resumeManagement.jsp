@@ -5,7 +5,29 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <title>자기소개서 관리</title>
-<%@ include file="../include/head.jsp"%>
+<%@ include file="../../include/head.jsp"%>
+
+<style>
+	table {
+		border-collapse: collapse;
+		text-align: center;
+	}
+	
+	td {
+		border: 1px solid black;
+		padding: 10px;
+		text-align: center;
+	}
+	
+	th {
+		border: 1px solid black;
+		padding: 10px;
+		background-color: lightgrey;
+		text-align: center;
+	}
+</style>
+
+
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -14,7 +36,7 @@
 		<!-- 상단 메뉴 start-->
 		<header
 			class="black-logo-version header-sticky sticky-white d-none d-lg-block">
-			<%@ include file="../include/header.jsp"%>
+			<%@ include file="../../include/header.jsp"%>
 		</header>
 		<!-- 상단 메뉴 end-->
 		<hr class="header-hr">
@@ -22,7 +44,7 @@
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
-					<%@ include file="../include/dashBoard.jsp"%>
+					<%@ include file="../../include/dashBoard.jsp"%>
 					<div class="col-xl-10 col-lg-9">
 						<div class="dashboard-main-inner">
 							<div class="row">
@@ -45,7 +67,26 @@
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
 													등록된 자기소개서 목록
-													
+													<table>
+														<tr>
+															<th>제목</th>
+															<th>내용</th>
+															<th>작성시간</th>
+															<th>보기</th>
+														</tr>
+														<tr>
+															<td>열심히 어쩌구</td>
+															<td>저는~~~~!!~~~~~~~~!!!!!~~~~</td>
+															<td>2022/09/02</td>
+															<td><button>내용보기</button></td>
+														</tr>
+														<tr>
+															<td>~~~했습니다~</td>
+															<td>어려서부터~~~~~</td>
+															<td>2022/09/10</td>
+															<td><button>내용보기</button></td>
+														</tr>
+													</table>
 												</div>
 											</div>
 										</div>
@@ -59,7 +100,7 @@
 			</div>
 		</div>
 		<!-- Dashboard Content Section End -->
-		<%@ include file="../include/footer.jsp"%>
+		<%@ include file="../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->

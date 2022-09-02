@@ -5,7 +5,17 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <title>내 정보</title>
-<%@ include file="../include/head.jsp"%>
+<%@ include file="../../include/head.jsp"%>
+
+
+
+
+
+
+
+
+
+
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -14,7 +24,7 @@
 		<!-- 상단 메뉴 start-->
 		<header
 			class="black-logo-version header-sticky sticky-white d-none d-lg-block">
-			<%@ include file="../include/header.jsp"%>
+			<%@ include file="../../include/header.jsp"%>
 		</header>
 		<!-- 상단 메뉴 end-->
 		<hr class="header-hr">
@@ -22,7 +32,7 @@
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
-					<%@ include file="../include/dashBoard.jsp"%>
+					<%@ include file="../../include/dashBoard.jsp"%>
 					<div class="col-xl-10 col-lg-9">
 						<div class="dashboard-main-inner">
 							<div class="row">
@@ -38,32 +48,143 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a style="color:green" class="active" href="myInfo">내 정보</a></li>
+													<li><a style="color: green" class="active"
+														href="myInfo">내 정보</a></li>
+
 													<li><a href="myInfoUpdate">내 정보 수정</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-														<ul>
-															<li>회원정보는 <a href="/customer/privacy.asp" target="_blank" class="link" style="color:blue">개인정보처리방침</a>
-																에 따라 안전하게 보호되며, 회원님의 동의 없이 공개 또는 제 3자에게 제공되지 않습니다.
-															</li>
-															<li>
-																<b class="point">이름, 생년월일, 성별</b>
-																정보는 본인확인을 통해 수정하실 수 있습니다.&nbsp;&nbsp;
-																<a href="javascript:;" class="link" onclick="openwinNameChg()" style="color:blue"><small>[본인인증 하기]</small></a>
-															</li>
-														</ul>
-														<hr>
-														<b>아이디 :</b> ${loginUser}<br><br>
-														<b>닉네임 :</b> 대타맨<br><br>
-														<b>이름 :</b> 홍길동<br><br>
-														<b>생년월일/성별 :</b> 1995/04/07 [남자]<br><br>
-														<b>휴대폰 :</b> 010-5498-1097 <button>ds</button> <br><br>
-														<b>이메일 :</b> abc123@naver.com<br><br>
-														<b>주소 :</b> 경기도 평택시 어쩌구
-													<hr>
-													
+													<form action="#">
+														<div class="row mb-30">
+															<div class="col-lg-2">
+																<div class="profile-avatar mb-30">
+																	<label class="d-block"><span>사진 넣을곳</span></label><img
+																		src="assets/images/author/author1.jpg" alt="">
+																</div>
+															</div>
+															<div class="col-lg-10">
+																<div class="row">
+                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                                      <!-- Single Input Start -->
+                                                      <div class="single-input mb-25">
+                                                         <label for="name">이름 <span>*</span></label><input
+                                                            type="text" id="name" name="name" placeholder="이름이요"
+                                                            value="가입시 입력한 이름">
+                                                      </div>
+                                                      <!-- Single Input End -->
+                                                   </div>
+                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                                      <!-- Single Input Start -->
+                                                      <div class="single-input mb-25">
+                                                         <label for="phone">전화번호 <span>*</span></label><input
+                                                            type="text" id="phone" name="phone"
+                                                            placeholder="전화번호요" value="가입시 입력한 번호">
+                                                      </div>
+                                                      <!-- Single Input End -->
+                                                   </div>
+                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                                      <!-- Single Input Start -->
+                                                      <div class="single-input mb-25">
+                                                         <label for="email">이메일 <span>*</span></label><input
+                                                            type="email" id="email" name="email"
+                                                            placeholder="이메일이요" value="가입시 입력한 이메일">
+                                                      </div>
+                                                      <!-- Single Input End -->
+                                                   </div>
+                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                                      <!-- Single Input Start -->
+                                                      <div class="single-input mb-25">
+                                                         <label for="address">주소 <span>*</span></label>
+                                                         <table>
+                                                            <tr>
+                                                               <td><input type="text" id="address"
+                                                                  name="address" placeholder="주소요"
+                                                                  value="가입시 입력한 주소" style="width: 280px;"></td>
+                                                               <td><input type="button"
+                                                                  style="background-color: white;" value="검색"></td>
+                                                            </tr>
+                                                         </table>
+                                                      </div>
+                                                      <!-- Single Input End -->
+                                                   </div>
+                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                                      <!-- Single Input Start -->
+                                                      <div class="single-input mb-25">
+                                                         <label for="nickName">닉네임<span>*</span></label>
+                                                         <table>
+                                                            <tr>
+                                                               <td><input type="text" id="nickName"
+                                                                  name="nickName" placeholder="별명이요"
+                                                                  value="가입시 입력한 닉네임" style="width: 280px;"></td>
+                                                               <td><input type="button"
+                                                                  style="background-color: white;" value="검사"></td>
+                                                            </tr>
+                                                         </table>
+                                                      </div>
+                                                      <!-- Single Input End -->
+                                                   </div>
+                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                                      <!-- Single Input Start -->
+                                                      <div class="single-input mb-25">
+                                                         <label for="address-two">사진<span>*</span></label><input
+                                                            type="file" id="address-two" name="address-two"
+                                                            placeholder="Enter your Address" value="">
+                                                      </div>
+                                                      <!-- Single Input End -->
+                                                   </div>
+                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                                      <!-- Single Input Start -->
+                                                      <div class="single-input mb-25">
+                                                         <label for="new-password">새 비밀번호</label>
+                                                         <table>
+                                                            <tr>
+                                                               <td><input type="password" id="new-password"
+                                                                  name="new-password" placeholder="새 비밀번호요"
+                                                                  value="가입시 입력한 비밀번호" style="width: 280px;"></td>
+                                                               <td><input type="button"
+                                                                  style="background-color: white;" value="검사"></td>
+                                                            </tr>
+                                                         </table>
+                                                      </div>
+                                                      <!-- Single Input End -->
+                                                   </div>
+                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                                      <!-- Single Input Start -->
+                                                      <div class="single-input mb-25">
+                                                         <label for="confirm-password">새 비밀번호 확인</label><input
+                                                            type="password" id="confirm-password"
+                                                            name="confirm-password" placeholder="새 비밀번호를 입력하세요."
+                                                            value="">
+                                                      </div>
+                                                      <!-- Single Input End -->
+                                                   </div>
+                                                </div>
+															<div>
+															<input type="checkbox" /> 열람동의
+														</div>
+														<br>
+														<div>
+															<input type="checkbox" /> 알림동의
+														</div>
+															</div>
+														
+														</div>
+
+														<div class="row">
+															<div class="col-12">
+																<div
+																	class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+																	<button class="ht-btn theme-btn theme-btn-two mb-xs-20">수정</button>
+																		
+																	<button
+																		class="ht-btn theme-btn theme-btn-two transparent-btn-two">회원탈퇴</button>
+																		
+																</div>
+															</div>
+														</div>
+													</form>
 												</div>
 											</div>
 										</div>
@@ -77,7 +198,7 @@
 			</div>
 		</div>
 		<!-- Dashboard Content Section End -->
-		<%@ include file="../include/footer.jsp"%>
+		<%@ include file="../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->

@@ -5,7 +5,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <title>내 정보 수정</title>
-<%@ include file="../include/head.jsp"%>
+<%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -14,7 +14,7 @@
 		<!-- 상단 메뉴 start-->
 		<header
 			class="black-logo-version header-sticky sticky-white d-none d-lg-block">
-			<%@ include file="../include/header.jsp"%>
+			<%@ include file="../../include/header.jsp"%>
 		</header>
 		<!-- 상단 메뉴 end-->
 		<hr class="header-hr">
@@ -22,7 +22,7 @@
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
-					<%@ include file="../include/dashBoard.jsp"%>
+					<%@ include file="../../include/dashBoard.jsp"%>
 					<div class="col-xl-10 col-lg-9">
 						<div class="dashboard-main-inner">
 							<div class="row">
@@ -55,14 +55,77 @@
 															</li>
 														</ul>
 														<hr>
-														<b>아이디 :</b> ${loginUser}<br><br>
-														<b>닉네임 :</b> 대타맨<br><br>
-														<b>이름 :</b> 홍길동<br><br>
-														<b>생년월일/성별 :</b> 1995/04/07 [남자]<br><br>
-														<b>휴대폰 :</b> 010-5498-1097<br><br>
-														<b>이메일 :</b> abc123@naver.com<br><br>
-														<b>주소 :</b> 경기도 평택시 어쩌구
+														<div>
+														<b>아이디&nbsp; </b> ${loginUser}
+														</div><br>
+														<div>
+														<b>닉네임&nbsp; </b> 대타맨
+														</div><br>
+														<div>
+														<b>이름&nbsp; </b> 홍길동
+														</div><br>
+														<div>
+														<b>생년월일/성별&nbsp; </b> 1995/04/07 [남자]
+														</div><br>
+														<form name='frm'>
+														<div>
+															<b>휴대폰&nbsp; </b>
+															<sapn>
+															<input type="text" size="3" value="010" /></sapn>
+															-
+															<sapn>
+															<input type="text" size="3" value="5498" /></sapn>
+															-
+															<sapn>
+															<input type="text" size="3" value="1097" /></sapn>
+														</div>
+														<br>
+
+														<div>
+															<table>
+																<tr>
+																<td><b>이메일&nbsp; </b></td>
+																
+																	<td>
+																	<input name="e1" id="e1" type="text" style="width: 120px" value="tlsgns1097">
+																	</td>
+																	
+																	<td>
+																		&nbsp;@&nbsp;
+																	</td>
+																	
+																	<td>
+																	<input name="e2" type="text" style="width: 120px" value="">
+																	</td>
+																	
+																	<td>
+																		<select name="email_server" id="email_server" onchange="input_email();">
+																			<option value="">직접입력</option>
+																			<option value="naver.com">naver.com</option>
+																			<option value="nate.com">nate.com</option>
+																			<option value="hanmail.net">hanmail.net</option>
+																			<option value="gmail.com">gmail.com</option>
+																			<option value="yahoo.com">yahoo.com</option>
+																			<option value="yahoo.co.kr">yahoo.co.kr</option>
+																			<option value="hotmail.com">hotmail.com</option>
+																		</select>
+																	</td>
+																</tr>
+
+															</table>
+														</div>
+														<br>
+														<b>주소&nbsp; </b> <input type="text" value="경기도 평택시 어떤곳"/>&nbsp;&nbsp;&nbsp;<button>검색</button>
+
+													</form>
 													<hr>
+													<button>변경</button>&nbsp;&nbsp;&nbsp;&nbsp;<button>취소</button>
+													
+													
+													<script language="javascript">
+														function input_email(){	document.frm.e2.value = document.frm.email_server.value;}
+													</script>
+													
 													
 												</div>
 											</div>
@@ -77,7 +140,7 @@
 			</div>
 		</div>
 		<!-- Dashboard Content Section End -->
-		<%@ include file="../include/footer.jsp"%>
+		<%@ include file="../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->
