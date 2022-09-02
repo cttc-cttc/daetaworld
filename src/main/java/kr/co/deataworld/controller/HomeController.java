@@ -65,11 +65,7 @@ public class HomeController {
 		return "jobAds/listCountry";
 	}
 	
-	@GetMapping(value="/jobAds/listCare")
-	public String listCare() {
-		logger.info("구인목록 페이지 접속");
-		return "jobAds/listCare";
-	}
+	
 	
 	@GetMapping(value="/jobAds/listRecommendation")
 	public String listRecommendation() {
@@ -93,5 +89,35 @@ public class HomeController {
 		return "common/point/pointUse";
 	}
 	
+	@GetMapping(value="daetaFooter/emailFAQ")
+	public String emailFAQ() {
+		return "daetaFooter/emailFAQ";
+		
+	}
+	@GetMapping(value="daetaFooter/introCom")
+	public String introCom() {
+		return "daetaFooter/introCom";
+		
+	}
+	@GetMapping(value="daetaFooter/oftenFAQ")
+	public String oftenFAQ() {
+		return "daetaFooter/oftenFAQ";
+		
+	}
+	@GetMapping(value="daetaFooter/psPoli")
+	public String psPoli() {
+		return "daetaFooter/psPoli";
+		
+	}
+	@GetMapping(value="daetaFooter/terms")
+	public String terms() {
+		return "daetaFooter/terms";
+		
+	}
+	@GetMapping(value="daetaFooter/userGuide")
+	public String userGuide() {
+		return "daetaFooter/userGuide";
+		
+	}
 	
 }

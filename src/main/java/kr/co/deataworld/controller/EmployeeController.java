@@ -13,48 +13,48 @@ public class EmployeeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
-	@GetMapping(value="employee/myInfo")
+	@GetMapping(value="employeeMapper/myInfo")
 	public String myInfo(Model model) {
-		model.addAttribute("leftMenu", "myInfo");
-		return "employee/myInfo";
+		model.addAttribute("leftsMenu", "myInfo");
+		return "employee/myInfo/myInfo";
 	}
 	
-	@GetMapping(value="employee/myInfoUpdate")
+	@GetMapping(value="employeeMapper/myInfoUpdate")
 	public String myInfoUpdate() {
-		return "employee/myInfoUpdate";
+		return "employee/myInfo/myInfoUpdate";
 	}
 	
-	@GetMapping(value="employee/resumeManagement")
+	@GetMapping(value="employeeMapper/resumeManagement")
 	public String resumeManagement(Model model) {
 		model.addAttribute("leftMenu", "resumeManagement");
-		return "employee/resumeManagement";
+		return "employee/resume/resumeManagement";
 	}
 	
-	@GetMapping(value="employee/resumeRegister")
+	@GetMapping(value="employeeMapper/resumeRegister")
 	public String resumeRegister() {
-		return "employee/resumeRegister";
+		return "employee/resume/resumeRegister";
 	}
 	
-	@GetMapping(value="employee/pinchHistory")
+	@GetMapping(value="employeeMapper/pinchHistory")
 	public String pinchHistory(Model model) {
 		model.addAttribute("leftMenu", "pinchHistory");
-		return "employee/pinchHistory";
+		return "employee/pinch/pinchHistory";
 	}
 	
-	@GetMapping(value="employee/pinchStatus")
+	@GetMapping(value="employeeMapper/pinchStatus")
 	public String pinchStatus(Model model) {
 		model.addAttribute("leftMenu", "pinchStatus");
-		return "employee/pinchStatus";
+		return "employee/pinch/pinchStatus";
 	}
 	
-	@GetMapping(value="employee/requests")
+	@GetMapping(value="employeeMapper/requests")
 	public String requests() {
-		return "employee/requests";
+		return "employee/resume/requests";
 	}
 	
-	@GetMapping(value="employee/pinchExpired")
+	@GetMapping(value="employeeMapper/pinchExpired")
 	public String pinchExpired() {
-		return "employee/pinchExpired";
+		return "employee/pinch/pinchExpired";
 	}
 	
 }

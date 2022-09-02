@@ -116,7 +116,7 @@
 									<a class="dropdown-item drdn-item" href="${contextPath}/point/pointManagement">포인트 점수 : 230점</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employee/pinchStatus">내 지원 현황</a>
-									<a class="dropdown-item drdn-item" href="${contextPath}/employee/myInfo">마이페이지</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/myInfo">마이페이지</a>
 								</div>
 							</div>
 							<!-- 유저메뉴 토글 End -->
@@ -158,7 +158,7 @@
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employer/adsRegister">공고 등록</a>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employer/candidates">지원자 확인</a>
-									<a class="dropdown-item drdn-item" href="${contextPath}/employer/myInfo">마이페이지</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employer/myInfo/myInfo">마이페이지</a>
 								</div>
 							</div>
 							<!-- 유저메뉴 토글 End -->

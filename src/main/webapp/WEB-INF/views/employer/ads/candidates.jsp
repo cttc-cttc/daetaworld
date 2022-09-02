@@ -5,7 +5,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <title>지원자 확인</title>
-<%@ include file="../include/head.jsp"%>
+<%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -14,7 +14,7 @@
 		<!-- 상단 메뉴 start-->
 		<header
 			class="black-logo-version header-sticky sticky-white d-none d-lg-block">
-			<%@ include file="../include/header.jsp"%>
+			<%@ include file="../../include/header.jsp"%>
 		</header>
 		<!-- 상단 메뉴 end-->
 		<hr class="header-hr">
@@ -22,7 +22,7 @@
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
-					<%@ include file="../include/dashBoard.jsp"%>
+					<%@ include file="../../include/dashBoard.jsp"%>
 					<div class="col-xl-10 col-lg-9">
 						<div class="dashboard-main-inner">
 							<div class="row">
@@ -61,7 +61,7 @@
 			</div>
 		</div>
 		<!-- Dashboard Content Section End -->
-		<%@ include file="../include/footer.jsp"%>
+		<%@ include file="../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->
