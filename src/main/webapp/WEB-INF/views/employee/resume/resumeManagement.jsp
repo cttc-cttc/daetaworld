@@ -67,7 +67,7 @@
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
 													등록된 자기소개서 목록
-													<table>
+													<table style="width: 100%; height: 100%;">
 														<tr>
 															<th>제목</th>
 															<th>내용</th>
@@ -78,13 +78,13 @@
 															<td>열심히 어쩌구</td>
 															<td>저는~~~~!!~~~~~~~~!!!!!~~~~</td>
 															<td>2022/09/02</td>
-															<td><button>내용보기</button></td>
+															<td><a href="#">내용보기</a></td>
 														</tr>
 														<tr>
 															<td>~~~했습니다~</td>
 															<td>어려서부터~~~~~</td>
 															<td>2022/09/10</td>
-															<td><button>내용보기</button></td>
+															<td><a href="#">내용보기</a></td>
 														</tr>
 													</table>
 												</div>
