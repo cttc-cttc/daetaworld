@@ -7,7 +7,7 @@
 			<!--Logo start-->
 			<div class="col-xl-2 col-lg-2 col-12">
 				<div class="logo">
-					<a href="${contextPath }/"><img src="${contextPath}/resources/images/logo1.png" alt=""></a>
+					<a href="${contextPath }/"><img src="${contextPath}/resources/images/logo100.png" alt=""></a>
 				</div>
 			</div>
 			<!--Logo end-->
