@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.co.deataworld.entity.JobAdsEntity;
+import kr.co.deataworld.entity.CommonAdsEntity;
 import kr.co.deataworld.service.JobAdsService;
 
 /**
@@ -29,7 +29,7 @@ public class HomeController {
 	public String index(Model model) {
 		logger.info("메인화면 접속");
 		// 메인화면 일반구인 목록 6개
-		List<JobAdsEntity> commonList = service.mainCommonList();
+		List<CommonAdsEntity> commonList = service.mainCommonList();
 		model.addAttribute("common_list", commonList);
 		
 		return "index";

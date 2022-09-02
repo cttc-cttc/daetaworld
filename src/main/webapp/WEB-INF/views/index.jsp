@@ -190,244 +190,53 @@
 											<div class="job-info-top">
 												<div class="title-name">
 													<h3 class="job-title">
-														<a href="#">${common_ads.a_number }</a>
+														<a href="#">${common_ads.s_name }</a>
 													</h3>
 													<div class="employer-name">
 														<!-- <a href="employer-details.html">구인자id</a> -->
-														<span>할리사장 <i class="fas fa-star star-color"></i>3.8</span>
+														<span>${common_ads.r_name } <i class="fas fa-star star-color"></i>3.8</span>
 													</div>
 												</div>
 											</div>
 											<div class="job-meta-two">
 												<div class="field-salary_from">
-													<i class="gj-icon gj-icon-money"></i>시급 - &#8361;10,000 / 대타시간 - 4시간
+													<i class="gj-icon gj-icon-money"></i>시급 - &#8361;${common_ads.a_wage } / 대타시간 - ${common_ads.a_time }
 												</div>
 												<div class="field-datetime">
-													<i class="lnr lnr-clock"></i>37분 전
+													<i class="lnr lnr-clock"></i>${common_ads.uptime } 전
 												</div>
 												<div class="field-map">
-													<i class="lnr lnr-map-marker"></i>경기도 수원시 영통구 매탄동 133-5
+													<i class="lnr lnr-map-marker"></i>${common_ads.s_address }
 												</div>
 											</div>
 											<div class="job-skill-tag">
-												<a class="tag-cursor">베이커리</a><a class="tag-cursor">할리바게트</a><a class="tag-cursor">제품포장</a><a class="tag-cursor">쉬워요</a>
+												<c:if test="${common_ads.s_tag1 != null }">
+													<a class="tag-cursor">${common_ads.s_tag1 }</a>
+												</c:if>
+												<c:if test="${common_ads.s_tag2 != null }">
+													<a class="tag-cursor">${common_ads.s_tag2 }</a>
+												</c:if>
+												<c:if test="${common_ads.s_tag3 != null }">
+													<a class="tag-cursor">${common_ads.s_tag3 }</a>
+												</c:if>
+												<c:if test="${common_ads.s_tag4 != null }">
+													<a class="tag-cursor">${common_ads.s_tag4 }</a>
+												</c:if>
+												<c:if test="${common_ads.s_tag5 != null }">
+													<a class="tag-cursor">${common_ads.s_tag5 }</a>
+												</c:if>
 											</div>
 										</div>
 									</div>
 									<div class="shop-image">
-										<img src="${contextPath}/resources/assets/images/blog/blog2.jpg">
+										<img src="${contextPath}/resources/assets/images/blog/${common_ads.s_picture}">
+										${common_ads.s_picture}.png
 									</div>
 								</div>
 							</div>
 						</div>
 						<!-- 일반구인 항목 End -->
 					</c:forEach>
-					<%-- <!-- 일반구인 항목 Start -->
-					<div class="col-lg-12">
-						<div class="single-job style-two">
-							<div class="info-top">
-								<div class="job-info">
-									<div class="job-info-inner">
-										<div class="job-info-top">
-											<div class="title-name">
-												<h3 class="job-title">
-													<a href="#">BK FOODHALL 부천점</a>
-												</h3>
-												<div class="employer-name">
-													<!-- <a href="employer-details.html">구인자id</a> -->
-													<span>BKfood부천 <i class="fas fa-star star-color"></i>3.6</span>
-												</div>
-											</div>
-										</div>
-										<div class="job-meta-two">
-											<div class="field-salary_from">
-												<i class="gj-icon gj-icon-money"></i>시급 - &#8361;9,500 / 대타시간 - 5시간 30분
-											</div>
-											<div class="field-datetime">
-												<i class="lnr lnr-clock"></i>3시간 20분 전
-											</div>
-											<div class="field-map">
-												<i class="lnr lnr-map-marker"></i>경기도 부천시 원미구 부일로 766 BK백화점 7층
-											</div>
-										</div>
-										<div class="job-skill-tag">
-											<a class="tag-cursor">푸드홀</a><a class="tag-cursor">주방보조</a><a class="tag-cursor">단순업무</a>
-										</div>
-									</div>
-								</div>
-								<div class="shop-image">
-									<img src="${contextPath}/resources/assets/images/blog/blog3.jpg">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 일반구인 항목 End -->
-					<!-- 일반구인 항목 Start -->
-					<div class="col-lg-12">
-						<div class="single-job style-two">
-							<div class="info-top">
-								<div class="job-info">
-									<div class="job-info-inner">
-										<div class="job-info-top">
-											<div class="title-name">
-												<h3 class="job-title">
-													<a href="#">리처드 스퀘어즈</a>
-												</h3>
-												<div class="employer-name">
-													<!-- <a href="employer-details.html">구인자id</a> -->
-													<span>리처드대표 <i class="fas fa-star star-color"></i>4.2</span>
-												</div>
-											</div>
-										</div>
-										<div class="job-meta-two">
-											<div class="field-salary_from">
-												<i class="gj-icon gj-icon-money"></i>시급 - &#8361;25,000 / 대타시간 - 8시간
-											</div>
-											<div class="field-datetime">
-												<i class="lnr lnr-clock"></i>1일 전
-											</div>
-											<div class="field-map">
-												<i class="lnr lnr-map-marker"></i>경기도 수원시 팔달구 인계동 738-64 2층
-											</div>
-										</div>
-										<div class="job-skill-tag">
-											<a class="tag-cursor">음향장비세팅</a><a class="tag-cursor">보조업무</a><a class="tag-cursor">콘서트장이동</a><a class="tag-cursor">힘많이필요</a><a class="tag-cursor">대기시간포함</a>
-										</div>
-									</div>
-								</div>
-								<div class="shop-image">
-									<img src="${contextPath}/resources/assets/images/blog/blog5.jpg">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 일반구인 항목 End -->
-					<!-- 일반구인 항목 Start -->
-					<div class="col-lg-12">
-						<div class="single-job style-two">
-							<div class="info-top">
-								<div class="job-image">
-									<a href="job-details.html"><img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo4.jpg" alt="logo"></a>
-								</div>
-								<div class="job-info">
-									<div class="job-info-inner">
-										<div class="job-info-top">
-											<div class="saveJob for-listing">
-												<span class="featured-label">featured</span><a class="job-type-label ml-20 mr-20">Full Time</a><a class="save-job " href="#quick-view-modal-container" data-toggle="modal"><i class="far fa-heart"></i></a>
-											</div>
-											<div class="title-name">
-												<h3 class="job-title">
-													<a href="job-details.html">Unity Developer</a>
-												</h3>
-												<div class="employer-name">
-													<a href="employer-details.html">Vsmarttech</a>
-												</div>
-											</div>
-										</div>
-										<div class="job-meta-two">
-											<div class="field-salary_from">
-												<i class="gj-icon gj-icon-money"></i>$500 - $1,000 / month
-											</div>
-											<div class="field-datetime">
-												<i class="lnr lnr-clock"></i>8 months ago
-											</div>
-											<div class="field-map">
-												<i class="lnr lnr-map-marker"></i>Hanoi,Hanoi
-											</div>
-										</div>
-										<div class="job-skill-tag">
-											<a href="#">NodeJS</a><a href="#">PHP</a><a href="#">Python</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 일반구인 항목 End -->
-					<!-- 일반구인 항목 Start -->
-					<div class="col-lg-12">
-						<div class="single-job style-two">
-							<div class="info-top">
-								<div class="job-image">
-									<a href="job-details.html"><img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo5.jpg" alt="logo"></a>
-								</div>
-								<div class="job-info">
-									<div class="job-info-inner">
-										<div class="job-info-top">
-											<div class="saveJob for-listing">
-												<span class="featured-label">featured</span><a class="job-type-label ml-20 mr-20">Full Time</a><a class="save-job" href="#quick-view-modal-container" data-toggle="modal"><i class="far fa-heart"></i></a>
-											</div>
-											<div class="title-name">
-												<h3 class="job-title">
-													<a href="job-details.html">Receptionist</a>
-												</h3>
-												<div class="employer-name">
-													<a href="employer-details.html">Digital Vine</a>
-												</div>
-											</div>
-										</div>
-										<div class="job-meta-two">
-											<div class="field-salary_from">
-												<i class="gj-icon gj-icon-money"></i>$500 - $1,000 / month
-											</div>
-											<div class="field-datetime">
-												<i class="lnr lnr-clock"></i>8 months ago
-											</div>
-											<div class="field-map">
-												<i class="lnr lnr-map-marker"></i>Hanoi,Hanoi
-											</div>
-										</div>
-										<div class="job-skill-tag">
-											<a href="#">Android</a><a href="#">app</a><a href="#">ReactJs</a><a href="#">Ruby</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 일반구인 항목 End -->
-					<!-- 일반구인 항목 Start -->
-					<div class="col-lg-12">
-						<div class="single-job style-two">
-							<div class="info-top">
-								<div class="job-image">
-									<a href="job-details.html"><img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo6.jpg" alt="logo"></a>
-								</div>
-								<div class="job-info">
-									<div class="job-info-inner">
-										<div class="job-info-top">
-											<div class="saveJob for-listing">
-												<span class="featured-label">featured</span><a class="job-type-label ml-20 mr-20">Full Time</a><a class="save-job " href="#quick-view-modal-container" data-toggle="modal"><i class="far fa-heart"></i></a>
-											</div>
-											<div class="title-name">
-												<h3 class="job-title">
-													<a href="job-details.html">iOS Developer</a>
-												</h3>
-												<div class="employer-name">
-													<a href="job-details.html">InwaveThemes</a>
-												</div>
-											</div>
-										</div>
-										<div class="job-meta-two">
-											<div class="field-salary_from">
-												<i class="gj-icon gj-icon-money"></i>$500 - $1,000 / month
-											</div>
-											<div class="field-datetime">
-												<i class="lnr lnr-clock"></i>8 months ago
-											</div>
-											<div class="field-map">
-												<i class="lnr lnr-map-marker"></i>Seville,Andalusia
-											</div>
-										</div>
-										<div class="job-skill-tag">
-											<a href="#">app</a><a href="#">ios</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 일반구인 항목 End --> --%>
 				</div>
 				<div class="row">
 					<div class="col-12">

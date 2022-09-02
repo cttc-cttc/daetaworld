@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.JobAdsDAO;
-import kr.co.deataworld.entity.JobAdsEntity;
+import kr.co.deataworld.entity.CommonAdsEntity;
 
 @Service
 public class JobAdsServiceImpl implements JobAdsService {
@@ -16,13 +16,8 @@ public class JobAdsServiceImpl implements JobAdsService {
 	JobAdsDAO dao;
 	
 	@Override
-	public List<JobAdsEntity> mainCommonList() {
+	public List<CommonAdsEntity> mainCommonList() {
 		return dao.mainCommonList();
-	}
-	
-	@Override
-	public int insert(JobAdsEntity jobAds) {
-		return dao.insert(jobAds);
 	}
 	
 }

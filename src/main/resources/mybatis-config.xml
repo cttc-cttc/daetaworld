@@ -4,6 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="kr.co.deataworld.entity.JobAdsEntity" alias="JobAdsEntity"/>
+		<typeAlias type="kr.co.deataworld.entity.CommonAdsEntity" alias="CommonAdsEntity"/>
 	</typeAliases>
 </configuration>

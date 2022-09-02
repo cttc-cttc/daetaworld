@@ -5,40 +5,42 @@
 <mapper namespace="kr.co.deataworld.jobAds">
 
 	<!-- 메인화면 일반구인 조회 6개  -->
-	<select id="main_common_list" resultType="JobAdsEntity">
-		select * from job_ads
-		where a_type = 0 and a_urgency = 0
-		order by a_number desc
-		limit 0, 6
+	<select id="main_common_ads" resultType="CommonAdsEntity">
+		select
+		    A.a_wage,		<!-- A구인공고.시급 -->
+		    A.a_time,		<!-- A구인공고.시간 -->
+		    <!-- A구인공고.올린시간 -->
+		    <![CDATA[
+		    case
+				when hour(timediff(now(), A.ua_date)) < 1
+					then concat(timestampdiff(minute, A.ua_date, now()),'분')
+				when hour(timediff(now(), A.ua_date)) < 24
+					then concat(timestampdiff(hour, A.ua_date, now()),'시간')
+				when hour(timediff(now(), A.ua_date)) < 168
+					then concat(timestampdiff(day, A.ua_date, now()),'일')
+				when hour(timediff(now(), A.ua_date)) < 720
+					then concat(timestampdiff(week, A.ua_date, now()),'주')
+				when hour(timediff(now(), A.ua_date)) < 8760
+					then concat(timestampdiff(month, A.ua_date, now()),'개월')
+				else concat(timestampdiff(year, A.ua_date, now()),'년')
+			end as uptime,
+			]]>
+		    B.s_name,		<!-- B가게정보.가게명 -->
+		    B.s_address,	<!-- B가게정보.가게 주소 -->
+		    B.s_picture,	<!-- B가게정보.가게 사진 -->
+		    B.s_tag1,		<!-- B가게정보.태그1 -->
+		    B.s_tag2,		<!-- B가게정보.태그2 -->
+		    B.s_tag3,		<!-- B가게정보.태그3 -->
+		    B.s_tag4,		<!-- B가게정보.태그4 -->
+		    B.s_tag5,		<!-- B가게정보.태그5 -->
+		    C.r_name		<!-- C구인자.구인자 이름 -->
+		from job_ads as A
+		inner join shop_info as B
+			on A.s_number = B.s_number
+		inner join employer as C
+			on A.r_id = C.r_id
+		order by A.a_number desc
+		limit 0, 6;
 	</select>
 
-	<!-- 구인공고 등록 -->
-	<insert id="insert" parameterType="JobAdsEntity">
-		insert into job_ads
-			(
-			a_number,
-			a_date,
-			a_time,
-			a_wage,
-			a_urgency,
-			a_status,
-			ua_date,
-			a_type,
-			r_id,
-			r_code
-			)
-		values
-			(
-			#{a_number},
-			#{a_date},
-			#{a_time},
-			#{a_wage},
-			#{a_urgency},
-			#{a_status},
-			#{ua_date},
-			#{a_type},
-			#{r_id},
-			#{r_code}
-			)
-	</insert>
 </mapper>
