@@ -7,11 +7,17 @@
 <title>내 정보</title>
 <%@ include file="../../include/head.jsp"%>
 
+<style>
+	#photoarea{
+		border: 1px solid black;
+		height : 200px;
+		width: 150px;
+	}
 
 
 
 
-
+</style>
 
 
 
@@ -60,8 +66,10 @@
 														<div class="row mb-30">
 															<div class="col-lg-2">
 																<div class="profile-avatar mb-30">
-																	<label class="d-block"><span>사진 넣을곳</span></label><img
-																		src="assets/images/author/author1.jpg" alt="">
+																	<label class="d-block"><span>사진 넣을곳</span></label>
+																	<table id="photoarea">
+																		<td><img src="${contextPath }/resources/images/sponge.png" alt="" style="width:150px; height:200px;"></td>
+																	</table>
 																</div>
 															</div>
 															<div class="col-lg-10">
@@ -69,27 +77,25 @@
                                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                                                       <!-- Single Input Start -->
                                                       <div class="single-input mb-25">
-                                                         <label for="name">이름 <span>*</span></label><input
-                                                            type="text" id="name" name="name" placeholder="이름이요"
-                                                            value="가입시 입력한 이름">
+                                                         <label for="name">이름 <span>*</span></label><input type="text" id="name" name="name" placeholder="이름이요" value="가입시 입력한 이름">
                                                       </div>
                                                       <!-- Single Input End -->
                                                    </div>
                                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                                                       <!-- Single Input Start -->
                                                       <div class="single-input mb-25">
-                                                         <label for="phone">전화번호 <span>*</span></label><input
-                                                            type="text" id="phone" name="phone"
-                                                            placeholder="전화번호요" value="가입시 입력한 번호">
+                                                         <label for="phone">전화번호 <span>*</span></label>
+                                                         <input type="text" id="phone" name="phone" placeholder="전화번호요" value="가입시 입력한 번호">
+                                                            
                                                       </div>
                                                       <!-- Single Input End -->
                                                    </div>
                                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                                                       <!-- Single Input Start -->
                                                       <div class="single-input mb-25">
-                                                         <label for="email">이메일 <span>*</span></label><input
-                                                            type="email" id="email" name="email"
-                                                            placeholder="이메일이요" value="가입시 입력한 이메일">
+                                                         <label for="email">이메일 <span>*</span></label>
+                                                         <input type="email" id="email" name="email" placeholder="이메일이요" value="가입시 입력한 이메일">
+                                                            
                                                       </div>
                                                       <!-- Single Input End -->
                                                    </div>
@@ -99,11 +105,8 @@
                                                          <label for="address">주소 <span>*</span></label>
                                                          <table>
                                                             <tr>
-                                                               <td><input type="text" id="address"
-                                                                  name="address" placeholder="주소요"
-                                                                  value="가입시 입력한 주소" style="width: 280px;"></td>
-                                                               <td><input type="button"
-                                                                  style="background-color: white;" value="검색"></td>
+                                                               <td><input type="text" id="address" name="address" placeholder="주소요" value="가입시 입력한 주소" style="width: 120%;"></td>
+                                                               <td><input type="button" style="background-color: white;" value="검색"></td>
                                                             </tr>
                                                          </table>
                                                       </div>
@@ -115,11 +118,9 @@
                                                          <label for="nickName">닉네임<span>*</span></label>
                                                          <table>
                                                             <tr>
-                                                               <td><input type="text" id="nickName"
-                                                                  name="nickName" placeholder="별명이요"
-                                                                  value="가입시 입력한 닉네임" style="width: 280px;"></td>
-                                                               <td><input type="button"
-                                                                  style="background-color: white;" value="검사"></td>
+                                                               <td><input type="text" id="nickName" name="nickName" placeholder="별명이요" value="가입시 입력한 닉네임" style="width: 120%;"></td>
+                                                               <td><input type="button" style="background-color: white;" value="검사"></td>
+                                                                  
                                                             </tr>
                                                          </table>
                                                       </div>
@@ -128,9 +129,9 @@
                                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                                                       <!-- Single Input Start -->
                                                       <div class="single-input mb-25">
-                                                         <label for="address-two">사진<span>*</span></label><input
-                                                            type="file" id="address-two" name="address-two"
-                                                            placeholder="Enter your Address" value="">
+                                                         <label for="address-two">사진<span>*</span></label>
+                                                         <input type="file" id="address-two" name="address-two" placeholder="Enter your Address" value="">
+                                                            
                                                       </div>
                                                       <!-- Single Input End -->
                                                    </div>
@@ -140,11 +141,8 @@
                                                          <label for="new-password">새 비밀번호</label>
                                                          <table>
                                                             <tr>
-                                                               <td><input type="password" id="new-password"
-                                                                  name="new-password" placeholder="새 비밀번호요"
-                                                                  value="가입시 입력한 비밀번호" style="width: 280px;"></td>
-                                                               <td><input type="button"
-                                                                  style="background-color: white;" value="검사"></td>
+                                                               <td><input type="password" id="new-password" name="new-password" placeholder="새 비밀번호요" value="가입시 입력한 비밀번호" style="width: 120%;"></td>
+                                                               <td><input type="button" style="background-color: white;" value="검사"></td>
                                                             </tr>
                                                          </table>
                                                       </div>
@@ -153,10 +151,7 @@
                                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                                                       <!-- Single Input Start -->
                                                       <div class="single-input mb-25">
-                                                         <label for="confirm-password">새 비밀번호 확인</label><input
-                                                            type="password" id="confirm-password"
-                                                            name="confirm-password" placeholder="새 비밀번호를 입력하세요."
-                                                            value="">
+                                                         <label for="confirm-password">새 비밀번호 확인</label><input type="password" id="confirm-password" name="confirm-password" placeholder="새 비밀번호를 입력하세요." value="">
                                                       </div>
                                                       <!-- Single Input End -->
                                                    </div>
@@ -174,13 +169,10 @@
 
 														<div class="row">
 															<div class="col-12">
-																<div
-																	class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+																<div class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
 																	<button class="ht-btn theme-btn theme-btn-two mb-xs-20">수정</button>
-																		
 																	<button
 																		class="ht-btn theme-btn theme-btn-two transparent-btn-two">회원탈퇴</button>
-																		
 																</div>
 															</div>
 														</div>
@@ -193,7 +185,6 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>

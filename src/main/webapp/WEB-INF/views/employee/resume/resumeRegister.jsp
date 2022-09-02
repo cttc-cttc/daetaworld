@@ -45,14 +45,14 @@
 
 <script type="text/javascript">
 	function newcomer() {
-		
-	}
+		alert("신입이니?");
+		console.log("ㅎㅇ신입");
+	};
 	
 	function career() {
-		alert("경력직이니?")		
-	}
+		alert("경력직이니?");	
+	};
 
-	document.)
 </script>
 
 
@@ -102,14 +102,14 @@
 														<form>
 														<div id="article">
 															<h3><strong>경력</strong></h3>
-																<input id="newcomer" type="text" size="10px;" readonly="readonly" placeholder="신입" onclick="newcomer()"/>
+																<label><input type="chkBox"/>신입</label>
 															&nbsp;&nbsp;
 																<input id="career"  type="text" size="10px;" readonly="readonly" placeholder="경력" onclick="career()"/>
 														</div>
 															<hr id="profile-hr-1">
 														<div id="footer">
 															<h3><strong>자기소개서</strong></h3>
-															<input id="regi" type="text"/>
+															<textarea rows="10" cols="80" style="resize: none;" placeholder="나의 강점과 특징에 대해 소개하고 어떤 사람인지 설명해 보세요."></textarea>
 														</div>
 														<hr>
 														<button>저장</button>
