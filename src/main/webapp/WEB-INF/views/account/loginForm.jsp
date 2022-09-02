@@ -21,9 +21,10 @@
 					<div class="col-12">
 						<div class="page-breadcrumb-content">
 							<ul class="page-breadcrumb">
-								<li><a href="index.html">Home</a></li>
-								<li>Login & Register</li>
+								<li><a href="index.html"></a></li>
+								<li></li>
 							</ul>
+							<br>
 							<h1>로그인 & 회원가입</h1>
 						</div>
 					</div>
