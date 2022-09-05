@@ -34,124 +34,30 @@
 									</div>
 								</div>
 								<div class="row employer-slider-two">
-									<div class="col-lg-4">
+									<c:forEach var="urgency_ads" items="${urgency_list }">
 										<!-- 급구 항목 Start -->
-										<div class="single-employer-item">
-											<div class="image-featured">
-												<img src="${contextPath}/resources/assets/images/employer/cover-image-employer-1.jpg" alt="">
-											</div>
-											<div class="item-content">
-												<div class="avatar">
-													<img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo1.jpg" alt="">
+										<div class="col-lg-4">
+											<div class="single-employer-item">
+												<div class="image-featured">
+													<img src="${contextPath}/resources/images/shop_picture/${urgency_ads.s_picture}" alt="">
 												</div>
-												<h4 class="title">
-													<a href="employer-details.html">밥스터치 수원점</a>
-												</h4>
-												<div class="meta">
-													<div class="star">
-														<span class="urgency-money">시급 - &#8361;10,800</span>
-														<i class="fas fa-star"></i> <span class="score">4.3</span>
+												<div class="item-content">
+													<div class="avatar"></div>
+													<h4 class="title">
+														<a href="jobAds/detail?num=${urgency_ads.a_number }">${urgency_ads.s_name }</a>
+													</h4>
+													<div class="meta">
+														<div class="star">
+															<span class="urgency-money">시급 - &#8361;${urgency_ads.a_wage }</span>
+															<i class="fas fa-star"></i> <span class="score">${urgency_ads.w_rate }</span>
+														</div>
+														<span class="location"><i class="lnr lnr-map-marker"></i>${urgency_ads.s_address }</span>
 													</div>
-													<span class="location"><i class="lnr lnr-map-marker"></i>경기도 수원시 팔달구 덕영대로 899 </span>
 												</div>
 											</div>
 										</div>
 										<!-- 급구 항목 End -->
-									</div>
-									<div class="col-lg-4">
-										<!-- 급구 항목 Start -->
-										<div class="single-employer-item">
-											<div class="image-featured">
-												<img src="${contextPath}/resources/assets/images/employer/cover-image-employer-2.jpg" alt="">
-											</div>
-											<div class="item-content">
-												<div class="avatar">
-													<img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo2.jpg" alt="">
-												</div>
-												<h4 class="title">
-													<a href="employer-details.html">에피드 네일 평택점</a>
-												</h4>
-												<div class="meta">
-													<div class="star">
-														<span class="urgency-money">시급 - &#8361;12,500</span>
-														<i class="fas fa-star"></i> <span class="score">4.6</span>
-													</div>
-													<span class="location"><i class="lnr lnr-map-marker"></i>경기도 평택시 비전동 EA아울렛 7층 </span>
-												</div>
-											</div>
-										</div>
-										<!-- 급구 항목 End -->
-									</div>
-									<div class="col-lg-4">
-										<!-- 급구 항목 Start -->
-										<div class="single-employer-item">
-											<div class="image-featured">
-												<img src="${contextPath}/resources/assets/images/employer/cover-image-employer-3.jpg" alt="">
-											</div>
-											<div class="item-content">
-												<div class="avatar">
-													<img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo3.jpg" alt="">
-												</div>
-												<h4 class="title">
-													<a href="employer-details.html">루트 스튜디오 군포점 </a>
-												</h4>
-												<div class="meta">
-													<div class="star">
-														<span class="urgency-money">시급 - &#8361;11,000</span>
-														<i class="fas fa-star"></i> <span class="score">4.2</span>
-													</div>
-													<span class="location"><i class="lnr lnr-map-marker"></i>경기도 군포시 당동 740-2번지 </span>
-												</div>
-											</div>
-										</div>
-										<!-- 급구 항목 End -->
-									</div>
-									<div class="col-lg-4">
-										<!-- 급구 항목 Start -->
-										<div class="single-employer-item">
-											<div class="image-featured">
-												<img src="${contextPath}/resources/assets/images/employer/cover-image-employer-4.jpg" alt="">
-											</div>
-											<div class="item-content">
-												<div class="avatar">
-													<img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo4.jpg" alt="">
-												</div>
-												<h4 class="title">
-													<a href="employer-details.html">Vsmarttech </a>
-												</h4>
-												<div class="meta">
-													<div class="star">
-														<i class="fas fa-star"></i> <span class="score">3.9</span>
-													</div>
-													<span class="location"><i class="lnr lnr-map-marker"></i>London Euston,London,UK </span><span class="count-job theme-color">1 Jobs </span>
-												</div>
-											</div>
-										</div>
-										<!-- 급구 항목 End -->
-									</div>
-									<div class="col-lg-4">
-										<!-- 급구 항목 Start -->
-										<div class="single-employer-item">
-											<div class="image-featured">
-												<img src="${contextPath}/resources/assets/images/employer/cover-image-employer-5.jpg" alt="">
-											</div>
-											<div class="item-content">
-												<div class="avatar">
-													<img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo5.jpg" alt="">
-												</div>
-												<h4 class="title">
-													<a href="employer-details.html">Radio Game </a>
-												</h4>
-												<div class="meta">
-													<div class="star">
-														<i class="fas fa-star"></i> <span class="score">4.5</span>
-													</div>
-													<span class="location"><i class="lnr lnr-map-marker"></i>New York,NY,USA </span><span class="count-job theme-color">2 Jobs </span>
-												</div>
-											</div>
-										</div>
-										<!-- 급구 항목 End -->
-									</div>
+									</c:forEach>
 								</div>
 							</div>
 							<!--Hero Content end-->
@@ -190,11 +96,11 @@
 											<div class="job-info-top">
 												<div class="title-name">
 													<h3 class="job-title">
-														<a href="#">${common_ads.s_name }</a>
+														<a href="jobAds/detail?num=${common_ads.a_number }">${common_ads.s_name }</a>
 													</h3>
 													<div class="employer-name">
 														<!-- <a href="employer-details.html">구인자id</a> -->
-														<span>${common_ads.r_name } <i class="fas fa-star star-color"></i>3.8</span>
+														<span>${common_ads.r_nick } <i class="fas fa-star star-color"></i>${common_ads.w_rate }</span>
 													</div>
 												</div>
 											</div>
@@ -229,8 +135,7 @@
 										</div>
 									</div>
 									<div class="shop-image">
-										<img src="${contextPath}/resources/assets/images/blog/${common_ads.s_picture}">
-										${common_ads.s_picture}.png
+										<img src="${contextPath}/resources/images/shop_picture/${common_ads.s_picture}">
 									</div>
 								</div>
 							</div>
@@ -411,7 +316,7 @@
 		</div>
 		<!-- 직업추천 & 대타자 평점 랭킹 End -->
 
-		<!-- 농어촌 & 돌봄 구인 Start -->
+		<!-- 농어촌 구인 Start -->
 		<div class="cta-section section bg_color--4 pt-50 pb-50">
 			<div class="container">
 				<div class="row align-items-center">
@@ -432,7 +337,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- 농어촌 & 돌봄 구인 End -->
+		<!-- 농어촌 구인 End -->
 		
 		<%@ include file="include/footer.jsp" %>
 		

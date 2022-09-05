@@ -4,9 +4,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.deataworld.jobAds">
 
-	<!-- 메인화면 일반구인 조회 6개  -->
-	<select id="main_common_ads" resultType="CommonAdsEntity">
+	<!-- 메인화면 - 긴급구인 리스트 6개 -->
+	<select id="main_urgency_ads" resultType="MainAdsEntity">
 		select
+			A.a_number,		<!-- A구인공고.공고번호 -->
+			A.a_wage,		<!-- A구인공고.시급 -->
+			B.s_name,		<!-- B가게정보.가게명 -->
+		    B.s_address,	<!-- B가게정보.가게 주소 -->
+		    B.s_picture,	<!-- B가게정보.가게 사진 -->
+		    format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
+		from job_ads as A
+		inner join shop_info as B
+			on A.s_number = B.s_number
+		inner join review as D
+			on A.r_id = D.r_id
+		where
+			A.a_urgency = 1
+            and (A.a_status = 0 or A.a_status = 1)
+            and A.a_type = 0
+		group by A.a_number
+		order by A.a_number desc
+		limit 0, 6;
+	</select>
+	
+	<!-- 메인화면 - 일반구인 리스트 6개  -->
+	<select id="main_common_ads" resultType="MainAdsEntity">
+		select
+			A.a_number,		<!-- A구인공고.공고번호 -->
 		    A.a_wage,		<!-- A구인공고.시급 -->
 		    A.a_time,		<!-- A구인공고.시간 -->
 		    <!-- A구인공고.올린시간 -->
@@ -33,12 +57,20 @@
 		    B.s_tag3,		<!-- B가게정보.태그3 -->
 		    B.s_tag4,		<!-- B가게정보.태그4 -->
 		    B.s_tag5,		<!-- B가게정보.태그5 -->
-		    C.r_name		<!-- C구인자.구인자 이름 -->
+		    C.r_nick,		<!-- C구인자.구인자 닉네임 -->
+		    format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
 		from job_ads as A
 		inner join shop_info as B
 			on A.s_number = B.s_number
 		inner join employer as C
 			on A.r_id = C.r_id
+		inner join review as D
+			on A.r_id = D.r_id
+		where
+			A.a_urgency = 0
+            and (A.a_status = 0 or A.a_status = 1)
+            and A.a_type = 0
+		group by A.a_number
 		order by A.a_number desc
 		limit 0, 6;
 	</select>
