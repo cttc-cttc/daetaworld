@@ -2,7 +2,7 @@ package kr.co.deataworld.entity;
 /*
  * 메인화면의 긴급구인 리스트, 일반구인 리스트를 표시하는 데 사용
  * 
- * 아래 4개 테이블 조인
+ * 아래 4개 테이블 중 필요한 것들만 inner join
  * 구인공고(job_ads) 테이블A
  * 가게&농어촌 정보(shop_info) 테이블B
  * 구인자(employer) 테이블C
