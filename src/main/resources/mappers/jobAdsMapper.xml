@@ -44,7 +44,7 @@
 					then concat(timestampdiff(day, A.ua_date, now()),'일')
 				when hour(timediff(now(), A.ua_date)) < 720
 					then concat(timestampdiff(week, A.ua_date, now()),'주')
-				when day(datediff(now(), A.ua_date)) < 365
+				when datediff(now(), A.ua_date) < 365
 					then concat(timestampdiff(month, A.ua_date, now()),'개월')
 				else concat(timestampdiff(year, A.ua_date, now()),'년')
 			end as uptime,
