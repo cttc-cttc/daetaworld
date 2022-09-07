@@ -14,7 +14,7 @@ public class MainAdsEntity {
 	private String a_time;// A구인공고.시간
 	private String uptime;// A구인공고.올린시간 계산값
 	private String s_name;// B가게정보.가게명
-	private String s_address;// B가게정보.가게 주소
+	private String s_address1;// B가게정보.가게 주소1
 	private String s_picture;// B가게정보.가게 사진
 	private String s_tag1;// B가게정보.태그1
 	private String s_tag2;// B가게정보.태그2
@@ -54,11 +54,11 @@ public class MainAdsEntity {
 	public void setS_name(String s_name) {
 		this.s_name = s_name;
 	}
-	public String getS_address() {
-		return s_address;
+	public String getS_address1() {
+		return s_address1;
 	}
-	public void setS_address(String s_address) {
-		this.s_address = s_address;
+	public void setS_address1(String s_address1) {
+		this.s_address1 = s_address1;
 	}
 	public String getS_picture() {
 		return s_picture;
@@ -111,7 +111,7 @@ public class MainAdsEntity {
 	@Override
 	public String toString() {
 		return "MainAdsEntity [a_number=" + a_number + ", a_wage=" + a_wage + ", a_time=" + a_time + ", uptime="
-				+ uptime + ", s_name=" + s_name + ", s_address=" + s_address + ", s_picture=" + s_picture + ", s_tag1="
+				+ uptime + ", s_name=" + s_name + ", s_address1=" + s_address1 + ", s_picture=" + s_picture + ", s_tag1="
 				+ s_tag1 + ", s_tag2=" + s_tag2 + ", s_tag3=" + s_tag3 + ", s_tag4=" + s_tag4 + ", s_tag5=" + s_tag5
 				+ ", r_nick=" + r_nick + ", w_rate=" + w_rate + "]";
 	}
