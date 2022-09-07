@@ -7,7 +7,7 @@
 			<!--Logo start-->
 			<div class="col-xl-2 col-lg-2 col-12">
 				<div class="logo">
-					<a href="${contextPath }/"><img src="${contextPath}/resources/images/logo100.png" alt=""></a>
+					<a href=""><img src="${contextPath}/resources/images/logo100.png" alt="오늘의대타"></a>
 				</div>
 			</div>
 			<!--Logo end-->
@@ -40,7 +40,7 @@
 								<a href="${contextPath}/login"><i class="lnr lnr-user"></i><span>로그인</span></a>
 							</div>
 							<div class="jp-author-action-two item">
-								<a class="ht-btn header-btn" href="${contextPath}/Join">회원가입</a>
+								<a class="ht-btn header-btn" href="${contextPath}/JoinRore">회원가입</a>
 							</div>
 						</div>
 					</div>

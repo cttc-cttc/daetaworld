@@ -2,6 +2,7 @@ package kr.co.deataworld.controller;
 
 import javax.servlet.http.HttpSession;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,11 +22,25 @@ public class AccountController {
 		return "account/loginForm";
 	}
 	
-	@RequestMapping(value = "Join", method = RequestMethod.GET)
+	@RequestMapping(value = "JoinRore", method = RequestMethod.GET)
 	public String Join() {
 		logger.info("회원가입화면 접속");
-		return "account/JoinRegist";
+		return "account/joinRegist/JoinRore";
 	}
+	
+
+	@RequestMapping(value = "write-r", method = RequestMethod.GET)
+	public String writer() {
+		logger.info("회원가입화면 접속");
+		return "account/joinRegist/write-r";
+	}
+	
+	@RequestMapping(value = "write-e", method = RequestMethod.GET)
+	public String writee() {
+		logger.info("회원가입화면 접속");
+		return "account/joinRegist/write-e";
+	}
+	
 	
 	
 	

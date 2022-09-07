@@ -41,15 +41,15 @@
 						<div class="login-register-form-area">
 							<div class="login-tab-menu">
 								<ul class="nav">
-									<li><a class="active show" data-toggle="tab" href="#login">로그인</a></li>
-									<li><a data-toggle="tab" href="#register">회원가입</a></li>
+									<li><a class="active show" data-toggle="tab" href="#login">개인로그인</a></li>
+									<li><a data-toggle="tab" href="#register">기업로그인</a></li>
 								</ul>
 							</div>
 							<div class="tab-content">
 								<div id="login" class="tab-pane fade show active">
 									<div class="login-register-form">
 										<form method="post">
-											<p>등록된 계정으로 오늘의 대타에 로그인하세요</p>
+											<p>구직 계정으로 오늘의 대타에 로그인하세요</p>
 											<div class="row">
 												<div class="col-12">
 													<div class="single-input">
@@ -87,45 +87,25 @@
 								<div id="register" class="tab-pane fade">
 									<div class="login-register-form">
 										<form action="#" method="post">
-											<p>계정을 등록하세요</p>
-											<div class="row row-5">
+										<p>구인 계정으로 오늘의 대타에 로그인하세요</p>
+											<div class="row">
 												<div class="col-12">
 													<div class="single-input">
-														<input type="text" placeholder="아이디" name="name">
+														<input type="text" placeholder="아이디 또는 이메일" name="name">
 													</div>
 												</div>
 												<div class="col-12">
-													<div class="single-input">
-														<input type="email" placeholder="이메일 주소" name="emain">
-													</div>
-												</div>
-												<div class="col-sm-6">
 													<div class="single-input">
 														<input type="password" placeholder="비밀번호" name="password">
 													</div>
 												</div>
-												<div class="col-sm-6">
-													<div class="single-input">
-														<input type="password" placeholder="비밀번호 확인" name="conPassword">
-													</div>
-												</div>
-												<div class="col-6">
-													<div class="checkbox-input">
-														<input type="checkbox" name="login-form-candidate" id="login-form-candidate"><label for="login-form-candidate">노예입니다</label>
-													</div>
-												</div>
-												<div class="col-6">
-													<div class="checkbox-input">
-														<input type="checkbox" name="login-form-employer" id="login-form-employer"><label for="login-form-employer">사장입니다</label>
-													</div>
-												</div>
 												<div class="col-12">
-													<div class="register-account">
-														<input id="register-terms-conditions" type="checkbox" class="checkbox" checked="" required=""><label for="register-terms-conditions">약관 및 정책을 읽었으며 동의합니다. <a href="#">약관</a>, <a href="#">정책</a></label>
+													<div class="checkbox-input">
+														<input type="checkbox" name="login-form-remember" id="login-form-remember"><label for="login-form-remember">아이디 저장하기</label>
 													</div>
 												</div>
 												<div class="col-12 mb-25">
-													<button class="ht-btn">가입하기</button>
+													<button class="ht-btn">로그인</button>
 												</div>
 											</div>
 										</form>
