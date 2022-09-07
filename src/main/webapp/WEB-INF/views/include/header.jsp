@@ -115,7 +115,7 @@
 								<div class="dropdown-menu" aria-labelledby="userMenu">
 									<a class="dropdown-item drdn-item" href="${contextPath}/point/pointManagement">포인트 점수 : 230점</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item drdn-item" href="${contextPath}/employee/pinchStatus">내 지원 현황</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/pinchStatus">내 지원 현황</a>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/myInfo">마이페이지</a>
 								</div>
 							</div>

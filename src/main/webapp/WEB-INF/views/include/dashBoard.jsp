@@ -13,8 +13,6 @@
 					<ul>
 						<li><a id="myInfo_e" href="${contextPath}/employeeMapper/myInfo"><i 
 								class="lnr lnr-users"></i>내 정보</a></li>
-						<li><a id="resumeManagement" href="${contextPath}/employeeMapper/resumeManagement"><i 
-								class="lnr lnr-thumbs-down"></i>자기소개서 관리</a></li>												
 						<li><a id="pinchStatus" href="${contextPath}/employeeMapper/pinchStatus"><i 
 								class="lnr lnr-thumbs-down"></i>지원 현황</a></li>
 						<li><a id="pinchHistory" href="${contextPath}/employeeMapper/pinchHistory"><i 

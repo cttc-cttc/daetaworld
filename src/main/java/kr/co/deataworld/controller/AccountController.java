@@ -28,8 +28,6 @@ public class AccountController {
 	}
 	
 	
-	
-	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(String name, String password, HttpSession session) {
 		logger.info("name : " + name + " / password : " + password);
