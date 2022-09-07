@@ -57,7 +57,7 @@
 													<li><a style="color: green" class="active"
 														href="myInfo">내 정보</a></li>
 
-													<li><a href="myInfoUpdate">내 정보 수정</a></li>
+													<li><a href="resumeManagement">자기소개서 관리</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
