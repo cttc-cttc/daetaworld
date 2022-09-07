@@ -51,7 +51,7 @@
 															<span class="urgency-money">시급 - &#8361;${urgency_ads.a_wage }</span>
 															<i class="fas fa-star"></i> <span class="score">${urgency_ads.w_rate }</span>
 														</div>
-														<span class="location"><i class="lnr lnr-map-marker"></i>${urgency_ads.s_address }</span>
+														<span class="location"><i class="lnr lnr-map-marker"></i>${urgency_ads.s_address1 }</span>
 													</div>
 												</div>
 											</div>
@@ -112,7 +112,7 @@
 													<i class="lnr lnr-clock"></i>${common_ads.uptime } 전
 												</div>
 												<div class="field-map">
-													<i class="lnr lnr-map-marker"></i>${common_ads.s_address }
+													<i class="lnr lnr-map-marker"></i>${common_ads.s_address1 }
 												</div>
 											</div>
 											<div class="job-skill-tag">
