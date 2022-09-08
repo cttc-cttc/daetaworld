@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.AdminDAO;
 import kr.co.deataworld.entity.EmployeeEntity;
+import kr.co.deataworld.util.PageProcess;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -15,8 +16,12 @@ public class AdminServiceImpl implements AdminService {
 	AdminDAO dao;
 
 	@Override
-	public List<EmployeeEntity> employeeList() throws Exception {
-		return dao.employeeList();
-	}	
+	public int employeeCnt() throws Exception {
+		return dao.employeeCnt();
+	}
 
+	@Override
+	public List<EmployeeEntity> employeeList(PageProcess pp) throws Exception {
+		return dao.employeeList(pp);
+	}
 }

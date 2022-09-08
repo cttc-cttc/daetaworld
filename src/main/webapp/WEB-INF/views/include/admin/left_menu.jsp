@@ -7,7 +7,7 @@
 				<li>
 					<h3>회원 관리</h3>
 					<ul>
-						<li><a id="employee_list" href="${contextPath }/admin/employee_list"><i class="lnr lnr-users"></i>구직자</a></li>
+						<li><a id="employee_list" href="${contextPath }/admin/employee_list?page=1"><i class="lnr lnr-users"></i>구직자</a></li>
 						<li><a id="employer_list" href="${contextPath }/admin/employer_list"><i class="lnr lnr-user"></i>구인자</a></li>
 						<li><a id="blacklist" href="${contextPath }/admin/blacklist"><i class="lnr lnr-thumbs-down"></i>블랙리스트</a></li>
 					</ul>

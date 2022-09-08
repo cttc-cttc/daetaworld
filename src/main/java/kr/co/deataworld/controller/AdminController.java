@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.deataworld.entity.EmployeeEntity;
 import kr.co.deataworld.service.AdminService;
+import kr.co.deataworld.util.PageProcess;
 
 /*
  * 관리자화면 컨트롤러
@@ -26,11 +27,18 @@ public class AdminController {
 	AdminService service;
 	
 	@RequestMapping(value = "admin/employee_list", method = RequestMethod.GET)
-	public String employeeList(Model model) throws Exception {
+	public String employeeList(Model model, int page) throws Exception {
 		logger.info("관리자화면 접속 : 구직자 회원 리스트");
 		
-		List<EmployeeEntity> eList = service.employeeList();
+		PageProcess pp = new PageProcess();
+		pp.setCurrPage(page); // 현재 페이지
+		pp.setPagePerList(10); // 한 페이지에 보여줄 구직자 수
+		pp.setPagePerNavi(10); // 페이지 네비게이터에 표시할 페이지 수
+		pp.setBoardCnt(service.employeeCnt()); // 전체 구직자 수
+		
+		List<EmployeeEntity> eList = service.employeeList(pp);
 		model.addAttribute("eList", eList);
+		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "employee_list");
 		return "admin/employee_list";
 	}

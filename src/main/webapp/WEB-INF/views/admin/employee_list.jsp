@@ -79,10 +79,29 @@
 													<div class="row">
 														<div class="col-12">
 															<ul class="page-pagination justify-content-center">
-																<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-																<li class="active"><a href="#">1</a></li>
-																<li><a href="#">2</a></li>
-																<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+																<%-- 이전 버튼 활성/비활성 --%>
+																<c:if test="${pp.getCurrPage() != 1 }">
+																	<li><a href="${contextPath }/admin/employee_list?page=${pp.getCurrPage()-1}"><i class="fa fa-angle-left"></i></a></li>
+																</c:if>
+																<c:if test="${pp.getCurrPage() == 1 }">
+																	<li><a class="disabled-btn"><i class="fa fa-angle-left"></i></a></li>
+																</c:if>
+																<%-- 페이지 버튼 활성/비활성 --%>
+																<c:forEach var="pageNaviNum" items="${pp.calcPageRange() }">
+																	<c:if test="${pageNaviNum == pp.getCurrPage()}">
+																		<li class="active"><a class="current-btn">${pageNaviNum }</a></li>
+																	</c:if>
+																	<c:if test="${pageNaviNum != pp.getCurrPage()}">
+																		<li><a href="${contextPath }/admin/employee_list?page=${pageNaviNum}">${pageNaviNum }</a></li>
+																	</c:if>
+																</c:forEach>
+																<%-- 다음 버튼 활성/비활성 --%>
+																<c:if test="${pp.getCurrPage() != pp.calcLastPage() }">
+																	<li><a href="${contextPath }/admin/employee_list?page=${pp.getCurrPage()+1}"><i class="fa fa-angle-right"></i></a></li>
+																</c:if>
+																<c:if test="${pp.getCurrPage() == pp.calcLastPage() }">
+																	<li><a class="disabled-btn"><i class="fa fa-angle-right"></i></a></li>
+																</c:if>
 															</ul>
 														</div>
 													</div>

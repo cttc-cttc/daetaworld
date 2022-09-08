@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.deataworld.entity.EmployeeEntity;
+import kr.co.deataworld.util.PageProcess;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -17,9 +18,16 @@ public class AdminDAOImpl implements AdminDAO {
 	SqlSession sql;
 
 	@Override
-	public List<EmployeeEntity> employeeList() throws Exception {
-		return sql.selectList(nameSpace + ".employeeList");
+	public int employeeCnt() throws Exception {
+		return sql.selectOne(nameSpace + ".employeeCnt");
 	}
+
+	@Override
+	public List<EmployeeEntity> employeeList(PageProcess pp) throws Exception {
+		return sql.selectList(nameSpace + ".employeeList", pp);
+	}
+
+	
 
 	
 }

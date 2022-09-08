@@ -22,3 +22,17 @@
     overflow: hidden;
     white-space: nowrap;
 }
+
+.current-btn {
+	cursor: context-menu;
+}
+
+.disabled-btn {
+	cursor: context-menu;
+	color: #fff !important;
+	background: #aaa !important;
+}
+.disabled-btn:hover {
+	background: #aaa !important;
+	border-color: #fff !important;
+}
