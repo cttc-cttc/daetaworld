@@ -10,7 +10,7 @@
 	</select>
 	
 	<!-- 구직자 회원 조회(페이징 처리) -->
-	<select id="employeeList" resultType="EmployeeEntity">
+	<select id="employeeList" resultType="EmployeeDTO">
 		select
 			e_id,	<!-- ID -->
 			e_nick,	<!-- 닉네임 -->

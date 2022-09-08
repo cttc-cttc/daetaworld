@@ -1,4 +1,4 @@
-package kr.co.deataworld.entity;
+package kr.co.deataworld.dto;
 
 /*
  * s_number varchar(10) PK 
@@ -17,7 +17,7 @@ package kr.co.deataworld.entity;
  * a_code varchar(20) 
  * j_code varchar(20)
  */
-public class shopInfo {
+public class ShopInfoDTO {
 	private String s_number;
 	private String business_license;
 	private String s_name;

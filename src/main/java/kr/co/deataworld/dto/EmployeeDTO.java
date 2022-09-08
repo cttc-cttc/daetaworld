@@ -1,6 +1,6 @@
-package kr.co.deataworld.entity;
+package kr.co.deataworld.dto;
 
-public class EmployeeEntity {
+public class EmployeeDTO {
 	
 	private int e_number;
 	private String e_id;

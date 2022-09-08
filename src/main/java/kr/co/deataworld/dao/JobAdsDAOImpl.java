@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import kr.co.deataworld.entity.MainAdsEntity;
+import kr.co.deataworld.dto.MainAdsDTO;
 
 @Repository
 public class JobAdsDAOImpl implements JobAdsDAO {
@@ -18,12 +18,12 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 	SqlSession sql;
 	
 	@Override
-	public List<MainAdsEntity> mainUrgencyList() {
+	public List<MainAdsDTO> mainUrgencyList() {
 		return sql.selectList(NAMESPACE + ".main_urgency_ads");
 	}
 	
 	@Override
-	public List<MainAdsEntity> mainCommonList() {
+	public List<MainAdsDTO> mainCommonList() {
 		return sql.selectList(NAMESPACE + ".main_common_ads");
 	}
 	

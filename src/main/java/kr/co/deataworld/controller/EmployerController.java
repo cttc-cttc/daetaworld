@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.deataworld.entity.employerEntity;
-import kr.co.deataworld.entity.shopInfo;
+import kr.co.deataworld.dto.EmployerDTO;
+import kr.co.deataworld.dto.ShopInfoDTO;
 import kr.co.deataworld.service.employerService;
 /*
  * 구인자 컨트롤러 (마이페이지)
@@ -31,7 +31,7 @@ public class EmployerController {
 	public String myInfo(Model model) throws Exception {
 		model.addAttribute("leftMenu", "myInfo");
 		String id = "owner";
-		employerEntity myInfo = service.myInfo(id);
+		EmployerDTO myInfo = service.myInfo(id);
 		model.addAttribute("myInfo", myInfo);
 		
 		return "employer/myInfo/myInfo";
@@ -40,7 +40,7 @@ public class EmployerController {
 //	내 정보 수정
 	@ResponseBody
 	@PostMapping(value="employerMapper/myInfoUpdate")
-	public int myInfoUpdate(employerEntity employerEntity) throws Exception {
+	public int myInfoUpdate(EmployerDTO employerEntity) throws Exception {
 		return service.myInfoUpdate(employerEntity);
 	}
 	
@@ -99,7 +99,7 @@ public class EmployerController {
 	public String shopManagement(Model model) throws Exception {
 		model.addAttribute("leftMenu", "myInfo");
 		String id = "owner";
-		List<shopInfo> list = service.shopManagement(id);
+		List<ShopInfoDTO> list = service.shopManagement(id);
 		model.addAttribute("list", list);
 		return "employer/shop/shopManagement";
 	}
@@ -108,7 +108,7 @@ public class EmployerController {
 	@GetMapping(value="employerMapper/shopInfo")
 	public String shopInfo(@RequestParam("s_name") String s_name, Model model) throws Exception{
 		model.addAttribute("leftMenu", "myInfo");
-		shopInfo shopInfo = service.shopInfo(s_name);
+		ShopInfoDTO shopInfo = service.shopInfo(s_name);
 		model.addAttribute("shopInfo", shopInfo);		
 		return "employer/shop/shopInfo";
 	}

@@ -1,4 +1,4 @@
-package kr.co.deataworld.entity;
+package kr.co.deataworld.dto;
 /*
  * 메인화면의 긴급구인 리스트, 일반구인 리스트를 표시하는 데 사용
  * 
@@ -8,7 +8,7 @@ package kr.co.deataworld.entity;
  * 구인자(employer) 테이블C
  * 후기(review) 테이블D
  */
-public class MainAdsEntity {
+public class MainAdsDTO {
 	private String a_number;// A구인공고.공고번호
 	private String a_wage;// A구인공고.시급
 	private String a_time;// A구인공고.시간

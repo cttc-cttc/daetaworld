@@ -1,4 +1,4 @@
-package kr.co.deataworld.entity;
+package kr.co.deataworld.dto;
 
 /*
  * r_number int PK
@@ -21,7 +21,7 @@ package kr.co.deataworld.entity;
  * r_quitted int
  */
 
-public class employerEntity {
+public class EmployerDTO {
 	private int r_number;
 	private String r_id;
 	private String r_password;

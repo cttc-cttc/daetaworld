@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.deataworld.entity.EmployeeEntity;
+import kr.co.deataworld.dto.EmployeeDTO;
 import kr.co.deataworld.service.AdminService;
 import kr.co.deataworld.util.PageProcess;
 
@@ -45,7 +45,7 @@ public class AdminController {
 		if(page > lastPage)
 			return "redirect:employee_list?page=" + lastPage;
 			
-		List<EmployeeEntity> eList = service.employeeList(pp);
+		List<EmployeeDTO> eList = service.employeeList(pp);
 		model.addAttribute("eList", eList);
 		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "employee_list");

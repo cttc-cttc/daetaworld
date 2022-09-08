@@ -2,20 +2,20 @@ package kr.co.deataworld.service;
 
 import java.util.List;
 
-import kr.co.deataworld.entity.employerEntity;
-import kr.co.deataworld.entity.shopInfo;
+import kr.co.deataworld.dto.EmployerDTO;
+import kr.co.deataworld.dto.ShopInfoDTO;
 
 public interface employerService {
 //	내 정보보기
-	public employerEntity myInfo(String id) throws Exception;
+	public EmployerDTO myInfo(String id) throws Exception;
 	
 //	내 정보수정
-	public int myInfoUpdate(employerEntity employerEntity) throws Exception; 
+	public int myInfoUpdate(EmployerDTO employerEntity) throws Exception; 
 	
 //	등록한 가게 목록보기
-	public List<shopInfo> shopManagement(String id) throws Exception;
+	public List<ShopInfoDTO> shopManagement(String id) throws Exception;
 	
 //	등록한 가게 정보보기
-	public shopInfo shopInfo(String s_name) throws Exception;
+	public ShopInfoDTO shopInfo(String s_name) throws Exception;
 	
 }

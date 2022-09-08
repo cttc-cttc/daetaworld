@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="kr.co.deataworld.entity.MainAdsEntity" alias="MainAdsEntity"/>
-		<typeAlias type="kr.co.deataworld.entity.EmployeeEntity" alias="EmployeeEntity"/>
+		<typeAlias type="kr.co.deataworld.dto.MainAdsDTO" alias="MainAdsDTO"/>
+		<typeAlias type="kr.co.deataworld.dto.EmployeeDTO" alias="EmployeeDTO"/>
 	</typeAliases>
 </configuration>
