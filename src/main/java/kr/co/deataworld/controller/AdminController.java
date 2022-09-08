@@ -1,11 +1,19 @@
 package kr.co.deataworld.controller;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import kr.co.deataworld.entity.EmployeeEntity;
+import kr.co.deataworld.service.AdminService;
 
 /*
  * 관리자화면 컨트롤러
@@ -14,13 +22,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@Inject
+	AdminService service;
+	
 	@RequestMapping(value = "admin/employee_list", method = RequestMethod.GET)
-	public ModelAndView employeeList() {
+	public String employeeList(Model model) throws Exception {
 		logger.info("관리자화면 접속 : 구직자 회원 리스트");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("leftMenu", "employee_list");
-		mav.setViewName("admin/employee_list");
-		return mav;
+		
+		List<EmployeeEntity> eList = service.employeeList();
+		model.addAttribute("eList", eList);
+		model.addAttribute("leftMenu", "employee_list");
+		return "admin/employee_list";
 	}
 	
 	@RequestMapping(value = "admin/employee_profile", method = RequestMethod.GET)

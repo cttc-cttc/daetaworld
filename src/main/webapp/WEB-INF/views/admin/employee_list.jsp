@@ -46,49 +46,32 @@
 														<thead>
 															<tr>
 																<th class="width-15">ID</th>
-																<th class="width-15">이름</th>
+																<th class="width-15">닉네임</th>
 																<th class="width-12">가입일</th>
-																<th class="width-35">상태</th>
+																<th class="width-35">경고상태</th>
 																<th class="width-23">상세정보</th>
 															</tr>
 														</thead>
 														<tbody>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">user1</span></h3></td>
-																<td class="application-employer"><span>김김김</span></td>
-																<td class="application-created"><span>2020.06.02</span></td>
-																<td class="status"><span class="approved">정상</span></td>
-																<td class="view-application">
-																	<a href="${contextPath }/admin/employee_profile" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">user2</span></h3></td>
-																<td class="application-employer"><span>이이이</span></td>
-																<td class="application-created"><span>2020.11.22</span></td>
-																<td class="status"><span class="approved">정상</span></td>
-																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">user3</span></h3></td>
-																<td class="application-employer"><span>박박박</span></td>
-																<td class="application-created"><span>2020.08.12</span></td>
-																<td class="status"><span class="pending">경고 1회</span></td>
-																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">user4</span></h3></td>
-																<td class="application-employer"><span>정정정</span></td>
-																<td class="application-created"><span>2020.01.17</span></td>
-																<td class="status"><span class="rejected">정지</span></td>
-																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
+															<c:forEach var="list" items="${eList }">
+																<tr class="application-item">
+																	<td class="application-job"><h3><span class="id-text">${list.e_id }</span></h3></td>
+																	<td class="application-employer"><span>${list.e_nick }</span></td>
+																	<td class="application-created"><span>${list.e_regdate }</span></td>
+																	<c:if test="${list.e_warned == 0 }">
+																		<td class="status"><span class="approved">정상</span></td>
+																	</c:if>
+																	<c:if test="${list.e_warned == 1 || list.e_warned == 2 }">
+																		<td class="status"><span class="pending">경고 ${list.e_warned }회</span></td>
+																	</c:if>
+																	<c:if test="${list.e_warned == 3 }">
+																		<td class="status"><span class="rejected">정지</span></td>
+																	</c:if>
+																	<td class="view-application">
+																		<a href="${contextPath }/admin/employee_profile?num=${list.e_number}" class="view-application">상세 회원정보 보기</a>
+																	</td>
+																</tr>
+															</c:forEach>
 														</tbody>
 													</table>
 												</div>
