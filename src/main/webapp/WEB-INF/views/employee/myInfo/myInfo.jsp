@@ -13,11 +13,11 @@
 		height : 200px;
 		width: 150px;
 	}
-
-
-
-
 </style>
+
+
+
+
 
 
 
@@ -74,10 +74,12 @@
 															</div>
 															<div class="col-lg-10">
 																<div class="row">
+																
                                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                                                       <!-- Single Input Start -->
                                                       <div class="single-input mb-25">
-                                                         <label for="name">이름 <span>*</span></label><input type="text" id="name" name="name" placeholder="이름이요" value="가입시 입력한 이름">
+                                                         <label for="name">이름  <span>*</span></label>
+                                                         <input type="text" id="name" name="name" placeholder="이름이요" value="${myInfo.e_name}">
                                                       </div>
                                                       <!-- Single Input End -->
                                                    </div>
@@ -85,7 +87,7 @@
                                                       <!-- Single Input Start -->
                                                       <div class="single-input mb-25">
                                                          <label for="phone">전화번호 <span>*</span></label>
-                                                         <input type="text" id="phone" name="phone" placeholder="전화번호요" value="가입시 입력한 번호">
+                                                         <input type="text" id="phone" name="phone" placeholder="전화번호요" value="${myInfo.e_phone}">
                                                             
                                                       </div>
                                                       <!-- Single Input End -->
@@ -94,8 +96,12 @@
                                                       <!-- Single Input Start -->
                                                       <div class="single-input mb-25">
                                                          <label for="email">이메일 <span>*</span></label>
-                                                         <input type="email" id="email" name="email" placeholder="이메일이요" value="가입시 입력한 이메일">
-                                                            
+                                                         <table>
+            											 	<tr>
+		                                                         <td><input type="email" id="email" name="email" placeholder="이메일이요" value="${myInfo.e_email}" style="width: 120%;"></td>
+		                                                         <td><input type="button" style="background-color: white;" value="인증"></td>
+            											 	</tr>                                            
+                                                         </table>
                                                       </div>
                                                       <!-- Single Input End -->
                                                    </div>
@@ -103,12 +109,8 @@
                                                       <!-- Single Input Start -->
                                                       <div class="single-input mb-25">
                                                          <label for="address">주소 <span>*</span></label>
-                                                         <table>
-                                                            <tr>
-                                                               <td><input type="text" id="address" name="address" placeholder="주소요" value="가입시 입력한 주소" style="width: 120%;"></td>
-                                                               <td><input type="button" style="background-color: white;" value="검색"></td>
-                                                            </tr>
-                                                         </table>
+	                                                         <input type="text" id="address1" name="address1" placeholder="주소요" value="${myInfo.e_address1}" style="width: 100%;"><br>
+	                                                         <input type="text" id="address2" name="address2" placeholder="상세주소요" value="${myInfo.e_address2}" style="width: 100%;">
                                                       </div>
                                                       <!-- Single Input End -->
                                                    </div>
@@ -118,9 +120,8 @@
                                                          <label for="nickName">닉네임<span>*</span></label>
                                                          <table>
                                                             <tr>
-                                                               <td><input type="text" id="nickName" name="nickName" placeholder="별명이요" value="가입시 입력한 닉네임" style="width: 120%;"></td>
-                                                               <td><input type="button" style="background-color: white;" value="검사"></td>
-                                                                  
+                                                               <td><input type="text" id="e_nick" name="e_nick" placeholder="별명이요" value="${myInfo.e_nick}" style="width: 120%;"></td>
+                                                               <td><input type="button" onclick="nickChk()" id="e_nickCheck" name="e_nickCheck" value="중복검사" style="background-color: white;"></td>
                                                             </tr>
                                                          </table>
                                                       </div>
@@ -135,34 +136,25 @@
                                                       </div>
                                                       <!-- Single Input End -->
                                                    </div>
-                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                                      <!-- Single Input Start -->
-                                                      <div class="single-input mb-25">
-                                                         <label for="new-password">새 비밀번호</label>
-                                                         <table>
-                                                            <tr>
-                                                               <td><input type="password" id="new-password" name="new-password" placeholder="새 비밀번호요" value="가입시 입력한 비밀번호" style="width: 120%;"></td>
-                                                               <td><input type="button" style="background-color: white;" value="검사"></td>
-                                                            </tr>
-                                                         </table>
-                                                      </div>
-                                                      <!-- Single Input End -->
-                                                   </div>
-                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                                      <!-- Single Input Start -->
-                                                      <div class="single-input mb-25">
-                                                         <label for="confirm-password">새 비밀번호 확인</label><input type="password" id="confirm-password" name="confirm-password" placeholder="새 비밀번호를 입력하세요." value="">
-                                                      </div>
-                                                      <!-- Single Input End -->
-                                                   </div>
-                                                </div>
-															<div>
-															<input type="checkbox" /> 열람동의
+													<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+														<!-- Single Input Start -->
+														<div class="single-input mb-25">
+															<label for="confirm-password">비밀번호 확인</label>
+															<table>
+																<tr>
+																	<td><input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호 입력" value="" style="width: 120%;"></td>
+																	<td><input type="button" style="background-color: white;" value="확인"></td>
+																</tr>
+																<tr>	
+																	<td><input type="checkbox" name="e_terms1" />개인정보 동의</td>
+																	<td><input type="checkbox" name="e_terms2"/>마케팅 동의</td>
+																</tr>
+															</table>
 														</div>
-														<br>
-														<div>
-															<input type="checkbox" /> 알림동의
-														</div>
+													<!-- Single Input End -->
+												</div>
+																</div>
+															
 															</div>
 														
 														</div>
@@ -204,5 +196,35 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
+
+	<!-- 닉네임 변경시 중복검사 -->
+	<script type="text/javascript">
+		function nickChk() {
+			$.ajax({
+				url : "${contextPath}/e_nickCheck",
+				data : {
+					"e_nick" : $("#e_nick").val()
+				},
+				dataType : 'json',
+				type : 'POST',
+				success : function(result) {
+					if (result == 0) {
+						alert('사용할 수 있는 닉네임.');
+						$("#e_nick").attr('color', 'green');
+					}
+					else {
+						alert('이미 등록된 닉네임 입니다.');
+						$("#e_nick").attr('color', 'green');
+					}
+				},
+				error : function() {
+					alert("서버 요청 실패");
+				}
+			});
+		}
+	</script>
+
 </body>
+
+
 </html>

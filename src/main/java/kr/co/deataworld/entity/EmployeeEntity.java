@@ -1,7 +1,7 @@
 package kr.co.deataworld.entity;
 
 public class EmployeeEntity {
-	
+
 	private int e_number;
 	private String e_id;
 	private String e_password;
@@ -9,8 +9,9 @@ public class EmployeeEntity {
 	private String e_nick;
 	private int e_age;
 	private String e_gender;
-	private String e_phpone;
-	private String e_address;
+	private String e_phone;
+	private String e_address1;
+	private String e_address2;
 	private String e_picture;
 	private String e_email;
 	private int e_terms1;
@@ -21,7 +22,8 @@ public class EmployeeEntity {
 	private int e_warned; 
 	private int e_banned; 
 	private int e_quitted; 
-	private int a_code;
+	private String a_code;
+	
 	
 	public int getE_number() {
 		return e_number;
@@ -65,17 +67,23 @@ public class EmployeeEntity {
 	public void setE_gender(String e_gender) {
 		this.e_gender = e_gender;
 	}
-	public String getE_phpone() {
-		return e_phpone;
+	public String getE_phone() {
+		return e_phone;
 	}
-	public void setE_phpone(String e_phpone) {
-		this.e_phpone = e_phpone;
+	public void setE_phone(String e_phone) {
+		this.e_phone = e_phone;
 	}
-	public String getE_address() {
-		return e_address;
+	public String getE_address1() {
+		return e_address1;
 	}
-	public void setE_address(String e_address) {
-		this.e_address = e_address;
+	public void setE_address1(String e_address1) {
+		this.e_address1 = e_address1;
+	}
+	public String getE_address2() {
+		return e_address2;
+	}
+	public void setE_address2(String e_address2) {
+		this.e_address2 = e_address2;
 	}
 	public String getE_picture() {
 		return e_picture;
@@ -137,21 +145,27 @@ public class EmployeeEntity {
 	public void setE_quitted(int e_quitted) {
 		this.e_quitted = e_quitted;
 	}
-	public int getA_code() {
+	public String getA_code() {
 		return a_code;
 	}
-	public void setA_code(int a_code) {
+	public void setA_code(String a_code) {
 		this.a_code = a_code;
 	}
 	@Override
 	public String toString() {
 		return "EmployeeEntity [e_number=" + e_number + ", e_id=" + e_id + ", e_password=" + e_password + ", e_name="
-				+ e_name + ", e_nick=" + e_nick + ", e_age=" + e_age + ", e_gender=" + e_gender + ", e_phpone="
-				+ e_phpone + ", e_address=" + e_address + ", e_picture=" + e_picture + ", e_email=" + e_email
-				+ ", e_terms1=" + e_terms1 + ", e_terms2=" + e_terms2 + ", inform_agreement=" + inform_agreement
-				+ ", inquiry_agreement=" + inquiry_agreement + ", e_regdate=" + e_regdate + ", e_warned=" + e_warned
-				+ ", e_banned=" + e_banned + ", e_quitted=" + e_quitted + ", a_code=" + a_code + "]";
+				+ e_name + ", e_nick=" + e_nick + ", e_age=" + e_age + ", e_gender=" + e_gender + ", e_phone=" + e_phone
+				+ ", e_address1=" + e_address1 + ", e_address2=" + e_address2 + ", e_picture=" + e_picture
+				+ ", e_email=" + e_email + ", e_terms1=" + e_terms1 + ", e_terms2=" + e_terms2 + ", inform_agreement="
+				+ inform_agreement + ", inquiry_agreement=" + inquiry_agreement + ", e_regdate=" + e_regdate
+				+ ", e_warned=" + e_warned + ", e_banned=" + e_banned + ", e_quitted=" + e_quitted + ", a_code="
+				+ a_code + "]";
 	}
+	
+	
+	
+	
+	
 	
 	
 	

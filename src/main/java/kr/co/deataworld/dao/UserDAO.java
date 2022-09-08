@@ -8,8 +8,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javax.servlet.jsp.tagext.TryCatchFinally;
-
 import kr.co.deataworld.dto.UserDTO;
 
 public class UserDAO {

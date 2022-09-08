@@ -1,40 +1,74 @@
 package kr.co.deataworld.controller;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import kr.co.deataworld.entity.EmployeeEntity;
+import kr.co.deataworld.service.EmployeeService;
 /*
  * 구직자 컨트롤러 (마이페이지)
  */
 @Controller
 public class EmployeeController {
-
+	@Inject
+	EmployeeService service;
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
-	//구직자 로그인 ID:user PW:user123
-	
-	
-	
-	
-	
-	
-	
-	//구직자 마이페이지 이동
+	//내 정보 불러오기
 	@GetMapping(value="employeeMapper/myInfo")
-	public String myInfo(Model model) {
-		model.addAttribute("leftsMenu", "myInfo");
-		return "employee/myInfo/myInfo";
+	public ModelAndView myInfo()throws Exception {
+		ModelAndView mav = new ModelAndView();
+		EmployeeEntity myInfo = service.myInfo();
+		mav.addObject("myInfo", myInfo);
+		mav.setViewName("employee/myInfo/myInfo");
+		return mav;
+	}
+	
+	//ajax 구직자 닉네임 변경시 중복검사
+	@ResponseBody
+	@RequestMapping(value = "e_nickCheck", method = RequestMethod.POST)
+	public int e_nickCheck(@RequestParam("e_nick") String e_nick)throws Exception {
+		int result = service.e_nick(e_nick);
+		return result;
 	}
 	
 	
-	//구직자 내정보 수정
-	@GetMapping(value="employeeMapper/myInfoUpdate")
-	public String myInfoUpdate() {
-		return "employee/myInfo/myInfoUpdate";
-	}
+	
+	
+	
+//	//내 정보 수정하기
+//	@GetMapping(value="employeeMapper/myInfoUpdate")
+//	public int myInfoUpdate(EmployeeEntity employEntity)throws Exception {
+//		
+//		return null;
+//	}
+	
+		
+	
+	
+	
+	
+	
+	
+//	구직자 마이페이지 이동
+//	@GetMapping(value="employeeMapper/myInfo")
+//	public String myInfo(Model model) {
+//		model.addAttribute("leftsMenu", "myInfo");
+//		return "employee/myInfo/myInfo";
+//	}
 	
 	
 	//구직자 자기소개서 관리
