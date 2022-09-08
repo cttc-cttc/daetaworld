@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>가게 관리</title>
+<title>리뷰 작성</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>가게 관리</h1>
+										<h1>리뷰 작성</h1>
 									</div>
 								</div>
 							</div>
@@ -38,29 +38,13 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="shopManagement">등록된 가게 목록</a></li>
-													<li><a href="shopRegister">새가게 등록</a></li>
+													<li><a class="active" href="adsCompleted">완료된 공고</a></li>														
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<table class="table table-striped">
-														<thead>
-															<th>가게명</th>
-															<th>가게 주소</th>
-															<th>가게 소개</th>
-															<th>등록 날짜</th>
-														</thead>
-														<c:forEach var="shop" items="${list}">
-															<tr>
-																<td><a href="shopInfo?s_name=${shop.s_name }">${shop.s_name }</a></td>
-																<td>${shop.s_address }</td>
-																<td>${shop.s_intro }</td>
-																<td>${shop.s_date }</td>
-															</tr>
-														</c:forEach>
-													</table>
-
+													후기 써라
+													
 												</div>
 											</div>
 										</div>

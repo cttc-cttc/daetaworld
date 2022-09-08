@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>노예 확인</title>
+<title>포인트 적립 및 차감 내역</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>노예 열람</h1>
+										<h1>포인트 차감 내역</h1>
 									</div>
 								</div>
 							</div>
@@ -38,13 +38,15 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="adsRegister">공고 등록</a></li>
-													<li><a href="checkEmployees">주변 노예 확인</a></li>
+													<li><a href="pointManagement">포인트</a></li>
+													<li><a href="pointEarned">포인트 적립 내역</a></li>
+													<li><a class="active" href="pointDeducted">포인트 차감 내역</a></li>
+													<li><a href="pointUse">포인트 사용</a></li>													
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													주변 노예를 찾아라
+													포인트 차감 내역
 													
 												</div>
 											</div>

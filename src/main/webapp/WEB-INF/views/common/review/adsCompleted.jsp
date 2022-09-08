@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>내 정보 수정</title>
+<title>완료된 공고</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>내 정보 수정</h1>
+										<h1>완료된 공고</h1>
 									</div>
 								</div>
 							</div>
@@ -38,13 +38,13 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="myInfo">내 정보</a></li>
-													<li><a class="active" href="myInfoUpdate">내 정보 수정</a></li>
+													<li><a class="active" href="adsCompleted">완료된 공고</a></li>											
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													정보 수정
+													완료된 공고 목록
+													<button onclick="location.href='reviewRegister'" >후기작성</button>
 													
 												</div>
 											</div>

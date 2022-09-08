@@ -4,16 +4,17 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>가게 등록</title>
-<%@ include file="../../include/head.jsp" %>
+<title>공고 등록</title>
+<%@ include file="../../include/head.jsp"%>
 
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/etc.css">
 <script type="module" src="${contextPath}/resources/assets/js/tag_create.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<%@ include file="../../include/etc.jsp" %>
+<%@ include file="../../include/etc.jsp" %>	
 
 <body class="template-color-1">
 	<div id="main-wrapper">
@@ -34,7 +35,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>가게 등록</h1>
+										<h1>공고 등록</h1>
 									</div>
 								</div>
 							</div>
@@ -44,8 +45,9 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="shopManagement">등록된 가게 목록</a></li>
-													<li><a class="active" href="shopRegister">새가게 등록</a></li>
+													<li><a href="adsRegister">공고 등록</a></li>
+													<li><a class="active" href="countryRegister">농어촌 등록</a></li>
+													<li><a href="checkEmployees">주변 노예 확인</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -57,55 +59,40 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
-																			<label for="shopName">가게 이름 <span>*</span></label> <input
-																				type="text" name="shopName" id="shopName"
-																				value="가게 이름을 입력하세요" />
-																		</div>
-																		<!-- Single Input End -->
-																	</div>
-																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
-																		<div class="single-input mb-15">
 																			<label for="shopAddress">가게 주소 <span>*</span></label>
 																			<input type="text" name="shopAddress"
-																				value="api 승인받아서 구현해야되네 망할" />
+																				placeholder="api 승인 받아서 구현해야됨" />
 																		</div>
-																		<!-- Single Input End -->
 																	</div>
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																		<div class="single-input mb-15">
+																			<label for="date">날짜 <span>*</span></label> <input
+																				type="text" name="datefilter" value="" />
+																		</div>
+																	</div>
+																	
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
-
-																			<label for="shopPicture">가게 사진 <span>*</span></label>
-																			<form name="uploadForm" id="uploadForm"
-																				enctype="multipart/form-data" method="post">
-																				<div id="dropZone"
-																					style="width: 365px; height: 200px; border-style: solid; border-color: black;">
-																					<div id="fileDragDesc">파일을 드래그 해주세요.</div>
-																					<table id="fileListTable" width="100%" border="0px">
-																						<tbody id="fileTableTbody">
-																						</tbody>
-																					</table>
-																				</div>
-																			</form>
-																			<input type="button"
-																				onclick="uploadFile(); return false;"
-																				class="btn bg_01" value="파일 업로드">
+																			<label for="time">시간 <span>*</span></label> <input
+																				type="text" name="timefilter" value="" />
+																		</div>																		
+																	</div>
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																		<div class="single-input mb-15">
+																			<label for="wage">시급 <span>*</span></label><input
+																				type="text" id="a_wage" name="a_wage"
+																				placeholder="최저 9,160원">
 																		</div>
 																	</div>
-																	<!-- Single Input End -->
-
-																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">	
 																		<div class="single-input mb-15">
 																			<label for="shopInfo">가게 소개 <span>*</span></label><br>
 																			<textarea name="shopInfo" id="shopInfo" rows="3"
 																				placeholder="가게 소개를 해보세요"></textarea>
 																		</div>
 																	</div>
-
-																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">	
 																		<div class="single-input mb-15">
 																			<label for="shopTags">가게 태그 <span>*</span></label><br>
 																			<input type="text" id="tag" placeholder="간단한 태그 입력 (6자 이내, 5개까지 가능)" />
@@ -115,22 +102,20 @@
 																</div>
 															</div>
 														</div>
-												</div>
-												</form>
-												<div class="row">
-													<div class="col-12">
-														<div
-															class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-															<button class="ht-btn theme-btn theme-btn-two mb-xs-20">
-																등록</button>
-															<button type="button"
-																class="ht-btn theme-btn theme-btn-two transparent-btn-two"
-																onclick="location.href='${contextPath}/'">홈으로</button>
+
+														<div class="row">
+															<div class="col-12">
+																<div
+																	class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+																	<button class="ht-btn theme-btn theme-btn-two mb-xs-20">
+																		등록</button>
+																	<button type="button" class="ht-btn theme-btn theme-btn-two transparent-btn-two"
+																		onclick="location.href='${contextPath}/employerMapper/adsPending'">등록 중인 공고 확인</button>
+																</div>
+															</div>
 														</div>
-													</div>
+													</form>
 												</div>
-												
-											</div>
 											</div>
 										</div>
 									</div>
@@ -138,16 +123,19 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
-		<!-- Dashboard Content Section End -->
-		<%@ include file="../../include/footer.jsp"%>
-		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
+	<!-- Dashboard Content Section End -->
+	<%@ include file="../../include/footer.jsp"%>
+	<!-- Placed js at the end of the document so the pages load faster -->
+
 	<!-- Placed js at the end of the document so the pages load faster -->
 	<!-- All jquery file included here -->
+
+
+
 	<script
 		src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
 	<script
@@ -158,6 +146,56 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
-	
+
+
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+
+			$('input[name="datefilter"]').daterangepicker({
+				autoUpdateInput : false,
+				locale : {
+					cancelLabel : 'Clear'
+				}
+			});
+
+			$('input[name="datefilter"]').on(
+					'apply.daterangepicker',
+					function(ev, picker) {
+						$(this).val(
+								picker.startDate.format('MM/DD/YYYY') + ' - '
+										+ picker.endDate.format('MM/DD/YYYY'));
+					});
+
+			$('input[name="datefilter"]').on('cancel.daterangepicker',
+					function(ev, picker) {
+						$(this).val('');
+					});
+
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(function() {
+			$('input[name="timefilter"]').daterangepicker({
+				timePicker : true,
+				timePicker12Hour : true,
+				timePickerIncrement : 10,
+				timePickerSeconds : false,
+				locale : {
+					format : 'HH:mm'
+				}
+			}).on('show.daterangepicker', function(ev, picker) {
+				picker.container.find(".calendar-table").hide();
+			});
+		})
+	</script>	
+
 </body>
 </html>

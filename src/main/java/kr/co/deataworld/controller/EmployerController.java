@@ -1,70 +1,124 @@
 package kr.co.deataworld.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.co.deataworld.entity.employerEntity;
+import kr.co.deataworld.entity.shopInfo;
+import kr.co.deataworld.service.employerService;
 /*
  * 구인자 컨트롤러 (마이페이지)
  */
 @Controller
 public class EmployerController {
 	
+	@Autowired
+	employerService service;
+	
 	private static final Logger logger = LoggerFactory.getLogger(EmployerController.class);
 	
-	@GetMapping(value="employer/myInfo")
-	public String myInfo(Model model) {
+//	내 정보보기
+	@GetMapping(value="employerMapper/myInfo")
+	public String myInfo(Model model) throws Exception {
 		model.addAttribute("leftMenu", "myInfo");
-		return "employer/myInfo";
+		String id = "owner";
+		employerEntity myInfo = service.myInfo(id);
+		model.addAttribute("myInfo", myInfo);
+		
+		return "employer/myInfo/myInfo";
 	}
 	
-	@GetMapping(value="employer/myInfoUpdate")
-	public String myInfoUpdate() {
-		return "employer/myInfoUpdate";
+//	내 정보 수정
+	@ResponseBody
+	@PostMapping(value="employerMapper/myInfoUpdate")
+	public int myInfoUpdate(employerEntity employerEntity) throws Exception {
+		return service.myInfoUpdate(employerEntity);
 	}
 	
-	@GetMapping(value="employer/adsRegister")
+//	공고 등록
+	@GetMapping(value="employerMapper/adsRegister")
 	public String adsRegister(Model model) {
 		model.addAttribute("leftMenu", "adsRegister");
-		return "employer/adsRegister";		
+		return "employer/ads/adsRegister";		
 	}
 	
-	@GetMapping(value="employer/checkEmployees")
-	public String check_employees() {
-		return "employer/checkEmployees";
-	}
-
-	@GetMapping(value="employer/candidates")
-	public String candidates(Model model) {
-		model.addAttribute("leftMenu", "candidates");
-		return "employer/candidates";
-	}	
-	
-	@GetMapping(value="employer/shopManagement")
-	public String shopManagement(Model model) {
-		model.addAttribute("leftMenu", "shopManagement");
-		return "employer/shopManagement";
+//	농어촌 공고 등록
+	@GetMapping(value="employerMapper/countryRegister")
+	public String countryRegister(Model model) {
+		model.addAttribute("leftMenu", "adsRegister");
+		return "employer/ads/countryRegister";		
 	}
 	
-	@GetMapping(value="employer/shopRegister")
-	public String shopRegister() {
-		return "employer/shopRegister";
+//	주변 구직자 확인
+	@GetMapping(value="employerMapper/checkEmployees")
+	public String check_employees(Model model) {
+		model.addAttribute("leftMenu", "adsRegister");
+		return "employer/candidates/checkEmployees";
 	}
 	
-	@GetMapping(value="employer/adsHistory")
+//	공고 내역
+	@GetMapping(value="employerMapper/adsHistory")
 	public String adsHistory(Model model) {
 		model.addAttribute("leftMenu", "adsHistory");
-		return "employer/adsHistory";
+		return "employer/ads/adsHistory";
 	}
 	
-	@GetMapping(value="employer/adsPending")
-	public String adsPending() {
-		return "employer/adsPending";
+//	등록 중인 공고
+	@GetMapping(value="employerMapper/adsPending")
+	public String adsPending(Model model) {
+		model.addAttribute("leftMenu", "adsHistory");
+		return "employer/ads/adsPending";
 	}
 	
-	@GetMapping(value="employer/adsExpired")
-	public String adsExpired() {
-		return "employer/adsExpired";
+//	만료된 공고
+	@GetMapping(value="employerMapper/adsExpired")
+	public String adsExpired(Model model) {
+		model.addAttribute("leftMenu", "adsHistory");
+		return "employer/ads/adsExpired";
+	}	
+
+
+//	지원자 확인
+	@GetMapping(value="employerMapper/candidates")
+	public String candidates(Model model) {
+		model.addAttribute("leftMenu", "candidates");
+		return "employer/candidates/candidates";
+	}	
+	
+//	가게 관리
+	@GetMapping(value="employerMapper/shopManagement")
+	public String shopManagement(Model model) throws Exception {
+		model.addAttribute("leftMenu", "myInfo");
+		String id = "owner";
+		List<shopInfo> list = service.shopManagement(id);
+		model.addAttribute("list", list);
+		return "employer/shop/shopManagement";
 	}
+	
+//	가게 등록한 내용보기
+	@GetMapping(value="employerMapper/shopInfo")
+	public String shopInfo(@RequestParam("s_name") String s_name, Model model) throws Exception{
+		model.addAttribute("leftMenu", "myInfo");
+		shopInfo shopInfo = service.shopInfo(s_name);
+		model.addAttribute("shopInfo", shopInfo);		
+		return "employer/shop/shopInfo";
+	}
+	
+//	가게 등록
+	@GetMapping(value="employerMapper/shopRegister")
+	public String shopRegister(Model model) {
+		model.addAttribute("leftMenu", "myInfo");
+		return "employer/shop/shopRegister";
+	}
+	
+
 }

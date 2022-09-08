@@ -46,7 +46,22 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													공고 올린 전체 내역
+													<table class="table table-striped">
+														<thead>
+															<th>가게명</th>
+															<th>가게 주소</th>
+															<th>가게 소개</th>
+															<th>등록 날짜</th>
+														</thead>
+														<c:forEach var="shop" items="${list}">
+															<tr>
+																<td><a href="shopInfo?s_name=${shop.s_name }">${shop.s_name }</a></td>
+																<td>${shop.s_address }</td>
+																<td>${shop.s_intro }</td>
+																<td>${shop.s_date }</td>
+															</tr>
+														</c:forEach>
+													</table>
 													
 												</div>
 											</div>

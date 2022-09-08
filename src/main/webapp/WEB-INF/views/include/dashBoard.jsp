@@ -11,12 +11,16 @@
 				<li>
 					<h3>마이페이지 (노예)</h3>
 					<ul>
-						<li><a id="myInfo_e" href="${contextPath}/employeeMapper/myInfo"><i 
+						<li><a id="myInfo_e" href="${contextPath}/employee/myInfo"><i 
 								class="lnr lnr-users"></i>내 정보</a></li>
-						<li><a id="pinchStatus" href="${contextPath}/employeeMapper/pinchStatus"><i 
+						<li><a id="resumeManagement" href="${contextPath}/employee/resumeManagement"><i 
+								class="lnr lnr-thumbs-down"></i>자기소개서 관리</a></li>												
+						<li><a id="pinchStatus" href="${contextPath}/employee/pinchStatus"><i 
 								class="lnr lnr-thumbs-down"></i>지원 현황</a></li>
-						<li><a id="pinchHistory" href="${contextPath}/employeeMapper/pinchHistory"><i 
+						<li><a id="pinchHistory" href="${contextPath}/employee/pinchHistory"><i 
 								class="lnr lnr-thumbs-down"></i>대타 내역</a></li>
+						<li><a id="pinchHistory" href="${contextPath}/employee/pinchHistory"><i 
+								class="lnr lnr-thumbs-down"></i>후기(작성 전)</a></li>								
 						<li><a id="pointManagement_e" href="${contextPath}/pointMapper/pointManagement"><i 
 								class="lnr lnr-thumbs-down"></i>포인트</a></li>
 					</ul>
@@ -26,16 +30,16 @@
 				<li>
 					<h3>마이페이지 (사장님)</h3>
 					<ul>
-						<li><a id="myInfo_r" href="${contextPath}/employer/myInfo"><i 
+						<li><a id="myInfo_r" href="${contextPath}/employerMapper/myInfo"><i 
 								class="lnr lnr-users"></i>내 정보</a></li>
-						<li><a id="shopManagement" href="${contextPath}/employer/shopManagement"><i 
-								class="lnr lnr-thumbs-down"></i>가게 관리</a></li>
-						<li><a id="candidates" href="${contextPath}/employer/candidates"><i 
+						<li><a id="candidates" href="${contextPath}/employerMapper/candidates"><i 
 								class="lnr lnr-thumbs-down"></i>지원자 확인</a></li>
-						<li><a id="adsRegister" href="${contextPath}/employer/adsRegister"><i 
+						<li><a id="adsRegister" href="${contextPath}/employerMapper/adsRegister"><i 
 								class="lnr lnr-thumbs-down"></i>공고 등록</a></li>
-						<li><a id="adsHistory" href="${contextPath}/employer/adsHistory"><i 
-								class="lnr lnr-thumbs-down"></i>공고 내역</a></li>											
+						<li><a id="adsHistory" href="${contextPath}/employerMapper/adsHistory"><i 
+								class="lnr lnr-thumbs-down"></i>공고 내역</a></li>	
+						<li><a id="adsCompleted" href="${contextPath}/reviewMapper/adsCompleted"><i 
+								class="lnr lnr-thumbs-down"></i>후기 작성</a></li>																			
 						<li><a id="pointManagement_r" href="${contextPath}/pointMapper/pointManagement"><i 
 								class="lnr lnr-thumbs-down"></i>포인트 관리</a></li>
 					</ul>
@@ -71,6 +75,9 @@
 		case "adsHistory":
 			$("#adsHistory").addClass("active");
 			break;
+		case "adsCompleted":
+			$("#adsCompleted").addClass("active");
+			break;	
 		// 마이페이지
 		case "myInfo":
 			if("${loginType}" == 1) { // 구직자

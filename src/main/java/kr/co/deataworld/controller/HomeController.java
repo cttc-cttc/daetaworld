@@ -68,30 +68,12 @@ public class HomeController {
 	public String listCountry() {
 		logger.info("구인목록 페이지 접속");
 		return "jobAds/listCountry";
-	}
-	
-	
+	}	
 	
 	@GetMapping(value="/jobAds/listRecommendation")
 	public String listRecommendation() {
 		logger.info("구인목록 페이지 접속");
 		return "jobAds/listRecommendation";
-	}
-	
-	@GetMapping(value="pointMapper/pointManagement")
-	public String pointManagement(Model model) {
-		model.addAttribute("leftMenu", "pointManagement");
-		return "common/point/pointManagement";
-	}
-	
-	@GetMapping(value="pointMapper/pointHistory")
-	public String pointHistory() {
-		return "common/point/pointHistory";
-	}
-	
-	@GetMapping(value="pointMapper/pointUse")
-	public String pointUse() {
-		return "common/point/pointUse";
 	}
 	
 	@GetMapping(value="daetaFooter/emailFAQ")

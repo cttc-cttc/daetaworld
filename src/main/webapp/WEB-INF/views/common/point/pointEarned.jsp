@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>포인트 적립 및 차감 내역</h1>
+										<h1>포인트 적립 내역</h1>
 									</div>
 								</div>
 							</div>
@@ -39,13 +39,14 @@
 											<div class="profile-applications-heading">
 												<ul class="nav">
 													<li><a href="pointManagement">포인트</a></li>
-													<li><a class="active" href="pointHistory">포인트 적립 및 차감 내역</a></li>
+													<li><a class="active" href="pointEarned">포인트 적립 내역</a></li>
+													<li><a href="pointDeducted">포인트 차감 내역</a></li>
 													<li><a href="pointUse">포인트 사용</a></li>													
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													포인트 적립 및 차감 내역
+													포인트 적립 내역
 													
 												</div>
 											</div>

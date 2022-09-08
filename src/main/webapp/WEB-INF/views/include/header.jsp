@@ -7,7 +7,7 @@
 			<!--Logo start-->
 			<div class="col-xl-2 col-lg-2 col-12">
 				<div class="logo">
-					<a href=""><img src="${contextPath}/resources/images/logo100.png" alt="오늘의대타"></a>
+					<a href="${contextPath }/"><img src="${contextPath}/resources/images/logo100.png" alt="오늘의대타"></a>
 				</div>
 			</div>
 			<!--Logo end-->
@@ -17,7 +17,7 @@
 					<ul class="menu-ul">
 						<li><a href="${contextPath }/jobAds/listAll">일반구인</a></li>
 						<li><a href="${contextPath }/jobAds/listUrgency">긴급구인</a></li>
-						<li><a href="${contextPath }/jobAds/listUrgency">직업추천</a></li>
+						<li><a href="${contextPath }/jobAds/listFavorite">직업추천</a></li>
 						<li><a href="${contextPath }/jobAds/listCountry">농어촌</a></li>
 						<li><a href="${contextPath }/jobAds/listCare">랭킹</a></li>
 						<li><a>게시판<small class="icon-arrow"></small></a>
@@ -154,11 +154,13 @@
 									&nbsp;<span class="user-hover">${loginUser }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">
-									<a class="dropdown-item drdn-item" href="${contextPath}/point/pointManagement">포인트 점수 : 540점</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/pointMapper/pointManagement">포인트 점수 : 540점</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item drdn-item" href="${contextPath}/employer/adsRegister">공고 등록</a>
-									<a class="dropdown-item drdn-item" href="${contextPath}/employer/candidates">지원자 확인</a>
-									<a class="dropdown-item drdn-item" href="${contextPath}/employer/myInfo/myInfo">마이페이지</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/myInfo">마이페이지</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsRegister">공고 등록</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/candidates">지원자 확인</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/adsCompleted">후기 작성</a>
+									
 								</div>
 							</div>
 							<!-- 유저메뉴 토글 End -->
