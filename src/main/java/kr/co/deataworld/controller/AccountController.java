@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.deataworld.service.accountService;
+import kr.co.deataworld.service.AccountService;
 
 
 /*
@@ -34,7 +34,7 @@ import kr.co.deataworld.service.accountService;
 public class AccountController {
 	
 	@Autowired
-	accountService service;
+	AccountService service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 	
@@ -95,9 +95,9 @@ public class AccountController {
 	
 //	구인자 닉네임 중복 체크
 	@ResponseBody
-	@PostMapping(value="account/r_nickChk")
-	public int r_nickChk(@RequestParam("r_nick")String r_nick ) throws Exception {	
-		int r = service.r_nickChk(r_nick);
+	@PostMapping(value="account/m_nickChk")
+	public int m_nickChk(@RequestParam("m_nick")String m_nick ) throws Exception {	
+		int r = service.m_nickChk(m_nick);
 		return r;
 	}
 	

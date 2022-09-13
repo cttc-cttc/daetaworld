@@ -5,16 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class accountDAOImpl implements accountDAO{
+public class AccountDAOImpl implements AccountDAO{
 	@Autowired
 	SqlSession sqlSession;
 	
 	String nameSpace = "kr.co.deataworld.accountMapper";
 
 	@Override
-	public int r_nickChk(String r_nick) throws Exception {
+	public int m_nickChk(String m_nick) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(nameSpace + ".r_nickChk", r_nick);
+		return sqlSession.selectOne(nameSpace + ".m_nickChk", m_nick);
 	}
 
 }

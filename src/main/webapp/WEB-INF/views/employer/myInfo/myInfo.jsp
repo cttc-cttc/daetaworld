@@ -10,9 +10,9 @@
 <!-- custom css -->
 <link rel="stylesheet"
    href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>   
-   
-   
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
+<link rel="stylesheet"
+	href="${contextPath }/resources/custom_css/etc.css">   
 
 <body class="template-color-1">
    <div id="main-wrapper">
@@ -54,9 +54,26 @@
 													<form action="#">
 														<div class="row mb-30">
 															<div class="col-lg-2">
-																<div class="profile-avatar mb-30">
-																	<label class="d-block"><span>프로필 사진</span></label><img
-																		src="#" alt="">
+																<div class="profile-avatar mb-30">																					
+																	<label class="d-block" for="m_picture">프로필 사진<span>*</span></label>																		
+																	<table>
+																	<tr>
+																	<td>
+																	<img  
+																		style="height:200px; width:150px;"
+																		src="${contextPath}/resources/images/${myInfo.m_picture}"></td>
+																	<td>
+																	</tr>																	
+																	<tr>																	
+																	<td class="single-input mb-25">																	
+																	<label class="file-label" for="chooseFile" >사진바꾸기</label>
+																		<input class="file" id="chooseFile" name="chooseFile"
+																		  type="file" onchange="changeValue(this)" id="file_01"
+																		  accept="image/png, image/jpeg, image/gif"
+																		  >
+																	</td>																																	
+																	</tr>																		
+																	</table>																																			
 																</div>
 															</div>
 															<div class="col-lg-10">
@@ -64,8 +81,8 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="r_name">이름 <span>*</span></label><input
-																				type="text" id="r_name" name="r_name"
+																			<label for="m_name">이름 <span>*</span></label><input
+																				type="text" id="m_name" name="m_name"
 																				value="${myInfo.m_name}" readonly="readonly">
 																		</div>
 																		<!-- Single Input End -->
@@ -73,8 +90,8 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="r_phone">전화번호 <span>*</span></label><input
-																				type="text" id="r_phone" name="r_phone"
+																			<label for="m_phone">전화번호 <span>*</span></label><input
+																				type="text" id="m_phone" name="m_phone"
 																				value="${myInfo.m_phone}">
 																		</div>
 																		<!-- Single Input End -->
@@ -82,13 +99,13 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="r_nick">닉네임<span>*</span></label>
+																			<label for="m_nick">닉네임<span>*</span></label>
 																			<table>
 																				<tr>
-																					<td><input type="text" id="r_nick"
-																						name="r_nick" value="${myInfo.m_nick }"
+																					<td><input type="text" id="m_nick"
+																						name="m_nick" value="${myInfo.m_nick }"
 																						style="width: 315px;"></td>
-																					<td><input type="button" id="r_nickChk" name="r_nickChk" onclick="r_nickCheck()"
+																					<td><input type="button" id="m_nickChk" name="m_nickChk" onclick="m_nickCheck()"
 																						style="background-color: white;" value="검사"></td>
 																				</tr>
 																			</table>
@@ -98,11 +115,11 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="r_email">이메일 <span>*</span></label>
+																			<label for="m_email">이메일 <span>*</span></label>
 																			<table>
 																				<tr>
-																					<td><input type="text" id="r_email"
-																						name="r_email" value="${myInfo.m_email }"
+																					<td><input type="text" id="m_email"
+																						name="m_email" value="${myInfo.m_email }"
 																						style="width: 315px;"></td>
 																					<td><input type="button" id="mail-Check-Btn"
 																						style="background-color: white;" value="인증">
@@ -118,29 +135,31 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="r_address1">주소<span>*</span></label><input
-																				type="text" id="r_address1" name="r_address1"
+																			<label for="m_address1">주소<span>*</span></label><input
+																				type="text" id="m_address1" name="m_address1"
 																				value="${myInfo.m_address1 }">
-																			<input type="text" id="r_address2" name="r_address2" value="${myInfo.m_address2 }">	
+																			<input type="text" id="m_address2" name="m_address2" value="${myInfo.m_address2 }">	
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="r_picture">프로필 사진<span>*</span>&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;
-																				현재 : ${myInfo.m_picture }</label><input
-																				type="file" id="r_picture" name="r_picture" value="${myInfo.m_picture }"
-																				>
+																			<label for="m_terms1">선택약관1</label><input
+																				type="checkbox" id="m_terms1" name="m_terms1"
+																				checked>																			
+																			<label for="m_terms2">선택약관2</label><input
+																				type="checkbox" id="m_terms2" name="m_terms2"
+																				checked>	
+																			<!-- Single Input End -->
 																		</div>
-																		<!-- Single Input End -->
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="r_password">비밀번호<span>*</span></label><input
-																				type="password" id="r_password"
-																				name="r_password" value="${myInfo.m_password }">
+																			<label for="m_password">비밀번호<span>*</span></label><input
+																				type="password" id="m_password"
+																				name="m_password" value="${myInfo.m_password }">
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
@@ -153,35 +172,27 @@
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
-																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
-																		<div class="single-input mb-25">
-																			<label for="r_terms1">선택약관1</label><input
-																				type="checkbox" id="r_terms1" name="r_terms1"
-																				checked> 
-																			<label for="r_terms2">선택약관2</label><input
-																				type="checkbox" id="r_terms2" name="r_terms2"
-																				checked>
-																			<!-- Single Input End -->
-																		</div>
-																	</div>
-																	<input type="hidden" name="r_number" id="r_number" value="${myInfo.m_number }">
-																	<input type="hidden" name="r_id" id="r_id" value="${myInfo.m_id }">
-																	<input type="hidden" name="r_age" id="r_age" value="${myInfo.m_age }">
-																	<input type="hidden" name="r_gender" id="r_gender" value="${myInfo.m_gender }">
-																	<input type="hidden" name="r_regdate" id="r_regdate" value="${myInfo.m_regdate }">
-																	<input type="hidden" name="r_warned" id="r_warned" value="${myInfo.m_warned }">
-																	<input type="hidden" name="r_banned" id="r_banned" value="${myInfo.m_banned }">
-																	<input type="hidden" name="r_quitted" id="r_quitted" value="${myInfo.m_quitted }">
+
+																	<input type="hidden" name="m_number" id="m_number" value="${myInfo.m_number }">
+																	<input type="hidden" name="m_id" id="m_id" value="${myInfo.m_id }">
+																	<input type="hidden" name="m_age" id="m_age" value="${myInfo.m_age }">
+																	<input type="hidden" name="m_gender" id="m_gender" value="${myInfo.m_gender }">
+																	<input type="hidden" name="m_regdate" id="m_regdate" value="${myInfo.m_regdate }">
+																	<input type="hidden" name="m_warned" id="m_warned" value="${myInfo.m_warned }">
+																	<input type="hidden" name="m_banned" id="m_banned" value="${myInfo.m_banned }">
+																	<input type="hidden" name="m_quitted" id="m_quitted" value="${myInfo.m_quitted }">
+																	<input type="hidden" name="m_type" id="m_type" value="${myInfo.m_type }">
 																	<input type="hidden" name="pre_email" id="pre_email" value="${myInfo.m_email}">
-																	<input type="hidden" name="pre_nick" id="pre_nick" value="${myInfo.m_nick}">
+																	<input type="hidden" name="pre_nick" id="pre_nick" value="${myInfo.m_nick}">																	
+																	<input type="hidden" name="pre_picture" id="pre_picture" value="${myInfo.m_picture}">																	
 																</div>
 															</div>
+														</div>	
 															<div class="row">
 																<div class="col-12">
 																	<div
 																		class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																		<button type="button" id="myInfoUpdate" name="myInfoUpdate" onclick="infoUpdate(r_name)" 
+																		<button type="button" id="myInfoUpdate" name="myInfoUpdate" onclick="infoUpdate(chooseFile, pre_picture)" 
 																			class="ht-btn theme-btn theme-btn-two mb-xs-20">정보
 																			수정</button>
 																		<button
@@ -189,8 +200,7 @@
 																			탈퇴</button>
 																	</div>
 																</div>
-															</div>
-														</div>
+															</div>														
 													</form>
 												</div>
 											</div>
@@ -222,50 +232,69 @@
    <script src="${contextPath}/resources/assets/js/main.js"></script>
    
    <script type="text/javascript">
+   
+   function changeValue(a) {
+   	console.log(a.files[0].name);
+   	$(".file span").text(a.files[0].name);
+   }
+   
    let veriCheck = false;
    let nickveri = false;
 	// 내 정보수정하기
-	function infoUpdate(r_number, r_id, r_name, r_age, r_gender, r_regdate, r_warned, r_banned, r_quitted, pre_email, pre_nick){	
+	function infoUpdate(chooseFile, pre_picture, m_number, m_id, m_name, m_age, m_gender, m_regdate, m_warned, m_banned, m_quitted, m_type, pre_email, pre_nick){	
 		var pre_email = $('#pre_email').val();
 		var pre_nick = $('#pre_nick').val();
+		var pre_picture = $('#pre_picture').val();
+		var new_picture = $('#chooseFile').val();
 		
-		var r_number = $('#r_number').val();
-		var r_id = $('#r_id').val();
-		var r_password = $('#r_password').val();
-		var r_name = $('#r_name').val();
-		var r_nick = $('#r_nick').val();		
-		var r_age = $('#r_age').val();		
-		var r_gender = $('#r_gender').val();		
-		var r_phone = $('#r_phone').val();		
-		var r_address1 = $('#r_address1').val();		
-		var r_address2 = $('#r_address2').val();		
-		var r_picture = $('#r_picture').val();		
-		var r_email = $('#r_email').val();	
-		var r_terms1;		
-		if($("#r_terms1").is(':checked')==true){
-			r_terms1 = 1;
-		}else{
-			r_terms1 = 0;
-		}		
-		var r_terms2;
-		if($("#r_terms2").is(':checked')==true){
-			r_terms2 = 1;
-		}else{
-			r_terms2 = 0;
+		var m_number = $('#m_number').val();
+		var m_id = $('#m_id').val();
+		var m_password = $('#m_password').val();
+		var m_name = $('#m_name').val();
+		var m_nick = $('#m_nick').val();		
+		var m_age = $('#m_age').val();		
+		var m_gender = $('#m_gender').val();		
+		var m_phone = $('#m_phone').val();		
+		var m_address1 = $('#m_address1').val();		
+		var m_address2 = $('#m_address2').val();	
+		
+		var m_picture;
+		if(pre_picture == new_picture){
+			m_picture = pre_picture;
+		}else {
+			m_picture = new_picture;
 		}
-		var r_regdate = $('#r_regdate').val();	
-		var r_warned = $('#r_warned').val();	
-		var r_banned = $('#r_banned').val();	
-		var r_quitted = $('#r_quitted').val();	
+		
+		var m_email = $('#m_email').val();	
+		
+		var m_terms1;		
+		if($("#m_terms1").is(':checked')==true){
+			m_terms1 = 1;
+		}else{
+			m_terms1 = 0;
+		}		
+		
+		var m_terms2;
+		if($("#m_terms2").is(':checked')==true){
+			m_terms2 = 1;
+		}else{
+			m_terms2 = 0;
+		}
+		
+		var m_regdate = $('#m_regdate').val();	
+		var m_warned = $('#m_warned').val();	
+		var m_banned = $('#m_banned').val();	
+		var m_quitted = $('#m_quitted').val();	
+		var m_type = $('#m_type').val();	
 		
 		var confirm_password = $('#confirm_password').val();
 		
-		if(r_password != confirm_password){
+		if(m_password != confirm_password){
 			alert('비밀번호가 일치하지 않습니다');	
 			return;
 		}else{	
 			
-			if(r_email == pre_email){
+			if(m_email == pre_email){
 				veriCheck = true;
 			}
 			
@@ -274,7 +303,7 @@
 				return;
 			}			
 			
-			if(r_nick == pre_nick){
+			if(m_nick == pre_nick){
 				nickveri = true;				
 			}
 			
@@ -285,24 +314,25 @@
 			
 			var url = "${contextPath}/employerMapper/myInfoUpdate";
 			var paramData = {
-				"r_number" : r_number,				
-				"r_id" : r_id,	
-				"r_password" : r_password,	
-				"r_name" : r_name,	
-				"r_nick" : r_nick,
-				"r_age" : r_age,					
-				"r_gender" : r_gender,					
-				"r_phone" : r_phone,			
-				"r_address1" : r_address1,
-				"r_address2" : r_address2,
-				"r_picture" : r_picture,
-				"r_email" : r_email,			
-				"r_terms1" : r_terms1,			
-				"r_terms2" : r_terms2,			
-				"r_regdate" : r_regdate,			
-				"r_warned" : r_warned,			
-				"r_banned" : r_banned,			
-				"r_quitted" : r_quitted			
+				"m_number" : m_number,				
+				"m_id" : m_id,	
+				"m_password" : m_password,	
+				"m_name" : m_name,	
+				"m_nick" : m_nick,
+				"m_age" : m_age,					
+				"m_gender" : m_gender,					
+				"m_phone" : m_phone,			
+				"m_address1" : m_address1,
+				"m_address2" : m_address2,
+				"m_picture" : m_picture,
+				"m_email" : m_email,			
+				"m_terms1" : m_terms1,			
+				"m_terms2" : m_terms2,			
+				"m_regdate" : m_regdate,			
+				"m_warned" : m_warned,			
+				"m_banned" : m_banned,			
+				"m_quitted" : m_quitted,			
+				"m_type" : m_type			
 							
 			}; // 수정데이터
 			
@@ -312,8 +342,9 @@
 				dataType : 'json',
 				type : 'POST',
 				success : function(result){
-					console.log(result);
+					console.log(result);					
 					alert('정보가 수정되었습니다.');
+					window.location.reload(true);
 				},
 				error : function(result){
 					console.log(result);
@@ -325,23 +356,23 @@
 	
 	// 주소 검색
 	window.onload = function(){
-	    document.getElementById("r_address1").addEventListener("click", function(){ //주소입력칸을 클릭하면
+	    document.getElementById("m_address1").addEventListener("click", function(){ //주소입력칸을 클릭하면
 	        //카카오 지도 발생
 	        new daum.Postcode({
 	            oncomplete: function(data) { //선택시 입력값 세팅
-	                document.getElementById("r_address1").value = data.address; // 주소 넣기
-	                document.querySelector("input[name=r_address2]").focus(); //상세입력 포커싱
+	                document.getElementById("m_address1").value = data.address; // 주소 넣기
+	                document.querySelector("input[name=m_address2]").focus(); //상세입력 포커싱
 	            }
 	        }).open();
 	    });
 	}
 	
 	// 닉네임 중복체크
-	function r_nickCheck(){
+	function m_nickCheck(){
 		nickveri = false;
 		$.ajax({
-			url : "${contextPath}/account/r_nickChk",
-			data : {"r_nick" : $("#r_nick").val()},
+			url : "${contextPath}/account/m_nickChk",
+			data : {"m_nick" : $("#m_nick").val()},
 			dataType : 'json',
 			type : 'POST',
 			success : function(result){
@@ -361,7 +392,7 @@
 	
 	// 이메일 인증
 	$('#mail-Check-Btn').click(function() {
-	      const email = $('#r_email').val(); // 이메일 주소값 얻어오기!
+	      const email = $('#m_email').val(); // 이메일 주소값 얻어오기!
 	      console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
 	      const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
 	      veriCheck = false;
@@ -406,8 +437,8 @@
 	         veriCheck = false;
 	      }
 	   });
-	   	   
-   </script>
+
+	</script>
 	
 </body>
 </html>

@@ -3,17 +3,17 @@ package kr.co.deataworld.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.deataworld.dao.accountDAO;
+import kr.co.deataworld.dao.AccountDAO;
 
 @Service
-public class accountServiceImpl implements accountService{
+public class AccountServiceImpl implements AccountService{
 	@Autowired
-	accountDAO dao;	
+	AccountDAO dao;	
 
 	@Override
-	public int r_nickChk(String r_nick) throws Exception {
+	public int m_nickChk(String m_nick) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.r_nickChk(r_nick);
+		return dao.m_nickChk(m_nick);
 	}
 
 }
