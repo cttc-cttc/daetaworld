@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.AdminDAO;
+import kr.co.deataworld.dto.BlacklistDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
 
@@ -23,5 +24,25 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<MemberDTO> employeeList(PageProcess pp) throws Exception {
 		return dao.employeeList(pp);
+	}
+
+	@Override
+	public int employerCnt() throws Exception {
+		return dao.employerCnt();
+	}
+
+	@Override
+	public List<MemberDTO> employerList(PageProcess pp) throws Exception {
+		return dao.employerList(pp);
+	}
+
+	@Override
+	public int blacklistCnt() throws Exception {
+		return dao.blacklistCnt();
+	}
+
+	@Override
+	public List<BlacklistDTO> blacklist(PageProcess pp) throws Exception {
+		return dao.blacklist(pp);
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -46,78 +47,36 @@
 														<thead>
 															<tr>
 																<th class="width-15">ID</th>
-																<th class="width-15">이름</th>
+																<th class="width-15">닉네임</th>
 																<th class="width-12">가입일</th>
 																<th class="width-35">신고사유</th>
 																<th class="width-23">상세정보</th>
 															</tr>
 														</thead>
 														<tbody>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">user63</span></h3></td>
-																<td class="application-employer"><span>김김김</span></td>
-																<td class="application-created"><span>2020.06.02</span></td>
-																<td class="status">
-																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
-																	<a href="#"><span class="rejected report-tag-hover">불법성 게시글</span></a>
-																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
-																</td>
-																<td class="view-application">
-																	<a href="${contextPath }/admin/employee_profile" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">user8</span></h3></td>
-																<td class="application-employer"><span>이이이</span></td>
-																<td class="application-created"><span>2020.11.22</span></td>
-																<td class="status">
-																	<a href="#"><span class="rejected report-tag-hover">비속어 댓글</span></a>
-																	<a href="#"><span class="rejected report-tag-hover">비속어 댓글</span></a>
-																	<a href="#"><span class="rejected report-tag-hover">비속어 댓글</span></a>
-																</td>
-																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">owner37</span></h3></td>
-																<td class="application-employer"><span>박박박</span></td>
-																<td class="application-created"><span>2020.08.12</span></td>
-																<td class="status">
-																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
-																	<a href="#"><span class="rejected report-tag-hover">불법성 게시글</span></a>
-																	<a href="#"><span class="rejected report-tag-hover">최저시급 미준수</span></a>
-																</td>
-																<td class="view-application">
-																	<a href="${contextPath }/admin/employer_profile" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">user102</span></h3></td>
-																<td class="application-employer"><span>정정정</span></td>
-																<td class="application-created"><span>2020.01.17</span></td>
-																<td class="status">
-																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
-																	<a href="#"><span class="rejected report-tag-hover">불법성 게시글</span></a>
-																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
-																</td>
-																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">owner21</span></h3></td>
-																<td class="application-employer"><span>최최최</span></td>
-																<td class="application-created"><span>2020.08.12</span></td>
-																<td class="status">
-																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
-																	<a href="#"><span class="rejected report-tag-hover">불법성 게시글</span></a>
-																	<a href="#"><span class="rejected report-tag-hover">광고성 게시글</span></a>
-																</td>
-																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
+															<c:forEach var="list" items="${blacklist }">
+																<tr class="application-item">
+																	<td class="application-job"><h3><span class="id-text">${list.m_id }</span></h3></td>
+																	<td class="application-employer"><span>${list.m_nick }</span></td>
+																	<td class="application-created"><span>${list.m_regdate }</span></td>
+																	<td class="status">
+																		<c:forEach var="rType_cNumber" items="${list.rType_cNumbers }">
+																			<fmt:parseNumber value="${rType_cNumber[1] }" type="number" var="cNum" /> <%-- 댓글 번호 --%>
+																			<a href="${contextPath }/comments?cNum=${cNum }"> <%-- 댓글 번호 String에서 int로 변환 --%>
+																				<span class="rejected report-tag-hover">${rType_cNumber[0] }</span> <%-- 신고 타입 --%>
+																			</a>
+																		</c:forEach>
+																	</td>
+																	<td class="view-application">
+																		<c:if test="${list.m_type == 1 }">
+																			<a href="${contextPath }/admin/employee_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
+																		</c:if>
+																		<c:if test="${list.m_type == 2 }">
+																			<a href="${contextPath }/admin/employer_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
+																		</c:if>
+																	</td>
+																</tr>
+															</c:forEach>
 														</tbody>
 													</table>
 												</div>
@@ -125,10 +84,29 @@
 													<div class="row">
 														<div class="col-12">
 															<ul class="page-pagination justify-content-center">
-																<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-																<li class="active"><a href="#">1</a></li>
-																<li><a href="#">2</a></li>
-																<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+																<%-- 이전 버튼 활성/비활성 --%>
+																<c:if test="${pp.getCurrPage() != 1 }">
+																	<li><a href="${contextPath }/admin/blacklist?page=${pp.getCurrPage()-1}"><i class="fa fa-angle-left"></i></a></li>
+																</c:if>
+																<c:if test="${pp.getCurrPage() == 1 }">
+																	<li><a class="disabled-btn"><i class="fa fa-angle-left"></i></a></li>
+																</c:if>
+																<%-- 페이지 버튼 활성/비활성 --%>
+																<c:forEach var="pageNaviNum" items="${pp.calcPageRange() }">
+																	<c:if test="${pageNaviNum == pp.getCurrPage()}">
+																		<li class="active"><a class="current-btn">${pageNaviNum }</a></li>
+																	</c:if>
+																	<c:if test="${pageNaviNum != pp.getCurrPage()}">
+																		<li><a href="${contextPath }/admin/blacklist?page=${pageNaviNum}">${pageNaviNum }</a></li>
+																	</c:if>
+																</c:forEach>
+																<%-- 다음 버튼 활성/비활성 --%>
+																<c:if test="${pp.getCurrPage() != pp.calcLastPage() }">
+																	<li><a href="${contextPath }/admin/blacklist?page=${pp.getCurrPage()+1}"><i class="fa fa-angle-right"></i></a></li>
+																</c:if>
+																<c:if test="${pp.getCurrPage() == pp.calcLastPage() }">
+																	<li><a class="disabled-btn"><i class="fa fa-angle-right"></i></a></li>
+																</c:if>
 															</ul>
 														</div>
 													</div>

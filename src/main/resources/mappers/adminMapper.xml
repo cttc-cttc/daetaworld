@@ -17,7 +17,7 @@
 			m_nick,	<!-- 닉네임 -->
 			date(m_regdate) as m_regdate, <!-- 가입일 -->
 			m_warned,	<!-- 경고상태 -->
-			m_number	<!-- 구직자 번호(상세정보) -->
+			m_number	<!-- 회원 번호(상세정보) -->
 		from member
 		where m_type = 1
 		order by m_number desc
@@ -37,12 +37,40 @@
 			m_nick,	<!-- 닉네임 -->
 			date(m_regdate) as m_regdate, <!-- 가입일 -->
 			m_warned,	<!-- 경고상태 -->
-			m_number	<!-- 구직자 번호(상세정보) -->
+			m_number	<!-- 회원 번호(상세정보) -->
 		from member
 		where m_type = 2
 		order by m_number desc
 		limit #{pageStart}, #{pagePerList}
 	</select>
 	
+	<!-- 전체 블랙리스트 수 -->
+	<select id="blacklistCnt" resultType="java.lang.Integer">
+		select count(*) from member
+		where m_banned = 1
+	</select>
+	
+	<!-- 블랙리스트 조회(페이징 처리) -->
+	<select id="blacklist" resultType="BlacklistDTO">
+		select
+			A.m_id,		<!-- A.회원 ID -->
+			A.m_nick,	<!-- A.회원 닉네임 -->
+			date(A.m_regdate) as m_regdate, <!-- A.회원 가입날짜 -->
+			group_concat(D.r_type) as r_types, <!-- D.신고사유 -->
+			group_concat(C.c_number) as c_numbers, <!-- C.해당 댓글번호 -->
+			A.m_number,	<!-- A.회원 번호 -->
+			A.m_type	<!-- A.회원 구분 -->
+		from member as A <!-- 회원 테이블A -->
+		inner join comments_report as B	<!-- 댓글 신고 테이블B -->
+			on A.m_id = B.m_id
+		inner join comments as C	<!-- 댓글 테이블C -->
+			on B.c_number = C.c_number
+		inner join report_code as D	<!-- 신고 코드 테이블D -->
+			on C.r_code = D.r_code
+		where A.m_banned = 1
+		group by A.m_id
+		order by A.m_number desc
+		limit #{pageStart}, #{pagePerList}
+	</select>
 	
 </mapper>
