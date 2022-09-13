@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.deataworld.dto.BlacklistDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
 
@@ -25,6 +26,26 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<MemberDTO> employeeList(PageProcess pp) throws Exception {
 		return sql.selectList(nameSpace + ".employeeList", pp);
+	}
+
+	@Override
+	public int employerCnt() throws Exception {
+		return sql.selectOne(nameSpace + ".employerCnt");
+	}
+
+	@Override
+	public List<MemberDTO> employerList(PageProcess pp) throws Exception {
+		return sql.selectList(nameSpace + ".employerList", pp);
+	}
+
+	@Override
+	public int blacklistCnt() throws Exception {
+		return sql.selectOne(nameSpace + ".blacklistCnt");
+	}
+
+	@Override
+	public List<BlacklistDTO> blacklist(PageProcess pp) throws Exception {
+		return sql.selectList(nameSpace + ".blacklist", pp);
 	}
 
 	

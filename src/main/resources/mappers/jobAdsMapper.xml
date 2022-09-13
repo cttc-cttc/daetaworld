@@ -24,7 +24,7 @@
             and A.a_type = 0
 		group by A.a_number
 		order by A.a_number desc
-		limit 0, 6;
+		limit 0, 6
 	</select>
 	
 	<!-- 메인화면 - 일반구인 리스트 6개  -->
@@ -72,7 +72,7 @@
             and A.a_type = 0
 		group by A.a_number
 		order by A.a_number desc
-		limit 0, 6;
+		limit 0, 6
 	</select>
 
 </mapper>

@@ -55,20 +55,20 @@
 														<tbody>
 															<c:forEach var="list" items="${eList }">
 																<tr class="application-item">
-																	<td class="application-job"><h3><span class="id-text">${list.e_id }</span></h3></td>
-																	<td class="application-employer"><span>${list.e_nick }</span></td>
-																	<td class="application-created"><span>${list.e_regdate }</span></td>
-																	<c:if test="${list.e_warned == 0 }">
+																	<td class="application-job"><h3><span class="id-text">${list.m_id }</span></h3></td>
+																	<td class="application-employer"><span>${list.m_nick }</span></td>
+																	<td class="application-created"><span>${list.m_regdate }</span></td>
+																	<c:if test="${list.m_warned == 0 }">
 																		<td class="status"><span class="approved">정상</span></td>
 																	</c:if>
-																	<c:if test="${list.e_warned == 1 || list.e_warned == 2 }">
-																		<td class="status"><span class="pending">경고 ${list.e_warned }회</span></td>
+																	<c:if test="${list.m_warned == 1 || list.m_warned == 2 }">
+																		<td class="status"><span class="pending">경고 ${list.m_warned }회</span></td>
 																	</c:if>
-																	<c:if test="${list.e_warned == 3 }">
+																	<c:if test="${list.m_warned == 3 }">
 																		<td class="status"><span class="rejected">정지</span></td>
 																	</c:if>
 																	<td class="view-application">
-																		<a href="${contextPath }/admin/employee_profile?num=${list.e_number}" class="view-application">상세 회원정보 보기</a>
+																		<a href="${contextPath }/admin/employee_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
 																	</td>
 																</tr>
 															</c:forEach>

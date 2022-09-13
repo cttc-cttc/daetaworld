@@ -46,49 +46,32 @@
 														<thead>
 															<tr>
 																<th class="width-15">ID</th>
-																<th class="width-15">이름</th>
+																<th class="width-15">닉네임</th>
 																<th class="width-12">가입일</th>
 																<th class="width-35">상태</th>
 																<th class="width-23">상세정보</th>
 															</tr>
 														</thead>
 														<tbody>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">owner1</span></h3></td>
-																<td class="application-employer"><span>김김김</span></td>
-																<td class="application-created"><span>2020.06.02</span></td>
-																<td class="status"><span class="approved">정상</span></td>
-																<td class="view-application">
-																	<a href="${contextPath }/admin/employer_profile" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">owner2</span></h3></td>
-																<td class="application-employer"><span>이이이</span></td>
-																<td class="application-created"><span>2020.11.22</span></td>
-																<td class="status"><span class="pending">경고 2회</span></td>
-																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">owner3</span></h3></td>
-																<td class="application-employer"><span>박박박</span></td>
-																<td class="application-created"><span>2020.08.12</span></td>
-																<td class="status"><span class="approved">정상</span></td>
-																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job"><h3><span class="id-text">owner4</span></h3></td>
-																<td class="application-employer"><span>정정정</span></td>
-																<td class="application-created"><span>2020.01.17</span></td>
-																<td class="status"><span class="rejected">정지</span></td>
-																<td class="view-application">
-																	<a href="#" class="view-application">상세 회원정보 보기</a>
-																</td>
-															</tr>
+															<c:forEach var="list" items="${rList }">
+																<tr class="application-item">
+																	<td class="application-job"><h3><span class="id-text">${list.m_id }</span></h3></td>
+																	<td class="application-employer"><span>${list.m_nick }</span></td>
+																	<td class="application-created"><span>${list.m_regdate }</span></td>
+																	<c:if test="${list.m_warned == 0 }">
+																		<td class="status"><span class="approved">정상</span></td>
+																	</c:if>
+																	<c:if test="${list.m_warned == 1 || list.m_warned == 2 }">
+																		<td class="status"><span class="pending">경고 ${list.m_warned }회</span></td>
+																	</c:if>
+																	<c:if test="${list.m_warned == 3 }">
+																		<td class="status"><span class="rejected">정지</span></td>
+																	</c:if>
+																	<td class="view-application">
+																		<a href="${contextPath }/admin/employer_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
+																	</td>
+																</tr>
+															</c:forEach>
 														</tbody>
 													</table>
 												</div>
@@ -96,10 +79,29 @@
 													<div class="row">
 														<div class="col-12">
 															<ul class="page-pagination justify-content-center">
-																<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-																<li class="active"><a href="#">1</a></li>
-																<li><a href="#">2</a></li>
-																<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+																<%-- 이전 버튼 활성/비활성 --%>
+																<c:if test="${pp.getCurrPage() != 1 }">
+																	<li><a href="${contextPath }/admin/employer_list?page=${pp.getCurrPage()-1}"><i class="fa fa-angle-left"></i></a></li>
+																</c:if>
+																<c:if test="${pp.getCurrPage() == 1 }">
+																	<li><a class="disabled-btn"><i class="fa fa-angle-left"></i></a></li>
+																</c:if>
+																<%-- 페이지 버튼 활성/비활성 --%>
+																<c:forEach var="pageNaviNum" items="${pp.calcPageRange() }">
+																	<c:if test="${pageNaviNum == pp.getCurrPage()}">
+																		<li class="active"><a class="current-btn">${pageNaviNum }</a></li>
+																	</c:if>
+																	<c:if test="${pageNaviNum != pp.getCurrPage()}">
+																		<li><a href="${contextPath }/admin/employer_list?page=${pageNaviNum}">${pageNaviNum }</a></li>
+																	</c:if>
+																</c:forEach>
+																<%-- 다음 버튼 활성/비활성 --%>
+																<c:if test="${pp.getCurrPage() != pp.calcLastPage() }">
+																	<li><a href="${contextPath }/admin/employer_list?page=${pp.getCurrPage()+1}"><i class="fa fa-angle-right"></i></a></li>
+																</c:if>
+																<c:if test="${pp.getCurrPage() == pp.calcLastPage() }">
+																	<li><a class="disabled-btn"><i class="fa fa-angle-right"></i></a></li>
+																</c:if>
 															</ul>
 														</div>
 													</div>
