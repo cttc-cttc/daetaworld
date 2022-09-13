@@ -7,5 +7,6 @@
 		<typeAlias type="kr.co.deataworld.dto.MainAdsDTO" alias="MainAdsDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.ShopInfoDTO" alias="ShopInfoDTO"/>
+		<typeAlias type="kr.co.deataworld.dto.BoardDTO" alias="BoardDTO"/>
 	</typeAliases>
 </configuration>
