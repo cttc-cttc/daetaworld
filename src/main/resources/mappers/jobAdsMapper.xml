@@ -17,7 +17,7 @@
 		inner join shop_info as B
 			on A.s_number = B.s_number
 		inner join review as D
-			on A.r_id = D.r_id
+			on A.m_id = D.m_id
 		where
 			A.a_urgency = 1
             and (A.a_status = 0 or A.a_status = 1)
@@ -57,15 +57,15 @@
 		    B.s_tag3,		<!-- B가게정보.태그3 -->
 		    B.s_tag4,		<!-- B가게정보.태그4 -->
 		    B.s_tag5,		<!-- B가게정보.태그5 -->
-		    C.r_nick,		<!-- C구인자.구인자 닉네임 -->
+		    C.m_nick,		<!-- C회원.닉네임 -->
 		    format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
 		from job_ads as A
 		inner join shop_info as B
 			on A.s_number = B.s_number
-		inner join employer as C
-			on A.r_id = C.r_id
+		inner join member as C
+			on A.m_id = C.m_id
 		inner join review as D
-			on A.r_id = D.r_id
+			on A.m_id = D.m_id
 		where
 			A.a_urgency = 0
             and (A.a_status = 0 or A.a_status = 1)

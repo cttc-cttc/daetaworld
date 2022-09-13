@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import kr.co.deataworld.dto.EmployeeDTO;
+import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
 
 @Repository
@@ -23,7 +23,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<EmployeeDTO> employeeList(PageProcess pp) throws Exception {
+	public List<MemberDTO> employeeList(PageProcess pp) throws Exception {
 		return sql.selectList(nameSpace + ".employeeList", pp);
 	}
 

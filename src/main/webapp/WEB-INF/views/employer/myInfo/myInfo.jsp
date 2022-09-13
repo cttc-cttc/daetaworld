@@ -66,7 +66,7 @@
 																		<div class="single-input mb-25">
 																			<label for="r_name">이름 <span>*</span></label><input
 																				type="text" id="r_name" name="r_name"
-																				value="${myInfo.r_name}" readonly="readonly">
+																				value="${myInfo.m_name}" readonly="readonly">
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
@@ -75,7 +75,7 @@
 																		<div class="single-input mb-25">
 																			<label for="r_phone">전화번호 <span>*</span></label><input
 																				type="text" id="r_phone" name="r_phone"
-																				value="${myInfo.r_phone}">
+																				value="${myInfo.m_phone}">
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
@@ -86,7 +86,7 @@
 																			<table>
 																				<tr>
 																					<td><input type="text" id="r_nick"
-																						name="r_nick" value="${myInfo.r_nick }"
+																						name="r_nick" value="${myInfo.m_nick }"
 																						style="width: 315px;"></td>
 																					<td><input type="button" id="r_nickChk" name="r_nickChk" onclick="r_nickCheck()"
 																						style="background-color: white;" value="검사"></td>
@@ -102,7 +102,7 @@
 																			<table>
 																				<tr>
 																					<td><input type="text" id="r_email"
-																						name="r_email" value="${myInfo.r_email }"
+																						name="r_email" value="${myInfo.m_email }"
 																						style="width: 315px;"></td>
 																					<td><input type="button" id="mail-Check-Btn"
 																						style="background-color: white;" value="인증">
@@ -120,8 +120,8 @@
 																		<div class="single-input mb-25">
 																			<label for="r_address1">주소<span>*</span></label><input
 																				type="text" id="r_address1" name="r_address1"
-																				value="${myInfo.r_address1 }">
-																			<input type="text" id="r_address2" name="r_address2" value="${myInfo.r_address2 }">	
+																				value="${myInfo.m_address1 }">
+																			<input type="text" id="r_address2" name="r_address2" value="${myInfo.m_address2 }">	
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
@@ -129,8 +129,8 @@
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
 																			<label for="r_picture">프로필 사진<span>*</span>&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;
-																				현재 : ${myInfo.r_picture }</label><input
-																				type="file" id="r_picture" name="r_picture" value="${myInfo.r_picture }"
+																				현재 : ${myInfo.m_picture }</label><input
+																				type="file" id="r_picture" name="r_picture" value="${myInfo.m_picture }"
 																				>
 																		</div>
 																		<!-- Single Input End -->
@@ -140,7 +140,7 @@
 																		<div class="single-input mb-25">
 																			<label for="r_password">비밀번호<span>*</span></label><input
 																				type="password" id="r_password"
-																				name="r_password" value="${myInfo.r_password }">
+																				name="r_password" value="${myInfo.m_password }">
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
@@ -165,16 +165,16 @@
 																			<!-- Single Input End -->
 																		</div>
 																	</div>
-																	<input type="hidden" name="r_number" id="r_number" value="${myInfo.r_number }">
-																	<input type="hidden" name="r_id" id="r_id" value="${myInfo.r_id }">
-																	<input type="hidden" name="r_age" id="r_age" value="${myInfo.r_age }">
-																	<input type="hidden" name="r_gender" id="r_gender" value="${myInfo.r_gender }">
-																	<input type="hidden" name="r_regdate" id="r_regdate" value="${myInfo.r_regdate }">
-																	<input type="hidden" name="r_warned" id="r_warned" value="${myInfo.r_warned }">
-																	<input type="hidden" name="r_banned" id="r_banned" value="${myInfo.r_banned }">
-																	<input type="hidden" name="r_quitted" id="r_quitted" value="${myInfo.r_quitted }">
-																	<input type="hidden" name="pre_email" id="pre_email" value="${myInfo.r_email}">
-																	<input type="hidden" name="pre_nick" id="pre_nick" value="${myInfo.r_nick}">
+																	<input type="hidden" name="r_number" id="r_number" value="${myInfo.m_number }">
+																	<input type="hidden" name="r_id" id="r_id" value="${myInfo.m_id }">
+																	<input type="hidden" name="r_age" id="r_age" value="${myInfo.m_age }">
+																	<input type="hidden" name="r_gender" id="r_gender" value="${myInfo.m_gender }">
+																	<input type="hidden" name="r_regdate" id="r_regdate" value="${myInfo.m_regdate }">
+																	<input type="hidden" name="r_warned" id="r_warned" value="${myInfo.m_warned }">
+																	<input type="hidden" name="r_banned" id="r_banned" value="${myInfo.m_banned }">
+																	<input type="hidden" name="r_quitted" id="r_quitted" value="${myInfo.m_quitted }">
+																	<input type="hidden" name="pre_email" id="pre_email" value="${myInfo.m_email}">
+																	<input type="hidden" name="pre_nick" id="pre_nick" value="${myInfo.m_nick}">
 																</div>
 															</div>
 															<div class="row">

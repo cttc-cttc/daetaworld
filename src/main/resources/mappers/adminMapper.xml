@@ -6,20 +6,43 @@
 
 	<!-- 전체 구직자 수 -->
 	<select id="employeeCnt" resultType="java.lang.Integer">
-		select count(*) from employee
+		select count(*) from member
+		where m_type = 1
 	</select>
 	
 	<!-- 구직자 회원 조회(페이징 처리) -->
-	<select id="employeeList" resultType="EmployeeDTO">
+	<select id="employeeList" resultType="MemberDTO">
 		select
-			e_id,	<!-- ID -->
-			e_nick,	<!-- 닉네임 -->
-			date(e_regdate) as e_regdate, <!-- 가입일 -->
-			e_warned,	<!-- 경고상태 -->
-			e_number	<!-- 구직자 번호(상세정보) -->
-		from employee
-		order by e_number desc
+			m_id,	<!-- ID -->
+			m_nick,	<!-- 닉네임 -->
+			date(m_regdate) as m_regdate, <!-- 가입일 -->
+			m_warned,	<!-- 경고상태 -->
+			m_number	<!-- 구직자 번호(상세정보) -->
+		from member
+		where m_type = 1
+		order by m_number desc
 		limit #{pageStart}, #{pagePerList}
 	</select>
+	
+	<!-- 전체 구인자 수 -->
+	<select id="employerCnt" resultType="java.lang.Integer">
+		select count(*) from member
+		where m_type = 2
+	</select>
+	
+	<!-- 구인자 회원 조회(페이징 처리) -->
+	<select id="employerList" resultType="MemberDTO">
+		select
+			m_id,	<!-- ID -->
+			m_nick,	<!-- 닉네임 -->
+			date(m_regdate) as m_regdate, <!-- 가입일 -->
+			m_warned,	<!-- 경고상태 -->
+			m_number	<!-- 구직자 번호(상세정보) -->
+		from member
+		where m_type = 2
+		order by m_number desc
+		limit #{pageStart}, #{pagePerList}
+	</select>
+	
 	
 </mapper>

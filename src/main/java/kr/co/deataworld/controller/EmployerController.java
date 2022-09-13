@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.deataworld.dto.EmployerDTO;
+import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 import kr.co.deataworld.service.employerService;
 /*
@@ -31,7 +31,7 @@ public class EmployerController {
 	public String myInfo(Model model) throws Exception {
 		model.addAttribute("leftMenu", "myInfo");
 		String id = "owner";
-		EmployerDTO myInfo = service.myInfo(id);
+		MemberDTO myInfo = service.myInfo(id);
 		model.addAttribute("myInfo", myInfo);
 		
 		return "employer/myInfo/myInfo";
@@ -40,7 +40,7 @@ public class EmployerController {
 //	내 정보 수정
 	@ResponseBody
 	@PostMapping(value="employerMapper/myInfoUpdate")
-	public int myInfoUpdate(EmployerDTO employerEntity) throws Exception {
+	public int myInfoUpdate(MemberDTO employerEntity) throws Exception {
 		return service.myInfoUpdate(employerEntity);
 	}
 	

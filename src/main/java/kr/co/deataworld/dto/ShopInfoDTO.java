@@ -13,7 +13,7 @@ package kr.co.deataworld.dto;
  * s_tag3 varchar(6) 
  * s_tag4 varchar(6) 
  * s_tag5 varchar(6) 
- * r_id varchar(20) 
+ * m_id varchar(20) 
  * a_code varchar(20) 
  * j_code varchar(20)
  */
@@ -30,7 +30,7 @@ public class ShopInfoDTO {
 	private String s_tag3;
 	private String s_tag4;
 	private String s_tag5;
-	private String r_id;
+	private String m_id;
 	private String a_code;
 	private String j_code;
 	
@@ -39,7 +39,7 @@ public class ShopInfoDTO {
 		return "shopInfo [s_number=" + s_number + ", business_license=" + business_license + ", s_name=" + s_name
 				+ ", s_address=" + s_address + ", s_picture=" + s_picture + ", s_intro=" + s_intro + ", s_date="
 				+ s_date + ", s_tag1=" + s_tag1 + ", s_tag2=" + s_tag2 + ", s_tag3=" + s_tag3 + ", s_tag4=" + s_tag4
-				+ ", s_tag5=" + s_tag5 + ", r_id=" + r_id + ", a_code=" + a_code + ", j_code=" + j_code + "]";
+				+ ", s_tag5=" + s_tag5 + ", m_id=" + m_id + ", a_code=" + a_code + ", j_code=" + j_code + "]";
 	}
 
 	public String getS_number() {
@@ -138,12 +138,12 @@ public class ShopInfoDTO {
 		this.s_tag5 = s_tag5;
 	}
 
-	public String getR_id() {
-		return r_id;
+	public String getM_id() {
+		return m_id;
 	}
 
-	public void setR_id(String r_id) {
-		this.r_id = r_id;
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 
 	public String getA_code() {

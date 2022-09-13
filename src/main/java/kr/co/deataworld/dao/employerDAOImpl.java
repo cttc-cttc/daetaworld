@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.deataworld.dto.EmployerDTO;
+import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 
 @Repository
@@ -19,14 +19,14 @@ public class employerDAOImpl implements employerDAO{
 	
 //	내 정보보기
 	@Override
-	public EmployerDTO myInfo(String id) throws Exception {
+	public MemberDTO myInfo(String id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".myInfo", id);
 	}
 	
 //	내 정보수정
 	@Override
-	public int myInfoUpdate(EmployerDTO employerEntity) throws Exception {
+	public int myInfoUpdate(MemberDTO employerEntity) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update(nameSpace + ".myInfoUpdate", employerEntity);
 	}

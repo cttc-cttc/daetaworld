@@ -5,7 +5,7 @@ package kr.co.deataworld.dto;
  * 아래 4개 테이블 중 필요한 것들만 inner join
  * 구인공고(job_ads) 테이블A
  * 가게&농어촌 정보(shop_info) 테이블B
- * 구인자(employer) 테이블C
+ * 회원(member) 테이블C
  * 후기(review) 테이블D
  */
 public class MainAdsDTO {
@@ -21,7 +21,7 @@ public class MainAdsDTO {
 	private String s_tag3;// B가게정보.태그3
 	private String s_tag4;// B가게정보.태그4
 	private String s_tag5;// B가게정보.태그5
-	private String r_nick;// C구인자.구인자 닉네임
+	private String m_nick;// C회원.닉네임
 	private String w_rate;// D후기.평점
 	
 	public String getA_number() {
@@ -96,11 +96,11 @@ public class MainAdsDTO {
 	public void setS_tag5(String s_tag5) {
 		this.s_tag5 = s_tag5;
 	}
-	public String getR_nick() {
-		return r_nick;
+	public String getM_nick() {
+		return m_nick;
 	}
-	public void setR_nick(String r_nick) {
-		this.r_nick = r_nick;
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
 	}
 	public String getW_rate() {
 		return w_rate;
@@ -113,6 +113,6 @@ public class MainAdsDTO {
 		return "MainAdsEntity [a_number=" + a_number + ", a_wage=" + a_wage + ", a_time=" + a_time + ", uptime="
 				+ uptime + ", s_name=" + s_name + ", s_address1=" + s_address1 + ", s_picture=" + s_picture + ", s_tag1="
 				+ s_tag1 + ", s_tag2=" + s_tag2 + ", s_tag3=" + s_tag3 + ", s_tag4=" + s_tag4 + ", s_tag5=" + s_tag5
-				+ ", r_nick=" + r_nick + ", w_rate=" + w_rate + "]";
+				+ ", m_nick=" + m_nick + ", w_rate=" + w_rate + "]";
 	}
 }

@@ -100,7 +100,7 @@
 													</h3>
 													<div class="employer-name">
 														<!-- <a href="employer-details.html">구인자id</a> -->
-														<span>${common_ads.r_nick } <i class="fas fa-star star-color"></i>${common_ads.w_rate }</span>
+														<span>${common_ads.m_nick } <i class="fas fa-star star-color"></i>${common_ads.w_rate }</span>
 													</div>
 												</div>
 											</div>

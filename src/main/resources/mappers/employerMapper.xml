@@ -4,31 +4,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.deataworld.employerMapper">
 	<!-- 내 정보보기 -->
-	<select id="myInfo" parameterType="String" resultType="kr.co.deataworld.dto.EmployerDTO">
+	<select id="myInfo" parameterType="String" resultType="MemberDTO">
 		select *
-		from employer
-		where r_id = #{id}
+		from member
+		where m_type = 2 and m_id = #{id}
 	</select>
 	
 	<!-- 내 정보수정 -->
-	<update id="myInfoUpdate" parameterType="kr.co.deataworld.dto.EmployerDTO">
-		update daetaworld.employer 
-		set r_nick = #{r_nick}, r_password = #{r_password}, r_phone = #{r_phone}, 
-			r_address1 = #{r_address1}, r_address2 = #{r_address2}, 
-			r_terms1 = #{r_terms1}, r_terms2 = #{r_terms2}, r_picture = #{r_picture},
-			r_email = #{r_email}
-		where (r_number = #{r_number});
+	<update id="myInfoUpdate" parameterType="MemberDTO">
+		update member
+		set m_nick = #{m_nick}, m_password = #{m_password}, m_phone = #{m_phone}, 
+			m_address1 = #{m_address1}, m_address2 = #{m_address2}, 
+			m_terms1 = #{m_terms1}, m_terms2 = #{m_terms2}, m_picture = #{m_picture},
+			m_email = #{m_email}
+		where m_type = 2 and m_number = #{m_number}
 	</update>
 	
 	<!-- 등록한 가게 목록보기 -->
-	<select id="shopManagement" parameterType="String" resultType="kr.co.deataworld.dto.ShopInfoDTO">
+	<select id="shopManagement" parameterType="String" resultType="ShopInfoDTO">
 		select *
 		from shop_info
-		where r_id = #{id}
+		where m_id = #{id}
 	</select>
 	
 	<!-- 등록한 가게 정보보기 -->
-	<select id="shopInfo" parameterType="String" resultType="kr.co.deataworld.dto.ShopInfoDTO">
+	<select id="shopInfo" parameterType="String" resultType="ShopInfoDTO">
 		select *
 		from shop_info
 		where s_name = #{s_name}

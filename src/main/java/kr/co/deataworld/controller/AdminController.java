@@ -8,11 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import kr.co.deataworld.dto.EmployeeDTO;
+import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.service.AdminService;
 import kr.co.deataworld.util.PageProcess;
 
@@ -26,7 +24,7 @@ public class AdminController {
 	@Inject
 	AdminService service;
 	
-	@RequestMapping(value = "admin/employee_list", method = RequestMethod.GET)
+	@GetMapping(value = "admin/employee_list")
 	public String employeeList(Model model, int page) throws Exception {
 		logger.info("관리자화면 접속 : 구직자 회원 리스트");
 		
@@ -45,92 +43,83 @@ public class AdminController {
 		if(page > lastPage)
 			return "redirect:employee_list?page=" + lastPage;
 			
-		List<EmployeeDTO> eList = service.employeeList(pp);
+		List<MemberDTO> eList = service.employeeList(pp);
 		model.addAttribute("eList", eList);
 		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "employee_list");
 		return "admin/employee_list";
 	}
 	
-	@RequestMapping(value = "admin/employee_profile", method = RequestMethod.GET)
-	public ModelAndView employeeProfile() {
+	@GetMapping(value = "admin/employee_profile")
+	public String employeeProfile(Model model) {
 		logger.info("관리자화면 접속 : 구직자 회원 프로필");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("leftMenu", "employee_list");
-		mav.setViewName("admin/employee_profile");
-		return mav;
+		
+		model.addAttribute("leftMenu", "employee_list");
+		return "admin/employee_profile";
 	}
 	
-	@RequestMapping(value = "admin/employer_list", method = RequestMethod.GET)
-	public ModelAndView employerList() {
+	@GetMapping(value = "admin/employer_list")
+	public String employerList(Model model) {
 		logger.info("관리자화면 접속 : 구인자 회원 리스트");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("leftMenu", "employer_list");
-		mav.setViewName("admin/employer_list");
-		return mav;
+		
+		model.addAttribute("leftMenu", "employer_list");
+		return "admin/employer_list";
 	}
 	
-	@RequestMapping(value = "admin/employer_profile", method = RequestMethod.GET)
-	public ModelAndView employerProfile() {
+	@GetMapping(value = "admin/employer_profile")
+	public String employerProfile(Model model) {
 		logger.info("관리자화면 접속 : 구인자 회원 프로필");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("leftMenu", "employer_list");
-		mav.setViewName("admin/employer_profile");
-		return mav;
+		
+		model.addAttribute("leftMenu", "employer_list");
+		return "admin/employer_profile";
 	}
 	
-	@RequestMapping(value = "admin/blacklist", method = RequestMethod.GET)
-	public ModelAndView blacklist() {
+	@GetMapping(value = "admin/blacklist")
+	public String blacklist(Model model) {
 		logger.info("관리자화면 접속 : 블랙리스트");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("leftMenu", "blacklist");
-		mav.setViewName("admin/blacklist");
-		return mav;
+		
+		model.addAttribute("leftMenu", "blacklist");
+		return "admin/blacklist";
 	}
 	
-	@RequestMapping(value = "admin/job_ads", method = RequestMethod.GET)
-	public ModelAndView jobAds() {
+	@GetMapping(value = "admin/job_ads")
+	public String jobAds(Model model) {
 		logger.info("관리자화면 접속 : 구인공고 신고");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("leftMenu", "job_ads");
-		mav.setViewName("admin/job_ads");
-		return mav;
+		
+		model.addAttribute("leftMenu", "job_ads");
+		return "admin/job_ads";
 	}
 	
-	@RequestMapping(value = "admin/free_board", method = RequestMethod.GET)
-	public ModelAndView freeBoard() {
+	@GetMapping(value = "admin/free_board")
+	public String freeBoard(Model model) {
 		logger.info("관리자화면 접속 : 자유게시판 글 신고");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("leftMenu", "free_board");
-		mav.setViewName("admin/free_board");
-		return mav;
+		
+		model.addAttribute("leftMenu", "free_board");
+		return "admin/free_board";
 	}
 	
-	@RequestMapping(value = "admin/free_comment", method = RequestMethod.GET)
-	public ModelAndView freeComment() {
+	@GetMapping(value = "admin/free_comment")
+	public String freeComment(Model model) {
 		logger.info("관리자화면 접속 : 자유게시판 댓글 신고");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("leftMenu", "free_comment");
-		mav.setViewName("admin/free_comment");
-		return mav;
+		
+		model.addAttribute("leftMenu", "free_comment");
+		return "admin/free_comment";
 	}
 	
-	@RequestMapping(value = "admin/temping_board", method = RequestMethod.GET)
-	public ModelAndView tempingBoard() {
+	@GetMapping(value = "admin/temping_board")
+	public String tempingBoard(Model model) {
 		logger.info("관리자화면 접속 : 땜빵게시판 글 신고");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("leftMenu", "temping_board");
-		mav.setViewName("admin/temping_board");
-		return mav;
+		
+		model.addAttribute("leftMenu", "temping_board");
+		return "admin/temping_board";
 	}
 	
-	@RequestMapping(value = "admin/temping_comment", method = RequestMethod.GET)
-	public ModelAndView tempingComment() {
+	@GetMapping(value = "admin/temping_comment")
+	public String tempingComment(Model model) {
 		logger.info("관리자화면 접속 : 땜빵게시판 댓글 신고");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("leftMenu", "temping_comment");
-		mav.setViewName("admin/temping_comment");
-		return mav;
+		
+		model.addAttribute("leftMenu", "temping_comment");
+		return "admin/temping_comment";
 	}
 
 }

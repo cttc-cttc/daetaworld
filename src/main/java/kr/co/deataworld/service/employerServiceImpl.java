@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.employerDAO;
-import kr.co.deataworld.dto.EmployerDTO;
+import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 
 @Service
@@ -16,14 +16,14 @@ public class employerServiceImpl implements employerService{
 	
 //	내 정보보기
 	@Override
-	public EmployerDTO myInfo(String id) throws Exception {
+	public MemberDTO myInfo(String id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.myInfo(id);
 	}
 	
 //	내 정보 수정
 	@Override
-	public int myInfoUpdate(EmployerDTO employerEntity) throws Exception {
+	public int myInfoUpdate(MemberDTO employerEntity) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.myInfoUpdate(employerEntity);
 	}
