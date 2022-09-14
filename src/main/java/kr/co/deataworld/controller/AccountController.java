@@ -3,6 +3,7 @@ package kr.co.deataworld.controller;
 import java.util.Properties;
 import java.util.Random;
 
+import javax.inject.Inject;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -24,7 +25,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+<<<<<<< HEAD
 
+=======
+import kr.co.deataworld.dto.MemberDTO;
+>>>>>>> newb
 import kr.co.deataworld.service.AccountService;
 
 
@@ -48,20 +53,20 @@ public class AccountController {
 	
 	@RequestMapping(value = "JoinRore", method = RequestMethod.GET)
 	public String Join() {
-		logger.info("회원가입화면 접속");
+		logger.info("회원가입 선택 화면 접속");
 		return "account/joinRegist/JoinRore";
 	}
 	
 
 	@RequestMapping(value = "write-r", method = RequestMethod.GET)
 	public String writer() {
-		logger.info("회원가입화면 접속");
+		logger.info("구인자 회원가입화면 접속");
 		return "account/joinRegist/write-r";
 	}
 	
 	@RequestMapping(value = "write-e", method = RequestMethod.GET)
 	public String writee() {
-		logger.info("회원가입화면 접속");
+		logger.info("구직자 회원가입화면 접속");
 		return "account/joinRegist/write-e";
 	}
 	
@@ -93,7 +98,44 @@ public class AccountController {
 		return "redirect:/";
 	}
 	
+<<<<<<< HEAD
 
+=======
+	
+	
+
+	// 회원가입
+	
+	@RequestMapping("/member/*")
+	public static class MemberController {
+
+		private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+		
+		@Inject
+		AccountService service;
+		
+		// 회원가입 get
+		@RequestMapping(value = "/register", method = RequestMethod.GET)
+		public void getRegister() throws Exception {
+			logger.info("get register");
+		}
+		
+		// 회원가입 post
+		@RequestMapping(value = "/register", method = RequestMethod.POST)
+		public String postRegister(MemberDTO dto) throws Exception {
+			logger.info("post register");
+			
+			service.register(dto);
+			
+			return null;
+		}
+	
+	
+	
+	
+	
+	
+>>>>>>> newb
 //	구인자 닉네임 중복 체크
 	@ResponseBody
 	@PostMapping(value="account/m_nickChk")
@@ -151,4 +193,5 @@ public class AccountController {
 
 
 
+}
 }
