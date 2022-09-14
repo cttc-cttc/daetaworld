@@ -97,44 +97,9 @@ public class AccountController {
 		logger.info("로그아웃");
 		session.invalidate();
 		return "redirect:/";
-	}
-	
+	}	
 
-	
-
-	// 회원가입
-	
-	@RequestMapping("/member/*")
-	public static class MemberController {
-
-		private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-		
-		@Inject
-		AccountService service;
-		
-		// 회원가입 get
-		@RequestMapping(value = "/register", method = RequestMethod.GET)
-		public void getRegister() throws Exception {
-			logger.info("get register");
-		}
-		
-		// 회원가입 post
-		@RequestMapping(value = "/register", method = RequestMethod.POST)
-		public String postRegister(MemberDTO dto) throws Exception {
-			logger.info("post register");
-			
-			service.register(dto);
-			
-			return null;
-		}
-	
-	
-	
-	
-	
-	
-
-//	구인자 닉네임 중복 체크
+//	닉네임 중복 체크
 	@ResponseBody
 	@PostMapping(value="account/m_nickChk")
 	public int m_nickChk(@RequestParam("m_nick")String m_nick ) throws Exception {	
@@ -188,8 +153,20 @@ public class AccountController {
 		}
 		return Integer.toString(checkNum);
 	}
-
-
+	
+	// 회원가입 get
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public void getRegister() throws Exception {
+		logger.info("get register");
+	}
+		
+	// 회원가입 post
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String postRegister(MemberDTO dto) throws Exception {
+		logger.info("post register");			
+		service.register(dto);			
+		return null;
+	}	
 
 }
-}
+

@@ -1,7 +1,5 @@
 package kr.co.deataworld.service;
 
-import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -19,7 +17,6 @@ public class AccountServiceImpl implements AccountService{
 		// TODO Auto-generated method stub
 		return dao.m_nickChk(m_nick);
 	}
-
 	
 	@Override
 	public void register(MemberDTO dto) {
