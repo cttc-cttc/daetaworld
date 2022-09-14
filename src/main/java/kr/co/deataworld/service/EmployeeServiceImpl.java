@@ -20,11 +20,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return dao.myInfo();
 	}
 
-	@Override //닉네임 변경시 중복검사(구직자)
-	public int m_nick(String m_nick) throws Exception {
-		return dao.m_nick(m_nick);
-	}
-
 
 	@Override //내 정보 수정하기 (구직자)
 	public int m_myInfoUpdate(MemberDTO memberDTO)throws Exception {

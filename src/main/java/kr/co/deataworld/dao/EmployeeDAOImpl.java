@@ -23,10 +23,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return sql.selectOne(NAMESPACE + ".myInfo");
 	}
 
-	@Override //닉네임 변경시 중복검사 (구직자)
-	public int m_nick(String m_nick) throws Exception {
-		return sql.selectOne(NAMESPACE + ".m_nick", m_nick);
-	}
 
 	@Override
 	public int m_myInfoUpdate(MemberDTO memberDTO) {

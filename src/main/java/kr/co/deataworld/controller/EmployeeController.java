@@ -37,27 +37,12 @@ public class EmployeeController {
 		return mav;
 	}
 	
-	//ajax 구직자 닉네임 변경시 중복검사
-	@ResponseBody
-	@RequestMapping(value = "m_nickCheck", method = RequestMethod.POST)
-	public int m_nickCheck(@RequestParam("m_nick") String m_nick)throws Exception {
-		int result = service.m_nick(m_nick);
-		return result;
-	}
 	
-
-	
-//	//내 정보 수정하기
+	//내 정보 수정하기
 	@GetMapping(value="m_myInfoUpdate")
 	public int m_myInfoUpdate(MemberDTO memberDTO)throws Exception {
 		return 0;
 	}
-	
-		
-	
-	
-	
-	
 	
 	
 //	구직자 마이페이지 이동

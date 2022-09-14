@@ -11,15 +11,15 @@
 				<li>
 					<h3>마이페이지 (노예)</h3>
 					<ul>
-						<li><a id="myInfo_e" href="${contextPath}/employee/myInfo"><i 
+						<li><a id="myInfo_e" href="${contextPath}/employeeMapper/myInfo"><i 
 								class="lnr lnr-users"></i>내 정보</a></li>
-						<li><a id="resumeManagement" href="${contextPath}/employee/resumeManagement"><i 
+						<li><a id="resumeManagement" href="${contextPath}/employeeMapper/resumeManagement"><i 
 								class="lnr lnr-thumbs-down"></i>자기소개서 관리</a></li>												
-						<li><a id="pinchStatus" href="${contextPath}/employee/pinchStatus"><i 
+						<li><a id="pinchStatus" href="${contextPath}/employeeMapper/pinchStatus"><i 
 								class="lnr lnr-thumbs-down"></i>지원 현황</a></li>
-						<li><a id="pinchHistory" href="${contextPath}/employee/pinchHistory"><i 
+						<li><a id="pinchHistory" href="${contextPath}/employeeMapper/pinchHistory"><i 
 								class="lnr lnr-thumbs-down"></i>대타 내역</a></li>
-						<li><a id="pinchHistory" href="${contextPath}/employee/pinchHistory"><i 
+						<li><a id="pinchHistory" href="${contextPath}/employeeMapper/pinchHistory"><i 
 								class="lnr lnr-thumbs-down"></i>후기(작성 전)</a></li>								
 						<li><a id="pointManagement_e" href="${contextPath}/pointMapper/pointManagement"><i 
 								class="lnr lnr-thumbs-down"></i>포인트</a></li>

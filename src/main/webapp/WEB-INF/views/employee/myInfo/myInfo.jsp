@@ -16,12 +16,6 @@
 </style>
 
 
-
-
-
-
-
-
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -126,7 +120,7 @@
                                                          <table>
                                                             <tr>
                                                                <td><input type="text" id="m_nick" name="m_nick" placeholder="별명이요" value="${myInfo.m_nick}" style="width: 120%;"></td>
-                                                               <td><input type="button" onclick="m_nickChk()" id="m_nickCheck" name="m_nickCheck" value="중복검사" style="background-color: white;"></td>
+                                                               <td><input type="button" onclick="m_nickCheck()" id="m_nickChk" name="m_nickChk" value="중복검사" style="background-color: white;"></td>
                                                             </tr>
                                                          </table>
                                                       </div>
@@ -185,7 +179,7 @@
 														<div class="row">
 															<div class="col-12">
 																<div class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																	<button onclick="infoUpdate()" id="m_myInfoUpdate" name="m_myInfoUpdate" class="ht-btn theme-btn theme-btn-two mb-xs-20">수정</button>
+																	<button onclick="passChk()" id="m_myInfoUpdate" name="m_myInfoUpdate" class="ht-btn theme-btn theme-btn-two mb-xs-20">수정</button>
 																	<button class="ht-btn theme-btn theme-btn-two transparent-btn-two">회원탈퇴</button>
 																</div>
 															</div>
@@ -223,16 +217,16 @@
 	<script type="text/javascript">
 	
 		<!-- 닉네임 변경시 중복검사 -->
-		function m_nickChk() {
+		function m_nickCheck() {
 			$.ajax({
-				url : "${contextPath}/m_nickCheck",
+				url : "${contextPath}/account/m_nickChk",
 				data : {
 					"m_nick" : $("#m_nick").val()
 				},
 				dataType : 'json',
 				type : 'POST',
-				success : function(result) {
-					if (result == 0) {
+				success : function(r) {
+					if (r == 0) {
 						alert('사용할 수 있는 닉네임.');
 					}
 					else {
@@ -251,21 +245,46 @@
 		
 		
 		<!-- 개인정보 수정 (패스워드 일치시) -> 정보수정 -->
-		function infoUpdate(m_password1) {
+		function passChk() {
 			var m_passwordChk = $("#m_passwordChk").val();
 			var m_password = $("#m_password").val();
 
 			if(m_passwordChk == m_password){
-				alert('통과~');
+				alert('통과');
+				function m_myInfoUpdate();
+				
 			}
-			else if(m_passwordChk != m_password && m_passwordChk == null){
+			else if(m_passwordChk != m_password && m_passwordChk != null){
 				alert('비밀번호가 다릅니다.');
 			}
 		}
 		<!-- 개인정보 수정 (패스워드 일치시) end -->
-		
+		<!--
+		function m_myInfoUpdate(m_type, m_id){
+			$.ajax({
+				url : "${contextPath/m_myInfoUpdate}",
+				data : {
+					m_phone : ${"#phone"}.val(),
+					m_address1 : ${"#address1"}.val(),
+					m_address2 : ${"#address2"}.val(),
+					m_nick : ${"#m_nick"}.val(),
+					m_picture : ${"#m_picture"}.val()
+				}
+				dataType : 'json',
+				type : 'POST',
+					success : {
+						
+					},
+					error : {
+						
+					}
+			});
+			
+		}
+		-->
 		
 		<!-- ajax 개인정보 수정  -->
+			
 		
 		
 		<!-- ajax 개인정보 수정 end -->

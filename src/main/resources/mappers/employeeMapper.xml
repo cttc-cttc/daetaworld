@@ -11,13 +11,6 @@
 </select>
 
 
-<!-- 닉네임 변경 시 중복검사(구직자)-->
-<select id="m_nick" parameterType="String" resultType="java.lang.Integer">
-	select count(*) from daetaworld.member as m
-	where m.m_nick = #{m_nick};
-</select>
-
-
 <!-- 개인정보 수정시 패스워드 검증 (구직자) -->
 <select id="m_passWord" parameterType="String" resultType="String">
 	select m_password
