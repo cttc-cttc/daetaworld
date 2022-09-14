@@ -1,7 +1,5 @@
 package kr.co.deataworld.dao;
 
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,19 +18,12 @@ public class AccountDAOImpl implements AccountDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".m_nickChk", m_nick);
 	}
-
-	@Inject
-	private SqlSession session;
-	
-
 		
 	@Override
 	public void register(MemberDTO dto) throws Exception{
 		sqlSession.insert("memberMapper.register", dto);
 		
 	}
-
-
 
 	@Override
 	public MemberDTO login(MemberDTO dto) throws Exception {

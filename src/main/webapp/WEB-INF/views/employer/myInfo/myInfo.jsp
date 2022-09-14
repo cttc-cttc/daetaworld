@@ -67,8 +67,8 @@
 																	<tr>																	
 																	<td class="single-input mb-25">																	
 																	<label class="file-label" for="chooseFile" >사진바꾸기</label>
-																		<input class="file" id="chooseFile" name="chooseFile"
-																		  type="file" onchange="changeValue(this)" id="file_01"
+																		<input class="file" name="chooseFile" id="chooseFile"
+																		  type="file" onchange="changeValue(this)" 
 																		  accept="image/png, image/jpeg, image/gif"
 																		  >
 																	</td>																																	
@@ -147,10 +147,18 @@
 																		<div class="single-input mb-25">
 																			<label for="m_terms1">선택약관1</label><input
 																				type="checkbox" id="m_terms1" name="m_terms1"
-																				checked>																			
+																				<c:set var="terms1" value="${myInfo.m_terms1 }"/>																				
+																					<c:if test="${terms1 == 1}">
+																						<c:out value="checked"/>
+																					</c:if>
+																				>																			
 																			<label for="m_terms2">선택약관2</label><input
 																				type="checkbox" id="m_terms2" name="m_terms2"
-																				checked>	
+																				<c:set var="terms2" value="${myInfo.m_terms2 }"/>																				
+																					<c:if test="${terms2 == 1}">
+																						<c:out value="checked"/>
+																					</c:if>
+																				>	
 																			<!-- Single Input End -->
 																		</div>
 																	</div>
@@ -232,12 +240,7 @@
    <script src="${contextPath}/resources/assets/js/main.js"></script>
    
    <script type="text/javascript">
-   
-   function changeValue(a) {
-   	console.log(a.files[0].name);
-   	$(".file span").text(a.files[0].name);
-   }
-   
+      
    let veriCheck = false;
    let nickveri = false;
 	// 내 정보수정하기
@@ -344,6 +347,7 @@
 				success : function(result){
 					console.log(result);					
 					alert('정보가 수정되었습니다.');
+					alert(new_picture);
 					window.location.reload(true);
 				},
 				error : function(result){
