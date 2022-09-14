@@ -11,7 +11,7 @@
 			A.a_wage,		<!-- A구인공고.시급 -->
 			B.s_name,		<!-- B가게정보.가게명 -->
 		    B.s_address1,	<!-- B가게정보.가게 주소1 -->
-		    B.s_picture,	<!-- B가게정보.가게 사진 -->
+		    B.s_picture1,	<!-- B가게정보.가게 사진1 -->
 		    format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
 		from job_ads as A
 		inner join shop_info as B
@@ -51,7 +51,7 @@
 			]]>
 		    B.s_name,		<!-- B가게정보.가게명 -->
 		    B.s_address1,	<!-- B가게정보.가게 주소1 -->
-		    B.s_picture,	<!-- B가게정보.가게 사진 -->
+		    B.s_picture1,	<!-- B가게정보.가게 사진1 -->
 		    B.s_tag1,		<!-- B가게정보.태그1 -->
 		    B.s_tag2,		<!-- B가게정보.태그2 -->
 		    B.s_tag3,		<!-- B가게정보.태그3 -->

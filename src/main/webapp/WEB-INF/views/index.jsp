@@ -39,7 +39,7 @@
 										<div class="col-lg-4">
 											<div class="single-employer-item">
 												<div class="image-featured">
-													<img src="${contextPath}/resources/images/shop_picture/${urgency_ads.s_picture}" alt="">
+													<img src="${contextPath}/resources/images/shop_picture/${urgency_ads.s_picture1}" alt="">
 												</div>
 												<div class="item-content">
 													<div class="avatar"></div>
@@ -135,7 +135,7 @@
 										</div>
 									</div>
 									<div class="shop-image">
-										<img src="${contextPath}/resources/images/shop_picture/${common_ads.s_picture}">
+										<img src="${contextPath}/resources/images/shop_picture/${common_ads.s_picture1}">
 									</div>
 								</div>
 							</div>
