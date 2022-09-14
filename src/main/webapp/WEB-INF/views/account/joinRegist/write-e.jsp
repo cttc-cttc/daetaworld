@@ -583,8 +583,13 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                             <colgroup>
                                 <col width="120">
                                 <col width="653">
+
                             </colgroup>
+                            
                             <tbody>
+                            <section id="write-e">
+                            	<form action="/member/register" method="post">
+                            
                                 <tr>
                                     <td colspan="2" class="tLine"><div></div></td>
                                 </tr>
@@ -592,7 +597,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                  <tr>
                                     <th>닉네임</th>
                                     <td>
-                                        <input type="text" name="m_id" id="dev_idchk" class="tBox tPwd" maxlength="16" placeholder="2~8자 영문, 숫자" title="닉네임" />
+                                        <input type="text" name="m_nick" id="m_nick" class="tBox tPwd" maxlength="8" placeholder="2~8자 한글, 숫자" title="닉네임" />
                                         <p class="compul"></p>
                                         <input id="dev_idchkStat" name="dev_idchkStat" type="hidden" value="" />
                                     </td>
@@ -601,7 +606,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <th>아이디</th>
                                     <td>
-                                        <input type="text" name="UserId" id="dev_idchk" class="tBox tPwd" maxlength="16" placeholder="6~16자 영문, 숫자" title="아이디" />
+                                        <input type="text" name="m_id" id="m_id" class="tBox tPwd" maxlength="16" placeholder="6~16자 영문, 숫자" title="아이디" />
                                         <p class="compul"></p>
                                         <input id="dev_idchkStat" name="dev_idchkStat" type="hidden" value="" />
                                     </td>
@@ -609,7 +614,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <th>비밀번호 <a href="javascript:;"><span class="iconPwdQues" id="dev_pwd_help_icon"></span></a></th>
                                     <td>
-                                        <input type="password" name="UserPwd" class="tBox tPwd" id="dev_pwd1" maxlength="16" placeholder="8~16자 영문, 숫자, 특수문자" title="비밀번호" />
+                                        <input type="password" name="m_password" class="tBox tPwd" id="dev_pwd1" maxlength="16" placeholder="8~16자 영문, 숫자, 특수문자" title="비밀번호" />
                                         <input type="hidden" name="birthcheck" id="dev_birthcheck" value="" />
                                         <p class="compul" id="PwdSafeResult"></p>
                                         <input id="dev_pwdchkStat" name="dev_pwdchkStat" type="hidden" value="" />
@@ -618,7 +623,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <th>비밀번호 확인</th>
                                     <td>
-                                        <input type="password" name="UserPwd2" id="dev_pwconfirm" class="tBox tPwd" maxlength="16" title="비밀번호확인" />
+                                        <input type="password" name="UserPwd2" id="dev_pwconfirm" class="tBox tPwd" maxlength="16" placeholder="비밀번호 재입력" title="비밀번호확인" />
                                         <p class="compul" id="dev_chk_pwd_confirm"></p>
                                     </td>
                                 </tr>
@@ -628,7 +633,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <th>이름</th>
                                     <td>
-                                        <input type="text" name="Name" class="tBox" title="이름" id="dev_u_name" maxlength="12" />
+                                        <input type="text" name="Name" class="tBox" title="이름" id="dev_u_name" maxlength="12" placeholder="이름" />
                                         <p class="compul"></p>
                                         <input id="dev_namechkStat" name="dev_namechkStat" type="hidden" value="" />
                                     </td>
@@ -637,7 +642,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                  <tr>
                                     <th>나이</th>
                                     <td>
-                                        <input type="text" name="Name" class="tBox" title="나이" id="dev_u_name" maxlength="12" />
+                                        <input type="text" name="Name" class="tBox" title="나이" id="dev_u_name" maxlength="12" placeholder="나이" />
                                         <p class="compul"></p>
                                         <input id="dev_namechkStat" name="dev_namechkStat" type="hidden" value="" />
                                     </td>
@@ -646,7 +651,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <th>이메일</th>
                                     <td>
-                                        <input type="text" name="EmailId" class="tBox tEmail" id="dev_M_Email" maxlength="25" title="이메일아이디"> <span>@</span> <input type="text" name="EmailDomain" class="tBox tEmail" id="dev_mail_etc" maxlength="25" title="이메일계정" onfocus="mon.account.regist.core.reg.emailChk1()">
+                                        <input type="text" name="EmailId" class="tBox tEmail" id="dev_M_Email" maxlength="25" placeholder="이메일" title="이메일아이디"> <span>@</span> <input type="text" name="EmailDomain" class="tBox tEmail" id="dev_mail_etc" maxlength="25" title="이메일계정" onfocus="mon.account.regist.core.reg.emailChk1()">
                                         <select name="C_Email_Cp" class="tBox joinBx tEmail" id="dev_email_Cp" title="이메일 서비스업체 선택">
                                             <option value="">선택하세요</option>
                                             <option value="naver.com">naver.com</option>
@@ -685,11 +690,26 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                     </td>
                                 </tr>
                                 
+                                  <tr>
+                                    <th class="tbPt">주소</th>
+                                    <td>
+                                        <input type="text" name="ZipCode" id="ZipCode" title="회사/점포주소" class="tBox tConfirmNum" readonly disabled>
+                                        <img class="btnConfirmNum" id="btn_searchAddress" src="https://contents.albamon.kr/monimg/common/btn/btn_addr_sch.png?201608161634" alt="주소검색" disabled>
+                                        <input type="text" name="Full_Addr" id="Full_Addr" title="회사/점포주소" class="tBox tConfirmNum_2" onchange="$.map_reg.map_auto_reg(document.form, '', 'coinfo', '' ,'');" readonly disabled>
+                                        <p class="compul" id="txtAddr"></p>
+                                        <input id="dev_addrchkStat" name="dev_addrchkStat" type="hidden" value="" />
+                                    </td>
+                                </tr>
+                                
                                 <tr>
                                     <td colspan="2" class="tLine"><div></div></td>
                                 </tr>
-                              
+                                </form>
+                             </section> 
+                             
                             </tbody>
+                       
+
                         </table>
                         <div class="tooltip" style="display: none;" id="dev_pwd_help_tooltip">
                             <p>안전한 비밀번호 사용법</p>
