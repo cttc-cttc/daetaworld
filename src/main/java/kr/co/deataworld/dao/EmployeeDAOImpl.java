@@ -26,7 +26,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public int e_nick(String e_nick) throws Exception {
 		return sql.selectOne(NAMESPACE + ".e_nick", e_nick);
 	}
-	
+
 	
 
 

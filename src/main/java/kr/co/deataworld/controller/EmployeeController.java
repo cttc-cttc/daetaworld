@@ -45,9 +45,7 @@ public class EmployeeController {
 		return result;
 	}
 	
-	
-	
-	
+
 	
 //	//내 정보 수정하기
 //	@GetMapping(value="employeeMapper/myInfoUpdate")

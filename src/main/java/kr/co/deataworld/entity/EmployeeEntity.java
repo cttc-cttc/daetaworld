@@ -16,8 +16,6 @@ public class EmployeeEntity {
 	private String e_email;
 	private int e_terms1;
 	private int e_terms2;
-	private int inform_agreement;
-	private int inquiry_agreement;
 	private String e_regdate; 
 	private int e_warned; 
 	private int e_banned; 
@@ -109,18 +107,6 @@ public class EmployeeEntity {
 	public void setE_terms2(int e_terms2) {
 		this.e_terms2 = e_terms2;
 	}
-	public int getInform_agreement() {
-		return inform_agreement;
-	}
-	public void setInform_agreement(int inform_agreement) {
-		this.inform_agreement = inform_agreement;
-	}
-	public int getInquiry_agreement() {
-		return inquiry_agreement;
-	}
-	public void setInquiry_agreement(int inquiry_agreement) {
-		this.inquiry_agreement = inquiry_agreement;
-	}
 	public String getE_regdate() {
 		return e_regdate;
 	}
@@ -156,10 +142,9 @@ public class EmployeeEntity {
 		return "EmployeeEntity [e_number=" + e_number + ", e_id=" + e_id + ", e_password=" + e_password + ", e_name="
 				+ e_name + ", e_nick=" + e_nick + ", e_age=" + e_age + ", e_gender=" + e_gender + ", e_phone=" + e_phone
 				+ ", e_address1=" + e_address1 + ", e_address2=" + e_address2 + ", e_picture=" + e_picture
-				+ ", e_email=" + e_email + ", e_terms1=" + e_terms1 + ", e_terms2=" + e_terms2 + ", inform_agreement="
-				+ inform_agreement + ", inquiry_agreement=" + inquiry_agreement + ", e_regdate=" + e_regdate
-				+ ", e_warned=" + e_warned + ", e_banned=" + e_banned + ", e_quitted=" + e_quitted + ", a_code="
-				+ a_code + "]";
+				+ ", e_email=" + e_email + ", e_terms1=" + e_terms1 + ", e_terms2=" + e_terms2 + ", e_regdate="
+				+ e_regdate + ", e_warned=" + e_warned + ", e_banned=" + e_banned + ", e_quitted=" + e_quitted
+				+ ", a_code=" + a_code + "]";
 	}
 	
 	

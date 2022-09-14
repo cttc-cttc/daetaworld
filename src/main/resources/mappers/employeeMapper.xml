@@ -10,6 +10,7 @@
 	WHERE e_id = 'user';
 </select>
 
+
 <!-- 닉네임 변경 시 중복검사(구직자)-->
 <select id="e_nick" parameterType="String" resultType="java.lang.Integer">
 	select sum(cnt) from(
@@ -23,11 +24,19 @@
 	)tbl;
 </select>
 
+
+<!-- 개인정보 수정시 패스워드 검증 (구직자) -->
+<select id="e_passWord" parameterType="String" resultType="String">
+	select e_password
+	from daetaworld.employee
+	where e_password = #{e_password} and 
+</select>
+
+
 <!-- 구직자 회원정보 수정 -->
 <update id="myInfoUpdate" parameterType="EmployeeEntity">
 	UPDATE daetaworld.employee
 	SET
-	e_password = #{e_password},
 	e_nick = #{e_nick},
 	e_phone = #{e_phone},
 	e_address1 = #{e_address1},
@@ -36,8 +45,6 @@
 	e_email = #{e_email},
 	e_terms1 = #{e_terms1},
 	e_terms2 = #{e_terms2},
-	inform_agreement = #{inform_agreement},
-	inquiry_agreement = #{inquiry_agreement},
 	e_regdate = now(),
 	WHERE e_number = #{e_number}; 
 </update>

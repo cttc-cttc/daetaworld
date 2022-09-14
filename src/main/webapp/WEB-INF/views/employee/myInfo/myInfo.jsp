@@ -68,7 +68,12 @@
 																<div class="profile-avatar mb-30">
 																	<label class="d-block"><span>사진 넣을곳</span></label>
 																	<table id="photoarea">
-																		<td><img src="${contextPath }/resources/images/sponge.png" alt="" style="width:150px; height:200px;"></td>
+																		<tr>
+																			<img src="${contextPath }/resources/images/sponge.png" alt="" style="width:100px; height:200px;">
+																		</tr>
+																		<tr>
+																			<input type="file" id="address-two" name="address-two" placeholder="Enter your Address" value="">
+																		</tr>
 																	</table>
 																</div>
 															</div>
@@ -121,7 +126,7 @@
                                                          <table>
                                                             <tr>
                                                                <td><input type="text" id="e_nick" name="e_nick" placeholder="별명이요" value="${myInfo.e_nick}" style="width: 120%;"></td>
-                                                               <td><input type="button" onclick="nickChk()" id="e_nickCheck" name="e_nickCheck" value="중복검사" style="background-color: white;"></td>
+                                                               <td><input type="button" onclick="e_nickChk()" id="e_nickCheck" name="e_nickCheck" value="중복검사" style="background-color: white;"></td>
                                                             </tr>
                                                          </table>
                                                       </div>
@@ -139,11 +144,10 @@
 													<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 														<!-- Single Input Start -->
 														<div class="single-input mb-25">
-															<label for="confirm-password">비밀번호 확인</label>
+															<label for="e_password">비밀번호 확인</label>
 															<table>
 																<tr>
-																	<td><input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호 입력" value="" style="width: 120%;"></td>
-																	<td><input type="button" style="background-color: white;" value="확인"></td>
+																	<td><input type="password" id="e_passwordChk" name="e_passwordChk" value="" placeholder="패스워드 입력"  style="width: 120%;"></td>
 																</tr>
 																<tr>	
 																	<td><input type="checkbox" name="e_terms1" />개인정보 동의</td>
@@ -158,13 +162,30 @@
 															</div>
 														
 														</div>
-
+														<input type="hidden" name="e_number" value="${myInfo.e_number}" />
+														<input type="hidden" name="e_id" value="${myInfo.e_id}" />
+														<input type="hidden" id="e_password" name="e_password" value="${myInfo.e_password}" />
+														<input type="hidden" name="e_name" value="${myInfo.e_name}" />
+														<input type="hidden" name="e_nick" value="${myInfo.e_nick}" />
+														<input type="hidden" name="e_age" value="${myInfo.e_age}" />
+														<input type="hidden" name="e_gender" value="${myInfo.e_gender}" />
+														<input type="hidden" name="e_phone" value="${myInfo.e_phone}" />
+														<input type="hidden" name="e_address1" value="${myInfo.e_address1}" />
+														<input type="hidden" name="e_address2" value="${myInfo.e_address2}" />
+														<input type="hidden" name="e_picture" value="${myInfo.e_picture}" />
+														<input type="hidden" name="e_email" value="${myInfo.e_email}" />
+														<input type="hidden" name="e_terms1" value="${myInfo.e_terms1}" />
+														<input type="hidden" name="e_terms2" value="${myInfo.e_terms2}" />
+														<input type="hidden" name="e_regdate" value="${myInfo.e_regdate}" />
+														<input type="hidden" name="e_warned" value="${myInfo.e_warned}" />
+														<input type="hidden" name="e_banned" value="${myInfo.e_banned}" />
+														<input type="hidden" name="e_quitted" value="${myInfo.e_quitted}" />
+														<input type="hidden" name="a_code" value="${myInfo.a_code}" />
 														<div class="row">
 															<div class="col-12">
 																<div class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																	<button class="ht-btn theme-btn theme-btn-two mb-xs-20">수정</button>
-																	<button
-																		class="ht-btn theme-btn theme-btn-two transparent-btn-two">회원탈퇴</button>
+																	<button onclick="infoUpdate()" id="e_myInfoUpdate" name="e_myInfoUpdate" class="ht-btn theme-btn theme-btn-two mb-xs-20">수정</button>
+																	<button class="ht-btn theme-btn theme-btn-two transparent-btn-two">회원탈퇴</button>
 																</div>
 															</div>
 														</div>
@@ -197,9 +218,11 @@
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 
-	<!-- 닉네임 변경시 중복검사 -->
+
 	<script type="text/javascript">
-		function nickChk() {
+	
+		<!-- 닉네임 변경시 중복검사 -->
+		function e_nickChk() {
 			$.ajax({
 				url : "${contextPath}/e_nickCheck",
 				data : {
@@ -222,6 +245,26 @@
 				}
 			});
 		}
+		<!-- 닉네임 변경시 중복검사 end -->
+		
+		
+		
+		
+		
+		<!-- 개인정보 수정 (패스워드 일치시) -> 정보수정 -->
+		function infoUpdate(e_password1) {
+			var e_passwordChk = $("#e_passwordChk").val();
+			var e_password = $("#e_password").val();
+
+			if(e_passwordChk == e_password){
+				alert('통과~');
+			}
+			else if(e_passwordChk != e_password && e_passwordChk != null){
+				alert('비밀번호가 다릅니다.');
+			}
+		}
+		<!-- 개인정보 수정 (패스워드 일치시) end -->
+		
 	</script>
 
 </body>
