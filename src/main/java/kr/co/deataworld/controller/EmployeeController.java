@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.deataworld.entity.EmployeeEntity;
+import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.service.EmployeeService;
 /*
  * 구직자 컨트롤러 (마이페이지)
@@ -31,7 +31,7 @@ public class EmployeeController {
 	@GetMapping(value="employeeMapper/myInfo")
 	public ModelAndView myInfo()throws Exception {
 		ModelAndView mav = new ModelAndView();
-		EmployeeEntity myInfo = service.myInfo();
+		MemberDTO myInfo = service.myInfo();
 		mav.addObject("myInfo", myInfo);
 		mav.setViewName("employee/myInfo/myInfo");
 		return mav;
@@ -39,20 +39,19 @@ public class EmployeeController {
 	
 	//ajax 구직자 닉네임 변경시 중복검사
 	@ResponseBody
-	@RequestMapping(value = "e_nickCheck", method = RequestMethod.POST)
-	public int e_nickCheck(@RequestParam("e_nick") String e_nick)throws Exception {
-		int result = service.e_nick(e_nick);
+	@RequestMapping(value = "m_nickCheck", method = RequestMethod.POST)
+	public int m_nickCheck(@RequestParam("m_nick") String m_nick)throws Exception {
+		int result = service.m_nick(m_nick);
 		return result;
 	}
 	
 
 	
 //	//내 정보 수정하기
-//	@GetMapping(value="employeeMapper/myInfoUpdate")
-//	public int myInfoUpdate(EmployeeEntity employEntity)throws Exception {
-//		
-//		return null;
-//	}
+	@GetMapping(value="m_myInfoUpdate")
+	public int m_myInfoUpdate(MemberDTO memberDTO)throws Exception {
+		return 0;
+	}
 	
 		
 	

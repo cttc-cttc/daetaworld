@@ -22,13 +22,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.deataworld.service.AccountService;
 
-=======
->>>>>>> kang
 
 /*
  * 계정관련 컨트롤러 (회원가입, 로그인/로그아웃, ID찾기/PW찾기)
@@ -94,7 +91,6 @@ public class AccountController {
 		return "redirect:/";
 	}
 	
-<<<<<<< HEAD
 //	구인자 닉네임 중복 체크
 	@ResponseBody
 	@PostMapping(value="account/m_nickChk")
@@ -149,7 +145,6 @@ public class AccountController {
 		}
 		return Integer.toString(checkNum);
 	}
-=======
 	
 	
 	
@@ -157,5 +152,4 @@ public class AccountController {
 	
 	
 	
->>>>>>> kang
 }
