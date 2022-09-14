@@ -1,6 +1,7 @@
 package kr.co.deataworld.controller;
 
 import java.util.Properties;
+
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -25,11 +26,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-<<<<<<< HEAD
 
-=======
+
+
 import kr.co.deataworld.dto.MemberDTO;
->>>>>>> newb
+
 import kr.co.deataworld.service.AccountService;
 
 
@@ -98,10 +99,7 @@ public class AccountController {
 		return "redirect:/";
 	}
 	
-<<<<<<< HEAD
 
-=======
-	
 	
 
 	// 회원가입
@@ -135,7 +133,7 @@ public class AccountController {
 	
 	
 	
->>>>>>> newb
+
 //	구인자 닉네임 중복 체크
 	@ResponseBody
 	@PostMapping(value="account/m_nickChk")
