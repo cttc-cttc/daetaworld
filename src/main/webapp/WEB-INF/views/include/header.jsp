@@ -22,8 +22,8 @@
 						<li><a href="${contextPath }/jobAds/listCare">랭킹</a></li>
 						<li><a>게시판<small class="icon-arrow"></small></a>
 							<ul class="sub-menu">
-								<li><a href="${contextPath }/board/free">자유게시판</a></li>
-								<li><a href="${contextPath }/board/temping">땜빵게시판</a></li>
+								<li><a href="${contextPath }/board/free/free">자유게시판</a></li>
+								<li><a href="${contextPath }/board/temping/temping">땜빵게시판</a></li>
 							</ul>
 						</li>
 					</ul>

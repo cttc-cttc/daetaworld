@@ -10,4 +10,39 @@
 		where b_code = 0
 		order by b_number desc
 	</select>
+	
+	<!-- 글 내용확인 -->
+	<select id="detail" parameterType="java.lang.Integer"
+		resultType="BoardDTO">
+		select * from board
+		where b_number = #{b_nember}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateReadCnt" parameterType="java.lang.Integer">
+		update board
+		set
+		b_hits
+		= b_hits + 1
+		where b_number = #{b_number}
+
+	</update>
+	
+	<!-- 글 쓰기 -->
+	<insert id="register" parameterType="BoardDTO">
+		insert into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id ,del)
+		values (#{b_number},#{b_code},
+		#{b_title}, #{b_contents},#{b_hits},curdate(), #{m_id} ,0)
+		
+	</insert>
+	
+	<!-- 글 수정 -->
+	<update id="update" parameterType="BoardDTO">
+		update board
+		set
+		b_title = #{b_title}, b_contents = #{b_contents}, b_date = curdate()
+		where b_number = #{b_number}
+	</update>
+	
+	
 </mapper>
