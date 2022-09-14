@@ -15,7 +15,7 @@
 				<li>
 					<h3>신고 관리</h3>
 					<ul>
-						<li><a id="job_ads" href="${contextPath }/admin/job_ads"><i class="lnr lnr-briefcase"></i>구인공고</a></li>
+						<li><a id="job_ads" href="${contextPath }/admin/job_ads?page=1"><i class="lnr lnr-briefcase"></i>구인공고</a></li>
 						<li><a id="free_board" href="${contextPath }/admin/free_board"><i class="lnr lnr-file-empty"></i>자유게시판 글</a></li>
 						<li><a id="free_comment" href="${contextPath }/admin/free_comment"><i class="lnr lnr-pencil"></i>자유게시판 댓글</a></li>
 						<li><a id="temping_board" href="${contextPath }/admin/temping_board"><i class="lnr lnr-file-empty"></i>땜빵게시판 글</a></li>

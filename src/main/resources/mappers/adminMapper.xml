@@ -73,4 +73,28 @@
 		limit #{pageStart}, #{pagePerList}
 	</select>
 	
+	<!-- 전체 구인공고 신고 수 -->
+	<select id="jobAdsCnt" resultType="java.lang.Integer">
+		select count(*) from job_ads
+		where r_code is no null and del = 0
+	</select>
+	
+	<!-- 구인공고 신고 조회(페이징 처리) -->
+	<select id="jobAds" resultType="JobAdsReportDTO">
+		select
+			B.s_name,	<!-- B.가게명 -->
+			A.m_id,		<!-- A.작성자 -->
+			date(B.s_date) as s_date,	<!-- B.작성일 -->
+			D.r_type,	<!-- D.신고 타입 -->
+			A.a_number,	<!-- A.공고 번호 -->
+			C.re_number	<!-- C.공고 신고 번호 -->
+		from job_ads as A <!-- 구인공고 테이블A -->
+		inner join shop_info as B <!-- 가게정보 테이블B -->
+			on A.s_number = B.s_number
+		inner join report as C <!-- 글 신고 테이블C -->
+			on A.a_number = C.a_number
+		inner join report_code as D <!-- 신고 코드 테이블D -->
+			on A.r_code = d.r_code
+		where A.r_code is not null
+	</select>
 </mapper>

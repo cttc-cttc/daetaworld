@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import kr.co.deataworld.dto.BlacklistDTO;
+import kr.co.deataworld.dto.JobAdsReportDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.service.AdminService;
 import kr.co.deataworld.util.PageProcess;
@@ -135,9 +136,27 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/job_ads")
-	public String jobAds(Model model) {
+	public String jobAds(Model model, int page) throws Exception {
 		logger.info("관리자화면 접속 : 구인공고 신고");
 		
+		// 1페이지 미만의 번호를 넘기면 1페이지로
+		if(page < 1)
+			return "redirect:job_ads?page=1";
+		
+		PageProcess pp = new PageProcess();
+		pp.setCurrPage(page); // 현재 페이지
+		pp.setPagePerList(10); // 한 페이지에 보여줄 구인공고 신고 수
+		pp.setPagePerNavi(10); // 페이지 네비게이터에 표시할 페이지 수
+		pp.setBoardCnt(service.blacklistCnt()); // 전체 구인공고 신고 수
+		
+		// 마지막 페이지를 초과한 번호를 넘기면 마지막 페이지로
+		int lastPage = pp.calcLastPage();
+		if(page > lastPage)
+			return "redirect:job_ads?page=" + lastPage;
+				
+		List<JobAdsReportDTO> jobAds = service.jobAds(pp);
+		model.addAttribute("jobAds", jobAds);
+		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "job_ads");
 		return "admin/job_ads";
 	}

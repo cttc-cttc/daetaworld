@@ -3,6 +3,7 @@ package kr.co.deataworld.service;
 import java.util.List;
 
 import kr.co.deataworld.dto.BlacklistDTO;
+import kr.co.deataworld.dto.JobAdsReportDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
 
@@ -19,4 +20,8 @@ public interface AdminService {
 	public int blacklistCnt() throws Exception;
 	// 블랙리스트 조회(페이징 처리)
 	public List<BlacklistDTO> blacklist(PageProcess pp) throws Exception;
+	// 전체 구인공고 신고 수
+	public int jobAdsCnt() throws Exception;
+	// 구인공고 신고 조회(페이징 처리)
+	public List<JobAdsReportDTO> jobAds(PageProcess pp) throws Exception;
 }

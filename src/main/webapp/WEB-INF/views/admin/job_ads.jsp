@@ -45,7 +45,7 @@
 													<table class="table">
 														<thead>
 															<tr>
-																<th class="width-35 text-left">제목</th>
+																<th class="width-35 text-left">가게명</th>
 																<th class="width-15">작성자</th>
 																<th class="width-12">작성일</th>
 																<th class="width-15">신고사유</th>
@@ -53,36 +53,22 @@
 															</tr>
 														</thead>
 														<tbody>
-															<tr class="application-item">
-																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">머슥타드 프라이 테헤란점</a></h3></td>
-																<td class="application-employer"><a class="dotted" href="#">owner123</a></td>
-																<td class="application-created"><span>2021.09.17</span></td>
-																<td class="status">최저시급 미준수</td>
-																<td class="view-application">
-																	<a href="#" class="view-application">공고삭제</a>&nbsp;&nbsp;
-																	<a href="#" class="view-application">신고취소</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">구인공고 제목2</a></h3></td>
-																<td class="application-employer"><a class="dotted" href="#">owner83</a></td>
-																<td class="application-created"><span>2021.11.22</span></td>
-																<td class="status">광고성 게시글</td>
-																<td class="view-application">
-																	<a href="#" class="view-application">공고삭제</a>&nbsp;&nbsp;
-																	<a href="#" class="view-application">신고취소</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">구인공고 제목3</a></h3></td>
-																<td class="application-employer"><a class="dotted" href="#">owner227</a></td>
-																<td class="application-created"><span>2021.05.08</span></td>
-																<td class="status">최저시급 미준수</td>
-																<td class="view-application">
-																	<a href="#" class="view-application">공고삭제</a>&nbsp;&nbsp;
-																	<a href="#" class="view-application">신고취소</a>
-																</td>
-															</tr>
+															<c:forEach var="jobAdsReport" items="${jobAds }">
+																<tr class="application-item">
+																	<td class="application-job text-left">
+																		<h3><a class="text-ellipsis" href="#">${jobAdsReport.s_name }</a></h3>
+																	</td>
+																	<td class="application-employer">
+																		<a class="dotted" href="#">${jobAdsReport.m_id }</a>
+																	</td>
+																	<td class="application-created"><span>${jobAdsReport.s_date }</span></td>
+																	<td class="status">${jobAdsReport.r_type }</td>
+																	<td class="view-application">
+																		<a href="#" class="view-application">공고삭제${jobAdsReport.a_number }</a>&nbsp;&nbsp;
+																		<a href="#" class="view-application">신고취소${jobAdsReport.re_number }</a>
+																	</td>
+																</tr>
+															</c:forEach>
 														</tbody>
 													</table>
 												</div>
@@ -90,10 +76,29 @@
 													<div class="row">
 														<div class="col-12">
 															<ul class="page-pagination justify-content-center">
-																<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-																<li class="active"><a href="#">1</a></li>
-																<li><a href="#">2</a></li>
-																<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+																<%-- 이전 버튼 활성/비활성 --%>
+																<c:if test="${pp.getCurrPage() != 1 }">
+																	<li><a href="${contextPath }/admin/job_ads?page=${pp.getCurrPage()-1}"><i class="fa fa-angle-left"></i></a></li>
+																</c:if>
+																<c:if test="${pp.getCurrPage() == 1 }">
+																	<li><a class="disabled-btn"><i class="fa fa-angle-left"></i></a></li>
+																</c:if>
+																<%-- 페이지 버튼 활성/비활성 --%>
+																<c:forEach var="pageNaviNum" items="${pp.calcPageRange() }">
+																	<c:if test="${pageNaviNum == pp.getCurrPage()}">
+																		<li class="active"><a class="current-btn">${pageNaviNum }</a></li>
+																	</c:if>
+																	<c:if test="${pageNaviNum != pp.getCurrPage()}">
+																		<li><a href="${contextPath }/admin/job_ads?page=${pageNaviNum}">${pageNaviNum }</a></li>
+																	</c:if>
+																</c:forEach>
+																<%-- 다음 버튼 활성/비활성 --%>
+																<c:if test="${pp.getCurrPage() != pp.calcLastPage() }">
+																	<li><a href="${contextPath }/admin/job_ads?page=${pp.getCurrPage()+1}"><i class="fa fa-angle-right"></i></a></li>
+																</c:if>
+																<c:if test="${pp.getCurrPage() == pp.calcLastPage() }">
+																	<li><a class="disabled-btn"><i class="fa fa-angle-right"></i></a></li>
+																</c:if>
 															</ul>
 														</div>
 													</div>
