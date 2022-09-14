@@ -588,6 +588,16 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <td colspan="2" class="tLine"><div></div></td>
                                 </tr>
+                                
+                                 <tr>
+                                    <th>닉네임</th>
+                                    <td>
+                                        <input type="text" name="m_id" id="dev_idchk" class="tBox tPwd" maxlength="16" placeholder="2~8자 영문, 숫자" title="닉네임" />
+                                        <p class="compul"></p>
+                                        <input id="dev_idchkStat" name="dev_idchkStat" type="hidden" value="" />
+                                    </td>
+                                </tr>
+                                
                                 <tr>
                                     <th>아이디</th>
                                     <td>
@@ -619,6 +629,15 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                     <th>이름</th>
                                     <td>
                                         <input type="text" name="Name" class="tBox" title="이름" id="dev_u_name" maxlength="12" />
+                                        <p class="compul"></p>
+                                        <input id="dev_namechkStat" name="dev_namechkStat" type="hidden" value="" />
+                                    </td>
+                                </tr>
+                                
+                                 <tr>
+                                    <th>나이</th>
+                                    <td>
+                                        <input type="text" name="Name" class="tBox" title="나이" id="dev_u_name" maxlength="12" />
                                         <p class="compul"></p>
                                         <input id="dev_namechkStat" name="dev_namechkStat" type="hidden" value="" />
                                     </td>
@@ -659,10 +678,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                         </select> -
                                         <input type="text" name="Phone2" id="dev_hphone2" maxlength="4" class="tBox tPhone" title="휴대폰 번호"> -
                                         <input type="text" name="Phone3" id="dev_hphone3" maxlength="4" class="tBox tPhone" title="휴대폰 번호">
-                                        <img src="https://contents.albamon.kr/monimg/common/btn/btn_confirm.png" alt="인증번호 받기" id="btnCert">
-
-                                        <input type="text" name="dev_CertNo" title="인증번호" class="tBox tConfirmNum" id="dev_CertNo" maxlength="6">
-                                        <img class="btnConfirmNum" src="https://contents.albamon.kr/monimg/common/btn/btn_confirm_ok.png" alt="확인" id="btnCertSubmit">
+                                      
                                         <p class="compul" id="txtCert"></p>
                                         <input id="dev_phoneChkStat" name="dev_phoneChkStat" type="hidden" value="" />
                                         <input id="dev_certChkStat" name="dev_certChkStat" type="hidden" value="" />
@@ -672,31 +688,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <td colspan="2" class="tLine"><div></div></td>
                                 </tr>
-                                <tr>
-                                    
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="tLine"><div></div></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="expiry">
-                                        <span class="title">
-                                            개인정보 유효기간 선택
-                                            <a href="javascript:void(0);"><span class="iconPwdQues" id="dev_valid_day_help_icon"></span></a>
-                                            <div class="tooltip expiry" style="display:none;" id="dev_valid_day_help_tooltip">
-                                                <p>개인정보 유효기간</p>
-                                                <div class="content">가입하신 ID로 선택하신 기간동안 사이트에 로그인 등 활동을 하지 않을 경우, 해당 개인정보를 별도 분리 저장하게 됩니다.</div>
-                                                <div class="btnClose"><a href="#"></a></div>
-                                            </div>
-                                        </span>
-                                        <input type="radio" name="Valid_Day_Cnt" title="1년" value="365" id="dev_valid_day_365"><label for="dev_valid_day_365">1년</label>
-                                        <input type="radio" name="Valid_Day_Cnt" title="3년" value="1095" id="dev_valid_day_1095"><label for="dev_valid_day_1095">3년</label>
-                                        <input type="radio" name="Valid_Day_Cnt" title="회원탈퇴시" value="0" id="dev_valid_day_0"><label for="dev_valid_day_0">회원탈퇴시</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="tLine"><div></div></td>
-                                </tr>
+                              
                             </tbody>
                         </table>
                         <div class="tooltip" style="display: none;" id="dev_pwd_help_tooltip">
