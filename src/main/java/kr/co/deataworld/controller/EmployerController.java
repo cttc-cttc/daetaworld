@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
-import kr.co.deataworld.service.employerService;
+import kr.co.deataworld.service.EmployerService;
 /*
  * 구인자 컨트롤러 (마이페이지)
  */
@@ -22,9 +22,12 @@ import kr.co.deataworld.service.employerService;
 public class EmployerController {
 	
 	@Autowired
-	employerService service;
+	EmployerService service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployerController.class);
+	
+//	@Resource(name="profileUploadPath")
+	private String profileUpload;
 	
 //	내 정보보기
 	@GetMapping(value="employerMapper/myInfo")
@@ -41,6 +44,7 @@ public class EmployerController {
 	@ResponseBody
 	@PostMapping(value="employerMapper/myInfoUpdate")
 	public int myInfoUpdate(MemberDTO employerEntity) throws Exception {
+		
 		return service.myInfoUpdate(employerEntity);
 	}
 	

@@ -52,6 +52,7 @@
                         <select id="Gu" name="Gu">
                            <c:forEach items="${listdrop}" var="row2">
 							 <option value=" ">${row2.a_name2}</option>
+														 
   						   </c:forEach>
 						</select>
 

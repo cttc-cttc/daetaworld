@@ -47,15 +47,16 @@
 														href="myInfo">내 정보</a></li>
 
 													<li><a href="shopManagement">내 가게</a></li>
+													<li><a href="shopRegister">새 가게</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<form action="#">
+													<form id="form" action="uploadForm" method="post" enctype="multipart/form-data">
 														<div class="row mb-30">
 															<div class="col-lg-2">
 																<div class="profile-avatar mb-30">																					
-																	<label class="d-block" for="m_picture">프로필 사진<span>*</span></label>																		
+																	<label class="d-block" for="picture">프로필 사진<span>*</span></label>																		
 																	<table>
 																	<tr>
 																	<td>
@@ -68,12 +69,12 @@
 																	<td class="single-input mb-25">																	
 																	<label class="file-label" for="chooseFile" >사진바꾸기</label>
 																		<input class="file" name="chooseFile" id="chooseFile"
-																		  type="file" onchange="changeValue(this)" 
+																		  type="file" 																	   
 																		  accept="image/png, image/jpeg, image/gif"
-																		  >
+																		>
 																	</td>																																	
 																	</tr>																		
-																	</table>																																			
+																	</table>																																																			
 																</div>
 															</div>
 															<div class="col-lg-10">
@@ -185,14 +186,14 @@
 																	<input type="hidden" name="m_id" id="m_id" value="${myInfo.m_id }">
 																	<input type="hidden" name="m_age" id="m_age" value="${myInfo.m_age }">
 																	<input type="hidden" name="m_gender" id="m_gender" value="${myInfo.m_gender }">
+																	<input type="hidden" name="m_picture" id="m_picture" value="${myInfo.m_picture }">
 																	<input type="hidden" name="m_regdate" id="m_regdate" value="${myInfo.m_regdate }">
 																	<input type="hidden" name="m_warned" id="m_warned" value="${myInfo.m_warned }">
 																	<input type="hidden" name="m_banned" id="m_banned" value="${myInfo.m_banned }">
 																	<input type="hidden" name="m_quitted" id="m_quitted" value="${myInfo.m_quitted }">
 																	<input type="hidden" name="m_type" id="m_type" value="${myInfo.m_type }">
 																	<input type="hidden" name="pre_email" id="pre_email" value="${myInfo.m_email}">
-																	<input type="hidden" name="pre_nick" id="pre_nick" value="${myInfo.m_nick}">																	
-																	<input type="hidden" name="pre_picture" id="pre_picture" value="${myInfo.m_picture}">																	
+																	<input type="hidden" name="pre_nick" id="pre_nick" value="${myInfo.m_nick}">																																		
 																</div>
 															</div>
 														</div>	
@@ -200,7 +201,7 @@
 																<div class="col-12">
 																	<div
 																		class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																		<button type="button" id="myInfoUpdate" name="myInfoUpdate" onclick="infoUpdate(chooseFile, pre_picture)" 
+																		<button type="button" id="myInfoUpdate" name="myInfoUpdate" onclick="infoUpdate()" 
 																			class="ht-btn theme-btn theme-btn-two mb-xs-20">정보
 																			수정</button>
 																		<button
@@ -244,11 +245,11 @@
    let veriCheck = false;
    let nickveri = false;
 	// 내 정보수정하기
-	function infoUpdate(chooseFile, pre_picture, m_number, m_id, m_name, m_age, m_gender, m_regdate, m_warned, m_banned, m_quitted, m_type, pre_email, pre_nick){	
+	function infoUpdate(chooseFile, m_picture, m_number, m_id, m_name, m_age, m_gender, m_regdate, m_warned, m_banned, m_quitted, m_type, pre_email, pre_nick){	
 		var pre_email = $('#pre_email').val();
 		var pre_nick = $('#pre_nick').val();
-		var pre_picture = $('#pre_picture').val();
-		var new_picture = $('#chooseFile').val();
+		var pre_picture = $('#m_picture').val();
+		var new_picture = $('#chooseFile').val().replace("C:\\fakepath\\","");
 		
 		var m_number = $('#m_number').val();
 		var m_id = $('#m_id').val();
@@ -262,10 +263,11 @@
 		var m_address2 = $('#m_address2').val();	
 		
 		var m_picture;
-		if(pre_picture == new_picture){
-			m_picture = pre_picture;
-		}else {
+		if(pre_picture != new_picture){
 			m_picture = new_picture;
+		}
+		if(new_picture == ""){
+			m_picture = pre_picture;
 		}
 		
 		var m_email = $('#m_email').val();	
@@ -347,7 +349,6 @@
 				success : function(result){
 					console.log(result);					
 					alert('정보가 수정되었습니다.');
-					alert(new_picture);
 					window.location.reload(true);
 				},
 				error : function(result){

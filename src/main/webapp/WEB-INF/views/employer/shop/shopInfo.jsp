@@ -4,17 +4,11 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>가게 등록</title>
-<%@ include file="../../include/head.jsp" %>
-
+<title>등록한 가게 정보</title>
+<%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
-<link rel="stylesheet" href="${contextPath}/resources/custom_css/etc.css">
-<script type="module" src="${contextPath}/resources/assets/js/tag_create.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<%@ include file="../../include/etc.jsp" %>
-
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -34,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>가게 등록</h1>
+										<h1>가게 관리</h1>
 									</div>
 								</div>
 							</div>
@@ -44,92 +38,101 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="myInfo">내 정보</a></li>
-													<li><a href="shopManagement">내 가게</a></li>
-													<li><a class="active" href="shopRegister">새 가게</a></li>
+													<li><a class="active" href="shopManagement">등록된 가게 목록</a></li>
+													<li><a href="shopRegister">새가게 등록</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
 													<form action="#">
 														<div class="row mb-30">
-															<div class="col-lg-10">																
+															<div class="col-lg-10">
+																<div class="row">
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
-																		<div class="single-input mb-15">
-																			<label for="shopName">가게 이름 <span>*</span></label> <input
-																				type="text" name="shopName" id="shopName"
-																				value="가게 이름을 입력하세요" />
+																		<div class="single-input mb-25">
+																			<label for="s_name">가게명 <span>*</span></label><input
+																				type="text" id="s_name" name="s_name" 
+																				value="${shopInfo.s_name}">
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
-																		<div class="single-input mb-15">
-																			<label for="shopAddress">가게 주소 <span>*</span></label>
-																			<input type="text" name="shopAddress"
-																				value="api 승인받아서 구현해야되네 망할" />
+																		<div class="single-input mb-25">
+																			<label for="s_address">가게 주소 <span>*</span></label>
+																			<table>
+																				<tr>
+																					<td><input type="text" id="s_address"
+																						name="s_address"
+																						value="${shopInfo.s_address }" style="width: 315px;"></td>
+																					<td><input type="button"
+																						style="background-color: white;" value="검색"></td>
+																				</tr>
+																			</table>
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
-																		<div class="single-input mb-15">
-
-																			<label for="shopPicture">가게 사진 <span>*</span></label>
-																			<form name="uploadForm" id="uploadForm"
-																				enctype="multipart/form-data" method="post">
-																				<div id="dropZone"
-																					style="width: 365px; height: 200px; border-style: solid; border-color: black;">
-																					<div id="fileDragDesc">파일을 드래그 해주세요.</div>
-																					<table id="fileListTable" width="100%" border="0px">
-																						<tbody id="fileTableTbody">
-																						</tbody>
-																					</table>
-																				</div>
-																			</form>
-																			<input type="button"
-																				onclick="uploadFile(); return false;"
-																				class="btn bg_01" value="파일 업로드">
+																		<div class="single-input mb-25">
+																			<label for="business_license">사업자 등록증<span>*</span></label><input
+																				type="file" id="business_license" name="business_license">
 																		</div>
+																		<!-- Single Input End -->
 																	</div>
-																	<!-- Single Input End -->
 
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
-																			<label for="shopInfo">가게 소개 <span>*</span></label><br>
-																			<textarea name="shopInfo" id="shopInfo" rows="3"
-																				placeholder="가게 소개를 해보세요"></textarea>
+																			<label for="s_intro">가게 소개 <span>*</span></label><br>
+																			<textarea name="s_intro" id="s_intro" rows="3">
+																				${shopInfo.s_intro }</textarea>
 																		</div>
 																	</div>
-
+																	
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																		<!-- Single Input Start -->
+																		<div class="single-input mb-25">
+																			<label for="s_picture">가게 사진<span>*</span></label><input
+																				type="file" id="s_picture" name="s_picture">
+																		</div>
+																		<!-- Single Input End -->
+																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
 																			<label for="shopTags">가게 태그 <span>*</span></label><br>
-																			<input type="text" id="tag" placeholder="간단한 태그 입력 (6자 이내, 5개까지 가능)" />
-																			<ul id="tag-list"></ul>
+																			<input type="text" id="s_tag1" name ="s_tag1"
+																				value="${shopInfo.s_tag1 }">
+																			<input type="text" id="s_tag2" name ="s_tag2"
+																				value="${shopInfo.s_tag2 }">
+																			<input type="text" id="s_tag3" name ="s_tag3"
+																				value="${shopInfo.s_tag3 }">
+																			<input type="text" id="s_tag4" name ="s_tag4"
+																				value="${shopInfo.s_tag4 }">
+																			<input type="text" id="s_tag5" name ="s_tag5"
+																				value="${shopInfo.s_tag5 }">
 																		</div>
 																	</div>
-																</div>															
+																</div>
+															</div>
 														</div>
-												</div>												
-												</form>
-												<div class="row">
-													<div class="col-12">
-														<div
-															class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-															<button class="ht-btn theme-btn theme-btn-two mb-xs-20">
-																등록</button>
-															<button type="button"
-																class="ht-btn theme-btn theme-btn-two transparent-btn-two"
-																onclick="location.href='${contextPath}/'">홈으로</button>
+														<div class="row">
+															<div class="col-12">
+																<div
+																	class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+																	<button  
+																		class="ht-btn theme-btn theme-btn-two mb-xs-20">
+																	가게 정보 수정
+																	</button>
+																	<button type="button" onclick="location.href='shopManagement'"
+																		class="ht-btn theme-btn theme-btn-two transparent-btn-two">목록보기</button>
+																</div>
+															</div>
 														</div>
-													</div>
+													</form>
 												</div>
-												
-											</div>
 											</div>
 										</div>
 									</div>
@@ -157,6 +160,5 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
-	
 </body>
 </html>

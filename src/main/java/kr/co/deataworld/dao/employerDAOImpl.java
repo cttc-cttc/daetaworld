@@ -10,7 +10,7 @@ import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 
 @Repository
-public class employerDAOImpl implements employerDAO{
+public class EmployerDAOImpl implements EmployerDAO{
 	
 	@Autowired
 	SqlSession sqlSession;

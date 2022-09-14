@@ -38,8 +38,9 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="shopManagement">등록된 가게 목록</a></li>
-													<li><a href="shopRegister">새가게 등록</a></li>
+													<li><a href="myInfo">내 정보</a></li>
+													<li><a class="active" href="shopManagement">내 가게</a></li>
+													<li><a href="shopRegister">새 가게</a></li>													
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">

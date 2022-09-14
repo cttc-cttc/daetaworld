@@ -5,7 +5,7 @@ import java.util.List;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 
-public interface employerDAO {
+public interface EmployerDAO {
 //	내 정보보기
 	public MemberDTO myInfo(String id) throws Exception;	
 	
