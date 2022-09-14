@@ -5,7 +5,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <title>자유 게시판</title>
-<%@ include file="../include/head.jsp"%>
+<%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -14,7 +14,7 @@
 		<!-- 상단 메뉴 start-->
 		<header
 			class="black-logo-version header-sticky sticky-white d-none d-lg-block">
-			<%@ include file="../include/header.jsp"%>
+			<%@ include file="../../include/header.jsp"%>
 		</header>
 		<!-- 상단 메뉴 end-->
 		<hr class="header-hr">
@@ -22,7 +22,7 @@
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
-					<%@ include file="../include/boardSidebar.jsp"%>
+					<%@ include file="../../include/boardSidebar.jsp"%>
 					<div class="col-xl-10 col-lg-9">
 						<div class="dashboard-main-inner">
 							<div class="row">
@@ -48,7 +48,7 @@
 						<c:forEach var="board" items="${list }">
 							<tr>
 								<td>${board.b_number}</td>
-								<td><a href="detail?bno=${board.b_number}"> ${board.b_title} </a></td>
+								<td><a href="detail?b_number=${board.b_number}"> ${board.b_title} </a></td>
 								<td>${board.b_date}</td>
 								<td>${board.m_id}</td>
 								
@@ -57,14 +57,15 @@
 						</c:forEach>
 						
 						<tr>
-							<td colspan="5" align="center"><input
-								class="btn btn-success" type="button" value="메인으로" id="index" />
+							<td colspan="5" align="center">
+							<input class="btn btn-success" type="button" value="처음으로" id="index" 
+								onclick="location.href='${contextPath}'"/>
 							</td>
 						</tr>
 					</table>
 					<div class="box">
 						<div class="box-header with-border">
-							<a href="${contextPath }/board/register"><h3 class="box-title">게시판 글쓰기</h3></a>
+							<a href="${contextPath }/board/free/register"><h3 class="box-title">게시판 글쓰기</h3></a>
 						</div>
 					</div>
 				</div>
@@ -74,7 +75,7 @@
 			</div>
 		</div>
 		<!-- Dashboard Content Section End -->
-		<%@ include file="../include/footer.jsp"%>
+		<%@ include file="../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->

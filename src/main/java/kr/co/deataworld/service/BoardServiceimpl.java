@@ -20,6 +20,24 @@ public class BoardServiceimpl implements BoardService{
 			return dao.list();
 		}
 
-	
+		@Override
+		public BoardDTO getDetail(int b_number) throws Exception {
+			// TODO Auto-generated method stub
+			dao.updateReadCnt(b_number);
+			return dao.getDetail(b_number);
+		}
+
+		@Override
+		public int register(BoardDTO boardDTO) throws Exception {
+			// TODO Auto-generated method stub
+			return dao.register(boardDTO);
+		}
+
+		@Override
+		public int update(BoardDTO boardDTO) throws Exception {
+			// TODO Auto-generated method stub
+			return dao.update(boardDTO);
+		}
+
 	
 }

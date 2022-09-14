@@ -10,4 +10,10 @@ public interface BoardService {
 	
 	public List<BoardDTO> list() throws Exception;
 	
+	public BoardDTO getDetail(int b_number) throws Exception;
+	
+	public int register(BoardDTO boardDTO) throws Exception;
+	
+	public int update(BoardDTO boardDTO) throws Exception;
+	
 }
