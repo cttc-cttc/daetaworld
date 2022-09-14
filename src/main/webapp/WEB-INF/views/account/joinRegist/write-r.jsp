@@ -184,7 +184,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
 <div id="content">
     <!--// 회원가입 -->
     <div class="monLeave monUserJoin joinPerson">
-        <h1>기업회원 가입</h1>
+        <h1>사업체회원 가입</h1>
         <input type="hidden" name="historyCert" id="historyCert" />
 
 <form action="/Account/regist/write-proc" id="frm-reg" method="post" name="frm-reg"><input id="dev_Ident_e" name="UserIdentE" type="hidden" value="" /><input id="dev_certGubun" name="CertPathType" type="hidden" value="GGREG" /><input id="dev_db_name" name="DbName" type="hidden" value="GG" /><input id="dev_u_ident" name="UserIdent" type="hidden" value="" /><input id="dev_cert_idx" name="CertIndex" type="hidden" value="" /><input id="MemberType" name="MemberType" type="hidden" value="M" />            <!--// 동의 -->
@@ -640,7 +640,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 </tr>
                                 
                                  <tr>
-                                    <th>회사 점포명</th>
+                                    <th>점포명</th>
                                     <td>
                                         <input type="text" name="Name" class="tBox" title="나이" id="dev_u_name" maxlength="12" placeholder="나이" />
                                         <p class="compul"></p>

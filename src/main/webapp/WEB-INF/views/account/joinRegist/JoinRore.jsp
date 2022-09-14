@@ -7,21 +7,12 @@
 <head>
     
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title> 알바몬</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-
-
-<meta name="keywords" content="아르바이트, 알바, 알바몬, 잡코리아, 알바정보, 알바생, 취업, 이력서, 구인, 구직, 구인구직, 채용, 파트타임, 프리랜서, 생활직, 주말알바, 단기알바, 장기알바, 재택알바, 대학생 알바, 청소년 알바, 이색알바, 부업, 투잡스, 프리터, 지역별 알바, 업직종별 알바, 급여별 알바, 알바경험담, 알바뉴스, 취업뉴스, 서빙, 편의점, 백화점, PC방, 디자인, 프로그래머, 전단지, 프렌차이즈, 노동, 배달, 운전, 강사, 학원강사, 사무, 번역, 고객상담, 텔레마케팅, 이벤트 도우미, 단순노동, 부산아르바이트, 부산알바, 대구아르바이트, 대구알바, 대전아르바이트, 대전알바, 부업거리, 투잡, 재택부업" />
-<meta name="description" content="알바정보 검색에서 알바 채용까지, 알바 취업포털 알바몬" />
-    <meta name="verify-v1" content="wfOOCE9Vtx+Z5etOXJnS9LU03yGpBxkK74T/yU63Xqs=" />
-    <meta name="google-site-verification" content="bW1GPZaAwejfuXiTsR95ZEiWPJqUllHFm6hqLLdIfVI" />
-    <meta name="naver-site-verification" content="076d15d3b5ac12d6f51bf3e9fa6c3b28004960ff" />
-    <meta name="msvalidate.01" content="BB3D65CCBE8757FF4F5840D123D1C36B" />
-
-        <meta name="robots" content="noindex, nofollow" />
-        <meta name="robots" content="noarchive" />
-        <meta name="googlebot" content="nosnippet" />
+    <title> 오늘의대타 </title>
+   
+    <%@ include file="../../include/head.jsp" %>
+    
+    
+   
 
 
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -130,10 +121,6 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
 
 
     
-        <div id="accessibility">
-            <p><a href="#container">컨텐츠 바로가기</a></p>
-        </div>
-
 
 
 
@@ -145,28 +132,49 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
 <div id="header">
     <div id="gnb">
         <h1>
-            <a href=""><img src="${contextPath}/resources/images/logo100.png"  class="png" width="160" height="58" alt="오늘의대타" /></a>
+            <a href="${contextPath}/"><img src="${contextPath}/resources/images/logo100.png"  class="logo"  alt="오늘의대타" /></a>
             
             <span></span>
             
         </h1>
             
         <ul class="lnb">
-            <li><a href="/">홈</a></li>
-                <li><a href="/recruit">채용정보</a></li>
-                <li><a href="/ResumeSearch">인재정보</a></li>
-            <li><a href="/community/tb_main">알바토크</a></li>
-
-            <li>
-                <a href="#" onclick="javascript: window.open('/customer/mon_faq.asp', 'popFAQ', 'width=900,height=770,scrollbars=no,menubar=0'); return false;">FAQ</a>
-            </li>
-            <li class="cs"><a href="/service/interests/interests_lowpay.asp">캠페인</a></li>
-
-        </ul>
-
+      <li><a href="${contextPath }/jobAds/listAll">일반구인</a></li>
+						<li><a href="${contextPath }/jobAds/listUrgency">긴급구인</a></li>
+						<li><a href="${contextPath }/jobAds/listFavorite">직업추천</a></li>
+						<li><a href="${contextPath }/jobAds/listCountry">농어촌</a></li>
+						<li><a href="${contextPath }/jobAds/listCare">랭킹</a></li>
+						<li><a>게시판<small class="icon-arrow"></small></a>
+							<ul class="sub-menu">
+								<li><a href="${contextPath }/board/free/free">자유게시판</a></li>
+								<li><a href="${contextPath }/board/temping/temping">땜빵게시판</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
             
     </div>
 </div>
+
+
+<!-- <div class="col-xl-7 col-lg-7 col-12"> -->
+<!-- 				<nav class="main-menu padding-16"> -->
+<!-- 					<ul class="menu-ul"> -->
+<%-- 						<li><a href="${contextPath }../../jobAds/listAll">일반구인</a></li> --%>
+<%-- 						<li><a href="${contextPath }/jobAds/listUrgency">긴급구인</a></li> --%>
+<%-- 						<li><a href="${contextPath }/jobAds/listFavorite">직업추천</a></li> --%>
+<%-- 						<li><a href="${contextPath }/jobAds/listCountry">농어촌</a></li> --%>
+<%-- 						<li><a href="${contextPath }/jobAds/listCare">랭킹</a></li> --%>
+<!-- 						<li><a>게시판<small class="icon-arrow"></small></a> -->
+<!-- 							<ul class="sub-menu"> -->
+<%-- 								<li><a href="${contextPath }/board/free/free">자유게시판</a></li> --%>
+<%-- 								<li><a href="${contextPath }/board/temping/temping">땜빵게시판</a></li> --%>
+<!-- 							</ul> -->
+<!-- 						</li> -->
+<!-- 					</ul> -->
+<!-- 				</nav> -->
+<!-- 			</div> -->
+
             <!-- //header -->
             <!-- container -->
             <div id="container">
@@ -180,16 +188,17 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
 
 <div id="container" class="join-select-container">
     <div class="join-group">
-        <div class="header-title">
-            <img src="${contextPath}/resources/images/logo100.png"  alt="오늘의대타 회원가입을 환영합니다." />
-        </div>
+       
+        <br><br> <br><br> <br><br> <br><br> 
 
         <div class="select-join-group">
             <div class="member-item">
                 <div class="personal-member">
-                    <p class="title">이력서를 등록하고<br />알바를 찾아보세요.</p>
+                <br> <br> <br> <br>
+                    <p class="title">이력서를 등록하고<br />오늘의 일자리를 찾아보세요.</p>
+                     <br>
                     <div class="visual">
-                        <img src="${contextPath}resources/images/e.png"  class="png" width="150" height="140"//>
+                        
                     </div>
                     <button type="button" class="orange" value="write-e" onclick="chk_session(this.value); return false;">개인회원가입</button>
                         <div class="sns-share">
@@ -207,28 +216,19 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
 
             <div class="member-item">
                 <div class="company-member">
-                    <p class="title">공고를 등록하고<br />인재를 찾아보세요.</p>
+                 <br> <br> <br> <br>
+                    <p class="title">공고를 등록하고<br />오늘의 대타를 찾아보세요.</p>
+                     <br>
                     <div class="visual">
-                        <img src="${contextPath}resources/images/r.png"  class="png" width="150" height="137"/>
+                       
                     </div>
-                    <button type="button" class="navy" value="write-r" onclick="chk_session(this.value); return false;">기업회원가입</button>
-                    <p class="notice">※ 알바를 채용하시려는 개인사업자, 사업체직원 포함</p>
+                    <button type="button" class="navy" value="write-r" onclick="chk_session(this.value); return false;">사업체회원가입</button>
+                    <p class="notice">※ 대타가 필요하신 개인사업자, 사업체직원 포함</p>
                 </div>
             </div>
         </div>
 
-        <div class="join-info">
-            <div class="info-text">
-                <p class="title">오늘의대타  </p>
-                <p class="description">오늘의대타 회원가입 하시면 아이디로 운영사이트를 이용하실 수 있습니다.<br />이미 오늘의대타 개인&middot;기업회원으로 가입하신 분은 동일한 아이디와 비밀번호로 오늘의대타에 로그인 하실 수 있습니다.</p>
-            </div>
-            <div class="member-login">
-                <button type="button" onclick="pop_login(); return false;">회원 로그인</button>
-            </div>
-        </div>
-
-        
-    </div>
+        <br><br> <br><br> <br>
 </div>
 
 
@@ -569,7 +569,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
         <input type="checkbox" name="Agree2" id="agreeChk_1" value="on" data-required="1"><label for="agreeChk_1"><span>[필수]</span> 개인정보 수집 및 이용 동의</label>
         <div class="toggle_terms"><a href="#">내용보기<span></span></a></div>
         <div class="agree_terms">
-            잡코리아 및 알바몬 서비스 이용을 위해 아래와 같이 개인정보를 수집 및 이용합니다. <br>동의를 거부할 권리가 있으며, 동의 거부 시 잡코리아 및 알바몬 회원서비스 이용이 불가합니다.
+            오늘의대타 서비스 이용을 위해 아래와 같이 개인정보를 수집 및 이용합니다. <br>동의를 거부할 권리가 있으며, 동의 거부 시 잡코리아 및 알바몬 회원서비스 이용이 불가합니다.
             <table class="agree-table">
                 <colgroup>
                     <col width="33%">
