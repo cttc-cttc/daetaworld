@@ -88,8 +88,10 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/employer_profile")
-	public String employerProfile(Model model) {
+	public String employerProfile(Model model, String num, String id) {
 		logger.info("관리자화면 접속 : 구인자 회원 프로필");
+		logger.info("num: " + num);
+		logger.info("id: " + id);
 		
 		model.addAttribute("leftMenu", "employer_list");
 		return "admin/employer_profile";
