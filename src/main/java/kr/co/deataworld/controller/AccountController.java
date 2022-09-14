@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import kr.co.deataworld.service.AccountService;
+
 
 
 /*
@@ -91,6 +93,7 @@ public class AccountController {
 		return "redirect:/";
 	}
 	
+
 //	구인자 닉네임 중복 체크
 	@ResponseBody
 	@PostMapping(value="account/m_nickChk")
@@ -145,11 +148,7 @@ public class AccountController {
 		}
 		return Integer.toString(checkNum);
 	}
-	
-	
-	
-	
-	
-	
-	
+
+
+
 }

@@ -24,7 +24,7 @@
             and A.a_type = 0
 		group by A.a_number
 		order by A.a_number desc
-		limit 0, 6
+		limit 0, 6;
 	</select>
 	
 	<!-- 메인화면 - 일반구인 리스트 6개  -->
@@ -72,7 +72,31 @@
             and A.a_type = 0
 		group by A.a_number
 		order by A.a_number desc
-		limit 0, 6
+		limit 0, 6;
+		
+	</select>
+	<!--  구인목록 -->
+	<select id="listAds" resultType ="JobAdsDTO">
+		select * from
+		job_ads 
+	</select>
+	<!-- 구인목록 상세읽기 -->
+	<select id="listAllDetail" parameterType = "java.lang.Integer" resultType ="JobAdsDTO">
+		select *
+		from job_ads
+		where a_number = #{a_number}
+	</select>
+	<!-- 구인목록 드롭다운 1번째 선택지 -->
+	<select id="selectDropdown"  resultType="AreaCodeDTO">
+		select a_name1 from area_code
+		group by a_name1
+		
+	</select>
+	<!-- 구인목록 2번째 선택지 -->
+	<select id="selectSecond" parameterType="java.lang.String" resultType="AreaCodeDTO">
+		select a_name2 from area_code
+		group by a_name2
+		where a_name1=?
 	</select>
 
 </mapper>

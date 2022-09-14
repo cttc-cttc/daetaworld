@@ -37,7 +37,7 @@
 						<h6 class="title">오늘의 대타</h6>
 						<div class="footer-widget-link">
 							<ul>
-								<li><a href="${contextPath}/dataFooter/introCom">회사소개</a></li>
+								<li><a href="${contextPath}/daetaFooter/introCom">회사소개</a></li>
 								<li><a href="${contextPath}/daetaFooter/terms">이용약관</a></li>
 								<li><a href="${contextPath}/daetaFooter/psPoli">개인정보처리방침</a></li>
 							</ul>

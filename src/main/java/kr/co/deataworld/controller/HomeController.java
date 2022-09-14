@@ -46,35 +46,7 @@ public class HomeController {
 		return "myPage";
 	}
 	
-	@GetMapping(value="/jobAds/listAll")
-	public String listAll() {
-		logger.info("구인목록 페이지 접속");
-		return "jobAds/listAll";
-	}
 	
-	@GetMapping(value="/jobAds/listFavorite")
-	public String listFavorite() {
-		logger.info("구인목록 페이지 접속");
-		return "jobAds/listFavorite";
-	}
-	
-	@GetMapping(value="/jobAds/listUrgency")
-	public String listUrgency() {
-		logger.info("구인목록 페이지 접속");
-		return "jobAds/listUrgency";
-	}
-	
-	@GetMapping(value="/jobAds/listCountry")
-	public String listCountry() {
-		logger.info("구인목록 페이지 접속");
-		return "jobAds/listCountry";
-	}	
-	
-	@GetMapping(value="/jobAds/listRecommendation")
-	public String listRecommendation() {
-		logger.info("구인목록 페이지 접속");
-		return "jobAds/listRecommendation";
-	}
 	
 	@GetMapping(value="daetaFooter/emailFAQ")
 	public String emailFAQ() {

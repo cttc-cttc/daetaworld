@@ -9,5 +9,7 @@
 		<typeAlias type="kr.co.deataworld.dto.ShopInfoDTO" alias="ShopInfoDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.BlacklistDTO" alias="BlacklistDTO"/>
+		<typeAlias type="kr.co.deataworld.dto.JobAdsDTO" alias="JobAdsDTO"/>
+		<typeAlias type="kr.co.deataworld.dto.AreaCodeDTO" alias="AreaCodeDTO"/>
 	</typeAliases>
 </configuration>
