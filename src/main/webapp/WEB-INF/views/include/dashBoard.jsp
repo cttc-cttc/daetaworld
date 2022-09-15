@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="${contextPath}/resources/custom_css/dashBoard.css">
 
 <div class="col-xl-2 col-lg-3">
 	<div class="dashboard-sidebar">
@@ -32,7 +31,7 @@
 					<ul>
 						<li><a id="myInfo_r" href="${contextPath}/employerMapper/myInfo"><i 
 								class="lnr lnr-users"></i>내 정보</a></li>
-						<li><a id="candidates" href="${contextPath}/employerMapper/candidates"><i 
+						<li><a id="adsApplied" href="${contextPath}/employerMapper/adsApplied"><i 
 								class="lnr lnr-thumbs-down"></i>지원자 확인</a></li>
 						<li><a id="adsRegister" href="${contextPath}/employerMapper/adsRegister"><i 
 								class="lnr lnr-thumbs-down"></i>공고 등록</a></li>
