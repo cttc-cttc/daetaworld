@@ -1,8 +1,6 @@
-(function (root) {
-    root.mon = root.mon || {};
-    if (typeof mon.create !== 'function') return false;
 
-    mon.create('mon.account.regist.core', (function () {
+
+
 
         //--------------------------------
         // 공통 유효성 검사 
@@ -2195,5 +2193,4 @@
             auth: auth,
             sns_login: $sns_login
         }
-    }()));
-})(this);
+ 

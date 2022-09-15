@@ -1,9 +1,5 @@
-(function (root) {
-    root.mon = root.mon || {};
-    if (typeof mon.create !== 'function') return false;
 
-    mon.create('mon.account.regist.write', (function () {
-        'use strict';
+
 
         var core = mon.account.regist.core;
 
@@ -1806,5 +1802,4 @@
             registWriteSocial: RegistWriteSocial,
             registValidator: RegistValidator
         };
-    })());
-})(this);
+  

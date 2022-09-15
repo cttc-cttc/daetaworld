@@ -25,9 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
-
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.deataworld.dto.MemberDTO;
 
@@ -154,19 +152,32 @@ public class AccountController {
 		return Integer.toString(checkNum);
 	}
 	
-	// 회원가입 get
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void getRegister() throws Exception {
-		logger.info("get register");
-	}
-		
-	// 회원가입 post
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String postRegister(MemberDTO dto) throws Exception {
-		logger.info("post register");			
-		service.register(dto);			
-		return null;
-	}	
+	
+	
+//	// 회원가입 get
+//	@RequestMapping(value = "/register", method = RequestMethod.GET)
+//	public void getRegister() throws Exception {
+//		logger.info("get register");
+//	}
+//		
+//	// 회원가입 post
+//	@RequestMapping(value = "/register", method = RequestMethod.POST)
+//	public String postRegister(MemberDTO dto) throws Exception {
+//		logger.info("post register");			
+//		service.register(dto);			
+//		return null;
+//	}	
 
+	
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ModelAndView memberJoin(MemberDTO dto) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		AccountService.register(dto);
+		mav.setViewName("login");
+		return mav;
+
+	
+}
 }
 

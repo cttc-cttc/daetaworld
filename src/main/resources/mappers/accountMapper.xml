@@ -10,7 +10,7 @@
   	</select>
   	
   	
-  	<insert id="write-e">
+  	<insert id="write-e" parameterType="MemberDTO">
 	    INSERT INTO MEMBER(   m_id 
 	   					       , m_password 
 	   					       , m_name

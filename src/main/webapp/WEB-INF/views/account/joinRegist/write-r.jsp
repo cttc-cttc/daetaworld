@@ -642,7 +642,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                  <tr>
                                     <th>점포명</th>
                                     <td>
-                                        <input type="text" name="Name" class="tBox" title="나이" id="dev_u_name" maxlength="12" placeholder="나이" />
+                                        <input type="text" name="Name" class="tBox" title="나이" id="dev_u_name" maxlength="12" placeholder="점포명" />
                                         <p class="compul"></p>
                                         <input id="dev_namechkStat" name="dev_namechkStat" type="hidden" value="" />
                                     </td>

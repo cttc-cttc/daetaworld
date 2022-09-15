@@ -10,20 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title> 오늘의대타</title>
     
- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+ 
 
-
-
-<meta name="keywords" content="아르바이트, 알바,  알바정보, 알바생, 취업, 이력서, 구인, 구직, 구인구직, 채용, 파트타임, 프리랜서, 생활직, 주말알바, 단기알바,  재택알바, 대학생 알바, 청소년 알바, 이색알바, 부업, 투잡스, 프리터, 지역별 알바, 업직종별 알바, 급여별 알바, 알바경험담, 알바뉴스, 취업뉴스, 서빙, 편의점, 백화점, PC방, 디자인, 프로그래머, 전단지, 프렌차이즈, 노동, 배달, 운전, 강사, 학원강사, 사무, 번역, 고객상담, 텔레마케팅, 이벤트 도우미, 단순노동, 부산아르바이트, 부산알바, 대구아르바이트, 대구알바, 대전아르바이트, 대전알바, 부업거리, 투잡, 재택부업" />
-<meta name="description" content="오늘의대타" />
-    <meta name="verify-v1" content="wfOOCE9Vtx+Z5etOXJnS9LU03yGpBxkK74T/yU63Xqs=" />
-    <meta name="google-site-verification" content="bW1GPZaAwejfuXiTsR95ZEiWPJqUllHFm6hqLLdIfVI" />
-    <meta name="naver-site-verification" content="076d15d3b5ac12d6f51bf3e9fa6c3b28004960ff" />
-    <meta name="msvalidate.01" content="BB3D65CCBE8757FF4F5840D123D1C36B" />
-
-        <meta name="robots" content="noindex, nofollow" />
-        <meta name="robots" content="noarchive" />
-        <meta name="googlebot" content="nosnippet" />
 
 
 
@@ -53,36 +41,33 @@
     
     
     
+    
+<!--  약관 내용 SHOW/HIDE -->
+ 
+ <script type="text/javascript">
+                $('.toggle_terms > a').on('click', function (e) {
+                    e.preventDefault();
+
+                    var $target = $(this);
+                    var $agreeTerms = $target.parent().next('.agree_terms');
+
+                    if ($agreeTerms.hasClass('t_on')) {
+                        $agreeTerms.slideUp(200, function () {
+                            $agreeTerms.removeClass('t_on');
+                            $target.html("내용보기<span class=''></span>");
+                        });
+                    } else {
+                        $agreeTerms.addClass('t_on');
+                        $agreeTerms.slideDown(200, function () {
+                            $target.html("내용닫기<span class='open'></span>");
+                        });
+                    }
+                    return false;
+
+</script >
 
 
-    <script type="text/javascript" src="/Scripts/JS/DSTracker/dslog.js?d=20190801" id="dslog_tag"></script>
-<script type="text/javascript">
-    window.dsValDic = {};
-    window.dsTypeDic = {};
-    window.dsHelper = {
-        registVal: function (key, value) {
-            window.dsValDic[key] = value;
-        },
-        getVal: function (key) {
-            return window.dsValDic[key];
-        },
-        removeVal: function (key) {
-            delete (window.dsValDic[key]);
-        },
-        clearVal: function () {
-            window.dsValDic = {}
-        },
-        registType: function (type) {
-            window.dsTypeDic[type] = type;
-        },
-        removeType: function (type) {
-            delete (window.dsTypeDic[type]);
-        },
-        clearType: function (type) {
-            window.disTypeDic = {};
-        }
-    };
-</script>
+    
 
     
 
@@ -120,12 +105,6 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
 
 
     
-
-
-    
-        <div id="accessibility">
-            <p><a href="#container">컨텐츠 바로가기</a></p>
-        </div>
 
 
 
@@ -187,11 +166,15 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
         <h1>개인회원 가입</h1>
         <input type="hidden" name="historyCert" id="historyCert" />
 
-<form action="/Account/regist/write-proc" id="frm-reg" method="post" name="frm-reg"><input id="dev_Ident_e" name="UserIdentE" type="hidden" value="" /><input id="dev_certGubun" name="CertPathType" type="hidden" value="GGREG" /><input id="dev_db_name" name="DbName" type="hidden" value="GG" /><input id="dev_u_ident" name="UserIdent" type="hidden" value="" /><input id="dev_cert_idx" name="CertIndex" type="hidden" value="" /><input id="MemberType" name="MemberType" type="hidden" value="M" />            <!--// 동의 -->
+<form action="register"  method="post" enctype="multipart/form-data" >           <!--// 동의 -->
+<!--  <form action="memberjoinpro.do" method="post" role="form" id="usercheck" name="member"> -->
 
 
 <!--// 동의 -->
 <div class="inner">
+
+
+
     <div class="user_join_agree">
         <input type="checkbox" name="user_all_agree" id="agreeChkAll" value=""><label for="agreeChkAll">필수동의 항목 및 [선택] 개인정보 수집 및 이용동의, [선택] 광고성 정보 이메일/SMS 수신 동의에 일괄 동의합니다.</label>
     </div>
@@ -586,9 +569,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
 
                             </colgroup>
                             
-                            <tbody>
-                            <section id="write-e">
-                            	<form action="/member/register" method="post">
+             
                             
                                 <tr>
                                     <td colspan="2" class="tLine"><div></div></td>
@@ -614,7 +595,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <th>비밀번호 <a href="javascript:;"><span class="iconPwdQues" id="dev_pwd_help_icon"></span></a></th>
                                     <td>
-                                        <input type="password" name="m_password" class="tBox tPwd" id="dev_pwd1" maxlength="16" placeholder="8~16자 영문, 숫자, 특수문자" title="비밀번호" />
+                                        <input type="password" name="m_password" class="tBox tPwd" id="m_password" maxlength="16" placeholder="8~16자 영문, 숫자, 특수문자" title="비밀번호" />
                                         <input type="hidden" name="birthcheck" id="dev_birthcheck" value="" />
                                         <p class="compul" id="PwdSafeResult"></p>
                                         <input id="dev_pwdchkStat" name="dev_pwdchkStat" type="hidden" value="" />
@@ -623,7 +604,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <th>비밀번호 확인</th>
                                     <td>
-                                        <input type="password" name="UserPwd2" id="dev_pwconfirm" class="tBox tPwd" maxlength="16" placeholder="비밀번호 재입력" title="비밀번호확인" />
+                                        <input type="password" name="m_password2" id="m_password2" class="tBox tPwd" maxlength="16" placeholder="비밀번호 재입력" title="비밀번호확인" />
                                         <p class="compul" id="dev_chk_pwd_confirm"></p>
                                     </td>
                                 </tr>
@@ -633,7 +614,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <th>이름</th>
                                     <td>
-                                        <input type="text" name="Name" class="tBox" title="이름" id="dev_u_name" maxlength="12" placeholder="이름" />
+                                        <input type="text" name="m_name" class="tBox" title="이름" id="m_name" maxlength="12" placeholder="이름" />
                                         <p class="compul"></p>
                                         <input id="dev_namechkStat" name="dev_namechkStat" type="hidden" value="" />
                                     </td>
@@ -642,16 +623,43 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                  <tr>
                                     <th>나이</th>
                                     <td>
-                                        <input type="text" name="Name" class="tBox" title="나이" id="dev_u_name" maxlength="12" placeholder="나이" />
+                                        <input type="text" name="m_age" class="tBox" title="나이" id="m_age" maxlength="12" placeholder="나이" />
                                         <p class="compul"></p>
                                         <input id="dev_namechkStat" name="dev_namechkStat" type="hidden" value="" />
                                     </td>
                                 </tr>
                                 
+                                
+                                
+                                <tr>
+				<th>성별</th>
+					<td colspan="2">
+					<div class="form-group" style=" margin: 0 auto;">
+						<div class="btn-group" data-toggle="buttons">
+						 <p class="compul"></p>
+						<label class="btn btn-primary active">
+						<input type="radio" name="m_gender" autocomplete="off" value="남자" checked>남자
+						</label>
+						
+						<label class="btn btn-primary">
+						<input type="radio" name="m_gende" autocomplete="off" value="여자">여자
+						</label>
+						
+						</div>
+						
+					
+					</div>
+					
+					</td>
+					</tr>
+					
+					
+					
+                                
                                 <tr>
                                     <th>이메일</th>
                                     <td>
-                                        <input type="text" name="EmailId" class="tBox tEmail" id="dev_M_Email" maxlength="25" placeholder="이메일" title="이메일아이디"> <span>@</span> <input type="text" name="EmailDomain" class="tBox tEmail" id="dev_mail_etc" maxlength="25" title="이메일계정" onfocus="mon.account.regist.core.reg.emailChk1()">
+                                        <input type="text" name="m_email" class="tBox tEmail" id="m_email" maxlength="25" placeholder="이메일" title="이메일아이디"> <span>@</span> <input type="text" name="EmailDomain" class="tBox tEmail" id="dev_mail_etc" maxlength="25" title="이메일계정" onfocus="mon.account.regist.core.reg.emailChk1()">
                                         <select name="C_Email_Cp" class="tBox joinBx tEmail" id="dev_email_Cp" title="이메일 서비스업체 선택">
                                             <option value="">선택하세요</option>
                                             <option value="naver.com">naver.com</option>
@@ -704,10 +712,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <td colspan="2" class="tLine"><div></div></td>
                                 </tr>
-                                </form>
-                             </section> 
-                             
-                            </tbody>
+                           
                        
 
                         </table>
@@ -728,7 +733,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                 <div class="info_confirm" id="boxJoinConfirm" style="display: none;">입력한 정보를 다시 확인해주세요.</div>
                 <div class="btnBx">
                 	<!--   <img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo1.jpg" alt="가입하기"> -->
-                      <a href="#" id="btn_submit"><img src="${pageContext.request.contextPath}/resources/images/btn_user_join0.png" alt="가입하기"></a> 
+                      <a href="#" id="btn_submit"> <button type="submit" class="btn btn-primary"><img src="${pageContext.request.contextPath}/resources/images/btn_user_join0.png" alt="가입하기">회원가입</button> </a> 
             </div>
             <!-- 회원가입폼 끝 //-->
 </form>    </div>
@@ -747,7 +752,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
     <address> &copy; <a href="http://todaypinch.co.kr" target="_blank">오늘의대타.</a> All rights reserved.</address>
 </div>
             <!-- //footer -->
-        </div>
+        
 
     
     
@@ -803,8 +808,14 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
 
     
     
-    <script type="text/javascript" src="/Scripts/mon/biz/account/regist/mon.account.regist.core.js?dt=637970363596946889"></script>
-    <script type="text/javascript" src="/Scripts/mon/biz/account/regist/mon.account.regist.write.js?dt=637970363596946889"></script>
+<%--    <script type="text/javascript" src="${contextPath}./Scripts/mon/biz/account/regist/mon.account.regist.core.js?dt=637970363596946889"></script>  --%>
+<%--     <script type="text/javascript" src="${contextPath}./Scripts/mon/biz/account/regist/mon.account.regist.write.js?dt=637970363596946889"></script>  --%>
+    
+     <script type="text/javascript" src="${contextPath}../../Scripts/mon/biz/account/regist/mon.account.regist.core.js"></script>
+    <script type="text/javascript" src="${contextPath}../../Scripts/mon/biz/account/regist/mon.account.regist.write.js"></script>
+    
+      
+    
 
     <script type="text/javascript">
         // 회원가입 객체 생성
@@ -839,6 +850,12 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
         }
     }
 </script>
+
+
+
+
+
+
 
     
 <!-- Google Tag Manager (noscript) -->
