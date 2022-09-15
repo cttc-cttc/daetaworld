@@ -1,5 +1,6 @@
 package kr.co.deataworld.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,6 +26,7 @@ import kr.co.deataworld.service.EmployeeService;
 public class EmployeeController {
 	@Inject
 	EmployeeService service;
+	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
 	//내 정보 불러오기
@@ -37,11 +39,11 @@ public class EmployeeController {
 		return mav;
 	}
 	
-	
 	//내 정보 수정하기
-	@GetMapping(value="m_myInfoUpdate")
-	public int m_myInfoUpdate(MemberDTO memberDTO)throws Exception {
-		return 0;
+	@PostMapping(value="employeeMapper/myInfo")
+	public String myInfoUpdate(MemberDTO memberDTO)throws Exception{
+		service.myInfoUpdate(memberDTO);
+		return "redirect:myInfo";
 	}
 	
 	

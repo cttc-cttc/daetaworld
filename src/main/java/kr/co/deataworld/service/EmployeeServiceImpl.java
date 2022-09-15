@@ -22,9 +22,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	@Override //내 정보 수정하기 (구직자)
-	public int m_myInfoUpdate(MemberDTO memberDTO)throws Exception {
-		// TODO Auto-generated method stub
-		return dao.m_myInfoUpdate(memberDTO);
+	public int myInfoUpdate(MemberDTO memberDTO)throws Exception {
+		return dao.myInfoUpdate(memberDTO);
 	}
 
 }

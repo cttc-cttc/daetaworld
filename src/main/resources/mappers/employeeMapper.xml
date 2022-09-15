@@ -20,19 +20,18 @@
 
 
 <!-- 구직자 회원정보 수정 -->
-<update id="m_myInfoUpdate" parameterType="MemberDTO">
+<update id="myInfoUpdate" parameterType="MemberDTO">
 	UPDATE daetaworld.member
 	SET
 	m_nick = #{m_nick},
 	m_phone = #{m_phone},
+	m_email = #{m_email},
 	m_address1 = #{m_address1},
 	m_address2 = #{m_address2},
-	m_picture = #{m_picture},
-	m_email = #{m_email},
 	m_terms1 = #{m_terms1},
 	m_terms2 = #{m_terms2},
-	m_regdate = now(),
-	WHERE e_number = #{m_number}; 
+	WHERE
+	m_id = #{m_id} 
 </update>
 
 

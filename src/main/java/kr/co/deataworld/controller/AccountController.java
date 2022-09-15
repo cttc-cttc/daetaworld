@@ -99,41 +99,6 @@ public class AccountController {
 		return "redirect:/";
 	}
 	
-
-	
-
-	// 회원가입
-	
-	@RequestMapping("/member/*")
-	public static class MemberController {
-
-		private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-		
-		@Inject
-		AccountService service;
-		
-		// 회원가입 get
-		@RequestMapping(value = "/register", method = RequestMethod.GET)
-		public void getRegister() throws Exception {
-			logger.info("get register");
-		}
-		
-		// 회원가입 post
-		@RequestMapping(value = "/register", method = RequestMethod.POST)
-		public String postRegister(MemberDTO dto) throws Exception {
-			logger.info("post register");
-			
-			service.register(dto);
-			
-			return null;
-		}
-	
-	
-	
-	
-	
-	
-
 //	구인자 닉네임 중복 체크
 	@ResponseBody
 	@PostMapping(value="account/m_nickChk")
@@ -191,5 +156,4 @@ public class AccountController {
 
 
 
-}
 }

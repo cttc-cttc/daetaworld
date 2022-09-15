@@ -42,155 +42,142 @@
 									</div>
 								</div>
 							</div>
-							<div class="dashboard-overview">
-								<div class="row">
-									<div class="col-xl-12 col-12">
-										<div class="profile-applications mb-50">
-											<div class="profile-applications-heading">
-												<ul class="nav">
-													<li><a style="color: green" class="active"
-														href="myInfo">내 정보</a></li>
+							<div class="profile-applications-main-block">
+										<div class="profile-applications-form">
+											<form method="post" name="updateForm">
+												<div class="row mb-30">
+														
+													<div class="col-lg-2">
 
-													<li><a href="resumeManagement">자기소개서 관리</a></li>
-												</ul>
-											</div>
-											<div class="profile-applications-main-block">
-												<div class="profile-applications-form">
-													<form action="#">
-														<div class="row mb-30">
-															<div class="col-lg-2">
-																<div class="profile-avatar mb-30">
-																	<label class="d-block"><span>사진 넣을곳</span></label>
-																	<table id="photoarea">
+														<div class="profile-avatar mb-30">																					
+															<label class="d-block" for="m_picture">프로필 사진<span>*</span></label>																		
+															<table>
+															<tr>
+															<td>
+															<img  
+																style="height:200px; width:150px;"
+																src="${contextPath}/resources/images/${myInfo.m_picture}"></td>
+															<td>
+															</tr>																	
+															<tr>																	
+															<td class="single-input mb-25">																	
+															<label class="file-label" for="chooseFile" >사진바꾸기</label>
+																<input class="file" id="chooseFile" name="chooseFile"
+																  type="file" onchange="changeValue(this)" id="file_01"
+																  accept="image/png, image/jpeg, image/gif"
+																  >
+															</td>																																	
+															</tr>																		
+															</table>																																			
+														</div>
+													</div>
+													<div class="col-lg-10">
+														<div class="row">
+															<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																<!-- Single Input Start -->
+																<div class="single-input mb-25">
+																	<label for="m_name">이름 <span>*</span></label><input
+																		type="text" id="m_name" name="m_name"
+																		value="${myInfo.m_name}" readonly="readonly">
+																</div>
+																<!-- Single Input End -->
+															</div>
+															<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																<!-- Single Input Start -->
+																<div class="single-input mb-25">
+																	<label for="m_phone">전화번호 <span>*</span></label><input
+																		type="text" id="m_phone" name="m_phone"
+																		value="${myInfo.m_phone}">
+																</div>
+																<!-- Single Input End -->
+															</div>
+															<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																<!-- Single Input Start -->
+																<div class="single-input mb-25">
+																	<label for="m_nick">닉네임<span>*</span></label>
+																	<table>
 																		<tr>
-																			<img src="${contextPath }/resources/images/sponge.png" alt="" style="width:100px; height:200px;">
-																		</tr>
-																		<tr>
-																			<input type="file" id="address-two" name="address-two" placeholder="Enter your Address" value="">
+																			<td><input type="text" id="m_nick"
+																				name="m_nick" value="${myInfo.m_nick }"
+																				style="width: 315px;"></td>
+																			<td><input type="button" id="m_nickChk" name="m_nickChk" onclick="m_nickCheck()"
+																				style="background-color: white;" value="검사"></td>
 																		</tr>
 																	</table>
 																</div>
+																<!-- Single Input End -->
 															</div>
-															<div class="col-lg-10">
-																<div class="row">
-																
-                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                                      <!-- Single Input Start -->
-                                                      <div class="single-input mb-25">
-                                                         <label for="name">이름  <span>*</span></label>
-                                                         <input type="text" id="name" name="name" placeholder="이름이요" readonly="readonly" value="${myInfo.m_name}">
-                                                      </div>
-                                                      <!-- Single Input End -->
-                                                   </div>
-                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                                      <!-- Single Input Start -->
-                                                      <div class="single-input mb-25">
-                                                         <label for="phone">전화번호 <span>*</span></label>
-                                                         <input type="text" id="phone" name="phone" placeholder="전화번호요" value="${myInfo.m_phone}">
-                                                            
-                                                      </div>
-                                                      <!-- Single Input End -->
-                                                   </div>
-                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                                      <!-- Single Input Start -->
-                                                      <div class="single-input mb-25">
-                                                         <label for="email">이메일 <span>*</span></label>
-                                                         <table>
-            											 	<tr>
-		                                                         <td><input type="email" id="email" name="email" placeholder="이메일이요" value="${myInfo.m_email}" style="width: 120%;"></td>
-		                                                         <td><input type="button" style="background-color: white;" value="인증"></td>
-            											 	</tr>                                            
-                                                         </table>
-                                                      </div>
-                                                      <!-- Single Input End -->
-                                                   </div>
-                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                                      <!-- Single Input Start -->
-                                                      <div class="single-input mb-25">
-                                                         <label for="address">주소 <span>*</span></label>
-	                                                         <input type="text" id="address1" name="address1" placeholder="주소요" value="${myInfo.m_address1}" style="width: 100%;"><br>
-	                                                         <input type="text" id="address2" name="address2" placeholder="상세주소요" value="${myInfo.m_address2}" style="width: 100%;">
-                                                      </div>
-                                                      <!-- Single Input End -->
-                                                   </div>
-                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                                      <!-- Single Input Start -->
-                                                      <div class="single-input mb-25">
-                                                         <label for="nickName">닉네임<span>*</span></label>
-                                                         <table>
-                                                            <tr>
-                                                               <td><input type="text" id="m_nick" name="m_nick" placeholder="별명이요" value="${myInfo.m_nick}" style="width: 120%;"></td>
-                                                               <td><input type="button" onclick="m_nickCheck()" id="m_nickChk" name="m_nickChk" value="중복검사" style="background-color: white;"></td>
-                                                            </tr>
-                                                         </table>
-                                                      </div>
-                                                      <!-- Single Input End -->
-                                                   </div>
-                                                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                                      <!-- Single Input Start -->
-                                                      <div class="single-input mb-25">
-                                                         <label for="address-two">사진<span>*</span></label>
-                                                         <input type="file" id="address-two" name="address-two" placeholder="Enter your Address" value="">
-                                                            
-                                                      </div>
-                                                      <!-- Single Input End -->
-                                                   </div>
-													<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-														<!-- Single Input Start -->
-														<div class="single-input mb-25">
-															<label for="m_password">비밀번호 확인</label>
-															<table>
-																<tr>
-																	<td><input type="password" id="m_passwordChk" name="m_passwordChk" value="" placeholder="패스워드 입력"  style="width: 120%;"></td>
-																</tr>
-																<tr>	
-																	<td><input type="checkbox" name="m_terms1" />개인정보 동의</td>
-																	<td><input type="checkbox" name="m_terms2"/>마케팅 동의</td>
-																</tr>
-															</table>
-														</div>
-													<!-- Single Input End -->
-												</div>
+															<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																<!-- Single Input Start -->
+																<div class="single-input mb-25">
+																	<label for="m_email">이메일 <span>*</span></label>
+																	<table>
+																		<tr>
+																			<td><input type="text" id="m_email"
+																				name="m_email" value="${myInfo.m_email }"
+																				style="width: 315px;"></td>
+																			<td><input type="button" id="mail-Check-Btn" style="background-color: white;" value="인증"></td>
+																		</tr>
+																	</table>
+																	<input type="text" class="form-control mail-check-input" 
+																		placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
+																	<span id="mail-check-warn"></span>	
 																</div>
-															
+																<!-- Single Input End -->
 															</div>
-														
-														</div>
-														<input type="hidden" name="m_number" value="${myInfo.m_number}" />
-														<input type="hidden" name="m_id" value="${myInfo.m_id}" />
-														<input type="hidden" id="m_password" name="e_password" value="${myInfo.m_password}" />
-														<input type="hidden" name="m_name" value="${myInfo.m_name}" />
-														<input type="hidden" name="m_nick" value="${myInfo.m_nick}" />
-														<input type="hidden" name="m_age" value="${myInfo.m_age}" />
-														<input type="hidden" name="m_gender" value="${myInfo.m_gender}" />
-														<input type="hidden" name="m_phone" value="${myInfo.m_phone}" />
-														<input type="hidden" name="m_address1" value="${myInfo.m_address1}" />
-														<input type="hidden" name="m_address2" value="${myInfo.m_address2}" />
-														<input type="hidden" name="m_picture" value="${myInfo.m_picture}" />
-														<input type="hidden" name="m_email" value="${myInfo.m_email}" />
-														<input type="hidden" name="m_terms1" value="${myInfo.m_terms1}" />
-														<input type="hidden" name="m_terms2" value="${myInfo.m_terms2}" />
-														<input type="hidden" name="m_regdate" value="${myInfo.m_regdate}" />
-														<input type="hidden" name="m_warned" value="${myInfo.m_warned}" />
-														<input type="hidden" name="m_banned" value="${myInfo.m_banned}" />
-														<input type="hidden" name="m_quitted" value="${myInfo.m_quitted}" />
-														<input type="hidden" name="m_type" value="${myInfo.m_type}" />
-														<input type="hidden" name="a_code" value="${myInfo.a_code}" />
-														<div class="row">
-															<div class="col-12">
-																<div class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																	<button onclick="passChk()" id="m_myInfoUpdate" name="m_myInfoUpdate" class="ht-btn theme-btn theme-btn-two mb-xs-20">수정</button>
-																	<button class="ht-btn theme-btn theme-btn-two transparent-btn-two">회원탈퇴</button>
+															<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																<!-- Single Input Start -->
+																<div class="single-input mb-25">
+																	<label for="m_address1">주소<span>*</span></label>
+																	<input type="text" id="m_address1" name="m_address1" value="${myInfo.m_address1 }">
+																	<input type="text" id="m_address2" name="m_address2" value="${myInfo.m_address2 }">	
+																</div>
+																<!-- Single Input End -->
+															</div>
+															<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																<!-- Single Input Start -->
+																<div class="single-input mb-25">
+																	<label for="m_terms1">선택약관1</label><input
+																		type="checkbox" id="m_terms1" name="m_terms1"
+																		checked>																			
+																	<label for="m_terms2">선택약관2</label><input
+																		type="checkbox" id="m_terms2" name="m_terms2"
+																		checked>	
+																	<!-- Single Input End -->
 																</div>
 															</div>
+															<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																<!-- Single Input Start -->
+																<div class="single-input mb-25">
+																	<label for="m_password">비밀번호<span>*</span></label>
+																	<input type="password" id="m_password" name="m_password" value="${myInfo.m_password }">
+																</div>
+																<!-- Single Input End -->
+															</div>
+															<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																<!-- Single Input Start -->
+																<div class="single-input mb-25">
+																	<label for="confirm_password">비밀번호 확인<span>*</span></label>
+																	<input type="password" id="confirm_password" name="confirm_password" placeholder="동일한 비밀번호를 입력하세요.">
+																</div>
+																<!-- Single Input End -->
+															</div>
 														</div>
-													</form>
-												</div>
-											</div>
+													</div>
+												</div>	
+													<div class="row">
+														<div class="col-12">
+															<div
+																class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+																<!-- <button type="button" onclick="infoUpdate()" class="ht-btn theme-btn theme-btn-two mb-xs-20">정보수정</button> -->
+																<button type="submit" class="ht-btn theme-btn theme-btn-two mb-xs-20">정보수정</button>
+																<button class="ht-btn theme-btn theme-btn-two transparent-btn-two">회원탈퇴</button>
+															</div>
+														</div>
+													</div>														
+											</form>
 										</div>
 									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -214,7 +201,7 @@
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 
 
-	<script type="text/javascript">
+	<script>
 	
 		<!-- 닉네임 변경시 중복검사 -->
 		function m_nickCheck() {
@@ -241,53 +228,25 @@
 		<!-- 닉네임 변경시 중복검사 end -->
 		
 		
-		
-		
-		
-		<!-- 개인정보 수정 (패스워드 일치시) -> 정보수정 -->
-		function passChk() {
-			var m_passwordChk = $("#m_passwordChk").val();
-			var m_password = $("#m_password").val();
-
-			if(m_passwordChk == m_password){
-				alert('통과');
-				function m_myInfoUpdate();
+		function infoUpdate() {
+			
+		var m_password = $("#m_password").val();
+		var confirm_password = $("#confirm_password").val();
+			
+			if(confirm_password != m_password && confirm_password != ""){
+				alert('비밀번호가 일치하지 않습니다');
+				return;
+			}
+			else if(confirm_password == ""){
+				alert('개인정보 수정을 위해 [비밀번호]를 입력하세요');
+				return;
+			} else{
+				var form = document.updateForm;
+				form.submit();
 				
 			}
-			else if(m_passwordChk != m_password && m_passwordChk != null){
-				alert('비밀번호가 다릅니다.');
-			}
-		}
-		<!-- 개인정보 수정 (패스워드 일치시) end -->
-		<!--
-		function m_myInfoUpdate(m_type, m_id){
-			$.ajax({
-				url : "${contextPath/m_myInfoUpdate}",
-				data : {
-					m_phone : ${"#phone"}.val(),
-					m_address1 : ${"#address1"}.val(),
-					m_address2 : ${"#address2"}.val(),
-					m_nick : ${"#m_nick"}.val(),
-					m_picture : ${"#m_picture"}.val()
-				}
-				dataType : 'json',
-				type : 'POST',
-					success : {
-						
-					},
-					error : {
-						
-					}
-			});
 			
 		}
-		-->
-		
-		<!-- ajax 개인정보 수정  -->
-			
-		
-		
-		<!-- ajax 개인정보 수정 end -->
 		
 	</script>
 
