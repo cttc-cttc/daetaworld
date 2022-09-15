@@ -34,4 +34,46 @@
 		where s_name = #{s_name}
 	</select>
 	
+	<!-- 공고등록한 가게 목록보기 -->
+	<select id="adsHistory" parameterType="String" resultType="Map">
+		select j.*, s.s_name
+		from job_ads j, shop_info s
+		where j.s_number = s.s_number and j.m_id = #{id}
+	</select> 
+	
+	<!-- 가게 정보 -->
+	<select id="adsRegistered" parameterType="java.lang.Integer" resultType="Map">
+		select j.*, s.s_name
+		from job_ads j, shop_info s
+		where j.s_number = s.s_number and j.a_number = #{a_number}
+	</select> 
+	
+	<!-- 등록 중인 가게 목록보기 -->
+	<select id="adsPending" parameterType="String" resultType="Map">
+		select j.*, s.s_name
+		from job_ads j, shop_info s
+		where j.s_number = s.s_number and j.m_id = #{id} and j.a_status = 0
+	</select>
+	
+	<!-- 지원받은 가게 목록보기 -->
+	<select id="adsApplied" parameterType="String" resultType="Map">
+		select j.*, s.s_name
+		from job_ads j, shop_info s
+		where j.s_number = s.s_number and j.m_id = #{id} and j.a_status = 1
+	</select>
+	
+	<!-- 지원자 목록보기 -->
+	<select id="candidates" parameterType="java.lang.Integer" resultType="Map">
+		select a.*, m.*
+		from job_apply a, member m
+		where a.m_id = m.m_id and a.a_number = #{a_number}
+	</select>
+	
+	<!-- 만료된 가게 목록보기 -->
+	<select id="adsExpired" parameterType="String" resultType="Map">
+		select j.*, s.s_name
+		from job_ads j, shop_info s
+		where j.s_number = s.s_number and j.m_id = #{id} and j.a_status = 3
+	</select>
+	
 </mapper>

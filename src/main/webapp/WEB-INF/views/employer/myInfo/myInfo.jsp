@@ -91,7 +91,8 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="m_phone">전화번호 <span>*</span></label><input
+																			<label for="m_phone">전화번호 <span>*</span></label>
+																			<input maxlength="13"
 																				type="text" id="m_phone" name="m_phone"
 																				value="${myInfo.m_phone}">
 																		</div>

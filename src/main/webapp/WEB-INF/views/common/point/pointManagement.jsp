@@ -39,14 +39,44 @@
 											<div class="profile-applications-heading">
 												<ul class="nav">
 													<li><a class="active" href="pointManagement">포인트</a></li>
-													<li><a href="pointHistory">포인트 적립 및 차감 내역</a></li>
-													<li><a href="pointUse">포인트 사용</a></li>													
+													<li><a href="pointEarned">포인트 적립 내역</a></li>
+													<li><a href="pointDeducted">포인트 차감 내역</a></li>											
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													현재 보유 중인 포인트
-													
+													<div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+														<!-- Single Funfact Start -->
+														<div class="row mb-30">														
+														<div 
+															class="single-funfact funfact-style-two text-center justify-content-center width-100 mb-30">
+															<div class="funfact-content">
+																<span class="counter theme-color">${point.point }</span><span
+																	class="text">${point.m_id }님의 현재 포인트</span>
+															</div>
+															
+														</div>				
+														</div>											
+														<!-- Single Funfact End -->														
+													</div>
+													<div class="row">
+														<div class="col-12">
+															<div
+																class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+																<button type="button" id="pointUse" name="pointUse" 
+																	onclick="location.href='${contextPath}/pointMapper/pointUse'"
+																	class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트
+																	사용</button>
+																<button type="button" id="pointAdd" name="pointAdd" 
+																	onclick="location.href='${contextPath}/pointMapper/pointAdd'" 
+																	class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트
+																	충전</button>
+																<button
+																	class="ht-btn theme-btn theme-btn-two transparent-btn-two"
+																	onclick="location.href='${contextPath}'">메인으로</button>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -55,7 +85,6 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>

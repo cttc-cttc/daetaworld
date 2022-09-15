@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>포인트 적립 및 차감 내역</title>
+<title>지원받은 공고</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>포인트 적립 내역</h1>
+										<h1>지원받은 공고</h1>
 									</div>
 								</div>
 							</div>
@@ -38,51 +38,62 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="pointManagement">포인트</a></li>
-													<li><a class="active" href="pointEarned">포인트 적립 내역</a></li>
-													<li><a href="pointDeducted">포인트 차감 내역</a></li>												
+													<li><a href="adsHistory">공고 내역</a></li>
+													<li><a href="adsPending">등록 중인 공고</a></li>
+													<li><a class="active" href="adsApplied">지원자 확인</a></li>
+													<li><a href="adsExpired">만료된 공고</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<div>
-														<!-- Single Funfact Start -->
-														<div class="row mb-30">														
-															<table class="table table-striped">
-																<thead>
-																	<th>번호</th>
-																	<th>적립된 포인트</th>
-																	<th>적립된 날짜</th>
-																</thead>
-															<c:forEach var="earned" items="${earnedPoint}">
-															<tr>
-																<td>${earned.e_number }</a></td>
-																<td>${earned.e_point }</td>
-																<td>${earned.e_date }</td>
+													<table class="table table-striped">
+														<thead>		
+															<th>가게명</th>													
+															<th>날짜</th>															
+															<th>시간</th>
+															<th>시급</th>
+															<th>급구</th>
+															<th>상태</th>
+														</thead>
+														<c:forEach var="adsList" items="${adsApplied}">
+															<tr>			
+																<td><a href="adsRegistered?a_number=${adsList.a_number}">${adsList.s_name }</a></td>													
+																<td>${adsList.a_date }</td>
+																<td>${adsList.a_time }</td>
+																<td>${adsList.a_wage }</td>
+																<td>
+																<c:set var="urgency" value="${adsList.a_urgency }"/>
+																	<c:if test="${urgency == 1 }">
+																		<c:out value="o"></c:out>
+																	</c:if>
+																	<c:if test="${urgency == 0 }">
+																		<c:out value="x"></c:out>
+																	</c:if>
+																</td>																																
+																<td>
+																<c:set var="status" value="${adsList.a_status }"/>
+																	<c:if test="${status == 0 }">
+																		<c:out value="구인 중"></c:out>
+																	</c:if>
+																	<c:if test="${status == 1 }">
+																		<c:out value="신청 중"></c:out>
+																	</c:if>
+																	<c:if test="${status == 2 }">
+																		<c:out value="완료"></c:out>
+																	</c:if>
+																	<c:if test="${status == 3 }">
+																		<c:out value="만료"></c:out>
+																	</c:if>
+																</td>
+																<td>
+																	<button id="" name="" 
+																		onclick="location.href='candidates?a_number=${adsList.a_number}'">
+																		신청자 확인</button>
+																</td>
 															</tr>
-															</c:forEach>															
-															</table>				
-														</div>											
-														<!-- Single Funfact End -->														
-													</div>
-													<div class="row">
-														<div class="col-12">
-															<div
-																class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																<button type="button" id="pointUse" name="pointUse" 
-																	onclick="location.href='${contextPath}/pointMapper/pointUse'"
-																	class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트
-																	사용</button>
-																<button type="button" id="pointAdd" name="pointAdd" 
-																	onclick="location.href='${contextPath}/pointMapper/pointAdd'" 
-																	class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트
-																	충전</button>
-																<button
-																	class="ht-btn theme-btn theme-btn-two transparent-btn-two"
-																	onclick="location.href='${contextPath}'">메인으로</button>
-															</div>
-														</div>
-													</div>
+														</c:forEach>
+													</table>
+													
 												</div>
 											</div>
 										</div>

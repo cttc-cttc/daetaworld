@@ -1,11 +1,13 @@
 package kr.co.deataworld.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.deataworld.dto.JobAdsDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 
@@ -44,8 +46,40 @@ public class EmployerDAOImpl implements EmployerDAO{
 		return sqlSession.selectOne(nameSpace + ".shopInfo", s_name);
 	}
 
+	@Override
+	public List<Map<String, Object>> adsHistory(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".adsHistory", id);
+	}
 
+	@Override
+	public Map<String, Object> adsRegistered(int a_number) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".adsRegistered", a_number);
+	}
 
+	@Override
+	public List<Map<String, Object>> adsPending(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".adsPending", id);
+	}
+	
+	@Override
+	public List<Map<String, Object>> adsApplied(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".adsApplied", id);
+	}
+	
+	@Override
+	public List<Map<String, Object>> candidates(int a_number) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".candidates", a_number);
+	}
 
+	@Override
+	public List<Map<String, Object>> adsExpired(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".adsExpired", id);
+	}
 
 }

@@ -8,7 +8,7 @@
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
-	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">	
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -38,15 +38,47 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="pointManagement">포인트</a></li>
-													<li><a href="pointHistory">포인트 적립 및 차감 내역</a></li>
-													<li><a class="active" href="pointUse">포인트 사용</a></li>													
+													<li><a class="active" href="pointManagement">포인트</a></li>
+													<li><a href="pointEarned">포인트 적립 내역</a></li>
+													<li><a href="pointDeducted">포인트 차감 내역</a></li>												
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													포인트 사용
-													
+													<form action="pointDeduct" method="post">
+														<div class="row mb-30">
+															<div class="col-lg-10">
+																<h3>현재 보유하고 계신 포인트는 ${point.point}점 입니다.</h3>
+																	<div>
+																		인출하실 포인트를 입력하세요 : 
+																		<input type="text" id="point" name="point">
+																	</div>
+																	<input type="hidden" id="id" name="id" value="${point.m_id }">
+																	<input type="hidden" id="pre_point" name="pre_point" value="${point.point }">
+															</div>
+															<div class="col-12">	
+															<button type="button" id="pointDeduct" name="pointDeduct"
+																onclick="deductCheck()">인출하기</button>
+															</div>
+														</div>
+													</form>												
+												</div>
+												<div class="row">
+													<div class="col-12">
+														<div
+															class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+															<button type="button" id="pointUse" name="pointUse"
+																onclick="location.href='${contextPath}/pointMapper/pointManagement'"
+																class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트 화면으로</button>
+															<button type="button" id="pointAdd" name="pointAdd"
+																onclick="location.href='${contextPath}/pointMapper/pointAdd'"
+																class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트
+																충전</button>
+															<button
+																class="ht-btn theme-btn theme-btn-two transparent-btn-two"
+																onclick="location.href='${contextPath}'">메인으로</button>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -75,5 +107,48 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	
+	<script type="text/javascript">
+	function deductCheck(){	
+		
+		var id = $("#id").val();
+		var point = $("#point").val();
+		var pre_point = $("#pre_point").val();
+		
+		if (point > pre_point){
+			alert('인출 금액이 보유 금액보다 많습니다');
+			return;
+		} else if(point == ""){
+			alert('인출하실 금액을 적어주세요');
+			return;
+		} else{
+			var url = "${contextPath}/pointMapper/pointDeduct";
+			var paramData = {
+				"id" : id,
+				"point" : point
+			};
+			
+			$.ajax({
+				url : url,
+				data : paramData,
+				dataType : 'json',
+				type : 'POST',
+				success : function(result){
+					console.log(result);					
+					alert('인출이 완료되었습니다');
+					window.location.reload(true);
+				},
+				error : function(result){
+					console.log(result);
+					alert('인출을 실패하였습니다.');
+				}
+			});
+			
+		}
+		
+	}
+	
+	</script>
+	
 </body>
 </html>

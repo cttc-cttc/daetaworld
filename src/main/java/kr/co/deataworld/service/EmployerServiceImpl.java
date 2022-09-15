@@ -1,11 +1,13 @@
 package kr.co.deataworld.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.EmployerDAO;
+import kr.co.deataworld.dto.JobAdsDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 
@@ -41,10 +43,41 @@ public class EmployerServiceImpl implements EmployerService{
 		return dao.shopInfo(s_name);
 	}
 
+	@Override
+	public List<Map<String, Object>> adsHistory(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.adsHistory(id);
+	}
 
+	@Override
+	public Map<String, Object> adsRegistered(int a_number) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.adsRegistered(a_number);
+	}
 
+	@Override
+	public List<Map<String, Object>> adsPending(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.adsPending(id);		
+	}
+	
+	@Override
+	public List<Map<String, Object>> adsApplied(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.adsApplied(id);		
+	}
+	
+	@Override
+	public List<Map<String, Object>> candidates(int a_number) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.candidates(a_number);
+	}
 
-
+	@Override
+	public List<Map<String, Object>> adsExpired(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.adsExpired(id);
+	}
 
 
 }

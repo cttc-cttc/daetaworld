@@ -40,13 +40,28 @@
 												<ul class="nav">
 													<li><a href="adsHistory">공고 내역</a></li>
 													<li><a href="adsPending">등록 중인 공고</a></li>
-													<li><a class="active" href="candidates">지원자 확인</a></li>
-													<li><a href="adsExpired">종료된 공고</a></li>
+													<li><a class="active" href="adsApplied">지원받은 공고</a></li>
+													<li><a href="adsExpired">만료된 공고</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													신청 받은 공고 정보
+													<table class="table table-striped">
+														<thead>		
+															<th>이름</th>													
+															<th>나이</th>															
+															<th>성별</th>
+															<th>신청한 날짜</th>
+														</thead>
+														<c:forEach var="canList" items="${candidates}">
+															<tr>			
+																<td><a href="#">${canList.m_name }</a></td>													
+																<td>${canList.m_age }</td>
+																<td>${canList.m_gender }</td>
+																<td>${canList.ja_date }</td>																
+															</tr>
+														</c:forEach>
+													</table>
 													
 												</div>
 											</div>

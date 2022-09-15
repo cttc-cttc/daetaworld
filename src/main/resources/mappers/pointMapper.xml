@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.deataworld.pointMapper">
+	
+	<!-- 보유 포인트 확인 -->
+	<select id="point" parameterType="String" resultType="PointDTO">
+		select *
+		from point
+		where m_id = #{id}	
+	</select>
+	
+	<!-- 적립된 포인트 확인 -->
+	<select id="earnedPoint" parameterType="String" resultType="EarnedPointDTO">
+		select *
+		from earned_point
+		where m_id = #{id}	
+	</select>
+	
+	<!-- 차감된 포인트 확인 -->
+	<select id="deductedPoint" parameterType="String" resultType="DeductedPointDTO">
+		select *
+		from deducted_point
+		where m_id = #{id}
+	</select>
+	
+	<!-- 포인트 인출 및 차감 내역에 추가 -->
+	<update id="pointUse" parameterType="Map">
+		update point
+		set point = point - #{point}
+		where m_id = #{id}		
+	</update>
+	<insert id="pointDeduct" parameterType="Map">
+		insert into deducted_point (d_point, d_date, m_id) 
+		values (#{point}, now(), #{id});
+	</insert>
+	
+	<!-- 포인트 추가 및 적립 내역에 추가 -->
+	<update id="pointAdd" parameterType="Map">
+		update point
+		set point = point + #{point}
+		where m_id = #{id}
+	</update>
+	<insert id="pointEarned" parameterType="Map">
+		insert into earned_point (e_point, e_date, m_id) 
+		values (#{point}, now(), #{id});
+	</insert>
+	
+	
+</mapper>
