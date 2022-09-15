@@ -3,6 +3,7 @@ package kr.co.deataworld.dao;
 import java.util.List;
 
 import kr.co.deataworld.dto.BlacklistDTO;
+import kr.co.deataworld.dto.FreeBoardReportDTO;
 import kr.co.deataworld.dto.JobAdsReportDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
@@ -28,4 +29,8 @@ public interface AdminDAO {
 	public int warnJobAds(int a_number) throws Exception;
 	// 구인공고 신고 취소
 	public int cancelJobAds(int re_number) throws Exception;
+	// 전체 자유게시판 글 신고 수
+	public int freeBoardCnt() throws Exception;
+	// 자유게시판 글 신고 조회(페이징 처리)
+	public List<FreeBoardReportDTO> freeBoard(PageProcess pp) throws Exception;
 }

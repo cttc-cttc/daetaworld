@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.deataworld.dto.BlacklistDTO;
+import kr.co.deataworld.dto.FreeBoardReportDTO;
 import kr.co.deataworld.dto.JobAdsReportDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
@@ -67,6 +68,16 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public int cancelJobAds(int re_number) throws Exception {
 		return sql.update(nameSpace + ".cancelJobAds", re_number);
+	}
+
+	@Override
+	public int freeBoardCnt() throws Exception {
+		return sql.selectOne(nameSpace + ".freeBoardCnt");
+	}
+
+	@Override
+	public List<FreeBoardReportDTO> freeBoard(PageProcess pp) throws Exception {
+		return sql.selectList(nameSpace + ".freeBoard", pp);
 	}
 
 	

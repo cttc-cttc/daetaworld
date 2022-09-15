@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import kr.co.deataworld.dto.BlacklistDTO;
+import kr.co.deataworld.dto.FreeBoardReportDTO;
 import kr.co.deataworld.dto.JobAdsReportDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.service.AdminService;
@@ -54,8 +55,10 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/employee_profile")
-	public String employeeProfile(Model model) {
+	public String employeeProfile(Model model, String num, String id) {
 		logger.info("관리자화면 접속 : 구직자 회원 프로필");
+		logger.info("num: " + num);
+		logger.info("id: " + id);
 		
 		model.addAttribute("leftMenu", "employee_list");
 		return "admin/employee_profile";
@@ -178,9 +181,27 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/free_board")
-	public String freeBoard(Model model) {
+	public String freeBoard(Model model, int page) throws Exception {
 		logger.info("관리자화면 접속 : 자유게시판 글 신고");
 		
+		// 1페이지 미만의 번호를 넘기면 1페이지로
+		if(page < 1)
+			return "redirect:free_board?page=1";
+		
+		PageProcess pp = new PageProcess();
+		pp.setCurrPage(page); // 현재 페이지
+		pp.setPagePerList(10); // 한 페이지에 보여줄 자유게시판 글 신고 수
+		pp.setPagePerNavi(10); // 페이지 네비게이터에 표시할 페이지 수
+		pp.setBoardCnt(service.freeBoardCnt()); // 전체 자유게시판 글 신고 수
+		
+		// 마지막 페이지를 초과한 번호를 넘기면 마지막 페이지로
+		int lastPage = pp.calcLastPage();
+		if(page > lastPage)
+			return "redirect:free_board?page=" + lastPage;
+			
+		List<FreeBoardReportDTO> freeBoard = service.freeBoard(pp);
+		model.addAttribute("freeBoard", freeBoard);
+		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "free_board");
 		return "admin/free_board";
 	}

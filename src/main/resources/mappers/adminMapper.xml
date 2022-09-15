@@ -76,7 +76,9 @@
 	<!-- 전체 구인공고 신고 수 -->
 	<select id="jobAdsCnt" resultType="java.lang.Integer">
 		select count(*) from job_ads
-		where r_code is no null and del = 0
+		where
+			r_code is not null
+			and del = 0
 	</select>
 	
 	<!-- 구인공고 신고 조회(페이징 처리) -->
@@ -95,8 +97,10 @@
 			on A.a_number = C.a_number
 		inner join report_code as D <!-- 신고 코드 테이블D -->
 			on A.r_code = d.r_code
-		where A.r_code is not null
-		and C.del = 0
+		where
+			A.r_code is not null
+			and C.del = 0
+		limit #{pageStart}, #{pagePerList}
 	</select>
 	
 	<!-- 신고된 구인공고 삭제 -->
@@ -123,4 +127,36 @@
 			B.re_number = #{re_number}
 		    and A.a_number = B.a_number
 	</update>
+	
+	<!-- 전체 자유게시판 글 신고 수 -->
+	<select id="freeBoardCnt" resultType="java.lang.Integer">
+		select count(*) from board
+		where
+			b_code = 0
+			and r_code is not null
+			and del = 0
+	</select>
+	
+	<!-- 자유게시판 글 신고 조회(페이징 처리) -->
+	<select id="freeBoard" resultType="FreeBoardReportDTO">
+		select
+			A.b_title,	<!-- A.게시글 제목 -->
+			A.m_id,		<!-- A.회원 ID(작성자) -->
+			date(A.b_date) as b_date,	<!-- A.게시글 작성 날짜 -->
+			C.r_type,	<!-- C.신고 타입 -->
+			A.b_number,	<!-- A.게시글 번호 -->
+			B.re_number,<!-- B.글 신고 번호 -->
+			D.m_type	<!-- D.회원 구분 -->
+		from board as A <!-- 게시판 테이블A -->
+		inner join report as B <!-- 글 신고 테이블B -->
+			on A.b_number = B.b_number
+		inner join report_code as C <!-- 신고 코드 테이블C -->
+			on A.r_code = C.r_code
+		inner join member as D <!-- 회원 테이블D -->
+			on A.m_id = D.m_id
+		where A.r_code is not null
+		and A.del = 0
+		limit #{pageStart}, #{pagePerList}
+	</select>
+	
 </mapper>
