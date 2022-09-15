@@ -53,46 +53,27 @@
 															</tr>
 														</thead>
 														<tbody>
-															<tr class="application-item">
-																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">◆◆언제나 당신곁에 @%$&#!!◆◆</a></h3></td>
-																<td class="application-employer"><a class="dotted" href="#">user661</a></td>
-																<td class="application-created"><span>2021.09.17</span></td>
-																<td class="status">광고성 게시글</td>
-																<td class="view-application">
-																	<a href="#" class="view-application">글삭제</a>&nbsp;&nbsp;
-																	<a href="#" class="view-application">신고취소</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">아니 생각할수록 사장 개빡치네 진짜</a></h3></td>
-																<td class="application-employer"><a class="dotted" href="#">user83</a></td>
-																<td class="application-created"><span>2021.11.22</span></td>
-																<td class="status">비속어 사용</td>
-																<td class="view-application">
-																	<a href="#" class="view-application">글삭제</a>&nbsp;&nbsp;
-																	<a href="#" class="view-application">신고취소</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">오늘의 대타일기</a></h3></td>
-																<td class="application-employer"><a class="dotted" href="#">user227</a></td>
-																<td class="application-created"><span>2021.05.08</span></td>
-																<td class="status">광고성 게시글</td>
-																<td class="view-application">
-																	<a href="#" class="view-application">글삭제</a>&nbsp;&nbsp;
-																	<a href="#" class="view-application">신고취소</a>
-																</td>
-															</tr>
-															<tr class="application-item">
-																<td class="application-job text-left"><h3><a class="text-ellipsis" href="#">◆◆언제나 당신곁에 @%$&#!!◆◆</a></h3></td>
-																<td class="application-employer"><a class="dotted" href="#">user661</a></td>
-																<td class="application-created"><span>2021.09.17</span></td>
-																<td class="status">불법성 게시글</td>
-																<td class="view-application">
-																	<a href="#" class="view-application">글삭제</a>&nbsp;&nbsp;
-																	<a href="#" class="view-application">신고취소</a>
-																</td>
-															</tr>
+															<c:forEach var="list" items="${freeBoard }">
+																<tr class="application-item">
+																	<td class="application-job text-left">
+																		<h3><a class="text-ellipsis" href="${contextPath }/board/free/free?num=${list.b_number }">${list.b_title }</a></h3>
+																	</td>
+																	<td class="application-employer">
+																		<c:if test="${list.m_type == 1 }">
+																			<a class="dotted" href="${contextPath }/admin/employee_profile?id=${list.m_id }">${list.m_id }</a>
+																		</c:if>
+																		<c:if test="${list.m_type == 2 }">
+																			<a class="dotted" href="${contextPath }/admin/employer_profile?id=${list.m_id }">${list.m_id }</a>
+																		</c:if>
+																	</td>
+																	<td class="application-created"><span>${list.b_date }</span></td>
+																	<td class="status">${list.r_type }</td>
+																	<td class="view-application">
+																		<a href="${contextPath }/test?b_num=${list.b_number}" class="view-application">글삭제</a>&nbsp;&nbsp;
+																		<a href="${contextPath }/test?re_num=${list.re_number}" class="view-application">신고취소</a>
+																	</td>
+																</tr>
+															</c:forEach>
 														</tbody>
 													</table>
 												</div>

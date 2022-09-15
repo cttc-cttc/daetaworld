@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.AdminDAO;
 import kr.co.deataworld.dto.BlacklistDTO;
+import kr.co.deataworld.dto.FreeBoardReportDTO;
 import kr.co.deataworld.dto.JobAdsReportDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
@@ -65,5 +66,15 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int cancelJobAds(int re_number) throws Exception {
 		return dao.cancelJobAds(re_number);
+	}
+
+	@Override
+	public int freeBoardCnt() throws Exception {
+		return dao.freeBoardCnt();
+	}
+
+	@Override
+	public List<FreeBoardReportDTO> freeBoard(PageProcess pp) throws Exception {
+		return dao.freeBoard(pp);
 	}
 }
