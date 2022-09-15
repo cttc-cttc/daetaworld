@@ -18,7 +18,6 @@ public class AccountServiceImpl implements AccountService{
 		return dao.m_nickChk(m_nick);
 	}
 	
-	@Override
 	public void register(MemberDTO dto) {
 		// TODO Auto-generated method stub
 		
