@@ -25,9 +25,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
 	@Override
-	public int m_myInfoUpdate(MemberDTO memberDTO) {
+	public int myInfoUpdate(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
-		return sql.selectOne(NAMESPACE + ".m_myInfoUpdate", memberDTO);
+		return sql.selectOne(NAMESPACE + ".myInfoUpdate",memberDTO);
 	}
 
 
