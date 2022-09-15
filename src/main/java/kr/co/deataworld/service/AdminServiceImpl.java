@@ -56,4 +56,14 @@ public class AdminServiceImpl implements AdminService {
 	public List<JobAdsReportDTO> jobAds(PageProcess pp) throws Exception {
 		return dao.jobAds(pp);
 	}
+
+	@Override
+	public int warnJobAds(int a_number) throws Exception {
+		return dao.warnJobAds(a_number);
+	}
+
+	@Override
+	public int cancelJobAds(int re_number) throws Exception {
+		return dao.cancelJobAds(re_number);
+	}
 }

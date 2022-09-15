@@ -163,6 +163,20 @@ public class AdminController {
 		return "admin/job_ads";
 	}
 	
+	@GetMapping(value = "admin/warn_job_ads")
+	public String warnJobAds(int a_num) throws Exception {
+		logger.info("관리자화면 : 구인공고 신고 삭제");
+		service.warnJobAds(a_num);
+		return "redirect:job_ads?page=1";
+	}
+	
+	@GetMapping(value = "admin/cancel_job_ads")
+	public String cancelJobAds(int re_num) throws Exception {
+		logger.info("관리자화면 : 구인공고 신고 삭제");
+		service.cancelJobAds(re_num);
+		return "redirect:job_ads?page=1";
+	}
+	
 	@GetMapping(value = "admin/free_board")
 	public String freeBoard(Model model) {
 		logger.info("관리자화면 접속 : 자유게시판 글 신고");

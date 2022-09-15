@@ -24,4 +24,8 @@ public interface AdminDAO {
 	public int jobAdsCnt() throws Exception;
 	// 구인공고 신고 조회(페이징 처리)
 	public List<JobAdsReportDTO> jobAds(PageProcess pp) throws Exception;
+	// 구인공고 신고 삭제
+	public int warnJobAds(int a_number) throws Exception;
+	// 구인공고 신고 취소
+	public int cancelJobAds(int re_number) throws Exception;
 }

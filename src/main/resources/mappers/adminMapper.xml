@@ -96,5 +96,31 @@
 		inner join report_code as D <!-- 신고 코드 테이블D -->
 			on A.r_code = d.r_code
 		where A.r_code is not null
+		and C.del = 0
 	</select>
+	
+	<!-- 신고된 구인공고 삭제 -->
+	<update id="warnJobAds" parameterType="java.lang.Integer">
+		update job_ads as A, member as B, report as C
+		set
+			A.del = 1,
+			B.m_warned = if(B.m_warned = 3, 3, B.m_warned + 1),
+			B.m_banned = if(B.m_warned = 2, 1, 0),
+		    C.del = 1
+		where
+			A.a_number = #{a_number}
+		    and A.m_id = B.m_id
+		    and C.a_number = #{a_number}
+	</update>
+	
+	<!-- 신고된 구인공고 취소 -->
+	<update id="cancelJobAds" parameterType="java.lang.Integer">
+		update job_ads as A, report as B
+		set
+			A.r_code = null,
+			B.del = 1
+		where
+			B.re_number = #{re_number}
+		    and A.a_number = B.a_number
+	</update>
 </mapper>

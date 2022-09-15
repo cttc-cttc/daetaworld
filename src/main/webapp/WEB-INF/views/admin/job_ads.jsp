@@ -64,8 +64,8 @@
 																	<td class="application-created"><span>${jobAdsReport.s_date }</span></td>
 																	<td class="status">${jobAdsReport.r_type }</td>
 																	<td class="view-application">
-																		<a href="#" class="view-application">공고삭제${jobAdsReport.a_number }</a>&nbsp;&nbsp;
-																		<a href="#" class="view-application">신고취소${jobAdsReport.re_number }</a>
+																		<a href="javascript:deleteAds(${jobAdsReport.a_number })" class="view-application">공고삭제</a>&nbsp;&nbsp;
+																		<a href="javascript:cancelAds(${jobAdsReport.re_number })" class="view-application">신고취소</a>
 																	</td>
 																</tr>
 															</c:forEach>
@@ -128,5 +128,17 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	
+	<script>
+		function deleteAds(a_num) {
+			if(confirm('신고된 공고글을 삭제할까요?'))
+				location.href = '${contextPath }/admin/warn_job_ads?a_num='+a_num;
+		}
+		
+		function cancelAds(re_num) {
+			if(confirm('신고된 공고글을 취소할까요?'))
+				location.href = '${contextPath }/admin/cancel_job_ads?re_num='+re_num;
+		}
+	</script>
 </body>
 </html>

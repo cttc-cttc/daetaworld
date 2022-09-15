@@ -59,6 +59,16 @@ public class AdminDAOImpl implements AdminDAO {
 		return sql.selectList(nameSpace + ".jobAds", pp);
 	}
 
+	@Override
+	public int warnJobAds(int a_number) throws Exception {
+		return sql.update(nameSpace + ".warnJobAds", a_number);
+	}
+
+	@Override
+	public int cancelJobAds(int re_number) throws Exception {
+		return sql.update(nameSpace + ".cancelJobAds", re_number);
+	}
+
 	
 
 	
