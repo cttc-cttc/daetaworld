@@ -40,14 +40,49 @@
 												<ul class="nav">
 													<li><a href="pointManagement">포인트</a></li>
 													<li><a href="pointEarned">포인트 적립 내역</a></li>
-													<li><a class="active" href="pointDeducted">포인트 차감 내역</a></li>
-													<li><a href="pointUse">포인트 사용</a></li>													
+													<li><a class="active" href="pointDeducted">포인트 차감 내역</a></li>											
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													포인트 차감 내역
-													
+													<div>
+														<!-- Single Funfact Start -->
+														<div class="row mb-30">														
+															<table class="table table-striped">
+																<thead>
+																	<th>번호</th>
+																	<th>차감된 포인트</th>
+																	<th>차감된 날짜</th>
+																</thead>
+															<c:forEach var="deducted" items="${deductedPoint}">
+															<tr>
+																<td>${deducted.d_number }</a></td>
+																<td>${deducted.d_point }</td>
+																<td>${deducted.d_date }</td>
+															</tr>
+															</c:forEach>															
+															</table>				
+														</div>											
+														<!-- Single Funfact End -->														
+													</div>
+													<div class="row">
+														<div class="col-12">
+															<div
+																class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+																<button type="button" id="pointUse" name="pointUse" 
+																	onclick="location.href='${contextPath}/pointMapper/pointUse'"
+																	class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트
+																	사용</button>
+																<button type="button" id="pointAdd" name="pointAdd" 
+																	onclick="location.href='${contextPath}/pointMapper/pointAdd'" 
+																	class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트
+																	충전</button>
+																<button
+																	class="ht-btn theme-btn theme-btn-two transparent-btn-two"
+																	onclick="location.href='${contextPath}'">메인으로</button>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>

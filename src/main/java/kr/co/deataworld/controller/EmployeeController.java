@@ -25,6 +25,7 @@ import kr.co.deataworld.service.EmployeeService;
 public class EmployeeController {
 	@Inject
 	EmployeeService service;
+	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
 	//내 정보 불러오기

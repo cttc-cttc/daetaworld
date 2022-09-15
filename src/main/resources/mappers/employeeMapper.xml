@@ -7,7 +7,7 @@
 <!-- 내 정보 불러오기(구직자) -->
 <select id="myInfo" resultType="MemberDTO">
 	SELECT * FROM daetaworld.member
-	WHERE m_type = '1' and m_id = 'user';
+	WHERE m_type = '1' and m_id = 'user'
 </select>
 
 

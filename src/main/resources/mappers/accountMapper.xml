@@ -5,7 +5,7 @@
 <mapper namespace="kr.co.deataworld.accountMapper">
 	<select id="m_nickChk" parameterType="String" resultType="java.lang.Integer">		
 		select count(*)
-		from member s
+		from member
 		where m_nick = #{m_nick}			
   	</select>
   	
