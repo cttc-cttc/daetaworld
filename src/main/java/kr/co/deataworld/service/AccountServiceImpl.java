@@ -18,7 +18,8 @@ public class AccountServiceImpl implements AccountService{
 		return dao.m_nickChk(m_nick);
 	}
 	
-	public void register(MemberDTO dto) {
+	public MemberDTO register(MemberDTO dto) throws Exception {
+		return dao.register(dto);
 		// TODO Auto-generated method stub
 		
 	}

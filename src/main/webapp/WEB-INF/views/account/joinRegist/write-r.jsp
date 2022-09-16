@@ -639,14 +639,15 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                     </td>
                                 </tr>
                                 
-                                 <tr>
-                                    <th>점포명</th>
+                                  <tr>
+                                    <th>나이</th>
                                     <td>
-                                        <input type="text" name="Name" class="tBox" title="나이" id="dev_u_name" maxlength="12" placeholder="점포명" />
+                                        <input type="text" name="m_age" class="tBox" title="나이" id="m_age" maxlength="3" placeholder="나이" />
                                         <p class="compul"></p>
                                         <input id="dev_namechkStat" name="dev_namechkStat" type="hidden" value="" />
                                     </td>
                                 </tr>
+                                
                                 
                                 <tr>
                                     <th>이메일</th>
@@ -670,19 +671,12 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <td colspan="2" class="tLine"><div></div></td>
                                 </tr>
+                               
                                 <tr>
                                     <th>휴대폰 번호</th>
                                     <td>
-                                        <select name="Phone1" class="tBox joinBx tPhone" id="dev_hphone1" title="휴대폰 번호">
-                                            <option value="010">010</option>
-                                            <option value="011">011</option>
-                                            <option value="016">016</option>
-                                            <option value="017">017</option>
-                                            <option value="018">018</option>
-                                            <option value="019">019</option>
-                                        </select> -
-                                        <input type="text" name="Phone2" id="dev_hphone2" maxlength="4" class="tBox tPhone" title="휴대폰 번호"> -
-                                        <input type="text" name="Phone3" id="dev_hphone3" maxlength="4" class="tBox tPhone" title="휴대폰 번호">
+                                      
+                                        <input type="text" name="m_phone" id="m_phone" maxlength="11" placeholder="- 공백 없이 입력" class="tBox" title="휴대폰 번호">
                                       
                                         <p class="compul" id="txtCert"></p>
                                         <input id="dev_phoneChkStat" name="dev_phoneChkStat" type="hidden" value="" />
