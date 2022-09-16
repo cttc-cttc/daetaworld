@@ -40,7 +40,7 @@
 												<ul class="nav">
 													<li><a href="adsHistory">공고 내역</a></li>
 													<li><a href="adsPending">등록 중인 공고</a></li>
-													<li><a class="active" href="adsApplied">지원자 확인</a></li>
+													<li><a class="active" href="adsApplied">지원받은 공고</a></li>
 													<li><a href="adsExpired">만료된 공고</a></li>
 												</ul>
 											</div>
@@ -79,9 +79,12 @@
 																		<c:out value="신청 중"></c:out>
 																	</c:if>
 																	<c:if test="${status == 2 }">
-																		<c:out value="완료"></c:out>
+																		<c:out value="구인완료"></c:out>
 																	</c:if>
 																	<c:if test="${status == 3 }">
+																		<c:out value="종료"></c:out>
+																	</c:if>
+																	<c:if test="${status == 4 }">
 																		<c:out value="만료"></c:out>
 																	</c:if>
 																</td>

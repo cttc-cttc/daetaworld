@@ -1,5 +1,6 @@
 package kr.co.deataworld.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -66,8 +68,11 @@ public class EmployerController {
 	
 //	주변 구직자 확인
 	@GetMapping(value="employerMapper/checkEmployees")
-	public String check_employees(Model model) {
+	public String check_employees(Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");
+		String m_id = "owner";
+		List<MemberDTO> list = service.check_employees(m_id);
+		model.addAttribute("list", list);
 		return "employer/candidates/checkEmployees";
 	}
 	
@@ -128,6 +133,35 @@ public class EmployerController {
 		model.addAttribute("candidates", candidates);
 		return "employer/candidates/candidates";
 	}	
+	
+//	지원자 정보보기
+	@GetMapping(value="employerMapper/canDetail")
+	public String canDetail(@RequestParam("m_id")String m_id, 
+			@RequestParam("a_number")int a_number, 
+			@RequestParam("i_number")int i_number , Model model) throws Exception {
+		model.addAttribute("leftMenu", "adsApplied");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("m_id", m_id);
+		map.put("i_number", i_number);
+		Map<String, Object> detail = service.canDetail(map);
+		model.addAttribute("detail", detail);
+		model.addAttribute("a_number", a_number);
+		return "employer/candidates/canDetail";
+	}
+	
+//	지원 수락
+	@ResponseBody
+	@PostMapping(value="employerMapper/applyAccept")
+	public int applyAccept(@RequestParam("m_id")String m_id) throws Exception {		
+		return service.applyAccept(m_id);
+	}
+	
+//	지원 거절
+	@ResponseBody
+	@PostMapping(value="employerMapper/applyDeny")
+	public int applyDeny(@RequestParam("m_id")String m_id) throws Exception {
+		return service.applyDeny(m_id);		
+	}
 	
 //	가게 관리
 	@GetMapping(value="employerMapper/shopManagement")
