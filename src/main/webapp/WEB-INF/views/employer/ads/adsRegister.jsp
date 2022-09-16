@@ -51,7 +51,7 @@
 													<form action="#">
 														<div class="row mb-30">
 															<div class="col-lg-10">
-																<div class="column">
+																<div class="row">
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">

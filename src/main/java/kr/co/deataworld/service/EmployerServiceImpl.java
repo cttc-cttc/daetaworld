@@ -30,6 +30,12 @@ public class EmployerServiceImpl implements EmployerService{
 		return dao.myInfoUpdate(employerEntity);
 	}	
 	
+	@Override
+	public List<MemberDTO> check_employees(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.check_employees(m_id);
+	}
+	
 //	등록한 가게 목록보기
 	@Override
 	public List<ShopInfoDTO> shopManagement(String id) throws Exception {
@@ -70,7 +76,25 @@ public class EmployerServiceImpl implements EmployerService{
 	@Override
 	public List<Map<String, Object>> candidates(int a_number) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.candidates(a_number);
+		return dao.candidates(a_number);		
+	}
+	
+	@Override
+	public Map<String, Object> canDetail(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.canDetail(map);		
+	}
+	
+	@Override
+	public int applyAccept(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.applyAccept(m_id);
+	}
+	
+	@Override
+	public int applyDeny(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.applyDeny(m_id);
 	}
 
 	@Override
@@ -78,6 +102,7 @@ public class EmployerServiceImpl implements EmployerService{
 		// TODO Auto-generated method stub
 		return dao.adsExpired(id);
 	}
+
 
 
 }

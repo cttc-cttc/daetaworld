@@ -78,7 +78,17 @@
 																			<input type="text" id="wage" name="wage" 
 																				value="${detail.a_wage }원">
 																		</div>
-																	</div>																	
+																	</div>	
+																	
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																		<!-- Single Input Start -->
+																		<div class="single-input mb-15">
+																			<label for="need">구인인원 <span>*</span></label><br>
+																			<input type="text" id="need" name="neend" 
+																				value="${detail.a_need }명">
+																		</div>
+																	</div>	
+																																	
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
@@ -105,11 +115,14 @@
 																					<c:out value="신청 중"></c:out>
 																				</c:if>
 																				<c:if test="${stChk == 2 }">
-																					<c:out value="완료"></c:out>
+																					<c:out value="구인완료"></c:out>
 																				</c:if>
 																				<c:if test="${stChk == 3 }">
+																					<c:out value="종료"></c:out>
+																				</c:if>	
+																				<c:if test="${stChk == 4 }">
 																					<c:out value="만료"></c:out>
-																				</c:if>		
+																				</c:if>	
 																			</div>
 																		</div>
 																		<!-- Single Input End -->
@@ -124,6 +137,10 @@
 																	<button  
 																		class="ht-btn theme-btn theme-btn-two mb-xs-20">
 																	공고 정보 수정
+																	</button>
+																	<button  
+																		class="ht-btn theme-btn theme-btn-two mb-xs-20">
+																	공고 삭제
 																	</button>
 																	<button type="button" onclick="location.href='adsHistory'"
 																		class="ht-btn theme-btn theme-btn-two transparent-btn-two">공고목록보기</button>
