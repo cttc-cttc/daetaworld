@@ -32,7 +32,7 @@ public class CommonController {
 		model.addAttribute("point", point);
 		return "common/point/pointManagement";
 	}
-	
+
 //	포인트 적립 내역
 	@GetMapping(value="pointMapper/pointEarned")
 	public String pointEarned(Model model) throws Exception {
@@ -42,7 +42,7 @@ public class CommonController {
 		model.addAttribute("earnedPoint", earnedPoint);
 		return "common/point/pointEarned";
 	}
-	
+
 //	포인트 차감 내역
 	@GetMapping(value="pointMapper/pointDeducted")
 	public String pointDeducted(Model model) throws Exception {
@@ -88,17 +88,17 @@ public class CommonController {
 	}
 	
 //	리뷰 작성을 위한 완료된 공고 확인
-	@GetMapping(value="reviewMapper/adsCompleted")
+	@GetMapping(value = "reviewMapper/adsCompleted")
 	public String adsCompleted(Model model) {
 		model.addAttribute("leftMenu", "adsCompleted");
 		return "common/review/adsCompleted";
 	}
-	
+
 //	리뷰 작성
-	@GetMapping(value="reviewMapper/reviewRegister")
+	@GetMapping(value = "reviewMapper/reviewRegister")
 	public String reviewRegister(Model model) {
 		model.addAttribute("leftMenu", "adsCompleted");
 		return "common/review/reviewRegister";
 	}
-	
+
 }

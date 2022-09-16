@@ -23,7 +23,7 @@
 	  <!-- Main content -->
     <section class="content container-fluid">
 		<div class="box-header">
-			<h3 class="box-title">게시판 글쓰기</h3>
+			<h3 class="box-title">땜빵 게시판 글쓰기</h3>
 		</div>
 	
 		<form role="form" action="register" method="post" >

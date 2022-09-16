@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>자유 게시판</title>
+<title>떔빵 게시판</title>
 <%@ include file="../../include/head.jsp"%>
 
 <!-- custom css -->
@@ -29,7 +29,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>자유 게시판</h1>
+										<h1>땡빵 게시판</h1>
 									</div>
 								</div>
 							</div>
@@ -65,8 +65,8 @@
 											<button class="btn btn-info">댓글작성</button>
 										</div>
 
-													<div id="replylist">
-							<%@ include file="detail1.jsp"%>							
+											
+							<%@ include file="tempingdetail1.jsp"%>							
 													</div>
 
 
@@ -108,19 +108,19 @@
 												});
 												//목록 버튼을 눌렀을 때 처리
 												$(".btn-primary").click(function(){
-													location.href="free";
+													location.href="temping";
 												});
 												//삭제 버튼을 눌렀을 때 처리
 												$(".btn-danger").click(function(){
-													location.href="${contextPath}/board/free/delete?b_number=" + ${board.b_number};
+													location.href="${contextPath}/board/temping/tempingdelete?b_number=" + ${board.b_number};
 												});
 												//수정 버튼을 눌렀을 때 처리
 												$(".btn-warning").click(function(){
-													location.href="${contextPath}/board/free/update?b_number=" + ${board.b_number};
+													location.href="${contextPath}/board/temping/tempingupdate?b_number=" + ${board.b_number};
 												});
 												//댓글작성 버튼을 눌렀을 때 처리
 												$(".btn-info").click(function() {
-													location.href = "${contextPath}/board/free/reply?b_number=" + ${board.b_number};
+													location.href = "${contextPath}/board/temping/tempingreply?b_number=" + ${board.b_number};
 												});
 											})
 										</script>

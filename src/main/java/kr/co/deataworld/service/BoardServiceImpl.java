@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.BoardDAO;
 import kr.co.deataworld.dto.BoardDTO;
+import kr.co.deataworld.dto.CommentsDTO;
 
 
 	@Service
-public class BoardServiceimpl implements BoardService{
+public class BoardServiceImpl implements BoardService{
 		@Autowired	
 		BoardDAO dao;
 
@@ -39,5 +40,31 @@ public class BoardServiceimpl implements BoardService{
 			return dao.update(boardDTO);
 		}
 
-	
-}
+		@Override
+		public int delete(int b_number) throws Exception {
+			// TODO Auto-generated method stub
+			return dao.delete(b_number);
+		}
+
+		@Override
+		public List<CommentsDTO> getDetail1(int b_number) throws Exception {
+			// TODO Auto-generated method stub
+			return dao.getDetail1(b_number);
+		}
+
+		@Override
+		public List<BoardDTO> tempinglist() throws Exception {
+			// TODO Auto-generated method stub
+			return dao.tempinglist();
+		}
+
+		@Override
+		public BoardDTO tempinggetDetail(int b_number) throws Exception {
+			// TODO Auto-generated method stub
+			dao.updateReadCnt(b_number);
+			return dao.tempinggetDetail(b_number);
+		}
+		
+		}
+
+

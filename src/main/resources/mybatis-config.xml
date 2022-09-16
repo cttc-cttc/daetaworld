@@ -14,5 +14,7 @@
 		<typeAlias type="kr.co.deataworld.dto.PointDTO" alias="PointDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.EarnedPointDTO" alias="EarnedPointDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.DeductedPointDTO" alias="DeductedPointDTO"/>
+		<typeAlias type="kr.co.deataworld.dto.CommentsDTO" alias="CommentsDTO"/>
+		
 	</typeAliases>
 </configuration>
