@@ -1,6 +1,7 @@
 package kr.co.deataworld.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -8,9 +9,6 @@ import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.AdminDAO;
 import kr.co.deataworld.dto.BlacklistDTO;
-import kr.co.deataworld.dto.FreeBoardReportDTO;
-import kr.co.deataworld.dto.JobAdsReportDTO;
-import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
 
 @Service
@@ -24,7 +22,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<MemberDTO> employeeList(PageProcess pp) throws Exception {
+	public List<Map<String, Object>> employeeList(PageProcess pp) throws Exception {
 		return dao.employeeList(pp);
 	}
 
@@ -34,7 +32,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<MemberDTO> employerList(PageProcess pp) throws Exception {
+	public List<Map<String, Object>> employerList(PageProcess pp) throws Exception {
 		return dao.employerList(pp);
 	}
 
@@ -54,7 +52,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<JobAdsReportDTO> jobAds(PageProcess pp) throws Exception {
+	public List<Map<String, Object>> jobAds(PageProcess pp) throws Exception {
 		return dao.jobAds(pp);
 	}
 
@@ -74,7 +72,77 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<FreeBoardReportDTO> freeBoard(PageProcess pp) throws Exception {
+	public List<Map<String, Object>> freeBoard(PageProcess pp) throws Exception {
 		return dao.freeBoard(pp);
+	}
+
+	@Override
+	public int warnFreeBoard(int b_number) throws Exception {
+		return dao.warnFreeBoard(b_number);
+	}
+
+	@Override
+	public int cancelFreeBoard(int re_number) throws Exception {
+		return dao.cancelFreeBoard(re_number);
+	}
+
+	@Override
+	public int freeCommentsCnt() throws Exception {
+		return dao.freeCommentsCnt();
+	}
+
+	@Override
+	public List<Map<String, Object>> freeComments(PageProcess pp) throws Exception {
+		return dao.freeComments(pp);
+	}
+
+	@Override
+	public int warnFreeComments(int c_number) throws Exception {
+		return dao.warnFreeComments(c_number);
+	}
+
+	@Override
+	public int cancelFreeComments(int cr_number) throws Exception {
+		return dao.cancelFreeComments(cr_number);
+	}
+
+	@Override
+	public int tempingBoardCnt() throws Exception {
+		return dao.tempingBoardCnt();
+	}
+
+	@Override
+	public List<Map<String, Object>> tempingBoard(PageProcess pp) throws Exception {
+		return dao.tempingBoard(pp);
+	}
+
+	@Override
+	public int warnTempingBoard(int b_number) throws Exception {
+		return dao.warnTempingBoard(b_number);
+	}
+
+	@Override
+	public int cancelTempingBoard(int re_number) throws Exception {
+		return dao.cancelTempingBoard(re_number);
+	}
+
+	@Override
+	public int tempingCommentsCnt() throws Exception {
+		return dao.tempingCommentsCnt();
+	}
+
+	@Override
+	public List<Map<String, Object>> tempingComments(PageProcess pp) throws Exception {
+		return dao.tempingComments(pp);
+	}
+
+	@Override
+	public int warnTempingComments(int c_number) throws Exception {
+		return dao.warnTempingComments(c_number);
+	}
+
+	@Override
+	public int cancelTempingComments(int cr_number) throws Exception {
+		return dao.cancelTempingComments(cr_number);
 	}
 }

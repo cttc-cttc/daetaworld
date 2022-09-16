@@ -11,7 +11,7 @@
 	</select>
 	
 	<!-- 구직자 회원 조회(페이징 처리) -->
-	<select id="employeeList" resultType="MemberDTO">
+	<select id="employeeList" resultType="java.util.Map">
 		select
 			m_id,	<!-- ID -->
 			m_nick,	<!-- 닉네임 -->
@@ -31,7 +31,7 @@
 	</select>
 	
 	<!-- 구인자 회원 조회(페이징 처리) -->
-	<select id="employerList" resultType="MemberDTO">
+	<select id="employerList" resultType="java.util.Map">
 		select
 			m_id,	<!-- ID -->
 			m_nick,	<!-- 닉네임 -->
@@ -82,7 +82,7 @@
 	</select>
 	
 	<!-- 구인공고 신고 조회(페이징 처리) -->
-	<select id="jobAds" resultType="JobAdsReportDTO">
+	<select id="jobAds" resultType="java.util.Map">
 		select
 			B.s_name,	<!-- B.가게명 -->
 			A.m_id,		<!-- A.작성자 -->
@@ -138,7 +138,7 @@
 	</select>
 	
 	<!-- 자유게시판 글 신고 조회(페이징 처리) -->
-	<select id="freeBoard" resultType="FreeBoardReportDTO">
+	<select id="freeBoard" resultType="java.util.Map">
 		select
 			A.b_title,	<!-- A.게시글 제목 -->
 			A.m_id,		<!-- A.회원 ID(작성자) -->
@@ -154,9 +154,213 @@
 			on A.r_code = C.r_code
 		inner join member as D <!-- 회원 테이블D -->
 			on A.m_id = D.m_id
-		where A.r_code is not null
-		and A.del = 0
+		where
+			A.r_code is not null
+			and A.b_code = 0
+			and A.del = 0
 		limit #{pageStart}, #{pagePerList}
 	</select>
 	
+	<!-- 신고된 자유게시판 글 삭제 -->
+	<update id="warnFreeBoard" parameterType="java.lang.Integer">
+		update board as A, member as B, report as C
+		set
+			A.del = 1,
+			B.m_warned = if(B.m_warned = 3, 3, B.m_warned + 1),
+			B.m_banned = if(B.m_warned = 2, 1, 0),
+		    C.del = 1
+		where
+			A.b_number = #{b_number}
+		    and A.m_id = B.m_id
+		    and C.b_number = #{b_number}
+	</update>
+	
+	<!-- 신고된 자유게시판 글 취소 -->
+	<update id="cancelFreeBoard" parameterType="java.lang.Integer">
+		update board as A, report as B
+		set
+			A.r_code = null,
+			B.del = 1
+		where
+			B.re_number = #{re_number}
+		    and A.b_number = B.b_number
+	</update>
+	
+	<!-- 전체 자유게시판 댓글 신고 수 -->
+	<select id="freeCommentsCnt" resultType="java.lang.Integer">
+		select count(*) from comments as A
+		inner join board as B
+			on A.b_number = B.b_number
+		where
+			B.b_code = 0
+			and A.r_code is not null
+			and A.del = 0
+	</select>
+	
+	<!-- 자유게시판 댓글 신고 조회(페이징 처리) -->
+	<select id="freeComments" resultType="java.util.Map">
+		select
+			A.c_contents,	<!-- A.댓글 내용 -->
+			A.m_id,		<!-- A.회원 ID(작성자) -->
+			date(A.c_date) as c_date,	<!-- A.댓글 작성 날짜 -->
+			C.r_type,	<!-- C.신고 타입 -->
+			A.b_number,	<!-- A.게시글 번호 -->
+			A.c_number,	<!-- A.댓글 번호 -->
+			B.cr_number,<!-- B.댓글 신고 번호 -->
+			D.m_type	<!-- D.회원 구분 -->
+		from comments as A <!-- 댓글 테이블A -->
+		inner join comments_report as B <!-- 댓글 신고 테이블B -->
+			on A.c_number = B.c_number
+		inner join report_code as C <!-- 신고 코드 테이블C -->
+			on A.r_code = C.r_code
+		inner join member as D <!-- 회원 테이블D -->
+			on A.m_id = D.m_id
+		inner join board as E <!-- 게시판 테이블E -->
+			on A.b_number = E.b_number
+		where
+			A.r_code is not null
+			and E.b_code = 0
+			and A.del = 0
+		limit #{pageStart}, #{pagePerList}
+	</select>
+	
+	<!-- 신고된 자유게시판 댓글 삭제 -->
+	<update id="warnFreeComments" parameterType="java.lang.Integer">
+		update comments as A, member as B, comments_report as C
+		set
+			A.del = 1,
+			B.m_warned = if(B.m_warned = 3, 3, B.m_warned + 1),
+			B.m_banned = if(B.m_warned = 2, 1, 0),
+		    C.del = 1
+		where
+			A.c_number = #{c_number}
+		    and A.m_id = B.m_id
+		    and C.c_number = #{c_number}
+	</update>
+	
+	<!-- 신고된 자유게시판 댓글 취소 -->
+	<update id="cancelFreeComments" parameterType="java.lang.Integer">
+		update comments as A, comments_report as B
+		set
+			A.r_code = null,
+			B.del = 1
+		where
+			B.cr_number = #{cr_number}
+		    and A.c_number = B.c_number
+	</update>
+	
+	<!-- 전체 땜빵게시판 글 신고 수 -->
+	<select id="tempingBoardCnt" resultType="java.lang.Integer">
+		select count(*) from board
+		where
+			b_code = 1
+			and r_code is not null
+			and del = 0
+	</select>
+	
+	<!-- 땜빵게시판 글 신고 조회(페이징 처리) -->
+	<select id="tempingBoard" resultType="java.util.Map">
+		select
+			A.b_title,	<!-- A.게시글 제목 -->
+			A.m_id,		<!-- A.회원 ID(작성자) -->
+			date(A.b_date) as b_date,	<!-- A.게시글 작성 날짜 -->
+			C.r_type,	<!-- C.신고 타입 -->
+			A.b_number,	<!-- A.게시글 번호 -->
+			B.re_number	<!-- B.글 신고 번호 -->
+		from board as A <!-- 게시판 테이블A -->
+		inner join report as B <!-- 글 신고 테이블B -->
+			on A.b_number = B.b_number
+		inner join report_code as C <!-- 신고 코드 테이블C -->
+			on A.r_code = C.r_code
+		where
+			A.r_code is not null
+			and A.b_code = 1
+			and A.del = 0
+		limit #{pageStart}, #{pagePerList}
+	</select>
+	
+	<!-- 신고된 땜빵게시판 글 삭제 -->
+	<update id="warnTempingBoard" parameterType="java.lang.Integer">
+		update board as A, member as B, report as C
+		set
+			A.del = 1,
+			B.m_warned = if(B.m_warned = 3, 3, B.m_warned + 1),
+			B.m_banned = if(B.m_warned = 2, 1, 0),
+		    C.del = 1
+		where
+			A.b_number = #{b_number}
+		    and A.m_id = B.m_id
+		    and C.b_number = #{b_number}
+	</update>
+	
+	<!-- 신고된 땜빵게시판 글 취소 -->
+	<update id="cancelTempingBoard" parameterType="java.lang.Integer">
+		update board as A, report as B
+		set
+			A.r_code = null,
+			B.del = 1
+		where
+			B.re_number = #{re_number}
+		    and A.b_number = B.b_number
+	</update>
+	
+	<!-- 전체 땜빵게시판 댓글 신고 수 -->
+	<select id="tempingCommentsCnt" resultType="java.lang.Integer">
+		select count(*) from comments as A
+		inner join board as B
+			on A.b_number = B.b_number
+		where
+			B.b_code = 1
+			and A.r_code is not null
+			and A.del = 0
+	</select>
+	
+	<!-- 땜빵게시판 댓글 신고 조회(페이징 처리) -->
+	<select id="tempingComments" resultType="java.util.Map">
+		select
+			A.c_contents,	<!-- A.댓글 내용 -->
+			A.m_id,		<!-- A.회원 ID(작성자) -->
+			date(A.c_date) as c_date,	<!-- A.댓글 작성 날짜 -->
+			C.r_type,	<!-- C.신고 타입 -->
+			A.b_number,	<!-- A.게시글 번호 -->
+			A.c_number,	<!-- A.댓글 번호 -->
+			B.cr_number	<!-- B.댓글 신고 번호 -->
+		from comments as A <!-- 댓글 테이블A -->
+		inner join comments_report as B <!-- 댓글 신고 테이블B -->
+			on A.c_number = B.c_number
+		inner join report_code as C <!-- 신고 코드 테이블C -->
+			on A.r_code = C.r_code
+		inner join board as D <!-- 게시판 테이블D -->
+			on A.b_number = D.b_number
+		where
+			A.r_code is not null
+			and D.b_code = 1
+			and A.del = 0
+		limit #{pageStart}, #{pagePerList}
+	</select>
+	
+	<!-- 신고된 땜빵게시판 댓글 삭제 -->
+	<update id="warnTempingComments" parameterType="java.lang.Integer">
+		update comments as A, member as B, comments_report as C
+		set
+			A.del = 1,
+			B.m_warned = if(B.m_warned = 3, 3, B.m_warned + 1),
+			B.m_banned = if(B.m_warned = 2, 1, 0),
+		    C.del = 1
+		where
+			A.c_number = #{c_number}
+		    and A.m_id = B.m_id
+		    and C.c_number = #{c_number}
+	</update>
+	
+	<!-- 신고된 땜빵게시판 댓글 취소 -->
+	<update id="cancelTempingComments" parameterType="java.lang.Integer">
+		update comments as A, comments_report as B
+		set
+			A.r_code = null,
+			B.del = 1
+		where
+			B.cr_number = #{cr_number}
+		    and A.c_number = B.c_number
+	</update>
 </mapper>

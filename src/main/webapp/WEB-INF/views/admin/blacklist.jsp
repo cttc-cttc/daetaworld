@@ -41,77 +41,86 @@
 											<div class="applications-heading">
 												<h3>블랙리스트</h3>
 											</div>
-											<div class="applications-main-block">
-												<div class="applications-table text-middle">
-													<table class="table">
-														<thead>
-															<tr>
-																<th class="width-15">ID</th>
-																<th class="width-15">닉네임</th>
-																<th class="width-12">가입일</th>
-																<th class="width-35">신고사유</th>
-																<th class="width-23">상세정보</th>
-															</tr>
-														</thead>
-														<tbody>
-															<c:forEach var="list" items="${blacklist }">
-																<tr class="application-item">
-																	<td class="application-job"><h3><span class="id-text">${list.m_id }</span></h3></td>
-																	<td class="application-employer"><span>${list.m_nick }</span></td>
-																	<td class="application-created"><span>${list.m_regdate }</span></td>
-																	<td class="status">
-																		<c:forEach var="rType_cNumber" items="${list.rType_cNumbers }">
-																			<fmt:parseNumber value="${rType_cNumber[1] }" type="number" var="cNum" /> <%-- 댓글 번호 --%>
-																			<a href="${contextPath }/comments?cNum=${cNum }"> <%-- 댓글 번호 String에서 int로 변환 --%>
-																				<span class="rejected report-tag-hover">${rType_cNumber[0] }</span> <%-- 신고 타입 --%>
-																			</a>
-																		</c:forEach>
-																	</td>
-																	<td class="view-application">
-																		<c:if test="${list.m_type == 1 }">
-																			<a href="${contextPath }/admin/employee_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
-																		</c:if>
-																		<c:if test="${list.m_type == 2 }">
-																			<a href="${contextPath }/admin/employer_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
-																		</c:if>
-																	</td>
+											<c:if test="${listZero == null }">
+												<div class="applications-main-block">
+													<div class="applications-table text-middle">
+														<table class="table">
+															<thead>
+																<tr>
+																	<th class="width-15">ID</th>
+																	<th class="width-15">닉네임</th>
+																	<th class="width-12">가입일</th>
+																	<th class="width-35">신고사유</th>
+																	<th class="width-23">상세정보</th>
 																</tr>
-															</c:forEach>
-														</tbody>
-													</table>
-												</div>
-												<div class="application-pagination mb-30">
-													<div class="row">
-														<div class="col-12">
-															<ul class="page-pagination justify-content-center">
-																<%-- 이전 버튼 활성/비활성 --%>
-																<c:if test="${pp.getCurrPage() != 1 }">
-																	<li><a href="${contextPath }/admin/blacklist?page=${pp.getCurrPage()-1}"><i class="fa fa-angle-left"></i></a></li>
-																</c:if>
-																<c:if test="${pp.getCurrPage() == 1 }">
-																	<li><a class="disabled-btn"><i class="fa fa-angle-left"></i></a></li>
-																</c:if>
-																<%-- 페이지 버튼 활성/비활성 --%>
-																<c:forEach var="pageNaviNum" items="${pp.calcPageRange() }">
-																	<c:if test="${pageNaviNum == pp.getCurrPage()}">
-																		<li class="active"><a class="current-btn">${pageNaviNum }</a></li>
-																	</c:if>
-																	<c:if test="${pageNaviNum != pp.getCurrPage()}">
-																		<li><a href="${contextPath }/admin/blacklist?page=${pageNaviNum}">${pageNaviNum }</a></li>
-																	</c:if>
+															</thead>
+															<tbody>
+																<c:forEach var="list" items="${blacklist }">
+																	<tr class="application-item">
+																		<td class="application-job"><h3><span class="id-text">${list.m_id }</span></h3></td>
+																		<td class="application-employer"><span>${list.m_nick }</span></td>
+																		<td class="application-created"><span>${list.m_regdate }</span></td>
+																		<td class="status">
+																			<c:forEach var="rType_cNumber" items="${list.rType_cNumbers }">
+																				<fmt:parseNumber value="${rType_cNumber[1] }" type="number" var="cNum" /> <%-- 댓글 번호 --%>
+																				<a href="${contextPath }/comments?cNum=${cNum }"> <%-- 댓글 번호 String에서 int로 변환 --%>
+																					<span class="rejected report-tag-hover">${rType_cNumber[0] }</span> <%-- 신고 타입 --%>
+																				</a>
+																			</c:forEach>
+																		</td>
+																		<td class="view-application">
+																			<c:if test="${list.m_type == 1 }">
+																				<a href="${contextPath }/admin/employee_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
+																			</c:if>
+																			<c:if test="${list.m_type == 2 }">
+																				<a href="${contextPath }/admin/employer_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
+																			</c:if>
+																		</td>
+																	</tr>
 																</c:forEach>
-																<%-- 다음 버튼 활성/비활성 --%>
-																<c:if test="${pp.getCurrPage() != pp.calcLastPage() }">
-																	<li><a href="${contextPath }/admin/blacklist?page=${pp.getCurrPage()+1}"><i class="fa fa-angle-right"></i></a></li>
-																</c:if>
-																<c:if test="${pp.getCurrPage() == pp.calcLastPage() }">
-																	<li><a class="disabled-btn"><i class="fa fa-angle-right"></i></a></li>
-																</c:if>
-															</ul>
+															</tbody>
+														</table>
+													</div>
+													<div class="application-pagination mb-30">
+														<div class="row">
+															<div class="col-12">
+																<ul class="page-pagination justify-content-center">
+																	<%-- 이전 버튼 활성/비활성 --%>
+																	<c:if test="${pp.getCurrPage() != 1 }">
+																		<li><a href="${contextPath }/admin/blacklist?page=${pp.getCurrPage()-1}"><i class="fa fa-angle-left"></i></a></li>
+																	</c:if>
+																	<c:if test="${pp.getCurrPage() == 1 }">
+																		<li><a class="disabled-btn"><i class="fa fa-angle-left"></i></a></li>
+																	</c:if>
+																	<%-- 페이지 버튼 활성/비활성 --%>
+																	<c:forEach var="pageNaviNum" items="${pp.calcPageRange() }">
+																		<c:if test="${pageNaviNum == pp.getCurrPage()}">
+																			<li class="active"><a class="current-btn">${pageNaviNum }</a></li>
+																		</c:if>
+																		<c:if test="${pageNaviNum != pp.getCurrPage()}">
+																			<li><a href="${contextPath }/admin/blacklist?page=${pageNaviNum}">${pageNaviNum }</a></li>
+																		</c:if>
+																	</c:forEach>
+																	<%-- 다음 버튼 활성/비활성 --%>
+																	<c:if test="${pp.getCurrPage() != pp.calcLastPage() }">
+																		<li><a href="${contextPath }/admin/blacklist?page=${pp.getCurrPage()+1}"><i class="fa fa-angle-right"></i></a></li>
+																	</c:if>
+																	<c:if test="${pp.getCurrPage() == pp.calcLastPage() }">
+																		<li><a class="disabled-btn"><i class="fa fa-angle-right"></i></a></li>
+																	</c:if>
+																</ul>
+															</div>
 														</div>
 													</div>
 												</div>
-											</div>
+											</c:if>
+											<c:if test="${listZero != null }">
+												<div class="applications-main-block">
+													<div class="applications-table text-middle">
+														<p style="margin-top: 2rem;">${listZero }</p>
+													</div>
+												</div>
+											</c:if>
 										</div>
 										<!-- 블랙리스트 End -->
 									</div>

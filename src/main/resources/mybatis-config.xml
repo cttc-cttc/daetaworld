@@ -11,8 +11,6 @@
 		<typeAlias type="kr.co.deataworld.dto.BlacklistDTO" alias="BlacklistDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.JobAdsDTO" alias="JobAdsDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.AreaCodeDTO" alias="AreaCodeDTO"/>
-		<typeAlias type="kr.co.deataworld.dto.JobAdsReportDTO" alias="JobAdsReportDTO"/>
-		<typeAlias type="kr.co.deataworld.dto.FreeBoardReportDTO" alias="FreeBoardReportDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.PointDTO" alias="PointDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.EarnedPointDTO" alias="EarnedPointDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.DeductedPointDTO" alias="DeductedPointDTO"/>

@@ -17,9 +17,9 @@
 					<ul>
 						<li><a id="job_ads" href="${contextPath }/admin/job_ads?page=1"><i class="lnr lnr-briefcase"></i>구인공고</a></li>
 						<li><a id="free_board" href="${contextPath }/admin/free_board?page=1"><i class="lnr lnr-file-empty"></i>자유게시판 글</a></li>
-						<li><a id="free_comment" href="${contextPath }/admin/free_comment"><i class="lnr lnr-pencil"></i>자유게시판 댓글</a></li>
-						<li><a id="temping_board" href="${contextPath }/admin/temping_board"><i class="lnr lnr-file-empty"></i>땜빵게시판 글</a></li>
-						<li><a id="temping_comment" href="${contextPath }/admin/temping_comment"><i class="lnr lnr-pencil"></i>땜빵게시판 댓글</a></li>
+						<li><a id="free_comments" href="${contextPath }/admin/free_comments?page=1"><i class="lnr lnr-pencil"></i>자유게시판 댓글</a></li>
+						<li><a id="temping_board" href="${contextPath }/admin/temping_board?page=1"><i class="lnr lnr-file-empty"></i>땜빵게시판 글</a></li>
+						<li><a id="temping_comments" href="${contextPath }/admin/temping_comments?page=1"><i class="lnr lnr-pencil"></i>땜빵게시판 댓글</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -44,14 +44,14 @@ window.onload = function() {
 		case "free_board":
 			$("#free_board").addClass("active");
 			break;
-		case "free_comment":
-			$("#free_comment").addClass("active");
+		case "free_comments":
+			$("#free_comments").addClass("active");
 			break;
 		case "temping_board":
 			$("#temping_board").addClass("active");
 			break;
-		case "temping_comment":
-			$("#temping_comment").addClass("active");
+		case "temping_comments":
+			$("#temping_comments").addClass("active");
 			break;
 	}
 }

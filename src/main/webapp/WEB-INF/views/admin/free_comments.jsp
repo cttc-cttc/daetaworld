@@ -35,10 +35,10 @@
 							<div class="dashboard-overview">
 								<div class="row">
 									<div class="col-xl-12 col-12">
-										<!-- 구인공고 신고 리스트 Start -->
+										<!-- 자유게시판 신고 댓글 리스트 Start -->
 										<div class="submited-applications mb-50">
 											<div class="applications-heading">
-												<h3>구인공고</h3>
+												<h3>자유게시판 댓글</h3>
 											</div>
 											<c:if test="${listZero == null }">
 												<div class="applications-main-block">
@@ -46,7 +46,7 @@
 														<table class="table">
 															<thead>
 																<tr>
-																	<th class="width-35 text-left">가게명</th>
+																	<th class="width-35 text-left">댓글내용</th>
 																	<th class="width-15">작성자</th>
 																	<th class="width-12">작성일</th>
 																	<th class="width-15">신고사유</th>
@@ -54,19 +54,24 @@
 																</tr>
 															</thead>
 															<tbody>
-																<c:forEach var="jobAdsReport" items="${jobAds }">
+																<c:forEach var="list" items="${freeComments }">
 																	<tr class="application-item">
 																		<td class="application-job text-left">
-																			<h3><a class="text-ellipsis" href="${contextPath }/jobAds?num=${jobAdsReport.a_number }">${jobAdsReport.s_name }</a></h3>
+																			<h3><a class="text-ellipsis" href="${contextPath }/board/free/detail?b_number=${list.b_number }">${list.c_contents }</a></h3>
 																		</td>
 																		<td class="application-employer">
-																			<a class="dotted" href="${contextPath }/admin/employer_profile?id=${jobAdsReport.m_id }">${jobAdsReport.m_id }</a>
+																			<c:if test="${list.m_type == 1 }">
+																				<a class="dotted" href="${contextPath }/admin/employee_profile?id=${list.m_id }">${list.m_id }</a>
+																			</c:if>
+																			<c:if test="${list.m_type == 2 }">
+																				<a class="dotted" href="${contextPath }/admin/employer_profile?id=${list.m_id }">${list.m_id }</a>
+																			</c:if>
 																		</td>
-																		<td class="application-created"><span>${jobAdsReport.s_date }</span></td>
-																		<td class="status">${jobAdsReport.r_type }</td>
+																		<td class="application-created"><span>${list.c_date }</span></td>
+																		<td class="status">${list.r_type }</td>
 																		<td class="view-application">
-																			<a href="javascript:deleteAds(${jobAdsReport.a_number })" class="view-application">공고삭제</a>&nbsp;&nbsp;
-																			<a href="javascript:cancelAds(${jobAdsReport.re_number })" class="view-application">신고취소</a>
+																			<a href="javascript:deleteComments(${list.c_number})" class="view-application">댓글삭제</a>&nbsp;&nbsp;
+																			<a href="javascript:cancelComments(${list.cr_number})" class="view-application">신고취소</a>
 																		</td>
 																	</tr>
 																</c:forEach>
@@ -79,7 +84,7 @@
 																<ul class="page-pagination justify-content-center">
 																	<%-- 이전 버튼 활성/비활성 --%>
 																	<c:if test="${pp.getCurrPage() != 1 }">
-																		<li><a href="${contextPath }/admin/job_ads?page=${pp.getCurrPage()-1}"><i class="fa fa-angle-left"></i></a></li>
+																		<li><a href="${contextPath }/admin/free_comments?page=${pp.getCurrPage()-1}"><i class="fa fa-angle-left"></i></a></li>
 																	</c:if>
 																	<c:if test="${pp.getCurrPage() == 1 }">
 																		<li><a class="disabled-btn"><i class="fa fa-angle-left"></i></a></li>
@@ -90,12 +95,12 @@
 																			<li class="active"><a class="current-btn">${pageNaviNum }</a></li>
 																		</c:if>
 																		<c:if test="${pageNaviNum != pp.getCurrPage()}">
-																			<li><a href="${contextPath }/admin/job_ads?page=${pageNaviNum}">${pageNaviNum }</a></li>
+																			<li><a href="${contextPath }/admin/free_comments?page=${pageNaviNum}">${pageNaviNum }</a></li>
 																		</c:if>
 																	</c:forEach>
 																	<%-- 다음 버튼 활성/비활성 --%>
 																	<c:if test="${pp.getCurrPage() != pp.calcLastPage() }">
-																		<li><a href="${contextPath }/admin/job_ads?page=${pp.getCurrPage()+1}"><i class="fa fa-angle-right"></i></a></li>
+																		<li><a href="${contextPath }/admin/free_comments?page=${pp.getCurrPage()+1}"><i class="fa fa-angle-right"></i></a></li>
 																	</c:if>
 																	<c:if test="${pp.getCurrPage() == pp.calcLastPage() }">
 																		<li><a class="disabled-btn"><i class="fa fa-angle-right"></i></a></li>
@@ -114,7 +119,7 @@
 												</div>
 											</c:if>
 										</div>
-										<!-- 구인공고 신고 리스트 End -->
+										<!-- 자유게시판 신고 댓글 리스트 End -->
 									</div>
 								</div>
 							</div>
@@ -139,14 +144,14 @@
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 	
 	<script>
-		function deleteAds(a_num) {
-			if(confirm('신고된 공고글을 삭제할까요?'))
-				location.href = '${contextPath }/admin/warn_job_ads?a_num='+a_num;
+		function deleteComments(c_num) {
+			if(confirm('신고된 자유게시판 댓글을 삭제할까요?'))
+				location.href = '${contextPath }/admin/warn_free_comments?c_num='+c_num;
 		}
 		
-		function cancelAds(re_num) {
-			if(confirm('신고된 공고글을 취소할까요?'))
-				location.href = '${contextPath }/admin/cancel_job_ads?re_num='+re_num;
+		function cancelComments(cr_num) {
+			if(confirm('신고된 자유게시판 댓글을 취소할까요?'))
+				location.href = '${contextPath }/admin/cancel_free_comments?cr_num='+cr_num;
 		}
 	</script>
 </body>

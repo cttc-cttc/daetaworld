@@ -40,73 +40,82 @@
 											<div class="applications-heading">
 												<h3>구직자 회원정보</h3>
 											</div>
-											<div class="applications-main-block">
-												<div class="applications-table text-middle">
-													<table class="table">
-														<thead>
-															<tr>
-																<th class="width-15">ID</th>
-																<th class="width-15">닉네임</th>
-																<th class="width-12">가입일</th>
-																<th class="width-35">경고상태</th>
-																<th class="width-23">상세정보</th>
-															</tr>
-														</thead>
-														<tbody>
-															<c:forEach var="list" items="${eList }">
-																<tr class="application-item">
-																	<td class="application-job"><h3><span class="id-text">${list.m_id }</span></h3></td>
-																	<td class="application-employer"><span>${list.m_nick }</span></td>
-																	<td class="application-created"><span>${list.m_regdate }</span></td>
-																	<c:if test="${list.m_warned == 0 }">
-																		<td class="status"><span class="approved">정상</span></td>
-																	</c:if>
-																	<c:if test="${list.m_warned == 1 || list.m_warned == 2 }">
-																		<td class="status"><span class="pending">경고 ${list.m_warned }회</span></td>
-																	</c:if>
-																	<c:if test="${list.m_warned == 3 }">
-																		<td class="status"><span class="rejected">정지</span></td>
-																	</c:if>
-																	<td class="view-application">
-																		<a href="${contextPath }/admin/employee_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
-																	</td>
+											<c:if test="${listZero == null }">
+												<div class="applications-main-block">
+													<div class="applications-table text-middle">
+														<table class="table">
+															<thead>
+																<tr>
+																	<th class="width-15">ID</th>
+																	<th class="width-15">닉네임</th>
+																	<th class="width-12">가입일</th>
+																	<th class="width-35">경고상태</th>
+																	<th class="width-23">상세정보</th>
 																</tr>
-															</c:forEach>
-														</tbody>
-													</table>
-												</div>
-												<div class="application-pagination mb-30">
-													<div class="row">
-														<div class="col-12">
-															<ul class="page-pagination justify-content-center">
-																<%-- 이전 버튼 활성/비활성 --%>
-																<c:if test="${pp.getCurrPage() != 1 }">
-																	<li><a href="${contextPath }/admin/employee_list?page=${pp.getCurrPage()-1}"><i class="fa fa-angle-left"></i></a></li>
-																</c:if>
-																<c:if test="${pp.getCurrPage() == 1 }">
-																	<li><a class="disabled-btn"><i class="fa fa-angle-left"></i></a></li>
-																</c:if>
-																<%-- 페이지 버튼 활성/비활성 --%>
-																<c:forEach var="pageNaviNum" items="${pp.calcPageRange() }">
-																	<c:if test="${pageNaviNum == pp.getCurrPage()}">
-																		<li class="active"><a class="current-btn">${pageNaviNum }</a></li>
-																	</c:if>
-																	<c:if test="${pageNaviNum != pp.getCurrPage()}">
-																		<li><a href="${contextPath }/admin/employee_list?page=${pageNaviNum}">${pageNaviNum }</a></li>
-																	</c:if>
+															</thead>
+															<tbody>
+																<c:forEach var="list" items="${eList }">
+																	<tr class="application-item">
+																		<td class="application-job"><h3><span class="id-text">${list.m_id }</span></h3></td>
+																		<td class="application-employer"><span>${list.m_nick }</span></td>
+																		<td class="application-created"><span>${list.m_regdate }</span></td>
+																		<c:if test="${list.m_warned == 0 }">
+																			<td class="status"><span class="approved">정상</span></td>
+																		</c:if>
+																		<c:if test="${list.m_warned == 1 || list.m_warned == 2 }">
+																			<td class="status"><span class="pending">경고 ${list.m_warned }회</span></td>
+																		</c:if>
+																		<c:if test="${list.m_warned == 3 }">
+																			<td class="status"><span class="rejected">정지</span></td>
+																		</c:if>
+																		<td class="view-application">
+																			<a href="${contextPath }/admin/employee_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
+																		</td>
+																	</tr>
 																</c:forEach>
-																<%-- 다음 버튼 활성/비활성 --%>
-																<c:if test="${pp.getCurrPage() != pp.calcLastPage() }">
-																	<li><a href="${contextPath }/admin/employee_list?page=${pp.getCurrPage()+1}"><i class="fa fa-angle-right"></i></a></li>
-																</c:if>
-																<c:if test="${pp.getCurrPage() == pp.calcLastPage() }">
-																	<li><a class="disabled-btn"><i class="fa fa-angle-right"></i></a></li>
-																</c:if>
-															</ul>
+															</tbody>
+														</table>
+													</div>
+													<div class="application-pagination mb-30">
+														<div class="row">
+															<div class="col-12">
+																<ul class="page-pagination justify-content-center">
+																	<%-- 이전 버튼 활성/비활성 --%>
+																	<c:if test="${pp.getCurrPage() != 1 }">
+																		<li><a href="${contextPath }/admin/employee_list?page=${pp.getCurrPage()-1}"><i class="fa fa-angle-left"></i></a></li>
+																	</c:if>
+																	<c:if test="${pp.getCurrPage() == 1 }">
+																		<li><a class="disabled-btn"><i class="fa fa-angle-left"></i></a></li>
+																	</c:if>
+																	<%-- 페이지 버튼 활성/비활성 --%>
+																	<c:forEach var="pageNaviNum" items="${pp.calcPageRange() }">
+																		<c:if test="${pageNaviNum == pp.getCurrPage()}">
+																			<li class="active"><a class="current-btn">${pageNaviNum }</a></li>
+																		</c:if>
+																		<c:if test="${pageNaviNum != pp.getCurrPage()}">
+																			<li><a href="${contextPath }/admin/employee_list?page=${pageNaviNum}">${pageNaviNum }</a></li>
+																		</c:if>
+																	</c:forEach>
+																	<%-- 다음 버튼 활성/비활성 --%>
+																	<c:if test="${pp.getCurrPage() != pp.calcLastPage() }">
+																		<li><a href="${contextPath }/admin/employee_list?page=${pp.getCurrPage()+1}"><i class="fa fa-angle-right"></i></a></li>
+																	</c:if>
+																	<c:if test="${pp.getCurrPage() == pp.calcLastPage() }">
+																		<li><a class="disabled-btn"><i class="fa fa-angle-right"></i></a></li>
+																	</c:if>
+																</ul>
+															</div>
 														</div>
 													</div>
 												</div>
-											</div>
+											</c:if>
+											<c:if test="${listZero != null }">
+												<div class="applications-main-block">
+													<div class="applications-table text-middle">
+														<p style="margin-top: 2rem;">${listZero }</p>
+													</div>
+												</div>
+											</c:if>
 										</div>
 										<!-- 구직자 리스트 End -->
 									</div>
