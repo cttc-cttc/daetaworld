@@ -19,9 +19,16 @@ public class AccountDAOImpl implements AccountDAO{
 		return sqlSession.selectOne(nameSpace + ".m_nickChk", m_nick);
 	}
 		
+	
+	
+	
+	
+	// 리턴값 아직 못함
+	
 	@Override
-	public void register(MemberDTO dto) throws Exception{
+	public MemberDTO register(MemberDTO dto) throws Exception{
 		sqlSession.insert("memberMapper.register", dto);
+		return null;
 		
 	}
 

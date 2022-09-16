@@ -3,7 +3,11 @@ package kr.co.deataworld.dao;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
 import kr.co.deataworld.dto.JobAdsDTO;
+=======
+
+>>>>>>> newb
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 

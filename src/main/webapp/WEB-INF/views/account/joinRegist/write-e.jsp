@@ -37,6 +37,8 @@
     <script type="text/javascript" src="/Scripts/js/mon_sm_akc.js"></script>
     
     <script type="text/javascript" src="/Scripts/mon/lib/jkmon/mon.pc.min.js?202208252"></script>
+    
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 
     
     
@@ -166,12 +168,16 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
         <h1>개인회원 가입</h1>
         <input type="hidden" name="historyCert" id="historyCert" />
 
-<form action="register"  method="post" enctype="multipart/form-data" >           <!--// 동의 -->
+<form action="register"  method="post" role="form">          
+
+<!--// 동의 -->
 <!--  <form action="memberjoinpro.do" method="post" role="form" id="usercheck" name="member"> -->
 
 
 <!--// 동의 -->
 <div class="inner">
+
+
 
 
 
@@ -510,7 +516,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
     </div>
     <div class="join_dot"></div>
     <div class="user_join_agree agrSelect">
-        <input type="checkbox" name="Agree4" id="agreeChk_3" value="on"><label for="agreeChk_3"><span class="select">[선택]</span> 개인정보 수집 및 이용 동의</label>
+        <input type="checkbox" name="m_terms1" id="m_terms1" value="on"><label for="agreeChk_3"><span class="select">[선택]</span> 개인정보 수집 및 이용 동의</label>
         <div class="toggle_terms"><a href="#">내용보기<span></span></a></div>
         <div class="agree_terms">
             <!-- 내용보기 클릭시 t_on 클래스 추가  -->
@@ -530,7 +536,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
         </div>
     </div>
     <div class="user_join_agree agrSelect">
-        <input type="checkbox" name="Agree3" id="agreeChk_2" value="on" /><label for="agreeChk_2"><span class="select">[선택]</span> 광고성 정보 이메일/SMS 수신 동의 <br /><span class="promotion_type">(알바 뉴스레터, 소식 및 광고메일, 휴대폰 알림)</span></label>
+        <input type="checkbox" name="m_terms1" id="m_terms1" value="on" /><label for="agreeChk_2"><span class="select">[선택]</span> 광고성 정보 이메일/SMS 수신 동의 <br /><span class="promotion_type">(알바 뉴스레터, 소식 및 광고메일, 휴대폰 알림)</span></label>
         <div class="toggle_terms">
             <a href="#">내용보기<span></span></a>
         </div>
@@ -565,31 +571,75 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                             <caption>회원가입폼</caption>
                             <colgroup>
                                 <col width="120">
-                                <col width="653">
+                                <col width="853">
 
                             </colgroup>
                             
              
-                            
-                                <tr>
+                <tr>
                                     <td colspan="2" class="tLine"><div></div></td>
                                 </tr>
+             
+             
+									
+											
+														
+														
+																																				
+																	<div>												
+																	
+																	<tr>
+																	<th>프로필 사진</th> <br>
+																	<br>
+																	<td>
+																	<br><br><br><br>
+																	<img  
+																		style="height:200px; width:150px;"
+																		src="${contextPath}/resources/images/${write-e.m_picture}"></td>
+																	<td>
+																	</tr>																	
+																	<tr>																	
+																	<td class="single-input mb-25">																	
+																	<label class="file-label" for="chooseFile" >사진등록</label>
+																		<input class="file" name="m_picture" id="m_picture"
+																		  type="file" 																	   
+																		  accept="image/png, image/jpeg, image/gif"
+																		>
+																	</td>																																	
+																	</tr>																		
+																																																																		
+																</div>
+													
+															
+															<div>
+														
+														<input type="hidden" name="m_picture" id="m_picture" value="${write-e.m_picture }">
+														
+															</div>
+															
+             
+             
+                            
+                             
                                 
                                  <tr>
                                     <th>닉네임</th>
                                     <td>
-                                        <input type="text" name="m_nick" id="m_nick" class="tBox tPwd" maxlength="8" placeholder="2~8자 한글, 숫자" title="닉네임" />
-                                        <p class="compul"></p>
-                                        <input id="dev_idchkStat" name="dev_idchkStat" type="hidden" value="" />
-                                    </td>
+                                        <input type="text" name="m_nick" id="m_nick" value="${myInfo.m_nick }" class="tBox tPwd" maxlength="8" placeholder="2~8자 한글, 숫자" title="닉네임" /></td>
+                                        <td><input type="button" id="m_nickChk" name="m_nickChk" onclick="m_nickCheck()" value="중복검사"></td>
+																						
+                                        
+                                    
                                 </tr>
                                 
-                                <tr>
+                                
+                                
+                                
+                            
                                     <th>아이디</th>
                                     <td>
                                         <input type="text" name="m_id" id="m_id" class="tBox tPwd" maxlength="16" placeholder="6~16자 영문, 숫자" title="아이디" />
-                                        <p class="compul"></p>
-                                        <input id="dev_idchkStat" name="dev_idchkStat" type="hidden" value="" />
+                                 <td><input type="button" id="m_nickChk" name="m_nickChk" onclick="m_nickCheck()" value="중복검사"></td>
                                     </td>
                                 </tr>
                                 <tr>
@@ -623,7 +673,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                  <tr>
                                     <th>나이</th>
                                     <td>
-                                        <input type="text" name="m_age" class="tBox" title="나이" id="m_age" maxlength="12" placeholder="나이" />
+                                        <input type="text" name="m_age" class="tBox" title="나이" id="m_age" maxlength="3" placeholder="나이" />
                                         <p class="compul"></p>
                                         <input id="dev_namechkStat" name="dev_namechkStat" type="hidden" value="" />
                                     </td>
@@ -631,27 +681,15 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 
                                 
                                 
-                                <tr>
-				<th>성별</th>
-					<td colspan="2">
-					<div class="form-group" style=" margin: 0 auto;">
-						<div class="btn-group" data-toggle="buttons">
-						 <p class="compul"></p>
-						<label class="btn btn-primary active">
-						<input type="radio" name="m_gender" autocomplete="off" value="남자" checked>남자
-						</label>
-						
-						<label class="btn btn-primary">
-						<input type="radio" name="m_gende" autocomplete="off" value="여자">여자
-						</label>
-						
-						</div>
-						
+                      
 					
-					</div>
-					
-					</td>
-					</tr>
+					<tr>
+			<th>성별</th>
+			<td>
+				<label><input type="radio" name="m_gender" id="m_gender" value="남" checked/>남성</label>
+				<label><input type="radio" name="m_gender" id="m_gender" value="여" />여성</label>
+			</td>
+		</tr>
 					
 					
 					
@@ -659,38 +697,24 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                 <tr>
                                     <th>이메일</th>
                                     <td>
-                                        <input type="text" name="m_email" class="tBox tEmail" id="m_email" maxlength="25" placeholder="이메일" title="이메일아이디"> <span>@</span> <input type="text" name="EmailDomain" class="tBox tEmail" id="dev_mail_etc" maxlength="25" title="이메일계정" onfocus="mon.account.regist.core.reg.emailChk1()">
-                                        <select name="C_Email_Cp" class="tBox joinBx tEmail" id="dev_email_Cp" title="이메일 서비스업체 선택">
-                                            <option value="">선택하세요</option>
-                                            <option value="naver.com">naver.com</option>
-                                            <option value="hanmail.net">hanmail.net</option>
-                                            <option value="nate.com">nate.com</option>
-                                            <option value="daum.net">daum.net</option>
-                                            <option value="hotmail.com">hotmail.com</option>
-                                            <option value="dreamwiz.com">dreamwiz.com</option>
-                                            <option value="gmail.com">gmail.com</option>
-                                            <option value="etc">직접입력</option>
-                                        </select>
+                                        <input type="text" name="m_email" class="tBox" id="m_email" maxlength="45" placeholder="이메일" title="이메일아이디">  
+                                        
                                         <p class="compul" id="txtEmail"></p>
                                         <input id="dev_mailChkStat" name="dev_mailChkStat" type="hidden" value="" />
                                     </td>
                                 </tr>
+                                
+                                
+                              
+                                
                                 <tr>
                                     <td colspan="2" class="tLine"><div></div></td>
                                 </tr>
                                 <tr>
                                     <th>휴대폰 번호</th>
                                     <td>
-                                        <select name="Phone1" class="tBox joinBx tPhone" id="dev_hphone1" title="휴대폰 번호">
-                                            <option value="010">010</option>
-                                            <option value="011">011</option>
-                                            <option value="016">016</option>
-                                            <option value="017">017</option>
-                                            <option value="018">018</option>
-                                            <option value="019">019</option>
-                                        </select> -
-                                        <input type="text" name="Phone2" id="dev_hphone2" maxlength="4" class="tBox tPhone" title="휴대폰 번호"> -
-                                        <input type="text" name="Phone3" id="dev_hphone3" maxlength="4" class="tBox tPhone" title="휴대폰 번호">
+                                      
+                                        <input type="text" name="m_phone" id="m_phone" maxlength="11" placeholder="- 공백 없이 입력" class="tBox" title="휴대폰 번호">
                                       
                                         <p class="compul" id="txtCert"></p>
                                         <input id="dev_phoneChkStat" name="dev_phoneChkStat" type="hidden" value="" />
@@ -701,19 +725,26 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
                                   <tr>
                                     <th class="tbPt">주소</th>
                                     <td>
-                                        <input type="text" name="ZipCode" id="ZipCode" title="회사/점포주소" class="tBox tConfirmNum" readonly disabled>
-                                        <img class="btnConfirmNum" id="btn_searchAddress" src="https://contents.albamon.kr/monimg/common/btn/btn_addr_sch.png?201608161634" alt="주소검색" disabled>
-                                        <input type="text" name="Full_Addr" id="Full_Addr" title="회사/점포주소" class="tBox tConfirmNum_2" onchange="$.map_reg.map_auto_reg(document.form, '', 'coinfo', '' ,'');" readonly disabled>
-                                        <p class="compul" id="txtAddr"></p>
-                                        <input id="dev_addrchkStat" name="dev_addrchkStat" type="hidden" value="" />
+                                    	
+                                        <input type="text" name="m_address1" id="m_address1"   class="tBox tConfirmNum_2" value="${myInfo.m_address1 }" placeholder="주소검색" >
+                                        
+                                       
+                                       
+                                        <input type="text" name="m_address2" id="m_address2" placeholder="상세주소 입력" class="tBox tConfirmNum_2" value="${myInfo.m_address2 }"  >
+                                      
+                                     
                                     </td>
                                 </tr>
                                 
                                 <tr>
                                     <td colspan="2" class="tLine"><div></div></td>
                                 </tr>
+                                
+                                
+                               
                            
-                       
+
+
 
                         </table>
                         <div class="tooltip" style="display: none;" id="dev_pwd_help_tooltip">
@@ -797,15 +828,9 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
     
 
 
-    <script type="text/javascript">
-        var _NiKwdAdvertiserID = "949";
-        (function ($) {
-            $(window).load(function () {
-                loadScript('/Scripts/js/adcode/NiKwd.roi.tracer.land.js', function () { });
-            });
-        })(jQuery);
-    </script>
+   
 
+    
     
     
 <%--    <script type="text/javascript" src="${contextPath}./Scripts/mon/biz/account/regist/mon.account.regist.core.js?dt=637970363596946889"></script>  --%>
@@ -827,29 +852,213 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.s
 
     
 
-<script type='text/javascript'> if (window.dsHelper) {   } </script>
-<script type="text/javascript">   
 
-    var DS_UID_Value = "";
-    var DSID_Value = "441b7ad951aa0ae399172408b8c8e51b";     
-    if (window._dslog) {
-        if (DSID_Value != "" && DS_UID_Value != "") {
-            window._dslog.setDSID(DSID_Value);
-        } else {
-            window._dslog.setUID(DS_UID_Value);
-        }
-        window._dslog.dispatch();
-    } else {
-        var dslog_tag = document.getElementById("dslog_tag");
-        if (dslog_tag != null && dslog_tag != undefined) {
-            dslog_tag.onload = dslog_tag.onreadystatechange = function () {
-                dslog_tag.onload = dslog_tag.onreadystatechange = null;
-                window._dslog.setUIDCookie(DS_UID_Value);
-                window._dslog.dispatch();
-            }
-        }
-    }
-</script>
+
+
+ <script type="text/javascript">
+      
+   let veriCheck = false;
+   let nickveri = false;
+	// 내 정보수정하기
+	function infoUpdate(chooseFile, m_picture, m_number, m_id, m_name, m_age, m_gender, m_regdate, m_warned, m_banned, m_quitted, m_type, pre_email, pre_nick){	
+		var pre_email = $('#pre_email').val();
+		var pre_nick = $('#pre_nick').val();
+		var pre_picture = $('#m_picture').val();
+		var new_picture = $('#chooseFile').val().replace("C:\\fakepath\\","");
+		
+		var m_number = $('#m_number').val();
+		var m_id = $('#m_id').val();
+		var m_password = $('#m_password').val();
+		var m_name = $('#m_name').val();
+		var m_nick = $('#m_nick').val();		
+		var m_age = $('#m_age').val();		
+		var m_gender = $('#m_gender').val();		
+		var m_phone = $('#m_phone').val();		
+		var m_address1 = $('#m_address1').val();		
+		var m_address2 = $('#m_address2').val();	
+		
+		var m_picture;
+		if(pre_picture != new_picture){
+			m_picture = new_picture;
+		}
+		if(new_picture == ""){
+			m_picture = pre_picture;
+		}
+		
+		var m_email = $('#m_email').val();	
+		
+		var m_terms1;		
+		if($("#m_terms1").is(':checked')==true){
+			m_terms1 = 1;
+		}else{
+			m_terms1 = 0;
+		}		
+		
+		var m_terms2;
+		if($("#m_terms2").is(':checked')==true){
+			m_terms2 = 1;
+		}else{
+			m_terms2 = 0;
+		}
+		
+		var m_regdate = $('#m_regdate').val();	
+		var m_warned = $('#m_warned').val();	
+		var m_banned = $('#m_banned').val();	
+		var m_quitted = $('#m_quitted').val();	
+		var m_type = $('#m_type').val();	
+		
+		var confirm_password = $('#confirm_password').val();
+		
+		if(m_password != confirm_password){
+			alert('비밀번호가 일치하지 않습니다');	
+			return;
+		}else{	
+			
+			if(m_email == pre_email){
+				veriCheck = true;
+			}
+			
+			if(!veriCheck) {
+				alert('이메일 인증이 완료되지 않았습니다.');
+				return;
+			}			
+			
+			if(m_nick == pre_nick){
+				nickveri = true;				
+			}
+			
+			if(!nickveri){
+				alert('닉네임 검사가 완료되지 않았습니다.');
+				return;
+			}
+			
+			var url = "${contextPath}/employerMapper/myInfoUpdate";
+			var paramData = {
+				"m_number" : m_number,				
+				"m_id" : m_id,	
+				"m_password" : m_password,	
+				"m_name" : m_name,	
+				"m_nick" : m_nick,
+				"m_age" : m_age,					
+				"m_gender" : m_gender,					
+				"m_phone" : m_phone,			
+				"m_address1" : m_address1,
+				"m_address2" : m_address2,
+				"m_picture" : m_picture,
+				"m_email" : m_email,			
+				"m_terms1" : m_terms1,			
+				"m_terms2" : m_terms2,			
+				"m_regdate" : m_regdate,			
+				"m_warned" : m_warned,			
+				"m_banned" : m_banned,			
+				"m_quitted" : m_quitted,			
+				"m_type" : m_type			
+							
+			}; // 수정데이터
+			
+			$.ajax({
+				url : url,
+				data : paramData,
+				dataType : 'json',
+				type : 'POST',
+				success : function(result){
+					console.log(result);					
+					alert('정보가 수정되었습니다.');
+					window.location.reload(true);
+				},
+				error : function(result){
+					console.log(result);
+					alert('정보 수정을 실패했습니다.');
+				}
+			});
+		}	
+	}	
+	
+	// 주소 검색
+	window.onload = function(){
+	    document.getElementById("m_address1").addEventListener("click", function(){ //주소입력칸을 클릭하면
+	        //카카오 지도 발생
+	        new daum.Postcode({
+	            oncomplete: function(data) { //선택시 입력값 세팅
+	                document.getElementById("m_address1").value = data.address; // 주소 넣기
+	                document.querySelector("input[name=m_address2]").focus(); //상세입력 포커싱
+	            }
+	        }).open();
+	    });
+	}
+	
+	// 닉네임 중복체크
+	function m_nickCheck(){
+		nickveri = false;
+		$.ajax({
+			url : "${contextPath}/account/m_nickChk",
+			data : {"m_nick" : $("#m_nick").val()},
+			dataType : 'json',
+			type : 'POST',
+			success : function(result){
+				if(result == 1){
+					alert('이미 등록된 닉네임입니다.');
+					console.log('불가');					
+				}else if(result == 0){
+					alert('사용 가능한 닉네임입니다.');
+					console.log('가능');
+					nickveri = true;
+				}else{
+					alert('닉네임을 입력하세요.');
+				} 
+			}
+		});
+	}
+	
+	// 이메일 인증
+	$('#mail-Check-Btn').click(function() {
+	      const email = $('#m_email').val(); // 이메일 주소값 얻어오기!
+	      console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
+	      const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
+	      veriCheck = false;
+
+	      $.ajax({
+	         url : '${contextPath}/emailAuth',
+	         data : {'email': email},
+	         dataType : 'json',
+	         type : 'post',
+	         success: function(res){
+	            alert("인증번호가 발송되었습니다.");
+	            console.log(res);
+	            email_auth_cd = res;
+	            $('.mail-check-input').attr("disabled", false);
+	         },
+	         error: function(res){
+	            alert("메일 발송에 실패했습니다.");
+	            console.log(res);
+	         }
+	      }); // end ajax
+	   }); // end send eamil
+	   
+	   // 인증번호 비교 
+	   // blur -> focus가 벗어나는 경우 발생
+	   $('.mail-check-input').blur(function () {
+	      const inputCode = $(this).val();
+	      const $resultMsg = $('#mail-check-warn');
+	      
+	      if(inputCode == email_auth_cd){
+	         $resultMsg.html('인증번호가 일치합니다.');
+	         $resultMsg.css('color','green');
+	         $('#mail-Check-Btn').attr('disabled',true);
+	         $('#userEmail1').attr('readonly',true);
+	         $('#userEmail2').attr('readonly',true);
+	         $('#userEmail2').attr('onFocus', 'this.initialSelect = this.selectedIndex');
+	            $('#userEmail2').attr('onChange', 'this.selectedIndex = this.initialSelect');
+	            $('.mail-check-input').attr("disabled", true);
+	            veriCheck = true;
+	      }else{
+	         $resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
+	         $resultMsg.css('color','red');
+	         veriCheck = false;
+	      }
+	   });
+
+	</script>
 
 
 

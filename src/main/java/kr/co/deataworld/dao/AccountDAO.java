@@ -9,6 +9,6 @@ public interface AccountDAO {
 	public MemberDTO login(MemberDTO dto) throws Exception;
 	
 	//회원가입
-	public void register(MemberDTO dto) throws Exception;
+	public MemberDTO register(MemberDTO dto) throws Exception;
 	
 }
