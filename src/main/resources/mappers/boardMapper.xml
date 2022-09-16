@@ -5,9 +5,11 @@
 <mapper namespace="kr.co.deataworld.boardMapper">
 <!-- 글 전체목록 -->
 	<select id="list" resultType="BoardDTO">
+		
 		select *
 		from board
 		where b_code = 0
+		and del = 0
 		order by b_number desc
 	</select>
 	
@@ -31,7 +33,7 @@
 	<!-- 글 쓰기 -->
 	<insert id="register" parameterType="BoardDTO">
 		insert into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id ,del)
-		values (#{b_number},#{b_code},
+		values (#{b_number}, 0,
 		#{b_title}, #{b_contents},#{b_hits},curdate(), #{m_id} ,0)
 		
 	</insert>
@@ -44,5 +46,58 @@
 		where b_number = #{b_number}
 	</update>
 	
+	<!-- 글 삭제 del 컬럼을 작성하여 1로 변경 -->
+	<update id="delete" parameterType="java.lang.Integer">
+		update board
+		set
+		del = 1
+		where
+		b_number = #{b_number}
+	</update>
+	
+	<!-- 댓글목록 조회 , 게시글 번호에 해당되는 조회 -->
+	<select id="detail1" parameterType="java.lang.Integer"	resultType="CommentsDTO">
+		select *
+		from comments
+		where b_number = #{b_number} and del = 0
+		order by c_number desc
+
+	</select>
+	
+	<!-- 땡빵 글보여주기 목록 -->
+	<select id="tempinglist" resultType="BoardDTO">
+		
+		select *
+		from board
+		where b_code = 1 and del = 0
+		order by b_number desc
+		
+	</select>
+	
+	<!-- 글 내용확인 -->
+	<select id="tempingdetail" parameterType="java.lang.Integer" resultType="BoardDTO">
+	
+		select * from board
+		where b_number = #{b_number}
+	
+	
+	</select>
+	
+	<update id="tempingupdateReadCnt" parameterType="java.lang.Integer">
+		update board
+		set
+		b_hits
+		= b_hits + 1
+		where b_number = #{b_number}
+
+	</update>
+	
+	<!-- 떙빵 글 쓰기 -->
+	<insert id="tempingregister" parameterType="BoardDTO">
+		insert into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id ,del)
+		values (#{b_number}, 1,
+		#{b_title}, #{b_contents},#{b_hits},curdate(), #{m_id} ,0)
+		
+	</insert>
 	
 </mapper>

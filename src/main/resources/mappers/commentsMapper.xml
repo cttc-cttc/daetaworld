@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.deataworld.commentsMapper">
+
+
+
+	<!-- 댓글 쓰기 -->
+	<insert id="reply" parameterType="CommentsDTO">
+		insert into
+		comments(c_number,  c_contents, c_date, m_id,  b_number ,del )
+		values (#{c_number},  #{c_contents}, curdate(), #{m_id},  #{b_number}, 0)
+	</insert>
+	<!-- 해당 댓글 읽기 -->
+	<select id="detailReply" parameterType="CommentsDTO"
+		resultType="CommentsDTO">
+		select *
+		from comments
+		where c_number = #{c_number} and del = 0
+	</select>
+	<!-- 댓글 수정 -->
+	<update id="replyupdate" parameterType="CommentsDTO" >
+		update comments
+		set
+		m_id =  #{m_id} , c_contents = #{c_contents}, c_date = now()
+		where c_number = #{c_number}
+	</update>
+	<!-- 댓글 삭제 -->
+	<update id="replyDelete" parameterType="java.lang.Integer">
+		update comments
+		set del = 1
+		where c_number = #{c_number}
+	</update>
+
+
+
+
+</mapper>

@@ -1,6 +1,8 @@
 package kr.co.deataworld.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,14 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.deataworld.dto.BoardDTO;
+import kr.co.deataworld.dto.CommentsDTO;
 import kr.co.deataworld.service.BoardService;
+
+
 
 @Controller
 public class BoardController {
@@ -45,6 +52,10 @@ public class BoardController {
 	public String detail(@RequestParam("b_number") int b_number, Model model) throws Exception {
 		BoardDTO board = service.getDetail(b_number);
 		model.addAttribute("board", board);
+		// 댓글목록
+				List<CommentsDTO> list = service.getDetail1(b_number);
+				System.out.println(list);
+				model.addAttribute("list", list);
 		return "board/free/detail";
 	}
 	
@@ -92,24 +103,48 @@ public class BoardController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@GetMapping(value="board/temping/temping")
-	String tempingBoard() {
-		return "board/temping/temping";
+	//삭제하기
+	@RequestMapping(value="board/free/delete",method = RequestMethod.GET)
+	public String delete(@RequestParam("b_number") int b_number, RedirectAttributes rttr) throws Exception {
+		int r = service.delete(b_number);
+		
+		if(r > 0) {
+			rttr.addFlashAttribute("msg","글삭제에 성공하였습니다.");
+			return "redirect:free";
+		}
+		return "redirect:detail?b_number=" + b_number;
 	}
+	
+	
+	
+	
+	
+	
+	
+
+	@RequestMapping(value = "board/temping/temping", method = RequestMethod.GET)
+	public ModelAndView tempinglist() 	throws Exception{
+		ModelAndView mav = new ModelAndView();
+		
+		List<BoardDTO> tempinglist = service.tempinglist();
+		mav.addObject("tempinglist",tempinglist);
+		mav.setViewName("board/temping/temping");
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="board/temping/tempingdetail", method = RequestMethod.GET)
+	public String tempingdetail(@RequestParam("b_number") int b_number, Model model) throws Exception {
+		BoardDTO temping = service.tempinggetDetail(b_number);
+		model.addAttribute("temping", temping);
+	
+		return "board/temping/tempingdetail";
+	}
+	
+	
 	
 	
 
 }
+
+

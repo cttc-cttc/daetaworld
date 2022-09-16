@@ -12,5 +12,7 @@
 		<typeAlias type="kr.co.deataworld.dto.JobAdsDTO" alias="JobAdsDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.AreaCodeDTO" alias="AreaCodeDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.JobAdsReportDTO" alias="JobAdsReportDTO"/>
+		<typeAlias type="kr.co.deataworld.dto.CommentsDTO" alias="CommentsDTO"/>
+		
 	</typeAliases>
 </configuration>
