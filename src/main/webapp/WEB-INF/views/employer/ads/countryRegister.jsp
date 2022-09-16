@@ -15,6 +15,7 @@
 <script type="module" src="${contextPath}/resources/assets/js/tag_create.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <%@ include file="../../include/etc.jsp" %>	
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <body class="template-color-1">
 	<div id="main-wrapper">
@@ -55,14 +56,17 @@
 													<form action="#">
 														<div class="row mb-30">
 															<div class="col-lg-10">
-																<div class="column">
+																<div class="row">
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
-																		<div class="single-input mb-15">
-																			<label for="shopAddress">가게 주소 <span>*</span></label>
-																			<input type="text" name="shopAddress"
-																				placeholder="api 승인 받아서 구현해야됨" />
+																		<div class="single-input mb-25">
+																			<label for="s_address1">주소<span>*</span></label><input
+																				type="text" id="s_address1" name="s_address1"
+																				placeholder="클릭">
+																			<input type="text" id="s_address2" name="s_address2"
+																				placeholder="상세주소를 입력하세요">	
 																		</div>
+																		<!-- Single Input End -->
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<div class="single-input mb-15">
@@ -196,6 +200,21 @@
 			});
 		})
 	</script>	
+	
+	<script type="text/javascript">
+	// 주소 검색
+	window.onload = function(){
+	    document.getElementById("s_address1").addEventListener("click", function(){ //주소입력칸을 클릭하면
+	        //카카오 지도 발생
+	        new daum.Postcode({
+	            oncomplete: function(data) { //선택시 입력값 세팅
+	                document.getElementById("s_address1").value = data.address; // 주소 넣기
+	                document.querySelector("input[name=s_address2]").focus(); //상세입력 포커싱
+	            }
+	        }).open();
+	    });
+	}
+	</script>
 
 </body>
 </html>

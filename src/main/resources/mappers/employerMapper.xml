@@ -20,6 +20,13 @@
 		where m_type = 2 and m_number = #{m_number}
 	</update>
 	
+	<!-- 주변 지원자 확인 -->
+	<select id="" parameterType="String" resultType="MemberDTO">
+		select * 
+		from member
+		where m_address = 
+	</select>
+	
 	<!-- 등록한 가게 목록보기 -->
 	<select id="shopManagement" parameterType="String" resultType="ShopInfoDTO">
 		select *
@@ -38,28 +45,28 @@
 	<select id="adsHistory" parameterType="String" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{id}
+		where j.s_number = s.s_number and j.m_id = #{id} and j.del = 0
 	</select> 
 	
 	<!-- 가게 정보 -->
 	<select id="adsRegistered" parameterType="java.lang.Integer" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.a_number = #{a_number}
+		where j.s_number = s.s_number and j.a_number = #{a_number} and j.del = 0
 	</select> 
 	
 	<!-- 등록 중인 가게 목록보기 -->
 	<select id="adsPending" parameterType="String" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{id} and j.a_status = 0
+		where j.s_number = s.s_number and j.m_id = #{id} and j.a_status = 0 and j.del = 0
 	</select>
 	
-	<!-- 지원받은 가게 목록보기 -->
+	<!-- 지원받은 가게 및 구인완료된 가게 목록보기 -->
 	<select id="adsApplied" parameterType="String" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{id} and j.a_status = 1
+		where j.s_number = s.s_number and j.m_id = #{id} and (j.a_status = 1 or j.a_status = 2) and j.del = 0
 	</select>
 	
 	<!-- 지원자 목록보기 -->
@@ -69,11 +76,32 @@
 		where a.m_id = m.m_id and a.a_number = #{a_number}
 	</select>
 	
+	<!-- 지원자 정보보기 -->
+	<select id="canDetail" parameterType="Map" resultType="Map">
+		select m.*, i.*, ja.jar_status, ja.jae_status
+		from member m, employee_intro i, job_apply ja
+		where m.m_id = i.m_id and m.m_id = #{m_id} and ja.i_number = i.i_number and i.i_number= #{i_number}
+	</select>
+	
+	<!-- 지원 수락 -->
+	<update id="applyAccept" parameterType="String">
+		update job_apply
+		set jar_status = 1, jae_status = 1
+		where m_id = #{id}
+	</update>
+	
+	<!-- 지원 거절 -->
+	<update id="applyDeny" parameterType="String">
+		update job_apply
+		set jar_status = 2, jae_status = 3
+		where m_id = #{id}
+	</update>
+	
 	<!-- 만료된 가게 목록보기 -->
 	<select id="adsExpired" parameterType="String" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{id} and j.a_status = 3
+		where j.s_number = s.s_number and j.m_id = #{id} and j.a_status = 4 and j.del = 0
 	</select>
 	
 </mapper>

@@ -79,9 +79,12 @@
 																		<c:out value="신청 중"></c:out>
 																	</c:if>
 																	<c:if test="${status == 2 }">
-																		<c:out value="완료"></c:out>
+																		<c:out value="구인 완료"></c:out>
 																	</c:if>
 																	<c:if test="${status == 3 }">
+																		<c:out value="종료"></c:out>
+																	</c:if>
+																	<c:if test="${status == 4 }">
 																		<c:out value="만료"></c:out>
 																	</c:if>
 																</td>

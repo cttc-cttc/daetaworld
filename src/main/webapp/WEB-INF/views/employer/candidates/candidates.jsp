@@ -55,7 +55,10 @@
 														</thead>
 														<c:forEach var="canList" items="${candidates}">
 															<tr>			
-																<td><a href="#">${canList.m_name }</a></td>													
+																<td><a 
+																	href="canDetail?m_id=${canList.m_id}&a_number=${canList.a_number}&i_number=${canList.i_number}"
+																	>
+																	${canList.m_name }</a></td>													
 																<td>${canList.m_age }</td>
 																<td>${canList.m_gender }</td>
 																<td>${canList.ja_date }</td>																

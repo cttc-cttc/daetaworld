@@ -33,6 +33,12 @@ public class EmployerDAOImpl implements EmployerDAO{
 		return sqlSession.update(nameSpace + ".myInfoUpdate", employerEntity);
 	}
 	
+	@Override
+	public List<MemberDTO> check_employees(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 //	등록한 가게 목록보기
 	@Override
 	public List<ShopInfoDTO> shopManagement(String id) throws Exception {
@@ -75,11 +81,31 @@ public class EmployerDAOImpl implements EmployerDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".candidates", a_number);
 	}
+	
+	@Override
+	public Map<String, Object> canDetail(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".canDetail", map);
+	}
+	
+	@Override
+	public int applyAccept(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".applyAccept", m_id);
+	}
+	
+	@Override
+	public int applyDeny(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".applyDeny", m_id);
+	}
 
 	@Override
 	public List<Map<String, Object>> adsExpired(String id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".adsExpired", id);
 	}
+
+
 
 }
