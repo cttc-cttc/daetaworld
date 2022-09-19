@@ -19,7 +19,11 @@ public class AccountDAOImpl implements AccountDAO{
 		return sqlSession.selectOne(nameSpace + ".m_nickChk", m_nick);
 	}
 		
-	
+	@Override
+	public int m_idChk(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".m_idChk", m_id);
+	}
 	
 	
 	
@@ -37,5 +41,11 @@ public class AccountDAOImpl implements AccountDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+
+
+	
 	
 }

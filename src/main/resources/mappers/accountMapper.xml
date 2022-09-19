@@ -9,6 +9,13 @@
 		where m_nick = #{m_nick}			
   	</select>
   	
+  	<select id="m_idChk" parameterType="String" resultType="java.lang.Integer">		
+		select count(*)
+		from member
+		where m_id = #{m_id}			
+  	</select>
+  	
+  	
   	
   	<insert id="write-e" parameterType="MemberDTO">
 	    INSERT INTO MEMBER(   m_id 

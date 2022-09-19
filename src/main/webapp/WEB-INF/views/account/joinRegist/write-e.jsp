@@ -29,10 +29,12 @@
 
 
 
-<script src="http://code.jquery.com/jquery-latest.js"></script> 
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
+
+
+
+
+    
 
 <body id="" >
     
@@ -180,38 +182,30 @@
 											
 														
 														
-																																				
-																	<div>												
 																	
+																
+																	<th>프로필 사진</th>																			
+																	<label class="d-block" for="picture"><span>*</span></label>																		
+																
 																	<tr>
-																	<th>프로필 사진</th> <br>
-																	<br>
 																	<td>
-																	<br><br><br><br>
 																	<img  
 																		style="height:200px; width:150px;"
-																		src="${contextPath}/resources/images/${write-e.m_picture}"></td>
+																		src="${contextPath}/resources/images/${myInfo.m_picture}"></td>
 																	<td>
 																	</tr>																	
 																	<tr>																	
-																	<td class="single-input mb-25">																	
-																	<label class="file-label" for="chooseFile" >사진등록</label>
-																		<input class="file" name="m_picture" id="m_picture"
+																	<td class="single-input mb-25">		
+																																
+																	<label class="file-label" for="chooseFile"  > 사진 등록</label>
+																		<input class="file" name="chooseFile" id="chooseFile"
 																		  type="file" 																	   
 																		  accept="image/png, image/jpeg, image/gif"
 																		>
 																	</td>																																	
 																	</tr>																		
-																																																																		
-																</div>
-													
-															
-															<div>
+																
 														
-														<input type="hidden" name="m_picture" id="m_picture" value="${write-e.m_picture }">
-														
-															</div>
-															
              
              
                             
@@ -220,23 +214,21 @@
                                  <tr>
                                     <th>닉네임</th>
                                     <td>
-                                        <input type="text" name="m_nick" id="m_nick" value="${write-e.m_nick }" class="tBox tPwd" maxlength="8" placeholder="2~8자 한글, 숫자" title="닉네임" /></td>
-                                        <td><input type="button" id="m_nickChk" name="m_nickChk" onclick="m_nickCheck()" value="중복검사"></td>
-																						
-                                        
-                                    
+                                        <input type="text" name="m_nick" id="m_nick"  class="tBox tPwd" maxlength="8" placeholder="2~8자 한글, 숫자" title="닉네임" /></td>
+                                        <td><input type="button" id="m_nickChk" name="m_nickChk" style="margin-right: 40px;" onclick="m_nickCheck()" value="중복검사"></td>
                                 </tr>
                                 
                                 
-                                
-                                
-                            
+                                <tr>
                                     <th>아이디</th>
                                     <td>
-                                        <input type="text" name="m_id" id="m_id" class="tBox tPwd" maxlength="16" placeholder="6~16자 영문, 숫자" title="아이디" />
-                                 <td><input type="button" id="m_nickChk" name="m_nickChk" onclick="m_nickCheck()" value="중복검사"></td>
-                                    </td>
+                                        <input type="text" name="m_id" id="m_id" class="tBox tPwd" maxlength="16" placeholder="6~16자 영문, 숫자" title="아이디" /></td>
+                                 <td><input type="button" id="m_idChk" name="m_idChk" onclick="m_idCheck()" value="중복검사"></td>
+                                   
                                 </tr>
+                                
+                                
+                                
                                 <tr>
                                     <th>비밀번호 <a href="javascript:;"><span class="iconPwdQues" id="dev_pwd_help_icon"></span></a></th>
                                     <td>
@@ -295,7 +287,8 @@
                                         <input type="text" name="m_email" class="tBox" id="m_email" maxlength="45" placeholder="이메일" title="이메일아이디">  
                                         
                                         <p class="compul" id="txtEmail"></p>
-                                     
+                                     <td><input type="button" id="mail-Check-Btn" value="인증">
+																						</td>
                                         
                                         <input type="text" class="tBox" placeholder="인증번호 6자리를 입력해주세요!"  maxlength="6">
 										<span id="mail-check-warn"></span>	
@@ -325,11 +318,11 @@
                                     <th class="tbPt">주소</th>
                                     <td>
                                     	
-                                        <input type="text" name="m_address1" id="m_address1"   class="tBox tConfirmNum_2" value="${myInfo.m_address1 }" placeholder="주소검색" >
+                                        <input type="text" name="m_address1" id="m_address1"   class="tBox tConfirmNum_2"  placeholder="주소검색" >
                                         
                                        
                                        
-                                        <input type="text" name="m_address2" id="m_address2" placeholder="상세주소 입력" class="tBox tConfirmNum_2" value="${myInfo.m_address2 }"  >
+                                        <input type="text" name="m_address2" id="m_address2" placeholder="상세주소 입력" class="tBox tConfirmNum_2"   >
                                       
                                      
                                     </td>
@@ -405,22 +398,6 @@
     
     
 
-    
-    
-    
-    
-    
-   
-   
-   
-
-
-
-
-
-    
-
-
    
 
     
@@ -431,33 +408,15 @@
     
 
 
-    <script type="text/javascript">
-        // 회원가입 객체 생성
-        var controller = new mon.account.regist.write.registWrite();
-        // 유효성검사 객체 생성
-        var registValidator = new mon.account.regist.write.registValidator();
-    </script>
+ 
+<script type="text/javascript">
 
-
-    
-
- <script
-      src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-   <script
-      src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-   <script
-      src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-   <!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-   <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-   <script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-   <script src="${contextPath}/resources/assets/js/main.js"></script>
-
-
-
- <script type="text/javascript">
       
    let veriCheck = false;
    let nickveri = false;
+   let idveri = false;
+   
+   
 	// 내 정보수정하기
 	function check(chooseFile, m_picture, m_number, m_id, m_name, m_age, m_gender, m_regdate, m_warned, m_banned, m_quitted, m_type, pre_email, pre_nick){	
 		var pre_email = $('#pre_email').val();
@@ -590,7 +549,7 @@
 	function m_nickCheck(){
 		nickveri = false;
 		$.ajax({
-			url : "${contextPath}/account/m_nickChk",
+			url : "account/m_nickChk",
 			data : {"m_nick" : $("#m_nick").val()},
 			dataType : 'json',
 			type : 'POST',
@@ -608,6 +567,31 @@
 			}
 		});
 	}
+	
+	
+	// 아이디 중복체크
+	function m_idCheck(){
+		idveri = false;
+		$.ajax({
+			url : "account/m_idChk",
+			data : {"m_id" : $("#m_id").val()},
+			dataType : 'json',
+			type : 'POST',
+			success : function(result){
+				if(result == 1){
+					alert('이미 등록된 아이디입니다.');
+					console.log('불가');					
+				}else if(result == 0){
+					alert('사용 가능한 아이디입니다.');
+					console.log('가능');
+					idveri = true;
+				}else{
+					alert('아이디를 입력하세요.');
+				} 
+			}
+		});
+	}
+	
 	
 	// 이메일 인증
 	$('#mail-Check-Btn').click(function() {
@@ -671,4 +655,22 @@
     
     <noscript><img src="//ngc7.nsm-corp.com/?uid=CN3B330392286&je=n&" border=0 width=0 height=0 /></noscript>
 </body>
+
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>  -->
+<!-- <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
+    
+    
+     <script
+      src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
+   <!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
+   <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+   <script src="${pageContext.request.contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
+
 </html>

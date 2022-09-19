@@ -24,4 +24,10 @@ public class AccountServiceImpl implements AccountService{
 		
 	}
 
+	@Override
+	public int m_idChk(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.m_idChk(m_id);
+	}
+
 }
