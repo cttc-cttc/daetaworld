@@ -155,30 +155,35 @@ public class AccountController {
 	
 	
 	
-//	// 회원가입 get
-//	@RequestMapping(value = "/register", method = RequestMethod.GET)
-//	public void getRegister() throws Exception {
-//		logger.info("get register");
-//	}
-//		
-//	// 회원가입 post
-//	@RequestMapping(value = "/register", method = RequestMethod.POST)
-//	public String postRegister(MemberDTO dto) throws Exception {
-//		logger.info("post register");			
-//		service.register(dto);			
-//		return null;
-//	}	
-
+	// 회원가입 get
 	
+	@Inject
+	private AccountService register;
 	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public void getRegister() throws Exception {
+		logger.info("get register");
+	}
+		
+	// 회원가입 post
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView memberJoin(MemberDTO dto) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		AccountService.register(dto);
-		mav.setViewName("login");
-		return mav;
+	public String postRegister(MemberDTO dto) throws Exception {
+		logger.info("post register");			
+		AccountService.register(dto);			
+		return null;
+	}	
 
 	
-}
+
+	
+//	
+//	@RequestMapping(value = "/register", method = RequestMethod.POST)
+//	public ModelAndView memberJoin(MemberDTO dto) throws Exception {
+//		ModelAndView mav = new ModelAndView();
+//		AccountService.register(dto);
+//		mav.setViewName("login");
+//		return mav;
+//}
+	
 }
 
