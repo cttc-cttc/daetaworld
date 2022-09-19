@@ -3,6 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.deataworld.boardMapper">
+
+<!-- 로그인 처리를 위한 SQL -->
+	<select id="login" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		select id, name
+		from member
+		where id=#{id} and password
+		=#{password}
+	</select>
+
+
+
+
+
+
 <!-- 글 전체목록 -->
 	<select id="list" resultType="BoardDTO">
 		
@@ -94,10 +109,30 @@
 	
 	<!-- 떙빵 글 쓰기 -->
 	<insert id="tempingregister" parameterType="BoardDTO">
-		insert into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id ,del)
-		values (#{b_number}, 1,
-		#{b_title}, #{b_contents},#{b_hits},curdate(), #{m_id} ,0)
+		insert 
+		into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id ,del)
+		values (#{b_number}, 1, #{b_title}, #{b_contents},#{b_hits},now(), #{m_id} ,0)
 		
 	</insert>
+	
+	<!-- 글 수정 -->
+	<update id="tempingupdate" parameterType="BoardDTO">
+		update board
+		set
+		b_title = #{b_title}, b_contents = #{b_contents}, b_date = now()
+		where b_number = #{b_number}
+	</update>
+	
+		<!-- 글 삭제 del 컬럼을 작성하여 1로 변경 -->
+	<update id="tempingdelete" parameterType="java.lang.Integer">
+		update board
+		set
+		del = 1
+		where
+		b_number = #{b_number}
+	</update>
+	
+
+	
 	
 </mapper>

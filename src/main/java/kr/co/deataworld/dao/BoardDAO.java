@@ -26,7 +26,13 @@ public interface BoardDAO {
 
 	public BoardDTO tempinggetDetail(int b_number) throws Exception;
 	
+	public int updateReadtempingCnt(int b_number);
 	
+	public int tempingregister(BoardDTO boardDTO) throws Exception;
+	
+	public int tempingupdate(BoardDTO boardDTO) throws Exception;
+	
+	public int tempingdelete(int b_number) throws Exception;
 	
 }
 

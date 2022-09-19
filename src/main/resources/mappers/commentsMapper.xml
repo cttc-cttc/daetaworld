@@ -10,10 +10,10 @@
 	<insert id="reply" parameterType="CommentsDTO">
 		insert into
 		comments(c_number,  c_contents, c_date, m_id,  b_number ,del )
-		values (#{c_number},  #{c_contents}, curdate(), #{m_id},  #{b_number}, 0)
+		values (#{c_number},  #{c_contents}, now(), #{m_id},  #{b_number}, 0)
 	</insert>
 	<!-- 해당 댓글 읽기 -->
-	<select id="detailReply" parameterType="CommentsDTO"
+	<select id="detailreply" parameterType="CommentsDTO"
 		resultType="CommentsDTO">
 		select *
 		from comments
@@ -27,11 +27,40 @@
 		where c_number = #{c_number}
 	</update>
 	<!-- 댓글 삭제 -->
-	<update id="replyDelete" parameterType="java.lang.Integer">
+	<update id="replydelete" parameterType="java.lang.Integer">
 		update comments
 		set del = 1
 		where c_number = #{c_number}
 	</update>
+	
+		<!-- 땜빵 댓글 쓰기 -->
+	<insert id="tempingreply" parameterType="CommentsDTO">
+		insert into
+		comments(c_number,  c_contents, c_date, m_id,  b_number ,del )
+		values (#{c_number},  #{c_contents}, now(), #{m_id},  #{b_number}, 0)
+	</insert>
+	<!-- 해당 댓글 읽기 -->
+	<select id="tempingdetailreply" parameterType="CommentsDTO"
+		resultType="CommentsDTO">
+		select *
+		from comments
+		where c_number = #{c_number} and del = 0
+	</select>
+	<!-- 땜빵 댓글 수정 -->
+	<update id="tempingreplyupdate" parameterType="CommentsDTO" >
+		update comments
+		set
+		m_id =  #{m_id} , c_contents = #{c_contents}, c_date = now()
+		where c_number = #{c_number}
+	</update>
+	<!-- 떔빵 댓글 삭제 -->
+	<update id="tempingreplydelete" parameterType="java.lang.Integer">
+		update comments
+		set del = 1
+		where c_number = #{c_number}
+	</update>
+
+	
 
 
 

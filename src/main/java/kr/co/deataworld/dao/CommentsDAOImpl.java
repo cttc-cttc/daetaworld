@@ -42,4 +42,28 @@ public class CommentsDAOImpl implements CommentsDAO {
 		return sqlSession.update(namespace + ".replyDelete", c_number);
 	}
 
+	@Override
+	public int tempingreply(CommentsDTO commentsDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace + ".tempingreply", commentsDTO);
+	}
+
+	@Override
+	public CommentsDTO tempingdetailreply(int c_number) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".tempingdetailreply", c_number);
+	}
+
+	@Override
+	public int tempingreplyupdate(CommentsDTO commentsDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + ".tempingreplyupdate", commentsDTO);
+	}
+
+	@Override
+	public int tempingreplydelete(int c_number) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + ".tempingreplydelete", c_number);
+	}
+
 }

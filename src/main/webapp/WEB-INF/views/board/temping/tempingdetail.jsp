@@ -39,30 +39,31 @@
 									<div class="box-body">
 										<div class="f	orm-group">
 											<label>제목</label> <input type="text" name="b_title"
-												class="form-control" value="${board.b_title}"
+												class="form-control" value="${temping.b_title}"
 												readonly="readonly" />
 										</div>
 
 										<div class="form-group">
 											<label>내용</label>
 											<textarea name="b_contents" rows="5" readonly="readonly"
-												class="form-control">${board.b_contents}</textarea>
+												class="form-control">${temping.b_contents}</textarea>
 										</div>
 
 										<div class="form-group">
 											<label>작성자</label> <input type="text" name="m_id"
-												class="form-control" value="${board.m_id}"
+												class="form-control" value="${temping.m_id}"
 												readonly="readonly" />
 										</div>
 									</div>
 
 									<tr>
 										<div class="box-footer">
-											<button id="" class="btn btn-success">메인</button>
-											<button class="btn btn-warning">수정</button>
-											<button class="btn btn-danger">삭제</button>
-											<button class="btn btn-primary">목록</button>
-											<button class="btn btn-info">댓글작성</button>
+											<button id="" class="btn btn-success" onclick="location.href='${contextPath}'">메인</button>
+													<button class="btn btn-primary onclick="location.href='${contextPath}/board/temping/tempin'">목록</button>
+											<button class="btn btn-warning" onclick="location.href='${contextPath}/board/temping/tempingupdate?b_number=${temping.b_number}'">수정</button>
+											<button class="btn btn-danger onclick="location.href='${contextPath}/board/temping/tempingdelete?b_number=${temping.b_number}'">삭제</button>
+									
+											<button class="btn btn-info onclick="location.href='${contextPath}/board/temping/tempingreply?b_number=${temping.b_number}'">댓글작성</button>
 										</div>
 
 											
@@ -86,43 +87,43 @@
 										<!-- All jquery file included here -->
 
 
-										<script
-											src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-										<script
-											src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-										<script
-											src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-										<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-										<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-										<script
-											src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-										<script src="${contextPath}/resources/assets/js/main.js"></script>
+
+<script
+src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
+<script
+		src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+		script src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
+<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
+<!-- Use the minified version files listed below for better performance and remove the files listed above -->
+<script
+		src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
+<script src="${contextPath}/resources/assets/js/main.js"></script>
 
 
-										<script>
-											window.onload = (function() {
-												//메인 버튼을 눌렀을 때 처리
-												$(".btn-success").click(function(){
-													console.log ="1";
-													location.href="/deataworld/";
-												});
-												//목록 버튼을 눌렀을 때 처리
-												$(".btn-primary").click(function(){
-													location.href="temping";
-												});
-												//삭제 버튼을 눌렀을 때 처리
-												$(".btn-danger").click(function(){
-													location.href="${contextPath}/board/temping/tempingdelete?b_number=" + ${board.b_number};
-												});
-												//수정 버튼을 눌렀을 때 처리
-												$(".btn-warning").click(function(){
-													location.href="${contextPath}/board/temping/tempingupdate?b_number=" + ${board.b_number};
-												});
-												//댓글작성 버튼을 눌렀을 때 처리
-												$(".btn-info").click(function() {
-													location.href = "${contextPath}/board/temping/tempingreply?b_number=" + ${board.b_number};
-												});
+</body>
+<script>
+		window.onload = (function() {
+				//메인 버튼을 눌렀을 때 처리
+				$(".btn-success").click(function(){
+				console.log ="1";
+				location.href="/deataworld/";
+				});
+				//목록 버튼을 눌렀을 때 처리
+				$(".btn-primary").click(function(){
+				location.href="temping";
+				});
+				//삭제 버튼을 눌렀을 때 처리
+				$(".btn-danger").click(function(){
+				location.href="${contextPath}/board/temping/tempingdelete?b_number=" + ${temping.b_number};
+				});
+				//수정 버튼을 눌렀을 때 처리
+				$(".btn-warning").click(function(){
+				location.href="${contextPath}/board/temping/tempingupdate?b_number=" + ${temping.b_number};
+				});
+				//댓글작성 버튼을 눌렀을 때 처리
+				$(".btn-info").click(function() {
+				location.href = "${contextPath}/board/temping/tempingreply?b_number=" + ${temping.b_number};
+				});
 											})
 										</script>
-</body>
 </html>

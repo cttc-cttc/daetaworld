@@ -25,4 +25,9 @@ public interface BoardService {
 	
 	public BoardDTO tempinggetDetail(int b_number) throws Exception;
 	
+	public int tempingregister(BoardDTO boardDTO) throws Exception;
+	
+	public int tempingupdate(BoardDTO boardDTO) throws Exception;
+	
+	public int tempingdelete(int b_number) throws Exception;
 }

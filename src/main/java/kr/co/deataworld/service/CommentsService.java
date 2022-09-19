@@ -26,6 +26,19 @@ import kr.co.deataworld.dto.CommentsDTO;
 		// 댓글 삭제
 		public int replydelete(int c_number) throws Exception;
 		
+		
+		// 땜빵 댓글 쓰기를 위한 메소드
+		public int tempingreply(CommentsDTO commentsDTO) throws Exception;
+		
+		// 땜빵 댓글 수정보기를 위한 메소드(댓글 읽기)
+		public CommentsDTO tempingdetailreply(int c_number) throws Exception;
+
+		// 땜빵 댓글 수정을 처리하기 위한 메소드
+		public int tempingreplyupdate(CommentsDTO commentsDTO) throws Exception;
+		
+		// 땜빵 댓글 삭제
+		public int tempingreplydelete(int c_number) throws Exception;
+		
 }
 		
 		
