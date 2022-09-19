@@ -61,9 +61,9 @@
             // 파일 사이즈 리스트
             var fileSizeList = new Array();
             // 등록 가능한 파일 사이즈 MB
-            var uploadSize = 50;
+            var uploadSize = 10;
             // 등록 가능한 총 파일 사이즈 MB
-            var maxUploadSize = 500;    
+            var maxUploadSize = 30;    
 
             $(function() {
                 // 파일 드롭 다운
@@ -248,7 +248,7 @@
                         formData.append('files', fileList[uploadFileList[i]]);
                     }    
                     $.ajax({
-                        url : "업로드 경로",
+                        url : "d://files//",
                         data : formData,
                         type : 'POST',
                         enctype : 'multipart/form-data',

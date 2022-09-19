@@ -45,7 +45,22 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													주변 노예를 찾아라
+													<table class="table table-striped">
+														<thead>
+															<th>가게명</th>
+															<th>가게 주소</th>
+															<th>가게 소개</th>
+															<th>등록 날짜</th>
+														</thead>
+														<c:forEach var="shop" items="${shopList}">
+															<tr>
+																<td><a href="nearCandidates?address=${shop.s_address1 }&s_number=${shop.s_number }">${shop.s_name }</a></td>
+																<td>${shop.s_address1 }</td>
+																<td>${shop.s_intro }</td>
+																<td>${shop.s_date }</td>
+															</tr>
+														</c:forEach>
+													</table>
 													
 												</div>
 											</div>

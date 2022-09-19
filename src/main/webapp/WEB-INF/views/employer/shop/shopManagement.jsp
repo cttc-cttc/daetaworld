@@ -55,7 +55,7 @@
 														<c:forEach var="shop" items="${list}">
 															<tr>
 																<td><a href="shopInfo?s_name=${shop.s_name }">${shop.s_name }</a></td>
-																<td>${shop.s_address }</td>
+																<td>${shop.s_address1 }</td>
 																<td>${shop.s_intro }</td>
 																<td>${shop.s_date }</td>
 															</tr>

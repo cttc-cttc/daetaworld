@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>완료된 공고</title>
+<title>지원자 확인</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>완료된 공고</h1>
+										<h1>노예 확인</h1>
 									</div>
 								</div>
 							</div>
@@ -38,29 +38,30 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="adsCompleted">완료된 공고</a></li>											
+													<li><a href="adsRegister">공고 등록</a></li>
+													<li><a href="countryRegister">농어촌 등록</a></li>
+													<li><a class="active" href="checkEmployees">주변 노예 확인</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
 													<table class="table table-striped">
 														<thead>		
-															<th>가게명</th>													
-															<th>날짜</th>															
-															<th>시간</th>
-															<th>시급</th>	
+															<th>이름</th>													
+															<th>나이</th>															
+															<th>성별</th>
 														</thead>
-														<c:forEach var="adsList" items="${list}">
+														<c:forEach var="canList" items="${candidates}">
 															<tr>			
-																<td>${adsList.s_name }</td>													
-																<td>${adsList.a_date }</td>
-																<td>${adsList.a_time }</td>
-																<td>${adsList.a_wage }</td>	
-																<td><button onclick="location.href='reviewRegister'" >후기작성</button></td>
+																<td><a 
+																	href="nearCanDetail?m_id=${canList.m_id}&s_number=${s_number}"
+																	>
+																	${canList.m_name }</a></td>													
+																<td>${canList.m_age }</td>
+																<td>${canList.m_gender }</td>																
 															</tr>
 														</c:forEach>
 													</table>
-													
 													
 												</div>
 											</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.deataworld.reviewMapper">
+
+	<!-- 완료된 공고 목록보기 -->	
+  	<select id="adsCompleted" parameterType="String" resultType="Map">
+  		select s.s_name, a.*
+  		from job_ads a, shop_info s
+  		where a.m_id = s.m_id and a.m_id = #{m_id} 
+  		and a.a_status = 3
+  		and a.s_number = s.s_number
+  	</select>
+</mapper>

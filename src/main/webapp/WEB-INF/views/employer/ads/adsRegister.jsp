@@ -43,8 +43,8 @@
 												<ul class="nav">
 													<li><a class="active" href="adsRegister">공고 등록</a></li>
 													<li><a href="countryRegister">농어촌 등록</a></li>
-													<li><a href="checkEmployees">주변 노예 확인</a></li>
-												</ul>
+													<li><a href="checkEmployees">주변노예 확인</a></li>
+												</ul>														
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
@@ -84,10 +84,9 @@
 																		<div class="single-input mb-15">
 																			<label for="shop">가게 선택 <span>*</span></label><br>																			
 																			<select id="shop" name="shop">
-																				<option value="#">등록된 가게 1 상호명</option>
-																				<option value="#">등록된 가게 2 상호명</option>
-																				<option value="#">등록된 가게 3 상호명</option>
-																				<option value="#">등록된 가게 4 상호명</option>
+																				<c:forEach var="shop" items="${shopList}">																																										
+																					<option>${shop.s_name }	</option>																																								
+																				</c:forEach>
 																			</select> &nbsp; 또는
 																			<input type="button" onclick="location.href='shopRegister'" value="새 가게 등록">	
 																		</div>
