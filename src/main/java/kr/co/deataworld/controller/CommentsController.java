@@ -77,5 +77,62 @@ public class CommentsController {
 		
 		
 		
+		
+		
+		
+		//떙빵게시판
+		@GetMapping(value = "board/temping/tempingreply")
+		public String tempingreply() {
+			logger.info("sdd");
+			return "board/temping/tempingreply";
+		}
+		//떔빵게시판 글수정
+		@PostMapping(value = "board/temping/tempingreply")
+		public String tempingreply(CommentsDTO commentsDTO) throws Exception {
+			logger.info("sdd");
+			int r = service.tempingreply(commentsDTO);
+			if (r > 0) {
+				return "redirect:tempingdetail?b_number=" + commentsDTO.getB_number();
+			}
+			return "board/temping/tempingreply";
+		}
+
+	// 땡빵 댓글수정폼 - 글을 읽어서 내용을 보여줌
+		@RequestMapping(value = "board/temping/tempingreplyupdate", method = RequestMethod.GET)
+		public String tempingreplyupdate(@RequestParam("c_number") int c_number, Model model) throws Exception {
+			CommentsDTO commentsDTO = service.tempingdetailreply(c_number);
+			model.addAttribute("commentsDTO", commentsDTO);
+			return "board/temping/tempingreplyupdate";
+		}
+		
+		
+		
+	//땜빵 댓글 수정 저장
+		@RequestMapping(value = "board/temping/tempingreplyupdate", method = RequestMethod.POST)
+		public String tempingreplyupdate(CommentsDTO commentsDTO ) throws Exception {
+			int r = service.tempingreplyupdate(commentsDTO);
+			if (r > 0) {
+				return "redirect:tempingdetail?b_number=" + commentsDTO.getB_number();
+			}
+			return "redirect:tempinglist";
+		}
+		
+		//땜빵 댓글 삭제하기
+			@RequestMapping(value="board/temping/tempingreplydelete",method = RequestMethod.GET)
+			public String tempingreplydelete(@RequestParam("c_number") int c_number, RedirectAttributes rttr) throws Exception {
+				int r = service.tempingreplydelete(c_number);
+				
+				if(r > 0) {
+					rttr.addFlashAttribute("msg","글삭제에 성공하였습니다.");
+					return "redirect:temping";
+				}
+				return "redirect:tempingdetail?b_number=" + c_number;
+			}
+			
+			
+			
+			
+		
+		
 
 }

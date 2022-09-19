@@ -6,29 +6,29 @@
 	 <table class="table">
 	<form>
 	<div class="form-group1">
-	<c:forEach var="commentsDTO" items="${list}">
+	<c:forEach var="commentsDTO" items="${tempinglist}">
 		<tr>
 			<td>작성자 : ${commentsDTO.m_id}    작성일자 : ${commentsDTO.c_date} </td>
 		</tr>
 		<tr>
 			<td><textarea name="c_contents" rows="5" cols="40"
-				readonly="readonly" class="form-control1">${commentsDTO.c_contents}</textarea>
+				readonly="tempingreadonly" class="form-control1">${commentsDTO.c_contents}</textarea>
 			</td>
 			
 			
-			<td><a href="replyupdate?c_number=${commentsDTO.c_number}">댓글수정</a>
-			<td><a href="${contextPath}/board/free/replydelete?c_number=${commentsDTO.c_number}">댓글삭제</a>
+			<td><a href="tempingreplyupdate?c_number=${commentsDTO.c_number}">댓글수정</a>
+			<td><a href="${contextPath}/board/temping/tempingreplydelete?c_number=${commentsDTO.c_number}">댓글삭제</a>
 			
 			
 			<script>
 			$(function(){
 				//댓글수정 버튼을 눌렀을 때 처리
-				$(".replyupdate").click(function(){
-					location.href="${contextPath}/board/free/replyupdate?c_number=" + ${commentsDTO.c_number}; 
+				$(".tempingreplyupdate").click(function(){
+					location.href="${contextPath}/board/free/tempingreplyupdate?c_number=" + ${commentsDTO.c_number}; 
 				});
 				//댓글삭제 버튼을 눌렀을 때 처리
-				$(".replyDelete").click(function(){
-					location.href="${contextPath}/board/free/replydelete?c_number=" + ${commentsDTO.c_number}; 
+				$(".tempingreplyDelete").click(function(){
+					location.href="${contextPath}/board/free/tempingreplydelete?c_number=" + ${commentsDTO.c_number}; 
 				});
 			})		
 			</script>

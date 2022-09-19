@@ -64,6 +64,30 @@ public class BoardServiceImpl implements BoardService{
 			dao.updateReadCnt(b_number);
 			return dao.tempinggetDetail(b_number);
 		}
+
+		public int tempingregister(BoardDTO boardDTO) throws Exception {
+			// TODO Auto-generated method stub
+			return dao.tempingregister(boardDTO);
+		}
+
+		@Override
+		public int tempingupdate(BoardDTO boardDTO) throws Exception {
+			// TODO Auto-generated method stub
+			return dao.tempingupdate(boardDTO);
+		}
+
+		@Override
+		public int tempingdelete(int b_number) throws Exception {
+			// TODO Auto-generated method stub
+			return dao.tempingdelete(b_number);
+		}
+
+	
+
+	
+		
+		
+		
 		
 		}
 

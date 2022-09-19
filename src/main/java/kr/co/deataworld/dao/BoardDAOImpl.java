@@ -72,4 +72,28 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(namespace + ".tempingdetail" , b_number);
 	}
 
+	@Override
+	public int updateReadtempingCnt(int b_number) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + ".updateReadtempingCnt", b_number);
+	}
+	
+	@Override
+	public int tempingregister(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace + ".tempingregister", boardDTO);
+	}
+
+	@Override
+	public int tempingupdate(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + ".tempingupdate", boardDTO);
+	}
+
+	@Override
+	public int tempingdelete(int b_number) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + ".tempingdelete", b_number);
+	}
+
 }

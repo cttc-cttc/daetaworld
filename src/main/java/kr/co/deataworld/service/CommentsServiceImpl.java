@@ -44,4 +44,28 @@ public class CommentsServiceImpl implements CommentsService{
 		return dao.replydelete(c_number);
 	}
 
+	@Override
+	public int tempingreply(CommentsDTO commentsDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.tempingreply(commentsDTO);
+	}
+
+	@Override
+	public CommentsDTO tempingdetailreply(int c_number) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.tempingdetailreply(c_number);
+	}
+
+	@Override
+	public int tempingreplyupdate(CommentsDTO commentsDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.tempingreplyupdate(commentsDTO);
+	}
+
+	@Override
+	public int tempingreplydelete(int c_number) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.tempingreplydelete(c_number);
+	}
+
 }
