@@ -106,6 +106,19 @@ public class AccountController {
 		return r;
 	}
 	
+	
+	
+//	아이디 중복 체크
+	@ResponseBody
+	@PostMapping(value="account/m_idChk")
+	public int m_idChk(@RequestParam("m_id")String m_id ) throws Exception {	
+		int ri = service.m_idChk(m_id);
+		return ri;
+	}
+	
+	
+	
+	
    //이메일 인증
 	@ResponseBody
 	@RequestMapping(value = "emailAuth", method = RequestMethod.POST)
