@@ -20,11 +20,18 @@
 		where m_type = 2 and m_number = #{m_number}
 	</update>
 	
-	<!-- 주변 지원자 확인 -->
-	<select id="" parameterType="String" resultType="MemberDTO">
-		select * 
+	<!-- 가게의 주변 구직자 목록 -->
+	<select id="nearCandidates" parameterType="String" resultType="MemberDTO">
+		select *
 		from member
-		where m_address = 
+		where m_address1 = #{address} and m_type = 1
+	</select>
+	
+	<!-- 가게 주변 구직자 정보 -->
+	<select id="nearCanDetail" parameterType="Map" resultType="Map">
+		select m.*, i.*, s.*
+		from member m, employee_intro i, shop_info s
+		where m.m_id = i.m_id and m.m_id = #{m_id} and s.s_number = #{s_number}  
 	</select>
 	
 	<!-- 등록한 가게 목록보기 -->

@@ -34,9 +34,15 @@ public class EmployerDAOImpl implements EmployerDAO{
 	}
 	
 	@Override
-	public List<MemberDTO> check_employees(String m_id) throws Exception {
+	public List<MemberDTO> nearCandidates(String address) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(nameSpace + ".nearCandidates", address);
+	}
+	
+	@Override
+	public Map<String, Object> nearCanDetail(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".nearCanDetail", map);
 	}
 	
 //	등록한 가게 목록보기
@@ -105,6 +111,10 @@ public class EmployerDAOImpl implements EmployerDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".adsExpired", id);
 	}
+
+
+
+
 
 
 

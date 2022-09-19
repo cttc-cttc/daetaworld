@@ -140,7 +140,7 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="m_address1">주소<span>*</span></label><input
+																			<label for="m_address">주소<span>*</span></label><input
 																				type="text" id="m_address1" name="m_address1"
 																				value="${myInfo.m_address1 }">
 																			<input type="text" id="m_address2" name="m_address2" value="${myInfo.m_address2 }">	

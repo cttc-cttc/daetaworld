@@ -1,11 +1,14 @@
 package kr.co.deataworld.dto;
 
 /*
- * s_number varchar(10) PK 
+ * s_number int AI PK 
  * business_license varchar(50) 
  * s_name varchar(50) 
- * s_address varchar(90) 
- * s_picture varchar(20) 
+ * s_address1 varchar(50) 
+ * s_address2 varchar(45) 
+ * s_picture1 varchar(20) 
+ * s_picture2 varchar(20) 
+ * s_picture3 varchar(20) 
  * s_intro varchar(500) 
  * s_date datetime 
  * s_tag1 varchar(6) 
@@ -18,11 +21,14 @@ package kr.co.deataworld.dto;
  * j_code varchar(20)
  */
 public class ShopInfoDTO {
-	private String s_number;
+	private int s_number;
 	private String business_license;
 	private String s_name;
-	private String s_address;
-	private String s_picture;
+	private String s_address1;
+	private String s_address2;
+	private String s_picture1;
+	private String s_picture2;
+	private String s_picture3;
 	private String s_intro;
 	private String s_date;
 	private String s_tag1;
@@ -36,17 +42,18 @@ public class ShopInfoDTO {
 	
 	@Override
 	public String toString() {
-		return "shopInfo [s_number=" + s_number + ", business_license=" + business_license + ", s_name=" + s_name
-				+ ", s_address=" + s_address + ", s_picture=" + s_picture + ", s_intro=" + s_intro + ", s_date="
+		return "ShopInfoDTO [s_number=" + s_number + ", business_license=" + business_license + ", s_name=" + s_name
+				+ ", s_address1=" + s_address1 + ", s_address2=" + s_address2 + ", s_picture1=" + s_picture1
+				+ ", s_picture2=" + s_picture2 + ", s_picture3=" + s_picture3 + ", s_intro=" + s_intro + ", s_date="
 				+ s_date + ", s_tag1=" + s_tag1 + ", s_tag2=" + s_tag2 + ", s_tag3=" + s_tag3 + ", s_tag4=" + s_tag4
 				+ ", s_tag5=" + s_tag5 + ", m_id=" + m_id + ", a_code=" + a_code + ", j_code=" + j_code + "]";
 	}
 
-	public String getS_number() {
+	public int getS_number() {
 		return s_number;
 	}
 
-	public void setS_number(String s_number) {
+	public void setS_number(int s_number) {
 		this.s_number = s_number;
 	}
 
@@ -66,20 +73,44 @@ public class ShopInfoDTO {
 		this.s_name = s_name;
 	}
 
-	public String getS_address() {
-		return s_address;
+	public String getS_address1() {
+		return s_address1;
 	}
 
-	public void setS_address(String s_address) {
-		this.s_address = s_address;
+	public void setS_address1(String s_address1) {
+		this.s_address1 = s_address1;
 	}
 
-	public String getS_picture() {
-		return s_picture;
+	public String getS_address2() {
+		return s_address2;
 	}
 
-	public void setS_picture(String s_picture) {
-		this.s_picture = s_picture;
+	public void setS_address2(String s_address2) {
+		this.s_address2 = s_address2;
+	}
+
+	public String getS_picture1() {
+		return s_picture1;
+	}
+
+	public void setS_picture1(String s_picture1) {
+		this.s_picture1 = s_picture1;
+	}
+
+	public String getS_picture2() {
+		return s_picture2;
+	}
+
+	public void setS_picture2(String s_picture2) {
+		this.s_picture2 = s_picture2;
+	}
+
+	public String getS_picture3() {
+		return s_picture3;
+	}
+
+	public void setS_picture3(String s_picture3) {
+		this.s_picture3 = s_picture3;
 	}
 
 	public String getS_intro() {
@@ -160,8 +191,6 @@ public class ShopInfoDTO {
 
 	public void setJ_code(String j_code) {
 		this.j_code = j_code;
-	}
-	
-	
+	}	
 	
 }

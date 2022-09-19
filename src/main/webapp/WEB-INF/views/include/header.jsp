@@ -159,7 +159,7 @@
 									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/myInfo">마이페이지</a>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsRegister">공고 등록</a>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/candidates">지원자 확인</a>
-									<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/adsCompleted">후기 작성</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/adsCompleted?m_id=${loginUser}">후기 작성</a>
 									
 								</div>
 							</div>

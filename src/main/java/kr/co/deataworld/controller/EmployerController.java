@@ -54,8 +54,11 @@ public class EmployerController {
 	
 //	공고 등록
 	@GetMapping(value="employerMapper/adsRegister")
-	public String adsRegister(Model model) {
+	public String adsRegister(Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");
+		String m_id = "owner";
+		List<ShopInfoDTO>shopList = service.shopManagement(m_id);
+		model.addAttribute("shopList", shopList);
 		return "employer/ads/adsRegister";		
 	}
 	
@@ -66,14 +69,34 @@ public class EmployerController {
 		return "employer/ads/countryRegister";		
 	}
 	
-//	주변 구직자 확인
+//	주변 구직자 확인 전 가게 목록 
 	@GetMapping(value="employerMapper/checkEmployees")
 	public String check_employees(Model model) throws Exception {
-		model.addAttribute("leftMenu", "adsRegister");
-		String m_id = "owner";
-		List<MemberDTO> list = service.check_employees(m_id);
-		model.addAttribute("list", list);
+		model.addAttribute("leftMenu", "adsRegister");		
+		String id = "owner";
+		List<ShopInfoDTO>shopList = service.shopManagement(id); 
+		model.addAttribute("shopList", shopList);
 		return "employer/candidates/checkEmployees";
+	}
+	
+//	가게의 주변 구직자 확인
+	@GetMapping(value="employerMapper/nearCandidates")
+	public String nearCandidates(@RequestParam("address") String address, 
+			@RequestParam("s_number") int s_number, Model model) throws Exception {
+		model.addAttribute("leftMenu", "adsRegister");
+		List<MemberDTO> candidates = service.nearCandidates(address);
+		model.addAttribute("candidates", candidates);
+		model.addAttribute("s_number", s_number);
+		return "employer/candidates/nearCandidates";
+	}
+	
+//	가게 주변 구직자 정보 확인
+	@GetMapping(value="employerMapper/nearCanDetail")
+	public String nearCanDetail(@RequestParam Map<String, Object> map, Model model) throws Exception {
+		model.addAttribute("leftMenu", "adsRegister");
+		Map<String, Object> detail = service.nearCanDetail(map); 
+		model.addAttribute("detail", detail);		
+		return "employer/candidates/nearCanDetail";
 	}
 	
 //	공고 내역

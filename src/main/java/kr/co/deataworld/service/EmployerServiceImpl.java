@@ -31,10 +31,17 @@ public class EmployerServiceImpl implements EmployerService{
 	}	
 	
 	@Override
-	public List<MemberDTO> check_employees(String m_id) throws Exception {
+	public List<MemberDTO> nearCandidates(String address) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.check_employees(m_id);
+		return dao.nearCandidates(address);
 	}
+	
+	@Override
+	public Map<String, Object> nearCanDetail(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.nearCanDetail(map);
+	}
+
 	
 //	등록한 가게 목록보기
 	@Override
@@ -102,6 +109,9 @@ public class EmployerServiceImpl implements EmployerService{
 		// TODO Auto-generated method stub
 		return dao.adsExpired(id);
 	}
+
+
+
 
 
 

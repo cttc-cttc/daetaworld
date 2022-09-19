@@ -15,6 +15,7 @@ import kr.co.deataworld.dto.DeductedPointDTO;
 import kr.co.deataworld.dto.EarnedPointDTO;
 import kr.co.deataworld.dto.PointDTO;
 import kr.co.deataworld.service.PointService;
+import kr.co.deataworld.service.ReviewService;
 /*
  * 리뷰, 포인트 처리 컨트롤러
  */
@@ -22,6 +23,9 @@ import kr.co.deataworld.service.PointService;
 public class CommonController {
 	@Autowired
 	PointService pService;
+	
+	@Autowired
+	ReviewService rService;
 	
 //	포인트 
 	@GetMapping(value="pointMapper/pointManagement")
@@ -88,9 +92,11 @@ public class CommonController {
 	}
 	
 //	리뷰 작성을 위한 완료된 공고 확인
-	@GetMapping(value = "reviewMapper/adsCompleted")
-	public String adsCompleted(Model model) {
+	@GetMapping(value="reviewMapper/adsCompleted")
+	public String adsCompleted(@RequestParam("m_id")String m_id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsCompleted");
+		List<Map<String, Object>> list = rService.adsCompleted(m_id);
+		model.addAttribute("list", list);
 		return "common/review/adsCompleted";
 	}
 
