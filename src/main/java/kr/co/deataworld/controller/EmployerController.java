@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.deataworld.dto.JobAdsDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 import kr.co.deataworld.service.EmployerService;
+import kr.co.deataworld.util.FileProcess;
 /*
  * 구인자 컨트롤러 (마이페이지)
  */
@@ -47,8 +49,12 @@ public class EmployerController {
 //	내 정보 수정
 	@ResponseBody
 	@PostMapping(value="employerMapper/myInfoUpdate")
-	public int myInfoUpdate(MemberDTO employerEntity) throws Exception {
-		
+	public int myInfoUpdate(MemberDTO employerEntity, MultipartFile chooseFile, String preFileName) throws Exception {
+		// 사진을 변경했다면 로컬 프로필 이미지 폴더에서 기존 사진을 삭제하고 새 사진을 저장
+		if(chooseFile != null) {
+			String savedName = FileProcess.updateImg(chooseFile, FileProcess.PROFILE_IMG_PATH, preFileName);
+			employerEntity.setM_picture(savedName);
+		}
 		return service.myInfoUpdate(employerEntity);
 	}
 	
