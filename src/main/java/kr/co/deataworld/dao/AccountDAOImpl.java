@@ -1,5 +1,6 @@
 package kr.co.deataworld.dao;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,12 +31,11 @@ public class AccountDAOImpl implements AccountDAO{
 	// 리턴값 아직 못함
 	
 	@Override
-	public MemberDTO register(MemberDTO dto) throws Exception{
+	public void register(MemberDTO dto) throws Exception{
 		sqlSession.insert("memberMapper.register", dto);
-		return null;
-		
+	
 	}
-
+	
 	@Override
 	public MemberDTO login(MemberDTO dto) throws Exception {
 		// TODO Auto-generated method stub
