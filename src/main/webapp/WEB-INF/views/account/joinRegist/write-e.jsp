@@ -31,6 +31,16 @@
 
 
 
+     <script
+      src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
+   <!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
+   <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+   <script src="${pageContext.request.contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
 
 
 
@@ -103,16 +113,14 @@
         <h1>개인회원 가입</h1>
         <input type="hidden" name="historyCert" id="historyCert" />
 
-<form action="register"  method="post" role="form">          
+<form action="/register"  method="post" role="form">          
 
 <!--// 동의 -->
 <!--  <form action="memberjoinpro.do" method="post" role="form" id="usercheck" name="member"> -->
 
 
 <!--// 동의 -->
-<div class="inner">
-
-
+<div class="innerrr">
 
 
 
@@ -160,7 +168,7 @@
 </div>
 <!-- 동의 끝 //-->            <!-- 동의 끝 //-->
             <!--// 회원가입폼 -->
-            <div class="inner">
+            <div class="inner1">
                 <h2 class="skip">회원가입폼</h2>
                 <div class="step3">
                     <div class="tbLeave tbJoin">
@@ -191,14 +199,14 @@
 																	<td>
 																	<img  
 																		style="height:200px; width:150px;"
-																		src="${contextPath}/resources/images/${myInfo.m_picture}"></td>
+																		src="/resources/images/${myInfo.m_picture}"></td>
 																	<td>
 																	</tr>																	
 																	<tr>																	
 																	<td class="single-input mb-25">		
 																																
 																	<label class="file-label" for="chooseFile"  > 사진 등록</label>
-																		<input class="file" name="chooseFile" id="chooseFile"
+																		<input class="file"  name="m_picture" id="m_picture"
 																		  type="file" 																	   
 																		  accept="image/png, image/jpeg, image/gif"
 																		>
@@ -288,9 +296,14 @@
                                         
                                         <p class="compul" id="txtEmail"></p>
                                      <td><input type="button" id="mail-Check-Btn" value="인증">
-																						</td>
-                                        
-                                        <input type="text" class="tBox" placeholder="인증번호 6자리를 입력해주세요!"  maxlength="6">
+											
+											</td>
+										
+											</tr>											
+											<tr>
+											<th> </th>
+                                        <td>
+                                        <input type="text" class="tBox mail-check-input" placeholder="인증번호 6자리를 입력해주세요!"  maxlength="6">
 										<span id="mail-check-warn"></span>	
                                     </td>
                                 </tr>
@@ -324,8 +337,8 @@
                                        
                                         <input type="text" name="m_address2" id="m_address2" placeholder="상세주소 입력" class="tBox tConfirmNum_2"   >
                                       
-                                     
-                                    </td>
+                                     </td>
+                                    
                                 </tr>
                                 
                                 <tr>
@@ -360,6 +373,7 @@
                 	<!--   <img src="${contextPath}/resources/assets/images/companies_logo/logo-100/logo1.jpg" alt="가입하기"> -->
                       <a href="#" id="btn_submit"> <button type="submit" class="btn btn-primary"><img src="${pageContext.request.contextPath}/resources/images/btn_user_join0.png" alt="가입하기">회원가입</button> </a> 
             </div>
+            </div>
             <!-- 회원가입폼 끝 //-->
 </form>    </div>
     <!-- 회원가입 끝 //-->
@@ -384,13 +398,13 @@
     <script type="text/javascript">
     
 
-    $(".inner").on("click", "#check_all", function () {
+    $(".innerrr").on("click", "#check_all", function () {
       var checked = $(this).is(":checked");
 
       if(checked){
-      	$(this).parents(".inner").find('input').prop("checked", true);
+      	$(this).parents(".innerrr").find('input').prop("checked", true);
       } else {
-      	$(this).parents(".inner").find('input').prop("checked", false);
+      	$(this).parents(".innerrr").find('input').prop("checked", false);
       }
     });
     
@@ -601,7 +615,7 @@
 	      veriCheck = false;
 
 	      $.ajax({
-	         url : '${contextPath}/emailAuth',
+	         url : 'emailAuth',
 	         data : {'email': email},
 	         dataType : 'json',
 	         type : 'post',
@@ -645,6 +659,110 @@
 
 
 
+<script type="text/javascript">
+
+
+//joinform_check 함수로 유효성 검사
+function joinform_check() {
+  //변수에 담아주기
+  var uid = document.getElementById("uid");
+  var pwd = document.getElementById("pwd");
+  var repwd = document.getElementById("repwd");
+  var uname = document.getElementById("uname");
+  var female = document.getElementById("female");
+  var male = document.getElementById("male");
+  var mobile = document.getElementById("mobile");
+  var email_id = document.getElementById("email_id");
+  var agree = document.getElementById("agree");
+
+  if (uid.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+    alert("아이디를 입력하세요.");
+    uid.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
+    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+  };
+
+  if (pwd.value == "") {
+    alert("비밀번호를 입력하세요.");
+    pwd.focus();
+    return false;
+  };
+
+  //비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
+  var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+
+  if (!pwdCheck.test(pwd.value)) {
+    alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
+    pwd.focus();
+    return false;
+  };
+
+  if (repwd.value !== pwd.value) {
+    alert("비밀번호가 일치하지 않습니다..");
+    repwd.focus();
+    return false;
+  };
+
+  if (uname.value == "") {
+    alert("이름을 입력하세요.");
+    uname.focus();
+    return false;
+  };
+
+  if (!female.checked && !male.checked) { //둘다 미체크시
+    alert("성별을 선택해 주세요.");
+    female.focus();
+    return false;
+  }
+
+  var reg = /^[0-9]+/g; //숫자만 입력하는 정규식
+
+  if (!reg.test(mobile.value)) {
+    alert("전화번호는 숫자만 입력할 수 있습니다.");
+    mobile.focus();
+    return false;
+  }
+
+  if (email_id.value == "") {
+    alert("이메일 주소를 입력하세요.");
+    email_id.focus();
+    return false;
+  }
+
+  if (!agree1.checked) { //체크박스 미체크시
+    alert("약관 동의를 체크하세요.");
+    agree.focus();
+    return false;
+  }
+
+  //입력 값 전송
+  document.join_form.submit(); //유효성 검사의 포인트   
+}
+
+//아이디 중복체크 팝업창(현재 공백문서)
+function id_check() {
+  //window.open("팝업될 문서 경로", "팝업될 문서 이름", "옵션");
+  window.open("", "", "width=600, height=200, left=200, top=100");
+}
+
+//이메일 옵션 선택후 주소 자동 완성
+function change_email() {
+  var email_add = document.getElementById("email_add");
+  var email_sel = document.getElementById("email_sel");
+
+  //지금 골라진 옵션의 순서와 값 구하기
+  var idx = email_sel.options.selectedIndex;
+  var val = email_sel.options[idx].value;
+
+  email_add.value = val;
+}
+
+//우편번호 검색 팝업창(현재 공백문서)
+function search_address() {
+  window.open("", "b", "width=600, height=300, left=200, top=100");
+}
+
+
+</script>
 
 
 
@@ -662,15 +780,5 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
     
     
-     <script
-      src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-   <script
-      src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-   <script
-      src="${pageContext.request.contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-   <!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-   <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-   <script src="${pageContext.request.contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-   <script src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
 
 </html>

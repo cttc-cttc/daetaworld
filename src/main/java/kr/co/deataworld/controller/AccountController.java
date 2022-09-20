@@ -3,6 +3,7 @@ package kr.co.deataworld.controller;
 import java.util.Properties;
 
 
+
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -168,11 +169,11 @@ public class AccountController {
 	
 	
 	
-	// 회원가입 get
+	
 	
 	@Inject
-	private AccountService register;
-	
+	AccountService register;
+	// 회원가입 get
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void getRegister() throws Exception {
 		logger.info("get register");
