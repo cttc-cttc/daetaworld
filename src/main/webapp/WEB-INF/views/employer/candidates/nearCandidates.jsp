@@ -54,7 +54,7 @@
 														<c:forEach var="canList" items="${candidates}">
 															<tr>			
 																<td><a 
-																	href="nearCanDetail?m_id=${canList.m_id}&s_number=${s_number}"
+																	href="nearCanDetail?m_id=${canList.m_id}&a_number=${a_number}"
 																	>
 																	${canList.m_name }</a></td>													
 																<td>${canList.m_age }</td>

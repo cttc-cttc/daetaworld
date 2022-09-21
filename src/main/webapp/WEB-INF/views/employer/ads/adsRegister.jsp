@@ -56,7 +56,7 @@
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
 																			<label for="date">날짜 <span>*</span></label> 
-																				<input type="text" name="datefilter" value="" />
+																				<input type="text" name="datefilter" />
 																		</div>
 
 																		<!-- Single Input End -->
@@ -65,7 +65,7 @@
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
 																			<label for="time">시간 <span>*</span></label> <input
-																				type="text" name="timefilter" value="" />
+																				type="text" name="timefilter" />
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
@@ -74,7 +74,16 @@
 																		<div class="single-input mb-15">
 																			<label for="wage">시급 <span>*</span></label><input
 																				type="text" id="a_wage" name="a_wage"
-																				placeholder="시급을 입력해주세요" value="최저 9,160원">
+																				placeholder="시급을 입력해주세요. 최저 9160원">
+																		</div>
+																		<!-- Single Input End -->
+																	</div>
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																		<!-- Single Input Start -->
+																		<div class="single-input mb-15">
+																			<label for="need">필요 인원 <span>*</span></label><input
+																				type="text" id="a_need" name="a_need"
+																				placeholder="필요 인원 수">
 																		</div>
 																		<!-- Single Input End -->
 																	</div>

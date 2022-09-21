@@ -20,18 +20,27 @@
 		where m_type = 2 and m_number = #{m_number}
 	</update>
 	
+	<!-- 주변 구직자 확인 전 가게 목록 -->
+	<select id="checkEmployees" parameterType="String" resultType="Map">
+		select s.*, a.*
+		from shop_info s, job_ads a
+		where s.m_id = a.m_id and s.m_id = #{id} 
+		and a.s_number = s.s_number and a.a_status = 0
+	</select>
+	
 	<!-- 가게의 주변 구직자 목록 -->
 	<select id="nearCandidates" parameterType="String" resultType="MemberDTO">
 		select *
 		from member
-		where m_address1 = #{address} and m_type = 1
+		where m_address1 = #{address} and m_type = 1 and m_terms1 = 1
 	</select>
 	
 	<!-- 가게 주변 구직자 정보 -->
 	<select id="nearCanDetail" parameterType="Map" resultType="Map">
-		select m.*, i.*, s.*
-		from member m, employee_intro i, shop_info s
-		where m.m_id = i.m_id and m.m_id = #{m_id} and s.s_number = #{s_number}  
+		select m.*, i.*, a.*
+		from member m, employee_intro i, job_ads a 
+		where m.m_id = i.m_id and m.m_id = #{m_id} 
+		and a.a_number = #{a_number} and i.i_default = 1  
 	</select>
 	
 	<!-- 등록한 가게 목록보기 -->
@@ -85,10 +94,16 @@
 	
 	<!-- 지원자 정보보기 -->
 	<select id="canDetail" parameterType="Map" resultType="Map">
-		select m.*, i.*, ja.jar_status, ja.jae_status
-		from member m, employee_intro i, job_apply ja
-		where m.m_id = i.m_id and m.m_id = #{m_id} and ja.i_number = i.i_number and i.i_number= #{i_number}
+		select m.*, i.*
+		from member m, employee_intro i
+		where m.m_id = i.m_id and m.m_id = #{m_id} and i.i_number= #{i_number} 
 	</select>
+	
+	<!-- 알바 선요청 후 대기 -->
+	<insert id="applyRequest" parameterType="Map">
+		insert into job_apply (ja_date, jar_status, jae_status, m_id, a_number, i_number) 
+		values (now(), 3, 4, #{m_id}, #{a_number}, #{i_number})
+	</insert>
 	
 	<!-- 지원 수락 -->
 	<update id="applyAccept" parameterType="String">

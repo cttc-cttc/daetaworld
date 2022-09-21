@@ -45,7 +45,7 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<form action="pointDeduct" method="post">
+													<form action="pointDeduct" method="post" onsubmit="return validate()">
 														<div class="row mb-30">
 															<div class="col-lg-10">
 																<h3>현재 보유하고 계신 포인트는 ${point.point}점 입니다.</h3>
@@ -106,9 +106,10 @@
 	<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	<script src="${contextPath}/resources/assets/js/main.js"></script>	
 	
-	<script type="text/javascript">
+	<script type="text/javascript">	
+	
 	function deductCheck(){	
 		
 		var id = $("#id").val();

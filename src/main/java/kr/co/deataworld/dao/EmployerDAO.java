@@ -13,6 +13,9 @@ public interface EmployerDAO {
 	
 //	내 정보수정
 	public int myInfoUpdate(MemberDTO employerEntity) throws Exception; 
+	
+//	주변 구직자 확인 전 가게 목록
+	public List<Map<String, Object>> checkEmployees(String id) throws Exception;
 		
 //	가게의 주변 구직자 확인
 	public List<MemberDTO> nearCandidates(String address) throws Exception;
@@ -43,6 +46,9 @@ public interface EmployerDAO {
 	
 //	지원자 정보보기
 	public Map<String, Object> canDetail(Map<String, Object> map) throws Exception;
+	
+//	알바 선요청 후 대기
+	public int applyRequest(Map<String, Object> map) throws Exception;
 	
 //	지원자 수락 및 대기
 	public int applyAccept(String m_id) throws Exception;

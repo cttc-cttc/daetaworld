@@ -34,6 +34,12 @@ public class EmployerDAOImpl implements EmployerDAO{
 	}
 	
 	@Override
+	public List<Map<String, Object>> checkEmployees(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".checkEmployees", id);
+	}
+	
+	@Override
 	public List<MemberDTO> nearCandidates(String address) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".nearCandidates", address);
@@ -95,6 +101,12 @@ public class EmployerDAOImpl implements EmployerDAO{
 	}
 	
 	@Override
+	public int applyRequest(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(nameSpace + ".applyRequest", map);
+	}
+	
+	@Override
 	public int applyAccept(String m_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update(nameSpace + ".applyAccept", m_id);
@@ -111,11 +123,6 @@ public class EmployerDAOImpl implements EmployerDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".adsExpired", id);
 	}
-
-
-
-
-
 
 
 }

@@ -77,22 +77,22 @@ public class EmployerController {
 	
 //	주변 구직자 확인 전 가게 목록 
 	@GetMapping(value="employerMapper/checkEmployees")
-	public String check_employees(Model model) throws Exception {
+	public String checkEmployees(Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");		
 		String id = "owner";
-		List<ShopInfoDTO>shopList = service.shopManagement(id); 
-		model.addAttribute("shopList", shopList);
+		List<Map<String, Object>> shopInfo = service.checkEmployees(id); 
+		model.addAttribute("shopInfo", shopInfo);
 		return "employer/candidates/checkEmployees";
 	}
 	
 //	가게의 주변 구직자 확인
 	@GetMapping(value="employerMapper/nearCandidates")
 	public String nearCandidates(@RequestParam("address") String address, 
-			@RequestParam("s_number") int s_number, Model model) throws Exception {
+			@RequestParam("a_number") int a_number, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");
 		List<MemberDTO> candidates = service.nearCandidates(address);
 		model.addAttribute("candidates", candidates);
-		model.addAttribute("s_number", s_number);
+		model.addAttribute("a_number", a_number);
 		return "employer/candidates/nearCandidates";
 	}
 	
@@ -176,6 +176,13 @@ public class EmployerController {
 		model.addAttribute("detail", detail);
 		model.addAttribute("a_number", a_number);
 		return "employer/candidates/canDetail";
+	}
+	
+//	알바 선요청
+	@ResponseBody
+	@PostMapping(value="employerMapper/applyRequest")
+	public int applyRequest(@RequestParam Map<String, Object> map) throws Exception {
+		return service.applyRequest(map);		
 	}
 	
 //	지원 수락

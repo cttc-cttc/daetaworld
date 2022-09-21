@@ -31,6 +31,12 @@ public class EmployerServiceImpl implements EmployerService{
 	}	
 	
 	@Override
+	public List<Map<String, Object>> checkEmployees(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.checkEmployees(id);
+	}
+	
+	@Override
 	public List<MemberDTO> nearCandidates(String address) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.nearCandidates(address);
@@ -93,6 +99,12 @@ public class EmployerServiceImpl implements EmployerService{
 	}
 	
 	@Override
+	public int applyRequest(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.applyRequest(map);
+	}
+	
+	@Override
 	public int applyAccept(String m_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.applyAccept(m_id);
@@ -109,6 +121,10 @@ public class EmployerServiceImpl implements EmployerService{
 		// TODO Auto-generated method stub
 		return dao.adsExpired(id);
 	}
+
+
+
+
 
 
 

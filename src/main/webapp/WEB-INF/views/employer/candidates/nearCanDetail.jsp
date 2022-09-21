@@ -128,10 +128,11 @@
 																					value="평점을 갖고올거임" readonly="readonly">																					
 																		</div>
 																		<!-- Single Input End -->
-																	</div>																	
+																	</div>												
 																	
-																	<input type="hidden" name="m_id" id="m_id" value="${detail.m_id}">
-																																		
+																	<input type="hidden" id="a_number" name="a_number" value="${detail.a_number }">																																	
+																	<input type="hidden" id="m_id" name="m_id" value="${detail.m_id }">																																	
+																	<input type="hidden" id="i_number" name="i_number" value="${detail.i_number }">																																	
 																</div>
 															</div>
 														</div>
@@ -139,7 +140,7 @@
 															<div class="col-12">
 																<div
 																	class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																	<button type="button" id="applyAccept" name="applyAccept" onclick="accept()"
+																	<button type="button" id="applyRequest" name="applyRequest" onclick="request()"
 																		class="ht-btn theme-btn theme-btn-two mb-xs-20">
 																	요청
 																	</button>
@@ -194,32 +195,27 @@
 	</script>
 	
 	<script type="text/javascript">
-		function accept(){
-			
-			var jar_status = $('#jar_status').val();
-			if(jar_status == 1){
-				alert('이미 수락하셨습니다');
-				return;
-			}else{
-			
-				$.ajax({
-					url : "${contextPath}/employerMapper/applyAccept",
-					data : {
-						"m_id" : $("#m_id").val()					
-						},
-					dataType : 'json',
-					type : 'POST',
-					success : function(result){
-						console.log(result);					
-						alert('요청하였습니다. 노예의 결정을 기다리세요');	
-						window.location.reload(true);
+		function request(){				
+			$.ajax({
+				url : "${contextPath}/employerMapper/applyRequest",
+				data : {					
+					"a_number" : $("#a_number").val(),
+					"m_id" : $("#m_id").val(),
+					"i_number" : $("#i_number").val()
 					},
-					error : function(result){
-						console.log(result);
-						alert('요청을 실패했네요 ㅋ');
-					}				
-				});				
-			}
+				dataType : 'json',
+				type : 'POST',
+				success : function(result){
+					console.log(result);					
+					alert('요청하였습니다. 노예의 결정을 기다리세요');	
+					window.location.reload(true);
+				},
+				error : function(result){
+					console.log(result);
+					alert('요청을 실패했네요 ㅋ');
+				}				
+			});				
+			
 		}
 	</script>
 </body>

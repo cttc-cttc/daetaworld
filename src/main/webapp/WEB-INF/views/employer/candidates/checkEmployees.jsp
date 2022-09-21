@@ -48,16 +48,26 @@
 													<table class="table table-striped">
 														<thead>
 															<th>가게명</th>
-															<th>가게 주소</th>
-															<th>가게 소개</th>
-															<th>등록 날짜</th>
+															<th>날짜</th>
+															<th>시간</th>
+															<th>시급</th>
+															<th>급구</th>
 														</thead>
-														<c:forEach var="shop" items="${shopList}">
+														<c:forEach var="shop" items="${shopInfo}">
 															<tr>
-																<td><a href="nearCandidates?address=${shop.s_address1 }&s_number=${shop.s_number }">${shop.s_name }</a></td>
-																<td>${shop.s_address1 }</td>
-																<td>${shop.s_intro }</td>
-																<td>${shop.s_date }</td>
+																<td><a href="nearCandidates?address=${shop.s_address1 }&a_number=${shop.a_number }">${shop.s_name }</a></td>
+																<td>${shop.a_date }</td>
+																<td>${shop.a_time }</td>
+																<td>${shop.a_wage }</td>
+																<td>
+																<c:set var="urgency" value="${shop.a_urgency }"/>
+																	<c:if test="${urgency == 1 }">
+																		<c:out value="o"></c:out>
+																	</c:if>
+																	<c:if test="${urgency == 0 }">
+																		<c:out value="x"></c:out>
+																	</c:if>
+																</td>
 															</tr>
 														</c:forEach>
 													</table>
