@@ -4,50 +4,36 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>자기소개서 등록</title>
+<title>자기소개서 관리</title>
 <%@ include file="../../include/head.jsp"%>
-<!-- custom css -->
-<style>
-	#header{
-	}
-	
-	#article{
-	}
-	
-	#footer{
-	}
-	
-	#profile-hr-1{
-		height : 2px;
-		background-color: black;
-	}
-	
-	#header-small-text{
-		color: lightgrey;
-		font-size: 13px;
-	}
-	
-	#newcomer{
-		text-align: center;
-	}
-	
-	#career{
-		text-align: center;
-	}
-	
-	#regi{
-		size : 1024;
-		height : 500px;
-		width: 500px;
-	}
 
-	.intro-title-box{
-		width: 665px;
-		height: 50px;		
+<style>
+	table {
+		border-collapse: collapse;
+		text-align: center;
 	}
-		
+	
+	td {
+		border: 1px solid black;
+		padding: 10px;
+		text-align: center;
+	}
+	
+	.resume-th {
+		border: 1px solid black;
+		padding: 10px;
+		background-color: lightgrey;
+		text-align: center;
+	}
+	
+	#content-style{
+		color: red; 
+		text-align: right;"
+	}
 </style>
 
+
+<!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
 <body class="template-color-1">
@@ -69,7 +55,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>자기소개서 등록</h1>
+										<h1>선택한 자소서</h1>
 									</div>
 								</div>
 							</div>
@@ -79,41 +65,43 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="resumeManagement">등록된 자기소개서 목록</a></li>
-													<li><a class="active" href="resumeRegister">자기소개서 등록</a></li>
+													<li><a class="active" href="resumeManagement">등록된 자기소개서 목록</a></li>
+													<li><a href="${contextPath}/employeeMapper/resumeRegister">자기소개서 작성</a></li>
 												</ul>
 											</div>
-											<div class="profile-applications-main-block">
-												<div class="profile-applications-form">
-													<!-- 기본정보 -->
-													<div id="section">
-														<div id="header">
-															<span><h3><strong>기본정보</strong><small id="header-small-text">개인정보는 공개 설정 여부와 관계없이 지원한 공고에 모두 공개됩니다.</small></h3></span>
+											<div class="candidate-main-content">
+												<div class="field-description"></div>
+												
+												
+												<hr>
+												<div class="field-experience">
+													<div class="experience-wrap">
+														<div class="experience-item">
+															<div class="row">
+																<div class="col-lg-4 col-md-4">
+																	<div class="content-left">
+																		<h5 class="company-name theme-color">${resume.i_title}</h5>
+																		<span class="date"> 작성시간 : ${resume.i_date}</span>
+																	</div>
+																</div>
+																<div class="col-lg-8 col-md-8">
+																	<div class="content-right">
+																		<h5 class="position-company bottom">내용</h5>
+																		<p>${resume.i_contents}</p>
+																	</div>
+																	
+																	<div class="content-right">
+																		<a id="content-style" type="text" href="${contextPath}/employeeMapper/resumeUpdate?i_number=${resume.i_number}">[수정]</a>
+																	</div>
+																
+																</div>
+															</div>
 														</div>
-															<hr id="profile-hr-1">
-															
-														<form action="resumeRegister" method="post">
-															<div id="article">
-																<h3><strong>제목</strong></h3>
-																<input class="intro-title-box" id="i_title" name="i_title" value="" placeholder="제목을 작성하세요">
-															</div>
-																<hr id="profile-hr-1">
-															<div id="footer">
-																<h3><strong>자기소개서</strong></h3>
-																<textarea id="i_contents" name="i_contents" value="" rows="10" cols="80" style="resize: none;" placeholder="나의 강점과 특징에 대해 소개하고 어떤 사람인지 설명해 보세요."></textarea>
-															</div>
-															<hr>
-															<button type="submit" class="ht-btn theme-btn theme-btn-two mb-xs-20" >저장</button>
-															<button type="button" class="ht-btn theme-btn theme-btn-two mb-xs-20" onclick="location.href='${contextPath}/employeeMapper/resumeManagement'">취소</button>
-														</form>
-														
-														<hr id="profile-hr-1">
 													</div>
-													
-													<!-- 기본정보 End -->
-													<hr>
-													
 												</div>
+												<hr>
+
+												
 											</div>
 										</div>
 									</div>
@@ -121,11 +109,8 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
-			</div>
-		</div>
-		<!-- Dashboard Content Section End -->
+				<!-- Dashboard Content Section End -->
 		<%@ include file="../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>

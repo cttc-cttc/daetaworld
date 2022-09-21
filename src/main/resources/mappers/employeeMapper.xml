@@ -7,15 +7,7 @@
 <!-- 내 정보 불러오기(구직자) -->
 <select id="myInfo" resultType="MemberDTO">
 	SELECT * FROM daetaworld.member
-	WHERE m_type = '1' and m_id = 'user'
-</select>
-
-
-<!-- 개인정보 수정시 패스워드 검증 (구직자) -->
-<select id="m_passWord" parameterType="String" resultType="String">
-	select m_password
-	from daetaworld.member
-	where m_password = #{m_password} and 
+	WHERE m_type = '1' and m_id = 'user';
 </select>
 
 
@@ -29,10 +21,80 @@
 	m_address1 = #{m_address1},
 	m_address2 = #{m_address2},
 	m_terms1 = #{m_terms1},
-	m_terms2 = #{m_terms2},
+	m_terms2 = #{m_terms2}
 	WHERE
 	m_id = #{m_id} 
 </update>
+
+<!-- 등록된 자기소개서 목록 -->
+<select id="resumeManagement" parameterType="String" resultType="ResumeDTO">
+	select * from daetaworld.employee_intro
+	where m_id = 'user'
+</select>
+
+<!-- 선택한 자소서 불러오기 -->
+<select id="selectResume" parameterType="java.lang.Integer" resultType="ResumeDTO">
+	select * from daetaworld.employee_intro
+	where m_id = 'user' and i_number = #{i_number}
+</select>
+
+<!-- 수정한 자소서 저장 ajax -->
+<update id="resumeUpdate" parameterType="ResumeDTO">
+	update daetaworld.employee_intro
+	set
+	i_title = #{i_title},
+	i_contents = #{i_contents},
+	i_date = now()
+	where
+	m_id = #{m_id} and i_number = #{i_number}
+</update>
+
+<!-- 자소서 삭제하기 -->
+<delete id="resumeDelete" parameterType="java.lang.Integer">
+	delete from daetaworld.employee_intro
+	where
+	i_number = #{i_number}
+</delete>
+
+<!-- 게시글 작성 -->
+<insert id="resumeRegister" parameterType="ResumeDTO">
+	INSERT INTO daetaworld.employee_intro
+	(i_number, i_title, i_contents, i_default, i_date, m_id)
+	VALUES(#{i_number}, #{i_title}, #{i_contents}, #{i_default}, now(), 'user')
+</insert>
+
+<!-- 대표 자소서 설정 -->
+<update id="resumeDefault" parameterType="java.lang.Integer">
+	update daetaworld.employee_intro
+	set
+	i_default = 1
+	where
+	i_number = #{i_number}
+</update>
+
+<!-- 대표 자소서 초기화 -->
+<update id="resumeDefaultInit" parameterType="String">
+	update daetaworld.employee_intro
+	set
+	i_default = '0'
+	where
+	m_id = 'user' and i_default = '1';
+</update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

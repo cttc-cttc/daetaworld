@@ -26,18 +26,11 @@
 		text-align: center;
 	}
 	
-	.content-style{
+	#content-style{
 		color: red; 
 		text-align: right;"
 	}
-	
-	.content-style-1{
-		color: green; 
-		text-align: right;"
-	}
 </style>
-
-
 
 
 <!-- custom css -->
@@ -62,7 +55,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>자기소개서 관리</h1>
+										<h1>자기소개서 수정</h1>
 									</div>
 								</div>
 							</div>
@@ -71,61 +64,46 @@
 									<div class="col-xl-12 col-12">
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
-											
-												
 												<ul class="nav">
-													<li><a class="active" href="resumeManagement">등록된 자기소개서 목록 </a></li>
-															
-														<li><a id="cntCheck" href="${contextPath}/employeeMapper/resumeRegister">자기소개서 작성 </a></li>
-														
+													<li><a class="active" href="resumeManagement">등록된 자기소개서 목록</a></li>
+													<li><a>자기소개서작성</a></li>
 												</ul>
 											</div>
+											<hr>
+											
+											
 											<div class="candidate-main-content">
-												<div class="field-description"></div>
-												
-												
-												<hr>
-												<c:forEach var="resume" items="${list}" varStatus="status">
-												<c:if test="${resume.i_default == 1}">
-													<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-  														<path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-													</svg>
-												</c:if><br>
-												<!-- 대표 : ${resume.i_default}<br> -->
-												번호 : <c:out value="${status.count}" />
-												<input type="hidden" name="count" id="count" value="${status.count}">
-												<input type="hidden" name="i_number" id="i_number" value="${status.index}">
-												
-												
-												
 												<div class="field-experience">
 													<div class="experience-wrap">
 														<div class="experience-item">
 															<div class="row">
 																<div class="col-lg-4 col-md-4">
 																	<div class="content-left">
-																		<h5 class="company-name theme-color">${resume.i_title} </h5>
-																		<span class="date"> 작성시간 : ${resume.i_date}</span>
-																		
 																	</div>
 																</div>
 																<div class="col-lg-8 col-md-8">
 																	<div class="content-right">
+																		<h5 class="company-name theme-color">제목
+																			<input id="n_title" name="n_title" value="${resume.i_title}">
+																		</h5>
+																		<span class="date"> 작성시간 : ${resume.i_date}</span>
 																		<h5 class="position-company bottom">내용</h5>
-																		<p><a href="${contextPath }/employeeMapper/selectResume?i_number=${resume.i_number}">${resume.i_contents}</a></p>
+																			<textarea  id="n_contents" name="n_contents" rows="10" cols="100">${resume.i_contents}</textarea>
 																	</div>
-																	<br>
-																	<!-- <a id="content-style" type="text" href="${contextPath}/employeeMapper/resumeDefault?i_number=${resume.i_number}">[대표설정]</a> -->
-																	<a class="content-style-1"  href="${contextPath}/employeeMapper/resumeDefault?i_number=${resume.i_number}">대표설정</a>
-																	<a class="content-style" type="text" href="${contextPath}/employeeMapper/resumeDelete?i_number=${resume.i_number}">[삭제]</a>
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-												<hr>
 												
-												</c:forEach>
+												
+												<hr>
+												<div class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+													<button class="ht-btn theme-btn theme-btn-two mb-xs-20" type="button" onclick="resumeSave()" >저장</button>
+													<button class="ht-btn theme-btn theme-btn-two mb-xs-20" type="button" onclick="location.href='${contextPath}/employeeMapper/resumeManagement'">취소</button>
+												</div>
+
+
 											</div>
 										</div>
 									</div>
@@ -133,8 +111,19 @@
 							</div>
 						</div>
 					</div>
+
 				</div>
-				<!-- Dashboard Content Section End -->
+			</div>
+		</div>
+		
+		
+		<input type="hidden" name="i_number" id="i_number" value="${resume.i_number }">
+		<input type="hidden" name="i_date" id="i_date" value="${resume.i_date }">
+		<input type="hidden" name="m_id" id="m_id" value="${resume.m_id }">
+		
+		
+		
+		<!-- Dashboard Content Section End -->
 		<%@ include file="../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
@@ -152,6 +141,50 @@
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 	
 	
+	<script type="text/javascript">
+		function resumeSave(){
+			
+			var i_number = $("#i_number").val();
+			var i_date = $("#i_date").val();
+			var m_id = $("#m_id").val();
+			
+			
+			var n_title = $("#n_title").val();
+			var n_contents = $("#n_contents").val();
+			
+			
+				var url = "${contextPath}/employeeMapper/resumeUpdate";
+				var paramData = {
+						
+						"i_number" : i_number,
+						"i_date" : i_date,
+						"m_id" : m_id,
+						"i_title" : n_title,
+						"i_contents" : n_contents
+						
+				};
+					
+				$.ajax({	
+					url : url,
+					data : paramData,
+					type : "POST",
+					dataType : "json",
+						success : function(result){
+							console.log('저장 성공');
+							alert('수정 완료');
+							window.location.reload(true);
+							location.href="${contextPath}/employeeMapper/resumeManagement"
+						},
+						error : function(result){
+							console.log('저장 실패')						
+							alert('수정 실패');
+						}
+						
+				});
+			
+		} //end of resumeSave
+	
+	</script>
 	
 	
 	
