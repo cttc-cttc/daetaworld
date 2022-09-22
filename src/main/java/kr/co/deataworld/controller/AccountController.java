@@ -27,11 +27,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.deataworld.dto.MemberDTO;
 
 import kr.co.deataworld.service.AccountService;
+import kr.co.deataworld.util.FileProcess;
 
 
 
@@ -69,6 +71,24 @@ public class AccountController {
 	public String writee() {
 		logger.info("구직자 회원가입화면 접속");
 		return "account/joinRegist/write-e";
+	}
+	@PostMapping(value = "write-e")
+	public String writee(MemberDTO member, String terms1, String terms2, MultipartFile chooseFile) {
+		// 선택약관1 체크했을 때 등록
+		if(terms1 != null)
+			member.setM_terms1(1);
+		
+		// 선택약관2 체크했을 때 등록
+		if(terms2 != null)
+			member.setM_terms2(1);
+		
+		// 프로필사진 업로드 했을 때 등록
+		if(!chooseFile.getOriginalFilename().isEmpty()) {
+			String savedName = FileProcess.insertImg(chooseFile, FileProcess.PROFILE_IMG_PATH);
+			member.setM_picture(savedName);
+		}
+		service.eRegister(member);
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
@@ -120,13 +140,13 @@ public class AccountController {
 	
 	
 	
-   //이메일 인증
+   //이메일 인증 (메일 가입 이름 dd)
 	@ResponseBody
 	@RequestMapping(value = "emailAuth", method = RequestMethod.POST)
 	public String emailAuth(@RequestParam("email") String email) {
 
 		final String user = "daetaworld@naver.com";
-		final String password = "Daetaworld123!";
+		final String password = "bpXud52Jdl!K";
 		Random random = new Random();
 		int checkNum = random.nextInt(888888) + 111111;
 
@@ -149,7 +169,7 @@ public class AccountController {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 
 			// Subject
-			message.setSubject("testeste"); // 메일 제목을 입력
+			message.setSubject("오늘의대타 인증메일 입니다."); // 메일 제목을 입력
 
 			// Text
 			String text = "인증 번호는 <span style='color:blue; font-size:16px;'>" + checkNum + "</span> 입니다." + "<br>"
@@ -166,38 +186,6 @@ public class AccountController {
 		}
 		return Integer.toString(checkNum);
 	}
-	
-	
-	
-	
-	
-	@Inject
-	AccountService register;
-	// 회원가입 get
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void getRegister() throws Exception {
-		logger.info("get register");
-	}
-		
-	// 회원가입 post
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String postRegister(MemberDTO dto) throws Exception {
-		logger.info("post register");			
-		AccountService.register(dto);			
-		return null;
-	}	
-
-	
-
-	
-//	
-//	@RequestMapping(value = "/register", method = RequestMethod.POST)
-//	public ModelAndView memberJoin(MemberDTO dto) throws Exception {
-//		ModelAndView mav = new ModelAndView();
-//		AccountService.register(dto);
-//		mav.setViewName("login");
-//		return mav;
-//}
 	
 }
 
