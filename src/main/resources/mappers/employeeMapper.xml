@@ -82,10 +82,40 @@
 </update>
 
 
+<!-- 대타신청 -->
+<insert id="jobApply" parameterType="JobApplyDTO">
+	insert into daetaworld.job_apply
+	(ja_number, ja_date, jar_status, jae_status, m_id, a_number, i_number)
+	values
+	(10, now(), 0, 0, 'user', 6, 0)
+</insert>
 
 
+<!-- 신청시 대표자소서 저장시켜야함 (m_id를 보내서) -->
+<update id="applyIntro" parameterType="JobApplyDTO">
+	update job_apply
+    join employee_intro
+    on job_apply.m_id = employee_intro.m_id
+    set job_apply.i_number = employee_intro.i_number
+    where employee_intro.m_id = 'user' and employee_intro.i_default = '1';
+</update>
 
 
+<!-- 구직 신청한 공고내역을 가져옴. #{m_id} 를 받아와야한다. -->
+<select id="pinchHistory" resultType="JobAdsDTO">
+	select * from daetaworld.job_ads
+    join job_apply
+    on job_ads.a_number = job_apply.a_number
+    where job_apply.m_id = 'user'
+</select>
+
+
+<!-- 가게정보 가져오기 -->
+<select id="shopName" parameterType="String" resultType="java.lang.Integer">
+	select s_name from daetaworld.shop_info
+	where
+	s_number = #{s_number}
+</select>
 
 
 

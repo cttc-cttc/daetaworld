@@ -2,6 +2,8 @@ package kr.co.deataworld.dao;
 
 import java.util.List;
 
+import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ResumeDTO;
 
@@ -32,4 +34,23 @@ public interface EmployeeDAO {
 	
 	//자소서 대표 초기화
 	public int resumeDefaultInit(ResumeDTO resumeDTO)throws Exception;
+	
+	//대타신청
+	public int jobApply(JobApplyDTO jobApplyDTO)throws Exception;
+	
+	//대타 신청시 대표자소서를 보냄
+	public int applyIntro(JobApplyDTO jobApplyDTO)throws Exception;
+	
+	//신청한 공고내역을 불러온다
+	public List<JobAdsDTO> pinchHistory()throws Exception;
+	
+	
+//	//대타내역 불러오기
+//	public List<JobAdsDTO> pinchHistory()throws Exception;
+//	
+//	//대타내역 가게명 불러오기
+//	public String shopName(int s_number)throws Exception;
+	
+	
+	
 }

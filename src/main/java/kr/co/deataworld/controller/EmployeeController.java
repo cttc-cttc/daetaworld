@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ResumeDTO;
 import kr.co.deataworld.service.EmployeeService;
@@ -130,22 +132,51 @@ public class EmployeeController {
 	
 	//자소서 대표 설정
 	@GetMapping(value="employeeMapper/resumeDefault")
-	public String defaultIntro(ResumeDTO resumeDTO)throws Exception{
+	public String defaultIntro(ResumeDTO resumeDTO)throws Exception {
 		service.resumeDefaultInit(resumeDTO);
 		service.resumeDefault(resumeDTO);
 		return "redirect:resumeManagement";
 	}
 	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	//신청 -> 가게정보 불러오기 -> 대타내역 보여주기
+	//신청 -> 대표 자소서 보내야함
 	
 	
-	
-	//구직자 대타내역
-	@GetMapping(value="employeeMapper/pinchHistory")
-	public String pinchHistory(Model model) {
-		model.addAttribute("leftMenu", "pinchHistory");
-		return "employee/pinch/pinchHistory";
+	//대타신청 - 신청을 하면 -> m_id 값을 보냄 -> 구직/구인자 지원상태를 0(지원함)으로 바꿈 -> 구직자 대표 자기소개서를 update해줌. 
+	@PostMapping(value="employeeMapper/jobApply")
+	public String jobApply(JobApplyDTO jobApplyDTO)throws Exception {
+		service.jobApply(jobApplyDTO); //m_id, 구직&구인자 지원상태를 0(지원함)으로 insert 함
+		service.applyIntro(jobApplyDTO); //구직자가 볼수있게 대표 자기소개서를 update 함
+		return "redirct:jobAds/listAll";
 	}
+	
+	
+	
+	//구직자 대타내역 보기 ()
+//	@GetMapping(value="employeeMapper/pinchHistory")
+//	public ModelAndView pinchHistory(Model model)throws Exception {
+//		model.addAttribute("leftMenu", "pinchHistory");
+//		ModelAndView mav = new ModelAndView();
+//		List<JobAdsDTO> list = service.pinchHistory();
+//		mav.addObject("list", list);
+//		mav.setViewName("employee/pinch/pinchHistory");
+//		return mav;
+//	}
+
+	//	//구직자 대타내역
+	@GetMapping(value="employeeMapper/pinchHistory")
+	public ModelAndView pinchHistory(Model model)throws Exception {
+		model.addAttribute("leftMenu", "pinchHistory");
+		ModelAndView mav = new ModelAndView();
+		List<JobAdsDTO> list = service.pinchHistory();
+		mav.addObject("list", list);
+		mav.setViewName("employee/pinch/pinchHistory");
+		return mav;
+	}
+	
+	
+	
 	
 	
 	//구직자 지원현황
@@ -159,7 +190,7 @@ public class EmployeeController {
 	//구직자 알바요청
 	@GetMapping(value="employeeMapper/requests")
 	public String requests() {
-		return "employee/resume/requests";
+		return "employee/pinch/requests";
 	}
 	
 	
