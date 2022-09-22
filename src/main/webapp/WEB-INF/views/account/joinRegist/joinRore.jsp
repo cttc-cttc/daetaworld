@@ -42,7 +42,7 @@
 			        </div>
 			
 			        <br><br><br>
-			        <p style="font-size: 20px; margin-bottom: 1rem;">공유하기</p>
+			        <p style="font-size: 17px; color: #777; margin-bottom: 1rem;">공유하기</p>
 			        <%@ include file="../../include/account/share_btns.jsp" %><!-- SNS 공유 버튼들 -->
 				</div>
 			</div>
