@@ -16,6 +16,7 @@
 		<typeAlias type="kr.co.deataworld.dto.DeductedPointDTO" alias="DeductedPointDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.CommentsDTO" alias="CommentsDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.ResumeDTO" alias="ResumeDTO"/>
+		<typeAlias type="kr.co.deataworld.dto.JobApplyDTO" alias="JobApplyDTO"/>
 		
 	</typeAliases>
 </configuration>

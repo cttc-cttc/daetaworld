@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ResumeDTO;
 
@@ -72,6 +74,42 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public int resumeDefaultInit(ResumeDTO resumeDTO) throws Exception {
 		return sql.update(NAMESPACE + ".resumeDefaultInit", resumeDTO);
 	}
+
+
+	@Override //대타신청
+	public int jobApply(JobApplyDTO jobApplyDTO) throws Exception {
+		return sql.insert(NAMESPACE + ".jobApply", jobApplyDTO);
+	}
+
+
+	@Override //대타신청시 대표 자소서를 보냄
+	public int applyIntro(JobApplyDTO jobApplyDTO) throws Exception {
+		return sql.update(NAMESPACE + ".applyIntro", jobApplyDTO);
+	}
+
+
+	@Override //신청한 대타내역 불러오기
+	public List<JobAdsDTO> pinchHistory() throws Exception {
+		return sql.selectList(NAMESPACE + ".pinchHistory");
+	}
+	
+	
+	
+	
+	
+
+//	@Override //대타내역 불러오기
+//	public List<JobAdsDTO> pinchHistory() throws Exception {
+//		return sql.selectList(NAMESPACE + ".pinchHistory");
+//	}
+//
+//
+//	@Override //대타내역 가게명 불러오기
+//	public String shopName(int s_number) throws Exception {
+//		return sql.selectOne(NAMESPACE + ".shopName", s_number);
+//	}
+
+
 
 	
 

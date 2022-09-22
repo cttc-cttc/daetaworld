@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.deataworld.dao.EmployeeDAO;
+import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ResumeDTO;
 
@@ -69,7 +71,39 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public int resumeDefaultInit(ResumeDTO resumeDTO) throws Exception {
 		return dao.resumeDefaultInit(resumeDTO);
 	}
+
+
+	@Override //대타신청
+	public int jobApply(JobApplyDTO jobApplyDTO) throws Exception {
+		return dao.jobApply(jobApplyDTO);
+	}
+
+
+	@Override //대타신청시 대표 자소서를 보냄
+	public int applyIntro(JobApplyDTO jobApplyDTO) throws Exception {
+		return dao.applyIntro(jobApplyDTO);
+	}
+
+
+	@Override
+	public List<JobAdsDTO> pinchHistory() throws Exception {
+		return dao.pinchHistory();
+	}
+
 	
+	
+	
+	
+
+//	@Override //대타 내역 불러오기
+//	public List<JobAdsDTO> pinchHistory() throws Exception {
+//		return dao.pinchHistory();
+//	}
+//	
+//	//대타내역 가게명 불러오기
+//	public String shopName(int s_number)throws Exception {
+//		return dao.shopName(s_number);
+//	}
 	
 
 }
