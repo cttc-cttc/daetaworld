@@ -1,5 +1,7 @@
 package kr.co.deataworld.service;
 
+import java.util.Map;
+
 import kr.co.deataworld.dto.MemberDTO;
 
 public interface AccountService {
@@ -9,4 +11,6 @@ public interface AccountService {
 	public int m_idChk(String m_id) throws Exception;
 	// 회원가입
 	public int register(MemberDTO member);
+	// 로그인
+	public Map<String, Object> login(Map<String, String> loginInfo);
 }

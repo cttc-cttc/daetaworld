@@ -6,7 +6,7 @@
 	<div class="dashboard-sidebar">
 		<div class="dashboard-menu">
 			<ul class="nav">
-				<c:if test="${loginType == 1 }">
+				<c:if test="${loginInfo.m_type == 1 }">
 				<li>
 					<h3>마이페이지 (노예)</h3>
 					<ul>
@@ -25,7 +25,7 @@
 					</ul>
 				</li>
 				</c:if>
-				<c:if test="${loginType == 2 }">
+				<c:if test="${loginInfo.m_type == 2 }">
 				<li>
 					<h3>마이페이지 (사장님)</h3>
 					<ul>
@@ -37,7 +37,7 @@
 								class="lnr lnr-thumbs-down"></i>공고 등록</a></li>
 						<li><a id="adsHistory" href="${contextPath}/employerMapper/adsHistory"><i 
 								class="lnr lnr-thumbs-down"></i>공고 내역</a></li>	
-						<li><a id="adsCompleted" href="${contextPath}/reviewMapper/adsCompleted?m_id=${loginUser}"><i 
+						<li><a id="adsCompleted" href="${contextPath}/reviewMapper/adsCompleted?m_id=${loginInfo.m_id}"><i 
 								class="lnr lnr-thumbs-down"></i>후기 작성</a></li>																			
 						<li><a id="pointManagement_r" href="${contextPath}/pointMapper/pointManagement"><i 
 								class="lnr lnr-thumbs-down"></i>포인트 관리</a></li>
@@ -79,7 +79,7 @@
 			break;	
 		// 마이페이지
 		case "myInfo":
-			if("${loginType}" == 1) { // 구직자
+			if("${loginInfo.m_type}" == 1) { // 구직자
 				$("#myInfo_e").addClass("active");
 			} else { // 구인자
 				$("#myInfo_r").addClass("active");
@@ -88,7 +88,7 @@
 			break;
 		// 포인트
 		case "pointManagement":
-			if("${loginType}" == 1) { // 구직자
+			if("${loginInfo.m_type}" == 1) { // 구직자
 				$("#pointManagement_e").addClass("active");
 			} else { // 구인자
 				$("#pointManagement_r").addClass("active");

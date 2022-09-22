@@ -1,5 +1,7 @@
 package kr.co.deataworld.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,6 +30,13 @@ public class AccountDAOImpl implements AccountDAO{
 	@Override
 	public int register(MemberDTO member) {
 		// TODO Auto-generated method stub
-		return sql.insert(nameSpace + ".register", member);
+		sql.insert(nameSpace + ".register", member);
+		return sql.insert(nameSpace + ".registerPoint", member);
+	}
+
+	@Override
+	public Map<String, Object> login(Map<String, String> loginInfo) {
+		// TODO Auto-generated method stub
+		return sql.selectOne(nameSpace + ".login", loginInfo);
 	}
 }
