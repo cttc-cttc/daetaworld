@@ -26,7 +26,7 @@ import kr.co.deataworld.dto.JobCountryCriteria;
 import kr.co.deataworld.dto.JobCountryPageMaker;
 import kr.co.deataworld.dto.AreaCodeDTO;
 import kr.co.deataworld.dto.JobAdsDTO;
-
+import kr.co.deataworld.service.EmployeeService;
 import kr.co.deataworld.service.JobAdsService;
 
 /*
@@ -39,7 +39,10 @@ public class JobAdsController {
 
 	@Inject
 	JobAdsService service;
-
+	
+	@Inject
+	EmployeeService eService;
+	
 	
 		// 구인목록-일반/급구
 
@@ -60,6 +63,11 @@ public class JobAdsController {
 		
 		return "jobAds/listAll";
 	}
+	
+	
+	
+	
+	
 	
 	//구인목록-농어촌
 	@GetMapping(value = "/jobAds/listCountry")
@@ -162,8 +170,10 @@ public class JobAdsController {
 
 	// 구인목록 상세(가게번호 누르고 들어갈때)
 	@GetMapping(value = "jobAds/listAllDetail")
-	public String listAdsDetail(@RequestParam("s_number") int s_number,Model model) {
+	public String listAdsDetail(@RequestParam("s_number") int s_number,Model model) throws Exception {
+		int result = eService.applyCheck(s_number);
 		Map<String, Object> map = service.listDetail(s_number);
+		model.addAttribute("result", result);
 		model.addAttribute("map", map);
 		return "jobAds/listAllDetail";		
 	}

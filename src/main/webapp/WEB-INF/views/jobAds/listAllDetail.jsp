@@ -127,8 +127,13 @@
 						<div class="review-area pb-60 pb-sm-30 pb-xs-30">
 							<div class="review-container">
 								
-								<a class="ht-btn text-center" href="#">지원하기<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
-							
+									<c:if test="${result == 0}">
+										<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}'">지원하기<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+									</c:if>
+									
+									<c:if test="${result == 1}">
+										<a class="ht-btn text-center" type="text">이미 지원한 공고입니다<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+									</c:if>
 							</div>
 						</div>
 
