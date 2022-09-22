@@ -71,24 +71,33 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public int resumeDefaultInit(ResumeDTO resumeDTO) throws Exception {
 		return dao.resumeDefaultInit(resumeDTO);
 	}
-
+	
+	
+	@Override // 공고 디테일 접속시 m_id와 s_number(공고번호) 를 이용해 이미 지원한 공고인지 확인
+	public int applyCheck(int s_number) throws Exception {
+		return dao.applyCheck(s_number);
+	}
+	
 
 	@Override //대타신청
-	public int jobApply(JobApplyDTO jobApplyDTO) throws Exception {
-		return dao.jobApply(jobApplyDTO);
+	public int jobApply(int a_number) throws Exception {
+		return dao.jobApply(a_number);
 	}
 
 
 	@Override //대타신청시 대표 자소서를 보냄
-	public int applyIntro(JobApplyDTO jobApplyDTO) throws Exception {
-		return dao.applyIntro(jobApplyDTO);
+	public int applyIntro() throws Exception {
+		return dao.applyIntro();
 	}
 
 
-	@Override
+	@Override //대타내역
 	public List<JobAdsDTO> pinchHistory() throws Exception {
 		return dao.pinchHistory();
 	}
+
+
+	
 
 	
 	

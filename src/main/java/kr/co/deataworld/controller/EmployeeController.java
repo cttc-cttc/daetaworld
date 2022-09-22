@@ -3,6 +3,7 @@ package kr.co.deataworld.controller;
 import java.lang.ProcessBuilder.Redirect;
 import java.lang.annotation.Retention;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -143,12 +144,12 @@ public class EmployeeController {
 	//신청 -> 대표 자소서 보내야함
 	
 	
-	//대타신청 - 신청을 하면 -> m_id 값을 보냄 -> 구직/구인자 지원상태를 0(지원함)으로 바꿈 -> 구직자 대표 자기소개서를 update해줌. 
-	@PostMapping(value="employeeMapper/jobApply")
-	public String jobApply(JobApplyDTO jobApplyDTO)throws Exception {
-		service.jobApply(jobApplyDTO); //m_id, 구직&구인자 지원상태를 0(지원함)으로 insert 함
-		service.applyIntro(jobApplyDTO); //구직자가 볼수있게 대표 자기소개서를 update 함
-		return "redirct:jobAds/listAll";
+	//대타신청 - 신청을 하면 -> m_id 값을 보냄 -> 이미 지원한 공고인지 확인 해야함 -> 구직/구인자 지원상태를 0(지원함)으로 바꿈 -> 구직자 대표 자기소개서를 update해줌. 
+	@GetMapping(value="employeeMapper/jobApply")
+	public String jobApply(@RequestParam("a_number") int a_number)throws Exception {
+		service.jobApply(a_number); //m_id, 구직&구인자 지원상태를 0(지원함)으로 insert 함
+		service.applyIntro(); //구직자가 볼수있게 대표 자기소개서를 update 함
+		return "jobAds/listAll";
 	}
 	
 	
@@ -164,7 +165,9 @@ public class EmployeeController {
 //		return mav;
 //	}
 
-	//	//구직자 대타내역
+	
+	
+	//구직자 대타내역
 	@GetMapping(value="employeeMapper/pinchHistory")
 	public ModelAndView pinchHistory(Model model)throws Exception {
 		model.addAttribute("leftMenu", "pinchHistory");

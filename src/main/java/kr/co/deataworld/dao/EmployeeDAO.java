@@ -35,11 +35,14 @@ public interface EmployeeDAO {
 	//자소서 대표 초기화
 	public int resumeDefaultInit(ResumeDTO resumeDTO)throws Exception;
 	
+	// 공고 디테일 접속시 m_id와 s_number(공고번호) 를 이용해 이미 지원한 공고인지 확인
+	public int applyCheck(int s_number)throws Exception;
+
 	//대타신청
-	public int jobApply(JobApplyDTO jobApplyDTO)throws Exception;
+	public int jobApply(int a_number)throws Exception;
 	
-	//대타 신청시 대표자소서를 보냄
-	public int applyIntro(JobApplyDTO jobApplyDTO)throws Exception;
+	// 공고 디테일 접속시 m_id와 s_number(공고번호) 를 이용해 이미 지원한 공고인지 확인
+	public int applyIntro()throws Exception;
 	
 	//신청한 공고내역을 불러온다
 	public List<JobAdsDTO> pinchHistory()throws Exception;
