@@ -1,5 +1,7 @@
 package kr.co.deataworld.service;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -27,5 +29,11 @@ public class AccountServiceImpl implements AccountService{
 	public int register(MemberDTO member) {
 		// TODO Auto-generated method stub
 		return dao.register(member);
+	}
+
+	@Override
+	public Map<String, Object> login(Map<String, String> loginInfo) {
+		// TODO Auto-generated method stub
+		return dao.login(loginInfo);
 	}
 }

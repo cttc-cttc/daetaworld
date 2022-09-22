@@ -6,32 +6,27 @@
 <%@ include file="../include/head.jsp" %>
 <!-- custom css -->
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css">
-<body class="template-color-3">
+<body class="template-color-3" onkeydown="onEnterLogin()">
 	<div id="main-wrapper">
-		<!-- 상단 메뉴 start-->
+		<!-- header -->
 		<header class="header-absolute black-logo-version header-sticky sticky-white no-padding d-none d-lg-block pt-25 pb-25">
 			<%@ include file="../include/header.jsp" %>
 		</header>
-		<!-- 상단 메뉴 end-->
 		
-		<!-- Breadcrumb Section Start -->
+		<!-- 상단 여백 Section Start -->
 		<div class="breadcrumb-section section bg_color--5 pt-60 pt-sm-50 pt-xs-40 pb-60 pb-sm-50 pb-xs-40">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
 						<div class="page-breadcrumb-content">
-							<ul class="page-breadcrumb">
-								<li><a href="index.html"></a></li>
-								<li></li>
-							</ul>
+							<ul class="page-breadcrumb"></ul>
 							<br>
-							<h1>로그인 & 회원가입</h1>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Breadcrumb Section Start -->
+		<!-- 상단 여백 Section end -->
 		
 		<!-- Login Register Section Start -->
 		<div class="login-register-section section bg_color--5 pb-120 pb-lg-100 pb-md-80 pb-sm-60 pb-xs-50">
@@ -41,71 +36,34 @@
 						<div class="login-register-form-area">
 							<div class="login-tab-menu">
 								<ul class="nav">
-									<li><a class="active show" data-toggle="tab" href="#login">개인로그인</a></li>
-									<li><a data-toggle="tab" href="#register">기업로그인</a></li>
+									<li><a class="active show" style="cursor: context-menu;">통합 로그인</a></li>
 								</ul>
 							</div>
 							<div class="tab-content">
 								<div id="login" class="tab-pane fade show active">
 									<div class="login-register-form">
 										<form method="post">
-											<p>구직 계정으로 오늘의 대타에 로그인하세요</p>
+											<p>오늘의 대타에 로그인하세요</p>
 											<div class="row">
 												<div class="col-12">
 													<div class="single-input">
-														<input type="text" placeholder="아이디 또는 이메일" name="name">
+														<input type="text" placeholder="아이디" name="inputId" id="inputId">
 													</div>
 												</div>
 												<div class="col-12">
 													<div class="single-input">
-														<input type="password" placeholder="비밀번호" name="password">
+														<input type="password" placeholder="비밀번호" name="inputPassword" id="inputPassword">
 													</div>
 												</div>
 												<div class="col-12">
 													<div class="checkbox-input">
-														<input type="checkbox" name="login-form-remember" id="login-form-remember"><label for="login-form-remember">아이디 저장하기</label>
+														<input type="checkbox" name="login-form-remember" id="login-form-remember">
+														<label for="login-form-remember">아이디 저장하기</label>
 													</div>
 												</div>
 												<div class="col-12 mb-25">
-													<button class="ht-btn">로그인</button>
-												</div>
-											</div>
-										</form>
-										<div class="divider">
-											<span class="line"></span><span class="circle">간편 로그인</span>
-										</div>
-										<div class="social-login">
-											<ul class="social-icon">
-												<li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-												<li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-												<li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
-												<li><a class="google" href="#"><i class="fab fa-google-plus"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div id="register" class="tab-pane fade">
-									<div class="login-register-form">
-										<form action="#" method="post">
-										<p>구인 계정으로 오늘의 대타에 로그인하세요</p>
-											<div class="row">
-												<div class="col-12">
-													<div class="single-input">
-														<input type="text" placeholder="아이디 또는 이메일" name="name">
-													</div>
-												</div>
-												<div class="col-12">
-													<div class="single-input">
-														<input type="password" placeholder="비밀번호" name="password">
-													</div>
-												</div>
-												<div class="col-12">
-													<div class="checkbox-input">
-														<input type="checkbox" name="login-form-remember" id="login-form-remember"><label for="login-form-remember">아이디 저장하기</label>
-													</div>
-												</div>
-												<div class="col-12 mb-25">
-													<button class="ht-btn">로그인</button>
+													<button type="button" class="ht-btn" onclick="validate()">로그인</button>
+													<p style="margin-top: 1rem; color: red; text-align: center;">${loginFailedMsg }</p>
 												</div>
 											</div>
 										</form>
@@ -145,18 +103,21 @@
 			</div>
 		</div>
 		<!-- Login Register Section End -->
-		<%@ include file="../include/footer.jsp" %>
 		
-		<!-- Placed js at the end of the document so the pages load faster -->
+		<%@ include file="../include/footer.jsp" %>
 	</div>
-	<!-- Placed js at the end of the document so the pages load faster -->
-	<!-- All jquery file included here -->
-	<script src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-	<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	<!-- 문서 끝에 js를 배치하여 페이지 로딩 속도 향상 -->
+	<%@ include file="../include/plugin.jsp" %>
+	<script>
+		function onEnterLogin() {
+			var keyCode = window.event.keyCode;
+			if (keyCode == 13) // 엔터키
+				validate();
+		}
+		
+		function validate() {
+			$('form').submit();
+		}
+	</script>
 </body>
 </html>

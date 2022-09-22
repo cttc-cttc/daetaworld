@@ -17,7 +17,7 @@
 		where m_id = #{m_id}			
   	</select>
   	
-	<!-- 회원가입 -->  	
+	<!-- 회원가입 : member 테이블과 point 테이블 insert -->  	
   	<insert id="register" parameterType="MemberDTO">
 	    insert into member(
 			m_id,
@@ -59,5 +59,26 @@
 			#{m_type}
 		)
     </insert>
+    <insert id="registerPoint" parameterType="MemberDTO">
+    	insert into point(
+			point,
+			m_id
+		)values(
+			500,
+			#{m_id}
+		)
+    </insert>
+  	
+  	<!-- 로그인 -->
+  	<select id="login" parameterType="java.util.Map" resultType="java.util.Map">
+  		select
+  			A.m_id, A.m_nick, A.m_type, B.point
+  		from member as A
+  		inner join point as B
+  			on A.m_id = B.m_id
+  		where
+  			A.m_id = #{inputId}
+  			and A.m_password = #{inputPassword}
+  	</select>
   	
 </mapper>

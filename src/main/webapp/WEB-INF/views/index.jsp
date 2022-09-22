@@ -339,18 +339,10 @@
 		</div>
 		<!-- 농어촌 구인 End -->
 		
+		<!-- footer -->
 		<%@ include file="include/footer.jsp" %>
-		
-		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
-	<!-- Placed js at the end of the document so the pages load faster -->
-	<!-- All jquery file included here -->
-	<script src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-	<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	<!-- 문서 끝에 js를 배치하여 페이지 로딩 속도 향상 -->
+	<%@ include file="include/plugin.jsp" %>
 </body>
 </html>

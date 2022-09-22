@@ -1,5 +1,6 @@
 package kr.co.deataworld.controller;
 
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -22,6 +23,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.deataworld.dto.MemberDTO;
 
@@ -48,30 +52,53 @@ public class AccountController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 	
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	@GetMapping(value = "login")
 	public String loginForm() {
 		logger.info("로그인화면 접속");
 		return "account/loginForm";
 	}
 	
-	@RequestMapping(value = "JoinRore", method = RequestMethod.GET)
-	public String Join() {
-		logger.info("회원가입 선택 화면 접속");
-		return "account/joinRegist/JoinRore";
+//	로그인
+	@PostMapping(value = "login")
+	public String login(@RequestParam Map<String, String> loginInfo, HttpSession session, RedirectAttributes attr) {
+		logger.info("로그인 정보 : " + loginInfo.toString());
+		Map<String, Object> loginResult = service.login(loginInfo);
+		if(loginResult == null) {
+			attr.addFlashAttribute("loginFailedMsg", "로그인 정보가 일치하지 않습니다.");
+			return "redirect:login";
+		}
+		
+		session.setAttribute("loginInfo", loginResult);
+		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "write-e", method = RequestMethod.GET)
+//	로그아웃
+	@GetMapping(value = "logout")
+	public String logout(HttpSession session) {
+		logger.info("로그아웃");
+		session.invalidate();
+		return "redirect:/";
+	}	
+	
+	@GetMapping(value = "JoinRore")
+	public String Join() {
+		logger.info("회원가입 선택 화면 접속");
+		return "account/joinRegist/joinRore";
+	}
+	
+	@GetMapping(value = "write-e")
 	public String writee() {
 		logger.info("구직자 회원가입화면 접속");
 		return "account/joinRegist/write-e";
 	}
 	
-	@RequestMapping(value = "write-r", method = RequestMethod.GET)
+	@GetMapping(value = "write-r")
 	public String writer() {
 		logger.info("구인자 회원가입화면 접속");
 		return "account/joinRegist/write-r";
 	}
 	
+//	구직자, 구인자 회원가입
 	@PostMapping(value = "register")
 	public String writee(MemberDTO member, String terms1, String terms2, MultipartFile chooseFile) {
 		if(member.getM_type() == 1)
@@ -96,34 +123,6 @@ public class AccountController {
 		service.register(member);
 		return "redirect:/";
 	}
-	
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(String name, String password, HttpSession session) {
-		logger.info("name : " + name + " / password : " + password);
-		if(name.equals("admin") && password.equals("admin123")) {
-			session.setAttribute("loginUser", name);
-			session.setAttribute("loginType", 0);
-			
-		} else if(name.equals("user") && password.equals("user123")) {
-			session.setAttribute("loginUser", name);
-			session.setAttribute("loginType", 1);
-			
-		} else if(name.equals("owner") && password.equals("owner123")) {
-			session.setAttribute("loginUser", name);
-			session.setAttribute("loginType", 2);
-			
-		} else {
-			return "redirect:login";
-		}
-		return "redirect:/";
-	}
-	
-	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
-		logger.info("로그아웃");
-		session.invalidate();
-		return "redirect:/";
-	}	
 
 //	닉네임 중복 체크
 	@ResponseBody
@@ -133,8 +132,6 @@ public class AccountController {
 		return r;
 	}
 	
-	
-	
 //	아이디 중복 체크
 	@ResponseBody
 	@PostMapping(value="account/m_idChk")
@@ -143,10 +140,7 @@ public class AccountController {
 		return ri;
 	}
 	
-	
-	
-	
-   //이메일 인증 (메일 가입 이름 dd)
+//	이메일 인증 (메일 가입 이름 dd)
 	@ResponseBody
 	@RequestMapping(value = "emailAuth", method = RequestMethod.POST)
 	public String emailAuth(@RequestParam("email") String email) {

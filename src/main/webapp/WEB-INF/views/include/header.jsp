@@ -33,20 +33,20 @@
 			<!-- Cart & Search Area Start -->
 			<div class="col-xl-3 col-lg-3 col-12">
 				<!-- 로그인 유저 없음 -->
-				<c:if test="${loginUser == null }">
+				<c:if test="${loginInfo == null }">
 					<div class="header-btn-action d-flex justify-content-end">
 						<div class="btn-action-wrap d-flex">
 							<div class="jp-author item">
 								<a href="${contextPath}/login"><i class="lnr lnr-user"></i><span>로그인</span></a>
 							</div>
 							<div class="jp-author-action-two item">
-								<a class="ht-btn header-btn" href="${contextPath}/JoinRore">회원가입</a>
+								<a class="ht-btn header-btn" href="${contextPath}/joinRore">회원가입</a>
 							</div>
 						</div>
 					</div>
 				</c:if>
 				<!-- 관리자 로그인 -->
-				<c:if test="${loginType == 0 }">
+				<c:if test="${loginInfo.m_type == 0 }">
 					<div class="header-btn-action d-flex justify-content-end">
 						<div class="btn-action-wrap d-flex">
 							<!-- 알림 토글 Start --> 
@@ -72,7 +72,7 @@
 							<div class="jp-author item">
 								<a id="userMenu" data-toggle="dropdown" aria-expanded="false">
 									<img src="${contextPath}/resources/assets/images/team/ab-team3.jpg" class="rounded-circle profile-image">
-									&nbsp;<span class="user-hover">${loginUser }님</span>
+									&nbsp;<span class="user-hover">${loginInfo.m_nick }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">
 									<a class="dropdown-item drdn-item" href="${contextPath }/admin/employee_list?page=1">관리자 화면</a>
@@ -85,8 +85,8 @@
 						</div>
 					</div>
 				</c:if>
-				<!-- 개인회원 로그인 -->
-				<c:if test="${loginType == 1 }">
+				<!-- 구직자 로그인 -->
+				<c:if test="${loginInfo.m_type == 1 }">
 					<div class="header-btn-action d-flex justify-content-end">
 						<div class="btn-action-wrap d-flex">
 							<!-- 알림 토글 Start --> 
@@ -110,10 +110,10 @@
 							<div class="jp-author item">
 								<a id="userMenu" data-toggle="dropdown" aria-expanded="false">
 									<img src="${contextPath}/resources/assets/images/team/ab-team1.jpg" class="rounded-circle profile-image">
-									&nbsp;<span class="user-hover">${loginUser }님</span>
+									&nbsp;<span class="user-hover">${loginInfo.m_nick }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">
-									<a class="dropdown-item drdn-item" href="${contextPath}/point/pointManagement">포인트 점수 : 230점</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/point/pointManagement">포인트 점수 : <span>${loginInfo.point }</span>점</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/pinchStatus">내 지원 현황</a>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/myInfo">마이페이지</a>
@@ -126,8 +126,8 @@
 						</div>
 					</div>
 				</c:if>
-				<!-- 기업회원 로그인 -->
-				<c:if test="${loginType == 2 }">
+				<!-- 구인자 로그인 -->
+				<c:if test="${loginInfo.m_type == 2 }">
 					<div class="header-btn-action d-flex justify-content-end">
 						<div class="btn-action-wrap d-flex">
 							<!-- 알림 토글 Start --> 
@@ -151,15 +151,15 @@
 							<div class="jp-author item">
 								<a id="userMenu" data-toggle="dropdown" aria-expanded="false">
 									<img src="${contextPath}/resources/assets/images/team/ab-team2.jpg" class="rounded-circle profile-image">
-									&nbsp;<span class="user-hover">${loginUser }님</span>
+									&nbsp;<span class="user-hover">${loginInfo.m_nick }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">
-									<a class="dropdown-item drdn-item" href="${contextPath}/pointMapper/pointManagement">포인트 점수 : 540점</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/pointMapper/pointManagement">포인트 점수 : <span>${loginInfo.point }</span>점</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/myInfo">마이페이지</a>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsRegister">공고 등록</a>
 									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/candidates">지원자 확인</a>
-									<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/adsCompleted?m_id=${loginUser}">후기 작성</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/adsCompleted?m_id=${loginInfo.m_id}">후기 작성</a>
 									
 								</div>
 							</div>

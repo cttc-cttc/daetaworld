@@ -24,23 +24,16 @@
 	</beans:bean>
 	
 	<!-- 인터셉터 설정 -->
-	<beans:bean class="kr.co.deataworld.util.AuthenticationInterceptor" id="auth"/>
+	<beans:bean class="kr.co.deataworld.util.AdminInterceptor" id="adminInterceptor"/>
 	<beans:bean class="kr.co.deataworld.util.AuthenticationInterceptor2" id="auth2"/>
+	<beans:bean class="kr.co.deataworld.util.MemberInterceptor" id="memberInterceptor"/>
 	
-	<!-- 인터셉터를 위한 매핑경로 설정해서 auth의 메소드를 수행하게 한다 -->
+	<!-- 인터셉터를 위한 매핑경로 설정해서 beans:ref bean의 메소드를 수행하게 한다 -->
 	<interceptors>
+	
 		<interceptor>
-			<mapping path="/admin/*" />
-			<!-- <mapping path="/admin/employee_info" />
-			<mapping path="/admin/employer_info" />
-			<mapping path="/admin/blacklist" />
-			<mapping path="/admin/job_ads" />
-			<mapping path="/admin/free_board" />
-			<mapping path="/admin/free_comment" />
-			<mapping path="/admin/temping_board" />
-			<mapping path="/admin/temping_comment" />
-			<mapping path="/admin/profile" /> -->
-			<beans:ref bean="auth" />
+			<mapping path="/admin/*" /> <!-- 관리자 메뉴 -->
+			<beans:ref bean="adminInterceptor" />
 		</interceptor>
 		
 		<interceptor>
@@ -48,11 +41,27 @@
 			<beans:ref bean="auth2" />
 		</interceptor>
 		
+		<interceptor>
+			<mapping path="/employeeMapper/*"/> <!-- 구인자 메뉴 -->
+			<mapping path="/employerMapper/*"/> <!-- 구직자 메뉴 -->
+			<beans:ref bean="memberInterceptor" />
+		</interceptor>
 		
 	</interceptors>
 	
 	<!-- AOP 실행을 위해 컴포넌트 등록 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!-- 프로필 이미지 업로드 경로 -->
+	<beans:bean id="profileUploadPath" class="java.lang.String">
+		<beans:constructor-arg value="D:\\project\\daetaworld\\src\\main\\webapp\\resources\\images\\profiles">
+		</beans:constructor-arg>
+	</beans:bean>
+	
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
 	
 	<context:component-scan base-package="kr.co.deataworld" />
 </beans:beans>
