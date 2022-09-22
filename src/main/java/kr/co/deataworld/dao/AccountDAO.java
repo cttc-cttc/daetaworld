@@ -3,18 +3,10 @@ package kr.co.deataworld.dao;
 import kr.co.deataworld.dto.MemberDTO;
 
 public interface AccountDAO {
-	//닉네임 중복검사
+	// 닉네임 중복검사
 	public int m_nickChk(String m_nick) throws Exception;
-	//아이디 중복검사
+	// 아이디 중복검사
 	public int m_idChk(String m_id) throws Exception ; 
-	
-	public MemberDTO login(MemberDTO dto) throws Exception;
-	
-	//회원가입
-	public void register(MemberDTO dto) throws Exception;
-
-	
-	
-	
-	
+	// 구직자 회원가입
+	public int eRegister(MemberDTO member);
 }
