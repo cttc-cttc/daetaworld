@@ -7,18 +7,17 @@
 
 
 
-<%@ include file="../include/head.jsp"%>
+<%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/index.css">
 
 <body class="template-color-3">
-
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
 		<header
 			class="header-absolute black-logo-version header-sticky sticky-white no-padding d-none d-lg-block pt-25 pb-25">
-			<%@ include file="../include/header.jsp"%>
+			<%@ include file="../../include/header.jsp"%>
 		</header>
 		<!-- 상단 메뉴 end-->
 
@@ -49,15 +48,33 @@
 								<tr>
 									<th>지역</th>
 									<td>
-										
-										<button type="button" class="btn btn-outline-dark" value = "${listdrop.a_name1 }" onclick="fn_gu()")>${listdrop.a_name2 }</button>
-	
-										
+										<div class="common-sidebar-widget sidebar-two">
+											
+											<div class="sidebar-search-form-two">
+
+												<label for="si"><span></span></label> <select name="major">
+													
+													<optgroup label="local">
+														<option selected>수원시</option>
+														<c:forEach items="${listdrop }" var="row">
+														     <option value="${row.a_name2 }">${row.a_name2 }</option>
+														</c:forEach>
+													</optgroup>
+													
+												</select>
+
+
+											</div>
+											
+										</div>
 									</td>
 
 								</tr>
 
-								
+
+
+								<!-- 지역끝 -->
+
 								<!-- 직종선택 -->
 								<tr>
 									<th>직종</th>
@@ -70,11 +87,16 @@
 													
 													<optgroup label="JobSort1">
 														<option selected>직종대분류</option>
-														<c:forEach items="${listdrop }" >
-														     <option value="${listdrop.j_type1 }">${listdrop.j_type1 }</option>
+														<c:forEach items="${listdrop }" var="row">
+														     <option value="${row.j_type1 }">${row.j_type1 }</option>
 														</c:forEach>
 													</optgroup>
-													
+													<optgroup label="JobSort2">
+														<option selected>직종소분류</option>
+														<c:forEach items="${listdrop }" var="row">
+														     <option value="${row.j_type2 }">${row.j_type2 }</option>
+														</c:forEach>
+													</optgroup>
 													
 												</select>
 
@@ -88,11 +110,36 @@
 
 
 								<!-- 직종끝 -->
-								
-								<!-- 붙여넣기 끝 -->
-							
 
-								
+								<!-- 붙여넣기 끝 -->
+								<tr>
+									<th>근무기간</th>
+									<td><input type="checkbox" id="searchPeriod"
+										class="chk_01 type_01"><label for="searchPeriod"><span></span>전체</label>
+										<input type="radio" id="IS_HIRE0" name="searchHire" value="D"
+										class="radio_01 type_01"><label for="IS_HIRE0"><span></span>7일</label>
+										<!--   --> <input type="radio" id="IS_HIRE2" name="searchHire"
+										value="R" class="radio_01 type_01"><label
+										for="IS_HIRE2"><span></span>3~4일</label> <!--   --> <input
+										type="radio" id="IS_HIRE1" name="searchHire" value="T"
+										class="radio_01 type_01"><label for="IS_HIRE1"><span></span>1일</label>
+										<!--   --></td>
+								</tr>
+
+								<tr>
+									<th>근무시간</th>
+									<td><input type="checkbox" id="searchPeriod"
+										class="chk_01 type_01"><label for="searchPeriod"><span></span>전체</label>
+										<input type="radio" id="IS_HIRE0" name="searchHire" value="D"
+										class="radio_01 type_01"><label for="IS_HIRE0"><span></span>5시간</label>
+										<!--   --> <input type="radio" id="IS_HIRE2" name="searchHire"
+										value="R" class="radio_01 type_01"><label
+										for="IS_HIRE2"><span></span>4시간</label> <!--   --> <input
+										type="radio" id="IS_HIRE1" name="searchHire" value="T"
+										class="radio_01 type_01"><label for="IS_HIRE1"><span></span>2시간</label>
+										<!--   --></td>
+
+								</tr>
 
 							</tbody>
 						</table>
@@ -108,7 +155,7 @@
 	<br>
 	<!-- 셀렉트 박스end -->
 	<!-- 목록보기 -->
-	
+
 	<div class="container">
 		<!-- 로그인양식 -->
 
@@ -134,7 +181,8 @@
 							<th>날짜</th>
 							<th>시간</th>
 							<th>시급</th>
-							
+							<th>급구</th>
+							<th>상태</th>
 							<th>올린시간</th>
 
 						</tr>
@@ -147,7 +195,8 @@
 							<td class="tc">${jobsend.a_date}</td>
 							<td class="tc">${jobsend.a_time}</td>
 							<td class="tc">${jobsend.a_wage}</td>
-							
+							<td class="tc">${jobsend.a_urgency }</td>
+							<td class="tc">${jobsend.a_status }</td>
 							<td class="tc">${jobsend.ua_date }</td>
 
 
@@ -192,7 +241,7 @@
 				value="검색">
 		</form>
 	</div>
-	
+
 	<!-- 목록보기끝 -->
 
 	<!-- 일반구인 리스트 Start -->
@@ -729,7 +778,7 @@
 	</div>
 	<!-- 농어촌 & 돌봄 구인 End -->
 
-	<%@ include file="../include/footer.jsp"%>
+	<%@ include file="../../include/footer.jsp"%>
 
 	<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
@@ -754,13 +803,7 @@
 
 	<!--  ajax끝 -->
 	<!-- 자바스크립트 사용 -->
-	<script>
-	 function fn_gu(){
-		 alert('수원시');
-	 }
-	
-	
-	</script>
+
 
 	<!-- 자바 스크립트 사용end -->
 

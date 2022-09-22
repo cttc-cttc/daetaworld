@@ -7,33 +7,34 @@
 	<!-- 메인화면 - 긴급구인 리스트 6개 -->
 	<select id="main_urgency_ads" resultType="MainAdsDTO">
 		select
-			A.a_number,		<!-- A구인공고.공고번호 -->
-			A.a_wage,		<!-- A구인공고.시급 -->
-			B.s_name,		<!-- B가게정보.가게명 -->
-		    B.s_address1,	<!-- B가게정보.가게 주소1 -->
-		    B.s_picture1,	<!-- B가게정보.가게 사진1 -->
-		    format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
+		A.a_number,		<!-- A구인공고.공고번호 -->
+		A.a_wage,		<!-- A구인공고.시급 -->
+		B.s_name,		<!-- B가게정보.가게명 -->
+		B.s_address1,	<!-- B가게정보.가게 주소1 -->
+		B.s_picture1,	<!-- B가게정보.가게 사진1 -->
+		format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
 		from job_ads as A
 		inner join shop_info as B
-			on A.s_number = B.s_number
+		on A.s_number = B.s_number
 		inner join review as D
-			on A.m_id = D.m_id
+		on A.m_id = D.m_id
 		where
-			A.a_urgency = 1
-            and (A.a_status = 0 or A.a_status = 1)
-            and A.a_type = 0
+		A.a_urgency = 1
+		and
+		(A.a_status = 0 or A.a_status = 1)
+		and A.a_type = 0
 		group by A.a_number
 		order by A.a_number desc
 		limit 0, 6;
 	</select>
-	
-	<!-- 메인화면 - 일반구인 리스트 6개  -->
+
+	<!-- 메인화면 - 일반구인 리스트 6개 -->
 	<select id="main_common_ads" resultType="MainAdsDTO">
 		select
-			A.a_number,		<!-- A구인공고.공고번호 -->
-		    A.a_wage,		<!-- A구인공고.시급 -->
-		    A.a_time,		<!-- A구인공고.시간 -->
-		    <!-- A구인공고.올린시간 -->
+		A.a_number,		<!-- A구인공고.공고번호 -->
+		A.a_wage,		<!-- A구인공고.시급 -->
+		A.a_time,		<!-- A구인공고.시간 -->
+		<!-- A구인공고.올린시간 -->
 		    <![CDATA[
 		    case
 				when hour(timediff(now(), A.ua_date)) < 1
@@ -49,54 +50,109 @@
 				else concat(timestampdiff(year, A.ua_date, now()),'년')
 			end as uptime,
 			]]>
-		    B.s_name,		<!-- B가게정보.가게명 -->
-		    B.s_address1,	<!-- B가게정보.가게 주소1 -->
-		    B.s_picture1,	<!-- B가게정보.가게 사진1 -->
-		    B.s_tag1,		<!-- B가게정보.태그1 -->
-		    B.s_tag2,		<!-- B가게정보.태그2 -->
-		    B.s_tag3,		<!-- B가게정보.태그3 -->
-		    B.s_tag4,		<!-- B가게정보.태그4 -->
-		    B.s_tag5,		<!-- B가게정보.태그5 -->
-		    C.m_nick,		<!-- C회원.닉네임 -->
-		    format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
+		B.s_name,		<!-- B가게정보.가게명 -->
+		B.s_address1,	<!-- B가게정보.가게 주소1 -->
+		B.s_picture1,	<!-- B가게정보.가게 사진1 -->
+		B.s_tag1,		<!-- B가게정보.태그1 -->
+		B.s_tag2,		<!-- B가게정보.태그2 -->
+		B.s_tag3,		<!-- B가게정보.태그3 -->
+		B.s_tag4,		<!-- B가게정보.태그4 -->
+		B.s_tag5,		<!-- B가게정보.태그5 -->
+		C.m_nick,		<!-- C회원.닉네임 -->
+		format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
 		from job_ads as A
 		inner join shop_info as B
-			on A.s_number = B.s_number
+		on A.s_number = B.s_number
 		inner join member as C
-			on A.m_id = C.m_id
+		on A.m_id = C.m_id
 		inner join review as D
-			on A.m_id = D.m_id
+		on
+		A.m_id = D.m_id
 		where
-			A.a_urgency = 0
-            and (A.a_status = 0 or A.a_status = 1)
-            and A.a_type = 0
+		A.a_urgency = 0
+		and (A.a_status = 0 or A.a_status =
+		1)
+		and A.a_type = 0
 		group by A.a_number
 		order by A.a_number desc
-		limit 0, 6;
-		
+		limit 0,
+		6
+
 	</select>
-	<!--  구인목록 -->
-	<select id="listAds" resultType ="JobAdsDTO">
-		select * from
-		job_ads 
-	</select>
-	<!-- 구인목록 상세읽기 -->
-	<select id="listAllDetail" parameterType = "java.lang.Integer" resultType ="JobAdsDTO">
-		select *
+	<!-- 구인목록 일반/급구 -->
+	<select id="listAds" parameterType="java.util.Map" resultType="JobAdsDTO">
+			select s_number,a_date,a_time,a_wage,ua_date,a_urgency
+			from job_ads
+			where a_type = 0
+            order by s_number
+			limit #{pageStart}, #{perPageNum} 
+							
+		</select>
+	<!-- 농어촌 구인목록 -->
+	<select id="listCountry" parameterType="java.util.Map" resultType="JobAdsDTO">
+		select s_number,a_date,a_time,a_wage,ua_date,a_urgency
 		from job_ads
-		where a_number = #{a_number}
-	</select>
-	<!-- 구인목록 드롭다운 1번째 선택지 -->
-	<select id="selectDropdown"  resultType="AreaCodeDTO">
-		select a_name1 from area_code
-		group by a_name1
+		where a_type = 1
+		order by s_number
 		
+	</select>	
+		
+	
+	
+	<!-- 구인목록 드롭다운 -->
+	<select id="selectDropdown" parameterType="java.util.Map" resultType="Map">
+		select a.*, s.*
+		from job_ads a, shop_info s, job_code jc, area_code ac
+		where s.a_code = ac.a_code and ac.a_name2 = "#{a_name2}"
+		and s.j_code = jc.j_code and jc.j_type1 = "#{j_type1}"
+		group by a_name1 and a_name2
+		      
 	</select>
-	<!-- 구인목록 2번째 선택지 -->
-	<select id="selectSecond" parameterType="java.lang.String" resultType="AreaCodeDTO">
-		select a_name2 from area_code
-		group by a_name2
-		where a_name1=?
+	
+	<!-- 구인상세 -->
+	<select id="listDetail" parameterType="java.lang.Integer"
+		resultType="java.util.Map">
+		select j.*,s.*
+		from job_ads j, shop_info s
+		where j.s_number = s.s_number
+        and s.s_number=#{s_number}
 	</select>
 
+	<!-- 일반/긴급 글 갯수 -->
+		<select id="countJobAdsList" resultType="java.lang.Integer">
+			select count(a_type)
+			from job_ads
+            where a_type=0
+			
+		</select>	
+	
+	<!-- 농어촌 글 갯수 -->
+		<select id="countCountry" resultType = "java.lang.Integer">
+			select count(a_type)
+			from job_ads
+			where a_type=1
+		</select>
+	<!-- 구인목록검색 -->
+       <select id="JobAdsSearch" parameterType="java.util.Map" resultType="JobAdsDTO">		
+		select *
+		from job_ads
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="option == 's_number'">
+				s_number</if>
+			<if test="option == 'a_number'">
+				a_number</if>
+			<if test="option == 'a_wage'">
+				a_wage</if>
+			
+			<if test="value != null and value != ''">
+			= #{value} 
+			</if>			
+		</trim>
+	</select>
+	<!-- 지역검색 -->
+	<select id = "areaSearch" parameterType="String" resultType="AreaCodeDTO">
+	
+	</select>
+	
+	
 </mapper>

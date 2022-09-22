@@ -1,6 +1,7 @@
 package kr.co.deataworld.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -8,8 +9,11 @@ import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.JobAdsDAO;
 import kr.co.deataworld.dto.AreaCodeDTO;
+import kr.co.deataworld.dto.JobAdsCriteria;
 import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.JobCountryCriteria;
 import kr.co.deataworld.dto.MainAdsDTO;
+import kr.co.deataworld.dto.ShopInfoDTO;
 
 @Service
 public class JobAdsServiceImpl implements JobAdsService {
@@ -28,27 +32,60 @@ public class JobAdsServiceImpl implements JobAdsService {
 	}
 
 	@Override
-	public List<JobAdsDTO> listAds() {
+	public List<JobAdsDTO> listAds(JobAdsCriteria cri) {
 		// TODO Auto-generated method stub
-		return dao.listAds();
+		return dao.listAds(cri);
 	}
 
 	@Override
-	public JobAdsDTO listAllDetail(int a_number) {
+	public JobAdsDTO listAllDetail(int s_number) {
 		// TODO Auto-generated method stub
-		return dao.listAllDetail(a_number);
+		return dao.listAllDetail(s_number);
+	}
+
+	
+	@Override
+	public Map<String, Object> listDetail(int s_number) {
+		// TODO Auto-generated method stub
+		return dao.listDetail(s_number);
 	}
 
 	@Override
-	public List<AreaCodeDTO> selectDropdown() {
+	public int countJobAdsList() {
 		// TODO Auto-generated method stub
-		return dao.selectDropdown();
+		return dao.countJobAdsList();
 	}
 
 	@Override
-	public List<AreaCodeDTO> selectSecond(String select) {
+	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map) {
 		// TODO Auto-generated method stub
-		return dao.selectSecond(select);
+		return dao.JobAdsSearch(map);
 	}
+
+	@Override
+	public List<AreaCodeDTO> areaSearch(String area){
+		// TODO Auto-generated method stub
+		return dao.areaSearch(area);
+	}
+
+	@Override
+	public List<AreaCodeDTO> selectDropdown(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.selectDropdown(map);
+	}
+
+	@Override
+	public List<JobAdsDTO> listCountry(JobCountryCriteria cri1) {
+		// TODO Auto-generated method stub
+		return dao.listCountry(cri1);
+	}
+
+	@Override
+	public int countCountry() {
+		// TODO Auto-generated method stub
+		return dao.countCountry();
+	}
+
+	
 	
 }
