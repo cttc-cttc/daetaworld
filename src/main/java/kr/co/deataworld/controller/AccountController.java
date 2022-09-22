@@ -80,7 +80,7 @@ public class AccountController {
 		return "redirect:/";
 	}	
 	
-	@GetMapping(value = "JoinRore")
+	@GetMapping(value = "joinRore")
 	public String Join() {
 		logger.info("회원가입 선택 화면 접속");
 		return "account/joinRegist/joinRore";
