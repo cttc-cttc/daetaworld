@@ -1,5 +1,5 @@
 /**
- * 구인자 회원가입, 구직자 회원가입 공용 스크립트
+ * 구직자 회원가입, 구인자 회원가입 공용 스크립트 
  */
 let veriCheck = false;
 let nickveri = false;
