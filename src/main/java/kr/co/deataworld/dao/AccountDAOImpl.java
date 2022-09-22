@@ -26,8 +26,8 @@ public class AccountDAOImpl implements AccountDAO{
 	}
 
 	@Override
-	public int eRegister(MemberDTO member) {
+	public int register(MemberDTO member) {
 		// TODO Auto-generated method stub
-		return sql.insert(nameSpace + ".eRegister", member);
+		return sql.insert(nameSpace + ".register", member);
 	}
 }

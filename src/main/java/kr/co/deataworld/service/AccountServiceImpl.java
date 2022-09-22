@@ -24,8 +24,8 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public int eRegister(MemberDTO member) {
+	public int register(MemberDTO member) {
 		// TODO Auto-generated method stub
-		return dao.eRegister(member);
+		return dao.register(member);
 	}
 }

@@ -7,6 +7,6 @@ public interface AccountService {
 	public int m_nickChk(String m_nick) throws Exception;
 	// 아이디 중복검사
 	public int m_idChk(String m_id) throws Exception;
-	// 구직자 회원가입
-	public int eRegister(MemberDTO member);
+	// 회원가입
+	public int register(MemberDTO member);
 }

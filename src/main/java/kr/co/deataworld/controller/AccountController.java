@@ -60,20 +60,25 @@ public class AccountController {
 		return "account/joinRegist/JoinRore";
 	}
 	
-
+	@RequestMapping(value = "write-e", method = RequestMethod.GET)
+	public String writee() {
+		logger.info("구직자 회원가입화면 접속");
+		return "account/joinRegist/write-e";
+	}
+	
 	@RequestMapping(value = "write-r", method = RequestMethod.GET)
 	public String writer() {
 		logger.info("구인자 회원가입화면 접속");
 		return "account/joinRegist/write-r";
 	}
 	
-	@RequestMapping(value = "write-e", method = RequestMethod.GET)
-	public String writee() {
-		logger.info("구직자 회원가입화면 접속");
-		return "account/joinRegist/write-e";
-	}
-	@PostMapping(value = "write-e")
+	@PostMapping(value = "register")
 	public String writee(MemberDTO member, String terms1, String terms2, MultipartFile chooseFile) {
+		if(member.getM_type() == 1)
+			logger.info("구직자 회원가입");
+		else if(member.getM_type() == 2)
+			logger.info("구인자 회원가입");
+		
 		// 선택약관1 체크했을 때 등록
 		if(terms1 != null)
 			member.setM_terms1(1);
@@ -87,7 +92,8 @@ public class AccountController {
 			String savedName = FileProcess.insertImg(chooseFile, FileProcess.PROFILE_IMG_PATH);
 			member.setM_picture(savedName);
 		}
-		service.eRegister(member);
+		
+		service.register(member);
 		return "redirect:/";
 	}
 	
