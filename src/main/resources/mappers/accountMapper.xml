@@ -17,6 +17,13 @@
 		where m_id = #{m_id}			
   	</select>
   	
+  	<!-- 주소1 정보로 지역코드 얻기 -->
+  	<select id="getAreaCode" parameterType="java.util.Map" resultType="java.lang.String">
+  		select a_code from area_code
+  		where a_name1 like concat(#{addrName1_1}, '%', #{addrName1_2}, '%')
+  		and a_name2 like concat(#{addrName2}, '%')
+  	</select>
+  	
 	<!-- 회원가입 : member 테이블과 point 테이블 insert -->  	
   	<insert id="register" parameterType="MemberDTO">
 	    insert into member(
@@ -37,7 +44,8 @@
 			m_warned,
 			m_banned,
 			m_quitted,
-			m_type
+			m_type,
+			a_code
 		)values(
 			#{m_id},
 			#{m_password},
@@ -56,7 +64,8 @@
 			#{m_warned},
 			#{m_banned},
 			#{m_quitted},
-			#{m_type}
+			#{m_type},
+			#{a_code}
 		)
     </insert>
     <insert id="registerPoint" parameterType="MemberDTO">
@@ -72,7 +81,7 @@
   	<!-- 로그인 -->
   	<select id="login" parameterType="java.util.Map" resultType="java.util.Map">
   		select
-  			A.m_id, A.m_nick, A.m_type, B.point
+  			A.m_id, A.m_nick, A.m_picture, A.m_type, B.point
   		from member as A
   		inner join point as B
   			on A.m_id = B.m_id

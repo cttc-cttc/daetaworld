@@ -42,3 +42,9 @@
 .user-hover:hover {
 	color: #007bff;
 }
+
+.profile-container {
+	width: 2.5rem;
+	height: 2.5rem;
+	overflow: hidden;
+}

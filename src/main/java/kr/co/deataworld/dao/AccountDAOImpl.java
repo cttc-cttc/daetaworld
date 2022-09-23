@@ -33,6 +33,12 @@ public class AccountDAOImpl implements AccountDAO{
 		sql.insert(nameSpace + ".register", member);
 		return sql.insert(nameSpace + ".registerPoint", member);
 	}
+	
+	@Override
+	public String getAreaCode(Map<String, String> addrParam) {
+		// TODO Auto-generated method stub
+		return sql.selectOne(nameSpace + ".getAreaCode", addrParam);
+	}
 
 	@Override
 	public Map<String, Object> login(Map<String, String> loginInfo) {

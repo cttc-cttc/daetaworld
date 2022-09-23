@@ -11,6 +11,8 @@ public interface AccountDAO {
 	public int m_idChk(String m_id) throws Exception ; 
 	// 회원가입
 	public int register(MemberDTO member);
+	// 지역코드 생성
+	public String getAreaCode(Map<String, String> addrParam);
 	// 로그인
 	public Map<String, Object> login(Map<String, String> loginInfo);
 }

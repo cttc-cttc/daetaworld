@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- custom_css -->
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/header.css">
 <div class="main-header">
 	<div class="container pl-15 pl-md-0 pr-15 pr-md-0">
@@ -71,7 +72,14 @@
 							<!-- 유저메뉴 토글 Start -->
 							<div class="jp-author item">
 								<a id="userMenu" data-toggle="dropdown" aria-expanded="false">
-									<img src="${contextPath}/resources/assets/images/team/ab-team3.jpg" class="rounded-circle profile-image">
+									<div class="rounded-circle profile-container">
+										<c:if test="${loginInfo.m_picture == null}">
+											<img src="${contextPath}/resources/images/default_profile.png">
+										</c:if>
+										<c:if test="${loginInfo.m_picture != null}">
+											<img src="${contextPath}/displayProfile?fileName=${loginInfo.m_picture}">
+										</c:if>
+									</div>
 									&nbsp;<span class="user-hover">${loginInfo.m_nick }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">
@@ -109,7 +117,14 @@
 							<!-- 유저메뉴 토글 Start -->
 							<div class="jp-author item">
 								<a id="userMenu" data-toggle="dropdown" aria-expanded="false">
-									<img src="${contextPath}/resources/assets/images/team/ab-team1.jpg" class="rounded-circle profile-image">
+									<div class="rounded-circle profile-container">
+										<c:if test="${loginInfo.m_picture == null}">
+											<img src="${contextPath}/resources/images/default_profile.png">
+										</c:if>
+										<c:if test="${loginInfo.m_picture != null}">
+											<img src="${contextPath}/displayProfile?fileName=${loginInfo.m_picture}">
+										</c:if>
+									</div>
 									&nbsp;<span class="user-hover">${loginInfo.m_nick }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">
@@ -150,7 +165,14 @@
 							<!-- 유저메뉴 토글 Start -->
 							<div class="jp-author item">
 								<a id="userMenu" data-toggle="dropdown" aria-expanded="false">
-									<img src="${contextPath}/resources/assets/images/team/ab-team2.jpg" class="rounded-circle profile-image">
+									<div class="rounded-circle profile-container">
+										<c:if test="${loginInfo.m_picture == null}">
+											<img src="${contextPath}/resources/images/default_profile.png">
+										</c:if>
+										<c:if test="${loginInfo.m_picture != null}">
+											<img src="${contextPath}/displayProfile?fileName=${loginInfo.m_picture}">
+										</c:if>
+									</div>
 									&nbsp;<span class="user-hover">${loginInfo.m_nick }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">

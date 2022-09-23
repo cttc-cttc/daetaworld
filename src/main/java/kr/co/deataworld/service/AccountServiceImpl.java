@@ -32,6 +32,12 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
+	public String getAreaCode(Map<String, String> addrParam) {
+		// TODO Auto-generated method stub
+		return dao.getAreaCode(addrParam);
+	}
+	
+	@Override
 	public Map<String, Object> login(Map<String, String> loginInfo) {
 		// TODO Auto-generated method stub
 		return dao.login(loginInfo);

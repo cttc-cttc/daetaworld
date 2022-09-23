@@ -30,8 +30,16 @@ function checkAll() {
 
 // 닉네임 중복체크
 function m_nickCheck() {
-	if($('#m_nick').val() == '') {
+	let m_nick = $('#m_nick').val();
+	if(m_nick == '') {
 		alert('닉네임을 입력해주세요.');
+		$('#m_nick').focus();
+		return;
+	}
+	// 닉네임 조건 : 2~8자 한글, 영문, 숫자
+	const reg_nick = /^[가-힣A-Za-z0-9]{2,8}$/;
+	if(!reg_nick.test(m_nick)) {
+		alert('닉네임은 2~8자 한글, 영문, 숫자만 사용 가능합니다.');
 		$('#m_nick').focus();
 		return;
 	}
@@ -63,8 +71,16 @@ function m_nickCheck() {
 
 // 아이디 중복체크
 function m_idCheck() {
-	if($('#m_id').val() == '') {
+	let m_id = $('#m_id').val();
+	if(m_id == '') {
 		alert('아이디를 입력해주세요.');
+		$('#m_id').focus();
+		return;
+	}
+	// 아이디 조건 : 6~16자 영문, 숫자
+	const reg_id = /^[A-Za-z0-9]{6,16}$/;
+	if(!reg_id.test(m_id)) {
+		alert('아이디는 6~16자 영문, 숫자만 사용 가능합니다.');
 		$('#m_id').focus();
 		return;
 	}
@@ -110,8 +126,6 @@ $('#mail-check-btn').click(function() {
 		$('#m_email').focus();
 		return;
 	}
-	
-	const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
 	veriCheck = false;
 
 	$.ajax({
