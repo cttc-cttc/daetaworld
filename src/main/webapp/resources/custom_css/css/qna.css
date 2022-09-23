@@ -1,0 +1,61 @@
+#qna{
+    display:none;
+}
+
+.qBox{
+    font-family: 'GowunDodum-Regular', sans-serif;
+    background-color: rgb(255, 255, 255);
+    text-align:center;
+    width: 50%;
+    border-radius: 00px;
+    margin-top: 40px;
+    padding: 20px 0;
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: 600;
+
+}
+
+.answerList {
+    display: block;
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    text-align: center;
+    border:none;
+    border-radius: 0px;
+    margin-bottom: 18px;
+    padding: 10px 10px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.answerList:hover 
+,.answerList:focus
+,.answerList:active {
+    background-color: #9cc0fa;
+    color: rgb(255, 255, 255);
+    
+}
+
+.status {
+    height: 20px;
+    width: 80%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px;
+
+
+}
+
+.statusBar {
+    height: 100%;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#6bba70+39,6bba70+100 */
+    background: #9cc0fa; /* Old browsers */
+    background: -moz-linear-gradient(left,  #9cc0fa 39%, #9cc0fa 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #9cc0fa 39%,#9cc0fa 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #9cc0fa 39%,#9cc0fa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45A3F5', endColorstr='#45A3F5',GradientType=1 ); /* IE6-9 */
+
+    border-radius: 0px;
+
+}
