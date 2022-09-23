@@ -30,12 +30,13 @@
 <body>
     <div class="container"> <!--bootstrap의 사용을 위해-->
         <section id="main" class="mx-auto my-4 py-5 px-3">  <!--bootstrap사용, mx-auto: 양쪽의 margin을 같게 해줌-->
-            <h3>5가지 질문으로 찾아보는 일자리 추천 시작!</h3>
+            <h3>5가지 질문으로 찾아보는 일자리 추천</h3>
             <div class="col-lg-8 col-md-8 col-sm-10 col-12 mx-auto mb-2">  <!--해상도에 맞는 크기 선언-->
               
-                
+                <br><br> 
                 <img src="${contextPath}/resources/images/listRecommendation/logo100.png"  class="img-fluid"/> <!--img-fluid: col값을 따라가게 됨-->
             </div>
+            <br>
             <p class="mb-4">나와 꼭맞는 일자리 추천</br>
                아래의 START버튼을 눌러 시작
             </p>
@@ -57,7 +58,7 @@
             <div id="resultImg" class="col-lg-6 col-md-6 col-sm-8 col-8 mx-auto my-3 mb-2">  <!--해상도에 맞는 크기 선언-->
             </div>
             <div class="resultDesc"></div>
-            <button type="button" class="kakao py-2 px-3">바로찾기</button>
+            <button type="button"  class="kakao py-2 px-3">바로찾기</button>
         </section>
     </div>
   
