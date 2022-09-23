@@ -89,6 +89,7 @@
 																		<div class="single-input mb-15">
 																			<label for="shopTags">가게 태그 <span>*</span></label><br>
 																			<input type="text" id="tag" placeholder="간단한 태그 입력 (6자 이내, 5개까지 가능)" />
+																			<input typr="text" value="태그 등록은 컨트롤 또는 스페이스바를 누르세요" readonly="readonly">																																						
 																			<ul id="tag-list"></ul>
 																		</div>
 																	</div>

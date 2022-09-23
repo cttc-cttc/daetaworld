@@ -65,7 +65,7 @@
 																	<td>
 																	<img  
 																		style="height:200px; width:150px;"
-																		src="${contextPath}/resources/images/${myInfo.m_picture}"></td>
+																		src="${contextPath }/resources/images/${myInfo.m_picture}"></td>
 																	<td>
 																	</tr>																	
 																	<tr>																	

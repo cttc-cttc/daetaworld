@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.deataworld.dto.DeductedPointDTO;
 import kr.co.deataworld.dto.EarnedPointDTO;
 import kr.co.deataworld.dto.PointDTO;
+import kr.co.deataworld.service.EmployeeService;
 import kr.co.deataworld.service.PointService;
 import kr.co.deataworld.service.ReviewService;
 /*
@@ -26,7 +27,7 @@ public class CommonController {
 	
 	@Autowired
 	ReviewService rService;
-	
+		
 //	포인트 
 	@GetMapping(value="pointMapper/pointManagement")
 	public String pointManagement(Model model) throws Exception {

@@ -1,48 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-	<script type="text/javascript">
-		$(function() {
-
-			$('input[name="datefilter"]').daterangepicker({
-				autoUpdateInput : false,
-				locale : {
-					cancelLabel : 'Clear'
-				}
-			});
-
-			$('input[name="datefilter"]').on(
-					'apply.daterangepicker',
-					function(ev, picker) {
-						$(this).val(
-								picker.startDate.format('MM/DD/YYYY') + ' - '
-										+ picker.endDate.format('MM/DD/YYYY'));
-					});
-
-			$('input[name="datefilter"]').on('cancel.daterangepicker',
-					function(ev, picker) {
-						$(this).val('');
-					});
-
-		});
-	</script>
-
-	<script type="text/javascript">
-		$(function() {
-			$('input[name="timefilter"]').daterangepicker({
-				timePicker : true,
-				timePicker12Hour : true,
-				timePickerIncrement : 10,
-				timePickerSeconds : false,
-				locale : {
-					format : 'HH:mm'
-				}
-			}).on('show.daterangepicker', function(ev, picker) {
-				picker.container.find(".calendar-table").hide();
-			});
-		})
-	</script>	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -295,7 +253,7 @@
 					console.log("keypress");
 					
 					// input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
-					if (e.key === "Enter" || e.keyCode == 32) {
+					if (e.key === "Control" || e.keyCode == 32) {
 	 					var tagValue = self.val(); // 값 가져오기
 	 					
 						// 값이 없으면 동작 안합니다.

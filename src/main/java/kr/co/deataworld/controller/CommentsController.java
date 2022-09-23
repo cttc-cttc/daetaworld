@@ -48,8 +48,10 @@ public class CommentsController {
 // 댓글수정폼 - 글을 읽어서 내용을 보여줌
 	@RequestMapping(value = "board/free/replyupdate", method = RequestMethod.GET)
 	public String replyupdate(@RequestParam("c_number") int c_number, Model model) throws Exception {
-		CommentsDTO commentsDTO = service.detailreply(c_number);
+		System.out.println(c_number);
+		CommentsDTO commentsDTO = service.detailReply(c_number);
 		model.addAttribute("commentsDTO", commentsDTO);
+		System.out.println(commentsDTO);
 		return "board/free/replyupdate";
 	}
 //댓글 수정 저장

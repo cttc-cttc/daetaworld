@@ -12,7 +12,10 @@ public interface EmployerDAO {
 	public MemberDTO myInfo(String id) throws Exception;	
 	
 //	내 정보수정
-	public int myInfoUpdate(MemberDTO employerEntity) throws Exception; 
+	public int myInfoUpdate(MemberDTO employerEntity) throws Exception;
+	
+//	공고 등록
+	public int adsRegister(Map<String, Object> map) throws Exception;
 	
 //	주변 구직자 확인 전 가게 목록
 	public List<Map<String, Object>> checkEmployees(String id) throws Exception;
@@ -34,6 +37,9 @@ public interface EmployerDAO {
 	
 //	가게 정보보기
 	public Map<String, Object> adsRegistered(int a_number) throws Exception;
+	
+//	가게 정보 업데이트
+	public int adsUpdate(Map<String, Object> map) throws Exception;
 	
 //	등록 중인 가게 목록보기
 	public List<Map<String, Object>> adsPending(String id) throws Exception;

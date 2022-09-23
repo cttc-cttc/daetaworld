@@ -26,6 +26,12 @@ public class EmployerDAOImpl implements EmployerDAO{
 		return sqlSession.selectOne(nameSpace + ".myInfo", id);
 	}
 	
+	@Override
+	public int adsRegister(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(nameSpace + ".adsRegister", map);
+	}
+	
 //	내 정보수정
 	@Override
 	public int myInfoUpdate(MemberDTO employerEntity) throws Exception {
@@ -75,6 +81,12 @@ public class EmployerDAOImpl implements EmployerDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".adsRegistered", a_number);
 	}
+	
+	@Override
+	public int adsUpdate(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".adsUpdate", map);
+	}
 
 	@Override
 	public List<Map<String, Object>> adsPending(String id) throws Exception {
@@ -123,6 +135,10 @@ public class EmployerDAOImpl implements EmployerDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".adsExpired", id);
 	}
+
+
+
+
 
 
 }

@@ -48,7 +48,7 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<form action="#">
+													<form name="au" action="adsUpdate" method="post" onsubmit="return auChk()">
 														<div class="row mb-30">
 															<div class="col-lg-10">
 																<div class="row">
@@ -74,38 +74,35 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
-																			<label for="wage">시급 <span>*</span></label><br>
-																			<input type="text" id="wage" name="wage" 
-																				value="${detail.a_wage }원">
+																			<label for="a_wage">시급 <span>*</span></label><br>
+																			<input type="text" id="a_wage" name="a_wage" 
+																				value="${detail.a_wage }">
 																		</div>
 																	</div>	
 																	
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
-																			<label for="need">구인인원 <span>*</span></label><br>
-																			<input type="text" id="need" name="neend" 
-																				value="${detail.a_need }명">
+																			<label for="a_need">구인인원 <span>*</span></label><br>
+																			<input type="text" id="a_need" name="a_need" 
+																				value="${detail.a_need }">
 																		</div>
 																	</div>	
 																																	
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="urgency">급구<span>*</span></label>
-																				<input type="checkbox" id="urgency" name="urgency"
-																					<c:set var="urChk" value="${detail.a_urgency }"/>																				
-																						<c:if test="${urChk == 1}">
-																							<c:out value="checked"/>
-																						</c:if>
-																				>
+																			<label for="a_urgency">급구<span>*</span></label>																				 																			
+																				<input type="checkbox" name="a_urgency" value="1" id="input_check">											
+																				<input type="hidden" name="a_urgency" value="0" id="input_check_hidden"/>
+																													
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="status">상태<span>*</span></label>
+																			<label for="a_status">상태<span>*</span></label>
 																			<div>																																							
 																			<c:set var="stChk" value="${detail.a_status }"/>
 																				<c:if test="${stChk == 0 }">
@@ -126,7 +123,8 @@
 																			</div>
 																		</div>
 																		<!-- Single Input End -->
-																	</div>																	
+																	</div>	
+																	<input type="hidden" id="a_number" name="a_number" value="${detail.a_number }">																
 																</div>
 															</div>
 														</div>
@@ -134,9 +132,9 @@
 															<div class="col-12">
 																<div
 																	class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																	<button  
+																	<button type="submit" 
 																		class="ht-btn theme-btn theme-btn-two mb-xs-20">
-																	공고 정보 수정
+																	공고 재등록
 																	</button>
 																	<button  
 																		class="ht-btn theme-btn theme-btn-two mb-xs-20">
@@ -187,7 +185,8 @@
 	<script type="text/javascript">
 		$(function() {
 
-			$('input[name="datefilter"]').daterangepicker({
+			$('input[name="datefilter"]').daterangepicker({	
+				minDate: new Date(),
 				autoUpdateInput : false,
 				locale : {
 					cancelLabel : 'Clear'
@@ -225,5 +224,93 @@
 			});
 		})
 	</script>	
+	
+	<script type="text/javascript">
+		if(document.getElementById("input_check").checked) {
+		   document.getElementById("input_check_hidden").disabled = true;		    
+		}
+	</script>
+	
+	<script type="text/javascript">
+		function auChk(){
+			if(!checkDate(au.a_date.value)){
+				return false;
+			}else if(!checkTime(au.a_time.value)){
+				return false;
+			}else if(!checkWage(au.a_wage.value)){
+				return false;
+			}else if(!checkNeed(au.a_need.value)){
+				return false;
+			}
+			alert("공고가 수정되었습니다");
+			return true;
+		}
+		
+		function checkExist(value, dataName) {        
+			if (value == "" || value == " ") {            
+				alert(dataName + " 입력해주세요");            
+				return false;        
+			}        
+			return true;    
+		}
+		
+		function checkDate(a_date){
+			if(!checkExist(a_date, "날짜를")){
+				ar.a_date.focus();
+				return false;
+			}else {
+				return true;
+			}
+		}
+		
+		function checkTime(a_time){
+			if(!checkExist(a_time, "시간을")){
+				ar.a_time.focus();
+				return false;
+			}else {
+				return true;				
+			}
+		}
+		
+		function checkWage(a_wage){
+			if(!checkExist(a_wage, "시급을")){
+				ar.a_wage.focus();
+				return false;
+			}
+			
+			var wageReg = /^[0-9]{4,6}$/;
+			if (!wageReg.test(a_wage)) {            
+				alert("시급은 숫자로만 써주세요");            
+				ar.a_wage.value = "";            
+				ar.a_wage.focus();            
+				return false;        
+			}
+			
+			if(a_wage < 9160){
+				alert("최저 시급은 9160원입니다. 그 이상을 적어주세요")
+				ar.a_wage.focus();
+				return false;
+			}
+			return true;			
+		}
+		
+		function checkNeed(a_need){
+			if(!checkExist(a_need, "필요 인원을")){
+				ar.a_need.focus();
+				return false;
+			}
+			
+			var needReg = /^[0-9]$/;
+			if (!needReg.test(a_need)) {            
+				alert("필요 인원은 숫자로만 써주세요");            
+				ar.a_need.value = "";            
+				ar.a_need.focus();            
+				return false;        
+			}
+			
+			return true;
+		}
+		
+	</script>
 </body>
 </html>

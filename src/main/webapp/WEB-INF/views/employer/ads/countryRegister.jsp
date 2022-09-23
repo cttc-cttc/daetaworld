@@ -53,7 +53,7 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<form action="#">
+													<form name="cr" action="countryRegister" method="post">
 														<div class="row mb-30">
 															<div class="col-lg-10">
 																<div class="row">
@@ -71,7 +71,7 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<div class="single-input mb-15">
 																			<label for="date">날짜 <span>*</span></label> <input
-																				type="text" name="datefilter" value="" />
+																				type="text" name="datefilter" id="datefilter" />
 																		</div>
 																	</div>
 																	
@@ -79,7 +79,7 @@
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
 																			<label for="time">시간 <span>*</span></label> <input
-																				type="text" name="timefilter" value="" />
+																				type="text" name="timefilter" id="timefilter" />
 																		</div>																		
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
@@ -91,15 +91,15 @@
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">	
 																		<div class="single-input mb-15">
-																			<label for="shopInfo">가게 소개 <span>*</span></label><br>
-																			<textarea name="shopInfo" id="shopInfo" rows="3"
+																			<label for="s_intro">가게 소개 <span>*</span></label><br>
+																			<textarea name="s_intro" id="s_intro" rows="3"
 																				placeholder="가게 소개를 해보세요"></textarea>
 																		</div>
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">	
 																		<div class="single-input mb-15">
 																			<label for="shopTags">가게 태그 <span>*</span></label><br>
-																			<input type="text" id="tag" placeholder="간단한 태그 입력 (6자 이내, 5개까지 가능)" />
+																			<input type="text" placeholder="간단한 태그 입력 (6자 이내, 5개까지 가능)" />
 																			<ul id="tag-list"></ul>
 																		</div>
 																	</div>
@@ -111,7 +111,7 @@
 															<div class="col-12">
 																<div
 																	class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																	<button class="ht-btn theme-btn theme-btn-two mb-xs-20">
+																	<button type="submit" class="ht-btn theme-btn theme-btn-two mb-xs-20">
 																		등록</button>
 																	<button type="button" class="ht-btn theme-btn theme-btn-two transparent-btn-two"
 																		onclick="location.href='${contextPath}/employerMapper/adsPending'">등록 중인 공고 확인</button>
@@ -152,17 +152,18 @@
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 
 
-	<script type="text/javascript"
+	<script
 		src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-	<script type="text/javascript"
+	<script
 		src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-	<script type="text/javascript"
+	<script
 		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 	<script type="text/javascript">
 		$(function() {
 
 			$('input[name="datefilter"]').daterangepicker({
+				minDate: new Date(),
 				autoUpdateInput : false,
 				locale : {
 					cancelLabel : 'Clear'
@@ -214,6 +215,65 @@
 	        }).open();
 	    });
 	}
+	</script>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var tag = {};
+		var counter = 0;
+
+		// 태그를 추가한다.
+		function addTag(value) {
+			tag[counter] = value; // 태그를 Object 안에 추가
+			counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
+		}
+		
+		// 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
+		function marginTag() {
+			return Object.values(tag).filter(function(word) {
+			return word !== "";
+			});
+		}
+
+			$("#tag").on(
+				"keyup",
+				function(e) {
+					var self = $(this);
+					console.log("keypress");
+					
+					// input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
+					if (e.key === "Enter" || e.keyCode == 32) {
+	 					var tagValue = self.val(); // 값 가져오기
+	 					
+						// 값이 없으면 동작 안합니다.
+						if (tagValue !== "") {
+							// 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
+							var result = Object.values(tag).filter(
+									function(word) {
+										return word === tagValue;
+									})
+							// 태그 중복 검사
+							if (result.length == 0) {
+								$("#tag-list").append(
+										"<li class='tag-item'>"+ tagValue + 
+										"<span class='del-btn' idx='" + counter + "'>x</span></li>");
+								addTag(tagValue);
+								self.val("");
+							} else {
+								alert("태그값이 중복됩니다.");
+							}
+						}	 						
+							e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+					}
+				}); 	
+		// 삭제 버튼
+		// 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.
+		$(document).on("click", ".del-btn", function(e) {
+			var index = $(this).attr("idx");
+			tag[index] = "";
+			$(this).parent().remove();
+		});
+	})
 	</script>
 
 </body>
