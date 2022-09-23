@@ -17,7 +17,7 @@
 					<ul class="menu-ul">
 						<li><a href="${contextPath }/jobAds/listAll">일반구인</a></li>
 						<li><a href="${contextPath }/jobAds/listUrgency">긴급구인</a></li>
-						<li><a href="${contextPath }/jobAds/listFavorite">직업추천</a></li>
+						<li><a href="${contextPath }/jobAds/listRecommendation">직업추천</a></li>
 						<li><a href="${contextPath }/jobAds/listCountry">농어촌</a></li>
 						<li><a href="${contextPath }/jobAds/listCare">랭킹</a></li>
 						<li><a>게시판<small class="icon-arrow"></small></a>
