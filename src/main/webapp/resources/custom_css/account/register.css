@@ -1,0 +1,36 @@
+@charset "UTF-8";
+h1 {
+	padding: 5rem !important;
+}
+
+th {
+	width: 11rem !important;
+}
+
+#m_picture {
+	width: 76%;
+}
+
+.veri-color {
+	color: mediumseagreen;
+}
+
+.modal.fade.start {
+	display: none;
+}
+
+.modal-content.content-size {
+	width: 100%;
+}
+
+.modal-title.title-size {
+	font-size: 21px;
+}
+
+.modal-body.body-font {
+	font-size: 15px;
+}
+
+.agree-table th {
+	text-align: center;
+}
