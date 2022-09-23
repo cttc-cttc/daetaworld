@@ -14,11 +14,11 @@
  
     
     
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/css/default.css">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/css/main.css">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/css/qna.css">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/css/animation.css">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/css/result.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/listRecommendation/default.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/listRecommendation/main.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/listRecommendation/qna.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/listRecommendation/animation.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/listRecommendation/result.css">
     
     
     
@@ -34,7 +34,7 @@
             <div class="col-lg-8 col-md-8 col-sm-10 col-12 mx-auto mb-2">  <!--해상도에 맞는 크기 선언-->
               
                 
-                <img src="${contextPath}/resources/images/img/logo100.png"  class="img-fluid"/> <!--img-fluid: col값을 따라가게 됨-->
+                <img src="${contextPath}/resources/images/listRecommendation/logo100.png"  class="img-fluid"/> <!--img-fluid: col값을 따라가게 됨-->
             </div>
             <p class="mb-4">나와 꼭맞는 일자리 추천</br>
                아래의 START버튼을 눌러 시작
@@ -61,8 +61,8 @@
         </section>
     </div>
   
-    <script src="${contextPath}/resources/custom_js/js/data.js"></script>
-    <script src="${contextPath}/resources/custom_js/js/start.js"></script>
+    <script src="${contextPath}/resources/custom_js/listRecommendation/data.js"></script>
+    <script src="${contextPath}/resources/custom_js/listRecommendation/start.js"></script>
 </body>
 
 </body>
