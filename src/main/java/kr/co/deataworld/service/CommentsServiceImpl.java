@@ -27,9 +27,9 @@ public class CommentsServiceImpl implements CommentsService{
 	}
 
 	@Override
-	public CommentsDTO detailreply(int c_number) throws Exception {
+	public CommentsDTO detailReply(int c_number) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.detailreply(c_number);
+		return dao.detailReply(c_number);
 	}
 
 	@Override

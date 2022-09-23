@@ -65,7 +65,17 @@ public class EmployerController {
 		String m_id = "owner";
 		List<ShopInfoDTO>shopList = service.shopManagement(m_id);
 		model.addAttribute("shopList", shopList);
+		model.addAttribute("m_id", m_id);
 		return "employer/ads/adsRegister";		
+	}
+	
+	@PostMapping(value="employerMapper/adsRegister")
+	public String adsRegister(@RequestParam Map<String, Object> map) throws Exception {
+		System.out.println(map);		
+		ShopInfoDTO shopInfo = service.shopInfo((String) map.get("s_name"));
+		map.put("s_number", shopInfo.getS_number());		
+		int r = service.adsRegister(map);
+		return "redirect:/employerMapper/adsHistory";
 	}
 	
 //	농어촌 공고 등록
@@ -73,6 +83,12 @@ public class EmployerController {
 	public String countryRegister(Model model) {
 		model.addAttribute("leftMenu", "adsRegister");
 		return "employer/ads/countryRegister";		
+	}
+	
+	@PostMapping(value="employerMapper/countryRegister")
+	public String countryRegister(@RequestParam Map<String, Object> map) throws Exception {
+		System.out.println(map);
+		return "redirect:/employerMapper/adsHistory";
 	}
 	
 //	주변 구직자 확인 전 가게 목록 
@@ -122,6 +138,13 @@ public class EmployerController {
 		Map<String, Object> detail = service.adsRegistered(a_number);
 		model.addAttribute("detail", detail);
 		return "employer/ads/adsRegistered";
+	}
+	
+	@PostMapping(value="employerMapper/adsUpdate")
+	public String adsUpdate(@RequestParam Map<String, Object> map) throws Exception{		
+		System.out.println(map);
+		int r = service.adsUpdate(map);
+		return "redirect:/employer/ads/adsHistory";
 	}
 	
 //	등록 중인 공고

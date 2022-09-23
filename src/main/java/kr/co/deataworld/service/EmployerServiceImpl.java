@@ -23,6 +23,12 @@ public class EmployerServiceImpl implements EmployerService{
 		return dao.myInfo(id);
 	}
 	
+	@Override
+	public int adsRegister(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.adsRegister(map);
+	}
+	
 //	내 정보 수정
 	@Override
 	public int myInfoUpdate(MemberDTO employerEntity) throws Exception {
@@ -73,6 +79,12 @@ public class EmployerServiceImpl implements EmployerService{
 		// TODO Auto-generated method stub
 		return dao.adsRegistered(a_number);
 	}
+	
+	@Override
+	public int adsUpdate(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.adsUpdate(map);
+	}
 
 	@Override
 	public List<Map<String, Object>> adsPending(String id) throws Exception {
@@ -121,6 +133,10 @@ public class EmployerServiceImpl implements EmployerService{
 		// TODO Auto-generated method stub
 		return dao.adsExpired(id);
 	}
+
+
+
+
 
 
 

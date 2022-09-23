@@ -13,7 +13,7 @@ public interface CommentsDAO {
 		public int reply(CommentsDTO commentsDTO) throws Exception;
 		
 		// 해당 댓글 읽기(조회)
-		public CommentsDTO detailreply(int c_number) throws Exception;
+		public CommentsDTO detailReply(int c_number) throws Exception;
 		
 		// 댓글 수정
 		public int replyupdate(CommentsDTO commentsDTO) throws Exception;

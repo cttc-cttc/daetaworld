@@ -25,7 +25,7 @@ public class CommentsDAOImpl implements CommentsDAO {
 	}
 
 	@Override
-	public CommentsDTO detailreply(int c_number) throws Exception {
+	public CommentsDTO detailReply(int c_number) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + ".detailReply", c_number);
 	}

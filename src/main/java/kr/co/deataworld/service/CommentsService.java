@@ -18,7 +18,7 @@ import kr.co.deataworld.dto.CommentsDTO;
 		public int reply(CommentsDTO commentsDTO) throws Exception;
 		
 		// 댓글 수정보기를 위한 메소드(댓글 읽기)
-		public CommentsDTO detailreply(int c_number) throws Exception;
+		public CommentsDTO detailReply(int c_number) throws Exception;
 
 		// 댓글 수정을 처리하기 위한 메소드
 		public int replyupdate(CommentsDTO commentsDTO) throws Exception;
