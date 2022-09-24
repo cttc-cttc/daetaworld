@@ -44,7 +44,25 @@
 }
 
 .profile-container {
-	width: 2.5rem;
-	height: 2.5rem;
+	display: flex;
+	width: 2.2rem;
+	height: 2.2rem;
 	overflow: hidden;
+	align-items: center;
+	cursor: pointer;
+}
+
+.usermenu-width {
+	width: 10em;
+	display: flex;
+	justify-content: center;
+}
+
+.usermenu-content {
+	display: flex;
+	align-items: center;
+}
+
+.logout-width {
+	width: 5em;
 }
