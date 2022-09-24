@@ -74,7 +74,7 @@
 											
 												
 												<ul class="nav">
-													<li><a class="active" href="resumeManagement">등록된 자기소개서 목록 </a></li>
+													<li><a class="active" href="${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}">등록된 자기소개서 목록 </a></li>
 															
 														<li><a id="cntCheck" href="${contextPath}/employeeMapper/resumeRegister">자기소개서 작성 </a></li>
 														
@@ -82,6 +82,7 @@
 											</div>
 											<div class="candidate-main-content">
 												<div class="field-description"></div>
+												
 												
 												
 												<hr>
@@ -112,12 +113,12 @@
 																<div class="col-lg-8 col-md-8">
 																	<div class="content-right">
 																		<h5 class="position-company bottom">내용</h5>
-																		<p><a href="${contextPath }/employeeMapper/selectResume?i_number=${resume.i_number}">${resume.i_contents}</a></p>
+																		<p><a href="${contextPath }/employeeMapper/selectResume?i_number=${resume.i_number}&m_id=${loginInfo.m_id}">${resume.i_contents}</a></p>
 																	</div>
 																	<br>
 																	<!-- <a id="content-style" type="text" href="${contextPath}/employeeMapper/resumeDefault?i_number=${resume.i_number}">[대표설정]</a> -->
-																	<a class="content-style-1"  href="${contextPath}/employeeMapper/resumeDefault?i_number=${resume.i_number}">대표설정</a>
-																	<a class="content-style" type="text" href="${contextPath}/employeeMapper/resumeDelete?i_number=${resume.i_number}">[삭제]</a>
+																	<a class="content-style-1"  href="${contextPath}/employeeMapper/resumeDefault?i_number=${resume.i_number}&m_id=${loginInfo.m_id }">대표설정</a>
+																	<a class="content-style" type="text" href="${contextPath}/employeeMapper/resumeDelete?i_number=${resume.i_number}&m_id=${loginInfo.m_id }">[삭제]</a>
 																</div>
 															</div>
 														</div>

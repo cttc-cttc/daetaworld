@@ -1,6 +1,7 @@
 package kr.co.deataworld.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -20,8 +21,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	EmployeeDAO dao;
 	
 	@Override //내 정보 불러오기 (구직자)
-	public MemberDTO myInfo() throws Exception {
-		return dao.myInfo();
+	public Map<String, Object> myInfo(String m_id) throws Exception {
+		return dao.myInfo(m_id);
 	}
 
 
@@ -38,8 +39,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	@Override //선택한 자소서 불러오기
-	public ResumeDTO selectResume(int i_number) throws Exception {
-		return dao.selectResume(i_number);
+	public ResumeDTO selectResume(Map<String, Object> map) throws Exception {
+		return dao.selectResume(map);
 	}
 
 
@@ -50,8 +51,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	@Override //자소서 삭제
-	public int resumeDelete(int i_number) throws Exception {
-		return dao.resumeDelete(i_number);
+	public int resumeDelete(ResumeDTO resumeDTO) throws Exception {
+		return dao.resumeDelete(resumeDTO);
 	}
 
 
@@ -74,20 +75,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	
 	@Override // 공고 디테일 접속시 m_id와 s_number(공고번호) 를 이용해 이미 지원한 공고인지 확인
-	public int applyCheck(int s_number) throws Exception {
-		return dao.applyCheck(s_number);
+	public int applyCheck(Map<String, Object> chk) throws Exception {
+		return dao.applyCheck(chk);
 	}
 	
 
 	@Override //대타신청
-	public int jobApply(int a_number) throws Exception {
-		return dao.jobApply(a_number);
+	public int jobApply(JobApplyDTO jobapplyDTO) throws Exception {
+		return dao.jobApply(jobapplyDTO);
 	}
 
 
 	@Override //대타신청시 대표 자소서를 보냄
-	public int applyIntro() throws Exception {
-		return dao.applyIntro();
+	public int applyIntro(JobApplyDTO jobapplyDTO) throws Exception {
+		return dao.applyIntro(jobapplyDTO);
 	}
 
 

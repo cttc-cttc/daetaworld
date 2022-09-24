@@ -11,6 +11,7 @@ import kr.co.deataworld.dao.JobAdsDAO;
 import kr.co.deataworld.dto.AreaCodeDTO;
 import kr.co.deataworld.dto.JobAdsCriteria;
 import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.JobCountryCriteria;
 import kr.co.deataworld.dto.MainAdsDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
@@ -38,16 +39,16 @@ public class JobAdsServiceImpl implements JobAdsService {
 	}
 
 	@Override
-	public JobAdsDTO listAllDetail(int s_number) {
+	public JobAdsDTO listAllDetail(Map<String, Object> chk) {
 		// TODO Auto-generated method stub
-		return dao.listAllDetail(s_number);
+		return dao.listAllDetail(chk);
 	}
 
 	
 	@Override
-	public Map<String, Object> listDetail(int s_number) {
+	public Map<String, Object> listDetail(Map<String, Object> chk) {
 		// TODO Auto-generated method stub
-		return dao.listDetail(s_number);
+		return dao.listDetail(chk);
 	}
 
 	@Override

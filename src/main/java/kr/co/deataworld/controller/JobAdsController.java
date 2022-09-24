@@ -1,6 +1,7 @@
 package kr.co.deataworld.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -170,9 +171,15 @@ public class JobAdsController {
 
 	// 구인목록 상세(가게번호 누르고 들어갈때)
 	@GetMapping(value = "jobAds/listAllDetail")
-	public String listAdsDetail(@RequestParam("s_number") int s_number,Model model) throws Exception {
-		int result = eService.applyCheck(s_number);
-		Map<String, Object> map = service.listDetail(s_number);
+	public String listAdsDetail(@RequestParam("s_number")int s_number,
+								@RequestParam("m_id")String m_id,
+								@RequestParam("a_number")int a_number, Model model) throws Exception {
+		Map<String, Object> chk = new HashMap<String, Object>();
+		chk.put("m_id", m_id);
+		chk.put("s_number", s_number);
+		chk.put("a_number", a_number);
+		int result = eService.applyCheck(chk);
+		Map<String, Object> map = service.listDetail(chk);
 		model.addAttribute("result", result);
 		model.addAttribute("map", map);
 		return "jobAds/listAllDetail";		

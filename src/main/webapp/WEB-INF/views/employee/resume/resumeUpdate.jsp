@@ -65,8 +65,8 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="resumeManagement">등록된 자기소개서 목록</a></li>
-													<li><a>자기소개서작성</a></li>
+													<li><a class="active" href="resumeManagement?m_id=${loginInfo.m_id}">등록된 자기소개서 목록</a></li>
+													<li><a class="active" href="resumeRegister">자기소개서작성</a></li>
 												</ul>
 											</div>
 											<hr>
@@ -100,7 +100,7 @@
 												<hr>
 												<div class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
 													<button class="ht-btn theme-btn theme-btn-two mb-xs-20" type="button" onclick="resumeSave()" >저장</button>
-													<button class="ht-btn theme-btn theme-btn-two mb-xs-20" type="button" onclick="location.href='${contextPath}/employeeMapper/resumeManagement'">취소</button>
+													<button class="ht-btn theme-btn theme-btn-two mb-xs-20" type="button" onclick="location.href='${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}'">취소</button>
 												</div>
 
 
@@ -173,7 +173,7 @@
 							console.log('저장 성공');
 							alert('수정 완료');
 							window.location.reload(true);
-							location.href="${contextPath}/employeeMapper/resumeManagement"
+							location.href="${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}"
 						},
 						error : function(result){
 							console.log('저장 실패')						

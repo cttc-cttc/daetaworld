@@ -33,7 +33,7 @@
 		<interceptor>
 			<mapping path="/admin/*" /> <!-- 관리자 메뉴 -->
 			<beans:ref bean="adminInterceptor" />
-		</interceptor>		
+		</interceptor>
 		
 		<interceptor>
 			<mapping path="/employeeMapper/*"/> <!-- 구인자 메뉴 -->

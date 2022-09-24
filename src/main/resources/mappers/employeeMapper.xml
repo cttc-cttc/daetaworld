@@ -5,9 +5,9 @@
 <mapper namespace="kr.co.deataworld.employee">
 
 <!-- 내 정보 불러오기(구직자) -->
-<select id="myInfo" resultType="MemberDTO">
+<select id="myInfo" parameterType="String" resultType="java.util.Map">
 	SELECT * FROM daetaworld.member
-	WHERE m_type = '1' and m_id = 'user';
+	WHERE m_type = '1' and m_id = #{m_id};
 </select>
 
 
@@ -29,13 +29,13 @@
 <!-- 등록된 자기소개서 목록 -->
 <select id="resumeManagement" parameterType="String" resultType="ResumeDTO">
 	select * from daetaworld.employee_intro
-	where m_id = 'user'
+	where m_id = #{m_id}
 </select>
 
 <!-- 선택한 자소서 불러오기 -->
-<select id="selectResume" parameterType="java.lang.Integer" resultType="ResumeDTO">
+<select id="selectResume" parameterType="ResumeDTO" resultType="ResumeDTO">
 	select * from daetaworld.employee_intro
-	where m_id = 'user' and i_number = #{i_number}
+	where m_id = #{m_id} and i_number = #{i_number}
 </select>
 
 <!-- 수정한 자소서 저장 ajax -->
@@ -50,21 +50,21 @@
 </update>
 
 <!-- 자소서 삭제하기 -->
-<delete id="resumeDelete" parameterType="java.lang.Integer">
+<delete id="resumeDelete" parameterType="ResumeDTO">
 	delete from daetaworld.employee_intro
 	where
 	i_number = #{i_number}
 </delete>
 
-<!-- 게시글 작성 -->
+<!-- 자소서 작성 -->
 <insert id="resumeRegister" parameterType="ResumeDTO">
 	INSERT INTO daetaworld.employee_intro
 	(i_number, i_title, i_contents, i_default, i_date, m_id)
-	VALUES(#{i_number}, #{i_title}, #{i_contents}, #{i_default}, now(), 'user')
+	VALUES(#{i_number}, #{i_title}, #{i_contents}, #{i_default}, now(), #{m_id})
 </insert>
 
 <!-- 대표 자소서 설정 -->
-<update id="resumeDefault" parameterType="java.lang.Integer">
+<update id="resumeDefault" parameterType="ResumeDTO">
 	update daetaworld.employee_intro
 	set
 	i_default = 1
@@ -73,58 +73,53 @@
 </update>
 
 <!-- 대표 자소서 초기화 -->
-<update id="resumeDefaultInit" parameterType="String">
+<update id="resumeDefaultInit" parameterType="ResumeDTO">
 	update daetaworld.employee_intro
 	set
 	i_default = '0'
 	where
-	m_id = 'user' and i_default = '1';
+	m_id = #{m_id} and i_default = '1';
 </update>
 
 
 <!-- 공고 디테일 접속시 m_id와 a_number(공고번호) 를 이용해 이미 지원한 공고인지 확인 -->
-<select id="applyCheck" parameterType="java.lang.Integer" resultType="java.lang.Integer" >
+<select id="applyCheck" parameterType="Map" resultType="java.lang.Integer" >
 	select count(*) from job_apply
     join job_ads
     on job_apply.a_number = job_ads.a_number
     where
-    job_apply.a_number = #{s_number} and job_apply.m_id = 'user'
+    job_apply.a_number = #{a_number} and job_apply.m_id = #{m_id}
 </select>	
-	
-
-
-
-
-
 
 
 <!-- 대타신청 -->
-<insert id="jobApply" parameterType="java.lang.Integer">
+<insert id="jobApply" parameterType="JobApplyDTO">
 	insert into daetaworld.job_apply
 	(ja_date, jar_status, jae_status, m_id, a_number, i_number)
 	values
-	(now(), 0, 0, 'user', #{a_number}, 0)
+	(now(), 0, 0, #{m_id}, #{a_number}, 0)
 </insert>
 
 
 <!-- 신청시 대표자소서 저장시켜야함 (m_id를 보내서) -->
-<update id="applyIntro">
+<update id="applyIntro" parameterType="JobApplyDTO">
 	update job_apply
     join employee_intro
     on job_apply.m_id = employee_intro.m_id
     set job_apply.i_number = employee_intro.i_number
-    where employee_intro.m_id = 'user' and employee_intro.i_default = '1';
+    where employee_intro.m_id = #{m_id} and employee_intro.i_default = '1';
 </update>
 
 
 
 <!-- 수정하자 job_ads 랑 shop_info 두개 다 불러와야함 Map으로 map.  -->
 <!-- 구직 신청한 공고내역을 가져옴. #{m_id} 를 받아와야한다. -->
-<select id="pinchHistory" resultType="JobAdsDTO">
-	select * from daetaworld.job_ads
-    join job_apply
-    on job_ads.a_number = job_apply.a_number
-    where job_apply.m_id = 'user'
+<select id="pinchHistory" parameterType="java.lang.Integer" resultType="Map">
+	SELECT 
+	FROM a.*, s.*
+	job_ads a, shop_info s 
+	WHERE
+	a.s_number = s.s_number AND a.s_number = #{a_number}
 </select>
 
 

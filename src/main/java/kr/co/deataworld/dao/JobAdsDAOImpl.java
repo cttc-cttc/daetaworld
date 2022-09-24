@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.deataworld.dto.AreaCodeDTO;
 import kr.co.deataworld.dto.JobAdsCriteria;
 import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.JobCountryCriteria;
 import kr.co.deataworld.dto.MainAdsDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
@@ -40,17 +41,17 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 	}
 
 	@Override
-	public JobAdsDTO listAllDetail(int s_number) {
+	public JobAdsDTO listAllDetail(Map<String, Object> chk) {
 		// TODO Auto-generated method stub
-		return sql.selectOne(NAMESPACE + ".listAllDetail", s_number);
+		return sql.selectOne(NAMESPACE + ".listAllDetail", chk);
 	}
 
 	
 
 	@Override
-	public Map<String, Object> listDetail(int s_number) {
+	public Map<String, Object> listDetail(Map<String, Object> chk) {
 		// TODO Auto-generated method stub
-		return sql.selectOne(NAMESPACE + ".listDetail", s_number);
+		return sql.selectOne(NAMESPACE + ".listDetail", chk);
 	}
 
 	

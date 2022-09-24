@@ -2,10 +2,12 @@ package kr.co.deataworld.controller;
 
 import java.lang.ProcessBuilder.Redirect;
 import java.lang.annotation.Retention;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.slf4j.Logger;
@@ -37,9 +39,9 @@ public class EmployeeController {
 	
 	//내 정보 불러오기
 	@GetMapping(value="employeeMapper/myInfo")
-	public ModelAndView myInfo()throws Exception {
+	public ModelAndView myInfo(@RequestParam("m_id")String m_id)throws Exception {
 		ModelAndView mav = new ModelAndView();
-		MemberDTO myInfo = service.myInfo();
+		Map<String, Object> myInfo = service.myInfo(m_id);
 		mav.addObject("myInfo", myInfo);
 		mav.setViewName("employee/myInfo/myInfo");
 		return mav;
@@ -56,10 +58,10 @@ public class EmployeeController {
 	
 	//구직자 자기소개서 관리
 	@GetMapping(value="employeeMapper/resumeManagement")
-	public ModelAndView resumeManagement()throws Exception {
-		String m_id = "user";
+	public ModelAndView resumeManagement(@RequestParam("m_id")String m_id)throws Exception {
 		ModelAndView mav = new ModelAndView();
 		List<ResumeDTO> list = service.resumeManagement(m_id);
+		System.out.println("값이 있나? : " + list);
 		mav.addObject("list", list);
 		mav.setViewName("employee/resume/resumeManagement");
 		return mav;
@@ -68,25 +70,31 @@ public class EmployeeController {
 	
 	//자소서 글 읽기
 	@GetMapping(value="employeeMapper/selectResume")
-	public ModelAndView selectResume(@RequestParam("i_number") int i_number) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		ResumeDTO resume = service.selectResume(i_number);
-		mav.addObject("resume", resume);
-		mav.setViewName("employee/resume/selectResume");
-		return mav;
+	public String selectResume(@RequestParam("m_id")String m_id,
+							@RequestParam("i_number")int i_number, Model model) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("m_id", m_id);
+		map.put("i_number", i_number);
+		ResumeDTO resume = service.selectResume(map);
+		model.addAttribute("resume", resume);
+		return "employee/resume/selectResume";
 	}
+	
+	
 	
 	
 	//선택한 자소서 수정 폼으로 이동
-	@GetMapping(value="employeeMapper/resumeUpdate")
-	public ModelAndView resumeUpdate(@RequestParam("i_number")int i_number)throws Exception {
-		ModelAndView mav = new ModelAndView();
-		ResumeDTO resume = service.selectResume(i_number);
-		mav.addObject("resume", resume);
-		mav.setViewName("employee/resume/resumeUpdate");
-		return mav;
-		
-	}
+		@GetMapping(value="employeeMapper/resumeUpdate")
+		public String resumeUpdate(@RequestParam("i_number")int i_number,
+								   @RequestParam("m_id")String m_id, Model model)throws Exception {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("m_id", m_id);
+			map.put("i_number", i_number);
+			ResumeDTO resume = service.selectResume(map);
+			model.addAttribute("resume", resume);
+			return "employee/resume/resumeUpdate";
+		}
+	
 	
 	
 	//ajax를 이용한 자기소개서 수정 저장
@@ -99,8 +107,9 @@ public class EmployeeController {
 	
 	//자기소개서 삭제
 	@GetMapping(value="employeeMapper/resumeDelete")
-	public String resumeDelete(@RequestParam("i_number")int i_number)throws Exception {
-		service.resumeDelete(i_number);
+	public String resumeDelete(ResumeDTO resumeDTO, Model model)throws Exception {
+		service.resumeDelete(resumeDTO);
+		model.addAttribute("m_id", resumeDTO.getM_id());
 		return "redirect:resumeManagement";
 	}
 	
@@ -125,17 +134,19 @@ public class EmployeeController {
 	
 	//구직자 자기소개서 작성 저장
 	@PostMapping(value="employeeMapper/resumeRegister")
-	public String resumeRegister(ResumeDTO resumeDTO)throws Exception {
+	public String resumeRegister(ResumeDTO resumeDTO, Model model)throws Exception {
 		service.resumeRegister(resumeDTO);
+		model.addAttribute("m_id", resumeDTO.getM_id());
 		return "redirect:resumeManagement";
 	}
 	
 	
 	//자소서 대표 설정
 	@GetMapping(value="employeeMapper/resumeDefault")
-	public String defaultIntro(ResumeDTO resumeDTO)throws Exception {
+	public String defaultIntro(ResumeDTO resumeDTO, Model model)throws Exception {
 		service.resumeDefaultInit(resumeDTO);
 		service.resumeDefault(resumeDTO);
+		model.addAttribute("m_id", resumeDTO.getM_id());
 		return "redirect:resumeManagement";
 	}
 	
@@ -146,10 +157,10 @@ public class EmployeeController {
 	
 	//대타신청 - 신청을 하면 -> m_id 값을 보냄 -> 이미 지원한 공고인지 확인 해야함 -> 구직/구인자 지원상태를 0(지원함)으로 바꿈 -> 구직자 대표 자기소개서를 update해줌. 
 	@GetMapping(value="employeeMapper/jobApply")
-	public String jobApply(@RequestParam("a_number") int a_number)throws Exception {
-		service.jobApply(a_number); //m_id, 구직&구인자 지원상태를 0(지원함)으로 insert 함
-		service.applyIntro(); //구직자가 볼수있게 대표 자기소개서를 update 함
-		return "jobAds/listAll";
+	public String jobApply(JobApplyDTO jobapplyDTO)throws Exception {
+		service.jobApply(jobapplyDTO); //m_id, 구직&구인자 지원상태를 0(지원함)으로 insert 함
+		service.applyIntro(jobapplyDTO); //구직자가 볼수있게 대표 자기소개서를 update 함
+		return "redirect:/jobAds/listAll";
 	}
 	
 	

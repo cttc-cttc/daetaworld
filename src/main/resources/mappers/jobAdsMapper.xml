@@ -81,7 +81,7 @@
 	</select>
 	<!-- 구인목록 일반/급구 -->
 	<select id="listAds" parameterType="java.util.Map" resultType="JobAdsDTO">
-			select s_number,a_date,a_time,a_wage,ua_date,a_urgency
+			select a_number,s_number,a_date,a_time,a_wage,ua_date,a_urgency
 			from job_ads
 			where a_type = 0
             order by s_number
@@ -110,8 +110,7 @@
 	</select>
 	
 	<!-- 구인상세 -->
-	<select id="listDetail" parameterType="java.lang.Integer"
-		resultType="java.util.Map">
+	<select id="listDetail" parameterType="Map" resultType="Map">
 		select j.*,s.*
 		from job_ads j, shop_info s
 		where j.s_number = s.s_number
