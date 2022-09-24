@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.JobCodeDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 
@@ -64,5 +65,8 @@ public interface EmployerDAO {
 	
 //	만료된 가게 목록보기
 	public List<Map<String,Object>> adsExpired(String m_id) throws Exception;
+	
+//	직종 목록 받아오기
+	public List<JobCodeDTO> jobList()throws Exception;
 
 }

@@ -17,6 +17,7 @@
 		<typeAlias type="kr.co.deataworld.dto.CommentsDTO" alias="CommentsDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.ResumeDTO" alias="ResumeDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.JobApplyDTO" alias="JobApplyDTO"/>
+		<typeAlias type="kr.co.deataworld.dto.JobCodeDTO" alias="JobCodeDTO"/>
 		
 	</typeAliases>
 </configuration>

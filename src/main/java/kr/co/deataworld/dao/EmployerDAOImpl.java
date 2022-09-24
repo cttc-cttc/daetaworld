@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.JobCodeDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 
@@ -134,6 +135,12 @@ public class EmployerDAOImpl implements EmployerDAO{
 	public List<Map<String, Object>> adsExpired(String m_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".adsExpired", m_id);
+	}
+
+	@Override
+	public List<JobCodeDTO> jobList() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".jobList");
 	}
 
 

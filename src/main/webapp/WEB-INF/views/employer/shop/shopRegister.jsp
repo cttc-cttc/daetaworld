@@ -74,7 +74,33 @@
 																				placeholder="상세주소를 입력하세요">	
 																		</div>
 																		<!-- Single Input End -->
-																	</div>
+																	</div>	
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																		<!-- Single Input Start -->
+																		<div class="single-input mb-25">
+																			<table>
+																			<tr>
+																				<label for="s_code">직종 선택<span>*</span></label>
+																					<td>
+																						<div class="dropdown">
+																							<button class="btn btn-secondary dropdown-toggle"
+																								type="button" id="dropdownMenuButton"
+																								data-toggle="dropdown" aria-haspopup="true"
+																								aria-expanded="false">직종을 선택해주세요</button>
+																							<div class="dropdown-menu"
+																								aria-labelledby="dropdownMenuButton">
+																								<c:forEach var="list" items="${jobList }">
+																									<a class="dropdown-item" onclick="area(${list.j_code })">${list.j_type2 }</a>
+																								</c:forEach>																							
+																							</div>
+																						</div> 
+																						<input type="hidden" id="j_code" name="j_code">
+																					</td>
+																				</tr>
+																			</table>	
+																		</div>																		
+																		<!-- Single Input End -->
+																	</div>																	
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
@@ -102,9 +128,8 @@
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
-																		<div class="single-input mb-15">																			
-																			
-																				<label for="shopPicture">가게 사진 <span>*</span></label>
+																		<div class="single-input mb-15">
+																			<label for="shopPicture">가게 사진 <span>*</span></label>
 																				<div id="dropZone"
 																					style="width: 365px; height: 300px; border-style: solid; border-color: black;">
 																					<div id="fileDragDesc">파일을 올려주세요.</div>
@@ -113,9 +138,8 @@
 																						</tbody>
 																					</table>
 																				</div>
-																			
 																		</div>
-																	</div>																													
+																	</div>																																													
 																</div>
 															</div>																
 														</div>					
@@ -173,6 +197,10 @@
 	    });
 	}
 	
+	function area(code){
+		$('#j_code').val(code);
+		alert('코드:'+$('#j_code').val());
+	}
 	</script>
 	
 </body>

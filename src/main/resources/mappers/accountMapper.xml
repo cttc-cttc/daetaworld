@@ -21,7 +21,7 @@
   	<select id="getAreaCode" parameterType="java.util.Map" resultType="java.lang.String">
   		select a_code from area_code
   		where a_name1 like concat(#{addrName1_1}, '%', #{addrName1_2}, '%')
-  		and a_name2 like concat(#{addrName2}, '%')
+  		and a_name2 like concat('%', #{addrName2}, '%')
   	</select>
   	
 	<!-- 회원가입 : member 테이블과 point 테이블 insert -->  	
