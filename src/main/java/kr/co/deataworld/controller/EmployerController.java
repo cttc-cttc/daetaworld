@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +36,14 @@ public class EmployerController {
 		
 //	내 정보보기
 	@GetMapping(value="employerMapper/myInfo")
-	public String myInfo(@RequestParam("m_id")String m_id, Model model) throws Exception {
+	public String myInfo(@RequestParam("m_id")String m_id, Model model, HttpSession session) throws Exception {
 		model.addAttribute("leftMenu", "myInfo");
 		MemberDTO myInfo = service.myInfo(m_id);
 		model.addAttribute("myInfo", myInfo);
 		
+		// 헤더 로그인 표시정보를 바꾸기 위한 세션값 갱신
+		session.setAttribute("loginM_nick", myInfo.getM_nick());
+		session.setAttribute("loginM_picture", myInfo.getM_picture());
 		return "employer/myInfo/myInfo";
 	}
 	
