@@ -69,7 +69,12 @@ public class AccountController {
 			return "redirect:login";
 		}
 		
-		session.setAttribute("loginInfo", loginResult);
+		// 헤더 로그인 정보 세션값 등록
+		// m_nick, m_picture, point를 따로 세션값에 지정하는 이유는 회원정보 수정 시 바로 적용하기 위해서
+		session.setAttribute("loginInfo", loginResult); // m_id, m_type (m_nick, m_picture, point 이것도 들어가긴 하지만 정작 안씀)
+		session.setAttribute("loginM_nick", loginResult.get("m_nick")); // m_nick
+		session.setAttribute("loginM_picture", loginResult.get("m_picture")); // m_picture
+		session.setAttribute("loginPoint", loginResult.get("point")); // point
 		return "redirect:/";
 	}
 	

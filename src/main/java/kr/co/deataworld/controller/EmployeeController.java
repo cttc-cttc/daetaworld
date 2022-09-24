@@ -41,11 +41,15 @@ public class EmployeeController {
 	
 	//내 정보 불러오기
 	@GetMapping(value="employeeMapper/myInfo")
-	public ModelAndView myInfo(@RequestParam("m_id")String m_id)throws Exception {
+	public ModelAndView myInfo(@RequestParam("m_id")String m_id, HttpSession session)throws Exception {
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> myInfo = service.myInfo(m_id);
 		mav.addObject("myInfo", myInfo);
 		mav.setViewName("employee/myInfo/myInfo");
+		
+		// 헤더 로그인 표시정보를 바꾸기 위한 세션값 갱신
+		session.setAttribute("loginM_nick", myInfo.get("m_nick"));
+		session.setAttribute("loginM_picture", myInfo.get("m_picture"));
 		return mav;
 	}
 	
