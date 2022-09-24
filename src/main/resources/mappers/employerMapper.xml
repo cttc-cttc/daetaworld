@@ -12,12 +12,17 @@
 	
 	<!-- 내 정보수정 -->
 	<update id="myInfoUpdate" parameterType="MemberDTO">
-		update member
-		set m_nick = #{m_nick}, m_password = #{m_password}, m_phone = #{m_phone}, 
-			m_address1 = #{m_address1}, m_address2 = #{m_address2}, 
-			m_terms1 = #{m_terms1}, m_terms2 = #{m_terms2}, m_picture = #{m_picture},
-			m_email = #{m_email}
-		where m_type = 2 and m_number = #{m_number}
+		UPDATE member
+		SET
+		m_nick = #{m_nick},
+		m_phone = #{m_phone},
+		m_address1 = #{m_address1},
+		m_address2 = #{m_address2},
+		m_terms1 = #{m_terms1},
+		m_terms2 = #{m_terms2},
+		m_picture = #{m_picture},
+		m_email = #{m_email}
+		WHERE m_type = 2 AND m_number = #{m_number}
 	</update>
 	
 	<!-- 공고 등록 -->
@@ -101,9 +106,9 @@
 	
 	<!-- 지원자 목록보기 -->
 	<select id="candidates" parameterType="java.lang.Integer" resultType="Map">
-		select a.*, m.*
-		from job_apply a, member m
-		where a.m_id = m.m_id and a.a_number = #{a_number}
+		SELECT a.*, m.*
+		FROM job_apply a, member m
+		WHERE a.m_id = m.m_id AND a.a_number = #{a_number}
 	</select>
 	
 	<!-- 지원자 정보보기 -->
@@ -128,16 +133,16 @@
 	
 	<!-- 지원 거절 -->
 	<update id="applyDeny" parameterType="String">
-		update job_apply
-		set jar_status = 2, jae_status = 3
-		where m_id = #{m_id}
+		UPDATE job_apply
+		SET jar_status = 2, jae_status = 3
+		WHERE m_id = #{m_id}
 	</update>
 	
 	<!-- 만료된 가게 목록보기 -->
 	<select id="adsExpired" parameterType="String" resultType="Map">
-		select j.*, s.s_name
-		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{m_id} and j.a_status = 4 and j.del = 0
+		SELECT j.*, s.s_name
+		FROM job_ads j, shop_info s
+		WHERE j.s_number = s.s_number AND j.m_id = #{m_id} AND j.a_status = 4 AND j.del = 0
 	</select>
 	
 </mapper>

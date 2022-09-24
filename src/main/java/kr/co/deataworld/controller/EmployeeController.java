@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.deataworld.dto.JobAdsDTO;
@@ -27,6 +28,7 @@ import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ResumeDTO;
 import kr.co.deataworld.service.EmployeeService;
+import kr.co.deataworld.util.FileProcess;
 /*
  * 구직자 컨트롤러 (마이페이지)
  */
@@ -48,10 +50,16 @@ public class EmployeeController {
 	}
 	
 	
-	//내 정보 수정하기
+	// 내 정보 수정하기
 	@ResponseBody
-	@PostMapping(value="employeeMapper/myInfoUpdate")
-	public int myInfoUpdate(MemberDTO memberDTO)throws Exception{
+	@PostMapping(value = "employeeMapper/myInfoUpdate")
+	public int myInfoUpdate(MemberDTO memberDTO, MultipartFile chooseFile, String preFileName) throws Exception {
+		// 사진을 변경했다면 로컬 프로필 이미지 폴더에서 기존 사진을 삭제하고 새 사진을 저장
+		System.out.println(chooseFile);
+		if(!chooseFile.getOriginalFilename().isEmpty()) {
+			String savedName = FileProcess.updateImg(chooseFile, FileProcess.PROFILE_IMG_PATH, preFileName);
+			memberDTO.setM_picture(savedName);
+		}
 		return service.myInfoUpdate(memberDTO);
 	}
 	

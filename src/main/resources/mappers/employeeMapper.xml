@@ -21,7 +21,8 @@
 	m_address1 = #{m_address1},
 	m_address2 = #{m_address2},
 	m_terms1 = #{m_terms1},
-	m_terms2 = #{m_terms2}
+	m_terms2 = #{m_terms2},
+	m_picture = #{m_picture}
 	WHERE
 	m_id = #{m_id} 
 </update>

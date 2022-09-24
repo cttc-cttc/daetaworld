@@ -105,14 +105,14 @@
 															<div class="row">
 																<div class="col-lg-4 col-md-4">
 																	<div class="content-left">
-																		<h5 class="company-name theme-color">${resume.i_title} </h5>
+																		<h5 class="company-name theme-color"> 제목 : ${resume.i_title} </h5>
 																		<span class="date"> 작성시간 : ${resume.i_date}</span>
 																		
 																	</div>
 																</div>
 																<div class="col-lg-8 col-md-8">
 																	<div class="content-right">
-																		<h5 class="position-company bottom">내용</h5>
+																		<h5 class="position-company bottom">내용</h5><a></a>
 																		<p><a href="${contextPath }/employeeMapper/selectResume?i_number=${resume.i_number}&m_id=${loginInfo.m_id}">${resume.i_contents}</a></p>
 																	</div>
 																	<br>
