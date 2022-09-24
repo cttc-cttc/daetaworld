@@ -12,17 +12,12 @@
 	
 	<!-- 내 정보수정 -->
 	<update id="myInfoUpdate" parameterType="MemberDTO">
-		UPDATE member
-		SET
-		m_nick = #{m_nick},
-		m_phone = #{m_phone},
-		m_address1 = #{m_address1},
-		m_address2 = #{m_address2},
-		m_terms1 = #{m_terms1},
-		m_terms2 = #{m_terms2},
-		m_picture = #{m_picture},
-		m_email = #{m_email}
-		WHERE m_type = 2 AND m_number = #{m_number}
+		update member
+		set m_nick = #{m_nick}, m_password = #{m_password}, m_phone = #{m_phone}, 
+			m_address1 = #{m_address1}, m_address2 = #{m_address2}, 
+			m_terms1 = #{m_terms1}, m_terms2 = #{m_terms2}, m_picture = #{m_picture},
+			m_email = #{m_email}, a_code = #{a_code}
+		where m_type = 2 and m_number = #{m_number}
 	</update>
 	
 	<!-- 공고 등록 -->
@@ -143,6 +138,12 @@
 		SELECT j.*, s.s_name
 		FROM job_ads j, shop_info s
 		WHERE j.s_number = s.s_number AND j.m_id = #{m_id} AND j.a_status = 4 AND j.del = 0
+	</select>
+	
+	<!-- 직업 코드 목록보기 -->
+	<select id="jobList" resultType="JobCodeDTO">
+		select *
+		from job_code
 	</select>
 	
 </mapper>

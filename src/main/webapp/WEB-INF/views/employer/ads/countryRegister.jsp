@@ -114,7 +114,7 @@
 															<div class="col-12">
 																<div
 																	class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																	<button  class="ht-btn theme-btn theme-btn-two mb-xs-20">
+																	<button type="submit" class="ht-btn theme-btn theme-btn-two mb-xs-20">
 																		등록</button>
 																	<button type="button" class="ht-btn theme-btn theme-btn-two transparent-btn-two"
 																		onclick="location.href='${contextPath}/employerMapper/adsPending?m_id=${loginInfo.m_id}'">

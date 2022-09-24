@@ -229,9 +229,12 @@
         </script>
         
 <script type="text/javascript">
+	var counter;
+	var s_tag = "s_tag";
+	
  	$(document).ready(function() {
 		var tag = {};
-		var counter = 0;		
+		counter = 0;		
 
 		// 태그를 추가한다.
 		function addTag(value) {
@@ -266,7 +269,7 @@
 							// 태그 중복 검사
 							if (result.length == 0) {
 								$("#tag-list").append(
-										"<li class='tag-item' id='s_tag'+counter name='s_tag'+counter>"+ tagValue + 
+										"<li class='tag-item'>"+ tagValue + 
 										"<span class='del-btn' idx='" + counter + "'>x</span></li>");
 								addTag(tagValue);
 								self.val("");
