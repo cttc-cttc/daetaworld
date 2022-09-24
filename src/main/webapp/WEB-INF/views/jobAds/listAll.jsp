@@ -143,9 +143,14 @@
 
 
 
+
 							<td class="tc">${jobsend.a_urgency}</td>
 
-							<td class="tc">${jobsend.ua_date }</td>
+
+							
+							<td class="tc">${jobsend.job_code}</td>
+							
+				<td class="tc">${jobsend.ua_date }</td>
 							<td class="tc">${jobsend.a_need }</td>
 
 
@@ -186,6 +191,7 @@
 				<option value="s_number">가게번호</option>
 				<option value="a_number">공고번호</option>
 				<option value="a_wage">시급</option>
+				<option value="job_code">직업코드</option>
 
 			</select> <input type="text" name="value"> <input type="submit"
 				value="검색">

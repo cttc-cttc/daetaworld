@@ -110,6 +110,7 @@
 								<option value="s_number">가게번호</option>
 								<option value="a_number">공고번호</option>
 								<option value="a_wage">시급</option>
+								<option value="job_code">직업코드</option>
 
 							</select> <input type="text" name="value"> <input type="submit"
 								value="검색">
