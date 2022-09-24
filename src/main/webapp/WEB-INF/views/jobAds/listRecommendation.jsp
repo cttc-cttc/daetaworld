@@ -61,30 +61,20 @@
             <div class="resultDesc"></div>
 <!--             <button type="button"  class="kakao py-2 px-3">바로찾기</button> -->
             <form method="get" action="listAll">
-							<select name="option">
+            
+            
+            
+<!-- 							<select name="option"> -->
 						
-								<option value="job_code">결과 번호를 입력해 주세요</option>
-								
-<!-- 								<option value="job_code2">유통판매</option> -->
-<!-- 								<option value="job_code3">문화여가</option> -->
-<!-- 								<option value="job_code4">서비스1</option> -->
-<!-- 								<option value="job_code5">서비스2</option> -->
-<!-- 								<option value="job_code6">서비스3</option> -->
-<!-- 								<option value="job_code7">서비스4</option> -->
-<!-- 								<option value="job_code8">사무회계</option> -->
-<!-- 								<option value="job_code9">고객상담,영업</option> -->
-<!-- 								<option value="job_code10">건설,노무</option> -->
-<!-- 								<option value="job_code11">생산</option> -->
-<!-- 								<option value="job_code12">IT,인터넷</option> -->
-<!-- 								<option value="job_code13">교육강사</option> -->
-<!-- 								<option value="job_code14">디자인</option> -->
-<!-- 								<option value="job_code15">미디어</option> -->
-<!-- 								<option value="job_code16">운전배달</option> -->
-<!-- 								<option value="job_code17">병원간호</option> -->
-								
+<!-- 								<option value="job_code"></option> -->
+
+
+
+
+	
 								
 
-							</select> <input type="text" name="value"> <input type="submit"
+							 <input type="text"  name="value" placeholder="번호를 입력해주세요."> <input type="submit"
 								value="검색">
 						</form>
         </section>
