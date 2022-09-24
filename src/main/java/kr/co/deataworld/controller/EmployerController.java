@@ -31,16 +31,12 @@ public class EmployerController {
 	EmployerService service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployerController.class);
-	
-//	@Resource(name="profileUploadPath")
-	private String profileUpload;
-	
+		
 //	내 정보보기
 	@GetMapping(value="employerMapper/myInfo")
-	public String myInfo(Model model) throws Exception {
+	public String myInfo(@RequestParam("m_id")String m_id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "myInfo");
-		String id = "owner";
-		MemberDTO myInfo = service.myInfo(id);
+		MemberDTO myInfo = service.myInfo(m_id);
 		model.addAttribute("myInfo", myInfo);
 		
 		return "employer/myInfo/myInfo";
@@ -60,9 +56,8 @@ public class EmployerController {
 	
 //	공고 등록
 	@GetMapping(value="employerMapper/adsRegister")
-	public String adsRegister(Model model) throws Exception {
+	public String adsRegister(@RequestParam("m_id")String m_id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");
-		String m_id = "owner";
 		List<ShopInfoDTO>shopList = service.shopManagement(m_id);
 		model.addAttribute("shopList", shopList);
 		model.addAttribute("m_id", m_id);
@@ -80,23 +75,19 @@ public class EmployerController {
 	
 //	농어촌 공고 등록
 	@GetMapping(value="employerMapper/countryRegister")
-	public String countryRegister(Model model) {
+	public String countryRegister(@RequestParam("m_id")String m_id, Model model) {
 		model.addAttribute("leftMenu", "adsRegister");
+		model.addAttribute("m_id", m_id);
 		return "employer/ads/countryRegister";		
 	}
 	
-	@PostMapping(value="employerMapper/countryRegister")
-	public String countryRegister(@RequestParam Map<String, Object> map) throws Exception {
-		System.out.println(map);
-		return "redirect:/employerMapper/adsHistory";
-	}
+
 	
 //	주변 구직자 확인 전 가게 목록 
 	@GetMapping(value="employerMapper/checkEmployees")
-	public String checkEmployees(Model model) throws Exception {
-		model.addAttribute("leftMenu", "adsRegister");		
-		String id = "owner";
-		List<Map<String, Object>> shopInfo = service.checkEmployees(id); 
+	public String checkEmployees(@RequestParam("m_id")String m_id, Model model) throws Exception {
+		model.addAttribute("leftMenu", "adsRegister");
+		List<Map<String, Object>> shopInfo = service.checkEmployees(m_id); 
 		model.addAttribute("shopInfo", shopInfo);
 		return "employer/candidates/checkEmployees";
 	}
@@ -123,10 +114,9 @@ public class EmployerController {
 	
 //	공고 내역
 	@GetMapping(value="employerMapper/adsHistory")
-	public String adsHistory(Model model) throws Exception {
+	public String adsHistory(@RequestParam("m_id")String m_id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsHistory");
-		String id = "owner";
-		List<Map<String, Object>> adsList = service.adsHistory(id);
+		List<Map<String, Object>> adsList = service.adsHistory(m_id);
 		model.addAttribute("adsList", adsList);
 		return "employer/ads/adsHistory";
 	}
@@ -149,30 +139,27 @@ public class EmployerController {
 	
 //	등록 중인 공고
 	@GetMapping(value="employerMapper/adsPending")
-	public String adsPending(Model model) throws Exception {
+	public String adsPending(@RequestParam("m_id")String m_id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsHistory");
-		String id = "owner";
-		List<Map<String, Object>> adsPending = service.adsPending(id);
+		List<Map<String, Object>> adsPending = service.adsPending(m_id);
 		model.addAttribute("adsPending", adsPending);
 		return "employer/ads/adsPending";
 	}
 	
 //	만료된 공고
 	@GetMapping(value="employerMapper/adsExpired")
-	public String adsExpired(Model model) throws Exception{
+	public String adsExpired(@RequestParam("m_id")String m_id, Model model) throws Exception{
 		model.addAttribute("leftMenu", "adsHistory");
-		String id = "owner";
-		List<Map<String,Object>> adsExpired = service.adsExpired(id);
+		List<Map<String,Object>> adsExpired = service.adsExpired(m_id);
 		model.addAttribute("adsExpired", adsExpired);
 		return "employer/ads/adsExpired";
 	}	
 	
 //	지원받은 공고
 	@GetMapping(value="employerMapper/adsApplied")
-	public String adsApplied(Model model) throws Exception{
+	public String adsApplied(@RequestParam("m_id")String m_id, Model model) throws Exception{
 		model.addAttribute("leftMenu", "adsApplied");
-		String id = "owner";
-		List<Map<String, Object>> adsApplied = service.adsApplied(id);
+		List<Map<String, Object>> adsApplied = service.adsApplied(m_id);
 		model.addAttribute("adsApplied", adsApplied);
 		return "employer/ads/adsApplied";
 	}
@@ -224,10 +211,9 @@ public class EmployerController {
 	
 //	가게 관리
 	@GetMapping(value="employerMapper/shopManagement")
-	public String shopManagement(Model model) throws Exception {
+	public String shopManagement(@RequestParam("m_id")String m_id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "myInfo");
-		String id = "owner";
-		List<ShopInfoDTO> list = service.shopManagement(id);
+		List<ShopInfoDTO> list = service.shopManagement(m_id);
 		model.addAttribute("list", list);
 		return "employer/shop/shopManagement";
 	}
@@ -243,8 +229,9 @@ public class EmployerController {
 	
 //	가게 등록
 	@GetMapping(value="employerMapper/shopRegister")
-	public String shopRegister(Model model) {
+	public String shopRegister(@RequestParam("m_id")String m_id, Model model) {
 		model.addAttribute("leftMenu", "myInfo");
+		model.addAttribute("m_id", m_id);
 		return "employer/shop/shopRegister";
 	}
 	

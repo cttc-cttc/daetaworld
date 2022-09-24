@@ -40,8 +40,9 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="shopManagement">등록된 가게 목록</a></li>
-													<li><a href="shopRegister">새가게 등록</a></li>
+													<li><a href="myInfo?m_id=${loginInfo.m_id}">내 정보</a></li>
+													<li><a class="active" href="shopManagement?m_id=${loginInfo.m_id}">내 가게</a></li>
+													<li><a href="shopRegister?m_id=${loginInfo.m_id}">새 가게</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -123,7 +124,7 @@
 																		class="ht-btn theme-btn theme-btn-two mb-xs-20">
 																	가게 정보 수정
 																	</button>
-																	<button type="button" onclick="location.href='shopManagement'"
+																	<button type="button" onclick="location.href='shopManagement?m_id=${loginInfo.m_id}'"
 																		class="ht-btn theme-btn theme-btn-two transparent-btn-two">목록보기</button>
 																</div>
 															</div>

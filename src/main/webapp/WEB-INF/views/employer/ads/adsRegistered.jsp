@@ -40,10 +40,10 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="adsHistory">공고 내역</a></li>
-													<li><a href="adsPending">등록 중인 공고</a></li>
-													<li><a href="adsApplied">지원자 확인</a></li>
-													<li><a href="adsExpired">만료된 공고</a></li>
+													<li><a class="active" href="adsHistory?m_id=${loginInfo.m_id}">공고 내역</a></li>
+													<li><a href="adsPending?m_id=${loginInfo.m_id}">등록 중인 공고</a></li>
+													<li><a href="adsApplied?m_id=${loginInfo.m_id}">지원자 확인</a></li>
+													<li><a href="adsExpired?m_id=${loginInfo.m_id}">만료된 공고</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -140,7 +140,7 @@
 																		class="ht-btn theme-btn theme-btn-two mb-xs-20">
 																	공고 삭제
 																	</button>
-																	<button type="button" onclick="location.href='adsHistory'"
+																	<button type="button" onclick="location.href='adsHistory?m_id=${loginInfo.m_id}'"
 																		class="ht-btn theme-btn theme-btn-two transparent-btn-two">공고목록보기</button>
 																</div>
 															</div>

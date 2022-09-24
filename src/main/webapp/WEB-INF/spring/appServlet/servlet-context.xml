@@ -25,7 +25,6 @@
 	
 	<!-- 인터셉터 설정 -->
 	<beans:bean class="kr.co.deataworld.util.AdminInterceptor" id="adminInterceptor"/>
-	<beans:bean class="kr.co.deataworld.util.AuthenticationInterceptor2" id="auth2"/>
 	<beans:bean class="kr.co.deataworld.util.MemberInterceptor" id="memberInterceptor"/>
 	
 	<!-- 인터셉터를 위한 매핑경로 설정해서 beans:ref bean의 메소드를 수행하게 한다 -->
@@ -34,12 +33,7 @@
 		<interceptor>
 			<mapping path="/admin/*" /> <!-- 관리자 메뉴 -->
 			<beans:ref bean="adminInterceptor" />
-		</interceptor>
-		
-		<interceptor>
-			<mapping path="/jobAds/listAllDetail" />
-			<beans:ref bean="auth2" />
-		</interceptor>
+		</interceptor>		
 		
 		<interceptor>
 			<mapping path="/employeeMapper/*"/> <!-- 구인자 메뉴 -->

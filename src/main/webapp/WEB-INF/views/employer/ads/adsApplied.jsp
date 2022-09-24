@@ -38,10 +38,10 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="adsHistory">공고 내역</a></li>
-													<li><a href="adsPending">등록 중인 공고</a></li>
-													<li><a class="active" href="adsApplied">지원받은 공고</a></li>
-													<li><a href="adsExpired">만료된 공고</a></li>
+													<li><a href="adsHistory?m_id=${loginInfo.m_id}">공고 내역</a></li>
+													<li><a href="adsPending?m_id=${loginInfo.m_id}">등록 중인 공고</a></li>
+													<li><a class="active" href="adsApplied?m_id=${loginInfo.m_id}">지원받은 공고</a></li>
+													<li><a href="adsExpired?m_id=${loginInfo.m_id}">만료된 공고</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">

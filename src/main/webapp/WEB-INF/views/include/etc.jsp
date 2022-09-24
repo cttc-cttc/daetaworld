@@ -227,11 +227,11 @@
                 }
             }
         </script>
-
+        
 <script type="text/javascript">
-	$(document).ready(function() {
+ 	$(document).ready(function() {
 		var tag = {};
-		var counter = 0;
+		var counter = 0;		
 
 		// 태그를 추가한다.
 		function addTag(value) {
@@ -253,7 +253,7 @@
 					console.log("keypress");
 					
 					// input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
-					if (e.key === "Control" || e.keyCode == 32) {
+					if (e.shiftKey && e.key === "F1") {
 	 					var tagValue = self.val(); // 값 가져오기
 	 					
 						// 값이 없으면 동작 안합니다.
@@ -266,7 +266,7 @@
 							// 태그 중복 검사
 							if (result.length == 0) {
 								$("#tag-list").append(
-										"<li class='tag-item'>"+ tagValue + 
+										"<li class='tag-item' id='s_tag'+counter name='s_tag'+counter>"+ tagValue + 
 										"<span class='del-btn' idx='" + counter + "'>x</span></li>");
 								addTag(tagValue);
 								self.val("");
@@ -284,5 +284,5 @@
 			tag[index] = "";
 			$(this).parent().remove();
 		});
-	})
+	})  
 </script>
