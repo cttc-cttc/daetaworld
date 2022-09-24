@@ -7,7 +7,7 @@
 	<select id="myInfo" parameterType="String" resultType="MemberDTO">
 		select *
 		from member
-		where m_type = 2 and m_id = #{id}
+		where m_type = 2 and m_id = #{m_id}
 	</select>
 	
 	<!-- 내 정보수정 -->
@@ -30,7 +30,7 @@
 	<select id="checkEmployees" parameterType="String" resultType="Map">
 		select s.*, a.*
 		from shop_info s, job_ads a
-		where s.m_id = a.m_id and s.m_id = #{id} 
+		where s.m_id = a.m_id and s.m_id = #{m_id} 
 		and a.s_number = s.s_number and a.a_status = 0
 	</select>
 	
@@ -53,7 +53,7 @@
 	<select id="shopManagement" parameterType="String" resultType="ShopInfoDTO">
 		select *
 		from shop_info
-		where m_id = #{id}
+		where m_id = #{m_id}
 	</select>
 	
 	<!-- 등록한 가게 정보보기 -->
@@ -67,7 +67,7 @@
 	<select id="adsHistory" parameterType="String" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{id} and j.del = 0
+		where j.s_number = s.s_number and j.m_id = #{m_id} and j.del = 0
 	</select> 
 	
 	<!-- 가게 정보 -->
@@ -89,14 +89,14 @@
 	<select id="adsPending" parameterType="String" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{id} and j.a_status = 0 and j.del = 0
+		where j.s_number = s.s_number and j.m_id = #{m_id} and j.a_status = 0 and j.del = 0
 	</select>
 	
 	<!-- 지원받은 가게 및 구인완료된 가게 목록보기 -->
 	<select id="adsApplied" parameterType="String" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{id} and (j.a_status = 1 or j.a_status = 2) and j.del = 0
+		where j.s_number = s.s_number and j.m_id = #{m_id} and (j.a_status = 1 or j.a_status = 2) and j.del = 0
 	</select>
 	
 	<!-- 지원자 목록보기 -->
@@ -123,21 +123,21 @@
 	<update id="applyAccept" parameterType="String">
 		update job_apply
 		set jar_status = 1, jae_status = 1
-		where m_id = #{id}
+		where m_id = #{m_id}
 	</update>
 	
 	<!-- 지원 거절 -->
 	<update id="applyDeny" parameterType="String">
 		update job_apply
 		set jar_status = 2, jae_status = 3
-		where m_id = #{id}
+		where m_id = #{m_id}
 	</update>
 	
 	<!-- 만료된 가게 목록보기 -->
 	<select id="adsExpired" parameterType="String" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{id} and j.a_status = 4 and j.del = 0
+		where j.s_number = s.s_number and j.m_id = #{m_id} and j.a_status = 4 and j.del = 0
 	</select>
 	
 </mapper>

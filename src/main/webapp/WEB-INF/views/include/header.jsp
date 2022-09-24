@@ -178,9 +178,9 @@
 								<div class="dropdown-menu" aria-labelledby="userMenu">
 									<a class="dropdown-item drdn-item" href="${contextPath}/pointMapper/pointManagement">포인트 점수 : <span>${loginInfo.point }</span>점</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/myInfo">마이페이지</a>
-									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsRegister">공고 등록</a>
-									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/candidates">지원자 확인</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/myInfo?m_id=${loginInfo.m_id}">마이페이지</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsRegister?m_id=${loginInfo.m_id}">공고 등록</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsApplied?m_id=${loginInfo.m_id}">지원자 확인</a>
 									<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/adsCompleted?m_id=${loginInfo.m_id}">후기 작성</a>
 									
 								</div>

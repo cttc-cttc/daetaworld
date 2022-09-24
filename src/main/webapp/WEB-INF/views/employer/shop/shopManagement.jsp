@@ -38,9 +38,9 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="myInfo">내 정보</a></li>
-													<li><a class="active" href="shopManagement">내 가게</a></li>
-													<li><a href="shopRegister">새 가게</a></li>													
+													<li><a href="myInfo?m_id=${loginInfo.m_id}">내 정보</a></li>
+													<li><a class="active" href="shopManagement?m_id=${loginInfo.m_id}">내 가게</a></li>
+													<li><a href="shopRegister?m_id=${loginInfo.m_id}">새 가게</a></li>													
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">

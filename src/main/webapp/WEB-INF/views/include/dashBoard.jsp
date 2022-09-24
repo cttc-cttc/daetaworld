@@ -29,17 +29,17 @@
 				<li>
 					<h3>마이페이지 (사장님)</h3>
 					<ul>
-						<li><a id="myInfo_r" href="${contextPath}/employerMapper/myInfo"><i 
+						<li><a id="myInfo_r" href="${contextPath}/employerMapper/myInfo?m_id=${loginInfo.m_id}"><i 
 								class="lnr lnr-users"></i>내 정보</a></li>
-						<li><a id="adsApplied" href="${contextPath}/employerMapper/adsApplied"><i 
+						<li><a id="adsApplied" href="${contextPath}/employerMapper/adsApplied?m_id=${loginInfo.m_id}"><i 
 								class="lnr lnr-thumbs-down"></i>지원자 확인</a></li>
-						<li><a id="adsRegister" href="${contextPath}/employerMapper/adsRegister"><i 
+						<li><a id="adsRegister" href="${contextPath}/employerMapper/adsRegister?m_id=${loginInfo.m_id}"><i 
 								class="lnr lnr-thumbs-down"></i>공고 등록</a></li>
-						<li><a id="adsHistory" href="${contextPath}/employerMapper/adsHistory"><i 
+						<li><a id="adsHistory" href="${contextPath}/employerMapper/adsHistory?m_id=${loginInfo.m_id}"><i 
 								class="lnr lnr-thumbs-down"></i>공고 내역</a></li>	
 						<li><a id="adsCompleted" href="${contextPath}/reviewMapper/adsCompleted?m_id=${loginInfo.m_id}"><i 
 								class="lnr lnr-thumbs-down"></i>후기 작성</a></li>																			
-						<li><a id="pointManagement_r" href="${contextPath}/pointMapper/pointManagement"><i 
+						<li><a id="pointManagement_r" href="${contextPath}/pointMapper/pointManagement?m_id=${loginInfo.m_id}"><i 
 								class="lnr lnr-thumbs-down"></i>포인트 관리</a></li>
 					</ul>
 				</li>

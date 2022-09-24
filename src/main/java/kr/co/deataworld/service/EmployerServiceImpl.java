@@ -18,9 +18,9 @@ public class EmployerServiceImpl implements EmployerService{
 	
 //	내 정보보기
 	@Override
-	public MemberDTO myInfo(String id) throws Exception {
+	public MemberDTO myInfo(String m_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.myInfo(id);
+		return dao.myInfo(m_id);
 	}
 	
 	@Override
@@ -37,9 +37,9 @@ public class EmployerServiceImpl implements EmployerService{
 	}	
 	
 	@Override
-	public List<Map<String, Object>> checkEmployees(String id) throws Exception {
+	public List<Map<String, Object>> checkEmployees(String m_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.checkEmployees(id);
+		return dao.checkEmployees(m_id);
 	}
 	
 	@Override
@@ -57,9 +57,9 @@ public class EmployerServiceImpl implements EmployerService{
 	
 //	등록한 가게 목록보기
 	@Override
-	public List<ShopInfoDTO> shopManagement(String id) throws Exception {
+	public List<ShopInfoDTO> shopManagement(String m_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.shopManagement(id);
+		return dao.shopManagement(m_id);
 	}
 
 	@Override
@@ -69,9 +69,9 @@ public class EmployerServiceImpl implements EmployerService{
 	}
 
 	@Override
-	public List<Map<String, Object>> adsHistory(String id) throws Exception {
+	public List<Map<String, Object>> adsHistory(String m_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.adsHistory(id);
+		return dao.adsHistory(m_id);
 	}
 
 	@Override
@@ -87,15 +87,15 @@ public class EmployerServiceImpl implements EmployerService{
 	}
 
 	@Override
-	public List<Map<String, Object>> adsPending(String id) throws Exception {
+	public List<Map<String, Object>> adsPending(String m_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.adsPending(id);		
+		return dao.adsPending(m_id);		
 	}
 	
 	@Override
-	public List<Map<String, Object>> adsApplied(String id) throws Exception {
+	public List<Map<String, Object>> adsApplied(String m_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.adsApplied(id);		
+		return dao.adsApplied(m_id);		
 	}
 	
 	@Override
@@ -129,9 +129,9 @@ public class EmployerServiceImpl implements EmployerService{
 	}
 
 	@Override
-	public List<Map<String, Object>> adsExpired(String id) throws Exception {
+	public List<Map<String, Object>> adsExpired(String m_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.adsExpired(id);
+		return dao.adsExpired(m_id);
 	}
 
 

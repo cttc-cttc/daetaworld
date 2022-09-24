@@ -41,9 +41,9 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="adsRegister">공고 등록</a></li>
-													<li><a href="countryRegister">농어촌 등록</a></li>
-													<li><a href="checkEmployees">주변노예 확인</a></li>
+													<li><a class="active" href="adsRegister?m_id=${loginInfo.m_id}">공고 등록</a></li>
+													<li><a href="countryRegister?m_id=${loginInfo.m_id}">농어촌 등록</a></li>
+													<li><a href="checkEmployees?m_id=${loginInfo.m_id}">주변노예 확인</a></li>
 												</ul>														
 											</div>
 											<div class="profile-applications-main-block">
@@ -120,7 +120,7 @@
 																	<button type="submit" class="ht-btn theme-btn theme-btn-two mb-xs-20">
 																		등록</button>
 																	<button type="button" class="ht-btn theme-btn theme-btn-two transparent-btn-two"
-																		onclick="location.href='${contextPath}/employerMapper/adsPending'">등록 중인 공고 확인</button>
+																		onclick="location.href='${contextPath}/employerMapper/adsPending?m_id=${loginInfo.m_id}'">등록 중인 공고 확인</button>
 																</div>
 															</div>
 														</div>

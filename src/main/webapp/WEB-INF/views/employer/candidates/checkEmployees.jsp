@@ -38,9 +38,9 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="adsRegister">공고 등록</a></li>
-													<li><a href="countryRegister">농어촌 등록</a></li>
-													<li><a class="active" href="checkEmployees">주변 노예 확인</a></li>
+													<li><a href="adsRegister?m_id=${loginInfo.m_id}">공고 등록</a></li>
+													<li><a href="countryRegister?m_id=${loginInfo.m_id}">농어촌 등록</a></li>
+													<li><a class="active" href="checkEmployees?m_id=${loginInfo.m_id}">주변 노예 확인</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
