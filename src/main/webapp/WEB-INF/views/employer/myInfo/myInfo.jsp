@@ -46,10 +46,10 @@
 											<div class="profile-applications-heading">
 												<ul class="nav">
 													<li><a style="color: green" class="active"
-														href="myInfo?m_id=${loginInfo.m_id}">내 정보</a></li>
+														href="myInfo">내 정보</a></li>
 
-													<li><a href="shopManagement?m_id=${loginInfo.m_id}">내 가게</a></li>
-													<li><a href="shopRegister?m_id=${loginInfo.m_id}">새 가게</a></li>
+													<li><a href="shopManagement">내 가게</a></li>
+													<li><a href="shopRegister">새 가게</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -65,7 +65,7 @@
 																	<td>
 																	<img  
 																		style="height:200px; width:150px;"
-																		src="${contextPath }/resources/images/${myInfo.m_picture}"></td>
+																		src="${contextPath}/displayProfile?fileName=${myInfo.m_picture}"></td>
 																	<td>
 																	</tr>																	
 																	<tr>																	
@@ -190,7 +190,7 @@
 																	<input type="hidden" name="m_id" id="m_id" value="${myInfo.m_id }">
 																	<input type="hidden" name="m_age" id="m_age" value="${myInfo.m_age }">
 																	<input type="hidden" name="m_gender" id="m_gender" value="${myInfo.m_gender }">
-																	<input type="hidden" name="m_picture" id="m_picture" value="${myInfo.m_picture }">
+																	<input type="hidden" name="m_picture" id="pre_picture" value="${myInfo.m_picture }">
 																	<input type="hidden" name="m_regdate" id="m_regdate" value="${myInfo.m_regdate }">
 																	<input type="hidden" name="m_warned" id="m_warned" value="${myInfo.m_warned }">
 																	<input type="hidden" name="m_banned" id="m_banned" value="${myInfo.m_banned }">
@@ -249,11 +249,10 @@
    let veriCheck = false;
    let nickveri = false;
 	// 내 정보수정하기
-	function infoUpdate(chooseFile, m_picture, m_number, m_id, m_name, m_age, m_gender, m_regdate, m_warned, m_banned, m_quitted, m_type, pre_email, pre_nick){	
+	function infoUpdate(){
 		var pre_email = $('#pre_email').val();
 		var pre_nick = $('#pre_nick').val();
-		var pre_picture = $('#m_picture').val();
-		var new_picture = $('#chooseFile').val().replace("C:\\fakepath\\","");
+		var pre_picture = $('#pre_picture').val();
 		
 		var m_number = $('#m_number').val();
 		var m_id = $('#m_id').val();
@@ -265,15 +264,6 @@
 		var m_phone = $('#m_phone').val();		
 		var m_address1 = $('#m_address1').val();		
 		var m_address2 = $('#m_address2').val();	
-		
-		var m_picture;
-		if(pre_picture != new_picture){
-			m_picture = new_picture;
-		}
-		if(new_picture == ""){
-			m_picture = pre_picture;
-		}
-		
 		var m_email = $('#m_email').val();	
 		
 		var m_terms1;		
@@ -322,33 +312,41 @@
 			}
 			
 			var url = "${contextPath}/employerMapper/myInfoUpdate";
-			var paramData = {
-				"m_number" : m_number,				
-				"m_id" : m_id,	
-				"m_password" : m_password,	
-				"m_name" : m_name,	
-				"m_nick" : m_nick,
-				"m_age" : m_age,					
-				"m_gender" : m_gender,					
-				"m_phone" : m_phone,			
-				"m_address1" : m_address1,
-				"m_address2" : m_address2,
-				"m_picture" : m_picture,
-				"m_email" : m_email,			
-				"m_terms1" : m_terms1,			
-				"m_terms2" : m_terms2,			
-				"m_regdate" : m_regdate,			
-				"m_warned" : m_warned,			
-				"m_banned" : m_banned,			
-				"m_quitted" : m_quitted,			
-				"m_type" : m_type			
-							
-			}; // 수정데이터
+			var formData = new FormData();
+			formData.append("m_number", m_number);
+			formData.append("m_id", m_id);
+			formData.append("m_password", m_password);
+			formData.append("m_name", m_name);
+			formData.append("m_nick", m_nick);
+			formData.append("m_age", m_age);
+			formData.append("m_phone", m_phone);
+			formData.append("m_address1", m_address1);
+			formData.append("m_address2", m_address2);
+			formData.append("m_email", m_email);
+			formData.append("m_terms1", m_terms1);
+			formData.append("m_terms2", m_terms2);
+			formData.append("m_regdate", m_regdate);
+			formData.append("m_warned", m_warned);
+			formData.append("m_banned", m_banned);
+			formData.append("m_quitted", m_quitted);
+			formData.append("m_type", m_type);
+			
+			if($('#chooseFile').val() == '') { // 사진을 바꾸지 않았을 때
+				formData.append("m_picture", pre_picture);
+			} else { // 사진을 바꿨을 때
+				var inputFile = $('input[name="chooseFile"]');
+				var files = inputFile[0].files;
+				var chooseFile = files[0];
+				formData.append("chooseFile", chooseFile);
+				formData.append("preFileName", pre_picture);
+			}
+			// 수정데이터
 			
 			$.ajax({
 				url : url,
-				data : paramData,
-				dataType : 'json',
+				data : formData,
+				processData: false,
+				contentType: false,
 				type : 'POST',
 				success : function(result){
 					console.log(result);					
@@ -405,7 +403,6 @@
 	      console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
 	      const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
 	      veriCheck = false;
-
 	      $.ajax({
 	         url : '${contextPath}/emailAuth',
 	         data : {'email': email},
@@ -446,7 +443,6 @@
 	         veriCheck = false;
 	      }
 	   });
-
 	</script>
 	
 </body>
