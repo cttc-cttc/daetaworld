@@ -32,6 +32,7 @@ import kr.co.deataworld.service.JobAdsService;
 /*
  * 구인공고, 직업추천 컨트롤러
  */
+
 @Controller
 public class JobAdsController {
 
