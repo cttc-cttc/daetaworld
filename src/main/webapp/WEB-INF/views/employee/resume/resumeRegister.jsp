@@ -79,7 +79,7 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="resumeManagement">등록된 자기소개서 목록</a></li>
+													<li><a href="resumeManagement?m_id=${loginInfo.m_id}">등록된 자기소개서 목록</a></li>
 													<li><a class="active" href="resumeRegister">자기소개서 등록</a></li>
 												</ul>
 											</div>
@@ -103,8 +103,9 @@
 																<textarea id="i_contents" name="i_contents" value="" rows="10" cols="80" style="resize: none;" placeholder="나의 강점과 특징에 대해 소개하고 어떤 사람인지 설명해 보세요."></textarea>
 															</div>
 															<hr>
+															<input type="hidden" name="m_id" id="m_id" value="${loginInfo.m_id}"/>
 															<button type="submit" class="ht-btn theme-btn theme-btn-two mb-xs-20" >저장</button>
-															<button type="button" class="ht-btn theme-btn theme-btn-two mb-xs-20" onclick="location.href='${contextPath}/employeeMapper/resumeManagement'">취소</button>
+															<button type="button" class="ht-btn theme-btn theme-btn-two mb-xs-20" onclick="location.href='${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}'">취소</button>
 														</form>
 														
 														<hr id="profile-hr-1">

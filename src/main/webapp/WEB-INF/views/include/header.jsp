@@ -113,10 +113,10 @@
 									&nbsp;<span class="user-hover">${loginInfo.m_nick }님</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="userMenu">
-									<a class="dropdown-item drdn-item" href="${contextPath}/point/pointManagement">포인트 점수 : <span>${loginInfo.point }</span>점</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/point/pointManagement?m_id=${loginInfo.m_id}">포인트 점수 : <span>${loginInfo.point }</span>점</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/pinchStatus">내 지원 현황</a>
-									<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/myInfo">마이페이지</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/pinchStatus?m_id=${loginInfo.m_id}">내 지원 현황</a>
+									<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/myInfo?m_id=${loginInfo.m_id}">마이페이지</a>
 								</div>
 							</div>
 							<!-- 유저메뉴 토글 End -->

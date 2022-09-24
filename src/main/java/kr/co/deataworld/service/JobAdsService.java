@@ -6,6 +6,7 @@ import java.util.Map;
 import kr.co.deataworld.dto.JobAdsCriteria;
 import kr.co.deataworld.dto.AreaCodeDTO;
 import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.JobCountryCriteria;
 import kr.co.deataworld.dto.MainAdsDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
@@ -36,12 +37,12 @@ public interface JobAdsService {
 	public List<AreaCodeDTO> areaSearch(String area);
 
 	// 구인목록(일반구인->상세보기)
-	public JobAdsDTO listAllDetail(int s_number);
+	public JobAdsDTO listAllDetail(Map<String, Object> chk);
 
 	// 드롭다운
 	public List<AreaCodeDTO> selectDropdown(Map<String, Object> map);
 
 	// 구인상세페이지
-	public Map<String, Object> listDetail(int s_number);
+	public Map<String, Object> listDetail(Map<String, Object> chk);
 
 }

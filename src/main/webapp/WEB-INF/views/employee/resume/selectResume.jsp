@@ -65,7 +65,7 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="resumeManagement">등록된 자기소개서 목록</a></li>
+													<li><a class="active" href="resumeManagement?m_id=${loginInfo.m_id}">등록된 자기소개서 목록</a></li>
 													<li><a href="${contextPath}/employeeMapper/resumeRegister">자기소개서 작성</a></li>
 												</ul>
 											</div>
@@ -91,7 +91,7 @@
 																	</div>
 																	
 																	<div class="content-right">
-																		<a id="content-style" type="text" href="${contextPath}/employeeMapper/resumeUpdate?i_number=${resume.i_number}">[수정]</a>
+																		<a id="content-style" type="text" href="${contextPath}/employeeMapper/resumeUpdate?i_number=${resume.i_number}&m_id=${loginInfo.m_id}">[수정]</a>
 																	</div>
 																
 																</div>
