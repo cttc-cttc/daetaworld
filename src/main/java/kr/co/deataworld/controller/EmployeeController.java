@@ -55,8 +55,7 @@ public class EmployeeController {
 	@PostMapping(value = "employeeMapper/myInfoUpdate")
 	public int myInfoUpdate(MemberDTO memberDTO, MultipartFile chooseFile, String preFileName) throws Exception {
 		// 사진을 변경했다면 로컬 프로필 이미지 폴더에서 기존 사진을 삭제하고 새 사진을 저장
-		System.out.println(chooseFile);
-		if(!chooseFile.getOriginalFilename().isEmpty()) {
+		if(chooseFile != null) {
 			String savedName = FileProcess.updateImg(chooseFile, FileProcess.PROFILE_IMG_PATH, preFileName);
 			memberDTO.setM_picture(savedName);
 		}
