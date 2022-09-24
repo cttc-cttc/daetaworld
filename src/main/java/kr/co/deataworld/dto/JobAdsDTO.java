@@ -17,6 +17,7 @@ public class JobAdsDTO {
 	private String a_date;
 	private String a_time;
 	private int a_wage;
+	private int a_need;
 	private int a_urgency;
 	private int a_status;
 	private String ua_date;
@@ -25,7 +26,6 @@ public class JobAdsDTO {
 	private int r_code;
 	private int s_number;
 	private int del;
-	
 	public int getA_number() {
 		return a_number;
 	}
@@ -49,6 +49,12 @@ public class JobAdsDTO {
 	}
 	public void setA_wage(int a_wage) {
 		this.a_wage = a_wage;
+	}
+	public int getA_need() {
+		return a_need;
+	}
+	public void setA_need(int a_need) {
+		this.a_need = a_need;
 	}
 	public int getA_urgency() {
 		return a_urgency;
@@ -91,19 +97,20 @@ public class JobAdsDTO {
 	}
 	public void setS_number(int s_number) {
 		this.s_number = s_number;
-	}	
+	}
 	public int getDel() {
 		return del;
 	}
 	public void setDel(int del) {
 		this.del = del;
 	}
-	
 	@Override
 	public String toString() {
 		return "JobAdsDTO [a_number=" + a_number + ", a_date=" + a_date + ", a_time=" + a_time + ", a_wage=" + a_wage
-				+ ", a_urgency=" + a_urgency + ", a_status=" + a_status + ", ua_date=" + ua_date + ", a_type=" + a_type
-				+ ", m_id=" + m_id + ", r_code=" + r_code + ", s_number=" + s_number + ", del=" + del + "]";
+				+ ", a_need=" + a_need + ", a_urgency=" + a_urgency + ", a_status=" + a_status + ", ua_date=" + ua_date
+				+ ", a_type=" + a_type + ", m_id=" + m_id + ", r_code=" + r_code + ", s_number=" + s_number + ", del="
+				+ del + "]";
 	}
+	
 	
 }

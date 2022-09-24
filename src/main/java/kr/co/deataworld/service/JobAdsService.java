@@ -17,17 +17,19 @@ public interface JobAdsService {
 	// 메인화면 - 일반구인 리스트 6개
 	public List<MainAdsDTO> mainCommonList();
 
-	// 구인목록(일반구인/급구 목록보기)
+	// 구인목록(일반구인)
 	public List<JobAdsDTO> listAds(JobAdsCriteria cri);
 
+	//급구목록보기
+	public List<JobAdsDTO>listUrgency(JobAdsCriteria cri);
+	
 	// 구인목록(구인-농어촌)
-	public List<JobAdsDTO> listCountry(JobCountryCriteria cri1);
+	public List<JobAdsDTO> listCountry(JobAdsCriteria cri);
 
 	// 일반/긴급-글갯수
 	public int countJobAdsList();
 
-	// 농어촌 글갯수
-	public int countCountry();
+	
 
 	// 구인목록검색
 	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map);

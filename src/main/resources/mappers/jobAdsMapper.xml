@@ -79,22 +79,41 @@
 		6
 
 	</select>
-	<!-- 구인목록 일반/급구 -->
+	<!-- 일반 구인목록-->
 	<select id="listAds" parameterType="java.util.Map" resultType="JobAdsDTO">
-			select s_number,a_date,a_time,a_wage,ua_date,a_urgency
+			select *
 			from job_ads
 			where a_type = 0
+			and a_urgency = 0
+			and a_status not in(3,4)
             order by s_number
 			limit #{pageStart}, #{perPageNum} 
 							
 		</select>
+	
+	<!-- 급구 구인목록 -->
+	<select id="listUrgency" parameterType="java.util.Map" resultType="JobAdsDTO">
+		select *
+			from job_ads
+			where a_type = 0
+			and a_urgency = 1
+			and a_status not in(3,4)
+            order by s_number
+			limit #{pageStart}, #{perPageNum} 
+	
+	
+	</select>
+	
+	
+	
 	<!-- 농어촌 구인목록 -->
 	<select id="listCountry" parameterType="java.util.Map" resultType="JobAdsDTO">
-		select s_number,a_date,a_time,a_wage,ua_date,a_urgency
+		select *
 		from job_ads
 		where a_type = 1
+		and a_status not in(3,4)
 		order by s_number
-		
+		limit #{pageStart}, #{perPageNum} 
 	</select>	
 		
 	
@@ -118,20 +137,15 @@
         and s.s_number=#{s_number}
 	</select>
 
-	<!-- 일반/긴급 글 갯수 -->
+	<!-- 일반/긴급/농어촌 글 갯수 -->
 		<select id="countJobAdsList" resultType="java.lang.Integer">
 			select count(a_type)
 			from job_ads
-            where a_type=0
+           
 			
 		</select>	
 	
-	<!-- 농어촌 글 갯수 -->
-		<select id="countCountry" resultType = "java.lang.Integer">
-			select count(a_type)
-			from job_ads
-			where a_type=1
-		</select>
+	
 	<!-- 구인목록검색 -->
        <select id="JobAdsSearch" parameterType="java.util.Map" resultType="JobAdsDTO">		
 		select *
