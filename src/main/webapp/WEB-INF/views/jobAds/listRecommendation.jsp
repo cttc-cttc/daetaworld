@@ -60,7 +60,7 @@
             </div>
             <div class="resultDesc"></div>
 <!--             <button type="button"  class="kakao py-2 px-3">바로찾기</button> -->
-            <form method="get" action="JobAdsSearch">
+            <form method="get" action="listAll">
 							<select name="option">
 						
 								<option value="job_code">결과 번호를 입력해 주세요</option>
