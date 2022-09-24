@@ -54,16 +54,44 @@
         </section>
         <section id="result" class="mx-auto my-4 py-5 px-3">
             <h3>오늘 당신의 추천 일자리는!</h3>
+            <br><br>
             <div class="resultName"></div>
             <div id="resultImg" class="col-lg-6 col-md-6 col-sm-8 col-8 mx-auto my-3 mb-2">  <!--해상도에 맞는 크기 선언-->
             </div>
             <div class="resultDesc"></div>
-            <button type="button"  class="kakao py-2 px-3">바로찾기</button>
+<!--             <button type="button"  class="kakao py-2 px-3">바로찾기</button> -->
+            <form method="get" action="JobAdsSearch">
+							<select name="option">
+						
+								<option value="job_code">결과 번호를 입력해 주세요</option>
+								
+<!-- 								<option value="job_code2">유통판매</option> -->
+<!-- 								<option value="job_code3">문화여가</option> -->
+<!-- 								<option value="job_code4">서비스1</option> -->
+<!-- 								<option value="job_code5">서비스2</option> -->
+<!-- 								<option value="job_code6">서비스3</option> -->
+<!-- 								<option value="job_code7">서비스4</option> -->
+<!-- 								<option value="job_code8">사무회계</option> -->
+<!-- 								<option value="job_code9">고객상담,영업</option> -->
+<!-- 								<option value="job_code10">건설,노무</option> -->
+<!-- 								<option value="job_code11">생산</option> -->
+<!-- 								<option value="job_code12">IT,인터넷</option> -->
+<!-- 								<option value="job_code13">교육강사</option> -->
+<!-- 								<option value="job_code14">디자인</option> -->
+<!-- 								<option value="job_code15">미디어</option> -->
+<!-- 								<option value="job_code16">운전배달</option> -->
+<!-- 								<option value="job_code17">병원간호</option> -->
+								
+								
+
+							</select> <input type="text" name="value"> <input type="submit"
+								value="검색">
+						</form>
         </section>
     </div>
   
-    <script src="${contextPath}/resources/custom_js/listRecommendation/data.js"></script>
-    <script src="${contextPath}/resources/custom_js/listRecommendation/start.js"></script>
+    <script src="${contextPath}/resources/custom_js/listRecommendation/data.js?ver=1"></script>
+    <script src="${contextPath}/resources/custom_js/listRecommendation/start.js?ver=1"></script>
 </body>
 
 </body>

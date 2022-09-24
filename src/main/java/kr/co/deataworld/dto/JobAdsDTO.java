@@ -11,6 +11,8 @@ package kr.co.deataworld.dto;
 //r_code int 
 //s_number int
 //del int
+//job_code int
+
 public class JobAdsDTO {
 
 	private int a_number;
@@ -26,6 +28,11 @@ public class JobAdsDTO {
 	private int r_code;
 	private int s_number;
 	private int del;
+
+	// 추가함 이성원
+	private int job_code;
+	
+
 	public int getA_number() {
 		return a_number;
 	}
@@ -104,13 +111,24 @@ public class JobAdsDTO {
 	public void setDel(int del) {
 		this.del = del;
 	}
+
+	
+	
+	public int getJob_code() {
+		return job_code;
+	}
+	public void setJob_code(int job_code) {
+		this.job_code = job_code;
+	}
 	@Override
 	public String toString() {
 		return "JobAdsDTO [a_number=" + a_number + ", a_date=" + a_date + ", a_time=" + a_time + ", a_wage=" + a_wage
-				+ ", a_need=" + a_need + ", a_urgency=" + a_urgency + ", a_status=" + a_status + ", ua_date=" + ua_date
-				+ ", a_type=" + a_type + ", m_id=" + m_id + ", r_code=" + r_code + ", s_number=" + s_number + ", del="
-				+ del + "]";
+				+ ", a_urgency=" + a_urgency + ", a_status=" + a_status + ", ua_date=" + ua_date + ", a_type=" + a_type
+				+ ", m_id=" + m_id + ", r_code=" + r_code + ", s_number=" + s_number + ", del=" + del + ", job_code="
+				+ job_code + "]";
 	}
 	
 	
+	
+
 }
