@@ -21,17 +21,19 @@ public interface JobAdsDAO {
 	// 구인목록(일반구인 목록보기)
 	public List<JobAdsDTO> listAds(JobAdsCriteria cri);
 
+	// 급구목록보기
+	public List<JobAdsDTO> listUrgency(JobAdsCriteria cri);
+
 	// 구인목록(구인-농어촌)
-	public List<JobAdsDTO> listCountry(JobCountryCriteria cri1);
+	public List<JobAdsDTO> listCountry(JobAdsCriteria cri);
 
 	// 드롭다운
 	public List<AreaCodeDTO> selectDropdown(Map<String, Object> map);
 
-	// 일반/긴급-글갯수
+	// 구인공고 글갯수
 	public int countJobAdsList();
 
-	// 농어촌 글갯수
-	public int countCountry();
+	
 
 	// 구인목록 검색
 	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map);

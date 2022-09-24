@@ -45,50 +45,44 @@
 						<table class="table">
 							<tbody>
 
-								<!-- 지역 선택-->
-								<tr>
-									<th>지역</th>
-									<td>
-										
-										<button type="button" class="btn btn-outline-dark" value = "${listdrop.a_name1 }" onclick="fn_gu()")>${listdrop.a_name2 }</button>
-	
-										
-									</td>
-
-								</tr>
-
 								
-								<!-- 직종선택 -->
+								<!-- 지역선택 -->
 								<tr>
-									<th>직종</th>
-									<td>
-										<div class="common-sidebar-widget sidebar-two">
-											
-											<div class="sidebar-search-form-two">
-
-												<label for="si"><span></span></label> <select name="major">
-													
-													<optgroup label="JobSort1">
-														<option selected>직종대분류</option>
-														<c:forEach items="${listdrop }" >
-														     <option value="${listdrop.j_type1 }">${listdrop.j_type1 }</option>
-														</c:forEach>
-													</optgroup>
-													
-													
-												</select>
-
-
-											</div>
-											
-										</div>
-									</td>
-
-								</tr>
-
-
-								<!-- 직종끝 -->
-								
+                        <th>지역</th>
+                        <td>
+                        <select class="form-select" id="applyRoles">
+                              <option selected="">All roles</option>
+                              <option>Design</option>
+                              <option>Engineering</option>
+                              <option>Product</option>
+                              <option>Testing</option>
+                              <option>Support</option>
+                        </select>
+                        </td>
+                        <th>직종</th>
+                        <td>
+                        <select class="form-select" id="applyRoles">
+                              <option selected="">All roles</option>
+                              <option>Design</option>
+                              <option>Engineering</option>
+                              <option>Product</option>
+                              <option>Testing</option>
+                              <option>Support</option>
+                        </select>
+                        </td>
+                        <th>근무시간</th>
+                        <td>
+                        <select class="form-select" id="applyRoles">
+                              <option selected="">All roles</option>
+                              <option>Design</option>
+                              <option>Engineering</option>
+                              <option>Product</option>
+                              <option>Testing</option>
+                              <option>Support</option>
+                        </select>
+                        </td>
+                        
+                     </tr>
 								<!-- 붙여넣기 끝 -->
 							
 
@@ -134,9 +128,10 @@
 							<th>날짜</th>
 							<th>시간</th>
 							<th>시급</th>
-							
+							<th>급구여부</th>
 							<th>올린시간</th>
-
+							<th>구인 인원</th>
+				
 						</tr>
 					</thead>
 					<c:forEach var="jobsend" items="${list }">
@@ -147,8 +142,10 @@
 							<td class="tc">${jobsend.a_date}</td>
 							<td class="tc">${jobsend.a_time}</td>
 							<td class="tc">${jobsend.a_wage}</td>
+							<td class="tc">${jobsend.a_urgency}</td>
 							
 							<td class="tc">${jobsend.ua_date }</td>
+							<td class="tc">${jobsend.a_need }</td>
 
 
 						</tr>

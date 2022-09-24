@@ -75,16 +75,20 @@ public class JobAdsServiceImpl implements JobAdsService {
 		return dao.selectDropdown(map);
 	}
 
+	
+
+	
+
 	@Override
-	public List<JobAdsDTO> listCountry(JobCountryCriteria cri1) {
-		// TODO Auto-generated method stub
-		return dao.listCountry(cri1);
+	public List<JobAdsDTO> listUrgency(JobAdsCriteria cri) {
+		
+		return dao.listUrgency(cri);
 	}
 
 	@Override
-	public int countCountry() {
+	public List<JobAdsDTO> listCountry(JobAdsCriteria cri) {
 		// TODO Auto-generated method stub
-		return dao.countCountry();
+		return dao.listCountry(cri);
 	}
 
 	

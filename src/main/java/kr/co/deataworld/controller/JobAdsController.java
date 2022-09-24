@@ -45,7 +45,7 @@ public class JobAdsController {
 	EmployeeService eService;
 	
 	
-		// 구인목록-일반/급구
+		// 일반구인목록
 
 	@GetMapping(value = "/jobAds/listAll")
 	public String listAll(Model model,JobAdsCriteria cri) throws Exception {
@@ -65,42 +65,42 @@ public class JobAdsController {
 		return "jobAds/listAll";
 	}
 	
-	
-	
+	//급구 구인목록
+	@GetMapping(value = "/jobAds/listUrgency")
+	public String listUrgency1(Model model ,JobAdsCriteria cri) throws Exception{
+		JobAdsPageMaker pageMaker = new JobAdsPageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.countJobAdsList());
+		List<JobAdsDTO>list = service.listUrgency(cri);
+		model.addAttribute("list", list);
+		model.addAttribute("pageMaker", pageMaker);
+		return "jobAds/listUrgency";
+	}
 	
 	
 	
 	//구인목록-농어촌
 	@GetMapping(value = "/jobAds/listCountry")
-	public String listCountry(Model model,JobCountryCriteria cri1)throws Exception{
+	public String listCountry(Model model,JobAdsCriteria cri)throws Exception{
 		
 		
-		JobCountryPageMaker pageMaker1 = new JobCountryPageMaker();
-		pageMaker1.setCri1(cri1);
-		pageMaker1.setCri1(cri1);
-		pageMaker1.setTotalCount1(service.countCountry());
-		List<JobAdsDTO>list = service.listCountry(cri1);
+		JobAdsPageMaker pageMaker = new JobAdsPageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.countJobAdsList());
+		
+		List<JobAdsDTO>list = service.listCountry(cri);
 		
 	
 
-		model.addAttribute("list1", list);
+		model.addAttribute("list", list);
 		
-		model.addAttribute("pageMaker1", pageMaker1);
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "jobAds/listCountry";
 		
 	}
 	
 			
-	//선택박스
-	@GetMapping(value = "jobAds/areaSearch")
-	public String selectDropdown(@RequestParam("area") String area, Model model)throws Exception{
-		List<AreaCodeDTO>listdrop = service.areaSearch(area);
-		model.addAttribute("listdrop", listdrop);
-		return "jobAds/search/AreaSearch";
-	}
-	
-	
 	
 	
 	//붙여넣기
@@ -191,24 +191,7 @@ public class JobAdsController {
 		logger.info("구인목록 페이지 접속");
 		return "jobAds/listFavorite";
 	}
-	//긴급구인 목록
-	@GetMapping(value = "/jobAds/listUrgency")
-	public String listUrgency(Model model,JobAdsCriteria cri) {
-		logger.info("구인목록 페이지 접속");
-		JobAdsPageMaker pageMaker = new JobAdsPageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.countJobAdsList());
-		List<JobAdsDTO>list = service.listAds(cri);
-		
-		
-
-		model.addAttribute("list", list);
-		
-		model.addAttribute("pageMaker", pageMaker);
-
-		return "jobAds/listUrgency";
-	}
-
+	
 	
 	@GetMapping(value = "/jobAds/listRecommendation")
 	public String listRecommendation() {

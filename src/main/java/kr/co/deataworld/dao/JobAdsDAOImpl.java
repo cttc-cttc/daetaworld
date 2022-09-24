@@ -79,16 +79,20 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 		return sql.selectList(NAMESPACE + ".selectDropdown", map);
 	}
 
+	
+
+	
+
 	@Override
-	public List<JobAdsDTO> listCountry(JobCountryCriteria cri1) {
+	public List<JobAdsDTO> listUrgency(JobAdsCriteria cri) {
 		// TODO Auto-generated method stub
-		return sql.selectList(NAMESPACE +".listCountry",cri1);
+		return sql.selectList(NAMESPACE + ".listUrgency", cri);
 	}
 
 	@Override
-	public int countCountry() {
+	public List<JobAdsDTO> listCountry(JobAdsCriteria cri) {
 		// TODO Auto-generated method stub
-		return sql.selectOne(NAMESPACE + ".countCountry");
+		return sql.selectList(NAMESPACE + ".listCountry", cri);
 	}
 
 	
