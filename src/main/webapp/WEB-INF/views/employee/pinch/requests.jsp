@@ -56,9 +56,9 @@
 															<th>급구</th>
 															<th>상태</th>
 														</thead>
-														<c:forEach var="adsList" items="${adsList}">
+														<c:forEach var="adsList" items="${list}">
 															<tr>			
-																<td><a href="adsRegistered?a_number=${adsList.a_number}">${adsList.s_name }</a></td>													
+																<td type="button" onclick="location.href='${contextPath}/jobAds/listAllDetail?m_id=${loginInfo.m_id}&s_number=${adsList.s_number}&a_number=${adsList.a_number}'">${adsList.s_name}</td>
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
 																<td>${adsList.a_wage }</td>

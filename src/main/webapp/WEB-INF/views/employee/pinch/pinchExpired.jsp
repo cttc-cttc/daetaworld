@@ -46,7 +46,7 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													공고 올린 전체 내역
+													완료한 공고목록 내역
 													<table class="table table-striped">
 														<thead>		
 															<th>가게명</th>													
@@ -55,10 +55,11 @@
 															<th>시급</th>
 															<th>급구</th>
 															<th>상태</th>
+															<th>후기작성</th>
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
-																<td><a href="adsRegistered?a_number=${adsList.a_number}">${adsList.s_name }</a></td>													
+																<td>${adsList.s_name }</td>													
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
 																<td>${adsList.a_wage }</td>
@@ -89,6 +90,7 @@
 																		<c:out value="만료"></c:out>
 																	</c:if>
 																</td>
+																<td><button>후기</button></td>
 															</tr>
 														</c:forEach>
 													</table>
