@@ -124,6 +124,9 @@ public class AccountController {
 		if(!chooseFile.getOriginalFilename().isEmpty()) {
 			String savedName = FileProcess.insertImg(chooseFile, FileProcess.PROFILE_IMG_PATH);
 			member.setM_picture(savedName);
+		} else {
+			// 프로필사진 업로드 안하면 default로 등록
+			member.setM_picture("default");
 		}
 		
 		// 지역코드 설정을 위한 문자열 추출 (예시: 서울 송파구 동남로 99)
