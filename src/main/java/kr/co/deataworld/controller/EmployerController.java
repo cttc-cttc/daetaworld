@@ -24,6 +24,7 @@ import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 import kr.co.deataworld.service.AccountService;
 import kr.co.deataworld.service.EmployerService;
+import kr.co.deataworld.util.ExtractAreaCode;
 import kr.co.deataworld.util.FileProcess;
 /*
  * 구인자 컨트롤러 (마이페이지)
@@ -63,26 +64,11 @@ public class EmployerController {
 			employerEntity.setM_picture(savedName);
 		}
 		
-		// 지역코드 설정을 위한 문자열 추출 (예시: 서울 송파구 동남로 99, 경기도 수원시 권선구 ??로) 
-		String address1 = employerEntity.getM_address1(); // "서울 송파구 동남로 99"
-		String[] addressSplit = address1.split(" "); // ["서울", "송파구", "동남로", "99"]
-		String addrName1 = addressSplit[0]; // "서울"
-		String addrName2 = addressSplit[1]; // "송파구"
-		if(addressSplit[2].endsWith("구")) { // a_name2에 시 구가 있을 경우
-			addrName2 = addressSplit[2];
-		}
-		String addrName1_1 = String.valueOf(addrName1.charAt(0)); // "서"
-		String addrName1_2 = String.valueOf(addrName1.charAt(1)); // "울"
-		addrName2 = addrName2.substring(0, addrName2.length()-1); // "송파"
-		
-		Map<String, String> addrParam = new HashMap<String, String>();
-		addrParam.put("addrName1_1", addrName1_1);
-		addrParam.put("addrName1_2", addrName1_2);
-		addrParam.put("addrName2", addrName2);
-		String areaCode = aService.getAreaCode(addrParam); // 11710 (서울시 송파구 지역코드)
+		// 지역코드 설정
+		Map<String, String> addrParam = ExtractAreaCode.getAreaCode(employerEntity.getM_address1());
+		String areaCode = aService.getAreaCode(addrParam);
 		System.out.println("지역코드: "+areaCode);
 		employerEntity.setA_code(areaCode);
-		
 		
 		return service.myInfoUpdate(employerEntity);
 	}

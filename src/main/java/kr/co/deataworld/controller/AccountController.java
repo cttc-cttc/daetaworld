@@ -38,6 +38,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kr.co.deataworld.dto.MemberDTO;
 
 import kr.co.deataworld.service.AccountService;
+import kr.co.deataworld.util.ExtractAreaCode;
 import kr.co.deataworld.util.FileProcess;
 
 
@@ -129,19 +130,8 @@ public class AccountController {
 			member.setM_picture("default");
 		}
 		
-		// 지역코드 설정을 위한 문자열 추출 (예시: 서울 송파구 동남로 99)
-		String address1 = member.getM_address1(); // "서울 송파구 동남로 99"
-		String[] addressSplit = address1.split(" "); // ["서울", "송파구", "동남로", "99"]
-		String addrName1 = addressSplit[0]; // "서울"
-		String addrName2 = addressSplit[1]; // "송파구"
-		String addrName1_1 = String.valueOf(addrName1.charAt(0)); // "서"
-		String addrName1_2 = String.valueOf(addrName1.charAt(1)); // "울"
-		addrName2 = addrName2.substring(0, addrName2.length()-1); // "송파"
-		
-		Map<String, String> addrParam = new HashMap<String, String>();
-		addrParam.put("addrName1_1", addrName1_1);
-		addrParam.put("addrName1_2", addrName1_2);
-		addrParam.put("addrName2", addrName2);
+		// 지역코드 설정
+		Map<String, String> addrParam = ExtractAreaCode.getAreaCode(member.getM_address1());
 		String areaCode = service.getAreaCode(addrParam); // 11710 (서울시 송파구 지역코드)
 		member.setA_code(areaCode);
 		
@@ -165,7 +155,7 @@ public class AccountController {
 		return ri;
 	}
 	
-//	이메일 인증 (메일 가입 이름 dd)
+//	이메일 인증 (메일 가입 이름 dd) 어차피 되지도 않는거 실행하면 에러 뜨니까 주석으로 바꿈
 	@ResponseBody
 	@RequestMapping(value = "emailAuth", method = RequestMethod.POST)
 	public String emailAuth(@RequestParam("email") String email) {
@@ -175,40 +165,40 @@ public class AccountController {
 		Random random = new Random();
 		int checkNum = random.nextInt(888888) + 111111;
 
-		Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.naver.com");
-		prop.put("mail.smtp.port", 465);
-		prop.put("mail.smtp.auth", "true");
-		prop.put("mail.smtp.ssl.enable", "true");
-		prop.put("mail.smtp.ssl.trust", "smtp.naver.com");
-
-		Session session = Session.getDefaultInstance(prop, new Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(user, password);
-			}
-		});
-
-		try {
-			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(user)); // 수신자메일주소
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-
-			// Subject
-			message.setSubject("오늘의대타 인증메일 입니다."); // 메일 제목을 입력
-
-			// Text
-			String text = "인증 번호는 <span style='color:blue; font-size:16px;'>" + checkNum + "</span> 입니다." + "<br>"
-					+ "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
-			message.setText(text, "utf-8", "html"); // 메일 내용을 입력
-
-			// send the message
-			Transport.send(message); //// 전송
-			System.out.println("message sent successfully...");
-		} catch (AddressException e) {
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
+//		Properties prop = new Properties();
+//		prop.put("mail.smtp.host", "smtp.naver.com");
+//		prop.put("mail.smtp.port", 465);
+//		prop.put("mail.smtp.auth", "true");
+//		prop.put("mail.smtp.ssl.enable", "true");
+//		prop.put("mail.smtp.ssl.trust", "smtp.naver.com");
+//
+//		Session session = Session.getDefaultInstance(prop, new Authenticator() {
+//			protected PasswordAuthentication getPasswordAuthentication() {
+//				return new PasswordAuthentication(user, password);
+//			}
+//		});
+//
+//		try {
+//			MimeMessage message = new MimeMessage(session);
+//			message.setFrom(new InternetAddress(user)); // 수신자메일주소
+//			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+//
+//			// Subject
+//			message.setSubject("오늘의대타 인증메일 입니다."); // 메일 제목을 입력
+//
+//			// Text
+//			String text = "인증 번호는 <span style='color:blue; font-size:16px;'>" + checkNum + "</span> 입니다." + "<br>"
+//					+ "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+//			message.setText(text, "utf-8", "html"); // 메일 내용을 입력
+//
+//			// send the message
+//			Transport.send(message); //// 전송
+//			System.out.println("message sent successfully...");
+//		} catch (AddressException e) {
+//			e.printStackTrace();
+//		} catch (MessagingException e) {
+//			e.printStackTrace();
+//		}
 		return Integer.toString(checkNum);
 	}
 	
