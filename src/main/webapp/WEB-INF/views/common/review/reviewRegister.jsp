@@ -9,6 +9,7 @@
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+<link rel="stylesheet" href="${contextPath}/resources/custom_css/etc.css">	
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -43,8 +44,55 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													후기 써라
-													
+										
+										
+										
+										<div class="table-responsive">
+								<table class="table table-striped">
+									<div class="box-body">
+										<div class="form-group">
+											<label>내용</label>
+											<textarea name="w_comments" rows="5" 
+												class="form-control">${review.w_contents}</textarea>
+										</div>
+
+									
+									</div>
+									
+								
+	
+ 	<form class="mb-3" name="myform" id="myform" method="post">
+	<fieldset>
+		<span class="text-bold">별점을 선택해주세요</span>
+		<input type="radio" name="reviewStar" value="5" id="rate1"><label
+			for="rate1">★</label>
+		<input type="radio" name="reviewStar" value="4" id="rate2"><label
+			for="rate2">★★</label>
+		<input type="radio" name="reviewStar" value="3" id="rate3"><label
+			for="rate3">★★★</label>
+		<input type="radio" name="reviewStar" value="2" id="rate4"><label
+			for="rate4">★★★★</label>
+		<input type="radio" name="reviewStar" value="1" id="rate5"><label
+			for="rate5">★★★★★</label>
+	</fieldset>
+	<div>
+		<textarea class="col-auto form-control" type="text" id="reviewContents"
+				  placeholder="좋은 후기평가를 남겨주시면 노예에게 큰 힘이 됩니다! 포인트 500p도 지급!!"></textarea>
+	</div>
+	
+	
+	</div>
+		<div class="box-footer"> 
+		<button class="btn btn-info onclick="location.href='${contextPath}/common/review/tempingreply?b_number=${temping.b_number}'">후기 작성</button>
+	
+	</div>
+	
+</form>		
+			
+										
+										
+											
+
 												</div>
 											</div>
 										</div>
@@ -73,5 +121,52 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	
+	
+	
+	<!-- j커리 자리 -->
+	<script>
+	function changeQnaState(){
+        var qnaState = $(':radio[name="faqrp_asesment"]:checked').val();
+        var qnaAnswer = $("#faqrp_asesment_content").val();
+        
+        if(qnaState == ""){
+            alert("처리상태를 선택해주세요.");
+            return false;
+        }
+        if(qnaAnswer==""){
+            alert("답변 내용을 입력해주세요.");
+            return false;
+        }
+        
+        var submitObj = new Object();
+        submitObj.faq_idx = "${searchVO.faq_idx }";
+        submitObj.faqrp_asesment= qnaState;
+        submitObj.faqrp_asesment_content= qnaAnswer; 
+        
+        $.ajax({ 
+                url: path+"/onlinecounsel/csfaq/update_qnaState.do", 
+                type: "POST", 
+                contentType: "application/json;charset=UTF-8",
+                data:JSON.stringify(submitObj),
+                dataType : "json",
+                async: false
+               }) 
+               .done(function(resMap) {
+                  alert("등록 완료하였습니다.");
+                  location.reload();
+               }) 
+               .fail(function(e) {  
+                   alert("등록에 실패하였습니다.");
+                  
+               }) 
+               .always(function() { 
+                  
+               }); 
+} 
+
+	</script>
+	
 </body>
+
 </html>

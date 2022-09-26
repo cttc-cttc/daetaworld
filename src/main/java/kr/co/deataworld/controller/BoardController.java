@@ -35,6 +35,9 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
+	
+	
+	//게시판 리스트
 	@RequestMapping(value = "board/free/free", method = RequestMethod.GET)
 	public ModelAndView list() 	throws Exception{
 		ModelAndView mav = new ModelAndView();
@@ -120,25 +123,26 @@ public class BoardController {
 
 	//떙빵 글보여주기
 	@RequestMapping(value = "board/temping/temping", method = RequestMethod.GET)
-	public ModelAndView tempinglist() 	throws Exception{
+	public ModelAndView tempingList() throws Exception{
 		ModelAndView mav = new ModelAndView();
 		
-		List<BoardDTO> tempinglist = service.tempinglist();
+		List<BoardDTO> tempinglist = service.tempingList();
 		mav.addObject("tempinglist",tempinglist);
 		mav.setViewName("board/temping/temping");
 		return mav;
 		
 	}
+
 	
 	@RequestMapping(value="board/temping/tempingdetail", method = RequestMethod.GET)
-	public String tempingdetail(@RequestParam("b_number") int b_number, Model model) throws Exception {
-		BoardDTO temping = service.tempinggetDetail(b_number);
+	public String tempingDetail(@RequestParam("b_number") int b_number, Model model) throws Exception {
+		BoardDTO temping = service.getDetail(b_number);
 		model.addAttribute("temping", temping);
 	
 		// 댓글목록
-		List<CommentsDTO> tempinglist = service.getDetail1(b_number);
-		System.out.println(tempinglist);
-		model.addAttribute("tempinglist", tempinglist);
+		List<CommentsDTO> replylist = service.getDetail1(b_number);
+		System.out.println(replylist);
+		model.addAttribute("replylist", replylist);
 
 		return "board/temping/tempingdetail";
 	}
@@ -146,56 +150,56 @@ public class BoardController {
 	
 	
 	
-	    //글쓰기폼
+	    //땜빵 글쓰기폼
 		@RequestMapping(value="board/temping/tempingregister", method = RequestMethod.GET)
-		public String tempingregister() {
+		public String tempingRegister() {
 			
 			return "board/temping/tempingregister";
 		}
 		
-		//글쓰기폼 등록과정
+		//땜빵 글쓰기폼 등록과정
 		@RequestMapping(value="board/temping/tempingregister", method = RequestMethod.POST)
-		public String tempingregister(BoardDTO boardDTO, HttpServletRequest request)throws Exception {
+		public String tempingRegister(BoardDTO boardDTO, HttpServletRequest request)throws Exception {
 			request.setCharacterEncoding("utf-8");
 			logger.info("내용 : " + boardDTO);
-			int r = service.tempingregister(boardDTO);
-			return "redirect:temping";
+			int r = service.tempingRegister(boardDTO);
+			return "redirect:tempinglist";
 		}
 		
 		//땜빵글 수정폼
 		@RequestMapping(value="board/temping/tempingupdate", method = RequestMethod.GET)
-		public String tempingupdate(@RequestParam("b_number") int b_number, Model model) throws Exception {
+		public String tempingUpdate(@RequestParam("b_number") int b_number, Model model) throws Exception {
 			
 			BoardDTO temping = service.tempinggetDetail(b_number);
 			model.addAttribute("temping", temping);		
-			return "board/temping/tempingupdate";
+			return "board/temping/tempingUpdate";
 		}	
 		
 		//떔빵글 수정 저장
 		@RequestMapping(value = "board/temping/tempingupdate", method = RequestMethod.POST)
-		public String tempingupdate(BoardDTO boardDTO, RedirectAttributes rttr,HttpServletRequest request) throws Exception {
+		public String tempingUpdate(BoardDTO boardDTO, RedirectAttributes rttr,HttpServletRequest request) throws Exception {
 			request.setCharacterEncoding("utf-8");
-			int r = service.tempingupdate(boardDTO);
+			int r = service.tempingUpdate(boardDTO);
 			// 수정에 성공하면 목록보기로 이동
 			if (r > 0) {
 				rttr.addFlashAttribute("msg", "수정에 성공 하였습니다.");
 				return "redirect:temping";  // 여기이상
 			}
 			// 수정에 실패하면 수정보기 화면으로 이동
-			return "redirect:tempingupdate?b_number=" + boardDTO.getB_number();
+			return "redirect:tempingUpdate?b_number=" + boardDTO.getB_number();
 		}
 		
 
 		//떔빵삭제하기
 		@RequestMapping(value="board/temping/tempingdelete",method = RequestMethod.GET)
 		public String tempingDelete(@RequestParam("b_number") int b_number, RedirectAttributes rttr) throws Exception {
-			int r = service.tempingdelete(b_number);
+			int r = service.tempingDelete(b_number);
 			
 			if(r > 0) {
 				rttr.addFlashAttribute("msg","글삭제에 성공하였습니다.");
 				return "redirect:temping";
 			}
-			return "redirect:tempingdetail?b_number=" + b_number;
+			return "redirect:tempingDetail?b_number=" + b_number;
 		}
 		
 		

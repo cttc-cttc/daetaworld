@@ -22,17 +22,18 @@ public interface BoardDAO {
 
 	public List<CommentsDTO> getDetail1(int b_number) throws Exception;
 	
-	public List<BoardDTO> tempinglist() throws Exception;
+	public List<BoardDTO> tempingList() throws Exception;
 
 	public BoardDTO tempinggetDetail(int b_number) throws Exception;
 	
 	public int updateReadtempingCnt(int b_number);
 	
-	public int tempingregister(BoardDTO boardDTO) throws Exception;
+	public int tempingRegister(BoardDTO boardDTO) throws Exception;
 	
-	public int tempingupdate(BoardDTO boardDTO) throws Exception;
+	public int tempingUpdate(BoardDTO boardDTO) throws Exception;
 	
-	public int tempingdelete(int b_number) throws Exception;
+	public int tempingDelete(int b_number) throws Exception;
+
 	
 }
 

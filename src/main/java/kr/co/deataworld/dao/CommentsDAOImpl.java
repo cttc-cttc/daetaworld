@@ -1,6 +1,7 @@
 package kr.co.deataworld.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,39 +32,38 @@ public class CommentsDAOImpl implements CommentsDAO {
 	}
 
 	@Override
-	public int replyupdate(CommentsDTO commentsDTO) throws Exception {
+	public int replyUpdate(CommentsDTO commentsDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update(namespace + ".replyupdate", commentsDTO);
+		return sqlSession.update(namespace + ".replyUpdate", commentsDTO);
 	}
 
 	@Override
-	public int replydelete(int c_number) throws Exception {
+	public int replyDelete(int c_number) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace + ".replyDelete", c_number);
 	}
 
-	@Override
-	public int tempingreply(CommentsDTO commentsDTO) throws Exception {
+	public int tempingReply(CommentsDTO commentsDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(namespace + ".tempingreply", commentsDTO);
+		return sqlSession.insert(namespace + ".tempingReply", commentsDTO);
 	}
 
 	@Override
-	public CommentsDTO tempingdetailreply(int c_number) throws Exception {
+	public CommentsDTO tempingDetailReply(int c_number) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + ".tempingdetailreply", c_number);
+		return sqlSession.selectOne(namespace + ".tempingDetailReply", c_number);
 	}
 
 	@Override
-	public int tempingreplyupdate(CommentsDTO commentsDTO) throws Exception {
+	public int tempingReplyUpdate(CommentsDTO commentsDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update(namespace + ".tempingreplyupdate", commentsDTO);
+		return sqlSession.update(namespace + ".tempingReplyUpdate", commentsDTO);
 	}
 
 	@Override
-	public int tempingreplydelete(int c_number) throws Exception {
+	public int tempingReplyDelete(int c_number) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update(namespace + ".tempingreplydelete", c_number);
+		return sqlSession.update(namespace + ".tempingReplyDelete", c_number);
 	}
 
 }

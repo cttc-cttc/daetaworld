@@ -26,9 +26,8 @@
 			<h3 class="box-title">땜빵 게시판 글쓰기</h3>
 		</div>
 	
-		<form role="form" action="tempingregister" method="post" >
-			
-			
+		<form name="form" action="tempingRegister" method="post" onsubmit="return asdf()" >
+		
 			<div class="box-body">
 				<div class="form-group">
 					<label>제목</label> <input type="text"
@@ -81,24 +80,53 @@
 
 
 	
-	<script>
-$.ajax({
-    url: 주소,
-    data : 전송데이터,
-    dataType : 데이터타입,
-    type : 전송타입,
-    success : function(result){
-       
-    },
-    error : function(result){
-       
-    }
-    
- });
+	
+<script type="text/javascript">
+	
+	function asdf() {
+		if (!checkb_title(form.b_title.value)){
+			return false;
+		} else if (!checkb_contents(form.b_contents.value)) {
+			return false;
+		}
+		
+		alert('새 글쓰기 완료');
+		return true;		
+	}
+	
+	function checkExistData(value, asdf) {
+		if (value == "" || value == " ") {
+			alert(asdf + " 입력하세요");
+			return false;
+		}
+		return true;
+    }
+	
+	function checkb_title(b_title) {        
+		        
+		if (!checkExistData(b_title, "제목을")){
+			form.b_title.focus();
+			return false;        
+		} 
+		
+		return true;
+		
+	}
+	function checkb_contents(b_contents) {        
+		        
+		if (!checkExistData(b_contents, "내용을")){
+			form.b_contents.focus();
+			return false;        
+		} 
+		
+		return true;
+		
+	}
+	
+	
+	
 </script>
 
-
 </body>
-</script>)
 
 </html>

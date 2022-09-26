@@ -28,7 +28,8 @@
 				});
 				//댓글삭제 버튼을 눌렀을 때 처리
 				$(".replyDelete").click(function(){
-					location.href="${contextPath}/board/free/replydelete?c_number=" + ${commentsDTO.c_number}; 
+					location.href="${contextPath}/board/free/replydelete?c_number=" + ${commentsDTO.c_number}
+					"&b_number=" + ${commentsDTO.b_number}; 
 				});
 			})		
 			</script>
