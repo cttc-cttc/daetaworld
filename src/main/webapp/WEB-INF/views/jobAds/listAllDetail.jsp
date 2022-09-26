@@ -68,6 +68,7 @@
 							<div class="sidebar-map">
 								<!-- 카카오 지도 -->
 								<div id="map" style="width:500px;height:400px;"></div>
+								
 							</div>
 						</div>
 					</div>
