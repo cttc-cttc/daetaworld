@@ -68,5 +68,11 @@ public interface EmployerDAO {
 	
 //	직종 목록 받아오기
 	public List<JobCodeDTO> jobList()throws Exception;
+	
+//	등록한 가게 정보변경
+	public int shopInfoUpdate(ShopInfoDTO shopInfo) throws Exception;
+	
+//	새 가게 등록
+	public int shopRegister(ShopInfoDTO shopInfo) throws Exception;
 
 }

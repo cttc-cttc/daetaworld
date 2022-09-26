@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileProcess {
 	public static final String PROFILE_IMG_PATH = "C:\\project\\daetaworld\\images\\profile"; // 프로필사진 저장경로
 	public static final String SHOP_IMG_PATH = "C:\\project\\daetaworld\\images\\shop"; // 가게사진 저장경로
+	public static final String SHOP_LICENSE_PATH = "C:\\project\\daetaworld\\images\\business_license"; // 가게사진 저장경로
 	
 //	사진을 화면에 출력
 	public static ResponseEntity<byte[]> display(String uploadPath, String fileName) {

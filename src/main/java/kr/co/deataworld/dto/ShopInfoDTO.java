@@ -17,8 +17,8 @@ package kr.co.deataworld.dto;
  * s_tag4 varchar(6) 
  * s_tag5 varchar(6) 
  * m_id varchar(20) 
- * a_code varchar(20) 
- * j_code varchar(20)
+ * a_code int
+ * j_code varchar(5)
  */
 public class ShopInfoDTO {
 	private int s_number;
@@ -38,7 +38,7 @@ public class ShopInfoDTO {
 	private String s_tag5;
 	private String m_id;
 	private String a_code;
-	private String j_code;
+	private int j_code;
 	
 	@Override
 	public String toString() {
@@ -185,11 +185,11 @@ public class ShopInfoDTO {
 		this.a_code = a_code;
 	}
 
-	public String getJ_code() {
+	public int getJ_code() {
 		return j_code;
 	}
 
-	public void setJ_code(String j_code) {
+	public void setJ_code(int j_code) {
 		this.j_code = j_code;
 	}	
 	

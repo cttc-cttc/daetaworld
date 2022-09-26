@@ -230,7 +230,7 @@
         
 <script type="text/javascript">
 	var counter;
-	var s_tag = "s_tag";
+	var tag = "s_tag";
 	
  	$(document).ready(function() {
 		var tag = {};
@@ -271,6 +271,7 @@
 								$("#tag-list").append(
 										"<li class='tag-item'>"+ tagValue + 
 										"<span class='del-btn' idx='" + counter + "'>x</span></li>");
+										"<input type='hidden' id='tag+counter' name='tag+counter' value='tagValue'/>"
 								addTag(tagValue);
 								self.val("");
 							} else {

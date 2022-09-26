@@ -51,15 +51,15 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<form action="#" >
+													<form name="sr" action="shopRegister" method="post" onsubmit="return srChk()" enctype="multipart/form-data">
 														<div class="row mb-30">
 															<div class="col-lg-10">	
 																<div class="row">															
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
-																			<label for="shopName">가게 이름 <span>*</span></label> <input
-																				type="text" name="shopName" id="shopName"
+																			<label for="s_name">가게 이름 <span>*</span></label> <input
+																				type="text" name="s_name" id="s_name"
 																				placeholder="이름을 입력하세요" />
 																		</div>
 																		<!-- Single Input End -->
@@ -74,55 +74,22 @@
 																				placeholder="상세주소를 입력하세요">	
 																		</div>
 																		<!-- Single Input End -->
-																	</div>	
+																	</div>																
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<table>
-																			<tr>
-																				<label for="s_code">직종 선택<span>*</span></label>
-																					<td>
-																						<div class="dropdown">
-																							<button class="btn btn-secondary dropdown-toggle"
-																								type="button" id="dropdownMenuButton"
-																								data-toggle="dropdown" aria-haspopup="true"
-																								aria-expanded="false">직종을 선택해주세요</button>
-																							<div class="dropdown-menu"
-																								aria-labelledby="dropdownMenuButton">
-																								<c:forEach var="list" items="${jobList }">
-																									<a class="dropdown-item" onclick="area(${list.j_code })">${list.j_type2 }</a>
-																								</c:forEach>																							
-																							</div>
-																						</div> 
-																						<input type="hidden" id="j_code" name="j_code">
-																					</td>
-																				</tr>
-																			</table>	
-																		</div>																		
-																		<!-- Single Input End -->
-																	</div>																	
-																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
-																		<div class="single-input mb-25">
-																			<label for="business_license">사업자 등록증<span>*</span></label><input
-																				type="file" id="business_license" name="business_license">
+																			<label for="license">사업자 등록증<span>*</span></label><input
+																				type="file" id="license" name="license"
+																				accept="image/png, image/jpeg, image/gif"
+																				>
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
-																			<label for="shopTags">가게 태그 <span>*</span></label><br>
-																			<input type="text" id="tag" placeholder="간단한 태그 입력 (6자 이내, 5개까지 가능)" />
-																			<input type="text" value="태그 등록은 Shift + F1을 누르세요" readonly="readonly">																																						
-																			<ul id="tag-list"></ul>
-																		</div>
-																	</div>
-																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
-																		<div class="single-input mb-15">
-																			<label for="shopInfo">가게 소개 <span>*</span></label><br>
-																			<textarea name="shopInfo" id="shopInfo" rows="3"
+																			<label for="s_intro">가게 소개 <span>*</span></label><br>
+																			<textarea name="s_intro" id="s_intro" rows="3"
 																				placeholder="가게 소개를 해보세요"></textarea>
 																		</div>
 																	</div>
@@ -139,7 +106,44 @@
 																					</table>
 																				</div>
 																		</div>
-																	</div>																																													
+																	</div>
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																		<!-- Single Input Start -->
+																		<div class="single-input mb-15">
+																			<label for="shopTags">가게 태그 <span>*</span></label><br>
+																			<input type="text" id="tag" placeholder="간단한 태그 입력 (6자 이내, 5개까지 가능)" />
+																			<input type="text" value="태그 등록은 Shift + F1을 누르세요" readonly="readonly">																																						
+																			<ul id="tag-list"></ul>
+																		</div>
+																	</div>																	
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																		<!-- Single Input Start -->
+																		<div class="single-input mb-25">
+																			<label for="j_code">직종 선택<span>*</span></label>
+																			<table>
+																			<tr>																				
+																				<td>
+																					<div class="dropdown">
+																						<button class="btn btn-secondary dropdown-toggle"
+																							type="button" id="dropdownMenuButton"
+																							data-toggle="dropdown" aria-haspopup="true"
+																							aria-expanded="false">직종을 선택해주세요</button>
+																						<div class="dropdown-menu"
+																							aria-labelledby="dropdownMenuButton">
+																							<c:forEach var="list" items="${jobList }">
+																								<a class="dropdown-item" onclick="area(${list.j_code })">${list.j_type2 }</a>																								
+																							</c:forEach>																							
+																						</div>
+																					</div> 
+																					<input type="text" id="j_code" name="j_code" value="${list.j_type2 }" readonly="readonly">
+																				</td>
+																			</tr>
+																			</table>	
+																		</div>																		
+																		<!-- Single Input End -->
+																	</div>
+																	<input type="hidden" id="m_id" name="m_id" value="${loginInfo.m_id}">
+																																																														
 																</div>
 															</div>																
 														</div>					
@@ -147,7 +151,7 @@
 															<div class="col-12">
 																<div
 																	class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																	<button class="ht-btn theme-btn theme-btn-two mb-xs-20">
+																	<button type="submit" class="ht-btn theme-btn theme-btn-two mb-xs-20">
 																		등록</button>
 																</div>
 															</div>
@@ -197,9 +201,70 @@
 	    });
 	}
 	
-	function area(code){
+	function area(code){		
 		$('#j_code').val(code);
-		alert('코드:'+$('#j_code').val());
+	}
+	</script>
+	
+	<script type="text/javascript">
+		function srChk(){
+			if(!checkName(sr.s_name.value)){
+				return false;
+			}else if(!checkAddress(sr.s_address1.value, sr.s_address2.value)){
+				return false;
+			}else if(!checkJob(sr.j_code.value)){
+				return false;
+			}else if(!checkIntro(sr.s_intro.value)){
+				return false;
+			}
+			alert("가게가 등록되었습니다");
+			return true;
+		
+		function checkExist(value, dataName) {        
+			if (value == "" || value == " ") {            
+				alert(dataName + " 입력해주세요");            
+				return false;        
+			}        
+			return true;    
+		}
+		
+		function checkName(s_name){
+			if(!checkExist(s_name, "가게 명을")){
+				sr.s_name.focus();
+				return false;
+			}else{
+				return true;
+			}
+		}
+		
+		function checkAddress(s_address1, s_address2){
+			if(!checkExist(s_address1, "주소를")){
+				sr.s_address1.focus();
+				return false;
+			}else if(!checkExist(s_address2, "주소를")){				
+				return false;
+			}else{
+				return true;
+			}
+		}
+		
+		function checkJob(j_code){
+			if(!checkExist(j_code, "직종을")){	
+				sr.j_code.focus();
+				return false;
+			}else {
+				return true;
+			}
+		}
+		
+		function checkIntro(s_intro){
+			if(!checkExist(s_intro, "가게 소개를")){
+				sr.s_intro.focus();
+				return false;
+			}else {
+				return true;
+			}
+		}
 	}
 	</script>
 	
