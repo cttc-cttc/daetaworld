@@ -5,9 +5,9 @@
 <mapper namespace="kr.co.deataworld.employee">
 
 <!-- 내 정보 불러오기(구직자) -->
-<select id="myInfo" parameterType="String" resultType="java.util.Map">
+<select id="myInfo" parameterType="String" resultType="Map">
 	SELECT * FROM daetaworld.member
-	WHERE m_type = '1' and m_id = #{m_id};
+	WHERE m_type = '1' AND m_id = #{m_id};
 </select>
 
 
@@ -29,31 +29,31 @@
 
 <!-- 등록된 자기소개서 목록 -->
 <select id="resumeManagement" parameterType="String" resultType="ResumeDTO">
-	select * from daetaworld.employee_intro
-	where m_id = #{m_id}
+	SELECT * FROM daetaworld.employee_intro
+	WHERE m_id = #{m_id}
 </select>
 
 <!-- 선택한 자소서 불러오기 -->
 <select id="selectResume" parameterType="ResumeDTO" resultType="ResumeDTO">
-	select * from daetaworld.employee_intro
-	where m_id = #{m_id} and i_number = #{i_number}
+	SELECT * FROM daetaworld.employee_intro
+	WHERE m_id = #{m_id} AND i_number = #{i_number}
 </select>
 
 <!-- 수정한 자소서 저장 ajax -->
 <update id="resumeUpdate" parameterType="ResumeDTO">
-	update daetaworld.employee_intro
-	set
+	UPDATE daetaworld.employee_intro
+	SET
 	i_title = #{i_title},
 	i_contents = #{i_contents},
 	i_date = now()
-	where
-	m_id = #{m_id} and i_number = #{i_number}
+	WHERE
+	m_id = #{m_id} AND i_number = #{i_number}
 </update>
 
 <!-- 자소서 삭제하기 -->
 <delete id="resumeDelete" parameterType="ResumeDTO">
-	delete from daetaworld.employee_intro
-	where
+	DELETE FROM daetaworld.employee_intro
+	WHERE
 	i_number = #{i_number}
 </delete>
 
@@ -66,20 +66,20 @@
 
 <!-- 대표 자소서 설정 -->
 <update id="resumeDefault" parameterType="ResumeDTO">
-	update daetaworld.employee_intro
-	set
+	UPDATE daetaworld.employee_intro
+	SET
 	i_default = 1
-	where
+	WHERE
 	i_number = #{i_number}
 </update>
 
 <!-- 대표 자소서 초기화 -->
 <update id="resumeDefaultInit" parameterType="ResumeDTO">
-	update daetaworld.employee_intro
-	set
+	UPDATE daetaworld.employee_intro
+	SET
 	i_default = '0'
-	where
-	m_id = #{m_id} and i_default = '1';
+	WHERE
+	m_id = #{m_id} AND i_default = '1';
 </update>
 
 
@@ -115,16 +115,20 @@
 
 <!-- 수정하자 job_ads 랑 shop_info 두개 다 불러와야함 Map으로 map.  -->
 <!-- 구직 신청한 공고내역을 가져옴. #{m_id} 를 받아와야한다. -->
-<select id="pinchHistory" parameterType="java.lang.Integer" resultType="Map">
-	SELECT 
-	FROM a.*, s.*
-	job_ads a, shop_info s 
-	WHERE
-	a.s_number = s.s_number AND a.s_number = #{a_number}
+<select id="pinchHistory" parameterType="String" resultType="Map">
+	SELECT a.*, s.*, ja.*
+	FROM job_ads a, shop_info s, job_apply ja
+	WHERE ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number;
 </select>
 
 
-
+<!-- 지원한 알바목록 불어오기 -->
+<select id="pinchStatus" parameterType="String"	resultType="Map">
+	SELECT a.*, s.*, ja.*
+	FROM job_ads a, shop_info s, job_apply ja
+	WHERE
+	ja.m_id = #{m_id} AND ja.jae_status ='0' AND ja.a_number = a.a_number AND a.s_number = s.s_number;
+</select>
 
 
 

@@ -50,15 +50,10 @@ public interface EmployeeService {
 	public int applyIntro(JobApplyDTO jobapplyDTO)throws Exception;
 	
 	//신청한 공고내역을 불러온다
-	public List<JobAdsDTO> pinchHistory()throws Exception;
+	public List<Map> pinchHistory(String m_id)throws Exception;
 	
-	
-	//대타내역 가게명 불러오기
-//	public String shopName(int s_number)throws Exception;
-	
-	
-	//대타내역 불러오기
-//	public List<JobAdsDTO> pinchHistory()throws Exception;
+	//지원한 대타내역 가져오기
+	public List<Map> pinchStatus(String m_in)throws Exception;
 
 	
 	

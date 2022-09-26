@@ -93,27 +93,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	@Override //대타내역
-	public List<JobAdsDTO> pinchHistory() throws Exception {
-		return dao.pinchHistory();
+	public List<Map> pinchHistory(String m_id) throws Exception {
+		return dao.pinchHistory(m_id);
 	}
 
 
+	@Override //신청한 대타목록 불러오기
+	public List<Map> pinchStatus(String m_in) throws Exception {
+		return dao.pinchStatus(m_in);
+	}
 	
-
 	
-	
-	
-	
-
-//	@Override //대타 내역 불러오기
-//	public List<JobAdsDTO> pinchHistory() throws Exception {
-//		return dao.pinchHistory();
-//	}
-//	
-//	//대타내역 가게명 불러오기
-//	public String shopName(int s_number)throws Exception {
-//		return dao.shopName(s_number);
-//	}
 	
 
 }

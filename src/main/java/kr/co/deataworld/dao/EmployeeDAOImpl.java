@@ -94,12 +94,17 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
 	@Override //신청한 대타내역 불러오기
-	public List<JobAdsDTO> pinchHistory() throws Exception {
-		return sql.selectList(NAMESPACE + ".pinchHistory");
+	public List<Map> pinchHistory(String m_id) throws Exception {
+		return sql.selectList(NAMESPACE + ".pinchHistory", m_id);
 	}
 
 
-	
+	@Override //신청한 대타내역 불러오기
+	public List<Map> pinchStatus(String m_id) throws Exception {
+		return sql.selectList(NAMESPACE + ".pinchStatus", m_id);
+	}
+
+
 	
 	
 	
