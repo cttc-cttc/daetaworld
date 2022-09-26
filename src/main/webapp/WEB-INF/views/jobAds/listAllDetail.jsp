@@ -82,7 +82,7 @@
 							${map.s_tag1 } ,${map.s_tag2 } ,${map.s_tag3 } , ${map.s_tag4 }
 							<ul>
 
-								<li><img src="/deataworld/resources/images/shop_picture/${map.s_picture1 }"></li>
+								<li><img src="/deataworld/resources/images/shop_picture/${map.s_picture1 }" style="width:50%; height:20%"></li>
 								<li>가게주소:${map.s_address1}</li>
 							</ul>
 						</div>

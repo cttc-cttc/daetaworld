@@ -47,28 +47,28 @@
 		<div class="contact-info mb-30">
 			
 			<div class="contact-form">
-				<form action="assets/php/contact-mail.php" id="contact-form"
+				<form action="${contextPath}" id="contact-form"
 					method="post">
 					<p>아래 양식을 작성하여 저희에게 메시지를 보내 주십시오.
 						확인후 답변해드리겠습니다.</p>
 					<div class="row">
 						<div class="col-12">
 							<div class="single-input">
-								<input type="text" placeholder="Your Name *" name="name">
+								<input type="text" placeholder='이름을 입력하세요.' name= 'name' required = "required" pattern="[가-힣]{2,10}" autocomplete="off">
 							</div>
 						</div>
 						<div class="col-12">
 							<div class="single-input">
-								<input type="email" placeholder="Email *" name="email">
+								<input type="email" placeholder="Email *" name="email" required = "required" autocomplete="off">
 							</div>
 						</div>
 						<div class="col-12">
 							<div class="single-input">
-								<textarea name="message" placeholder="Message"></textarea>
+								<textarea name="message" placeholder="Message" required = "required" autocomplete="off"></textarea>
 							</div>
 						</div>
 						<div class="col-12 mb-40">
-							<button class="ht-btn">Send</button>
+							<button class="ht-btn">전송</button>
 							<p class="form-messege"></p>
 						</div>
 					</div>
