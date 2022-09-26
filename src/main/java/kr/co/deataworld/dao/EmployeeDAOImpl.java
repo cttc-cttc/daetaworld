@@ -111,6 +111,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
+	@Override //주변노예검색을 통해 요청받은 목록 불러오기
+	public List<Map> requests(String m_id) throws Exception {
+		return sql.selectList(NAMESPACE + ".requests", m_id);
+	}
+
+
 	
 	
 	

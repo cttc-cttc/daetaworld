@@ -130,8 +130,8 @@
 	
 	<!-- 구인상세 -->
 	<select id="listDetail" parameterType="Map" resultType="Map">
-		select j.*,s.*
-		from job_ads j, shop_info s
+		select j.*,s.*,ja.*
+		from job_ads j, shop_info s, job_apply ja
 		where j.s_number = s.s_number
         and s.s_number=#{s_number}
 	</select>
