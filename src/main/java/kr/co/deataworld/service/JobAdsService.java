@@ -34,6 +34,9 @@ public interface JobAdsService {
 
 	// 구인목록검색
 	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map);
+	
+	// 직업추천 전체 구인목록검색
+	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map);
 
 	// 지역검색
 	public List<AreaCodeDTO> areaSearch(String area);

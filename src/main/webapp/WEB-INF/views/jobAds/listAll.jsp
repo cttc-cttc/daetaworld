@@ -143,7 +143,7 @@
 						<tr>
 							<td class="tc"><a
 								href="listAllDetail?s_number=${jobsend.s_number}&m_id=${loginInfo.m_id}&a_number=${jobsend.a_number}">
-									${jobsend.s_number} </a></td>
+									 </a></td>
 							<td class="tc">${jobsend.a_date}</td>
 							<td class="tc">${jobsend.a_time}</td>
 							<td class="tc">${jobsend.a_wage}</td>
