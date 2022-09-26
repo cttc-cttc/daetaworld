@@ -63,6 +63,7 @@ public class EmployeeController {
 			String savedName = FileProcess.updateImg(chooseFile, FileProcess.PROFILE_IMG_PATH, preFileName);
 			memberDTO.setM_picture(savedName);
 		}
+		System.out.println(memberDTO);
 		return service.myInfoUpdate(memberDTO);
 	}
 	

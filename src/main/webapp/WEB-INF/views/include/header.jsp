@@ -69,10 +69,10 @@
 							<div class="jp-author item usermenu-width">
 								<div class="usermenu-content" data-toggle="dropdown" aria-expanded="false">
 									<div class="rounded-circle profile-container">
-										<c:if test="${loginM_picture == null}">
+										<c:if test="${loginM_picture == 'default'}">
 											<img src="${contextPath}/resources/images/default_profile.png">
 										</c:if>
-										<c:if test="${loginM_picture != null}">
+										<c:if test="${loginM_picture != 'default'}">
 											<img src="${contextPath}/displayProfile?fileName=${loginM_picture}">
 										</c:if>
 									</div>

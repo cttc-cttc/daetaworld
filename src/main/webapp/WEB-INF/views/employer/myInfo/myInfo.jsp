@@ -62,11 +62,14 @@
 																	<label class="d-block" for="picture">프로필 사진<span>*</span></label>																		
 																	<table>
 																	<tr>
-																	<td>
-																	<img  
-																		style="height:200px; width:150px;"
-																		src="${contextPath}/displayProfile?fileName=${myInfo.m_picture}"></td>
-																	<td>
+																		<td style="height:200px; width:150px;">
+																			<c:if test="${myInfo.m_picture == 'default'}">
+																				<img src="${contextPath}/resources/images/default_profile.png">
+																			</c:if>
+																			<c:if test="${myInfo.m_picture != 'default'}">
+																				<img src="${contextPath}/displayProfile?fileName=${myInfo.m_picture}">
+																			</c:if>
+																		</td>
 																	</tr>																	
 																	<tr>																	
 																	<td class="single-input mb-25">																	

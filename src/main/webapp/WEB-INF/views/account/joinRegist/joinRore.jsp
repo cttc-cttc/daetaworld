@@ -5,8 +5,8 @@
 <title>오늘의 대타</title>
 <%@ include file="../../include/head.jsp" %>
 <!-- custom css -->
-<link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/moncss1.css">
-<link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/moncss2.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/account/moncss1.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/custom_css/account/moncss2.css">
 
 <body class="template-color-3">
 	<div id="main-wrapper">
