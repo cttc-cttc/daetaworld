@@ -20,12 +20,15 @@
 		<!-- 상단 메뉴 end-->
 
  <!-- Main content -->
+ 
     <section class="content container-fluid">
 		<div class="box-header">
 			<h3 class="box-title">댓글쓰기</h3>
 		</div>
 	
-		<form role="form" method="post">
+	
+	<form name="form"  method="post"  onsubmit="return abd()">
+	
 			<div class="box-body">
 				<div class="form-group">
 					<label>작성자</label> <input type="text"
@@ -35,7 +38,7 @@
 					<textarea class="form-control" name="c_contents" rows="3"
 						placeholder="댓글을 입력하세요"></textarea>
 				</div>
-				<input type="hidden" name="b_number" />
+				<input type="hidden" name="b_number" value="${b_number}"/>
 			</div>
 	
 			<div class="box-footer">
@@ -70,5 +73,53 @@
 	
 	
 	</script>
+	
+	
+<script type="text/javascript">
+	
+	function abd() {
+		if (!checkm_id(form.m_id.value)){
+			return false;
+		} else if (!checkc_contents(form.c_contents.value)) {
+			return false;
+		}
+		
+		alert('새 글쓰기 완료');
+		return true;		
+	}
+	
+	function checkExistData(value, m_id) {
+		if (value == "" || value == " ") {
+			alert(m_id + " 입력하세요");
+			return false;
+		}
+		return true;
+    }
+	
+	function checkm_id(m_id) {        
+		        
+		if (!checkExistData(m_id, "작성자를")){
+			form.m_id.focus();
+			return false;        
+		} 
+		
+		return true;
+		
+	}
+	function checkc_contents(c_contents) {        
+		        
+		if (!checkExistData(c_contents, "내용을")){
+			form.c_contents.focus();
+			return false;        
+		} 
+		
+		return true;
+		
+	}
+	
+	
+	
+	
+</script>
 </body>
 </html>

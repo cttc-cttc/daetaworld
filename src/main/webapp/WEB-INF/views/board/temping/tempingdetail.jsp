@@ -59,11 +59,11 @@
 									<tr>
 										<div class="box-footer">
 											<button id="" class="btn btn-success" onclick="location.href='${contextPath}'">메인</button>
-													<button class="btn btn-primary onclick="location.href='${contextPath}/board/temping/tempin'">목록</button>
+											<button class="btn btn-primary onclick="location.href='${contextPath}/board/temping/tempin'">목록</button>
 											<button class="btn btn-warning" onclick="location.href='${contextPath}/board/temping/tempingupdate?b_number=${temping.b_number}'">수정</button>
 											<button class="btn btn-danger onclick="location.href='${contextPath}/board/temping/tempingdelete?b_number=${temping.b_number}'">삭제</button>
-									
-											<button class="btn btn-info onclick="location.href='${contextPath}/board/temping/tempingreply?b_number=${temping.b_number}'">댓글작성</button>
+									<button class="btn btn-info onclick="location.href='${contextPath}/board/temping/tempingreply?b_number=${temping.b_number}'">댓글작성</button>
+											
 										</div>
 
 											

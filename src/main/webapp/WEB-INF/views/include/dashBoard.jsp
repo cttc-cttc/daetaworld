@@ -39,7 +39,7 @@
 								class="lnr lnr-thumbs-down"></i>공고 내역</a></li>	
 						<li><a id="adsCompleted" href="${contextPath}/reviewMapper/adsCompleted"><i 
 								class="lnr lnr-thumbs-down"></i>후기 작성</a></li>																			
-						<li><a id="pointManagement_r" href="${contextPath}/pointMapper/pointManagement"><i 
+						<li><a id="pointManagement_r" href="${contextPath}/pointMapper/pointManagementadsCompleted?m_id=${loginUser}"><i 
 								class="lnr lnr-thumbs-down"></i>포인트 관리</a></li>
 					</ul>
 				</li>

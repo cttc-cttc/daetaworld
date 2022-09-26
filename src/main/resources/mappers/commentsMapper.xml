@@ -13,55 +13,52 @@
 		values (#{c_number},  #{c_contents}, now(), #{m_id},  #{b_number}, 0)
 	</insert>
 	<!-- 해당 댓글 읽기 -->
-	<select id="detailreply" parameterType="CommentsDTO"
-		resultType="CommentsDTO">
+	<select id="detailReply" parameterType="java.lang.Integer" resultType="CommentsDTO">
 		select *
 		from comments
 		where c_number = #{c_number} and del = 0
 	</select>
 	<!-- 댓글 수정 -->
-	<update id="replyupdate" parameterType="CommentsDTO" >
+	<update id="replyUpdate" parameterType="CommentsDTO" >
 		update comments
 		set
 		m_id =  #{m_id} , c_contents = #{c_contents}, c_date = now()
 		where c_number = #{c_number}
 	</update>
 	<!-- 댓글 삭제 -->
-	<update id="replydelete" parameterType="java.lang.Integer">
+	<update id="replyDelete" parameterType="java.lang.Integer">
 		update comments
 		set del = 1
 		where c_number = #{c_number}
 	</update>
 	
 		<!-- 땜빵 댓글 쓰기 -->
-	<insert id="tempingreply" parameterType="CommentsDTO">
+	<insert id="tempingReply" parameterType="Map">
 		insert into
-		comments(c_number,  c_contents, c_date, m_id,  b_number ,del )
-		values (#{c_number},  #{c_contents}, now(), #{m_id},  #{b_number}, 0)
+		comments( c_contents, c_date, m_id,  b_number ,del )
+		values ( #{c_contents}, now(), #{m_id},  #{b_number}, 0)
 	</insert>
 	<!-- 해당 댓글 읽기 -->
-	<select id="tempingdetailreply" parameterType="CommentsDTO"
+	<select id="tempingDetailReply" parameterType="java.lang.Integer"
 		resultType="CommentsDTO">
 		select *
 		from comments
 		where c_number = #{c_number} and del = 0
 	</select>
 	<!-- 땜빵 댓글 수정 -->
-	<update id="tempingreplyupdate" parameterType="CommentsDTO" >
+	<update id="tempingReplyUpdate" parameterType="CommentsDTO" >
 		update comments
 		set
 		m_id =  #{m_id} , c_contents = #{c_contents}, c_date = now()
 		where c_number = #{c_number}
 	</update>
 	<!-- 떔빵 댓글 삭제 -->
-	<update id="tempingreplydelete" parameterType="java.lang.Integer">
+	<update id="tempingReplyDelete" parameterType="java.lang.Integer">
 		update comments
 		set del = 1
 		where c_number = #{c_number}
 	</update>
-
 	
-
 
 
 

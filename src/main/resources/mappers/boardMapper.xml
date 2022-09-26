@@ -80,7 +80,7 @@
 	</select>
 	
 	<!-- 땡빵 글보여주기 목록 -->
-	<select id="tempinglist" resultType="BoardDTO">
+	<select id="tempingList" resultType="BoardDTO">
 		
 		select *
 		from board
@@ -89,8 +89,8 @@
 		
 	</select>
 	
-	<!-- 글 내용확인 -->
-	<select id="tempingdetail" parameterType="java.lang.Integer" resultType="BoardDTO">
+	<!-- 땜빵글 내용확인 -->
+	<select id="tempinggetDetail" parameterType="java.lang.Integer" resultType="BoardDTO">
 	
 		select * from board
 		where b_number = #{b_number}
@@ -98,7 +98,7 @@
 	
 	</select>
 	
-	<update id="tempingupdateReadCnt" parameterType="java.lang.Integer">
+	<update id="tempingUpdateReadCnt" parameterType="java.lang.Integer">
 		update board
 		set
 		b_hits
@@ -108,7 +108,7 @@
 	</update>
 	
 	<!-- 떙빵 글 쓰기 -->
-	<insert id="tempingregister" parameterType="BoardDTO">
+	<insert id="tempingRegister" parameterType="BoardDTO">
 		insert 
 		into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id ,del)
 		values (#{b_number}, 1, #{b_title}, #{b_contents},#{b_hits},now(), #{m_id} ,0)
@@ -116,7 +116,7 @@
 	</insert>
 	
 	<!-- 글 수정 -->
-	<update id="tempingupdate" parameterType="BoardDTO">
+	<update id="tempingUpdate" parameterType="BoardDTO">
 		update board
 		set
 		b_title = #{b_title}, b_contents = #{b_contents}, b_date = now()
@@ -124,7 +124,7 @@
 	</update>
 	
 		<!-- 글 삭제 del 컬럼을 작성하여 1로 변경 -->
-	<update id="tempingdelete" parameterType="java.lang.Integer">
+	<update id="tempingDelete" parameterType="java.lang.Integer">
 		update board
 		set
 		del = 1
@@ -133,6 +133,5 @@
 	</update>
 	
 
-	
 	
 </mapper>

@@ -25,6 +25,18 @@
 				<div class="row no-gutters">
 					<%@ include file="../../include/boardSidebar.jsp"%>
 					<div class="col-xl-10 col-lg-9">
+						  <section class="content container-fluid">
+	<div class="box-header with-border">
+		<c:if test="${user==null }">
+		<a href="/${contextPath}account/login"> <h3 class="box-title">로그인</h3></a>
+		</c:if>
+		<c:if test="${user!=null }">
+		${user.name }님 환영합니다. <br />
+		<a href="${contextPath}/board/logout"> <h3 class="box-title">로그아웃</h3></a>
+		</c:if>
+	</div>
+						
+						
 						<div class="dashboard-main-inner">
 							<div class="row">
 								<div class="col-12">

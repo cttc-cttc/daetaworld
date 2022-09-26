@@ -61,15 +61,15 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardDTO> tempinglist() throws Exception {
+	public List<BoardDTO> tempingList() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + ".tempinglist");
+		return sqlSession.selectList(namespace + ".tempingList");
 	}
 
 	@Override
 	public BoardDTO tempinggetDetail(int b_number) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + ".tempingdetail" , b_number);
+		return sqlSession.selectOne(namespace + ".tempinggetDetail" , b_number);
 	}
 
 	@Override
@@ -79,21 +79,21 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	@Override
-	public int tempingregister(BoardDTO boardDTO) throws Exception {
+	public int tempingRegister(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(namespace + ".tempingregister", boardDTO);
+		return sqlSession.insert(namespace + ".tempingRegister", boardDTO);
 	}
 
 	@Override
-	public int tempingupdate(BoardDTO boardDTO) throws Exception {
+	public int tempingUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update(namespace + ".tempingupdate", boardDTO);
+		return sqlSession.update(namespace + ".tempingUpdate", boardDTO);
 	}
 
 	@Override
-	public int tempingdelete(int b_number) throws Exception {
+	public int tempingDelete(int b_number) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update(namespace + ".tempingdelete", b_number);
+		return sqlSession.update(namespace + ".tempingDelete", b_number);
 	}
 
 }

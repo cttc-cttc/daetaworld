@@ -1,6 +1,7 @@
 package kr.co.deataworld.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.support.DaoSupport;
@@ -27,45 +28,48 @@ public class CommentsServiceImpl implements CommentsService{
 	}
 
 	@Override
-	public CommentsDTO detailreply(int c_number) throws Exception {
+	public CommentsDTO detailReply(int c_number) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.detailreply(c_number);
+		return dao.detailReply(c_number);
 	}
 
 	@Override
-	public int replyupdate(CommentsDTO commentsDTO) throws Exception {
+	public int replyUpdate(CommentsDTO commentsDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.replyupdate(commentsDTO);
+		return dao.replyUpdate(commentsDTO);
 	}
 
 	@Override
-	public int replydelete(int c_number) throws Exception {
+	public int replyDelete(int c_number) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.replydelete(c_number);
+		return dao.replyDelete(c_number);
 	}
 
 	@Override
-	public int tempingreply(CommentsDTO commentsDTO) throws Exception {
+	public int tempingReply(CommentsDTO commentsDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.tempingreply(commentsDTO);
+		return dao.tempingReply(commentsDTO);
 	}
 
 	@Override
-	public CommentsDTO tempingdetailreply(int c_number) throws Exception {
+	public CommentsDTO tempingDetailReply(int c_number) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.tempingdetailreply(c_number);
+		return dao.tempingDetailReply(c_number);
 	}
 
 	@Override
-	public int tempingreplyupdate(CommentsDTO commentsDTO) throws Exception {
+	public int tempingReplyUpdate(CommentsDTO commentsDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.tempingreplyupdate(commentsDTO);
+		return dao.tempingReplyUpdate(commentsDTO);
 	}
+	
 
 	@Override
-	public int tempingreplydelete(int c_number) throws Exception {
+	public int tempingReplyDelete(int c_number) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.tempingreplydelete(c_number);
+		return dao.tempingReplyDelete(c_number);
 	}
+
+
 
 }

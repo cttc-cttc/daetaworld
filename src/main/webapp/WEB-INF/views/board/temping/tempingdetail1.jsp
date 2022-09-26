@@ -6,7 +6,7 @@
 	 <table class="table">
 	<form>
 	<div class="form-group1">
-	<c:forEach var="commentsDTO" items="${tempinglist}">
+	<c:forEach var="commentsDTO" items="${replylist}">
 		<tr>
 			<td>작성자 : ${commentsDTO.m_id}    작성일자 : ${commentsDTO.c_date} </td>
 		</tr>

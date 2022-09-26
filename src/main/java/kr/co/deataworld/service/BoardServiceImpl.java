@@ -53,9 +53,9 @@ public class BoardServiceImpl implements BoardService{
 		}
 
 		@Override
-		public List<BoardDTO> tempinglist() throws Exception {
+		public List<BoardDTO> tempingList() throws Exception {
 			// TODO Auto-generated method stub
-			return dao.tempinglist();
+			return dao.tempingList();
 		}
 
 		@Override
@@ -65,21 +65,21 @@ public class BoardServiceImpl implements BoardService{
 			return dao.tempinggetDetail(b_number);
 		}
 
-		public int tempingregister(BoardDTO boardDTO) throws Exception {
+		public int tempingRegister(BoardDTO boardDTO) throws Exception {
 			// TODO Auto-generated method stub
-			return dao.tempingregister(boardDTO);
+			return dao.tempingRegister(boardDTO);
 		}
 
 		@Override
-		public int tempingupdate(BoardDTO boardDTO) throws Exception {
+		public int tempingUpdate(BoardDTO boardDTO) throws Exception {
 			// TODO Auto-generated method stub
-			return dao.tempingupdate(boardDTO);
+			return dao.tempingUpdate(boardDTO);
 		}
 
 		@Override
-		public int tempingdelete(int b_number) throws Exception {
+		public int tempingDelete(int b_number) throws Exception {
 			// TODO Auto-generated method stub
-			return dao.tempingdelete(b_number);
+			return dao.tempingDelete(b_number);
 		}
 
 	
