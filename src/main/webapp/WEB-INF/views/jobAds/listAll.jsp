@@ -46,17 +46,16 @@
 							<tbody>
 
 
-								<!-- 지역선택 -->
 								<tr>
-									<th>지역</th>
-									<td><select class="form-select" id="applyRoles">
-											<option selected="">All roles</option>
-											<option>Design</option>
-											<option>Engineering</option>
-											<option>Product</option>
-											<option>Testing</option>
-											<option>Support</option>
-									</select></td>
+									<th>지역</th> <!-- 지역 카테고리1 -->
+									<td>
+									<select class="form-select" onchange="selectAreaName1(this)">
+										<option value="선택">선택</option>
+										<c:forEach var="areaName1" items="${areaName1List }">
+											<option value="${areaName1 }">${areaName1 }</option>
+										</c:forEach>
+									</select>
+									</td>
 									<th>직종</th>
 									<td><select class="form-select" id="applyRoles">
 											<option selected="">All roles</option>
@@ -78,7 +77,16 @@
 
 								</tr>
 								<!-- 붙여넣기 끝 -->
-
+								<tr>
+									<td></td>
+									<td> <!-- 지역 카테고리2 -->
+									<select class="form-select" id="areaName2" onchange="selectAreaName2(this)"></select>
+									</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
 
 
 
@@ -762,6 +770,46 @@
 	<script>
 		function fn_gu() {
 			alert('수원시');
+		}
+		
+		// 지역 카테고리1 선택하면 지역 카테고리2 표시
+		function selectAreaName1(target) {
+			let areaName1 = target.value;
+			if(areaName1 == '선택') {
+				$('#areaName2').css('display', 'none');
+				return;
+			}
+			
+			$.ajax({
+				url: '${contextPath}/jobAds/getAreaName2',
+				data: {'a_name1': areaName1},
+				dataType: 'json',
+				type: 'post',
+				success: function(result) {
+					console.log(result);
+					initAreaName2(); // areaName1을 선택할 때 마다 areaName2 안에 '선택 option' 하나만 있게 초기화
+					$('#areaName2').css('display', 'block');
+					result.forEach(function(row) {
+						let option = '<option value="'+ row.a_code +'">'+ row.a_name2 +'</option>';
+						$('#areaName2').append(option);
+					});
+				},
+				error: function(res) {
+					console.log('실패: '+res);
+				}
+			});
+		}
+		
+		// 지역 카테고리2 초기화
+		function initAreaName2() {
+			const htmls = '<option value="선택">선택</option>';
+			$('#areaName2').html(htmls);
+		}
+		
+		// 지역 카테고리2 선택하면 일단 해당하는 지역코드를 콘솔에 표시
+		function selectAreaName2(target) {
+			let code = target.value;
+			console.log(code);
 		}
 	</script>
 

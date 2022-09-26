@@ -56,14 +56,20 @@ public class JobAdsController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.countJobAdsList());
 		List<JobAdsDTO>list = service.listAds(cri);
-		
-	
+		List<String> areaName1List = service.getAreaName1(); // 지역 카테고리1 목록
 
 		model.addAttribute("list", list);
-		
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("areaName1List", areaName1List);
 		
 		return "jobAds/listAll";
+	}
+	
+	// 선택한 지역 카테고리1로 지역 카테고리2 목록 반환
+	@ResponseBody
+	@PostMapping(value = "/jobAds/getAreaName2")
+	public List<Map<String, String>> getName2(@RequestParam("a_name1") String a_name1) {
+		return service.getAreaName2(a_name1);
 	}
 	
 	//급구 구인목록

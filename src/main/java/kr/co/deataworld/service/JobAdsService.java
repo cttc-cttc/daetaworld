@@ -46,5 +46,11 @@ public interface JobAdsService {
 
 	// 구인상세페이지
 	public Map<String, Object> listDetail(Map<String, Object> chk);
+	
+	// 지역 카테고리1 목록
+	public List<String> getAreaName1();
+	
+	// 지역 카테고리2 목록
+	public List<Map<String, String>> getAreaName2(String a_name1);
 
 }

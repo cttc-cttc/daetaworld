@@ -91,6 +91,18 @@ public class JobAdsServiceImpl implements JobAdsService {
 		return dao.listCountry(cri);
 	}
 
+	@Override
+	public List<String> getAreaName1() {
+		// TODO Auto-generated method stub
+		return dao.getAreaName1();
+	}
+
+	@Override
+	public List<Map<String, String>> getAreaName2(String a_name1) {
+		// TODO Auto-generated method stub
+		return dao.getAreaName2(a_name1);
+	}
+
 	
 	
 }
