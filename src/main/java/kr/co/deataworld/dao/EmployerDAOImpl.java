@@ -47,9 +47,9 @@ public class EmployerDAOImpl implements EmployerDAO{
 	}
 	
 	@Override
-	public List<MemberDTO> nearCandidates(String address) throws Exception {
+	public List<MemberDTO> nearCandidates(String areaCode) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(nameSpace + ".nearCandidates", address);
+		return sqlSession.selectList(nameSpace + ".nearCandidates", areaCode);
 	}
 	
 	@Override

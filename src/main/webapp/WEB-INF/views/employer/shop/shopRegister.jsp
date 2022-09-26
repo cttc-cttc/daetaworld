@@ -111,9 +111,16 @@
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
 																			<label for="shopTags">가게 태그 <span>*</span></label><br>
-																			<input type="text" id="tag" placeholder="간단한 태그 입력 (6자 이내, 5개까지 가능)" />
-																			<input type="text" value="태그 등록은 Shift + F1을 누르세요" readonly="readonly">																																						
-																			<ul id="tag-list"></ul>
+																			<input type="text" id="s_tag1" name ="s_tag1" placeholder="6자 이내 5개까지 등록 가능"
+																				value="${shopInfo.s_tag1 }">
+																			<input type="text" id="s_tag2" name ="s_tag2"
+																				value="${shopInfo.s_tag2 }">
+																			<input type="text" id="s_tag3" name ="s_tag3"
+																				value="${shopInfo.s_tag3 }">
+																			<input type="text" id="s_tag4" name ="s_tag4"
+																				value="${shopInfo.s_tag4 }">
+																			<input type="text" id="s_tag5" name ="s_tag5"
+																				value="${shopInfo.s_tag5 }">
 																		</div>
 																	</div>																	
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">

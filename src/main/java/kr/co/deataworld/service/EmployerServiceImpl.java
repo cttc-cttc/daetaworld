@@ -44,9 +44,9 @@ public class EmployerServiceImpl implements EmployerService{
 	}
 	
 	@Override
-	public List<MemberDTO> nearCandidates(String address) throws Exception {
+	public List<MemberDTO> nearCandidates(String areaCode) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.nearCandidates(address);
+		return dao.nearCandidates(areaCode);
 	}
 	
 	@Override

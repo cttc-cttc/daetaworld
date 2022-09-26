@@ -21,8 +21,7 @@
 		where
 		A.a_urgency = 1
 		and
-		(A.a_status = 0 or A.a_status = 1)
-		and A.a_type = 0
+		(A.a_status = 0 or A.a_status = 1)		
 		group by A.a_number
 		order by A.a_number desc
 		limit 0, 6;
@@ -71,8 +70,7 @@
 		where
 		A.a_urgency = 0
 		and (A.a_status = 0 or A.a_status =
-		1)
-		and A.a_type = 0
+		1)		
 		group by A.a_number
 		order by A.a_number desc
 		limit 0,
@@ -82,9 +80,8 @@
 	<!-- 일반 구인목록-->
 	<select id="listAds" parameterType="java.util.Map" resultType="JobAdsDTO">
 			select *
-			from job_ads
-			where a_type = 0
-			and a_urgency = 0
+			from job_ads			
+			where a_urgency = 0
 			and a_status not in(3,4)
             order by s_number
 			limit #{pageStart}, #{perPageNum} 
@@ -94,9 +91,8 @@
 	<!-- 급구 구인목록 -->
 	<select id="listUrgency" parameterType="java.util.Map" resultType="JobAdsDTO">
 		select *
-			from job_ads
-			where a_type = 0
-			and a_urgency = 1
+			from job_ads			
+			where a_urgency = 1
 			and a_status not in(3,4)
             order by s_number
 			limit #{pageStart}, #{perPageNum} 
@@ -109,9 +105,9 @@
 	<!-- 농어촌 구인목록 -->
 	<select id="listCountry" parameterType="java.util.Map" resultType="JobAdsDTO">
 		select *
-		from job_ads
-		where a_type = 1
-		and a_status not in(3,4)
+		from job_ads		
+		where a_status not in(3,4)
+		and job_code = 18
 		order by s_number
 		limit #{pageStart}, #{perPageNum} 
 	</select>	
@@ -138,8 +134,9 @@
 
 	<!-- 일반/긴급/농어촌 글 갯수 -->
 		<select id="countJobAdsList" resultType="java.lang.Integer">
-			select count(a_type)
+			select count(*)
 			from job_ads
+			where job_code = 18
            
 			
 		</select>	

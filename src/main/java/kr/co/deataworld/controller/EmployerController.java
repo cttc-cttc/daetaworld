@@ -120,7 +120,25 @@ public class EmployerController {
 	public String nearCandidates(@RequestParam("address") String address, 
 			@RequestParam("a_number") int a_number, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");
-		List<MemberDTO> candidates = service.nearCandidates(address);
+		
+		// 지역코드 설정을 위한 문자열 추출 (예시: 서울 송파구 동남로 99, 경기도 수원시 권선구 ??로)		
+		String[] addressSplit = address.split(" "); // ["서울", "송파구", "동남로", "99"]
+		String addrName1 = addressSplit[0]; // "서울"
+		String addrName2 = addressSplit[1]; // "송파구"
+		if(addressSplit[2].endsWith("구")) { // a_name2에 시 구가 있을 경우
+			addrName2 = addressSplit[2];
+		}
+		String addrName1_1 = String.valueOf(addrName1.charAt(0)); // "서"
+		String addrName1_2 = String.valueOf(addrName1.charAt(1)); // "울"
+		addrName2 = addrName2.substring(0, addrName2.length()-1); // "송파"
+		
+		Map<String, String> addrParam = new HashMap<String, String>();
+		addrParam.put("addrName1_1", addrName1_1);
+		addrParam.put("addrName1_2", addrName1_2);
+		addrParam.put("addrName2", addrName2);
+		String areaCode = aService.getAreaCode(addrParam); // 11710 (서울시 송파구 지역코드)
+		
+		List<MemberDTO> candidates = service.nearCandidates(areaCode);
 		model.addAttribute("candidates", candidates);
 		model.addAttribute("a_number", a_number);
 		return "employer/candidates/nearCandidates";

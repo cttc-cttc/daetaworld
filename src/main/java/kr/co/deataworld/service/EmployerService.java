@@ -22,7 +22,7 @@ public interface EmployerService {
 	public List<Map<String, Object>> checkEmployees(String m_id) throws Exception;
 	
 //	가게의 주변 구직자 확인
-	public List<MemberDTO> nearCandidates(String address) throws Exception;
+	public List<MemberDTO> nearCandidates(String areaCode) throws Exception;
 	
 //	가게 주변 구직자 정보
 	public Map<String, Object> nearCanDetail(Map<String, Object> map) throws Exception;
