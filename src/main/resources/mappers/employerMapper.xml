@@ -146,4 +146,22 @@
 		from job_code
 	</select>
 	
+	<!-- 등록한 가게 정보변경 -->
+	<update id="shopInfoUpdate" parameterType="ShopInfoDTO">
+		update shop_info
+		set business_license = #{business_license}, s_name = #{s_name}, s_address1 = #{s_address1}, s_address2 = #{s_address2}, 
+			s_picture1 = #{s_picture1}, s_picture2 = #{s_picture2}, s_picture3 = #{s_picture3}, s_intro = #{s_intro}, 
+			s_tag1 = #{s_tag1}, s_tag2 = #{s_tag2}, s_tag3 = #{s_tag3}, s_tag4 = #{s_tag4}, s_tag5 = #{s_tag5}, 
+			m_id = #{m_id}, a_code = #{a_code}, j_code = #{j_code}
+		where s_number = #{s_number}
+	</update>
+	
+	<!-- 가게 등록하기 -->
+	<insert id="shopRegister" parameterType="ShopInfoDTO">
+		insert into shop_info (business_license, s_name, s_address1, s_address2, s_picture1, s_picture2, s_picture3,  
+			s_intro, s_date, s_tag1, s_tag2, s_tag3, s_tag4, s_tag5, m_id, a_code, j_code) 
+		values (#{business_license}, #{s_name}, #{s_address1}, #{s_address2}, #{s_picture1}, #{s_picture2}, #{s_picture3},  
+			#{s_intro}, now(), #{s_tag1}, #{s_tag2}, #{s_tag3}, #{s_tag4}, #{s_tag5}, #{m_id}, #{a_code}, #{j_code});
+	</insert>
+	
 </mapper>

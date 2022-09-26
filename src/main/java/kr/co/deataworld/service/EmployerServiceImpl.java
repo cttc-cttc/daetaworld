@@ -140,18 +140,18 @@ public class EmployerServiceImpl implements EmployerService{
 		// TODO Auto-generated method stub
 		return dao.jobList();
 	}
+	
+	@Override
+	public int shopInfoUpdate(ShopInfoDTO shopInfo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.shopInfoUpdate(shopInfo);
+	}
 
-
-
-
-
-
-
-
-
-
-
-
+	@Override
+	public int shopRegister(ShopInfoDTO shopInfo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.shopRegister(shopInfo);
+	}
 
 
 }

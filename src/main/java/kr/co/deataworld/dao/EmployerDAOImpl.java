@@ -142,10 +142,17 @@ public class EmployerDAOImpl implements EmployerDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".jobList");
 	}
+	
+	@Override
+	public int shopInfoUpdate(ShopInfoDTO shopInfo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".shopInfoUpdate", shopInfo);
+	}
 
-
-
-
-
+	@Override
+	public int shopRegister(ShopInfoDTO shopInfo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(nameSpace + ".shopRegister", shopInfo);
+	}
 
 }

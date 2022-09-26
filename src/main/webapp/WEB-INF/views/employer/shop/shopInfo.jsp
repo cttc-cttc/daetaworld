@@ -9,6 +9,8 @@
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+<link rel="stylesheet" href="${contextPath}/resources/custom_css/etc.css">	
+<%@ include file="../../include/etc.jsp" %>	
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 	
 	
 <body class="template-color-1">
@@ -47,7 +49,7 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<form action="#">
+													<form name="su" action="shopInfo" method="post" enctype="multipart/form-data">
 														<div class="row mb-30">
 															<div class="col-lg-10">
 																<div class="row">
@@ -75,7 +77,7 @@
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
 																			<label for="business_license">사업자 등록증<span>*</span></label><input
-																				type="file" id="business_license" name="business_license">
+																				type="file" id="license" name="license">
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
@@ -91,12 +93,19 @@
 																	
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
-																		<div class="single-input mb-25">
-																			<label for="s_picture">가게 사진<span>*</span></label><input
-																				type="file" id="s_picture" name="s_picture">
+																		<div class="single-input mb-15">
+																			<label for="shopPicture">가게 사진 <span>*</span></label>
+																				<div id="dropZone"
+																					style="width: 365px; height: 300px; border-style: solid; border-color: black;">
+																					<div id="fileDragDesc">파일을 올려주세요.</div>
+																					<table id="fileListTable" width="100%" border="0px">
+																						<tbody id="fileTableTbody">
+																						</tbody>
+																					</table>
+																				</div>
 																		</div>
-																		<!-- Single Input End -->
 																	</div>
+																	
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
@@ -113,6 +122,35 @@
 																				value="${shopInfo.s_tag5 }">
 																		</div>
 																	</div>
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																		<!-- Single Input Start -->
+																		<div class="single-input mb-25">
+																			<label for="j_code">직종 선택<span>*</span></label>
+																			<table>
+																			<tr>																				
+																				<td>
+																					<div class="dropdown">
+																						<button class="btn btn-secondary dropdown-toggle"
+																							type="button" id="dropdownMenuButton"
+																							data-toggle="dropdown" aria-haspopup="true"
+																							aria-expanded="false">직종을 선택해주세요</button>
+																						<div class="dropdown-menu"
+																							aria-labelledby="dropdownMenuButton">
+																							<c:forEach var="list" items="${jobList }">
+																								<a class="dropdown-item" onclick="area(${list.j_code })">${list.j_type2 }</a>																								
+																							</c:forEach>																							
+																						</div>
+																					</div> 
+																					<input type="text" id="j_code" name="j_code" value="${list.j_type2 }" readonly="readonly">
+																				</td>
+																			</tr>
+																			</table>	
+																		</div>																		
+																		<!-- Single Input End -->
+																	</div>
+																	<input type="hidden" id="s_number" name="s_number" value="${shopInfo.s_number }">
+																	<input type="hidden" id="m_id" name="m_id" value="${shopInfo.m_id }">
+																	<input type="hidden" id="pre_license" name="pre_license" value="${shopInfo.business_license }">
 																</div>
 															</div>
 														</div>
@@ -120,7 +158,7 @@
 															<div class="col-12">
 																<div
 																	class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-																	<button  
+																	<button type="submit" 
 																		class="ht-btn theme-btn theme-btn-two mb-xs-20">
 																	가게 정보 수정
 																	</button>
@@ -172,6 +210,10 @@
 	        }).open();
 	    });
 	}
+	
+	function area(code){		
+		$('#j_code').val(code);
+	}	
 	</script>
 	
 </body>

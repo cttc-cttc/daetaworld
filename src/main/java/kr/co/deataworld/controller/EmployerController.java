@@ -157,7 +157,7 @@ public class EmployerController {
 	public String adsUpdate(@RequestParam Map<String, Object> map) throws Exception{		
 		System.out.println(map);
 		int r = service.adsUpdate(map);
-		return "redirect:/employer/ads/adsHistory";
+		return "redirect:/employerMapper/adsHistory?m_id=" + map.get("m_id");
 	}
 	
 //	등록 중인 공고
@@ -246,8 +246,47 @@ public class EmployerController {
 	public String shopInfo(@RequestParam("s_name") String s_name, Model model) throws Exception{
 		model.addAttribute("leftMenu", "myInfo");
 		ShopInfoDTO shopInfo = service.shopInfo(s_name);
-		model.addAttribute("shopInfo", shopInfo);		
+		model.addAttribute("shopInfo", shopInfo);	
+		
+		// 직종 목록 받아오기
+		List<JobCodeDTO> jobList = service.jobList();
+		model.addAttribute("jobList", jobList);
+		
 		return "employer/shop/shopInfo";
+	}
+	
+	@PostMapping(value="employerMapper/shopInfo")
+	public String shopInfo(ShopInfoDTO shopInfo, MultipartFile license, String pre_license) throws Exception {
+		if(license != null) {
+			String savedName = FileProcess.updateImg(license, FileProcess.SHOP_LICENSE_PATH, pre_license);
+			shopInfo.setBusiness_license(savedName);
+		}else {
+			shopInfo.setBusiness_license(pre_license);
+		}
+		
+		// 지역코드 설정을 위한 문자열 추출 (예시: 서울 송파구 동남로 99, 경기도 수원시 권선구 ??로) 
+		String address1 = shopInfo.getS_address1(); // "서울 송파구 동남로 99"
+		String[] addressSplit = address1.split(" "); // ["서울", "송파구", "동남로", "99"]
+		String addrName1 = addressSplit[0]; // "서울"
+		String addrName2 = addressSplit[1]; // "송파구"
+		if(addressSplit[2].endsWith("구")) { // a_name2에 시 구가 있을 경우
+			addrName2 = addressSplit[2];
+		}
+		String addrName1_1 = String.valueOf(addrName1.charAt(0)); // "서"
+		String addrName1_2 = String.valueOf(addrName1.charAt(1)); // "울"
+		addrName2 = addrName2.substring(0, addrName2.length()-1); // "송파"
+		
+		Map<String, String> addrParam = new HashMap<String, String>();
+		addrParam.put("addrName1_1", addrName1_1);
+		addrParam.put("addrName1_2", addrName1_2);
+		addrParam.put("addrName2", addrName2);
+		String areaCode = aService.getAreaCode(addrParam); // 11710 (서울시 송파구 지역코드)
+		System.out.println("지역코드: "+areaCode);
+		shopInfo.setA_code(areaCode);
+		
+		service.shopInfoUpdate(shopInfo);
+		
+		return "redirect:/";
 	}
 	
 //	가게 등록
@@ -261,5 +300,37 @@ public class EmployerController {
 		return "employer/shop/shopRegister";
 	}
 	
-
+	@PostMapping(value="employerMapper/shopRegister")
+	public String shopRegister(ShopInfoDTO shopInfo, MultipartFile license) throws Exception {
+		
+		// 사업자 등록증 업로드 했을 때 등록
+		if(!license.getOriginalFilename().isEmpty()) {
+			String savedName = FileProcess.insertImg(license, FileProcess.SHOP_LICENSE_PATH);
+			shopInfo.setBusiness_license(savedName);
+		}
+		
+		// 지역코드 설정을 위한 문자열 추출 (예시: 서울 송파구 동남로 99, 경기도 수원시 권선구 ??로) 
+			String address1 = shopInfo.getS_address1(); // "서울 송파구 동남로 99"
+			String[] addressSplit = address1.split(" "); // ["서울", "송파구", "동남로", "99"]
+			String addrName1 = addressSplit[0]; // "서울"
+			String addrName2 = addressSplit[1]; // "송파구"
+			if(addressSplit[2].endsWith("구")) { // a_name2에 시 구가 있을 경우
+				addrName2 = addressSplit[2];
+			}
+			String addrName1_1 = String.valueOf(addrName1.charAt(0)); // "서"
+			String addrName1_2 = String.valueOf(addrName1.charAt(1)); // "울"
+			addrName2 = addrName2.substring(0, addrName2.length()-1); // "송파"
+			
+			Map<String, String> addrParam = new HashMap<String, String>();
+			addrParam.put("addrName1_1", addrName1_1);
+			addrParam.put("addrName1_2", addrName1_2);
+			addrParam.put("addrName2", addrName2);
+			String areaCode = aService.getAreaCode(addrParam); // 11710 (서울시 송파구 지역코드)
+			System.out.println("지역코드: "+areaCode);
+			shopInfo.setA_code(areaCode);
+			
+			service.shopRegister(shopInfo);
+			
+		return "redirect:/employerMapper/shopManagement?m_id=" + shopInfo.getM_id();
+	}
 }
