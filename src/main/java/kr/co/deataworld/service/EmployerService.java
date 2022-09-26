@@ -18,6 +18,9 @@ public interface EmployerService {
 //	공고 등록
 	public int adsRegister(Map<String, Object> map) throws Exception;
 	
+//	농어촌 공고 등록
+	public int countryRegister(Map<String, Object> map) throws Exception;
+	
 //	주변 구직자 확인 전 가게 목록
 	public List<Map<String, Object>> checkEmployees(String m_id) throws Exception;
 	

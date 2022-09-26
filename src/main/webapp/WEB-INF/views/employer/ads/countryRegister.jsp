@@ -81,6 +81,9 @@
 																			<label for="wage">시급 <span>*</span></label><input
 																				type="text" id="a_wage" name="a_wage"
 																				placeholder="최저 9,160원">
+																			<label for="a_urgency">급구 여부<span>*</span></label>																				
+																				<input type="checkbox" name="a_urgency" value='1' id="input_check"/>
+																				<input type="hidden" name="a_urgency" value='0' id="input_check_hidden"/>	
 																		</div>
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
@@ -96,7 +99,16 @@
 																			<label for="time">시간 <span>*</span></label> <input
 																				type="text" name="timefilter" id="timefilter" />
 																		</div>																		
-																	</div>																	
+																	</div>	
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																		<!-- Single Input Start -->
+																		<div class="single-input mb-15">
+																			<label for="need">필요 인원 <span>*</span></label><input
+																				type="text" id="a_need" name="a_need"
+																				placeholder="필요 인원 수">
+																		</div>
+																		<!-- Single Input End -->
+																	</div>															
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">	
 																		<div class="single-input mb-15">
 																			<label for="s_intro">가게 소개 <span>*</span></label><br>

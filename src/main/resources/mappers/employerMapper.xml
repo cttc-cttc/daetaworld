@@ -23,8 +23,33 @@
 	<!-- 공고 등록 -->
 	<insert id="adsRegister" parameterType="Map">
 		insert into job_ads (a_date, a_time, a_wage, a_need, a_urgency, a_status, ua_date, a_type, m_id, r_code, s_number, del) 
-		values (#{a_date}, #{a_time}, #{a_wage}, #{a_need}, #{a_urgency}, 0, now(), 0, #{m_id}, 0, #{s_number}, 0);
+		values (#{a_date}, #{a_time}, #{a_wage}, #{a_need}, #{a_urgency}, 0, now(), 0, #{m_id}, 0, #{s_number}, 0)
 	</insert>
+	
+	<!-- 농어촌 공고 등록 -->
+		<!-- shop_info에 등록 -->
+		<insert id="countryShopRegister" parameterType="Map">
+			insert into shop_info (s_name, s_address1, s_address2, s_picture1, s_picture2, s_picture3, s_intro, s_date, 
+				s_tag1, s_tag2, s_tag3, s_tag4, s_tag5, m_id, a_code, j_code) 
+			values (#{s_name}, #{s_address1}, #{s_address2}, #{s_picture1}, #{s_picture2}, #{s_picture3}, #{s_intro}, now(), 
+				#{s_tag1}, #{s_tag2}, #{s_tag3}, #{s_tag4}, #{s_tag5}, #{m_id}, #{a_code}, 18)
+				
+		</insert>
+		
+		<!-- 등록된 s_number 갖고오기 -->
+		<select id="getS_number" parameterType="Map" resultType="java.lang.Integer">
+			select s_number
+			from shop_info
+			where s_name = #{s_name} and m_id = #{m_id} and j_code = 18
+		</select>
+		
+		<!-- job_ads에 등록 -->
+		<insert id="countryAdsRegister" parameterType="Map">
+			insert into job_ads (a_date, a_time, a_wage, a_need, a_urgency, a_status, ua_date, 
+				m_id, r_code, s_number, del, job_code)
+			values (#{datefilter}, #{timefilter}, #{a_wage}, #{a_need}, #{a_urgency}, 0, now(), 
+				#{m_id}, 0, #{s_number}, 0, 18)
+		</insert>
 	
 	<!-- 주변 구직자 확인 전 가게 목록 -->
 	<select id="checkEmployees" parameterType="String" resultType="Map">
@@ -161,7 +186,7 @@
 		insert into shop_info (business_license, s_name, s_address1, s_address2, s_picture1, s_picture2, s_picture3,  
 			s_intro, s_date, s_tag1, s_tag2, s_tag3, s_tag4, s_tag5, m_id, a_code, j_code) 
 		values (#{business_license}, #{s_name}, #{s_address1}, #{s_address2}, #{s_picture1}, #{s_picture2}, #{s_picture3},  
-			#{s_intro}, now(), #{s_tag1}, #{s_tag2}, #{s_tag3}, #{s_tag4}, #{s_tag5}, #{m_id}, #{a_code}, #{j_code});
+			#{s_intro}, now(), #{s_tag1}, #{s_tag2}, #{s_tag3}, #{s_tag4}, #{s_tag5}, #{m_id}, #{a_code}, #{j_code})
 	</insert>
 	
 </mapper>

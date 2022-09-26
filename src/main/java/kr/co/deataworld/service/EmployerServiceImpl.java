@@ -38,6 +38,12 @@ public class EmployerServiceImpl implements EmployerService{
 	}	
 	
 	@Override
+	public int countryRegister(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countryRegister(map);
+	}
+	
+	@Override
 	public List<Map<String, Object>> checkEmployees(String m_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.checkEmployees(m_id);
@@ -152,6 +158,8 @@ public class EmployerServiceImpl implements EmployerService{
 		// TODO Auto-generated method stub
 		return dao.shopRegister(shopInfo);
 	}
+
+
 
 
 }

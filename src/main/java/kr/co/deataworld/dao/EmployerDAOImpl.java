@@ -41,6 +41,16 @@ public class EmployerDAOImpl implements EmployerDAO{
 	}
 	
 	@Override
+	public int countryRegister(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".countryShopRegister", map);
+		int s_number = sqlSession.selectOne(nameSpace + ".getS_number", map);
+		map.put("s_number", s_number);
+		sqlSession.insert(nameSpace + ".countryAdsRegister", map);
+		return 0;
+	}
+	
+	@Override
 	public List<Map<String, Object>> checkEmployees(String m_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".checkEmployees", m_id);
@@ -154,5 +164,7 @@ public class EmployerDAOImpl implements EmployerDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.insert(nameSpace + ".shopRegister", shopInfo);
 	}
+
+
 
 }
