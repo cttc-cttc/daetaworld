@@ -16,13 +16,15 @@
 	UPDATE daetaworld.member
 	SET
 	m_nick = #{m_nick},
+	m_password = #{m_password},
 	m_phone = #{m_phone},
 	m_email = #{m_email},
 	m_address1 = #{m_address1},
 	m_address2 = #{m_address2},
 	m_terms1 = #{m_terms1},
 	m_terms2 = #{m_terms2},
-	m_picture = #{m_picture}
+	m_picture = #{m_picture},
+	a_code = #{a_code}
 	WHERE
 	m_id = #{m_id} 
 </update>

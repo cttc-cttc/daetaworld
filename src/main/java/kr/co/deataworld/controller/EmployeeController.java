@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,9 @@ import kr.co.deataworld.dto.JobAdsDTO;
 import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ResumeDTO;
+import kr.co.deataworld.service.AccountService;
 import kr.co.deataworld.service.EmployeeService;
+import kr.co.deataworld.util.ExtractAreaCode;
 import kr.co.deataworld.util.FileProcess;
 /*
  * 구직자 컨트롤러 (마이페이지)
@@ -36,6 +39,9 @@ import kr.co.deataworld.util.FileProcess;
 public class EmployeeController {
 	@Inject
 	EmployeeService service;
+	
+	@Autowired
+	AccountService aService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
@@ -63,6 +69,13 @@ public class EmployeeController {
 			String savedName = FileProcess.updateImg(chooseFile, FileProcess.PROFILE_IMG_PATH, preFileName);
 			memberDTO.setM_picture(savedName);
 		}
+		
+		// 지역코드 설정
+		Map<String, String> addrParam = ExtractAreaCode.getAreaCode(memberDTO.getM_address1());
+		String areaCode = aService.getAreaCode(addrParam);
+		System.out.println("지역코드: "+areaCode);
+		memberDTO.setA_code(areaCode);
+		
 		System.out.println(memberDTO);
 		return service.myInfoUpdate(memberDTO);
 	}

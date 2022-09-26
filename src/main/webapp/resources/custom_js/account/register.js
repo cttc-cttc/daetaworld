@@ -8,7 +8,7 @@ let idveri = false; // 아이디 중복체크 여부
 // 주소 검색
 window.onload = function() {
 	document.getElementById("m_address1").addEventListener("click", function() { //주소입력칸을 클릭하면
-		//카카오 지도 발생
+		//카카오 주소검색창
 		new daum.Postcode({
 			oncomplete : function(data) { //선택시 입력값 세팅
 				document.getElementById("m_address1").value = data.address; // 주소 넣기
@@ -168,7 +168,7 @@ $('.mail-check-input').blur(function() {
 		veriCheck = true;
 		$('#veriChkEmail').html('인증됨');
 		$('#mail-check-btn').css('cursor', 'context-menu');
-		$('#m_email').attr("disabled", true);
+		$('#m_email').attr('readonly', 'readonly');
 	} else {
 		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
 		$resultMsg.css('color', 'red');
