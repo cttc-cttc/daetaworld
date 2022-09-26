@@ -33,8 +33,6 @@ public interface JobAdsDAO {
 	// 구인공고 글갯수
 	public int countJobAdsList();
 
-	
-
 	// 구인목록 검색
 	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map);
 
@@ -45,10 +43,16 @@ public interface JobAdsDAO {
 	public JobAdsDTO listAllDetail(Map<String, Object> chk);
 
 	public Map<String, Object> listDetail(Map<String, Object> chk);
-	
+
 	// 지역 카테고리1 목록
 	public List<String> getAreaName1();
-	
+
 	// 지역 카테고리2 목록
 	public List<Map<String, String>> getAreaName2(String a_name1);
+
+	// 직종 카테고리1 목록
+	public List<String> getJob1();
+
+	// 직종 카테고리2 목록
+	public List<Map<String, Object>> getJob2(String j_type1);
 }

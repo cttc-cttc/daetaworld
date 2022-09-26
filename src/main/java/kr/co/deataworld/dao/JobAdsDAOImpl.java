@@ -107,5 +107,17 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 		return sql.selectList(NAMESPACE + ".getAreaName2", a_name1);
 	}
 
+	@Override
+	public List<String> getJob1() {
+		// TODO Auto-generated method stub
+		return sql.selectList(NAMESPACE +".getJob1");
+	}
+
+	@Override
+	public List<Map<String, Object>> getJob2(String j_type1) {
+		// TODO Auto-generated method stub
+		return sql.selectList(NAMESPACE + ".getJob2", j_type1);
+	}
+
 	
 }

@@ -114,15 +114,6 @@
 		
 	
 	
-	<!-- 구인목록 드롭다운 -->
-	<select id="selectDropdown" parameterType="java.util.Map" resultType="Map">
-		select a.*, s.*
-		from job_ads a, shop_info s, job_code jc, area_code ac
-		where s.a_code = ac.a_code and ac.a_name2 = "#{a_name2}"
-		and s.j_code = jc.j_code and jc.j_type1 = "#{j_type1}"
-		group by a_name1 and a_name2
-		      
-	</select>
 	
 	<!-- 구인상세 -->
 	<select id="listDetail" parameterType="Map" resultType="Map">
@@ -189,5 +180,17 @@
 		select a_code, a_name2
 		from area_code
 		where a_name1 = #{a_name1}
+	</select>
+	
+	<!-- 직종 카테고리1 목록 -->
+	<select id="getJob1" resultType="java.lang.String">
+		select j_type1 from job_code
+		group by j_type1
+	</select>
+	<!-- 직종 카테고리2 목록 -->
+	<select id="getJob2" parameterType="java.lang.String" resultType = "java.util.Map">
+		select j_code, j_type2
+		from job_code
+		where j_type1 = #{j_type1}
 	</select>
 </mapper>

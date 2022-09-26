@@ -103,6 +103,18 @@ public class JobAdsServiceImpl implements JobAdsService {
 		return dao.getAreaName2(a_name1);
 	}
 
+	@Override
+	public List<String> getJob1() {
+		// TODO Auto-generated method stub
+		return dao.getJob1();
+	}
+
+	@Override
+	public List<Map<String, Object>> getJob2(String j_type1) {
+		// TODO Auto-generated method stub
+		return dao.getJob2(j_type1);
+	}
+
 	
 	
 }

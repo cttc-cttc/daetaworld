@@ -57,10 +57,13 @@ public class JobAdsController {
 		pageMaker.setTotalCount(service.countJobAdsList());
 		List<JobAdsDTO>list = service.listAds(cri);
 		List<String> areaName1List = service.getAreaName1(); // 지역 카테고리1 목록
-
+		List<String> job1List = service.getJob1();//직종 카테고리1 목록
+		
+		
+		model.addAttribute("areaName1List", areaName1List);
+		model.addAttribute("job1List", job1List);
 		model.addAttribute("list", list);
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("areaName1List", areaName1List);
 		
 		return "jobAds/listAll";
 	}
@@ -72,14 +75,29 @@ public class JobAdsController {
 		return service.getAreaName2(a_name1);
 	}
 	
+	//선택한 직종 카테고리1로 직종 카테고리2 목록 반환
+	@ResponseBody
+	@PostMapping(value = "/jobAds/getJob2")
+	public List<Map<String , Object>>getSelectJob2(@RequestParam("j_type1")String j_type1){
+		return service.getJob2(j_type1);
+	}
+	
+	
 	//급구 구인목록
 	@GetMapping(value = "/jobAds/listUrgency")
 	public String listUrgency1(Model model ,JobAdsCriteria cri) throws Exception{
+		
 		JobAdsPageMaker pageMaker = new JobAdsPageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.countJobAdsList());
-		List<JobAdsDTO>list = service.listUrgency(cri);
-		model.addAttribute("list", list);
+		List<JobAdsDTO>list2 = service.listUrgency(cri);
+		List<String> areaName1ListUr = service.getAreaName1(); // 지역 카테고리1 목록
+		List<String> job1ListUrgency = service.getJob1();//직종 카테고리1 목록
+		
+		
+		model.addAttribute("areaName1ListUr", areaName1ListUr);
+		model.addAttribute("job1ListUrgency", job1ListUrgency);
+		model.addAttribute("list2", list2);
 		model.addAttribute("pageMaker", pageMaker);
 		return "jobAds/listUrgency";
 	}
@@ -90,18 +108,21 @@ public class JobAdsController {
 	@GetMapping(value = "/jobAds/listCountry")
 	public String listCountry(Model model,JobAdsCriteria cri)throws Exception{
 		
-		
 		JobAdsPageMaker pageMaker = new JobAdsPageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.countJobAdsList());
+		List<JobAdsDTO>list3 = service.listCountry(cri);
+		List<String> areaName1ListCountry = service.getAreaName1(); // 지역 카테고리1 목록
+		List<String> job1ListCountry = service.getJob1();//직종 카테고리1 목록
 		
-		List<JobAdsDTO>list = service.listCountry(cri);
 		
-	
-
-		model.addAttribute("list", list);
-		
+		model.addAttribute("areaName1ListCountry", areaName1ListCountry);
+		model.addAttribute("job1ListCountry", job1ListCountry);
+		model.addAttribute("list3", list3);
 		model.addAttribute("pageMaker", pageMaker);
+		
+		
+		
 		
 		return "jobAds/listCountry";
 		

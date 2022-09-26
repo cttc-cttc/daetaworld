@@ -56,33 +56,29 @@
 										</c:forEach>
 									</select>
 									</td>
+									
+									
 									<th>직종</th>
-									<td><select class="form-select" id="applyRoles">
-											<option selected="">All roles</option>
-											<option>Design</option>
-											<option>Engineering</option>
-											<option>Product</option>
-											<option>Testing</option>
-											<option>Support</option>
+									<td><select class="form-select" onchange="selectJob1(this)">
+											<option value="선택">선택</option>
+										<c:forEach var="job1" items="${job1List }">
+											<option value="${job1 }">${job1 }</option>
+										</c:forEach>
+											
 									</select></td>
-									<th>근무시간</th>
-									<td><select class="form-select" id="applyRoles">
-											<option selected="">All roles</option>
-											<option>Design</option>
-											<option>Engineering</option>
-											<option>Product</option>
-											<option>Testing</option>
-											<option>Support</option>
-									</select></td>
-
+									
 								</tr>
 								<!-- 붙여넣기 끝 -->
+								
 								<tr>
 									<td></td>
-									<td> <!-- 지역 카테고리2 -->
+									<td class = "select2"> <!-- 지역 카테고리2 -->
 									<select class="form-select" id="areaName2" onchange="selectAreaName2(this)"></select>
 									</td>
 									<td></td>
+									<td class = "select22"><!-- 직종 카테고리2 -->
+									<select class="form-select" id="job2" onchange="selectJob2(this)"></select>
+									</td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -763,16 +759,17 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 		crossorigin="anonymous"></script>
-	<!-- ajax -->
-
-	<!--  ajax끝 -->
-	<!-- 자바스크립트 사용 -->
+	
+	<!-- ajax 사용 -->
+	<!-- 지역 -->
+	
 	<script>
-		function fn_gu() {
-			alert('수원시');
-		}
+    $(function() {
+        $('.select2 > .nice-select').css('display','none');
+     });
 		
-		// 지역 카테고리1 선택하면 지역 카테고리2 표시
+		
+		// 지역 카테고리1 선택하면 직종 카테고리2 표시
 		function selectAreaName1(target) {
 			let areaName1 = target.value;
 			if(areaName1 == '선택') {
@@ -812,8 +809,57 @@
 			console.log(code);
 		}
 	</script>
-
-	<!-- 자바 스크립트 사용end -->
+	
+	
+	
+	
+	<!-- 직종 -->
+	<script>
+	$(function() {
+        $('.select22 > .nice-select').css('display','none');
+     });
+		
+		// 직종 카테고리1 선택하면 직종 카테고리2 표시
+		function selectJob1(target) {
+			let job1 = target.value;
+			if(job1 == '선택') {
+				$('#job2').css('display', 'none');
+				return;
+			}
+			
+			$.ajax({
+				url: '${contextPath}/jobAds/getJob2',
+				data: {'j_type1': job1},
+				dataType: 'json',
+				type: 'post',
+				success: function(result) {
+					console.log(result);
+					initJob2(); // areaName1을 선택할 때 마다 areaName2 안에 '선택 option' 하나만 있게 초기화
+					$('#job2').css('display', 'block');
+					result.forEach(function(row1) {
+						let option = '<option value="'+ row1.j_code +'">'+ row1.j_type2 +'</option>';
+						$('#job2').append(option);
+					});
+				},
+				error: function(res) {
+					console.log('실패: '+res);
+				}
+			});
+		}
+		
+		// 직종 카테고리2 초기화
+		function initJob2() {
+			const htmls1 = '<option value="선택">선택</option>';
+			$('#job2').html(htmls1);
+		}
+		
+		// 직종 카테고리2 선택하면 일단 해당하는 직종코드를 콘솔에 표시
+		function selectJob2(target) {
+			let code2 = target.value;
+			console.log(code2);
+		}
+	</script>
+	<!-- ajax 사용end -->
 
 </body>
 </html>
