@@ -56,7 +56,7 @@
 															<th>급구</th>
 															<th>상태</th>
 														</thead>
-														<c:forEach var="adsList" items="${adsList}">
+														<c:forEach var="adsList" items="${list}">
 															<tr>			
 																<td><a href="adsRegistered?a_number=${adsList.a_number}">${adsList.s_name }</a></td>													
 																<td>${adsList.a_date }</td>

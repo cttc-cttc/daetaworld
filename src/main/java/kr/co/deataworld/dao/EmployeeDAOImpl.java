@@ -105,6 +105,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
+	@Override //종료된(완료한) 대타목록 불러오기
+	public List<Map> pinchExpired(String m_id) throws Exception {
+		return sql.selectList(NAMESPACE + ".pinchExpired", m_id);
+	}
+
+
 	
 	
 	
