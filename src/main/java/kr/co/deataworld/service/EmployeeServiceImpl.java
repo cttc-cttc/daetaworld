@@ -99,8 +99,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	@Override //신청한 대타목록 불러오기
-	public List<Map> pinchStatus(String m_in) throws Exception {
-		return dao.pinchStatus(m_in);
+	public List<Map> pinchStatus(String m_id) throws Exception {
+		return dao.pinchStatus(m_id);
+	}
+
+
+	@Override //종료된(완료한) 공고목록 불러오기
+	public List<Map> pinchExpired(String m_id) throws Exception {
+		return dao.pinchExpired(m_id);
 	}
 	
 	

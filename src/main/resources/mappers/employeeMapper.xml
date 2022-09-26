@@ -114,24 +114,33 @@
 
 
 <!-- 수정하자 job_ads 랑 shop_info 두개 다 불러와야함 Map으로 map.  -->
-<!-- 구직 신청한 공고내역을 가져옴. #{m_id} 를 받아와야한다. -->
+<!-- 대타 지원신청한 모든 공고내역을 가져옴 (종료된거, 신청한거, 요청온거,  -->
 <select id="pinchHistory" parameterType="String" resultType="Map">
 	SELECT a.*, s.*, ja.*
-	FROM job_ads a, shop_info s, job_apply ja
-	WHERE ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number;
+	FROM 
+	job_ads a, shop_info s, job_apply ja
+	WHERE
+	ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number;
 </select>
 
 
-<!-- 지원한 알바목록 불어오기 -->
+<!-- 지원함, 확정정, 수락 알바목록 불어오기  -->
 <select id="pinchStatus" parameterType="String"	resultType="Map">
+	SELECT a.*, s.*, ja.*
+	FROM 
+	job_ads a, shop_info s, job_apply ja
+	WHERE
+	ja.m_id = #{m_id} AND (ja.jae_status ='0' or ja.jae_status = '1' or ja.jae_status = '2')
+	AND ja.a_number = a.a_number AND a.s_number = s.s_number;
+</select>
+
+<!-- 종료된(완료한) 공고목록 불러오기 -->
+<select id="pinchExpired" parameterType="String" resultType="Map">
 	SELECT a.*, s.*, ja.*
 	FROM job_ads a, shop_info s, job_apply ja
 	WHERE
-	ja.m_id = #{m_id} AND ja.jae_status ='0' AND ja.a_number = a.a_number AND a.s_number = s.s_number;
+	ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number AND a.a_status = '3';
 </select>
-
-
-
 
 
 

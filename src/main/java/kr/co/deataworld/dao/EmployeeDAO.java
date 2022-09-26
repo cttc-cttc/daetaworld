@@ -48,10 +48,10 @@ public interface EmployeeDAO {
 	//신청한 공고내역을 불러온다
 	public List<Map> pinchHistory(String m_id)throws Exception;
 	
-	
 	//대타내역 불러오기
 	public List<Map> pinchStatus(String m_id)throws Exception;
 
-	
+	//종료된(완료한) 공고목록 불러오기
+	public List<Map> pinchExpired(String m_id)throws Exception;
 	
 }

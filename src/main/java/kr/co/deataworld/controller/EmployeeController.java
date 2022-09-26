@@ -126,16 +126,6 @@ public class EmployeeController {
 	}
 	
 	
-//	//구직자 자기소개서 작성 폼으로 이동
-//	@GetMapping(value="employeeMapper/resumeRegister")
-//	public String resumeRegister()throws Exception {
-//		String m_id="user";
-//		if(service.resumeRegister(m_id).size()) {
-//			
-//		}
-//		
-//		return "employee/resume/resumeRegister";
-//	}
 	
 	//구직자 자기소개서 작성 폼으로 이동
 	@GetMapping(value="employeeMapper/resumeRegister")
@@ -218,6 +208,16 @@ public class EmployeeController {
 	}
 	
 	
+	//구직자 종료된 공고
+	@GetMapping(value="employeeMapper/pinchExpired")
+	public ModelAndView pinchExpired(@RequestParam("m_id") String m_id, Model model)throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<Map> list = service.pinchExpired(m_id);
+		mav.addObject("list", list);
+		mav.setViewName("employee/pinch/pinchExpired");
+		return mav;
+	}
+	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	//구직자 알바요청
 	@GetMapping(value="employeeMapper/requests")
@@ -226,10 +226,5 @@ public class EmployeeController {
 	}
 	
 	
-	//구직자 종료된 공고
-	@GetMapping(value="employeeMapper/pinchExpired")
-	public String pinchExpired() {
-		return "employee/pinch/pinchExpired";
-	}
 	
 }
