@@ -39,6 +39,8 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 		// TODO Auto-generated method stub
 		return sql.selectList(NAMESPACE + ".listAds", cri);
 	}
+	
+	
 
 	@Override
 	public JobAdsDTO listAllDetail(Map<String, Object> chk) {
@@ -65,6 +67,12 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map) {
 		// TODO Auto-generated method stub
 		return sql.selectList(NAMESPACE +".JobAdsSearch", map);
+	}
+	
+	@Override
+	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sql.selectList(NAMESPACE +".favoriteSearch", map);
 	}
 
 	@Override

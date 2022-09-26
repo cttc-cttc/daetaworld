@@ -68,6 +68,8 @@ public class JobAdsController {
 		return "jobAds/listAll";
 	}
 	
+	
+	
 	// 선택한 지역 카테고리1로 지역 카테고리2 목록 반환
 	@ResponseBody
 	@PostMapping(value = "/jobAds/getAreaName2")
@@ -191,6 +193,13 @@ public class JobAdsController {
 		return "jobAds/search/JobAdsSearch";  //return은 경로지정
 	}
 	
+	//구인하단검색(구인목록에서)
+		@GetMapping(value = "jobAds/favoriteSearch")//value에 해당하는값은 메소드이름
+		public String favoriteSearch(@RequestParam Map<Object,Object>map,Model model) {
+			List<JobAdsDTO>list = service.favoriteSearch(map);
+			model.addAttribute("list", list);
+			return "jobAds/search/favoriteSearch";  //return은 경로지정
+		}
 	
 	
 

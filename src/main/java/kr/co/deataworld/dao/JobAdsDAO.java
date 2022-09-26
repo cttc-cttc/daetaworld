@@ -35,6 +35,9 @@ public interface JobAdsDAO {
 
 	// 구인목록 검색
 	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map);
+	
+	// 직업추천 전체 구인목록 검색
+	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map);
 
 	// 지역검색
 	public List<AreaCodeDTO> areaSearch(String area);
@@ -50,9 +53,13 @@ public interface JobAdsDAO {
 	// 지역 카테고리2 목록
 	public List<Map<String, String>> getAreaName2(String a_name1);
 
+<<<<<<< HEAD
 	// 직종 카테고리1 목록
 	public List<String> getJob1();
 
 	// 직종 카테고리2 목록
 	public List<Map<String, Object>> getJob2(String j_type1);
+=======
+	
+>>>>>>> newb
 }

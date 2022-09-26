@@ -153,6 +153,26 @@
 		</trim>
 	</select>
 	
+	<!-- 직업추천 구인 목록검색 -->
+       <select id="favoriteSearch" parameterType="java.util.Map" resultType="JobAdsDTO">		
+		select *
+		from job_ads
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="option == 's_number'">
+				s_number</if>
+			<if test="option == 'a_number'">
+				a_number</if>
+			<if test="option == 'a_wage'">
+				a_wage</if>
+			<if test="option == 'job_code'">
+				job_code</if>
+			
+			<if test="value != null and value != ''">
+			= #{value} 
+			</if>			
+		</trim>
+	</select>
+	
 
 	<!-- 지역검색 -->
 	<select id = "areaSearch" parameterType="String" resultType="AreaCodeDTO">
