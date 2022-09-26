@@ -100,7 +100,7 @@
 							<div class="review-container">
 								
 									<c:if test="${result == 0}">
-										<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}'">지원하기<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+										<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">지원하기<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
 									</c:if>
 									
 									<c:if test="${result == 1}">

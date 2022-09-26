@@ -162,9 +162,6 @@ public class EmployeeController {
 		return "redirect:resumeManagement";
 	}
 	
-//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-	//신청 -> 가게정보 불러오기 -> 대타내역 보여주기
-	//신청 -> 대표 자소서 보내야함
 	
 	
 	//대타신청 - 신청을 하면 -> m_id 값을 보냄 -> 이미 지원한 공고인지 확인 해야함 -> 구직/구인자 지원상태를 0(지원함)으로 바꿈 -> 구직자 대표 자기소개서를 update해줌. 
@@ -175,6 +172,8 @@ public class EmployeeController {
 		return "redirect:/jobAds/listAll";
 	}
 	
+	//신청 -> 가게정보 불러오기 -> 대타내역 보여주기
+	//신청 -> 대표 자소서 보내야함
 	
 	
 	//구직자 대타내역 보기 ()
@@ -189,30 +188,37 @@ public class EmployeeController {
 //	}
 
 	
-	
-	//구직자 대타내역
+	//구직자 신청한 대타내역 모두 불러오기
 	@GetMapping(value="employeeMapper/pinchHistory")
-	public ModelAndView pinchHistory(Model model)throws Exception {
+	public ModelAndView pinchHistory(@RequestParam("m_id") String m_id, Model model)throws Exception {
 		model.addAttribute("leftMenu", "pinchHistory");
 		ModelAndView mav = new ModelAndView();
-		List<JobAdsDTO> list = service.pinchHistory();
+		List<Map> list = service.pinchHistory(m_id);
 		mav.addObject("list", list);
 		mav.setViewName("employee/pinch/pinchHistory");
 		return mav;
 	}
 	
-	
-	
+	//구직 신청한 가게 상세정보 보기
+	@GetMapping(value="employeeMapper/pinchDetail")
+	public String pinchDetail(@RequestParam("s_number") int s_number)throws Exception {
+		return "redirect:jobAds/listAllDetail";
+	}
 	
 	
 	//구직자 지원현황
 	@GetMapping(value="employeeMapper/pinchStatus")
-	public String pinchStatus(Model model) {
+	public ModelAndView pinchStatus(@RequestParam("m_id") String m_id ,Model model)throws Exception {
 		model.addAttribute("leftMenu", "pinchStatus");
-		return "employee/pinch/pinchStatus";
+		ModelAndView mav = new ModelAndView();
+		List<Map> list = service.pinchStatus(m_id);
+		mav.addObject("list", list);
+		mav.setViewName("employee/pinch/pinchStatus");
+		return mav;
 	}
 	
 	
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	//구직자 알바요청
 	@GetMapping(value="employeeMapper/requests")
 	public String requests() {

@@ -38,27 +38,30 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="pinchHistory">대타 내역</a></li>
-													<li><a href="pinchStatus">지원 현황</a></li>
-													<li><a href="requests">알바 요청 확인</a></li>
-													<li><a href="pinchHistory">종료된 공고</a></li>
+													<li><a class="active" href="pinchHistory?m_id=${loginInfo.m_id}">대타 내역</a></li>
+													<li><a href="pinchStatus?m_id=${loginInfo.m_id}">지원 현황</a></li>
+													<li><a href="requests?m_id=${loginInfo.m_id}">알바 요청 확인</a></li>
+													<li><a href="pinchExpired?m_id=${loginInfo.m_id}">종료된 공고</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													구직자의 대타내역
+													구직자의 전체 대타내역
 													<table class="table table-striped">
 														<thead>		
+															<th>가게번호</th>													
 															<th>가게명</th>													
 															<th>날짜</th>															
 															<th>시간</th>
 															<th>시급</th>
 															<th>급구</th>
-															<th>상태</th>
+															<th>지원상태</th>
+															<th>공고상태</th>
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
-																<td><a href="adsRegistered?a_number=${adsList.a_number}"></a></td>													
+																<td>${adsList.a_number }</td>
+																<td type="button" onclick="location.href='${contextPath}/jobAds/listAllDetail?m_id=${loginInfo.m_id}&s_number=${adsList.s_number}&a_number=${adsList.a_number}'">${adsList.s_name}</td>
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
 																<td>${adsList.a_wage }원</td>
@@ -70,29 +73,50 @@
 																	<c:if test="${urgency == 0 }">
 																		<c:out value="x"></c:out>
 																	</c:if>
-																</td>																																
+																</td>
+																
+																<!-- 공고 지원 상태 -->																																
 																<td>
-																<c:set var="status" value="${adsList.a_status }"/>
+																<c:set var="status" value="${adsList.jae_status }"/>
 																	<c:if test="${status == 0 }">
-																		<c:out value="구인 중"></c:out>
+																		<c:out value="지원함"></c:out>
 																	</c:if>
 																	<c:if test="${status == 1 }">
-																		<c:out value="신청 중"></c:out>
+																		<c:out value="확정전"></c:out>
 																	</c:if>
 																	<c:if test="${status == 2 }">
-																		<c:out value="구인 완료"></c:out>
+																		<c:out value="수락"></c:out>
 																	</c:if>
 																	<c:if test="${status == 3 }">
-																		<c:out value="알바완료"></c:out>
+																		<c:out value="거절"></c:out>
 																	</c:if>
 																	<c:if test="${status == 4 }">
-																		<c:out value="만료"></c:out>
+																		<c:out value="요청받음"></c:out>
+																	</c:if>
+																</td>
+																
+																<!-- 대타상태 -->
+																<td>
+																<c:set var="a_status" value="${adsList.a_status }"/>
+																	<c:if test="${a_status == 0 }">
+																		<c:out value="구인중"></c:out>
+																	</c:if>
+																	<c:if test="${a_status == 1 }">
+																		<c:out value="신청중"></c:out>
+																	</c:if>
+																	<c:if test="${a_status == 2 }">
+																		<c:out value="구인완료"></c:out>
+																	</c:if>
+																	<c:if test="${a_status == 3 }">
+																		<c:out value="알바완료"></c:out>
+																	</c:if>
+																	<c:if test="${a_status == 4 }">
+																		<c:out value="기간만료"></c:out>
 																	</c:if>
 																</td>
 															</tr>
 														</c:forEach>
 													</table>
-													
 												</div>
 											</div>
 										</div>

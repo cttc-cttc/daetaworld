@@ -38,10 +38,10 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="pinchHistory">대타 내역</a></li>
-													<li><a href="pinchHistory">지원 현황</a></li>
-													<li><a class="active" href="requests">알바 요청 확인</a></li>
-													<li><a href="pinchExpired">종료된 공고</a></li>
+													<li><a href="pinchHistory?m_id=${loginInfo.m_id}">대타 내역</a></li>
+													<li><a href="pinchStatus?m_id=${loginInfo.m_id}">지원 현황</a></li>
+													<li><a class="active" href="requests?m_id=${loginInfo.m_id}">알바 요청 확인</a></li>
+													<li><a href="pinchExpired?m_id=${loginInfo.m_id}">종료된 공고</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
