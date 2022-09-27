@@ -41,6 +41,7 @@
 													<li><a class="active" href="adsHistory?m_id=${loginInfo.m_id}">공고 내역</a></li>
 													<li><a href="adsPending?m_id=${loginInfo.m_id}">등록 중인 공고</a></li>
 													<li><a href="adsApplied?m_id=${loginInfo.m_id}">지원받은 공고</a></li>
+													<li><a href="adsRequested?m_id=${loginInfo.m_id}">요청한 공고</a></li>
 													<li><a href="adsExpired?m_id=${loginInfo.m_id}">만료된 공고</a></li>
 												</ul>
 											</div>

@@ -87,9 +87,10 @@ public class EmployerController {
 	public String adsRegister(@RequestParam Map<String, Object> map) throws Exception {
 		System.out.println(map);		
 		ShopInfoDTO shopInfo = service.shopInfo((String) map.get("s_name"));
-		map.put("s_number", shopInfo.getS_number());		
+		map.put("s_number", shopInfo.getS_number());
+		map.put("job_code", shopInfo.getJ_code());
 		int r = service.adsRegister(map);
-		return "redirect:/employerMapper/adsHistory";
+		return "redirect:/employerMapper/adsHistory?m_id=" + map.get("m_id");
 	}
 	
 //	농어촌 공고 등록
@@ -103,9 +104,24 @@ public class EmployerController {
 	@PostMapping(value="employerMapper/countryRegister")
 	public String countryRegister(@RequestParam Map<String, Object> map) throws Exception {
 		
-		// 지역코드 설정
-		Map<String, String> addrParam = ExtractAreaCode.getAreaCode((String) map.get("s_address1"));
-		String areaCode = aService.getAreaCode(addrParam);
+		// 지역코드 설정을 위한 문자열 추출 (예시: 서울 송파구 동남로 99, 경기도 수원시 권선구 ??로) 
+		String address1 = (String) map.get("s_address1"); // "서울 송파구 동남로 99"
+		String[] addressSplit = address1.split(" "); // ["서울", "송파구", "동남로", "99"]
+		String addrName1 = addressSplit[0]; // "서울"
+		String addrName2 = addressSplit[1]; // "송파구"
+		if(addressSplit[2].endsWith("구")) { // a_name2에 시 구가 있을 경우
+			addrName2 = addressSplit[2];
+		}
+		String addrName1_1 = String.valueOf(addrName1.charAt(0)); // "서"
+		String addrName1_2 = String.valueOf(addrName1.charAt(1)); // "울"
+		addrName2 = addrName2.substring(0, addrName2.length()-1); // "송파"
+				
+		Map<String, String> addrParam = new HashMap<String, String>();
+		addrParam.put("addrName1_1", addrName1_1);
+		addrParam.put("addrName1_2", addrName1_2);
+		addrParam.put("addrName2", addrName2);
+		String areaCode = aService.getAreaCode(addrParam); // 11710 (서울시 송파구 지역코드)
+		System.out.println("지역코드: "+areaCode);
 		map.put("a_code", areaCode);
 		
 		service.countryRegister(map);
@@ -127,9 +143,22 @@ public class EmployerController {
 			@RequestParam("a_number") int a_number, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");
 		
-		// 지역코드 설정
-		Map<String, String> addrParam = ExtractAreaCode.getAreaCode(address);
-		String areaCode = aService.getAreaCode(addrParam);
+		// 지역코드 설정을 위한 문자열 추출 (예시: 서울 송파구 동남로 99, 경기도 수원시 권선구 ??로)		
+		String[] addressSplit = address.split(" "); // ["서울", "송파구", "동남로", "99"]
+		String addrName1 = addressSplit[0]; // "서울"
+		String addrName2 = addressSplit[1]; // "송파구"
+		if(addressSplit[2].endsWith("구")) { // a_name2에 시 구가 있을 경우
+			addrName2 = addressSplit[2];
+		}
+		String addrName1_1 = String.valueOf(addrName1.charAt(0)); // "서"
+		String addrName1_2 = String.valueOf(addrName1.charAt(1)); // "울"
+		addrName2 = addrName2.substring(0, addrName2.length()-1); // "송파"
+		
+		Map<String, String> addrParam = new HashMap<String, String>();
+		addrParam.put("addrName1_1", addrName1_1);
+		addrParam.put("addrName1_2", addrName1_2);
+		addrParam.put("addrName2", addrName2);
+		String areaCode = aService.getAreaCode(addrParam); // 11710 (서울시 송파구 지역코드)
 		
 		List<MemberDTO> candidates = service.nearCandidates(areaCode);
 		model.addAttribute("candidates", candidates);
@@ -196,6 +225,22 @@ public class EmployerController {
 		List<Map<String, Object>> adsApplied = service.adsApplied(m_id);
 		model.addAttribute("adsApplied", adsApplied);
 		return "employer/ads/adsApplied";
+	}
+	
+//	요청한 공고 목록
+	@GetMapping(value="employerMapper/adsRequested")
+	public String adsRequested(@RequestParam("m_id")String m_id, Model model)throws Exception{
+		model.addAttribute("leftMenu", "adsApplied");
+		List<Map<String, Object>> adsRequested = service.adsRequested(m_id);
+		model.addAttribute("adsRequested", adsRequested);		
+		return "employer/ads/adsRequested";
+	}
+	
+//	요청 취소
+	@GetMapping(value="employerMapper/cancelRequest")
+	public String cancelRequest(@RequestParam("ja_number")int ja_number, @RequestParam("m_id")String m_id)throws Exception{
+		service.cancelRequest(ja_number);
+		return "redirect:/employerMapper/adsRequested?m_id=" + m_id;
 	}
 
 //	지원자 목록
@@ -269,8 +314,8 @@ public class EmployerController {
 	@PostMapping(value="employerMapper/shopInfo")
 	public String shopInfo(ShopInfoDTO shopInfo, MultipartFile license, String pre_license,
 			MultipartFile[] shopImages, String preS_picture1, String preS_picture2, String preS_picture3) throws Exception {
-		
-		if(license != null) {
+
+		if(!license.getOriginalFilename().isEmpty()) {
 			String savedName = FileProcess.updateImg(license, FileProcess.SHOP_LICENSE_PATH, pre_license);
 			shopInfo.setBusiness_license(savedName);
 		}else {
@@ -383,5 +428,19 @@ public class EmployerController {
 		service.shopRegister(shopInfo);
 			
 		return "redirect:/employerMapper/shopManagement?m_id=" + shopInfo.getM_id();
+	}
+	
+//	공고 삭제
+	@GetMapping(value="employerMapper/adsDelete")
+	public String adsDelete(@RequestParam("a_number")int a_number, @RequestParam("m_id")String m_id)throws Exception{
+		service.adsDelete(a_number);
+		return "redirect:/employerMapper/adsHistory?m_id=" + m_id;
+	}
+	
+//	가게 삭제
+	@GetMapping(value="employerMapper/shopDelete")
+	public String shopDelete(@RequestParam("s_number")int s_number, @RequestParam("m_id")String m_id)throws Exception{
+		service.shopDelete(s_number);
+		return "redirect:/employerMapper/shopManagement?m_id=" + m_id;
 	}
 }

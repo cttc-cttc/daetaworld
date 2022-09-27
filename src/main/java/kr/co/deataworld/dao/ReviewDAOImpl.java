@@ -31,6 +31,18 @@ public class ReviewDAOImpl implements ReviewDAO{
 		return sqlSession.insert(namespace + ".register", reviewDTO);
 	}
 
+	@Override
+	public List<Map<String, Object>> writtenReviews(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".writtenReviews", m_id);
+	}
+
+	@Override
+	public Map<String, Object> reviewDetail(int a_number) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".reviewDetail", a_number);
+	}
+
 
 	
 }

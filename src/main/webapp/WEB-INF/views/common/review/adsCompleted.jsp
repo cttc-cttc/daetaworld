@@ -38,7 +38,8 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="adsCompleted">완료된 공고</a></li>											
+													<li><a class="active" href="adsCompleted?m_id=${loginInfo.m_id }">완료된 공고</a></li>											
+													<li><a href="writtenReviews?m_id=${loginInfo.m_id }">후기 작성된 공고</a></li>											
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -56,7 +57,7 @@
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
 																<td>${adsList.a_wage }</td>	
-																<td><button onclick="location.href='reviewRegister'" >후기작성</button></td>
+																<td><button onclick="location.href='reviewRegister?a_number=${adsList.a_number}&m_id=${adsList.m_id }'" >후기작성</button></td>
 															</tr>
 														</c:forEach>
 													</table>

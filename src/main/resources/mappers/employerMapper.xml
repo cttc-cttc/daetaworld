@@ -22,17 +22,17 @@
 	
 	<!-- 공고 등록 -->
 	<insert id="adsRegister" parameterType="Map">
-		insert into job_ads (a_date, a_time, a_wage, a_need, a_urgency, a_status, ua_date, a_type, m_id, r_code, s_number, del) 
-		values (#{a_date}, #{a_time}, #{a_wage}, #{a_need}, #{a_urgency}, 0, now(), 0, #{m_id}, 0, #{s_number}, 0)
+		insert into job_ads (a_date, a_time, a_wage, a_need, a_urgency, a_status, ua_date, m_id, r_code, s_number, del, job_code) 
+		values (#{a_date}, #{a_time}, #{a_wage}, #{a_need}, #{a_urgency}, 0, now(), #{m_id}, 0, #{s_number}, 0, #{job_code})
 	</insert>
 	
 	<!-- 농어촌 공고 등록 -->
 		<!-- shop_info에 등록 -->
 		<insert id="countryShopRegister" parameterType="Map">
 			insert into shop_info (s_name, s_address1, s_address2, s_picture1, s_picture2, s_picture3, s_intro, s_date, 
-				s_tag1, s_tag2, s_tag3, s_tag4, s_tag5, m_id, a_code, j_code) 
+				s_tag1, s_tag2, s_tag3, s_tag4, s_tag5, del, m_id, a_code, j_code) 
 			values (#{s_name}, #{s_address1}, #{s_address2}, #{s_picture1}, #{s_picture2}, #{s_picture3}, #{s_intro}, now(), 
-				#{s_tag1}, #{s_tag2}, #{s_tag3}, #{s_tag4}, #{s_tag5}, #{m_id}, #{a_code}, 18)
+				#{s_tag1}, #{s_tag2}, #{s_tag3}, #{s_tag4}, #{s_tag5}, 0, #{m_id}, #{a_code}, 18)
 				
 		</insert>
 		
@@ -57,6 +57,7 @@
 		from shop_info s, job_ads a
 		where s.m_id = a.m_id and s.m_id = #{m_id} 
 		and a.s_number = s.s_number and a.a_status = 0
+		and s.del = 0 and a.del = 0
 	</select>
 	
 	<!-- 가게의 주변 구직자 목록 -->
@@ -79,6 +80,7 @@
 		select *
 		from shop_info
 		where m_id = #{m_id}
+		and del = 0
 	</select>
 	
 	<!-- 등록한 가게 정보보기 -->
@@ -86,20 +88,21 @@
 		select *
 		from shop_info
 		where s_name = #{s_name}
+		and del = 0
 	</select>
 	
 	<!-- 공고등록한 가게 목록보기 -->
 	<select id="adsHistory" parameterType="String" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{m_id} and j.del = 0
+		where j.s_number = s.s_number and j.m_id = #{m_id} and j.del = 0 and s.del = 0
 	</select> 
 	
 	<!-- 가게 정보 -->
 	<select id="adsRegistered" parameterType="java.lang.Integer" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.a_number = #{a_number} and j.del = 0
+		where j.s_number = s.s_number and j.a_number = #{a_number} and j.del = 0 and s.del = 0
 	</select> 
 	
 	<!-- 공고 업데이트 -->
@@ -114,16 +117,32 @@
 	<select id="adsPending" parameterType="String" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{m_id} and j.a_status = 0 and j.del = 0
+		where j.s_number = s.s_number and j.m_id = #{m_id} and j.a_status = 0 and j.del = 0 and s.del = 0
 	</select>
 	
 	<!-- 지원받은 가게 및 구인완료된 가게 목록보기 -->
 	<select id="adsApplied" parameterType="String" resultType="Map">
 		select j.*, s.s_name
 		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{m_id} and (j.a_status = 1 or j.a_status = 2) and j.del = 0
+		where j.s_number = s.s_number and j.m_id = #{m_id} and (j.a_status = 1 or j.a_status = 2) and j.del = 0 and s.del = 0
 	</select>
 	
+	<!-- 요청한 공고 목록보기 -->
+	<select id="adsRequested" parameterType="String" resultType="Map">
+		select ja.*, a.*, s.*
+		from job_apply as ja, job_ads as a
+			inner join shop_info s
+    		on a.m_id = s.m_id and a.m_id = #{m_id}
+			and a.s_number = s.s_number
+		where a.a_number = ja.a_number  
+		and ja.jae_status = 4
+	</select>
+	
+	<!-- 요청 취소 -->
+	<delete id="cancelRequest" parameterType="java.lang.Integer">
+		delete from job_apply 
+		where (ja_number = #{ja_number});
+	</delete>
 	<!-- 지원자 목록보기 -->
 	<select id="candidates" parameterType="java.lang.Integer" resultType="Map">
 		SELECT a.*, m.*
@@ -162,7 +181,7 @@
 	<select id="adsExpired" parameterType="String" resultType="Map">
 		SELECT j.*, s.s_name
 		FROM job_ads j, shop_info s
-		WHERE j.s_number = s.s_number AND j.m_id = #{m_id} AND j.a_status = 4 AND j.del = 0
+		WHERE j.s_number = s.s_number AND j.m_id = #{m_id} AND j.a_status = 4 AND j.del = 0 and s.del = 0
 	</select>
 	
 	<!-- 직업 코드 목록보기 -->
@@ -176,7 +195,7 @@
 		update shop_info
 		set business_license = #{business_license}, s_name = #{s_name}, s_address1 = #{s_address1}, s_address2 = #{s_address2}, 
 			s_picture1 = #{s_picture1}, s_picture2 = #{s_picture2}, s_picture3 = #{s_picture3}, s_intro = #{s_intro}, 
-			s_tag1 = #{s_tag1}, s_tag2 = #{s_tag2}, s_tag3 = #{s_tag3}, s_tag4 = #{s_tag4}, s_tag5 = #{s_tag5}, 
+			s_tag1 = #{s_tag1}, s_tag2 = #{s_tag2}, s_tag3 = #{s_tag3}, s_tag4 = #{s_tag4}, s_tag5 = #{s_tag5},  
 			m_id = #{m_id}, a_code = #{a_code}, j_code = #{j_code}
 		where s_number = #{s_number}
 	</update>
@@ -189,4 +208,17 @@
 			#{s_intro}, now(), #{s_tag1}, #{s_tag2}, #{s_tag3}, #{s_tag4}, #{s_tag5}, 0, #{m_id}, #{a_code}, #{j_code})
 	</insert>
 	
+	<!-- 공고 삭제 -->
+	<update id="adsDelete" parameterType="java.lang.Integer">
+		update job_ads
+		set del = 1
+		where a_number = #{a_number}
+	</update>
+	
+	<!-- 가게 삭제 -->
+	<update id="shopDelete" parameterType="java.lang.Integer">
+		update shop_info
+		set del = 1 
+		where s_number = #{s_number}		 
+	</update>
 </mapper>

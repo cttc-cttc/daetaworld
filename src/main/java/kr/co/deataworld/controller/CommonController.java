@@ -120,11 +120,31 @@ public class CommonController {
 		model.addAttribute("list", list);
 		return "common/review/adsCompleted";
 	}
+	
+//	리뷰 작성된 공고 목록
+	@GetMapping(value="reviewMapper/writtenReviews")	
+	public String writtenReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
+		model.addAttribute("leftMenu", "adsCompleted");
+		List<Map<String, Object>> list = rService.writtenReviews(m_id);
+		model.addAttribute("list", list);
+		return "common/review/writtenReviews";
+	}
+	
+//	작성된 리뷰 내용 확인
+	@GetMapping(value="reviewMapper/reviewDetail")
+	public String reviewDetail(@RequestParam("a_number")int a_number, Model model)throws Exception{
+		model.addAttribute("leftMenu", "adsCompleted");
+		Map<String, Object> detail = rService.reviewDetail(a_number);
+		model.addAttribute("detail", detail);
+		return "common/review/reviewDetail";
+	}
 
 //	리뷰 작성
 	@GetMapping(value = "reviewMapper/reviewRegister")
-	public String reviewRegister(Model model) {
+	public String reviewRegister(@RequestParam("a_number")int a_number, @RequestParam("m_id")String m_id, Model model) {
 		model.addAttribute("leftMenu", "adsCompleted");
+		model.addAttribute("a_number", a_number);
+		model.addAttribute("m_id", m_id);
 		return "common/review/reviewRegister";
 	}
 	

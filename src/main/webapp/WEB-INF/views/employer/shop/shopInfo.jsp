@@ -49,7 +49,7 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<form name="su" action="shopInfo" method="post" enctype="multipart/form-data">
+													<form name="su" action="shopInfo" method="post" onsubmit="return valChk()" enctype="multipart/form-data">
 														<div class="row mb-30">
 															<div class="col-lg-10">
 																<div class="row">
@@ -165,6 +165,7 @@
 																	<input type="hidden" id="s_number" name="s_number" value="${shopInfo.s_number }">
 																	<input type="hidden" id="m_id" name="m_id" value="${shopInfo.m_id }">
 																	<input type="hidden" id="pre_license" name="pre_license" value="${shopInfo.business_license }">
+																	<input type="hidden" id="pre_jCode" name="pre_jCode" value="${shopInfo.j_code }">
 																</div>
 															</div>
 														</div>
@@ -228,6 +229,54 @@
 	function area(code){		
 		$('#j_code').val(code);
 	}	
+	</script>
+	
+	<script type="text/javascript">
+	function valChk(){
+		
+		var pre_code = $('#pre_jCode').val();
+		var new_code = $('#j_code').val();		
+		
+		if (new_code == ""){
+			$('#j_code').val(pre_code);	
+		}
+		
+		if(!checkName(su.s_name.value)){
+			return false;
+		}else if(!checkIntro(su.s_intro.value)){
+			return false;
+		}
+		
+		alert("가게 정보가 수정되었습니다");
+		return true;				
+	}
+	
+	function checkExist(value, dataName) {        
+		if (value == "" || value == " ") {            
+			alert(dataName + " 빈칸이네요");            
+			return false;        
+		}        
+		return true;    
+	}
+	
+	function checkName(s_name){
+		if(!checkExist(s_name, "가게 명이")){
+			su.s_name.focus();
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	function checkIntro(s_intro){
+		if(!checkExist(s_intro, "가게 소개가")){	
+			su.s_intro.focus();
+			return false;
+		}else {
+			return true;
+		}
+	}		
+	
 	</script>
 	
 </body>
