@@ -119,6 +119,22 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
+																			<label for="shopPicture">가게 사진 <span>*</span></label>
+																				<div id="dropZone"
+																					style="border: solid thin;">
+																					<div id="fileDragDesc">파일을 올려주세요.</div>
+																					<table id="fileListTable" width="100%" border="0px">
+																						<tbody id="fileTableTbody">
+																						</tbody>
+																					</table>
+																				</div>
+																				<input type="file" id="multiFiles" name="shopImages" multiple="multiple" 
+																				accept=".png, .jpg, .jpeg" onchange="selectFile(this)">
+																		</div>
+																	</div>
+																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																		<!-- Single Input Start -->
+																		<div class="single-input mb-15">
 																			<label for="shopTags">가게 태그 <span>*</span></label><br>
 																			<input type="text" id="s_tag1" name ="s_tag1" placeholder="6자 이내 5개까지 등록 가능" maxlength="6"
 																				value="${shopInfo.s_tag1 }">
@@ -131,21 +147,7 @@
 																			<input type="text" id="s_tag5" name ="s_tag5" maxlength="6"
 																				value="${shopInfo.s_tag5 }">
 																		</div>
-																	</div>
-																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
-																		<div class="single-input mb-15">
-																			<label for="shopPicture">가게 사진 <span>*</span></label>
-																				<div id="dropZone"
-																					style="width: 365px; height: 300px; border-style: solid; border-color: black;">
-																					<div id="fileDragDesc">파일을 올려주세요.</div>
-																					<table id="fileListTable" width="100%" border="0px">
-																						<tbody id="fileTableTbody">
-																						</tbody>
-																					</table>
-																				</div>
-																		</div>
-																	</div>	
+																	</div>																	
 																	
 																	<input type="hidden" id="m_id" name="m_id" value="${loginInfo.m_id}">
 																	

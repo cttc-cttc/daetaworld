@@ -102,7 +102,7 @@ public class EmployerController {
 	}
 	
 	@PostMapping(value="employerMapper/countryRegister")
-	public String countryRegister(@RequestParam Map<String, Object> map) throws Exception {
+	public String countryRegister(@RequestParam Map<String, Object> map, MultipartFile[] shopImages) throws Exception {
 		
 		// 지역코드 설정을 위한 문자열 추출 (예시: 서울 송파구 동남로 99, 경기도 수원시 권선구 ??로) 
 		String address1 = (String) map.get("s_address1"); // "서울 송파구 동남로 99"
@@ -123,6 +123,24 @@ public class EmployerController {
 		String areaCode = aService.getAreaCode(addrParam); // 11710 (서울시 송파구 지역코드)
 		System.out.println("지역코드: "+areaCode);
 		map.put("a_code", areaCode);
+		
+		logger.info("가게사진 파일 수: " + shopImages.length);
+		if(!shopImages[0].getOriginalFilename().isEmpty()) {
+			switch(shopImages.length) {
+			case 1:
+				map.put("s_picture1", FileProcess.insertImg(shopImages[0], FileProcess.SHOP_IMG_PATH));
+				break;
+			case 2:
+				map.put("s_picture1", FileProcess.insertImg(shopImages[0], FileProcess.SHOP_IMG_PATH));
+				map.put("s_picture2", FileProcess.insertImg(shopImages[1], FileProcess.SHOP_IMG_PATH));
+				break;
+			case 3:
+				map.put("s_picture1", FileProcess.insertImg(shopImages[0], FileProcess.SHOP_IMG_PATH));
+				map.put("s_picture2", FileProcess.insertImg(shopImages[1], FileProcess.SHOP_IMG_PATH));
+				map.put("s_picture3", FileProcess.insertImg(shopImages[2], FileProcess.SHOP_IMG_PATH));
+				break;
+			}
+		}
 		
 		service.countryRegister(map);
 		return "redirect:/employerMapper/adsHistory?m_id=" + map.get("m_id");

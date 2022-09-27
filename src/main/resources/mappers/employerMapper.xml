@@ -47,7 +47,7 @@
 		<insert id="countryAdsRegister" parameterType="Map">
 			insert into job_ads (a_date, a_time, a_wage, a_need, a_urgency, a_status, ua_date, 
 				m_id, r_code, s_number, del, job_code)
-			values (#{datefilter}, #{timefilter}, #{a_wage}, #{a_need}, #{a_urgency}, 0, now(), 
+			values (#{a_date}, #{a_time}, #{a_wage}, #{a_need}, #{a_urgency}, 0, now(), 
 				#{m_id}, 0, #{s_number}, 0, 18)
 		</insert>
 	
