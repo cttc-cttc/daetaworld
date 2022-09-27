@@ -120,6 +120,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Map<String, Object> requestList(Map<String, Object> map) throws Exception {
 		return dao.requestList(map);
 	}
+
+	
+	@Override //요청받은 공고 수락
+	public int requestYes(JobApplyDTO jobApplyDTO) throws Exception {
+		return dao.requestYes(jobApplyDTO);
+	}
 	
 	
 	

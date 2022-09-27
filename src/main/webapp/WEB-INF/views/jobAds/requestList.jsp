@@ -100,14 +100,19 @@
 						<div class="review-area pb-60 pb-sm-30 pb-xs-30">
 							<div class="review-container">
 									
+									<input type="hidden" name="m_id_c" id="m_id_c" value="${loginInfo.m_id}" />
+									<input type="hidden" name="a_number_c" id="a_number_c" value="${map.a_number}" />
+									
+									
 									<!-- 수락 / 거절 버튼 -->
 									<table>
 										<tr>
-											<td>
-												<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">수락<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+											<td>														
+												<a class="ht-btn text-center" type="button" onclick="requestChk_y()">수락<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
 											</td>
 											<td>
-												<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">거절<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+												<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/requestNo?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">거절<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+												<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/requestNo?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">거절<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
 											</td>
 										</tr>
 									</table>
@@ -406,5 +411,76 @@
 		    } 
 		});
 	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 요청받은 공고 수락 눌렀을때 -->
+	<script type="text/javascript">
+	function requestChk_y() {
+		
+		var m_id_c = $("#m_id_c").val();
+		var a_number_c = $("#a_number_c").val();
+		
+		var url = "${contextPath}/employeeMapper/requestYes";
+		var paramData = {
+				"m_id" : m_id_c,
+				"a_number" : a_number_c
+		};
+		
+		$.ajax({
+			url : url,
+			data : paramData,
+			dataType : "json",
+			type : "POST",
+			success : function(result){
+				console.log('지원성공');
+				alert('지원하셨습니다.');
+				window.location.reload(true);
+				location.href="${contextPath}/employeeMapper/pinchHistory?m_id=${loginInfo.m_id}"
+				
+			},
+			error : function(result){
+				console.log('지원실패')
+				alert('실패');
+			}
+		});
+	}
+	
+
+		
+		
+		</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

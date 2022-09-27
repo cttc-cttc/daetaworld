@@ -58,7 +58,7 @@
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
-																<td type="button" onclick="location.href='${contextPath }/employeeMapper/requestList?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}'">${adsList.s_name}</td>
+																<td type="button" onclick="location.href='${contextPath }/employeeMapper/requestList?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}&s_name=${adsList.s_name}'">${adsList.s_name}</td>
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
 																<td>${adsList.a_wage }</td>
