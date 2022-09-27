@@ -231,7 +231,7 @@ public class EmployeeController {
 		return mav;
 	}
 	
-	//구직자 알바요청 (주변노예검색)
+	//구직자 알바요청받은 목록 검색(주변노예검색)
 	@GetMapping(value="employeeMapper/requests")
 	public ModelAndView requests(@RequestParam("m_id") String m_id, Model model)throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -240,6 +240,59 @@ public class EmployeeController {
 		mav.setViewName("employee/pinch/requests");
 		return mav;
 	}
+	
+	//구직자 요청받은 알바 상세내용 보기
+	@GetMapping(value="employeeMapper/requestList")
+	public String requestList(@RequestParam("m_id") String m_id, 
+							  @RequestParam("a_number") int a_number, Model model)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("m_id", m_id);
+		map.put("a_number", a_number);
+		Map<String, Object> list = service.requestList(map);
+		model.addAttribute("map", list);
+		return "jobAds/requestList";
+	}
+	
+//	//구직자 요청받은 공고 수락버튼 클릭(m_id, a_number 가지고 가야함) -> job_apply의 jae_status 상태를 변경하고 -> 대타내역으로 이동함.(m_id를 가지고 가야함)
+//	@GetMapping(value="employeeMapper/requestYes")
+//	public String requestYes(@RequestParam("m_id") String m_id,
+//							@RequestParam("a_number") int a_number, Model model)throws Exception {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("m_id", m_id);
+//		map.put("a_number", a_number);
+//		Map<String, Object> list = service.requestYes(map);
+//		model.addAttribute(m_id, list)
+//		
+//		return "employee/pinch/pinchHistory";
+//	}
+//	
+	
+	
+	
+	
+//	//구직자 요청받은 공고 거절버튼 클릭 
+//	@GetMapping(value="employeeMapper/requestNo")
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ

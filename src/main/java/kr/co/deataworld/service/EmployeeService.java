@@ -61,7 +61,8 @@ public interface EmployeeService {
 	//주변노예검색을 통해 요청받은 목록 불러오기
 	public List<Map> requests(String m_id)throws Exception;
 	
-	
+	//요청받은 공고 상세정보 보기
+	public Map<String, Object> requestList(Map<String, Object> map)throws Exception;
 	
 	
 	
