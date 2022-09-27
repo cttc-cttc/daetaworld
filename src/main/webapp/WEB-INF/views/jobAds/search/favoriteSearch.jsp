@@ -12,6 +12,8 @@
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/index.css">
 
+
+
 <body class="template-color-3">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -65,7 +67,8 @@
 							<tr>
 								<td class="tc"><a
 									href="listFavoriteDetail?s_number=${jobsend.s_number}&m_id=${loginInfo.m_id}&a_number=${jobsend.a_number}">
-										</a></td>
+										${jobsend.s_number}</a></td>
+									
 								<td class="tc">${jobsend.a_date}</td>
 								<td class="tc">${jobsend.a_time}</td>
 								<td class="tc">${jobsend.a_wage}</td>
@@ -109,17 +112,238 @@
 			</section>
 			<form method="get" action="favoriteSearch">
 							<select name="option">
+								<option value="job_code">직업코드</option>
 								<option value="s_number">가게번호</option>
 								<option value="a_number">공고번호</option>
 								<option value="a_wage">시급</option>
-								<option value="job_code">직업코드</option>
+							
 
 							</select> <input type="text" name="value"> <input type="submit"
 								value="검색">
 						</form>
 		</div>
-
+		
 		<!-- 목록보기끝 -->
+		<br><br>
+		
+		<!-- 직업추천 & 대타자 평점 랭킹 Start -->
+		<div
+			class="blog-section section pb-120 pb-lg-100 pb-md-80 pb-sm-50 pb-xs-40">
+			<div class="container st-border">
+				<div class="row no-gutters">
+					<div class="col-lg-6">
+						<div class="blog-area">
+							<div class="section-title-two text-left">
+								<h3></h3>
+							</div>
+
+							<div class="blog-wrap ranking">
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										<b> 1.외식음료 </b>
+									</div>
+									<div class="col-lg-8">
+										 '호프', '카페', '음식점'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										<b> 2.유통,판매 </b>
+									</div>
+									<div class="col-lg-8">
+										 '백화점', '마트', '기타매장'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 3.문화,여가 </b>
+									</div>
+									<div class="col-lg-8">
+										  '놀이공원', '숙박', 'pc방', '볼링장'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 4.서비스 </b>
+									</div>
+									<div class="col-lg-8">
+										'주차관리', '보안', '경비', '경호'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										<b> 5.서비스 </b>
+									</div>
+									<div class="col-lg-8">
+										'반려동물케어', '가사도우미', '청소'
+									</div>
+								</div>
+								
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 6.서비스 </b>
+									</div>
+									<div class="col-lg-8">
+										 '헤어', '미용', '피부', '마사지'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 7.서비스 </b>
+									</div>
+									<div class="col-lg-8">
+										 '안내데스크', '이벤트행사', '모델'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 8.사무회계 </b>
+									</div>
+									<div class="col-lg-8">
+										  '사무보조', '마케팅'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 9.고객상담,영업 </b>
+									</div>
+									<div class="col-lg-8">
+										'영업', '설문조사'
+									</div>
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								<div class="col-lg-12">
+									<p class="ranking-info">
+										*본 직업분류는 '오늘의대타'내에서만 사용되는 직업 분류 코드입니다.
+									</p>
+									
+								</div>
+							</div>
+						</div>
+						<!-- 대타자 평점 랭킹 End -->
+					</div>
+					
+					
+					
+					<div class="col-lg-6">
+						<div class="blog-area">
+							<div class="section-title-two text-left">
+								<h3></h3>
+							</div>
+
+							<div class="blog-wrap ranking">
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 10.건설,노무 </b>
+									</div>
+									<div class="col-lg-8">
+										 '건설현장', '배관', '용접'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 11.생산 </b>
+									</div>
+									<div class="col-lg-8">
+										  '제조', '가공', '포장', '품질검사'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 12.IT,인터넷 </b>
+									</div>
+									<div class="col-lg-8">
+										  '테스터', 'PC설치', '마케팅', '외주코딩'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 13.교육,강사 </b>
+									</div>
+									<div class="col-lg-8">
+										'학원', '운동트레이너', '레져', '방문교사'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										<b> 14.디자인 </b>
+									</div>
+									<div class="col-lg-8">
+										'외주디자인'
+									</div>
+								</div>
+								
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 15.미디어 </b>
+									</div>
+									<div class="col-lg-8">
+										 '방청객', '촬영보조', '영상편집', '출판'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 16.운전,배달 </b>
+									</div>
+									<div class="col-lg-8">
+										 '이삿짐', '대리운전', '수행기사', '중장비', '퀵'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 17.병원,간호 </b>
+									</div>
+									<div class="col-lg-8">
+										  '간호', '사회복지', '외래보조', '임상시험'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 18.농어촌 </b>
+									</div>
+									<div class="col-lg-8">
+										'농업', '어업'
+									</div>
+									<div class="single-list-blog"></div>
+							
+								
+					
+							</div>
+						</div>
+						<!-- 대타자 평점 랭킹 End -->
+					</div>
+					
+						<!-- 대타자 평점 랭킹 End -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 직업추천 & 대타자 평점 랭킹 End -->
+		
 
 		<!-- 일반구인 리스트 Start -->
 		<div
@@ -474,164 +698,7 @@
 		</div>
 		<!-- 최저시급 End -->
 
-		<!-- 직업추천 & 대타자 평점 랭킹 Start -->
-		<div
-			class="blog-section section pb-120 pb-lg-100 pb-md-80 pb-sm-50 pb-xs-40">
-			<div class="container st-border">
-				<div class="row no-gutters">
-					<div class="col-lg-6">
-						<!-- 직업추천 Start -->
-						<div class="simple-work">
-							<div class="section-title-two text-left">
-								<h3 class="title">직업 추천</h3>
-							</div>
-							<div class="work-list-wrap">
-								<div class="single-list-work mb-20">
-									<div class="work-content">
-										<h4 class="title">오늘 당신에게 맞는 직업은?</h4>
-									</div>
-									<div class="work-content margin-left-auto">
-										<a class="ht-btn header-btn btn-style" href="#">직업 추천받기</a>
-									</div>
-								</div>
-
-								<!-- Single List Work Start -->
-								<div class="single-list-work mb-20">
-									<div class="work-icon">
-										<img
-											src="${contextPath}/resources/assets/images/work/work-icon1.png"
-											alt="">
-									</div>
-									<div class="work-content">
-										<h4 class="title">활동성</h4>
-										<p>당신은 몸을 많이 움직이는 활동적인 일을 원하거나, 그렇지 않은 사무적인 일을 원할 수 있습니다.</p>
-									</div>
-								</div>
-								<!-- Single List Work End -->
-
-								<!-- Single List Work Start -->
-								<div class="single-list-work mb-20">
-									<div class="work-icon">
-										<img
-											src="${contextPath}/resources/assets/images/work/work-icon2.png"
-											alt="">
-									</div>
-									<div class="work-content">
-										<h4 class="title">고객 응대</h4>
-										<p>당신은 고객들을 직접 응대하는 일을 원하거나, 그렇지 않은 비대면 업무를 원할 수 있습니다.</p>
-									</div>
-								</div>
-								<!-- Single List Work End -->
-
-								<!-- Single List Work Start -->
-								<div class="single-list-work mb-20">
-									<div class="work-icon">
-										<img
-											src="${contextPath}/resources/assets/images/work/work-icon3.png"
-											alt="">
-									</div>
-									<div class="work-content">
-										<h4 class="title">접근성</h4>
-										<p>당신은 거주지 주변의 가까운 곳을 선호하거나, 오늘 하루는 멀리 나가보는 것을 선호할 수 있습니다.</p>
-									</div>
-								</div>
-								<!-- Single List Work End -->
-
-							</div>
-						</div>
-						<!-- 직업추천 End -->
-					</div>
-					<div class="col-lg-6">
-						<!-- 대타자 평점 랭킹 Start -->
-						<div class="blog-area">
-							<div class="section-title-two text-left">
-								<h3>대타자 평점 랭킹</h3>
-							</div>
-
-							<div class="blog-wrap ranking">
-								<!-- 랭킹 정보 Start -->
-								<div class="single-list-blog">
-									<div class="col-lg-4">
-										<i class="fas fa-trophy trophy-gold"></i> 1등
-									</div>
-									<div class="col-lg-4">
-										<i class="lnr lnr-user"></i> 대타매니아
-									</div>
-									<div class="col-lg-4">
-										<i class="fas fa-star star-color"></i> 4.8
-									</div>
-								</div>
-								<!-- 랭킹 정보 End -->
-								<!-- 랭킹 정보 Start -->
-								<div class="single-list-blog">
-									<div class="col-lg-4">
-										<i class="fas fa-trophy trophy-silver"></i> 2등
-									</div>
-									<div class="col-lg-4">
-										<i class="lnr lnr-user"></i> 현타왕
-									</div>
-									<div class="col-lg-4">
-										<i class="fas fa-star star-color"></i> 4.6
-									</div>
-								</div>
-								<!-- 랭킹 정보 End -->
-								<!-- 랭킹 정보 Start -->
-								<div class="single-list-blog">
-									<div class="col-lg-4">
-										<i class="fas fa-trophy trophy-bronze"></i> 3등
-									</div>
-									<div class="col-lg-4">
-										<i class="lnr lnr-user"></i> 하루살이
-									</div>
-									<div class="col-lg-4">
-										<i class="fas fa-star star-color"></i> 4.3
-									</div>
-								</div>
-								<!-- 랭킹 정보 End -->
-								<!-- 랭킹 정보 Start -->
-								<div class="single-list-blog">
-									<div class="col-lg-4">
-										<i class="fas fa-trophy icon-hidden"></i> 4등
-									</div>
-									<div class="col-lg-4">
-										<i class="lnr lnr-user"></i> 제발쉬운일z
-									</div>
-									<div class="col-lg-4">
-										<i class="fas fa-star star-color"></i> 4.0
-									</div>
-								</div>
-								<!-- 랭킹 정보 End -->
-								<!-- 랭킹 정보 Start -->
-								<div class="single-list-blog">
-									<div class="col-lg-4">
-										<i class="fas fa-trophy icon-hidden"></i> 5등
-									</div>
-									<div class="col-lg-4">
-										<i class="lnr lnr-user"></i> 의외로열심히함
-									</div>
-									<div class="col-lg-4">
-										<i class="fas fa-star star-color"></i> 3.9
-									</div>
-								</div>
-								<!-- 랭킹 정보 End -->
-								<div class="col-lg-12">
-									<p class="ranking-info">
-										*랭킹은 <strong>매월 1일</strong>에 초기화, <strong>매월 말일</strong>에 정산을
-										진행합니다.
-									</p>
-									<p class="ranking-info">
-										*정산 직후 랭킹 <strong>1, 2, 3등</strong>의 회원분께는 소정의 상품을 지급합니다.
-									</p>
-								</div>
-							</div>
-						</div>
-						<!-- 대타자 평점 랭킹 End -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 직업추천 & 대타자 평점 랭킹 End -->
-
+		
 		<!-- 농어촌 & 돌봄 구인 Start -->
 		<div class="cta-section section bg_color--4 pt-50 pb-50">
 			<div class="container">

@@ -2,6 +2,7 @@ package kr.co.deataworld.controller;
 
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -178,14 +179,14 @@ public class JobAdsController {
 	
 	@GetMapping(value = "/jobAds/listFavorite")
 	public String listFavorite() {
-		logger.info("구인목록 페이지 접속");
+		logger.info("직업추천 전체 구인목록 페이지 접속");
 		return "jobAds/listFavorite";
 	}
 	
 	
 	@GetMapping(value = "/jobAds/listRecommendation")
 	public String listRecommendation() {
-		logger.info("구인목록 페이지 접속");
+		logger.info("직업추천 페이지 접속");
 		return "jobAds/listRecommendation";
 	}
 }

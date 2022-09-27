@@ -5,7 +5,7 @@
 <title>오늘의 대타</title>
 <%@ include file="../include/head.jsp" %>
 <!-- custom css -->
-<link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css"> 
+<link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css">
 
  <title>일자리 추천</title>
  
@@ -59,29 +59,22 @@
             <div id="resultImg" class="col-lg-6 col-md-6 col-sm-8 col-8 mx-auto my-3 mb-2">  <!--해상도에 맞는 크기 선언-->
             </div>
             <div class="resultDesc"></div>
+            <br>
 <!--             <button type="button"  class="kakao py-2 px-3">바로찾기</button> -->
-            <form method="get" action="listAll">
+            <form method="get" action="favoriteSearch">
             
             
-            
-<!-- 							<select name="option"> -->
-						
-<!-- 								<option value="job_code"></option> -->
-
-
-
-
-	
-								
-
-							 <input type="text"  name="value" placeholder="번호를 입력해주세요."> <input type="submit"
-								value="검색">
-						</form>
+   			<select name="option">	
+			<option value="job_code">직업코드</option> </select>
+			<input type="text"  name="value" placeholder="번호를 입력해주세요."> <input type="submit" value="검색">
+			</form>
         </section>
     </div>
+    
   
-    <script src="${contextPath}/resources/custom_js/listRecommendation/data.js?ver=1"></script>
-    <script src="${contextPath}/resources/custom_js/listRecommendation/start.js?ver=1"></script>
+    
+    <script src="${contextPath}/resources/custom_js/listRecommendation/data.js?ver=4"></script>
+    <script src="${contextPath}/resources/custom_js/listRecommendation/start.js?ver=4"></script>
 </body>
 
 </body>
