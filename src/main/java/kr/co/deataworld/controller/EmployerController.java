@@ -103,24 +103,9 @@ public class EmployerController {
 	@PostMapping(value="employerMapper/countryRegister")
 	public String countryRegister(@RequestParam Map<String, Object> map) throws Exception {
 		
-		// 지역코드 설정을 위한 문자열 추출 (예시: 서울 송파구 동남로 99, 경기도 수원시 권선구 ??로) 
-		String address1 = (String) map.get("s_address1"); // "서울 송파구 동남로 99"
-		String[] addressSplit = address1.split(" "); // ["서울", "송파구", "동남로", "99"]
-		String addrName1 = addressSplit[0]; // "서울"
-		String addrName2 = addressSplit[1]; // "송파구"
-		if(addressSplit[2].endsWith("구")) { // a_name2에 시 구가 있을 경우
-			addrName2 = addressSplit[2];
-		}
-		String addrName1_1 = String.valueOf(addrName1.charAt(0)); // "서"
-		String addrName1_2 = String.valueOf(addrName1.charAt(1)); // "울"
-		addrName2 = addrName2.substring(0, addrName2.length()-1); // "송파"
-				
-		Map<String, String> addrParam = new HashMap<String, String>();
-		addrParam.put("addrName1_1", addrName1_1);
-		addrParam.put("addrName1_2", addrName1_2);
-		addrParam.put("addrName2", addrName2);
-		String areaCode = aService.getAreaCode(addrParam); // 11710 (서울시 송파구 지역코드)
-		System.out.println("지역코드: "+areaCode);
+		// 지역코드 설정
+		Map<String, String> addrParam = ExtractAreaCode.getAreaCode((String) map.get("s_address1"));
+		String areaCode = aService.getAreaCode(addrParam);
 		map.put("a_code", areaCode);
 		
 		service.countryRegister(map);
@@ -142,22 +127,9 @@ public class EmployerController {
 			@RequestParam("a_number") int a_number, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");
 		
-		// 지역코드 설정을 위한 문자열 추출 (예시: 서울 송파구 동남로 99, 경기도 수원시 권선구 ??로)		
-		String[] addressSplit = address.split(" "); // ["서울", "송파구", "동남로", "99"]
-		String addrName1 = addressSplit[0]; // "서울"
-		String addrName2 = addressSplit[1]; // "송파구"
-		if(addressSplit[2].endsWith("구")) { // a_name2에 시 구가 있을 경우
-			addrName2 = addressSplit[2];
-		}
-		String addrName1_1 = String.valueOf(addrName1.charAt(0)); // "서"
-		String addrName1_2 = String.valueOf(addrName1.charAt(1)); // "울"
-		addrName2 = addrName2.substring(0, addrName2.length()-1); // "송파"
-		
-		Map<String, String> addrParam = new HashMap<String, String>();
-		addrParam.put("addrName1_1", addrName1_1);
-		addrParam.put("addrName1_2", addrName1_2);
-		addrParam.put("addrName2", addrName2);
-		String areaCode = aService.getAreaCode(addrParam); // 11710 (서울시 송파구 지역코드)
+		// 지역코드 설정
+		Map<String, String> addrParam = ExtractAreaCode.getAreaCode(address);
+		String areaCode = aService.getAreaCode(addrParam);
 		
 		List<MemberDTO> candidates = service.nearCandidates(areaCode);
 		model.addAttribute("candidates", candidates);
@@ -295,7 +267,9 @@ public class EmployerController {
 	}
 	
 	@PostMapping(value="employerMapper/shopInfo")
-	public String shopInfo(ShopInfoDTO shopInfo, MultipartFile license, String pre_license) throws Exception {
+	public String shopInfo(ShopInfoDTO shopInfo, MultipartFile license, String pre_license,
+			MultipartFile[] shopImages, String preS_picture1, String preS_picture2, String preS_picture3) throws Exception {
+		
 		if(license != null) {
 			String savedName = FileProcess.updateImg(license, FileProcess.SHOP_LICENSE_PATH, pre_license);
 			shopInfo.setBusiness_license(savedName);
@@ -303,6 +277,53 @@ public class EmployerController {
 			shopInfo.setBusiness_license(pre_license);
 		}
 		
+		// 가게사진 설정
+		// 등록을 안하면 파일 수 1에 파일명 "" 빈값으로 들어옴
+		// 기존 사진이 없다면 등록, 있으면 변경
+		logger.info("가게사진 파일 수: " + shopImages.length);
+		if(!shopImages[0].getOriginalFilename().isEmpty()) {
+			
+			// 정보수정에서 사진을 하나라도 등록하면 일단 기존 사진부터 모두 삭제
+			FileProcess.deleteAllShopImg(preS_picture1, preS_picture2, preS_picture3);
+			
+			switch(shopImages.length) {
+			case 1:
+				if(preS_picture1 == null) {
+					shopInfo.setS_picture1(FileProcess.insertImg(shopImages[0], FileProcess.SHOP_IMG_PATH));
+				} else {
+					shopInfo.setS_picture1(FileProcess.updateImg(shopImages[0], FileProcess.SHOP_IMG_PATH, preS_picture1));
+				}
+				break;
+			case 2:
+				if(preS_picture2 == null) {
+					shopInfo.setS_picture1(FileProcess.insertImg(shopImages[0], FileProcess.SHOP_IMG_PATH));
+					shopInfo.setS_picture2(FileProcess.insertImg(shopImages[1], FileProcess.SHOP_IMG_PATH));
+				} else {
+					shopInfo.setS_picture1(FileProcess.updateImg(shopImages[0], FileProcess.SHOP_IMG_PATH, preS_picture1));
+					shopInfo.setS_picture2(FileProcess.updateImg(shopImages[1], FileProcess.SHOP_IMG_PATH, preS_picture2));
+				}
+				break;
+			case 3:
+				if(preS_picture3 == null) {
+					shopInfo.setS_picture1(FileProcess.insertImg(shopImages[0], FileProcess.SHOP_IMG_PATH));
+					shopInfo.setS_picture2(FileProcess.insertImg(shopImages[1], FileProcess.SHOP_IMG_PATH));
+					shopInfo.setS_picture3(FileProcess.insertImg(shopImages[2], FileProcess.SHOP_IMG_PATH));
+				} else {
+					shopInfo.setS_picture1(FileProcess.updateImg(shopImages[0], FileProcess.SHOP_IMG_PATH, preS_picture1));
+					shopInfo.setS_picture2(FileProcess.updateImg(shopImages[1], FileProcess.SHOP_IMG_PATH, preS_picture2));
+					shopInfo.setS_picture3(FileProcess.updateImg(shopImages[2], FileProcess.SHOP_IMG_PATH, preS_picture3));
+				}
+				break;
+			}
+		} else {
+			// 정보수정에서 사진 등록을 하지 않으면 기존 사진 정보를 냅둠
+			if(preS_picture1 != null)
+				shopInfo.setS_picture1(preS_picture1);
+			if(preS_picture2 != null)
+				shopInfo.setS_picture2(preS_picture2);
+			if(preS_picture3 != null)
+				shopInfo.setS_picture3(preS_picture3);
+		}
 		
 		// 지역코드 설정
 		Map<String, String> addrParam = ExtractAreaCode.getAreaCode(shopInfo.getS_address1());
@@ -311,7 +332,7 @@ public class EmployerController {
 		
 		service.shopInfoUpdate(shopInfo);
 		
-		return "redirect:/";
+		return "redirect:shopManagement?m_id=" + shopInfo.getM_id();
 	}
 	
 //	가게 등록
@@ -326,7 +347,7 @@ public class EmployerController {
 	}
 	
 	@PostMapping(value="employerMapper/shopRegister")
-	public String shopRegister(ShopInfoDTO shopInfo, MultipartFile license, MultipartFile[] files) throws Exception {
+	public String shopRegister(ShopInfoDTO shopInfo, MultipartFile license, MultipartFile[] shopImages) throws Exception {
 		
 		// 사업자 등록증 업로드 했을 때 등록
 		if(!license.getOriginalFilename().isEmpty()) {
@@ -335,9 +356,23 @@ public class EmployerController {
 		}
 		
 		// 가게사진 최대 3개 까지 등록
-		System.out.println("파일 수: "+files.length);
-		for(MultipartFile file : files) {
-			System.out.println("파일정보: "+file.getOriginalFilename());
+		// 등록을 안하면 파일 수 1에 파일명 "" 빈값으로 들어옴
+		logger.info("가게사진 파일 수: " + shopImages.length);
+		if(!shopImages[0].getOriginalFilename().isEmpty()) {
+			switch(shopImages.length) {
+			case 1:
+				shopInfo.setS_picture1(FileProcess.insertImg(shopImages[0], FileProcess.SHOP_IMG_PATH));
+				break;
+			case 2:
+				shopInfo.setS_picture1(FileProcess.insertImg(shopImages[0], FileProcess.SHOP_IMG_PATH));
+				shopInfo.setS_picture2(FileProcess.insertImg(shopImages[1], FileProcess.SHOP_IMG_PATH));
+				break;
+			case 3:
+				shopInfo.setS_picture1(FileProcess.insertImg(shopImages[0], FileProcess.SHOP_IMG_PATH));
+				shopInfo.setS_picture2(FileProcess.insertImg(shopImages[1], FileProcess.SHOP_IMG_PATH));
+				shopInfo.setS_picture3(FileProcess.insertImg(shopImages[2], FileProcess.SHOP_IMG_PATH));
+				break;
+			}
 		}
 		
 		// 지역코드 설정
@@ -345,8 +380,7 @@ public class EmployerController {
 		String areaCode = aService.getAreaCode(addrParam);
 		shopInfo.setA_code(areaCode);
 			
-		System.out.println(shopInfo);
-		//service.shopRegister(shopInfo);
+		service.shopRegister(shopInfo);
 			
 		return "redirect:/employerMapper/shopManagement?m_id=" + shopInfo.getM_id();
 	}
