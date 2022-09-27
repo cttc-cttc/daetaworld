@@ -98,7 +98,7 @@
 																		<div class="single-input mb-15">
 																			<label for="shopPicture">가게 사진 <span>*</span></label>
 																				<div id="dropZone"
-																					style="height: 300px; border-style: solid; border-color: black;">
+																					style="height: 300px; border: solid thin; padding-top: 1rem;">
 																					<div id="fileDragDesc">파일을 올려주세요.</div>
 																					<table id="fileListTable" width="100%" border="0px">
 																						<tbody id="fileTableTbody">

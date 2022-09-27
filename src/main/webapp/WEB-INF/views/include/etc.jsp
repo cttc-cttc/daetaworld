@@ -23,9 +23,9 @@
             // 등록 가능한 총 파일 사이즈 MB
             var maxUploadSize = 30;    
 
-            $(function() {
+            /* $(function() {
                 // 파일 드롭 다운
-                // fileDropDown();
+                fileDropDown();
             });    
 
             // 파일 드롭 다운
@@ -57,7 +57,7 @@
                     var files = e.originalEvent.dataTransfer.files;
                     if (files != null) {
                         if (files.length < 1) {
-                            /* alert("폴더 업로드 불가"); */
+                            // alert("폴더 업로드 불가");
                             console.log("폴더 업로드 불가");
                             return;
                         } else {
@@ -67,16 +67,27 @@
                         alert("ERROR");
                     }
                 });
-            }    
+            } */ 
 
             // 파일 선택시
             function selectFile(fileObject) {
             	console.log(fileObject.files);
             
+           	 	const files = Array.from(fileObject.files);
+                files.forEach(file => {
+                    fileList.push(file);
+                    /* preview.innerHTML += `
+                    <p id="${file.lastModified}">
+                        ${file.name}
+                        <button data-index='${file.lastModified}' class='file-remove'>삭제</button>
+                    </p>`; */
+                });
+            	
             	// 파일 업로드 3개로 제한
-            	let fileNum = $('#fileTableTbody').children().length;
-            	if(fileNum == 3) {
+            	let fileNum = fileList.length;
+            	if(fileNum > 3) {
             		alert('파일은 최대 3개 까지 업로드 가능합니다.');
+            		$('#multiFiles').val('');
             		return;
             	}
             	
