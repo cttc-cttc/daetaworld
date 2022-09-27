@@ -331,7 +331,7 @@
 					</div>
 					<div class="col-lg-4 col-sm-12 col-12">
 						<div class="call-btn text-center text-lg-right">
-							<a class="ht-btn green-btn link-btn" href="#">농어촌 구인 지원하기</a>
+							<a class="ht-btn green-btn link-btn" href="/deataworld/jobAds/listCountry">농어촌 구인 지원하기</a>
 						</div>
 					</div>
 				</div>

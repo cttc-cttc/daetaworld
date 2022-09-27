@@ -359,7 +359,24 @@
 	</div>
 	<!-- 문서 끝에 js를 배치하여 페이지 로딩 속도 향상 -->
 	<%@ include file="../include/plugin.jsp" %>
-	<script src="${contextPath}/resources/assets/js/vendor/modernizr-3.10.0.min.js"></script>
+ 	<script src="${contextPath}/resources/assets/js/vendor/modernizr-3.10.0.min.js"></script>
+ 	
+ 	
+ 	
+ 	<script
+		src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script> 
+<script
+		src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
+<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
+	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	<script
+		src="${contextPath}/resources/assets/js/vendor/modernizr-3.10.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+		crossorigin="anonymous"></script>
+
+
+
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d6140eb0f3d4e274049880e659b9d48b&libraries=services"></script>
 	<script>
