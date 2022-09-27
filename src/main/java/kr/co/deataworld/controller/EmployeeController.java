@@ -106,8 +106,6 @@ public class EmployeeController {
 	}
 	
 	
-	
-	
 	//선택한 자소서 수정 폼으로 이동
 		@GetMapping(value="employeeMapper/resumeUpdate")
 		public String resumeUpdate(@RequestParam("i_number")int i_number,
@@ -119,7 +117,6 @@ public class EmployeeController {
 			model.addAttribute("resume", resume);
 			return "employee/resume/resumeUpdate";
 		}
-	
 	
 	
 	//ajax를 이용한 자기소개서 수정 저장
@@ -137,7 +134,6 @@ public class EmployeeController {
 		model.addAttribute("m_id", resumeDTO.getM_id());
 		return "redirect:resumeManagement";
 	}
-	
 	
 	
 	//구직자 자기소개서 작성 폼으로 이동
@@ -164,7 +160,6 @@ public class EmployeeController {
 		model.addAttribute("m_id", resumeDTO.getM_id());
 		return "redirect:resumeManagement";
 	}
-	
 	
 	
 	//대타신청 - 신청을 하면 -> m_id 값을 보냄 -> 이미 지원한 공고인지 확인 해야함 -> 구직/구인자 지원상태를 0(지원함)으로 바꿈 -> 구직자 대표 자기소개서를 update해줌. 
@@ -202,6 +197,7 @@ public class EmployeeController {
 		return mav;
 	}
 	
+	
 	//구직 신청한 가게 상세정보 보기
 	@GetMapping(value="employeeMapper/pinchDetail")
 	public String pinchDetail(@RequestParam("s_number") int s_number)throws Exception {
@@ -231,6 +227,7 @@ public class EmployeeController {
 		return mav;
 	}
 	
+	
 	//구직자 알바요청받은 목록 검색(주변노예검색)
 	@GetMapping(value="employeeMapper/requests")
 	public ModelAndView requests(@RequestParam("m_id") String m_id, Model model)throws Exception {
@@ -240,6 +237,7 @@ public class EmployeeController {
 		mav.setViewName("employee/pinch/requests");
 		return mav;
 	}
+	
 	
 	//구직자 요청받은 알바 상세내용 보기
 	@GetMapping(value="employeeMapper/requestList")
@@ -255,11 +253,20 @@ public class EmployeeController {
 	
 	
 	//ajax
-	//구직자 요청받은 공고 수락버튼 클릭(m_id, a_number 가지고 가야함) -> job_apply의 jae_status 상태를 변경하고 -> 대타내역으로 이동함.(m_id를 가지고 가야함)
+	//구직자 요청받은 공고 수락버튼 클릭(m_id, a_number 가지고 가야함) -> job_apply의 jae_status, jar_status 상태를 변경하고 -> 대타내역으로 이동함.(m_id를 가지고 가야함)
 	@ResponseBody
 	@PostMapping(value="employeeMapper/requestYes")
 	public int requestYes(JobApplyDTO jobApplyDTO)throws Exception {
 		return service.requestYes(jobApplyDTO);
+	}
+
+	
+	//ajax
+	//구직자 요청받은 공고 거절버튼 클릭(m_id, a_number 가지고 가야함) -> job_apply의 jae_status, jar_status 상태를 변경하고 -> 대타내역으로 이동함.(m_id를 가지고 가야함)
+	@ResponseBody
+	@PostMapping(value="employeeMapper/requestNo")
+	public int requestNo(JobApplyDTO jobApplyDTO)throws Exception {
+		return service.requestNo(jobApplyDTO);
 	}
 	
 	
@@ -267,31 +274,7 @@ public class EmployeeController {
 	
 	
 	
-//	//구직자 요청받은 공고 거절버튼 클릭 
-//	@GetMapping(value="employeeMapper/requestNo")
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	
 }

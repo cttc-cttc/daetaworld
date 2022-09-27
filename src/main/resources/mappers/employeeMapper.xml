@@ -7,7 +7,7 @@
 <!-- 내 정보 불러오기(구직자) -->
 <select id="myInfo" parameterType="String" resultType="Map">
 	SELECT * FROM daetaworld.member
-	WHERE m_type = '1' AND m_id = #{m_id};
+	WHERE m_type = '1' AND m_id = #{m_id}
 </select>
 
 
@@ -81,7 +81,7 @@
 	SET
 	i_default = '0'
 	WHERE
-	m_id = #{m_id} AND i_default = '1';
+	m_id = #{m_id} AND i_default = 1
 </update>
 
 
@@ -110,7 +110,7 @@
     join employee_intro
     on job_apply.m_id = employee_intro.m_id
     set job_apply.i_number = employee_intro.i_number
-    where employee_intro.m_id = #{m_id} and employee_intro.i_default = '1';
+    where employee_intro.m_id = #{m_id} and employee_intro.i_default = 1
 </update>
 
 
@@ -122,7 +122,7 @@
 	FROM 
 	job_ads a, shop_info s, job_apply ja
 	WHERE
-	ja.m_id = 'userTest' AND ja.a_number = a.a_number AND a.s_number = s.s_number AND ja.jae_status != 4;
+	ja.m_id = 'userTest' AND ja.a_number = a.a_number AND a.s_number = s.s_number AND ja.jae_status != 4
 </select>
 
 
@@ -141,8 +141,9 @@
 	SELECT a.*, s.*, ja.*
 	FROM job_ads a, shop_info s, job_apply ja
 	WHERE
-	ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number AND a.a_status = '3';
+	ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number AND a.a_status = '3'
 </select>
+
 
 <!-- (주변노예찾기)로 요청받은 공고목록 불러오기 -->
 <select id="requests" parameterType="String" resultType="Map">
@@ -150,23 +151,35 @@
 	from 
 	job_ads a, shop_info s, job_apply ja
 	where 
-	ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number AND ja.jae_status = '4';
+	ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number AND ja.jae_status = '4'
 </select>
+
 
 <!-- 요청받은 공고 상세정보 보기 -->
 <select id="requestList" parameterType="Map" resultType="Map">
 	SELECT ja.*, a.*, s.* from job_apply ja, job_ads a, shop_info s
 	WHERE
-	ja.m_id = #{m_id} AND ja.a_number = #{a_number} AND ja.a_number = a.a_number AND ja.jae_status = 4 AND a.s_number = s.s_number;
+	ja.m_id = #{m_id} AND ja.a_number = #{a_number} AND ja.a_number = a.a_number AND ja.jae_status = 4 AND a.s_number = s.s_number
 </select>
 
-<!-- 요청받은 공고 수락 클릭시  jae_status 상태를 변경한다 수락으로 -->
+
+<!-- 요청받은 공고 수락 클릭시  jae_status, jar_status 상태를 변경한다 수락으로 -->
 <update id="requestYes" parameterType="JobApplyDTO">
 	UPDATE daetaworld.job_apply ja
 	SET
 	jae_status = 2, jar_status = 4
 	WHERE
-	ja.m_id = #{m_id} AND a_number = #{a_number};
+	ja.m_id = #{m_id} AND a_number = #{a_number}
+</update>
+
+
+<!-- 요청받은 공고 거절 클릭시  jae_status, jar_status 상태를 변경한다 수락으로 -->
+<update id="requestNo" parameterType="JobApplyDTO">
+	UPDATE daetaworld.job_apply ja
+	SET
+	jae_status = 5, jar_status = 2
+	WHERE
+	ja.m_id = #{m_id} AND a_number = #{a_number}
 </update>
 
 
@@ -174,8 +187,6 @@
 
 
 
-
-<!-- 요청받은 공고 거절 클릭시 -->
 
 
 

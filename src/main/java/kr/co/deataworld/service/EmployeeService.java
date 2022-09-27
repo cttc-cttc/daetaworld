@@ -68,6 +68,7 @@ public interface EmployeeService {
 	public int requestYes(JobApplyDTO jobApplyDTO)throws Exception;
 	
 	//요청받은 공고 거절
+	public int requestNo(JobApplyDTO jobApplyDTO) throws Exception;
 	
 	
 	

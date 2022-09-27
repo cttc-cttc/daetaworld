@@ -127,6 +127,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public int requestYes(JobApplyDTO jobApplyDTO) throws Exception {
 		return sql.update(NAMESPACE + ".requestYes", jobApplyDTO);
 	}
+	
+	@Override //요청받은 공고 거절
+	public int requestNo(JobApplyDTO jobApplyDTO) throws Exception {
+		return sql.update(NAMESPACE + ".requestNo", jobApplyDTO);
+	}
 
 
 	
@@ -135,16 +140,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	
 	
 
-//	@Override //대타내역 불러오기
-//	public List<JobAdsDTO> pinchHistory() throws Exception {
-//		return sql.selectList(NAMESPACE + ".pinchHistory");
-//	}
-
-	
-//	@Override //대타내역 가게명 불러오기
-//	public String shopName(int s_number) throws Exception {
-//		return sql.selectOne(NAMESPACE + ".shopName", s_number);
-//	}
 
 
 
