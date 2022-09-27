@@ -8,17 +8,18 @@
 	<div class="form-group1">
 	<c:forEach var="commentsDTO" items="${replylist}">
 		<tr>
-			<td>작성자 : ${commentsDTO.m_id}    작성일자 : ${commentsDTO.c_date} </td>
+			<td>작성자 : ${commentsDTO.m_nick}    작성일자 : ${commentsDTO.c_date} </td>
 		</tr>
 		<tr>
 			<td><textarea name="c_contents" rows="5" cols="40"
 				readonly="tempingreadonly" class="form-control1">${commentsDTO.c_contents}</textarea>
 			</td>
 			
-			
+			<c:if test="${loginInfo.m_id==temping.m_id}">
 			<td><a href="tempingreplyupdate?c_number=${commentsDTO.c_number}">댓글수정</a>
 			<td><a href="${contextPath}/board/temping/tempingreplydelete?c_number=${commentsDTO.c_number}">댓글삭제</a>
-			
+			</c:if>
+			</tr>
 			
 			<script>
 			$(function(){

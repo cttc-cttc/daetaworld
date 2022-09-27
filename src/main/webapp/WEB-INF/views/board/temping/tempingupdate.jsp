@@ -38,7 +38,7 @@
 			<div class="form-group">
 				<label>작성자</label> <input type="text"
 					name="m_id" class="form-control"  
-					readonly="readonly"  value="${temping.m_id}">
+					readonly="readonly"  value="${temping.m_nick}">
 			</div>
 			<!-- 수정에 사용할 글번호 -->
 			<input type="hidden" name="b_number" value="${temping.b_number }" />

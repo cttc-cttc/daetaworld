@@ -31,6 +31,12 @@ public interface BoardService {
 	
 	public int tempingDelete(int b_number) throws Exception;
 
+
+
+
+	
+	
+	
 	
 
 

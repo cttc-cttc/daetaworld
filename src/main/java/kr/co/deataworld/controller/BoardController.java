@@ -163,7 +163,7 @@ public class BoardController {
 			request.setCharacterEncoding("utf-8");
 			logger.info("내용 : " + boardDTO);
 			int r = service.tempingRegister(boardDTO);
-			return "redirect:tempinglist";
+			return "redirect:temping";
 		}
 		
 		//땜빵글 수정폼
@@ -172,7 +172,7 @@ public class BoardController {
 			
 			BoardDTO temping = service.tempinggetDetail(b_number);
 			model.addAttribute("temping", temping);		
-			return "board/temping/tempingUpdate";
+			return "board/temping/tempingupdate";
 		}	
 		
 		//떔빵글 수정 저장
@@ -186,7 +186,7 @@ public class BoardController {
 				return "redirect:temping";  // 여기이상
 			}
 			// 수정에 실패하면 수정보기 화면으로 이동
-			return "redirect:tempingUpdate?b_number=" + boardDTO.getB_number();
+			return "redirect:tempingupdate?b_number=" + boardDTO.getB_number();
 		}
 		
 
@@ -199,12 +199,11 @@ public class BoardController {
 				rttr.addFlashAttribute("msg","글삭제에 성공하였습니다.");
 				return "redirect:temping";
 			}
-			return "redirect:tempingDetail?b_number=" + b_number;
+			return "redirect:tempingdetail?b_number=" + b_number;
 		}
 		
 		
 		
-	
 	
 
 }

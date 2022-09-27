@@ -26,7 +26,7 @@
 			<h3 class="box-title">땜빵 게시판 글쓰기</h3>
 		</div>
 	
-		<form name="form" action="tempingRegister" method="post" onsubmit="return asdf()" >
+		<form name="form" action="tempingregister" method="post" onsubmit="return asdf()" >
 		
 			<div class="box-body">
 				<div class="form-group">
@@ -40,8 +40,8 @@
 				</div>
 	
 				<div class="form-group">
-					<label>작성자</label> <input type="text" name="m_id" class="form-control"  
-						>
+					<label>작성자</label> <input class="from-control"  name="m_nick" value="${loginM_nick}" readonly="readonly">
+					<input type="hidden" name="m_id" value="${loginInfo.m_id}">
 				</div>
 			</div>
 	

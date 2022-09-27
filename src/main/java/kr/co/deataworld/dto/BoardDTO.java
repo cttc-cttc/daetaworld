@@ -20,23 +20,9 @@ public class BoardDTO {
 	private int b_hits;
 	private String b_date;
 	private String m_id;
+	private String m_nick;
 	private int r_code;
 	private int del;
-
-	
-	@Override
-	public String toString() {
-		return "BoardDTO [b_number=" + b_number + ", b_code=" + b_code + ", b_title=" + b_title + ", b_contents="
-				+ b_contents + ", b_hits=" + b_hits + ", b_date=" + b_date + ", m_id=" + m_id + ", r_code=" + r_code
-				+ ", del=" + del + "]";
-	}
-	
-	public int getDel() {
-		return del;
-	}
-	public void setDel(int del) {
-		this.del = del;
-	}
 	public int getB_number() {
 		return b_number;
 	}
@@ -79,12 +65,32 @@ public class BoardDTO {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
+	public String getM_nick() {
+		return m_nick;
+	}
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
+	}
 	public int getR_code() {
 		return r_code;
 	}
 	public void setR_code(int r_code) {
 		this.r_code = r_code;
 	}
+	public int getDel() {
+		return del;
+	}
+	public void setDel(int del) {
+		this.del = del;
+	}
+	@Override
+	public String toString() {
+		return "BoardDTO [b_number=" + b_number + ", b_code=" + b_code + ", b_title=" + b_title + ", b_contents="
+				+ b_contents + ", b_hits=" + b_hits + ", b_date=" + b_date + ", m_id=" + m_id + ", m_nick=" + m_nick
+				+ ", r_code=" + r_code + ", del=" + del + "]";
+	}
+	
+	
 }
 
 	

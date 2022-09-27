@@ -82,13 +82,9 @@ public class BoardServiceImpl implements BoardService{
 			return dao.tempingDelete(b_number);
 		}
 
-	
 
-	
+	}
+
 		
-		
-		
-		
-		}
 
 

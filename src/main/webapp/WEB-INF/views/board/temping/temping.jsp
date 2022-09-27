@@ -50,7 +50,7 @@
 								<td>${board.b_number}</td>
 								<td><a href="${contextPath}/board/temping/tempingdetail?b_number=${board.b_number}"> ${board.b_title} </a></td>
 								<td>${board.b_date}</td>
-								<td>${board.m_id}</td>
+								<td>${board.m_nick}</td>
 								
 								<td><span class="badge">${board.b_hits }</span></td>
 							</tr>
@@ -62,7 +62,9 @@
 								onclick="location.href='${contextPath}'"/>
 							</td>
 						</tr>
+				
 					</table>
+					
 					<div class="box">
 						<div class="box-header with-border">
 							<a href="${contextPath }/board/temping/tempingregister"><h3 class="box-title">땜빵게시판 글쓰기</h3></a>
@@ -74,6 +76,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- Dashboard Content Section End -->
 		<%@ include file="../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->

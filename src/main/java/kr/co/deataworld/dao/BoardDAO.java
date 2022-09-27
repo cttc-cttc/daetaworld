@@ -33,6 +33,8 @@ public interface BoardDAO {
 	public int tempingUpdate(BoardDTO boardDTO) throws Exception;
 	
 	public int tempingDelete(int b_number) throws Exception;
+	
+
 
 	
 }
