@@ -18,8 +18,8 @@
 								class="lnr lnr-thumbs-down"></i>지원 현황</a></li>
 						<li><a id="pinchHistory" href="${contextPath}/employeeMapper/pinchHistory?m_id=${loginInfo.m_id}"><i 
 								class="lnr lnr-thumbs-down"></i>대타 내역</a></li>
-						<li><a id="pinchHistory" href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id}"><i 
-								class="lnr lnr-thumbs-down"></i>후기작성하러가기~</a></li>								
+						<li><a id="pinchHistory" href="${contextPath}/employeeMapper/pinchHistory?m_id=${loginInfo.m_id}"><i 
+								class="lnr lnr-thumbs-down"></i>후기(작성 전)</a></li>								
 						<li><a id="pointManagement_e" href="${contextPath}/pointMapper/pointManagement?m_id=${loginInfo.m_id}"><i 
 								class="lnr lnr-thumbs-down"></i>포인트</a></li>
 					</ul>
@@ -64,11 +64,8 @@
 			$("#pinchHistory").addClass("active");
 			break;
 		// 구인자
-		case "shopManagement":
-			$("#shopManagement").addClass("active");
-			break;
-		case "candidates":
-			$("#candidates").addClass("active");
+		case "adsApplied":
+			$("#adsApplied").addClass("active");
 			break;
 		case "adsRegister":
 			$("#adsRegister").addClass("active");

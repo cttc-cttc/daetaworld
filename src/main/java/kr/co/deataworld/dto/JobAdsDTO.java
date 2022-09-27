@@ -6,7 +6,6 @@ package kr.co.deataworld.dto;
 //a_urgency int 
 //a_status int 
 //ua_date datetime 
-//a_type int 
 //m_id varchar(20) 
 //r_code int 
 //s_number int
@@ -23,7 +22,6 @@ public class JobAdsDTO {
 	private int a_urgency;
 	private int a_status;
 	private String ua_date;
-	private int a_type;
 	private String m_id;
 	private int r_code;
 	private int s_number;
@@ -81,12 +79,6 @@ public class JobAdsDTO {
 	public void setUa_date(String ua_date) {
 		this.ua_date = ua_date;
 	}
-	public int getA_type() {
-		return a_type;
-	}
-	public void setA_type(int a_type) {
-		this.a_type = a_type;
-	}
 	public String getM_id() {
 		return m_id;
 	}
@@ -110,24 +102,20 @@ public class JobAdsDTO {
 	}
 	public void setDel(int del) {
 		this.del = del;
-	}
-
-	
-	
+	}	
 	public int getJob_code() {
 		return job_code;
 	}
 	public void setJob_code(int job_code) {
 		this.job_code = job_code;
 	}
+	
 	@Override
 	public String toString() {
 		return "JobAdsDTO [a_number=" + a_number + ", a_date=" + a_date + ", a_time=" + a_time + ", a_wage=" + a_wage
-				+ ", a_urgency=" + a_urgency + ", a_status=" + a_status + ", ua_date=" + ua_date + ", a_type=" + a_type
-				+ ", m_id=" + m_id + ", r_code=" + r_code + ", s_number=" + s_number + ", del=" + del + ", job_code="
-				+ job_code + "]";
+				+ ", a_urgency=" + a_urgency + ", a_status=" + a_status + ", ua_date=" + ua_date + ", m_id=" + m_id + 
+				", r_code=" + r_code + ", s_number=" + s_number + ", del=" + del + ", job_code=" + job_code + "]";
 	}
-	
 	
 	
 

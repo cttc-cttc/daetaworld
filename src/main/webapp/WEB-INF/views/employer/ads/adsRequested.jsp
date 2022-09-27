@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>만료된 공고</title>
+<title>지원받은 공고</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>만료된 공고</h1>
+										<h1>지원받은 공고</h1>
 									</div>
 								</div>
 							</div>
@@ -41,8 +41,8 @@
 													<li><a href="adsHistory?m_id=${loginInfo.m_id}">공고 내역</a></li>
 													<li><a href="adsPending?m_id=${loginInfo.m_id}">등록 중인 공고</a></li>
 													<li><a href="adsApplied?m_id=${loginInfo.m_id}">지원받은 공고</a></li>
-													<li><a href="adsRequested?m_id=${loginInfo.m_id}">요청한 공고</a></li>
-													<li><a class="active" href="adsExpired?m_id=${loginInfo.m_id}">만료된 공고</a></li>
+													<li><a class="active" href="adsRequested?m_id=${loginInfo.m_id}">요청한 공고</a></li>
+													<li><a href="adsExpired?m_id=${loginInfo.m_id}">만료된 공고</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -55,10 +55,11 @@
 															<th>시급</th>
 															<th>급구</th>
 															<th>상태</th>
+															<th></th>
 														</thead>
-														<c:forEach var="adsList" items="${adsExpired}">
+														<c:forEach var="adsList" items="${adsRequested}">
 															<tr>			
-																<td><a href="adsRegistered?a_number=${adsList.a_number}">${adsList.s_name }</a></td>													
+																<td>${adsList.s_name }</td>													
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
 																<td>${adsList.a_wage }</td>
@@ -72,22 +73,21 @@
 																	</c:if>
 																</td>																																
 																<td>
-																<c:set var="status" value="${adsList.a_status }"/>
-																	<c:if test="${status == 0 }">
-																		<c:out value="구인 중"></c:out>
-																	</c:if>
-																	<c:if test="${status == 1 }">
-																		<c:out value="신청 중"></c:out>
-																	</c:if>
+																<c:set var="status" value="${adsList.jae_status }"/>
 																	<c:if test="${status == 2 }">
-																		<c:out value="구인 완료"></c:out>
+																		<c:out value="수락함"></c:out>
 																	</c:if>
 																	<c:if test="${status == 3 }">
-																		<c:out value="종료"></c:out>
+																		<c:out value="거절함"></c:out>
 																	</c:if>
 																	<c:if test="${status == 4 }">
-																		<c:out value="만료"></c:out>
+																		<c:out value="대기 중"></c:out>
 																	</c:if>
+																</td>
+																<td>
+																	<button 
+																		onclick="location.href='cancelRequest?ja_number=${adsList.ja_number}$m_id=${adsList.m_id }'">
+																		요청 취소</button>
 																</td>
 															</tr>
 														</c:forEach>

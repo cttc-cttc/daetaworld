@@ -28,6 +28,18 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.reviewRegister(reviewDTO);
 	}
 
+	@Override
+	public List<Map<String, Object>> writtenReviews(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.writtenReviews(m_id);
+	}
+
+	@Override
+	public Map<String, Object> reviewDetail(int a_number) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reviewDetail(a_number);
+	}
+
 
 
 }

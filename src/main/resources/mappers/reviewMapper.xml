@@ -13,11 +13,32 @@
   		and a.s_number = s.s_number
   	</select>
 
-
+	<!-- 리뷰 작성 -->
   	<insert id="reviewRegister" parameterType="ReviewDTO">
-		insert into review(w_number,w_rate,w_comments,w_date,m_mid
-		values (#{w_number},#{w_rate}, #{w_comments},now(),#{m_id})
-		
+		insert into review(w_number,w_rate,w_comments,w_date,w_status,m_mid,a_number
+		values (#{w_number},#{w_rate}, #{w_comments},now(),0,#{m_id},#{a_number})		
 	</insert>
+	
+	<!-- 리뷰 작성된 공고 목록 -->
+	<select id="writtenReviews" parameterType="String" resultType="Map">
+		select a.*, s.*, r.*
+		from job_ads a, shop_info s, review r
+		where a.m_id = s.m_id and a.m_id = #{m_id}         
+		and a.a_status = 3
+  		and a.s_number = s.s_number
+        and a.a_number = r.a_number 
+        and r.w_status = 0
+  		
+	</select>
+	
+	<!-- 작성된 리뷰 내용 확인 -->
+	<select id="reviewDetail" parameterType="java.lang.Integer" resultType="Map">
+		select r.*, rc.*
+		from review r
+			left outer join review_comments rc
+			on r.w_number = rc.w_number
+		where r.a_number = #{a_number}
+        or r.w_number = rc.w_number
+	</select>
 	
 </mapper>

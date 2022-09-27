@@ -261,7 +261,7 @@
 				return false;
 			}
 			
-			var wageReg = /^[0-9]{4,6}$/;
+			var wageReg = /^[0-9]{0,6}$/;
 			if (!wageReg.test(a_wage)) {            
 				alert("시급은 숫자로만 써주세요");            
 				ar.a_wage.value = "";            

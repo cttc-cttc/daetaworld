@@ -52,7 +52,7 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<form name="cr" action="countryRegister" method="post">
+													<form name="cr" action="countryRegister" method="post" onsubmit="return crChk()" enctype="multipart/form-data">
 														<div class="row mb-30">
 															<div class="col-lg-10">
 																<div class="row">
@@ -89,7 +89,7 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<div class="single-input mb-15">
 																			<label for="date">날짜 <span>*</span></label> <input
-																				type="text" name="datefilter" id="datefilter" />
+																				type="text" name="a_date" id="a_date" />
 																		</div>
 																	</div>
 																	
@@ -97,7 +97,7 @@
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
 																			<label for="time">시간 <span>*</span></label> <input
-																				type="text" name="timefilter" id="timefilter" />
+																				type="text" name="a_time" id="a_time" />
 																		</div>																		
 																	</div>	
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
@@ -120,15 +120,15 @@
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
 																			<label for="shopTags">가게 태그 <span>*</span></label><br>
-																			<input type="text" id="s_tag1" name ="s_tag1" placeholder="6자 이내 5개까지 등록 가능"
+																			<input type="text" id="s_tag1" name ="s_tag1" placeholder="6자 이내 5개까지 등록 가능" maxlength="6"
 																				value="${shopInfo.s_tag1 }">
-																			<input type="text" id="s_tag2" name ="s_tag2"
+																			<input type="text" id="s_tag2" name ="s_tag2" maxlength="6"
 																				value="${shopInfo.s_tag2 }">
-																			<input type="text" id="s_tag3" name ="s_tag3"
+																			<input type="text" id="s_tag3" name ="s_tag3" maxlength="6"
 																				value="${shopInfo.s_tag3 }">
-																			<input type="text" id="s_tag4" name ="s_tag4"
+																			<input type="text" id="s_tag4" name ="s_tag4" maxlength="6"
 																				value="${shopInfo.s_tag4 }">
-																			<input type="text" id="s_tag5" name ="s_tag5"
+																			<input type="text" id="s_tag5" name ="s_tag5" maxlength="6"
 																				value="${shopInfo.s_tag5 }">
 																		</div>
 																	</div>
@@ -209,7 +209,7 @@
 	<script type="text/javascript">
 		$(function() {
 
-			$('input[name="datefilter"]').daterangepicker({
+			$('input[name="a_date"]').daterangepicker({
 				minDate: new Date(),
 				autoUpdateInput : false,
 				locale : {
@@ -217,7 +217,7 @@
 				}
 			});
 
-			$('input[name="datefilter"]').on(
+			$('input[name="a_date"]').on(
 					'apply.daterangepicker',
 					function(ev, picker) {
 						$(this).val(
@@ -225,7 +225,7 @@
 										+ picker.endDate.format('MM/DD/YYYY'));
 					});
 
-			$('input[name="datefilter"]').on('cancel.daterangepicker',
+			$('input[name="a_date"]').on('cancel.daterangepicker',
 					function(ev, picker) {
 						$(this).val('');
 					});
@@ -235,7 +235,7 @@
 
 	<script type="text/javascript">
 		$(function() {
-			$('input[name="timefilter"]').daterangepicker({
+			$('input[name="a_time"]').daterangepicker({
 				timePicker : true,
 				timePicker12Hour : true,
 				timePickerIncrement : 10,
@@ -262,6 +262,125 @@
 	        }).open();
 	    });
 	}
+	</script>
+	
+	<script type="text/javascript">
+	function crChk(){		
+			if(!checkName(cr.s_name.value)){
+				return false;
+			}else if(!checkAddress(cr.s_address1.value, cr.s_address2.value)){
+				return false;
+			}else if(!checkWage(cr.a_wage.value)){
+				return false;
+			}else if(!checkDate(cr.a_date.value)){
+				return false;
+			}else if(!checkTime(cr.a_time.value)){
+				return false;
+			}else if(!checkNeed(cr.a_need.value)){
+				return false;
+			}else if(!checkIntro(cr.s_intro.value)){
+				return false;
+			}
+			alert("가게가 등록되었습니다");
+			return true;
+		
+		function checkExist(value, dataName) {        
+			if (value == "" || value == " ") {            
+				alert(dataName + " 입력해주세요");            
+				return false;        
+			}        
+			return true;    
+		}
+		
+		function checkName(s_name){
+			if(!checkExist(s_name, "가게 명을")){
+				cr.s_name.focus();
+				return false;
+			}else{
+				return true;
+			}
+		}
+		
+		function checkAddress(s_address1, s_address2){
+			if(!checkExist(s_address1, "주소를")){
+				cr.s_address1.focus();
+				return false;
+			}else if(!checkExist(s_address2, "주소를")){
+				cr.s_address2.focus();
+				return false;
+			}else{
+				return true;
+			}
+		}
+		
+		function checkWage(a_wage){
+			if(!checkExist(a_wage, "시급을")){
+				cr.a_wage.focus();
+				return false;
+			}
+			
+			var wageReg = /^[0-9]{0,6}$/;
+			if (!wageReg.test(a_wage)) {            
+				alert("시급은 숫자로만 써주세요");            
+				cr.a_wage.value = "";            
+				cr.a_wage.focus();            
+				return false;        
+			}
+			
+			if(a_wage < 9160){
+				alert("최저 시급은 9160원입니다. 그 이상을 적어주세요")
+				cr.a_wage.focus();
+				return false;
+			}
+			
+			return true;			
+		}
+		
+		function checkDate(a_date){
+			if(!checkExist(a_date, "날짜를")){
+				cr.a_date.focus();
+				return false;
+			}else {
+				return true;
+			}
+		}
+		
+		function checkTime(a_time){
+			if(!checkExist(a_time, "시간을")){
+				cr.a_time.focus();
+				return false;
+			}else {
+				return true;
+			}
+		}
+		
+		function checkNeed(a_need){
+			if(!checkExist(a_need, "필요 인원을")){
+				cr.a_need.focus();
+				return false;
+			}
+			
+			var needReg = /^[0-9]$/;
+			if (!needReg.test(a_need)) {            
+				alert("필요 인원은 숫자로만 써주세요");            
+				cr.a_need.value = "";            
+				cr.a_need.focus();            
+				return false;        
+			}
+			
+			return true;
+			
+		}
+		
+		function checkIntro(s_intro){
+			if(!checkExist(s_intro, "가게 소개를")){
+				cr.s_intro.focus();
+				return false;
+			}else {
+				return true;
+			}
+		}
+	}	
 	</script>
 </body>
 </html>

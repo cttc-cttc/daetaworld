@@ -16,6 +16,7 @@ package kr.co.deataworld.dto;
  * s_tag3 varchar(6) 
  * s_tag4 varchar(6) 
  * s_tag5 varchar(6) 
+ * del int
  * m_id varchar(20) 
  * a_code int
  * j_code varchar(5)
@@ -36,6 +37,7 @@ public class ShopInfoDTO {
 	private String s_tag3;
 	private String s_tag4;
 	private String s_tag5;
+	private int del;
 	private String m_id;
 	private String a_code;
 	private int j_code;
@@ -46,7 +48,8 @@ public class ShopInfoDTO {
 				+ ", s_address1=" + s_address1 + ", s_address2=" + s_address2 + ", s_picture1=" + s_picture1
 				+ ", s_picture2=" + s_picture2 + ", s_picture3=" + s_picture3 + ", s_intro=" + s_intro + ", s_date="
 				+ s_date + ", s_tag1=" + s_tag1 + ", s_tag2=" + s_tag2 + ", s_tag3=" + s_tag3 + ", s_tag4=" + s_tag4
-				+ ", s_tag5=" + s_tag5 + ", m_id=" + m_id + ", a_code=" + a_code + ", j_code=" + j_code + "]";
+				+ ", s_tag5=" + s_tag5 + ", del=" + del + ", m_id=" + m_id + ", a_code=" + a_code + ", j_code=" + j_code
+				+ "]";
 	}
 
 	public int getS_number() {
@@ -169,6 +172,14 @@ public class ShopInfoDTO {
 		this.s_tag5 = s_tag5;
 	}
 
+	public int getDel() {
+		return del;
+	}
+
+	public void setDel(int del) {
+		this.del = del;
+	}
+
 	public String getM_id() {
 		return m_id;
 	}
@@ -191,6 +202,8 @@ public class ShopInfoDTO {
 
 	public void setJ_code(int j_code) {
 		this.j_code = j_code;
-	}	
+	}
+	
+	
 	
 }

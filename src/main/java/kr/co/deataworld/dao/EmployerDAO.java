@@ -51,6 +51,12 @@ public interface EmployerDAO {
 //	지원받은 가게 목록보기
 	public List<Map<String, Object>> adsApplied(String m_id) throws Exception;
 	
+//	요청한 공고 목록보기
+	public List<Map<String, Object>>adsRequested(String m_id) throws Exception;
+	
+//	요청 취소
+	public int cancelRequest(int ja_number) throws Exception;
+	
 //	지원자 목록보기
 	public List<Map<String, Object>> candidates(int a_number) throws Exception;
 	
@@ -77,5 +83,11 @@ public interface EmployerDAO {
 	
 //	새 가게 등록
 	public int shopRegister(ShopInfoDTO shopInfo) throws Exception;
+	
+//	공고 삭제
+	public int adsDelete(int a_number) throws Exception;
+	
+//	가게 삭제
+	public int shopDelete(int s_number) throws Exception;
 
 }

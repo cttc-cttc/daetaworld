@@ -106,6 +106,18 @@ public class EmployerServiceImpl implements EmployerService{
 	}
 	
 	@Override
+	public List<Map<String, Object>> adsRequested(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.adsRequested(m_id);
+	}
+	
+	@Override
+	public int cancelRequest(int ja_number) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.cancelRequest(ja_number);
+	}
+	
+	@Override
 	public List<Map<String, Object>> candidates(int a_number) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.candidates(a_number);		
@@ -158,6 +170,22 @@ public class EmployerServiceImpl implements EmployerService{
 		// TODO Auto-generated method stub
 		return dao.shopRegister(shopInfo);
 	}
+
+	@Override
+	public int adsDelete(int a_number) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.adsDelete(a_number);
+	}
+
+	@Override
+	public int shopDelete(int s_number) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.shopDelete(s_number);
+	}
+
+
+
+
 
 
 
