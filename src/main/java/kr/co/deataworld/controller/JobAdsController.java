@@ -160,9 +160,11 @@ public class JobAdsController {
 	// 구인목록 상세(가게번호 누르고 들어갈때)
 	@GetMapping(value = "jobAds/listAllDetail")
 	public String listAdsDetail(@RequestParam("s_name")String s_name,
+								@RequestParam("s_number")String s_number,
 								@RequestParam("m_id")String m_id,
 								@RequestParam("a_number")int a_number, Model model) throws Exception {
 		Map<String, Object> chk = new HashMap<String, Object>();
+		chk.put("s_number", s_number);
 		chk.put("m_id", m_id);
 		chk.put("s_name", s_name);
 		chk.put("a_number", a_number);
