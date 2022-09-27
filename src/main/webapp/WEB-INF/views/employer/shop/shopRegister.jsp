@@ -98,24 +98,32 @@
 																		<div class="single-input mb-15">
 																			<label for="shopPicture">가게 사진 <span>*</span></label>
 																				<div id="dropZone"
-																					style="width: 365px; height: 300px; border-style: solid; border-color: black;">
+																					style="height: 300px; border-style: solid; border-color: black;">
 																					<div id="fileDragDesc">파일을 올려주세요.</div>
 																					<table id="fileListTable" width="100%" border="0px">
 																						<tbody id="fileTableTbody">
 																						</tbody>
 																					</table>
 																				</div>
+																				<input type="file" id="multiFiles" name="files" multiple="multiple" onchange="selectFile(this)">
 																		</div>
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
-																		<div class="single-input mb-15">
-																			<label for="shopTags">가게 태그 <span>*</span></label><br>
-																			<input type="text" id="tag" placeholder="간단한 태그 입력 (6자 이내, 5개까지 가능)" />
-																			<input type="text" value="태그 등록은 Shift + F1을 누르세요" readonly="readonly">																																						
-																			<ul id="tag-list"></ul>
-																		</div>
-																	</div>																	
+					                                                    <!-- Single Input Start -->
+					                                                    <div class="single-input mb-15">
+					                                                       <label for="shopTags">가게 태그 <span>*</span></label><br>
+					                                                       <input type="text" id="s_tag1" name ="s_tag1" placeholder="6자 이내 5개까지 등록 가능"
+					                                                          value="${shopInfo.s_tag1 }" maxlength="6">
+					                                                       <input type="text" id="s_tag2" name ="s_tag2"
+					                                                          value="${shopInfo.s_tag2 }" maxlength="6">
+					                                                       <input type="text" id="s_tag3" name ="s_tag3"
+					                                                          value="${shopInfo.s_tag3 }" maxlength="6">
+					                                                       <input type="text" id="s_tag4" name ="s_tag4"
+					                                                          value="${shopInfo.s_tag4 }" maxlength="6">
+					                                                       <input type="text" id="s_tag5" name ="s_tag5"
+					                                                          value="${shopInfo.s_tag5 }" maxlength="6">
+					                                                    </div>
+					                                                </div>																
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">

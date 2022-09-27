@@ -25,7 +25,7 @@
 
             $(function() {
                 // 파일 드롭 다운
-                fileDropDown();
+                // fileDropDown();
             });    
 
             // 파일 드롭 다운
@@ -71,10 +71,19 @@
 
             // 파일 선택시
             function selectFile(fileObject) {
+            	console.log(fileObject.files);
+            
+            	// 파일 업로드 3개로 제한
+            	let fileNum = $('#fileTableTbody').children().length;
+            	if(fileNum == 3) {
+            		alert('파일은 최대 3개 까지 업로드 가능합니다.');
+            		return;
+            	}
+            	
                 var files = null;  
                 if (fileObject != null) {
                     // 파일 Drag 이용하여 등록시
-                    files = fileObject;
+                    files = fileObject.files;
                 } else {
                     // 직접 파일 등록시
                     files = $('#multipaartFileList_' + fileIndex)[0].files;
@@ -155,7 +164,7 @@
                 html += "    <td id='dropZone' class='left' >";
                 html += fileName + " (" + fileSizeStr +") "
                         //+ "<a href='#' onclick='deleteFile(" + fIndex + "); return false;' class='btn small bg_02'> 삭제</a>"                        
-                        + "<input value='삭제' type='button' href='#' onclick='deleteFile(" + fIndex + "); return false;'>"
+                        + "<input value='삭제' type='button' href='#' onclick='deleteFile(" + fIndex + "); return false;'>";
                 html += "    </td>"
                 html += "</tr>"    
                 $('#fileTableTbody').append(html);           
@@ -167,7 +176,7 @@
                 // 전체 파일 사이즈 수정
                 totalFileSize -= fileSizeList[fIndex];    
                 // 파일 배열에서 삭제
-                delete fileList[fIndex];    
+                //delete fileList[fIndex];    
                 // 파일 사이즈 배열 삭제
                 delete fileSizeList[fIndex];    
                 // 업로드 파일 테이블 목록에서 삭제
@@ -180,6 +189,18 @@
                     $("#fileDragDesc").show();
                     $("fileListTable").hide();
                 }
+                
+                // 삭제버튼 누른 파일 input 영역에서 같이 삭제
+                const removeTarget = fileList[fIndex];
+                const files = $('#multiFiles')[0].files;
+                const dataTransfer = new DataTransfer();
+				
+                Array.from(files)
+                    .filter(file => file.lastModified != removeTarget.lastModified)
+                    .forEach(file => {
+                    	dataTransfer.items.add(file);
+                    });
+                $('#multiFiles')[0].files = dataTransfer.files;
             }    
             
             // 파일 등록
