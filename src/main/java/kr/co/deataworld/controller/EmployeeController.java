@@ -231,13 +231,17 @@ public class EmployeeController {
 		return mav;
 	}
 	
-//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-	//구직자 알바요청
+	//구직자 알바요청 (주변노예검색)
 	@GetMapping(value="employeeMapper/requests")
-	public String requests() {
-		return "employee/pinch/requests";
+	public ModelAndView requests(@RequestParam("m_id") String m_id, Model model)throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<Map> list = service.requests(m_id);
+		mav.addObject("list", list);
+		mav.setViewName("employee/pinch/requests");
+		return mav;
 	}
 	
 	
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	
 }

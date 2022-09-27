@@ -58,7 +58,8 @@ public interface EmployeeService {
 	//종료된(완료한) 공고목록 불러오기
 	public List<Map> pinchExpired(String m_id)throws Exception;
 	
-	
+	//주변노예검색을 통해 요청받은 목록 불러오기
+	public List<Map> requests(String m_id)throws Exception;
 	
 	
 	

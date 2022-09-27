@@ -21,8 +21,7 @@
 		where
 		A.a_urgency = 1
 		and
-		(A.a_status = 0 or A.a_status = 1)
-		and A.a_type = 0
+		(A.a_status = 0 or A.a_status = 1)		
 		group by A.a_number
 		order by A.a_number desc
 		limit 0, 6;
@@ -71,8 +70,7 @@
 		where
 		A.a_urgency = 0
 		and (A.a_status = 0 or A.a_status =
-		1)
-		and A.a_type = 0
+		1)		
 		group by A.a_number
 		order by A.a_number desc
 		limit 0,
@@ -82,9 +80,8 @@
 	<!-- 일반 구인목록-->
 	<select id="listAds" parameterType="java.util.Map" resultType="JobAdsDTO">
 			select *
-			from job_ads
-			where a_type = 0
-			and a_urgency = 0
+			from job_ads			
+			where a_urgency = 0
 			and a_status not in(3,4)
             order by s_number
 			limit #{pageStart}, #{perPageNum} 
@@ -94,9 +91,8 @@
 	<!-- 급구 구인목록 -->
 	<select id="listUrgency" parameterType="java.util.Map" resultType="JobAdsDTO">
 		select *
-			from job_ads
-			where a_type = 0
-			and a_urgency = 1
+			from job_ads			
+			where a_urgency = 1
 			and a_status not in(3,4)
             order by s_number
 			limit #{pageStart}, #{perPageNum} 
@@ -109,37 +105,29 @@
 	<!-- 농어촌 구인목록 -->
 	<select id="listCountry" parameterType="java.util.Map" resultType="JobAdsDTO">
 		select *
-		from job_ads
-		where a_type = 1
-		and a_status not in(3,4)
+		from job_ads		
+		where a_status not in(3,4)
+		and job_code = 18
 		order by s_number
 		limit #{pageStart}, #{perPageNum} 
 	</select>	
 		
 	
 	
-	<!-- 구인목록 드롭다운 -->
-	<select id="selectDropdown" parameterType="java.util.Map" resultType="Map">
-		select a.*, s.*
-		from job_ads a, shop_info s, job_code jc, area_code ac
-		where s.a_code = ac.a_code and ac.a_name2 = "#{a_name2}"
-		and s.j_code = jc.j_code and jc.j_type1 = "#{j_type1}"
-		group by a_name1 and a_name2
-		      
-	</select>
 	
 	<!-- 구인상세 -->
 	<select id="listDetail" parameterType="Map" resultType="Map">
-		select j.*,s.*
-		from job_ads j, shop_info s
+		select j.*,s.*,ja.*
+		from job_ads j, shop_info s, job_apply ja
 		where j.s_number = s.s_number
         and s.s_number=#{s_number}
 	</select>
 
 	<!-- 일반/긴급/농어촌 글 갯수 -->
 		<select id="countJobAdsList" resultType="java.lang.Integer">
-			select count(a_type)
+			select count(*)
 			from job_ads
+			where job_code = 18
            
 			
 		</select>	
@@ -147,6 +135,26 @@
 	
 	<!-- 구인목록검색 -->
        <select id="JobAdsSearch" parameterType="java.util.Map" resultType="JobAdsDTO">		
+		select *
+		from job_ads
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="option == 's_number'">
+				s_number</if>
+			<if test="option == 'a_number'">
+				a_number</if>
+			<if test="option == 'a_wage'">
+				a_wage</if>
+			<if test="option == 'job_code'">
+				job_code</if>
+			
+			<if test="value != null and value != ''">
+			= #{value} 
+			</if>			
+		</trim>
+	</select>
+	
+	<!-- 직업추천 구인 목록검색 -->
+       <select id="favoriteSearch" parameterType="java.util.Map" resultType="JobAdsDTO">		
 		select *
 		from job_ads
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
@@ -192,5 +200,17 @@
 		select a_code, a_name2
 		from area_code
 		where a_name1 = #{a_name1}
+	</select>
+	
+	<!-- 직종 카테고리1 목록 -->
+	<select id="getJob1" resultType="java.lang.String">
+		select j_type1 from job_code
+		group by j_type1
+	</select>
+	<!-- 직종 카테고리2 목록 -->
+	<select id="getJob2" parameterType="java.lang.String" resultType = "java.util.Map">
+		select j_code, j_type2
+		from job_code
+		where j_type1 = #{j_type1}
 	</select>
 </mapper>

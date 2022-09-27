@@ -39,6 +39,8 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 		// TODO Auto-generated method stub
 		return sql.selectList(NAMESPACE + ".listAds", cri);
 	}
+	
+	
 
 	@Override
 	public JobAdsDTO listAllDetail(Map<String, Object> chk) {
@@ -65,6 +67,12 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map) {
 		// TODO Auto-generated method stub
 		return sql.selectList(NAMESPACE +".JobAdsSearch", map);
+	}
+	
+	@Override
+	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sql.selectList(NAMESPACE +".favoriteSearch", map);
 	}
 
 	@Override
@@ -105,6 +113,18 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 	public List<Map<String, String>> getAreaName2(String a_name1) {
 		// TODO Auto-generated method stub
 		return sql.selectList(NAMESPACE + ".getAreaName2", a_name1);
+	}
+
+	@Override
+	public List<String> getJob1() {
+		// TODO Auto-generated method stub
+		return sql.selectList(NAMESPACE +".getJob1");
+	}
+
+	@Override
+	public List<Map<String, Object>> getJob2(String j_type1) {
+		// TODO Auto-generated method stub
+		return sql.selectList(NAMESPACE + ".getJob2", j_type1);
 	}
 
 	

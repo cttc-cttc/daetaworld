@@ -45,53 +45,54 @@
 						<table class="table">
 							<tbody>
 
-								
-								<!-- 지역선택 -->
-								<tr>
-                        <th>지역</th>
-                        <td>
-                        <select class="form-select" id="applyRoles">
-                              <option selected="">All roles</option>
-                              <option>Design</option>
-                              <option>Engineering</option>
-                              <option>Product</option>
-                              <option>Testing</option>
-                              <option>Support</option>
-                        </select>
-                        </td>
-                        <th>직종</th>
-                        <td>
-                        <select class="form-select" id="applyRoles">
-                              <option selected="">All roles</option>
-                              <option>Design</option>
-                              <option>Engineering</option>
-                              <option>Product</option>
-                              <option>Testing</option>
-                              <option>Support</option>
-                        </select>
-                        </td>
-                        <th>근무시간</th>
-                        <td>
-                        <select class="form-select" id="applyRoles">
-                              <option selected="">All roles</option>
-                              <option>Design</option>
-                              <option>Engineering</option>
-                              <option>Product</option>
-                              <option>Testing</option>
-                              <option>Support</option>
-                        </select>
-                        </td>
-                        
-                     </tr>
-								<!-- 붙여넣기 끝 -->
-							
 
+								<tr>
+									<th>지역</th> <!-- 지역 카테고리1 -->
+									<td>
+									<select class="form-select" onchange="selectAreaName1(this)">
+										<option value="선택">선택</option>
+										<c:forEach var="areaName1" items="${areaName1ListUr }">
+											<option value="${areaName1 }">${areaName1 }</option>
+										</c:forEach>
+									</select>
+									</td>
+									
+									
+									
+									<th>직종</th>
+									<td><select class="form-select" onchange="selectJob1(this)">
+											<option value="선택">선택</option>
+										<c:forEach var="job1" items="${job1ListUrgency }">
+											<option value="${job1 }">${job1 }</option>
+										</c:forEach>
+											
+									</select></td>
+									
+								</tr>
+								<!-- 붙여넣기 끝 -->
 								
+								<tr>
+									<td></td>
+									<td class = "select2"> <!-- 지역 카테고리2 -->
+									<select class="form-select" id="areaName2" onchange="selectAreaName2(this)"></select>
+									</td>
+									<td></td>
+									<td class = "select22"><!-- 직종 카테고리2 -->
+									<select class="form-select" id="job2" onchange="selectJob2(this)"></select>
+									</td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+
+
 
 							</tbody>
 						</table>
-               <div class="field-item-submit" align="center"><button class="ht-btn theme-btn theme-btn-two" >검색</button></div>
-      </div>
+						<div class="field-item-submit" align="center">
+							<button class="ht-btn theme-btn theme-btn-two">검색</button>
+						</div>
+					</div>
 
 				</tbody>
 			</table>
@@ -102,7 +103,7 @@
 	<br>
 	<!-- 셀렉트 박스end -->
 	<!-- 목록보기 -->
-	
+
 	<div class="container">
 		<!-- 로그인양식 -->
 
@@ -131,10 +132,11 @@
 							<th>급구여부</th>
 							<th>올린시간</th>
 							<th>구인 인원</th>
-				
+
+
 						</tr>
 					</thead>
-					<c:forEach var="jobsend" items="${list }">
+					<c:forEach var="jobsend" items="${list2 }">
 						<tr>
 							<td class="tc"><a
 								href="listAllDetail?s_number=${jobsend.s_number}&m_id=${loginInfo.m_id}&a_number=${jobsend.a_number}">
@@ -142,10 +144,20 @@
 							<td class="tc">${jobsend.a_date}</td>
 							<td class="tc">${jobsend.a_time}</td>
 							<td class="tc">${jobsend.a_wage}</td>
+
+
+
+
+
 							<td class="tc">${jobsend.a_urgency}</td>
+
+
 							
-							<td class="tc">${jobsend.ua_date }</td>
+							<td class="tc">${jobsend.job_code}</td>
+							
+				<td class="tc">${jobsend.ua_date }</td>
 							<td class="tc">${jobsend.a_need }</td>
+
 
 
 						</tr>
@@ -184,12 +196,13 @@
 				<option value="s_number">가게번호</option>
 				<option value="a_number">공고번호</option>
 				<option value="a_wage">시급</option>
+				<option value="job_code">직업코드</option>
 
 			</select> <input type="text" name="value"> <input type="submit"
 				value="검색">
 		</form>
 	</div>
-	
+
 	<!-- 목록보기끝 -->
 
 	<!-- 일반구인 리스트 Start -->
@@ -747,19 +760,107 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 		crossorigin="anonymous"></script>
-	<!-- ajax -->
-
-	<!--  ajax끝 -->
-	<!-- 자바스크립트 사용 -->
+	
+	<!-- ajax 사용 -->
+	<!-- 지역 -->
+	
 	<script>
-	 function fn_gu(){
-		 alert('수원시');
-	 }
-	
-	
+    $(function() {
+        $('.select2 > .nice-select').css('display','none');
+     });
+		
+		
+		// 지역 카테고리1 선택하면 직종 카테고리2 표시
+		function selectAreaName1(target) {
+			let areaName1 = target.value;
+			if(areaName1 == '선택') {
+				$('#areaName2').css('display', 'none');
+				return;
+			}
+			
+			$.ajax({
+				url: '${contextPath}/jobAds/getAreaName2',
+				data: {'a_name1': areaName1},
+				dataType: 'json',
+				type: 'post',
+				success: function(result) {
+					console.log(result);
+					initAreaName2(); // areaName1을 선택할 때 마다 areaName2 안에 '선택 option' 하나만 있게 초기화
+					$('#areaName2').css('display', 'block');
+					result.forEach(function(row) {
+						let option = '<option value="'+ row.a_code +'">'+ row.a_name2 +'</option>';
+						$('#areaName2').append(option);
+					});
+				},
+				error: function(res) {
+					console.log('실패: '+res);
+				}
+			});
+		}
+		
+		// 지역 카테고리2 초기화
+		function initAreaName2() {
+			const htmls = '<option value="선택">선택</option>';
+			$('#areaName2').html(htmls);
+		}
+		
+		// 지역 카테고리2 선택하면 일단 해당하는 지역코드를 콘솔에 표시
+		function selectAreaName2(target) {
+			let code = target.value;
+			console.log(code);
+		}
 	</script>
-
-	<!-- 자바 스크립트 사용end -->
+	
+	
+	
+	
+	<!-- 직종 -->
+	<script>
+	$(function() {
+        $('.select22 > .nice-select').css('display','none');
+     });
+		
+		// 직종 카테고리1 선택하면 직종 카테고리2 표시
+		function selectJob1(target) {
+			let job1 = target.value;
+			if(job1 == '선택') {
+				$('#job2').css('display', 'none');
+				return;
+			}
+			
+			$.ajax({
+				url: '${contextPath}/jobAds/getJob2',
+				data: {'j_type1': job1},
+				dataType: 'json',
+				type: 'post',
+				success: function(result) {
+					console.log(result);
+					initJob2(); // areaName1을 선택할 때 마다 areaName2 안에 '선택 option' 하나만 있게 초기화
+					$('#job2').css('display', 'block');
+					result.forEach(function(row1) {
+						let option = '<option value="'+ row1.j_code +'">'+ row1.j_type2 +'</option>';
+						$('#job2').append(option);
+					});
+				},
+				error: function(res) {
+					console.log('실패: '+res);
+				}
+			});
+		}
+		
+		// 직종 카테고리2 초기화
+		function initJob2() {
+			const htmls1 = '<option value="선택">선택</option>';
+			$('#job2').html(htmls1);
+		}
+		
+		// 직종 카테고리2 선택하면 일단 해당하는 직종코드를 콘솔에 표시
+		function selectJob2(target) {
+			let code2 = target.value;
+			console.log(code2);
+		}
+	</script>
+	<!-- ajax 사용end -->
 
 </body>
 </html>

@@ -144,9 +144,14 @@
 	ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number AND a.a_status = '3';
 </select>
 
-
-
-
+<!-- (주변노예찾기)로 요청받은 공고목록 불러오기 -->
+<select id="requests" parameterType="String" resultType="Map">
+	select a.*, s.*, ja.*
+	from 
+	job_ads a, shop_info s, job_apply ja
+	where 
+	ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number AND ja.jae_status = '4';
+</select>
 
 
 
