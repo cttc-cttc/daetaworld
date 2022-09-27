@@ -60,4 +60,7 @@ public interface EmployeeDAO {
 	//요청받은 공고 상세정보 보기
 	public Map<String, Object> requestList(Map<String, Object> map)throws Exception;
 	
+	//요청받은 공고 수락
+	public int requestYes(JobApplyDTO jobApplyDTO)throws Exception;
+	
 }

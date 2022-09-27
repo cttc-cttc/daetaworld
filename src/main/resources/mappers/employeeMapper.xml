@@ -160,5 +160,49 @@
 	ja.m_id = #{m_id} AND ja.a_number = #{a_number} AND ja.a_number = a.a_number AND ja.jae_status = 4 AND a.s_number = s.s_number;
 </select>
 
+<!-- 요청받은 공고 수락 클릭시  jae_status 상태를 변경한다 수락으로 -->
+<update id="requestYes" parameterType="JobApplyDTO">
+	UPDATE daetaworld.job_apply ja
+	SET
+	jae_status = 2, jar_status = 4
+	WHERE
+	ja.m_id = #{m_id} AND a_number = #{a_number};
+</update>
+
+
+
+
+
+
+
+<!-- 요청받은 공고 거절 클릭시 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

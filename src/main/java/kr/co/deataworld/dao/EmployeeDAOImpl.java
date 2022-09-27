@@ -123,6 +123,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
+	@Override //요청받은 공고 수락
+	public int requestYes(JobApplyDTO jobApplyDTO) throws Exception {
+		return sql.update(NAMESPACE + ".requestYes", jobApplyDTO);
+	}
+
+
 	
 	
 	
