@@ -26,24 +26,24 @@ public interface JobAdsService {
 
 	// 구인목록(구인-농어촌)
 	public List<Map<String, Object>>listCountry(JobAdsCriteria cri);
+	//구인 지역,직종 검색(상단)
+	public List<Map<String, Object>> listJobAdsSearch(Map<Object , Object>map);
 
 	// 일반/긴급-글갯수
 	public int countJobAdsList();
 
-	// 구인목록검색
-	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map);
+	// 구인 하단 목록검색
+	public List<Map<Object, Object>> jobAdsSearch(Map<Object, Object> map);
 	
 	// 직업추천 전체 구인목록검색
 	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map);
 
-	// 지역검색
-	public List<AreaCodeDTO> areaSearch(String area);
+	
 
 	// 구인목록(일반구인->상세보기)
 	public JobAdsDTO listAllDetail(Map<String, Object> chk);
 
-	// 드롭다운
-	public List<AreaCodeDTO> selectDropdown(Map<String, Object> map);
+	
 
 	// 구인상세페이지
 	public  Map<String, Object> listDetail(Map<String, Object> chk);

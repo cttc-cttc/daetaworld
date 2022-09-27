@@ -13,6 +13,7 @@
 	href="${contextPath}/resources/custom_css/index.css">
 
 <body class="template-color-3">
+
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
 		<header
@@ -35,7 +36,7 @@
 	<br>
 
 	<!-- 셀렉트 박스 start -->
-	<form method="get" action="AreaSearch">
+	<form method="get" action="${contextPath}/search/jobAdsSearch">
 		<div class="container">
 			<table class="table">
 				<tbody>
@@ -44,107 +45,53 @@
 						<table class="table">
 							<tbody>
 
-								<!-- 지역 선택-->
+
 								<tr>
-									<th>지역</th>
+									<th>지역</th> <!-- 지역 카테고리1 -->
 									<td>
-										<div class="common-sidebar-widget sidebar-two">
-											
-											<div class="sidebar-search-form-two">
-
-												<label for="si"><span></span></label> <select name="major">
-													
-													<optgroup label="local">
-														<option selected>수원시</option>
-														<c:forEach items="${listdrop }" var="row">
-														     <option value="${row.a_name2 }">${row.a_name2 }</option>
-														</c:forEach>
-													</optgroup>
-													
-												</select>
-
-
-											</div>
-											
-										</div>
+									<select class="form-select" onchange="selectAreaName1(this)">
+										<option value="선택">선택</option>
+										<c:forEach var="areaName1" items="${areaName1List }">
+											<option value="${areaName1 }">${areaName1 }</option>
+										</c:forEach>
+									</select>
 									</td>
-
-								</tr>
-
-
-
-								<!-- 지역끝 -->
-
-								<!-- 직종선택 -->
-								<tr>
+									
+									
 									<th>직종</th>
-									<td>
-										<div class="common-sidebar-widget sidebar-two">
+									<td><select class="form-select" onchange="selectJob1(this)">
+											<option value="선택">선택</option>
+										<c:forEach var="job1" items="${job1List }">
+											<option value="${job1 }">${job1 }</option>
+										</c:forEach>
 											
-											<div class="sidebar-search-form-two">
-
-												<label for="si"><span></span></label> <select name="major">
-													
-													<optgroup label="JobSort1">
-														<option selected>직종대분류</option>
-														<c:forEach items="${listdrop }" var="row">
-														     <option value="${row.j_type1 }">${row.j_type1 }</option>
-														</c:forEach>
-													</optgroup>
-													<optgroup label="JobSort2">
-														<option selected>직종소분류</option>
-														<c:forEach items="${listdrop }" var="row">
-														     <option value="${row.j_type2 }">${row.j_type2 }</option>
-														</c:forEach>
-													</optgroup>
-													
-												</select>
-
-
-											</div>
-											
-										</div>
-									</td>
-
+									</select></td>
+									
 								</tr>
-
-
-								<!-- 직종끝 -->
-
 								<!-- 붙여넣기 끝 -->
+								
 								<tr>
-									<th>근무기간</th>
-									<td><input type="checkbox" id="searchPeriod"
-										class="chk_01 type_01"><label for="searchPeriod"><span></span>전체</label>
-										<input type="radio" id="IS_HIRE0" name="searchHire" value="D"
-										class="radio_01 type_01"><label for="IS_HIRE0"><span></span>7일</label>
-										<!--   --> <input type="radio" id="IS_HIRE2" name="searchHire"
-										value="R" class="radio_01 type_01"><label
-										for="IS_HIRE2"><span></span>3~4일</label> <!--   --> <input
-										type="radio" id="IS_HIRE1" name="searchHire" value="T"
-										class="radio_01 type_01"><label for="IS_HIRE1"><span></span>1일</label>
-										<!--   --></td>
+									<td></td>
+									<td class = "select2"> <!-- 지역 카테고리2 -->
+									<select class="form-select" id="areaName2" onchange="selectAreaName2(this)"></select>
+									</td>
+									<td></td>
+									<td class = "select22"><!-- 직종 카테고리2 -->
+									<select class="form-select" id="job2" onchange="selectJob2(this)"></select>
+									</td>
+									<td></td>
+									<td></td>
+									<td></td>
 								</tr>
 
-								<tr>
-									<th>근무시간</th>
-									<td><input type="checkbox" id="searchPeriod"
-										class="chk_01 type_01"><label for="searchPeriod"><span></span>전체</label>
-										<input type="radio" id="IS_HIRE0" name="searchHire" value="D"
-										class="radio_01 type_01"><label for="IS_HIRE0"><span></span>5시간</label>
-										<!--   --> <input type="radio" id="IS_HIRE2" name="searchHire"
-										value="R" class="radio_01 type_01"><label
-										for="IS_HIRE2"><span></span>4시간</label> <!--   --> <input
-										type="radio" id="IS_HIRE1" name="searchHire" value="T"
-										class="radio_01 type_01"><label for="IS_HIRE1"><span></span>2시간</label>
-										<!--   --></td>
 
-								</tr>
 
 							</tbody>
 						</table>
-               <div class="field-item-submit" align="center"><button class="ht-btn theme-btn theme-btn-two" >검색</button></div>
-      </div>
+						<div class="field-item-submit" align="center">
+							<button class="ht-btn theme-btn theme-btn-two">검색</button>
+						</div>
+					</div>
 
 				</tbody>
 			</table>
@@ -177,29 +124,26 @@
 					<thead>
 
 						<tr>
-							<th>가게번호</th>
+							<th>가게이름</th>
 							<th>날짜</th>
 							<th>시간</th>
 							<th>시급</th>
-							<th>급구</th>
-							<th>상태</th>
-							<th>올린시간</th>
+							<th>주소</th>
+							<th>구인 인원</th>
+
 
 						</tr>
 					</thead>
 					<c:forEach var="jobsend" items="${list }">
 						<tr>
 							<td class="tc"><a
-								href="listAllDetail?s_number=${jobsend.s_number}">
-									${jobsend.s_number} </a></td>
+								href="listAllDetail?s_name=${jobsend.s_name}&m_id=${loginInfo.m_id}&s_number=${jobsend.s_number}&a_number=${jobsend.a_number}">
+									 ${jobsend.s_name}</a></td>
 							<td class="tc">${jobsend.a_date}</td>
 							<td class="tc">${jobsend.a_time}</td>
 							<td class="tc">${jobsend.a_wage}</td>
-							<td class="tc">${jobsend.a_urgency }</td>
-							<td class="tc">${jobsend.a_status }</td>
-							<td class="tc">${jobsend.ua_date }</td>
-
-
+							<td class="tc">${jobsend.s_address1 }</td>
+							<td class="tc">${jobsend.a_need }</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -231,11 +175,12 @@
 			</table>
 
 		</section>
-		<form method="get" action="JobAdsSearch">
+		<form method="get" action="jobAdsSearch">
 			<select name="option">
-				<option value="s_number">가게번호</option>
-				<option value="a_number">공고번호</option>
-				<option value="a_wage">시급</option>
+				<option value="s.s_name">가게이름</option>
+				
+				<option value="a.a_wage">시급</option>
+				
 
 			</select> <input type="text" name="value"> <input type="submit"
 				value="검색">
@@ -799,13 +744,107 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 		crossorigin="anonymous"></script>
-	<!-- ajax -->
-
-	<!--  ajax끝 -->
-	<!-- 자바스크립트 사용 -->
-
-
-	<!-- 자바 스크립트 사용end -->
+	
+	<!-- ajax 사용 -->
+	<!-- 지역 -->
+	
+	<script>
+    $(function() {
+        $('.select2 > .nice-select').css('display','none');
+     });
+		
+		
+		// 지역 카테고리1 선택하면 직종 카테고리2 표시
+		function selectAreaName1(target) {
+			let areaName1 = target.value;
+			if(areaName1 == '선택') {
+				$('#areaName2').css('display', 'none');
+				return;
+			}
+			
+			$.ajax({
+				url: '${contextPath}/jobAds/getAreaName2',
+				data: {'a_name1': areaName1},
+				dataType: 'json',
+				type: 'post',
+				success: function(result) {
+					console.log(result);
+					initAreaName2(); // areaName1을 선택할 때 마다 areaName2 안에 '선택 option' 하나만 있게 초기화
+					$('#areaName2').css('display', 'block');
+					result.forEach(function(row) {
+						let option = '<option value="'+ row.a_code +'">'+ row.a_name2 +'</option>';
+						$('#areaName2').append(option);
+					});
+				},
+				error: function(res) {
+					console.log('실패: '+res);
+				}
+			});
+		}
+		
+		// 지역 카테고리2 초기화
+		function initAreaName2() {
+			const htmls = '<option value="선택">선택</option>';
+			$('#areaName2').html(htmls);
+		}
+		
+		// 지역 카테고리2 선택하면 일단 해당하는 지역코드를 콘솔에 표시
+		function selectAreaName2(target) {
+			let code = target.value;
+			console.log(code);
+		}
+	</script>
+	
+	
+	
+	
+	<!-- 직종 -->
+	<script>
+	$(function() {
+        $('.select22 > .nice-select').css('display','none');
+     });
+		
+		// 직종 카테고리1 선택하면 직종 카테고리2 표시
+		function selectJob1(target) {
+			let job1 = target.value;
+			if(job1 == '선택') {
+				$('#job2').css('display', 'none');
+				return;
+			}
+			
+			$.ajax({
+				url: '${contextPath}/jobAds/getJob2',
+				data: {'j_type1': job1},
+				dataType: 'json',
+				type: 'post',
+				success: function(result) {
+					console.log(result);
+					initJob2(); // areaName1을 선택할 때 마다 areaName2 안에 '선택 option' 하나만 있게 초기화
+					$('#job2').css('display', 'block');
+					result.forEach(function(row1) {
+						let option = '<option value="'+ row1.j_code +'">'+ row1.j_type2 +'</option>';
+						$('#job2').append(option);
+					});
+				},
+				error: function(res) {
+					console.log('실패: '+res);
+				}
+			});
+		}
+		
+		// 직종 카테고리2 초기화
+		function initJob2() {
+			const htmls1 = '<option value="선택">선택</option>';
+			$('#job2').html(htmls1);
+		}
+		
+		// 직종 카테고리2 선택하면 일단 해당하는 직종코드를 콘솔에 표시
+		function selectJob2(target) {
+			let code2 = target.value;
+			console.log(code2);
+		}
+	</script>
+	<!-- ajax 사용end -->
 
 </body>
 </html>

@@ -124,24 +124,25 @@ public class JobAdsController {
 		model.addAttribute("pageMaker", pageMaker);
 		
 		
-		
-		
 		return "jobAds/listCountry";
 		
 	}
 	
-			
-	
-	
-
-	
-	
-	//구인하단검색(구인목록에서)
-	@GetMapping(value = "jobAds/JobAdsSearch")//value에 해당하는값은 메소드이름
-	public String JobAdsSearch(@RequestParam Map<Object,Object>map,Model model) {
-		List<JobAdsDTO>list = service.JobAdsSearch(map);
+	//지역,직종 상단검색
+	@GetMapping(value = "jobAds/listJobAdsSearch")
+	public String listJobAdsSearch(@RequestParam Map<Object,Object>map,Model model) {
+		System.out.println("--------------------받은 값 : " + map);
+		List<Map<String,Object>>list = service.listJobAdsSearch(map);
 		model.addAttribute("list", list);
-		return "jobAds/search/JobAdsSearch";  //return은 경로지정
+		return "jobAds/listJobAdsSearch";
+	}
+		
+	//구인하단검색(구인목록에서)
+	@GetMapping(value = "jobAds/jobAdsSearch")//value에 해당하는값은 메소드이름
+	public String jobAdsSearch(@RequestParam Map<Object,Object>map,Model model) {
+		List<Map<Object, Object>>list = service.jobAdsSearch(map);
+		model.addAttribute("list", list);
+		return "jobAds/search/jobAdsSearch";  //return은 경로지정
 	}
 	
 	//구인하단검색(구인목록에서)

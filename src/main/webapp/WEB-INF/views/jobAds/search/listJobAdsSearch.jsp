@@ -7,7 +7,7 @@
 
 
 
-<%@ include file="../include/head.jsp"%>
+<%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/index.css">
@@ -18,7 +18,7 @@
 		<!-- 상단 메뉴 start-->
 		<header
 			class="header-absolute black-logo-version header-sticky sticky-white no-padding d-none d-lg-block pt-25 pb-25">
-			<%@ include file="../include/header.jsp"%>
+			<%@ include file="../../include/header.jsp"%>
 		</header>
 		<!-- 상단 메뉴 end-->
 
@@ -51,18 +51,17 @@
 									<td>
 									<select class="form-select" onchange="selectAreaName1(this)">
 										<option value="선택">선택</option>
-										<c:forEach var="areaName1" items="${areaName1ListUr }">
+										<c:forEach var="areaName1" items="${areaName1List }">
 											<option value="${areaName1 }">${areaName1 }</option>
 										</c:forEach>
 									</select>
 									</td>
 									
 									
-									
 									<th>직종</th>
 									<td><select class="form-select" onchange="selectJob1(this)">
 											<option value="선택">선택</option>
-										<c:forEach var="job1" items="${job1ListUrgency }">
+										<c:forEach var="job1" items="${job1List }">
 											<option value="${job1 }">${job1 }</option>
 										</c:forEach>
 											
@@ -131,11 +130,11 @@
 							<th>시급</th>
 							<th>주소</th>
 							<th>구인 인원</th>
-
+							
 
 						</tr>
 					</thead>
-				<c:forEach var="jobsend" items="${list2}">
+					<c:forEach var="jobsend" items="${list }">
 						<tr>
 							<td class="tc"><a
 								href="listAllDetail?s_name=${jobsend.s_name}&m_id=${loginInfo.m_id}&s_number=${jobsend.s_number}&a_number=${jobsend.a_number}">
@@ -176,12 +175,12 @@
 			</table>
 
 		</section>
-		<form method="get" action="JobAdsSearch">
+		<form method="get" action="jobAdsSearch">
 			<select name="option">
-				<option value="s_number">가게번호</option>
-				<option value="a_number">공고번호</option>
+				<option value="s_name">가게이름</option>
+				
 				<option value="a_wage">시급</option>
-				<option value="job_code">직업코드</option>
+				
 
 			</select> <input type="text" name="value"> <input type="submit"
 				value="검색">
@@ -724,7 +723,7 @@
 	</div>
 	<!-- 농어촌 & 돌봄 구인 End -->
 
-	<%@ include file="../include/footer.jsp"%>
+	<%@ include file="../../include/footer.jsp"%>
 
 	<!-- Placed js at the end of the document so the pages load faster -->
 	</div>

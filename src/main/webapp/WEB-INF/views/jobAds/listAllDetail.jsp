@@ -83,12 +83,12 @@
 							${map.s_tag1 } ,${map.s_tag2 } ,${map.s_tag3 } , ${map.s_tag4 }
 							<ul>
 
-								<li><img src="/deataworld/resources/images/shop_picture/${map.s_picture1 }" style="width:50%; height:20%"></li>
+								<li><img src="/deataworld/resources/images/shop_picture/${map.s_picture1 }" ></li>
 								<li>가게주소:${map.s_address1}</li>
 							</ul>
 						</div>
 						<div class="field-skills">
-							<h3>구인수</h3>
+							<h3>구인 인원</h3>
 							<ul class="skill-tag">
 								<li>
 									<h6>${map.a_need }명</h6>
