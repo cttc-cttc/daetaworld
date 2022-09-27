@@ -49,11 +49,7 @@ public class JobAdsServiceImpl implements JobAdsService {
 		return dao.countJobAdsList();
 	}
 
-	@Override
-	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map) {
-		// TODO Auto-generated method stub
-		return dao.JobAdsSearch(map);
-	}
+	
 
 	@Override
 	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map) {
@@ -62,20 +58,6 @@ public class JobAdsServiceImpl implements JobAdsService {
 	}
 	
 	
-
-	@Override
-	public List<AreaCodeDTO> areaSearch(String area){
-		// TODO Auto-generated method stub
-		return dao.areaSearch(area);
-	}
-
-	@Override
-	public List<AreaCodeDTO> selectDropdown(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return dao.selectDropdown(map);
-	}
-
-
 	
 
 	@Override
@@ -126,6 +108,20 @@ public class JobAdsServiceImpl implements JobAdsService {
 		return dao.listCountry(cri);
 	}
 
+	@Override
+	public List<Map<String, Object>> listJobAdsSearch(Map<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.listJobAdsSearch(map);
+	}
+
+	@Override
+	public List<Map<Object, Object>> jobAdsSearch(Map<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.jobAdsSearch(map);
+	}
+
+	
+	
 	
 	
 }

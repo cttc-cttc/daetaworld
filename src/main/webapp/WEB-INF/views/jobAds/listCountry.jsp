@@ -36,7 +36,7 @@
 	<br>
 
 	<!-- 셀렉트 박스 start -->
-	<form method="get" action="AreaSearch">
+	<form method="get" aaction="${contextPath}/search/listJobAdsSearch">
 		<div class="container">
 			<table class="table">
 				<tbody>

@@ -121,7 +121,11 @@
 		#{pageStart}, #{perPageNum}
 	</select>
 
-
+	<!-- 구인 상단 검색 -->
+	<select id = "listJobAdsSearch" parameterType="java.util.Map" resultType="Map">
+		
+	
+	</select>
 
 
 	<!-- 구인상세 -->
@@ -130,7 +134,7 @@
 		from job_ads j, shop_info s
 		where j.s_number = s.s_number
 		and 
-		s.s_number = #{s_number};
+		s.s_number = #{s_number}
 	</select> 
 
 	<!-- 일반/긴급/농어촌 글 갯수 -->
@@ -140,25 +144,23 @@
 			where job_code = 18
 			
 		</select>	
+		
 	
-	<!-- 구인목록검색 -->
-	<select id="JobAdsSearch" parameterType="java.util.Map"
-		resultType="JobAdsDTO">
-		select *
-		from job_ads
+	
+	<!-- 구인 하단목록검색 -->
+	<select id="jobAdsSearch" parameterType="java.util.Map" resultType="Map">
+		SELECT s_name FROM shop_info
+		UNION
+		SELECT a_wage FROM job_ads 
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="option == 's_number'">
 				s_number
 			</if>
-			<if test="option == 'a_number'">
-				a_number
-			</if>
+			
 			<if test="option == 'a_wage'">
 				a_wage
 			</if>
-			<if test="option == 'job_code'">
-				job_code
-			</if>
+			
 
 			<if test="value != null and value != ''">
 				= #{value}
@@ -192,11 +194,7 @@
 	</select>
 
 
-	<!-- 지역검색 -->
-	<select id="areaSearch" parameterType="String"
-		resultType="AreaCodeDTO">
-
-	</select>
+	
 
 
 	<!-- 직업추천 -->

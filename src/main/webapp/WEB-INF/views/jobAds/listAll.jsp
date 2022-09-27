@@ -36,7 +36,7 @@
 	<br>
 
 	<!-- 셀렉트 박스 start -->
-	<form method="get" action="AreaSearch">
+	<form method="get" action="listJobAdsSearch"  >
 		<div class="container">
 			<table class="table">
 				<tbody>
@@ -50,19 +50,20 @@
 									<th>지역</th> <!-- 지역 카테고리1 -->
 									<td>
 									<select class="form-select" onchange="selectAreaName1(this)">
+									
 										<option value="선택">선택</option>
-										<c:forEach var="areaName1" items="${areaName1List }">
-											<option value="${areaName1 }">${areaName1 }</option>
+										<c:forEach var="areaName1" items="${areaName1List}">
+											<option value="${areaName1 }" >${areaName1 }</option>
 										</c:forEach>
 									</select>
 									</td>
 									
 									
 									<th>직종</th>
-									<td><select class="form-select" onchange="selectJob1(this)">
+									<td><select class="form-select" onchange="selectJob1(this)" >
 											<option value="선택">선택</option>
 										<c:forEach var="job1" items="${job1List }">
-											<option value="${job1 }">${job1 }</option>
+											<option value="${job1}" >${job1 }</option>
 										</c:forEach>
 											
 									</select></td>
@@ -74,10 +75,12 @@
 									<td></td>
 									<td class = "select2"> <!-- 지역 카테고리2 -->
 									<select class="form-select" id="areaName2" onchange="selectAreaName2(this)"></select>
+									
 									</td>
 									<td></td>
 									<td class = "select22"><!-- 직종 카테고리2 -->
 									<select class="form-select" id="job2" onchange="selectJob2(this)"></select>
+									
 									</td>
 									<td></td>
 									<td></td>
@@ -89,7 +92,7 @@
 							</tbody>
 						</table>
 						<div class="field-item-submit" align="center">
-							<button class="ht-btn theme-btn theme-btn-two">검색</button>
+							<button class="ht-btn theme-btn theme-btn-two" >검색</button>
 						</div>
 					</div>
 
@@ -130,7 +133,7 @@
 							<th>시급</th>
 							<th>주소</th>
 							<th>구인 인원</th>
-
+							
 
 						</tr>
 					</thead>
@@ -175,12 +178,12 @@
 			</table>
 
 		</section>
-		<form method="get" action="JobAdsSearch">
-			<select name="option">
-				<option value="s_number">가게번호</option>
-				<option value="a_number">공고번호</option>
+		<form method="get" action="jobAdsSearch">
+			<select name="option" >
+				<option value="s_name">가게이름</option>
+				
 				<option value="a_wage">시급</option>
-				<option value="job_code">직업코드</option>
+				
 
 			</select> <input type="text" name="value"> <input type="submit"
 				value="검색">
@@ -845,6 +848,8 @@
 		}
 	</script>
 	<!-- ajax 사용end -->
-
+	<!-- 구인 상단 검색 -->
+	
+	
 </body>
 </html>

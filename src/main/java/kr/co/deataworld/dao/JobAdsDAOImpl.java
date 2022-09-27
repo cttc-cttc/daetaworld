@@ -53,28 +53,12 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 		return sql.selectOne(NAMESPACE +".countJobAdsList");
 	}
 
-	@Override
-	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map) {
-		// TODO Auto-generated method stub
-		return sql.selectList(NAMESPACE +".JobAdsSearch", map);
-	}
+	
 	
 	@Override
 	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map) {
 		// TODO Auto-generated method stub
 		return sql.selectList(NAMESPACE +".favoriteSearch", map);
-	}
-
-	@Override
-	public List<AreaCodeDTO> areaSearch(String area) {
-		// TODO Auto-generated method stub
-		return sql.selectList(NAMESPACE + ".areaSearch", area);
-	}
-
-	@Override
-	public List<AreaCodeDTO> selectDropdown(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return sql.selectList(NAMESPACE + ".selectDropdown", map);
 	}
 
 	
@@ -127,6 +111,21 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 		return sql.selectList(NAMESPACE + ".listCountry", cri);
 	}
 
+	//구인 상단 검색
+	@Override
+	public List<Map<String, Object>> listJobAdsSearch(Map<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sql.selectList(NAMESPACE +".listJobAdsSearch", map);
+	}
+	//구인 하단검색
+	@Override
+	public List<Map<Object, Object>> jobAdsSearch(Map<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sql.selectList(NAMESPACE + ".jobAdsSearch", map);
+	}
+
+	
+	
 	
 
 	
