@@ -1,6 +1,7 @@
 package kr.co.deataworld.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import kr.co.deataworld.dto.BlacklistDTO;
+import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.service.AdminService;
 import kr.co.deataworld.util.PageProcess;
 
@@ -25,6 +27,52 @@ public class AdminController {
 	
 	@Inject
 	AdminService service;
+	
+	@GetMapping(value = "admin/user_profile")
+	public String userProfile(Model model, String num, String id) {
+		logger.info("num: " + num);
+		logger.info("id: " + id);
+		
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("m_number", num);
+		param.put("m_id", id);
+		
+		MemberDTO userInfo = service.getUserInfo(param);
+		model.addAttribute("userInfo", userInfo);
+		if(userInfo.getM_type() == 1) {
+			logger.info("관리자화면 접속 : 구직자 회원 프로필");
+			model.addAttribute("title", "구직자 프로필 정보");
+			model.addAttribute("leftMenu", "employee_list");
+		} else {
+			logger.info("관리자화면 접속 : 구인자 회원 프로필");
+			model.addAttribute("title", "구인자 프로필 정보");
+			model.addAttribute("leftMenu", "employer_list");
+		}
+		return "admin/user_profile";
+	}
+	
+	@GetMapping(value = "admin/user_point")
+	public String userPoint(Model model, String num, String id) {
+		logger.info("num: " + num);
+		logger.info("id: " + id);
+		
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("m_number", num);
+		param.put("m_id", id);
+		
+		MemberDTO userInfo = service.getUserInfo(param);
+		model.addAttribute("pointInfo", userInfo);
+		if(userInfo.getM_type() == 1) {
+			logger.info("관리자화면 접속 : 구직자 회원 포인트");
+			model.addAttribute("title", "구직자 포인트 정보");
+			model.addAttribute("leftMenu", "employee_list");
+		} else {
+			logger.info("관리자화면 접속 : 구인자 회원 포인트");
+			model.addAttribute("title", "구인자 포인트 정보");
+			model.addAttribute("leftMenu", "employer_list");
+		}
+		return "admin/user_point";
+	}
 	
 	@GetMapping(value = "admin/employee_list")
 	public String employeeList(Model model, int page) throws Exception {
@@ -60,16 +108,6 @@ public class AdminController {
 		return "admin/employee_list";
 	}
 	
-	@GetMapping(value = "admin/employee_profile")
-	public String employeeProfile(Model model, String num, String id) {
-		logger.info("관리자화면 접속 : 구직자 회원 프로필");
-		logger.info("num: " + num);
-		logger.info("id: " + id);
-		
-		model.addAttribute("leftMenu", "employee_list");
-		return "admin/employee_profile";
-	}
-	
 	@GetMapping(value = "admin/employer_list")
 	public String employerList(Model model, int page) throws Exception {
 		logger.info("관리자화면 접속 : 구인자 회원 리스트");
@@ -102,16 +140,6 @@ public class AdminController {
 		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "employer_list");
 		return "admin/employer_list";
-	}
-	
-	@GetMapping(value = "admin/employer_profile")
-	public String employerProfile(Model model, String num, String id) {
-		logger.info("관리자화면 접속 : 구인자 회원 프로필");
-		logger.info("num: " + num);
-		logger.info("id: " + id);
-		
-		model.addAttribute("leftMenu", "employer_list");
-		return "admin/employer_profile";
 	}
 	
 	@GetMapping(value = "admin/blacklist")

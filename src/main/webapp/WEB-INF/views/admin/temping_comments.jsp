@@ -60,7 +60,7 @@
 																			<h3><a class="text-ellipsis" href="${contextPath }/board/temping/detail?b_number=${list.b_number }">${list.c_contents }</a></h3>
 																		</td>
 																		<td class="application-employer">
-																			<a class="dotted" href="${contextPath }/admin/employee_profile?id=${list.m_id }">${list.m_id }</a>
+																			<a class="dotted" href="${contextPath }/admin/user_profile?id=${list.m_id }">${list.m_id }</a>
 																		</td>
 																		<td class="application-created"><span>${list.c_date }</span></td>
 																		<td class="status">${list.r_type }</td>

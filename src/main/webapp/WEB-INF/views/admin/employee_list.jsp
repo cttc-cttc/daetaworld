@@ -69,7 +69,7 @@
 																			<td class="status"><span class="rejected">정지</span></td>
 																		</c:if>
 																		<td class="view-application">
-																			<a href="${contextPath }/admin/employee_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
+																			<a href="${contextPath }/admin/user_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
 																		</td>
 																	</tr>
 																</c:forEach>

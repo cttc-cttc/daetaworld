@@ -69,12 +69,7 @@
 																			</c:forEach>
 																		</td>
 																		<td class="view-application">
-																			<c:if test="${list.m_type == 1 }">
-																				<a href="${contextPath }/admin/employee_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
-																			</c:if>
-																			<c:if test="${list.m_type == 2 }">
-																				<a href="${contextPath }/admin/employer_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
-																			</c:if>
+																			<a href="${contextPath }/admin/user_profile?num=${list.m_number}" class="view-application">상세 회원정보 보기</a>
 																		</td>
 																	</tr>
 																</c:forEach>

@@ -60,7 +60,7 @@
 																			<h3><a class="text-ellipsis" href="${contextPath }/jobAds?num=${jobAdsReport.a_number }">${jobAdsReport.s_name }</a></h3>
 																		</td>
 																		<td class="application-employer">
-																			<a class="dotted" href="${contextPath }/admin/employer_profile?id=${jobAdsReport.m_id }">${jobAdsReport.m_id }</a>
+																			<a class="dotted" href="${contextPath }/admin/user_profile?id=${jobAdsReport.m_id }">${jobAdsReport.m_id }</a>
 																		</td>
 																		<td class="application-created"><span>${jobAdsReport.s_date }</span></td>
 																		<td class="status">${jobAdsReport.r_type }</td>
