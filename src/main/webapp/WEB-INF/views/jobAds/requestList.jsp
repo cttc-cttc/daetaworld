@@ -111,8 +111,7 @@
 												<a class="ht-btn text-center" type="button" onclick="requestChk_y()">수락<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
 											</td>
 											<td>
-												<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/requestNo?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">거절<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
-												<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/requestNo?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">거절<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+												<a class="ht-btn text-center" type="button" onclick="requestChk_n()">거절<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
 											</td>
 										</tr>
 									</table>
@@ -413,22 +412,9 @@
 	</script>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<!-- 요청받은 공고 수락 눌렀을때 -->
+	<!-- 요청받은 공고 수락 눌렀을때 START -->
 	<script type="text/javascript">
 	function requestChk_y() {
-		
 		var m_id_c = $("#m_id_c").val();
 		var a_number_c = $("#a_number_c").val();
 		
@@ -437,7 +423,6 @@
 				"m_id" : m_id_c,
 				"a_number" : a_number_c
 		};
-		
 		$.ajax({
 			url : url,
 			data : paramData,
@@ -448,7 +433,6 @@
 				alert('지원하셨습니다.');
 				window.location.reload(true);
 				location.href="${contextPath}/employeeMapper/pinchHistory?m_id=${loginInfo.m_id}"
-				
 			},
 			error : function(result){
 				console.log('지원실패')
@@ -456,15 +440,43 @@
 			}
 		});
 	}
-	
-
-		
-		
 		</script>
+	<!-- 요청받은 공고 수락 눌렀을때 END -->
 	
 	
+	<!-- 요청받은 공고 거절 눌렀을때 START -->
+	<script type="text/javascript">
+	function requestChk_n() {
+		var m_id_c = $("#m_id_c").val();
+		var a_number_c = $("#a_number_c").val();
+		
+		var url = "${contextPath}/employeeMapper/requestNo";
+		var paramData = {
+				"m_id" : m_id_c,
+				"a_number" : a_number_c
+		};
+		$.ajax({
+			url : url,
+			data : paramData,
+			dataType : "json",
+			type : "POST",
+			success : function(result){
+				console.log('거절성공');
+				alert('구인요청을 거절하셨습니다');
+				window.location.reload(true);
+				location.href="${contextPath}/employeeMapper/pinchHistory?m_id=${loginInfo.m_id}"
+			},
+			error : function(result){
+				console.log('지원실패')
+				alert('실패');
+			}
+		}); 		
+		
+	}	
 	
 	
+	</script>	
+	<!-- 요청받은 공고 거절 눌렀을때 END -->
 	
 	
 	
