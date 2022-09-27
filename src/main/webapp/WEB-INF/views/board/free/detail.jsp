@@ -63,7 +63,7 @@
 
 										<div class="form-group">
 											<label>작성자</label> <input type="text" name="m_id"
-												class="form-control" value="${board.m_id}"
+												class="form-control" value="${board.m_nick}"
 												readonly="readonly" />
 										</div>
 									</div>
@@ -71,10 +71,12 @@
 									<tr>
 										<div class="box-footer">
 											<button id="" class="btn btn-success">메인</button>
+											<button class="btn btn-primary">목록</button>
+										<c:if test="${loginInfo.m_id==board.m_id}">
 											<button class="btn btn-warning">수정</button>
 											<button class="btn btn-danger">삭제</button>
-											<button class="btn btn-primary">목록</button>
 											<button class="btn btn-info">댓글작성</button>
+										</c:if>
 										</div>
 
 													<div id="replylist">

@@ -29,8 +29,9 @@
 			<form name="form" method="post" onsubmit="return rreplyupdate()">		
 			<div class="box-body">
 				<div class="form-group">
-					<label>작성자</label> <input type="text"  
-						name="m_id" value ="${user.name }" class="form-control" placeholder="입력하세요">
+					<label>작성자</label> <input class="from-control"  name="m_nick" value="${loginM_nick}" readonly="readonly">
+					<input type="hidden" name="m_id" value="${loginInfo.m_id}">
+					
 				</div>
 				<div class="form-group">
 					<textarea class="form-control" name="c_contents" rows="3"

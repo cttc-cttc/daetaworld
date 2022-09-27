@@ -30,15 +30,16 @@
 		<form name="form" method="post" onsubmit="return rreply()">
 			<div class="box-body">
 				<div class="form-group">
-					<label>작성자</label> <input type="text"
-						name='m_id' value =" ${user.name}" class="form-control" placeholder="입력하세요">
+					<label>작성자</label> <input class="from-control"  name="m_nick" value="${loginM_nick}" readonly="readonly">
+					<input type="hidden" name="m_id" value="${loginInfo.m_id}">
+					
 				</div>
 				<div class="form-group">
 					<textarea class="form-control" name="c_contents" rows="3"
 						placeholder="댓글을 입력하세요"></textarea>
 				</div>
 				<input type="hidden" name="b_number" />
-			</div>
+			
 	
 			<div class="box-footer">
 				<button type="submit" class="btn btn-primary">작성완료</button>

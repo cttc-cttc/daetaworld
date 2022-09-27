@@ -42,8 +42,8 @@
 				</div>
 	
 				<div class="form-group">
-					<label>작성자</label> <input type="text" name="m_id" class="form-control"  
-						>
+					<label>작성자</label> <input class="from-control"  name="m_nick" value="${loginM_nick}" readonly="readonly">
+					<input type="hidden" name="m_id" value="${loginInfo.m_id}">
 				</div>
 			</div>
 	

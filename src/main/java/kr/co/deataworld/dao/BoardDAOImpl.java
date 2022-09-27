@@ -1,5 +1,6 @@
 package kr.co.deataworld.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -95,5 +96,9 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace + ".tempingDelete", b_number);
 	}
+
+	
+	
+	
 
 }

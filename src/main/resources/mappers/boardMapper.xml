@@ -4,16 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.deataworld.boardMapper">
 
-<!-- 로그인 처리를 위한 SQL -->
-	<select id="login" parameterType="java.util.Map"
-		resultType="java.util.Map">
-		select id, name
-		from member
-		where id=#{id} and password
-		=#{password}
-	</select>
-
-
 
 
 
@@ -26,6 +16,8 @@
 		where b_code = 0
 		and del = 0
 		order by b_number desc
+		
+		
 	</select>
 	
 	<!-- 글 내용확인 -->
@@ -47,9 +39,9 @@
 	
 	<!-- 글 쓰기 -->
 	<insert id="register" parameterType="BoardDTO">
-		insert into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id ,del)
+		insert into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id,m_nick ,del)
 		values (#{b_number}, 0,
-		#{b_title}, #{b_contents},#{b_hits},curdate(), #{m_id} ,0)
+		#{b_title}, #{b_contents},#{b_hits},curdate(), #{m_id},#{m_nick} ,0)
 		
 	</insert>
 	
@@ -97,7 +89,7 @@
 	
 	
 	</select>
-	
+	<!-- 떔빵 조회수 -->
 	<update id="tempingUpdateReadCnt" parameterType="java.lang.Integer">
 		update board
 		set
@@ -110,12 +102,12 @@
 	<!-- 떙빵 글 쓰기 -->
 	<insert id="tempingRegister" parameterType="BoardDTO">
 		insert 
-		into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id ,del)
-		values (#{b_number}, 1, #{b_title}, #{b_contents},#{b_hits},now(), #{m_id} ,0)
+		into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id,m_nick ,del)
+		values (#{b_number}, 1, #{b_title}, #{b_contents},#{b_hits},now(), #{m_id},#{m_nick} ,0)
 		
 	</insert>
 	
-	<!-- 글 수정 -->
+	<!-- 떔빵글 수정 -->
 	<update id="tempingUpdate" parameterType="BoardDTO">
 		update board
 		set
@@ -123,7 +115,7 @@
 		where b_number = #{b_number}
 	</update>
 	
-		<!-- 글 삭제 del 컬럼을 작성하여 1로 변경 -->
+		<!--떔빵글 삭제 del 컬럼을 작성하여 1로 변경 -->
 	<update id="tempingDelete" parameterType="java.lang.Integer">
 		update board
 		set
@@ -132,6 +124,25 @@
 		b_number = #{b_number}
 	</update>
 	
+	<select id="getBoardList" resultType="BoardDTO">
+	
+			SELECT			
+			b_number,b_code,b_title,b_contents,b_hits,b_date,m_id,m_nick ,del		
+			FROM			
+			board		
+			LIMIT #{startList}, #{listSize}	
+			
+	</select>
+	
+	<select id="getBoardListCnt" resultType="int">		
+	SELECT			
+	count(*) as listCnt		
+	FROM			
+	board	
+	</select>
 
+	
+	
+	
 	
 </mapper>

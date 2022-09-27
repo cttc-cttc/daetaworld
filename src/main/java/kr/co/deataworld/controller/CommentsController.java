@@ -127,7 +127,7 @@ public class CommentsController {
 				
 				if(r > 0) {
 					rttr.addFlashAttribute("msg","글삭제에 성공하였습니다.");
-					return "redirect:temping";
+					return "redirect:tempingdetail?b_number=" + c_number;
 				}
 				return "redirect:tempingdetail?b_number=" + c_number;
 			}

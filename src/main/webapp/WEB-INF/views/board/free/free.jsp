@@ -50,24 +50,31 @@
 								<td>${board.b_number}</td>
 								<td><a href="detail?b_number=${board.b_number}"> ${board.b_title} </a></td>
 								<td>${board.b_date}</td>
-								<td>${board.m_id}</td>
+								<td>${board.m_nick}</td>
 								
 								<td><span class="badge">${board.b_hits }</span></td>
 							</tr>
 						</c:forEach>
+						
 						
 						<tr>
 							<td colspan="5" align="center">
 							<input class="btn btn-success" type="button" value="처음으로" id="index" 
 								onclick="location.href='${contextPath}'"/>
 							</td>
+							
 						</tr>
+						
 					</table>
+					<!-- search{s} -->	
+					<div class="form-group row justify-content-center">			<div class="w100" style="padding-right:10px">				<select class="form-control form-control-sm" name="searchType" id="searchType">					<option value="title">제목</option>					<option value="Content">본문</option>					<option value="reg_id">작성자</option>				</select>			</div>			<div class="w300" style="padding-right:10px">				<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">			</div>			<div>				<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>			</div>		</div>		<!-- search{e} -->
+					
 					<div class="box">
 						<div class="box-header with-border">
 							<a href="${contextPath }/board/free/register"><h3 class="box-title">게시판 글쓰기</h3></a>
 						</div>
 					</div>
+					
 				</div>
 					</div>
 
@@ -91,4 +98,14 @@
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 </body>
+<script>   // 생략		
+			$(document).on('click', '#btnSearch', function(e){
+									e.preventDefault();		
+									var url = "${pageContext.request.contextPath}/board/free/free";		
+									url = url + "?searchType=" + $('#searchType').val();		
+									url = url + "&keyword=" + $('#keyword').val();		
+									location.href = url;		
+									console.log(url);	});
+</script>
+
 </html>

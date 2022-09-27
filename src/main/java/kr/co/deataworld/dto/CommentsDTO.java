@@ -15,19 +15,10 @@ public class CommentsDTO {
 	private String c_contents;
 	private String c_date;
 	private String m_id;
+	private String m_nick;
 	private int r_code;
 	private int b_number;
 	private int del;
-	
-	
-	
-	
-	
-	@Override
-	public String toString() {
-		return "CommentsDTO [c_number=" + c_number + ", c_contents=" + c_contents + ", c_date=" + c_date + ", m_id="
-				+ m_id + ", r_code=" + r_code + ", b_number=" + b_number + ", del=" + del + "]";
-	}
 	public int getC_number() {
 		return c_number;
 	}
@@ -52,6 +43,12 @@ public class CommentsDTO {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
+	public String getM_nick() {
+		return m_nick;
+	}
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
+	}
 	public int getR_code() {
 		return r_code;
 	}
@@ -70,6 +67,15 @@ public class CommentsDTO {
 	public void setDel(int del) {
 		this.del = del;
 	}
+	@Override
+	public String toString() {
+		return "CommentsDTO [c_number=" + c_number + ", c_contents=" + c_contents + ", c_date=" + c_date + ", m_id="
+				+ m_id + ", m_nick=" + m_nick + ", r_code=" + r_code + ", b_number=" + b_number + ", del=" + del + "]";
+	}
+	
+	
+	
+	
 	
 	
 }
