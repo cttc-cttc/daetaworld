@@ -98,14 +98,15 @@
 																		<div class="single-input mb-15">
 																			<label for="shopPicture">가게 사진 <span>*</span></label>
 																				<div id="dropZone"
-																					style="height: 300px; border: solid thin; padding-top: 1rem;">
+																					style="border: solid thin;">
 																					<div id="fileDragDesc">파일을 올려주세요.</div>
 																					<table id="fileListTable" width="100%" border="0px">
 																						<tbody id="fileTableTbody">
 																						</tbody>
 																					</table>
 																				</div>
-																				<input type="file" id="multiFiles" name="files" multiple="multiple" onchange="selectFile(this)">
+																				<input type="file" id="multiFiles" name="shopImages" multiple="multiple" 
+																				accept=".png, .jpg, .jpeg" onchange="selectFile(this)">
 																		</div>
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">

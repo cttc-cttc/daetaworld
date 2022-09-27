@@ -62,4 +62,20 @@ public class FileProcess {
 		}
 		return savedName;
 	}
+	
+//	가게사진의 경우 업데이트 시 기존 사진을 모두 삭제
+	public static void deleteAllShopImg(String img1, String img2, String img3) {
+		if(img1 != null) {
+			File delImg1 = new File(SHOP_IMG_PATH, img1);
+			delImg1.delete();
+		}
+		if(img2 != null) {
+			File delImg2 = new File(SHOP_IMG_PATH, img2);
+			delImg2.delete();
+		}
+		if(img3 != null) {
+			File delImg3 = new File(SHOP_IMG_PATH, img3);
+			delImg3.delete();
+		}
+	}
 }

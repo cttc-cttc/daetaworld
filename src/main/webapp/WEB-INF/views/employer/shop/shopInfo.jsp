@@ -86,8 +86,7 @@
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-15">
 																			<label for="s_intro">가게 소개 <span>*</span></label><br>
-																			<textarea name="s_intro" id="s_intro" rows="3">
-																				${shopInfo.s_intro }</textarea>
+																			<textarea name="s_intro" id="s_intro" rows="3">${shopInfo.s_intro }</textarea>
 																		</div>
 																	</div>
 																	
@@ -96,13 +95,28 @@
 																		<div class="single-input mb-15">
 																			<label for="shopPicture">가게 사진 <span>*</span></label>
 																				<div id="dropZone"
-																					style="width: 365px; height: 300px; border-style: solid; border-color: black;">
+																					style="border: solid thin;">
 																					<div id="fileDragDesc">파일을 올려주세요.</div>
 																					<table id="fileListTable" width="100%" border="0px">
 																						<tbody id="fileTableTbody">
 																						</tbody>
 																					</table>
 																				</div>
+																				<input type="file" id="multiFiles" name="shopImages" multiple="multiple" 
+																				accept=".png, .jpg, .jpeg" onchange="selectFile(this)">
+																			<p>등록된 사진:</p>
+																			<c:if test="${shopInfo.s_picture1 != null }">
+																				<img src="${contextPath }/displayShop?fileName=${shopInfo.s_picture1}" style="width: 120px;">
+																				<input type="hidden" name="preS_picture1" value="${shopInfo.s_picture1 }">
+																			</c:if>
+																			<c:if test="${shopInfo.s_picture2 != null }">
+																				<img src="${contextPath }/displayShop?fileName=${shopInfo.s_picture2}" style="width: 120px;">
+																				<input type="hidden" name="preS_picture2" value="${shopInfo.s_picture2 }">
+																			</c:if>
+																			<c:if test="${shopInfo.s_picture3 != null }">
+																				<img src="${contextPath }/displayShop?fileName=${shopInfo.s_picture3}" style="width: 120px;">
+																				<input type="hidden" name="preS_picture3" value="${shopInfo.s_picture3 }">
+																			</c:if>
 																		</div>
 																	</div>
 																	
