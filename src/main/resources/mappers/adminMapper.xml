@@ -4,6 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.deataworld.adminMapper">
 
+	<!-- 회원 기본정보 조회 -->
+	<select id="getUserInfo" parameterType="java.util.Map" resultType="MemberDTO">
+		select * from member
+		<if test="m_number != null">
+			where m_number = #{m_number}
+		</if>
+		<if test="m_id != null">
+			where m_id = #{m_id}
+		</if>
+	</select>
+	
+	<!-- 회원 포인트정보 조회 -->
+	
 	<!-- 전체 구직자 수 -->
 	<select id="employeeCnt" resultType="java.lang.Integer">
 		select count(*) from member

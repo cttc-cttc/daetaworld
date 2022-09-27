@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.deataworld.dto.BlacklistDTO;
+import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
 
 @Repository
@@ -18,6 +19,12 @@ public class AdminDAOImpl implements AdminDAO {
 	@Inject
 	SqlSession sql;
 
+	@Override
+	public MemberDTO getUserInfo(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return sql.selectOne(nameSpace + ".getUserInfo", param);
+	}
+	
 	@Override
 	public int employeeCnt() throws Exception {
 		return sql.selectOne(nameSpace + ".employeeCnt");
@@ -147,8 +154,4 @@ public class AdminDAOImpl implements AdminDAO {
 	public int cancelTempingComments(int cr_number) throws Exception {
 		return sql.update(nameSpace + ".cancelTempingComments", cr_number);
 	}
-
-	
-
-	
 }

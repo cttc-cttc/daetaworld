@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.AdminDAO;
 import kr.co.deataworld.dto.BlacklistDTO;
+import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
 
 @Service
@@ -16,6 +17,12 @@ public class AdminServiceImpl implements AdminService {
 	@Inject
 	AdminDAO dao;
 
+	@Override
+	public MemberDTO getUserInfo(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return dao.getUserInfo(param);
+	}
+	
 	@Override
 	public int employeeCnt() throws Exception {
 		return dao.employeeCnt();
