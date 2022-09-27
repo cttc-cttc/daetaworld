@@ -21,7 +21,7 @@
 		where
 		A.a_urgency = 1
 		and
-		(A.a_status = 0 or A.a_status = 1)		
+		(A.a_status = 0 or A.a_status = 1)
 		group by A.a_number
 		order by A.a_number desc
 		limit 0, 6;
@@ -70,147 +70,173 @@
 		where
 		A.a_urgency = 0
 		and (A.a_status = 0 or A.a_status =
-		1)		
+		1)
 		group by A.a_number
 		order by A.a_number desc
 		limit 0,
 		6
 
 	</select>
-	<!-- 일반 구인목록-->
-	<select id="listAds" parameterType="java.util.Map" resultType="JobAdsDTO">
-			select *
-			from job_ads			
-			where a_urgency = 0
-			and a_status not in(3,4)
-            order by s_number
-			limit #{pageStart}, #{perPageNum} 
-							
-		</select>
-	
-	<!-- 급구 구인목록 -->
-	<select id="listUrgency" parameterType="java.util.Map" resultType="JobAdsDTO">
-		select *
-			from job_ads			
-			where a_urgency = 1
-			and a_status not in(3,4)
-            order by s_number
-			limit #{pageStart}, #{perPageNum} 
-	
-	
+	<!-- 일반 구인목록 -->
+	<select id="listAds" parameterType="java.util.Map"
+		resultType="Map">
+		select a.*, s.*
+		from job_ads a, shop_info s
+		where a.a_urgency = 0
+		and a.a_status not in (3,4)
+		and a.s_number = s.s_number
+		and s.j_code not in (18)
+		order by a.a_number desc
+		limit #{pageStart}, #{perPageNum}
+
 	</select>
-	
-	
-	
+
+	<!-- 급구 구인목록 -->
+	<select id="listUrgency" parameterType="java.util.Map"
+		resultType="Map">
+		select a.*, s.*
+		from job_ads a, shop_info s
+		where a.a_urgency = 1
+		and a.a_status not in (3,4)
+		and a.s_number = s.s_number
+		and s.j_code not in (18)
+		order by a.a_number desc
+		limit #{pageStart}, #{perPageNum}
+
+
+	</select>
+
+
+
 	<!-- 농어촌 구인목록 -->
-	<select id="listCountry" parameterType="java.util.Map" resultType="JobAdsDTO">
-		select *
-		from job_ads		
+	<select id="listCountry" parameterType="java.util.Map"
+		resultType="Map">
+		select a.*, s.*
+		from job_ads a, shop_info s
 		where a_status not in(3,4)
 		and job_code = 18
-		order by s_number
-		limit #{pageStart}, #{perPageNum} 
-	</select>	
-		
-	
-	
-	
+		and a.s_number = s.s_number
+		order by a.a_number desc
+		limit
+		#{pageStart}, #{perPageNum}
+	</select>
+
+
+
+
 	<!-- 구인상세 -->
 	<select id="listDetail" parameterType="Map" resultType="Map">
-		select j.*,s.*,ja.*
+		select
+		j.*,s.*,ja.*
 		from job_ads j, shop_info s, job_apply ja
-		where j.s_number = s.s_number
-        and s.s_number=#{s_number}
+		where j.s_number= s.s_number
+		and s.s_number=#{s_number}
 	</select>
 
 	<!-- 일반/긴급/농어촌 글 갯수 -->
-		<select id="countJobAdsList" resultType="java.lang.Integer">
-			select count(*)
-			from job_ads
-			where job_code = 18
-           
-			
-		</select>	
-	
-	
+	<select id="countJobAdsList" resultType="java.lang.Integer">
+		select count(*)
+		from job_ads
+		where job_code = 18
+
+
+	</select>
+
+
 	<!-- 구인목록검색 -->
-       <select id="JobAdsSearch" parameterType="java.util.Map" resultType="JobAdsDTO">		
+	<select id="JobAdsSearch" parameterType="java.util.Map"
+		resultType="JobAdsDTO">
 		select *
 		from job_ads
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="option == 's_number'">
-				s_number</if>
+				s_number
+			</if>
 			<if test="option == 'a_number'">
-				a_number</if>
+				a_number
+			</if>
 			<if test="option == 'a_wage'">
-				a_wage</if>
+				a_wage
+			</if>
 			<if test="option == 'job_code'">
-				job_code</if>
-			
+				job_code
+			</if>
+
 			<if test="value != null and value != ''">
-			= #{value} 
-			</if>			
+				= #{value}
+			</if>
 		</trim>
 	</select>
-	
+
 	<!-- 직업추천 구인 목록검색 -->
-       <select id="favoriteSearch" parameterType="java.util.Map" resultType="JobAdsDTO">		
+	<select id="favoriteSearch" parameterType="java.util.Map"
+		resultType="JobAdsDTO">
 		select *
 		from job_ads
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="option == 's_number'">
-				s_number</if>
+				s_number
+			</if>
 			<if test="option == 'a_number'">
-				a_number</if>
+				a_number
+			</if>
 			<if test="option == 'a_wage'">
-				a_wage</if>
+				a_wage
+			</if>
 			<if test="option == 'job_code'">
-				job_code</if>
-			
+				job_code
+			</if>
+
 			<if test="value != null and value != ''">
-			= #{value} 
-			</if>			
+				= #{value}
+			</if>
 		</trim>
 	</select>
-	
+
 
 	<!-- 지역검색 -->
-	<select id = "areaSearch" parameterType="String" resultType="AreaCodeDTO">
-	
+	<select id="areaSearch" parameterType="String"
+		resultType="AreaCodeDTO">
+
 	</select>
-	
-	
-	<!-- 직업추천  -->
-<!-- 	 <select id="Recommendation" parameterType="java.util.Map" resultType="RecommendationDTO">		 -->
-<!-- 		select * -->
-<!-- 		from shop_info -->
-<!-- 		<trim prefix="WHERE" prefixOverrides="AND|OR"> -->
-<!-- 			<if test="option == 'job_code'"> -->
-<!-- 				job_code</if>		 -->
-<!-- 		</trim> -->
-<!-- 	</select> -->
-	
+
+
+	<!-- 직업추천 -->
+	<!-- <select id="Recommendation" parameterType="java.util.Map" resultType="RecommendationDTO"> -->
+	<!-- select * -->
+	<!-- from shop_info -->
+	<!-- <trim prefix="WHERE" prefixOverrides="AND|OR"> -->
+	<!-- <if test="option == 'job_code'"> -->
+	<!-- job_code</if> -->
+	<!-- </trim> -->
+	<!-- </select> -->
+
 	<!-- 지역 카테고리1 목록 -->
 	<select id="getAreaName1" resultType="java.lang.String">
-		select a_name1 from area_code
+		select a_name1 from
+		area_code
 		group by a_name1
 	</select>
 	<!-- 지역 카테고리2 목록 -->
-	<select id="getAreaName2" parameterType="java.lang.String" resultType="java.util.Map">
+	<select id="getAreaName2" parameterType="java.lang.String"
+		resultType="java.util.Map">
 		select a_code, a_name2
 		from area_code
-		where a_name1 = #{a_name1}
+		where a_name1 =
+		#{a_name1}
 	</select>
-	
+
 	<!-- 직종 카테고리1 목록 -->
 	<select id="getJob1" resultType="java.lang.String">
 		select j_type1 from job_code
 		group by j_type1
 	</select>
 	<!-- 직종 카테고리2 목록 -->
-	<select id="getJob2" parameterType="java.lang.String" resultType = "java.util.Map">
+	<select id="getJob2" parameterType="java.lang.String"
+		resultType="java.util.Map">
 		select j_code, j_type2
 		from job_code
-		where j_type1 = #{j_type1}
+		where j_type1 =
+		#{j_type1}
 	</select>
 </mapper>

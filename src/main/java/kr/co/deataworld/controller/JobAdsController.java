@@ -49,13 +49,13 @@ public class JobAdsController {
 		// 일반구인목록
 
 	@GetMapping(value = "/jobAds/listAll")
-	public String listAll(Model model,JobAdsCriteria cri) throws Exception {
+	public String listAll(Model model,JobAdsCriteria cri ) throws Exception {
 		logger.info("구인목록 페이지 접속");
 		
 		JobAdsPageMaker pageMaker = new JobAdsPageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.countJobAdsList());
-		List<JobAdsDTO>list = service.listAds(cri);
+		List<Map<String, Object>> list = service.listAds(cri);
 		List<String> areaName1List = service.getAreaName1(); // 지역 카테고리1 목록
 		List<String> job1List = service.getJob1();//직종 카테고리1 목록
 		
@@ -92,7 +92,7 @@ public class JobAdsController {
 		JobAdsPageMaker pageMaker = new JobAdsPageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.countJobAdsList());
-		List<JobAdsDTO>list2 = service.listUrgency(cri);
+		List<Map<String, Object>> list2 = service.listUrgency(cri);
 		List<String> areaName1ListUr = service.getAreaName1(); // 지역 카테고리1 목록
 		List<String> job1ListUrgency = service.getJob1();//직종 카테고리1 목록
 		
@@ -113,7 +113,7 @@ public class JobAdsController {
 		JobAdsPageMaker pageMaker = new JobAdsPageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.countJobAdsList());
-		List<JobAdsDTO>list3 = service.listCountry(cri);
+		List<Map<String, Object>>list3 = service.listCountry(cri);
 		List<String> areaName1ListCountry = service.getAreaName1(); // 지역 카테고리1 목록
 		List<String> job1ListCountry = service.getJob1();//직종 카테고리1 목록
 		
@@ -133,56 +133,7 @@ public class JobAdsController {
 			
 	
 	
-	//붙여넣기
-//	
-//	@ResponseBody
-//	public ResponseEntity<List<JobAdsDTO>> ajaxProject(String select) throws Exception {
-//		ResponseEntity<List<JobAdsDTO>> entity =null;
-//		try{
-//			
-//			List<JobAdsDTO> list=service.selectDropdown(select);
-//			entity =new ResponseEntity<List<JobAdsDTO>>(list, HttpStatus.OK);
-//		}catch(Exception e){
-//			e.printStackTrace();
-//			//에러일 경우 에러 코드 전송 400
-//			entity =new ResponseEntity<String>(HttpStatus.BAD_REQUEST);		
-//		}
-//		
-//		return entity;
-//		
-//		chrome-extension://aejoelaoggembcahagimdiliamlcdmfm/restlet_client.html
-//		 위주소에서 데이터가 Json 형태로 던져 주는지 확인 해보세요. 사용방법은 구글 검색
-//	}
 
-//	@ResponseBody
-//	@PostMapping(value="/jobAds/listAll")
-//	public ResponseEntity<List<AreaCodeDTO>>useAjax(String select) throws Exception{
-//		ResponseEntity<List<AreaCodeDTO>> entity =null;
-//		try{
-//			
-//			List<AreaCodeDTO>list1= service.selectDropdown(select);
-//			
-//			entity =new ResponseEntity<List<AreaCodeDTO>>(list1, HttpStatus.OK);
-//		}catch(Exception e){
-//			e.printStackTrace();
-//			//에러일 경우 에러 코드 전송 400
-//		//	entity =new ResponseEntity<String select>(HttpStatus.BAD_REQUEST);		
-//		}
-//		
-//		return entity;
-//	}
-//	
-	
-//	//구인검색-지역
-//	@GetMapping(value = "jobAds/AreaSearch")
-//	public String AreaSearch(@RequestParam Map<Object,Object>map,Model model) {
-//		List<AreaCodeDTO>listSi = service.AreaSearch(map);
-//		model.addAttribute("listSi", listSi);
-//		return "jobAds/search/AreaSearch";
-//	}
-//	
-//	
-	
 	
 	
 	//구인하단검색(구인목록에서)
@@ -208,12 +159,12 @@ public class JobAdsController {
 
 	// 구인목록 상세(가게번호 누르고 들어갈때)
 	@GetMapping(value = "jobAds/listAllDetail")
-	public String listAdsDetail(@RequestParam("s_number")int s_number,
+	public String listAdsDetail(@RequestParam("s_name")String s_name,
 								@RequestParam("m_id")String m_id,
 								@RequestParam("a_number")int a_number, Model model) throws Exception {
 		Map<String, Object> chk = new HashMap<String, Object>();
 		chk.put("m_id", m_id);
-		chk.put("s_number", s_number);
+		chk.put("s_name", s_name);
 		chk.put("a_number", a_number);
 		int result = eService.applyCheck(chk);
 		Map<String, Object> map = service.listDetail(chk);

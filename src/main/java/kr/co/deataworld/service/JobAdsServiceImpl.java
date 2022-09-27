@@ -32,11 +32,7 @@ public class JobAdsServiceImpl implements JobAdsService {
 		return dao.mainCommonList();
 	}
 
-	@Override
-	public List<JobAdsDTO> listAds(JobAdsCriteria cri) {
-		// TODO Auto-generated method stub
-		return dao.listAds(cri);
-	}
+	
 
 	@Override
 	public JobAdsDTO listAllDetail(Map<String, Object> chk) {
@@ -45,11 +41,7 @@ public class JobAdsServiceImpl implements JobAdsService {
 	}
 
 	
-	@Override
-	public Map<String, Object> listDetail(Map<String, Object> chk) {
-		// TODO Auto-generated method stub
-		return dao.listDetail(chk);
-	}
+	
 
 	@Override
 	public int countJobAdsList() {
@@ -83,21 +75,8 @@ public class JobAdsServiceImpl implements JobAdsService {
 		return dao.selectDropdown(map);
 	}
 
-	
 
 	
-
-	@Override
-	public List<JobAdsDTO> listUrgency(JobAdsCriteria cri) {
-		
-		return dao.listUrgency(cri);
-	}
-
-	@Override
-	public List<JobAdsDTO> listCountry(JobAdsCriteria cri) {
-		// TODO Auto-generated method stub
-		return dao.listCountry(cri);
-	}
 
 	@Override
 	public List<String> getAreaName1() {
@@ -121,6 +100,30 @@ public class JobAdsServiceImpl implements JobAdsService {
 	public List<Map<String, Object>> getJob2(String j_type1) {
 		// TODO Auto-generated method stub
 		return dao.getJob2(j_type1);
+	}
+
+	@Override
+	public List<Map<String, Object>> listAds(JobAdsCriteria cri) {
+		// TODO Auto-generated method stub
+		return dao.listAds(cri);
+	}
+
+	@Override
+	public Map<String, Object> listDetail(Map<String, Object> chk) {
+		// TODO Auto-generated method stub
+		return dao.listDetail(chk);
+	}
+
+	@Override
+	public List<Map<String, Object>> listUrgency(JobAdsCriteria cri) {
+		// TODO Auto-generated method stub
+		return dao.listUrgency(cri);
+	}
+
+	@Override
+	public List<Map<String, Object>> listCountry(JobAdsCriteria cri) {
+		// TODO Auto-generated method stub
+		return dao.listCountry(cri);
 	}
 
 	

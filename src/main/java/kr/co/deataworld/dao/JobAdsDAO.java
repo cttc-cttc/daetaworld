@@ -18,14 +18,14 @@ public interface JobAdsDAO {
 	// 메인화면 - 일반구인 리스트 6개
 	public List<MainAdsDTO> mainCommonList();
 
-	// 구인목록(일반구인 목록보기)
-	public List<JobAdsDTO> listAds(JobAdsCriteria cri);
+	// 구인목록(일반구인)
+	public List<Map<String, Object>> listAds(JobAdsCriteria cri);
 
 	// 급구목록보기
-	public List<JobAdsDTO> listUrgency(JobAdsCriteria cri);
+	public List<Map<String, Object>> listUrgency(JobAdsCriteria cri);
 
 	// 구인목록(구인-농어촌)
-	public List<JobAdsDTO> listCountry(JobAdsCriteria cri);
+		public List<Map<String, Object>>listCountry(JobAdsCriteria cri);
 
 	// 드롭다운
 	public List<AreaCodeDTO> selectDropdown(Map<String, Object> map);
@@ -35,7 +35,7 @@ public interface JobAdsDAO {
 
 	// 구인목록 검색
 	public List<JobAdsDTO> JobAdsSearch(Map<Object, Object> map);
-	
+
 	// 직업추천 전체 구인목록 검색
 	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map);
 

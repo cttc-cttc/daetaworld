@@ -124,12 +124,11 @@
 					<thead>
 
 						<tr>
-							<th>가게번호</th>
+							<th>가게이름</th>
 							<th>날짜</th>
 							<th>시간</th>
 							<th>시급</th>
-							<th>급구여부</th>
-							<th>올린시간</th>
+							<th>주소</th>
 							<th>구인 인원</th>
 
 
@@ -138,27 +137,13 @@
 					<c:forEach var="jobsend" items="${list }">
 						<tr>
 							<td class="tc"><a
-								href="listAllDetail?s_number=${jobsend.s_number}&m_id=${loginInfo.m_id}&a_number=${jobsend.a_number}">
-									 ${jobsend.s_number}</a></td>
+								href="listAllDetail?s_name=${jobsend.s_name}&m_id=${loginInfo.m_id}&s_number=${jobsend.s_number}&a_number=${jobsend.a_number}">
+									 ${jobsend.s_name}</a></td>
 							<td class="tc">${jobsend.a_date}</td>
 							<td class="tc">${jobsend.a_time}</td>
 							<td class="tc">${jobsend.a_wage}</td>
-
-
-
-
-
-							<td class="tc">${jobsend.a_urgency}</td>
-
-
-							
-							<td class="tc">${jobsend.job_code}</td>
-							
-				<td class="tc">${jobsend.ua_date }</td>
+							<td class="tc">${jobsend.s_address1 }</td>
 							<td class="tc">${jobsend.a_need }</td>
-
-
-
 						</tr>
 					</c:forEach>
 				</table>
