@@ -4,7 +4,7 @@ const $btn=document.querySelector("button");
 const $bar=document.querySelector(".statusBar");
 const $result=document.querySelector("#result");
 const endPoint=5;
-const select=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+const select=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 
 function calResult(){  /* 결과계산 함수 */
