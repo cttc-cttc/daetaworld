@@ -126,23 +126,21 @@
 
 	<!-- 구인상세 -->
 	<select id="listDetail" parameterType="Map" resultType="Map">
-		select
-		j.*,s.*,ja.*
-		from job_ads j, shop_info s, job_apply ja
-		where j.s_number= s.s_number
-		and s.s_number=#{s_number}
-	</select>
+		select j.*,s.*
+		from job_ads j, shop_info s
+		where j.s_number = s.s_number
+		and 
+		s.s_number = #{s_number};
+	</select> 
 
 	<!-- 일반/긴급/농어촌 글 갯수 -->
-	<select id="countJobAdsList" resultType="java.lang.Integer">
-		select count(*)
-		from job_ads
-		where job_code = 18
-
-
-	</select>
-
-
+		<select id="countJobAdsList" resultType="java.lang.Integer">
+			select count(*)
+			from job_ads
+			where job_code = 18
+			
+		</select>	
+	
 	<!-- 구인목록검색 -->
 	<select id="JobAdsSearch" parameterType="java.util.Map"
 		resultType="JobAdsDTO">

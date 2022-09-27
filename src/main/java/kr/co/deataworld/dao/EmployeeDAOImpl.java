@@ -117,6 +117,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
+	@Override //요청받은 공고 상세정보 보기
+	public Map<String, Object> requestList(Map<String, Object> map) throws Exception {
+		return sql.selectOne(NAMESPACE + ".requestList", map);
+	}
+
+
 	
 	
 	

@@ -27,6 +27,7 @@
 			<!-- 윗대가리시작 -->
 			<div class="breadcrumb-section section pt-60 pt-sm-50 pt-xs-40">
 				<div class="container sb-border-two pb-60 pb-sm-50 pb-xs-40">
+					<h3>구직자 알바요청 받았을때 수락/거절 선택하는 페이지입니다.</h3>
 					<h1>${map.s_name}</h1>
 					<div class="row align-items-center">
 						<div class="col-lg-7">
@@ -99,19 +100,17 @@
 						<div class="review-area pb-60 pb-sm-30 pb-xs-30">
 							<div class="review-container">
 									
-									${map.jae_status} : 왜 안나오냐고 : ${result}
-									
-									<!-- 구직 신청하기 -->
-									
-									
-									<c:if test="${result == 0}">
-										<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">지원하기<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
-									</c:if>
-									
-									<!-- 지원한 공고 = 신청불가 -->
-									<c:if test="${result == 1}">
-										<a class="ht-btn text-center" type="text">이미 지원한 공고입니다<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
-									</c:if>
+									<!-- 수락 / 거절 버튼 -->
+									<table>
+										<tr>
+											<td>
+												<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">수락<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+											</td>
+											<td>
+												<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">거절<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+											</td>
+										</tr>
+									</table>
 
 							</div>
 						</div>
