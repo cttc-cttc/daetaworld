@@ -13,7 +13,6 @@
   		and a.s_number = s.s_number
   	</select>
 
-<<<<<<< HEAD
 	<!-- 리뷰 작성 -->
   	<insert id="reviewRegister" parameterType="ReviewDTO">
 		insert into review(w_number,w_rate,w_comments,w_date,w_status,m_mid,a_number
@@ -29,7 +28,6 @@
   		and a.s_number = s.s_number
         and a.a_number = r.a_number 
         and r.w_status = 0
-  		
 	</select>
 	
 	<!-- 작성된 리뷰 내용 확인 -->
@@ -42,12 +40,9 @@
         or r.w_number = rc.w_number
 	</select>
 	
-=======
   	<insert id="reviewRegister" parameterType="ReviewDTO">
 		insert into review(w_number,w_rate,w_comments,w_date,m_mid
 		values (#{w_number},#{w_rate}, #{w_comments},now(),#{m_id})
 		
 	</insert>
-	
->>>>>>> newlee
 </mapper>

@@ -31,7 +31,6 @@ public class ReviewDAOImpl implements ReviewDAO{
 		return sqlSession.insert(namespace + ".register", reviewDTO);
 	}
 
-<<<<<<< HEAD
 	@Override
 	public List<Map<String, Object>> writtenReviews(String m_id) throws Exception {
 		// TODO Auto-generated method stub
@@ -43,9 +42,6 @@ public class ReviewDAOImpl implements ReviewDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + ".reviewDetail", a_number);
 	}
-
-=======
->>>>>>> newlee
 
 	
 }

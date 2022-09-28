@@ -28,7 +28,6 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.reviewRegister(reviewDTO);
 	}
 
-<<<<<<< HEAD
 	@Override
 	public List<Map<String, Object>> writtenReviews(String m_id) throws Exception {
 		// TODO Auto-generated method stub
@@ -40,9 +39,6 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return dao.reviewDetail(a_number);
 	}
-
-=======
->>>>>>> newlee
 
 
 }
