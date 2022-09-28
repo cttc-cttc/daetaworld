@@ -13,6 +13,7 @@
 			<%@ include file="../include/header.jsp" %>
 		</header>
 		<!--Header section end-->
+		<hr class="header-hr">
 		<!-- Dashboard Content Section Start -->
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
@@ -46,21 +47,76 @@
 													<div class="row mb-30">
 														<div class="col-lg-2">
 															<div class="profile-avatar mb-30">																					
-																<label class="d-block" for="picture">포인트 점수</label>
-																<div style="width: 150px; height: 200px;">																		
-																
+																<label class="d-block font-bold">포인트 점수</label>
+																<div class="point-text">																		
+																	<span class="theme-color">&nbsp;${point.point }</span>
 																</div>
 															</div>
 														</div>
 														<div class="col-lg-10">
 															<div class="row">
-																<!-- Single Input Start -->
-																<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																<!-- //적립 포인트 테이블 -->
+																<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
 																	<div class="single-input mb-25">
-																	
+																		<label class="font-bold">적립 포인트 내역</label>
+																		<div class="container faq-wrapper padding-zero">
+																			<div class="row">
+																				<div class="col-12">
+																					<div class="cart-table table-responsive mb-30">
+																						<table class="table">
+																							<thead>
+																								<tr>
+																									<th class="pro-price">적립 포인트</th>
+																									<th class="pro-title">적립 날짜</th>
+																								</tr>
+																							</thead>
+																							<tbody>
+																								<c:forEach var="ePoint" items="${earnedPoint }">
+																								<tr>
+																									<td class="pro-price"><span>${ePoint.e_point }</span></td>
+																									<td class="pro-price"><span>${ePoint.e_date }</span></td>
+																								</tr>
+																								</c:forEach>
+																							</tbody>
+																						</table>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
 																	</div>
 																</div>
-																<!-- Single Input End -->
+																<!-- 적립 포인트 테이블// -->
+																<!-- //차감 포인트 테이블 -->
+																<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+																	<div class="single-input mb-25">
+																		<label class="font-bold">차감 포인트 내역</label>
+																		<div class="container faq-wrapper padding-zero">
+																			<div class="row">
+																				<div class="col-12">
+																					<div class="cart-table table-responsive mb-30">
+																						<table class="table">
+																							<thead>
+																								<tr>
+																									<th class="pro-price">차감 포인트</th>
+																									<th class="pro-title">차감 날짜</th>
+																								</tr>
+																							</thead>
+																							<tbody>
+																								<c:forEach var="dPoint" items="${deductedPoint }">
+																								<tr>
+																									<td class="pro-price"><span>${dPoint.d_point }</span></td>
+																									<td class="pro-price"><span>${dPoint.d_date }</span></td>
+																								</tr>
+																								</c:forEach>
+																							</tbody>
+																						</table>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<!-- 차감 포인트 테이블// -->
 															</div>
 														</div>
 													</div>

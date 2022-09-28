@@ -9,13 +9,18 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import kr.co.deataworld.dto.BlacklistDTO;
+import kr.co.deataworld.dto.DeductedPointDTO;
+import kr.co.deataworld.dto.EarnedPointDTO;
 import kr.co.deataworld.dto.MemberDTO;
+import kr.co.deataworld.dto.PointDTO;
 import kr.co.deataworld.service.AdminService;
+import kr.co.deataworld.service.PointService;
 import kr.co.deataworld.util.PageProcess;
 
 /*
@@ -27,6 +32,9 @@ public class AdminController {
 	
 	@Inject
 	AdminService service;
+	
+	@Inject
+	PointService pService;
 	
 	@GetMapping(value = "admin/user_profile")
 	public String userProfile(Model model, String num, String id) {
@@ -52,7 +60,7 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/user_point")
-	public String userPoint(Model model, String num, String id) {
+	public String userPoint(Model model, String num, String id) throws Exception {
 		logger.info("num: " + num);
 		logger.info("id: " + id);
 		
@@ -71,6 +79,15 @@ public class AdminController {
 			model.addAttribute("title", "구인자 포인트 정보");
 			model.addAttribute("leftMenu", "employer_list");
 		}
+		
+		String tmpId = "owner";
+		PointDTO point = pService.point(tmpId);
+		List<EarnedPointDTO> earnedPoint = pService.earnedPoint(tmpId);
+		List<DeductedPointDTO> deductedPoint = pService.deductedPoint(tmpId);
+		
+		model.addAttribute("point", point);
+		model.addAttribute("earnedPoint", earnedPoint);
+		model.addAttribute("deductedPoint", deductedPoint);
 		return "admin/user_point";
 	}
 	

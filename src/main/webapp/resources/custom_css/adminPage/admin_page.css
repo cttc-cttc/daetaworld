@@ -36,3 +36,18 @@
 	background: #aaa !important;
 	border-color: #fff !important;
 }
+
+.font-bold {
+	font-weight: bold;
+}
+
+.padding-zero {
+	padding: 0;
+}
+
+.point-text {
+	width: 150px;
+	height: 200px;
+	font-size: 34px;
+	font-weight: bold;
+}
