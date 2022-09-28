@@ -60,6 +60,8 @@ public class AccountController {
 		return "account/loginForm";
 	}
 	
+	
+	
 //	로그인
 	@PostMapping(value = "login")
 	public String login(@RequestParam Map<String, String> loginInfo, HttpSession session, RedirectAttributes attr) {
@@ -104,6 +106,20 @@ public class AccountController {
 		logger.info("구인자 회원가입화면 접속");
 		return "account/joinRegist/write-r";
 	}
+	
+	@GetMapping(value = "findId")
+	public String findId() {
+		logger.info("id 찾기 접속");
+		return "account/findId";
+	}
+	
+	@GetMapping(value = "findPw")
+	public String findPw() {
+		logger.info("pw 찾기 접속");
+		return "account/findPw";
+	}
+	
+	
 	
 //	구직자, 구인자 회원가입
 	@PostMapping(value = "register")

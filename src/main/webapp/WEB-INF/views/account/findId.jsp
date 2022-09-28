@@ -61,14 +61,12 @@
 														<label for="login-form-remember">아이디 저장하기</label>
 													</div>
 													
+													
 													<a href="${contextPath}/findId">아이디 찾기 </a>
-													
 													<a href="${contextPath}/findPw">비밀번호 찾기</a>
-													
 													
 												</div>
 												<div class="col-12 mb-25">
-												
 													<button type="button" class="ht-btn" onclick="validate()">로그인</button>
 													<p style="margin-top: 1rem; color: red; text-align: center;">${loginFailedMsg }</p>
 												</div>
@@ -93,16 +91,32 @@
 					<div class="col-lg-8">
 						<div class="login-instruction">
 							<div class="login-instruction-content">
-								<h3 class="title">오늘의 대타로 색다른 일을 해보세요</h3>
-								<p>지금 가입하시어 오늘의 대타를 자유로이 이용해보세요.<br> 
-								주인님 또는 노예놈에게 여러분의 정보를 주어 같이 일하자고 꼬셔보세요</p>
+								<h3 class="title">아이디 찾기</h3>
+								<p>아래 회원정보를 입력하신 후 찾기 버튼을 클릭해 주세요<br> 
+								</p>
 								<ul class="list-reasons">
-									<li class="reason">간편한 일부터 색다른 일, 보람찬 일까지</li>
-									<li class="reason">원하는 시간에 골라서 자유롭게 구인과 구직을 할 수 있습니다</li>
-									<li class="reason">한번의 클릭으로 바로 등록 및 지원이 가능합니다</li>
-									<li class="reason">지금 등록하시어 다양한 경험을 해보세요</li>
+								<li class="name">
+						<div class="colWrap">
+							<label class="searchTitle" for="usernm_P">이름</label>
+							<input type="text" id="m_name" class="placeholder-input" placeholder="이름을 입력해주세요" name="m_name" value="" maxlength="30" />
+							
+						</div>
+									<li class="id">
+						<div class="colWrap">
+								<label class="searchTitle" for="userid_P">아이디</label>
+							<input type="text" id="m_id" class="placeholder-input" name="m_id" placeholder="아이디를 입력해주세요" value="" maxlength="30" />
+						
+						</div>
+					</li>
+					
 								</ul>
-								<span class="sale-text theme-color border-color">오늘 가입하시면 500포인트가 자동 지급됩니다!</span>
+								<br><br><br>
+							
+							<div class="col-12 mb-25">
+													<button type="button" class="ht-btn" onclick="validate()">아이디 찾기</button>
+													<p style="margin-top: 1rem; color: red; text-align: center;">${loginFailedMsg }</p>
+												</div>
+							
 							</div>
 						</div>
 					</div>
