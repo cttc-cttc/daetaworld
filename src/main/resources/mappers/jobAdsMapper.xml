@@ -7,74 +7,70 @@
 	<!-- 메인화면 - 긴급구인 리스트 6개 -->
 	<select id="main_urgency_ads" resultType="MainAdsDTO">
 		select
-		A.a_number,		<!-- A구인공고.공고번호 -->
-		A.a_wage,		<!-- A구인공고.시급 -->
-		B.s_name,		<!-- B가게정보.가게명 -->
-		B.s_address1,	<!-- B가게정보.가게 주소1 -->
-		B.s_picture1,	<!-- B가게정보.가게 사진1 -->
-		format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
+			A.a_number,		<!-- A구인공고.공고번호 -->
+			A.a_wage,		<!-- A구인공고.시급 -->
+			B.s_name,		<!-- B가게정보.가게명 -->
+			B.s_address1,	<!-- B가게정보.가게 주소1 -->
+			B.s_picture1,	<!-- B가게정보.가게 사진1 -->
+			format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
 		from job_ads as A
 		inner join shop_info as B
-		on A.s_number = B.s_number
+			on A.s_number = B.s_number
 		inner join review as D
-		on A.m_id = D.m_id
+			on A.m_id = D.w_writer
 		where
-		A.a_urgency = 1
-		and
-		(A.a_status = 0 or A.a_status = 1)
+			A.a_urgency = 1
+			and (A.a_status = 0 or A.a_status = 1)
 		group by A.a_number
 		order by A.a_number desc
-		limit 0, 6;
+		limit 0, 6
 	</select>
 
 	<!-- 메인화면 - 일반구인 리스트 6개 -->
 	<select id="main_common_ads" resultType="MainAdsDTO">
 		select
-		A.a_number,		<!-- A구인공고.공고번호 -->
-		A.a_wage,		<!-- A구인공고.시급 -->
-		A.a_time,		<!-- A구인공고.시간 -->
-		<!-- A구인공고.올린시간 -->
-		    <![CDATA[
-		    case
-				when hour(timediff(now(), A.ua_date)) < 1
-					then concat(timestampdiff(minute, A.ua_date, now()),'분')
-				when hour(timediff(now(), A.ua_date)) < 24
-					then concat(timestampdiff(hour, A.ua_date, now()),'시간')
-				when hour(timediff(now(), A.ua_date)) < 168
-					then concat(timestampdiff(day, A.ua_date, now()),'일')
-				when hour(timediff(now(), A.ua_date)) < 720
-					then concat(timestampdiff(week, A.ua_date, now()),'주')
-				when datediff(now(), A.ua_date) < 365
-					then concat(timestampdiff(month, A.ua_date, now()),'개월')
-				else concat(timestampdiff(year, A.ua_date, now()),'년')
-			end as uptime,
-			]]>
-		B.s_name,		<!-- B가게정보.가게명 -->
-		B.s_address1,	<!-- B가게정보.가게 주소1 -->
-		B.s_picture1,	<!-- B가게정보.가게 사진1 -->
-		B.s_tag1,		<!-- B가게정보.태그1 -->
-		B.s_tag2,		<!-- B가게정보.태그2 -->
-		B.s_tag3,		<!-- B가게정보.태그3 -->
-		B.s_tag4,		<!-- B가게정보.태그4 -->
-		B.s_tag5,		<!-- B가게정보.태그5 -->
-		C.m_nick,		<!-- C회원.닉네임 -->
-		format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
+			A.a_number,		<!-- A구인공고.공고번호 -->
+			A.a_wage,		<!-- A구인공고.시급 -->
+			A.a_time,		<!-- A구인공고.시간 -->
+			<!-- A구인공고.올린시간 -->
+			    <![CDATA[
+			    case
+					when hour(timediff(now(), A.ua_date)) < 1
+						then concat(timestampdiff(minute, A.ua_date, now()),'분')
+					when hour(timediff(now(), A.ua_date)) < 24
+						then concat(timestampdiff(hour, A.ua_date, now()),'시간')
+					when hour(timediff(now(), A.ua_date)) < 168
+						then concat(timestampdiff(day, A.ua_date, now()),'일')
+					when hour(timediff(now(), A.ua_date)) < 720
+						then concat(timestampdiff(week, A.ua_date, now()),'주')
+					when datediff(now(), A.ua_date) < 365
+						then concat(timestampdiff(month, A.ua_date, now()),'개월')
+					else concat(timestampdiff(year, A.ua_date, now()),'년')
+				end as uptime,
+				]]>
+			B.s_name,		<!-- B가게정보.가게명 -->
+			B.s_address1,	<!-- B가게정보.가게 주소1 -->
+			B.s_picture1,	<!-- B가게정보.가게 사진1 -->
+			B.s_tag1,		<!-- B가게정보.태그1 -->
+			B.s_tag2,		<!-- B가게정보.태그2 -->
+			B.s_tag3,		<!-- B가게정보.태그3 -->
+			B.s_tag4,		<!-- B가게정보.태그4 -->
+			B.s_tag5,		<!-- B가게정보.태그5 -->
+			C.m_nick,		<!-- C회원.닉네임 -->
+			format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
 		from job_ads as A
 		inner join shop_info as B
-		on A.s_number = B.s_number
+			on A.s_number = B.s_number
 		inner join member as C
-		on A.m_id = C.m_id
+			on A.m_id = C.m_id
 		inner join review as D
-		on
-		A.m_id = D.m_id
+			on A.m_id = D.w_writer
 		where
-		A.a_urgency = 0
-		and (A.a_status = 0 or A.a_status =
-		1)
+			A.a_urgency = 0
+			and (A.a_status = 0 or A.a_status = 1)
 		group by A.a_number
 		order by A.a_number desc
-		limit 0,
-		6
+		limit 0, 6
 
 	</select>
 	<!-- 일반 구인목록 -->
