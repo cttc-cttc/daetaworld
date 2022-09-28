@@ -14,6 +14,7 @@ public interface ReviewDAO {
 //	완료된 공고 목록
 	public List<Map<String, Object>> adsCompleted(String m_id) throws Exception;
 	
+<<<<<<< HEAD
 //	리뷰 작성
 	public int reviewRegister(ReviewDTO reviewDTO) throws Exception;
 	
@@ -22,4 +23,9 @@ public interface ReviewDAO {
 	
 //	작성된 리뷰 내용 확인
 	public Map<String, Object>reviewDetail(int a_number) throws Exception;
+=======
+	public int reviewRegister(ReviewDTO reviewDTO) throws Exception;
+	
+	
+>>>>>>> newlee
 }

@@ -15,10 +15,16 @@
 		<typeAlias type="kr.co.deataworld.dto.EarnedPointDTO" alias="EarnedPointDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.DeductedPointDTO" alias="DeductedPointDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.CommentsDTO" alias="CommentsDTO"/>
+<<<<<<< HEAD
 		<typeAlias type="kr.co.deataworld.dto.ResumeDTO" alias="ResumeDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.JobApplyDTO" alias="JobApplyDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.JobCodeDTO" alias="JobCodeDTO"/>
 		<typeAlias type="kr.co.deataworld.dto.ReviewDTO" alias="ReviewDTO"/>
 
+=======
+		<typeAlias type="kr.co.deataworld.dto.ReviewDTO" alias="ReviewDTO"/>
+		
+		
+>>>>>>> newlee
 	</typeAliases>
 </configuration>

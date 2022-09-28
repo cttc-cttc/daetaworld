@@ -27,11 +27,15 @@ import kr.co.deataworld.dto.BoardDTO;
 import kr.co.deataworld.dto.DeductedPointDTO;
 import kr.co.deataworld.dto.EarnedPointDTO;
 import kr.co.deataworld.dto.PointDTO;
+<<<<<<< HEAD
 
 import kr.co.deataworld.service.EmployeeService;
 
 import kr.co.deataworld.dto.ReviewDTO;
 
+=======
+import kr.co.deataworld.dto.ReviewDTO;
+>>>>>>> newlee
 import kr.co.deataworld.service.PointService;
 import kr.co.deataworld.service.ReviewService;
 /*
@@ -47,7 +51,10 @@ public class CommonController {
 
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+<<<<<<< HEAD
 
+=======
+>>>>>>> newlee
 //	포인트 
 	@GetMapping(value="pointMapper/pointManagement")
 	public String pointManagement(Model model) throws Exception {
