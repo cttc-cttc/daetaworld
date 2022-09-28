@@ -77,7 +77,7 @@
 																	<c:if test="${status == 2 }">
 																		<c:out value="수락함"></c:out>
 																	</c:if>
-																	<c:if test="${status == 3 }">
+																	<c:if test="${status == 5 }">
 																		<c:out value="거절함"></c:out>
 																	</c:if>
 																	<c:if test="${status == 4 }">
@@ -87,7 +87,7 @@
 																<td>
 																	<button 
 																		onclick="location.href='cancelRequest?ja_number=${adsList.ja_number}$m_id=${adsList.m_id }'">
-																		요청 취소</button>
+																		취소</button>
 																</td>
 															</tr>
 														</c:forEach>

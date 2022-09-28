@@ -135,7 +135,7 @@
     		on a.m_id = s.m_id and a.m_id = #{m_id}
 			and a.s_number = s.s_number
 		where a.a_number = ja.a_number  
-		and ja.jae_status = 4
+		and ja.jae_status in (4,5)
 	</select>
 	
 	<!-- 요청 취소 -->

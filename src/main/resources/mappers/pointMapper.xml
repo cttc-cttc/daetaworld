@@ -52,7 +52,7 @@
 	</update>
 	<insert id="pointEarned" parameterType="Map">
 		insert into earned_point (e_point, e_date, m_id) 
-		values (#{point}, now(), #{id});
+		values (#{point}, now(), #{id})
 	</insert>
 	
 	
