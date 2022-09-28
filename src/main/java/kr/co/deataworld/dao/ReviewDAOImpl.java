@@ -28,7 +28,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 	@Override
 	public int reviewRegister(ReviewDTO reviewDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(namespace + ".register", reviewDTO);
+		return sqlSession.insert(namespace + ".reviewRegister", reviewDTO);
 	}
 
 	@Override
