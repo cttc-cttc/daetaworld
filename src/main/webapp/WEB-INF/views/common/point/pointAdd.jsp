@@ -38,7 +38,7 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="pointManagement">포인트</a></li>
+													<li><a class="active" href="pointManagementz">포인트</a></li>
 													<li><a href="pointEarned">포인트 적립 내역</a></li>
 													<li><a href="pointDeducted">포인트 차감 내역</a></li>													
 												</ul>
