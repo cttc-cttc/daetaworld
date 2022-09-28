@@ -13,6 +13,7 @@
 			<%@ include file="../include/header.jsp" %>
 		</header>
 		<!--Header section end-->
+		<hr class="header-hr">
 		<!-- Dashboard Content Section Start -->
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">

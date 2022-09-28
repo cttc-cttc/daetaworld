@@ -13,14 +13,22 @@
 	
 	<!-- 적립된 포인트 확인 -->
 	<select id="earnedPoint" parameterType="String" resultType="EarnedPointDTO">
-		select *
+		select
+			e_number,
+			e_point,
+			date(e_date) as e_date,
+			m_id
 		from earned_point
 		where m_id = #{id}	
 	</select>
 	
 	<!-- 차감된 포인트 확인 -->
 	<select id="deductedPoint" parameterType="String" resultType="DeductedPointDTO">
-		select *
+		select
+			d_number,
+			d_point,
+			date(d_date) as d_date,
+			m_id
 		from deducted_point
 		where m_id = #{id}
 	</select>
