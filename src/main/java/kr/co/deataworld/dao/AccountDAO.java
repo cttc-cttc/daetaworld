@@ -15,4 +15,11 @@ public interface AccountDAO {
 	public String getAreaCode(Map<String, String> addrParam);
 	// 로그인
 	public Map<String, Object> login(Map<String, String> loginInfo);
+	
+	// 아이디 찾기
+	
+
+	public String find_id(String m_name, String m_email);
+	
+	
 }

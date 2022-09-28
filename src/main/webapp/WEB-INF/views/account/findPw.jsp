@@ -97,13 +97,13 @@
 								<ul class="list-reasons">
 								<li class="name">
 						<div class="colWrap">
-							<label class="searchTitle" for="usernm_P">이름 </label>
+							<label class="searchTitle" for="m_name">이름 </label>
 							<input type="text" id="m_name" class="placeholder-input" placeholder="이름을 입력해주세요" name="m_name" value="" maxlength="30" />
 							
 						</div>
 									<li class="id">
 						<div class="colWrap">
-								<label class="searchTitle" for="userid_P">아이디</label>
+								<label class="searchTitle" for="m_id">아이디</label>
 							<input type="text" id="m_id" class="placeholder-input" name="m_id" placeholder="아이디를 입력해주세요" value="" maxlength="30" />
 						
 						</div>
@@ -128,11 +128,21 @@
 								<br>
 							
 							<div class="col-12 mb-25">
-													<button type="button" class="ht-btn" onclick="validate()">비밀번호 찾기</button>
+													<button type="button" class="ht-btn" onclick="findform_check()">비밀번호 찾기</button>
 													<p style="margin-top: 1rem; color: red; text-align: center;">${loginFailedMsg }</p>
 												</div>
 							
 							</div>
+							
+							
+																
+																	<input type="hidden" name="m_id" id="m_id" value="${myInfo.m_id }">
+																	
+																	<input type="hidden" name="m_name" id="m_name" value="${myInfo.m_name }">
+																	<input type="hidden" name="pre_email" id="pre_email" value="${myInfo.m_email}">
+																	<input type="hidden" name="pre_nick" id="pre_nick" value="${myInfo.m_nick}">			
+							
+							
 						</div>
 					</div>
 				</div>
@@ -155,5 +165,60 @@
 			$('form').submit();
 		}
 	</script>
+	
+	<script type="text/javascript">
+	
+	// 이메일 인증
+	$('#mail-Check-Btn').click(function() {
+	      const email = $('#m_email').val(); // 이메일 주소값 얻어오기!
+	      console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
+	      const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
+	      veriCheck = false;
+	      $.ajax({
+	         url : '${contextPath}/emailAuth',
+	         data : {'email': email},
+	         dataType : 'json',
+	         type : 'post',
+	         success: function(res){
+	            alert("인증번호가 발송되었습니다.");
+	            console.log(res);
+	            email_auth_cd = res;
+	            $('.mail-check-input').attr("disabled", false);
+	         },
+	         error: function(res){
+	            alert("메일 발송에 실패했습니다.");
+	            console.log(res);
+	         }
+	      }); // end ajax
+	   }); // end send eamil
+	   
+	   // 인증번호 비교 
+	   // blur -> focus가 벗어나는 경우 발생
+	   $('.mail-check-input').blur(function () {
+	      const inputCode = $(this).val();
+	      const $resultMsg = $('#mail-check-warn');
+	      
+	      if(inputCode == email_auth_cd){
+	         $resultMsg.html('인증번호가 일치합니다.');
+	         $resultMsg.css('color','green');
+	         $('#mail-Check-Btn').attr('disabled',true);
+	         $('#userEmail1').attr('readonly',true);
+	         $('#userEmail2').attr('readonly',true);
+	         $('#userEmail2').attr('onFocus', 'this.initialSelect = this.selectedIndex');
+	            $('#userEmail2').attr('onChange', 'this.selectedIndex = this.initialSelect');
+	            $('.mail-check-input').attr("disabled", true);
+	            veriCheck = true;
+	      }else{
+	         $resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
+	         $resultMsg.css('color','red');
+	         veriCheck = false;
+	      }
+	   });
+	</script>
+	
+	</script>
+	
+	<script src="${contextPath}/resources/custom_js/account/find.js"></script>
+	
 </body>
 </html>

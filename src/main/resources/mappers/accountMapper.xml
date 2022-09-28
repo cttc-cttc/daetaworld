@@ -90,4 +90,16 @@
   			and A.m_password = #{inputPassword}
   	</select>
   	
+  	
+  	<!-- 아이디 찾기 -->
+  	<select id="find_id" parameterType="String" resultType="java.lang.String">
+  		select
+  			m_id
+  		from member 
+  		where
+  			m_name=#{m_name} and m_email=#{m_email}
+  	</select>
+  	
+  	
+  	
 </mapper>

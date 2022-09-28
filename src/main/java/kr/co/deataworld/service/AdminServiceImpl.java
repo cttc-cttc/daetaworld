@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.AdminDAO;
@@ -152,4 +153,6 @@ public class AdminServiceImpl implements AdminService {
 	public int cancelTempingComments(int cr_number) throws Exception {
 		return dao.cancelTempingComments(cr_number);
 	}
+	
+	
 }

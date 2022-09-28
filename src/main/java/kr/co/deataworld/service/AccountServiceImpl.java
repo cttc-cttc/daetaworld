@@ -2,9 +2,13 @@ package kr.co.deataworld.service;
 
 import java.util.Map;
 
+
+
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import kr.co.deataworld.dao.AccountDAO;
 import kr.co.deataworld.dto.MemberDTO;
@@ -42,4 +46,16 @@ public class AccountServiceImpl implements AccountService{
 		// TODO Auto-generated method stub
 		return dao.login(loginInfo);
 	}
+	
+	
+	
+	
+	// 아이디 찾기
+	public String find_id(String m_name, String m_email) {
+			
+		
+		
+		return dao.find_id(m_name, m_email);
+	
+}
 }

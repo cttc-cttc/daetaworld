@@ -11,7 +11,15 @@
 		<!-- header -->
 		<header class="header-absolute black-logo-version header-sticky sticky-white no-padding d-none d-lg-block pt-25 pb-25">
 			<%@ include file="../include/header.jsp" %>
+			
+			
+			
 		</header>
+		
+
+		
+		
+		
 		
 		<!-- 상단 여백 Section Start -->
 		<div class="breadcrumb-section section bg_color--5 pt-60 pt-sm-50 pt-xs-40 pb-60 pb-sm-50 pb-xs-40">
@@ -97,14 +105,14 @@
 								<ul class="list-reasons">
 								<li class="name">
 						<div class="colWrap">
-							<label class="searchTitle" for="usernm_P">이름</label>
+							<label class="searchTitle" for="m_name">이름</label>
 							<input type="text" id="m_name" class="placeholder-input" placeholder="이름을 입력해주세요" name="m_name" value="" maxlength="30" />
 							
 						</div>
 									<li class="id">
 						<div class="colWrap">
-								<label class="searchTitle" for="userid_P">아이디</label>
-							<input type="text" id="m_id" class="placeholder-input" name="m_id" placeholder="아이디를 입력해주세요" value="" maxlength="30" />
+								<label class="searchTitle" for="m_email">이메일</label>
+							<input type="text" id="m_email" class="placeholder-input" name="m_email" placeholder="이메일을 입력해주세요" value="" maxlength="30" />
 						
 						</div>
 					</li>
@@ -113,9 +121,11 @@
 								<br><br><br>
 							
 							<div class="col-12 mb-25">
-													<button type="button" class="ht-btn" onclick="validate()">아이디 찾기</button>
+													<button type="button" id='find_id' name='find_id' class="ht-btn" onclick="findId_click()">아이디 찾기</button>
 													<p style="margin-top: 1rem; color: red; text-align: center;">${loginFailedMsg }</p>
 												</div>
+							
+							<%@ include file="./findModal.jsp" %>
 							
 							</div>
 						</div>
@@ -125,8 +135,18 @@
 		</div>
 		<!-- Login Register Section End -->
 		
+		
+		
+		
+		
 		<%@ include file="../include/footer.jsp" %>
 	</div>
+	
+	
+	
+	 <script src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
+	
+	
 	<!-- 문서 끝에 js를 배치하여 페이지 로딩 속도 향상 -->
 	<%@ include file="../include/plugin.jsp" %>
 	<script>
@@ -140,5 +160,59 @@
 			$('form').submit();
 		}
 	</script>
+	
+	<script>
+/* 아이디 찾기 */ 
+//아이디 & 스토어 값 저장하기 위한 변수
+	// 아이디 값 받고 출력하는 ajax
+	function findId_click(){
+		var m_name=$('#m_name').val()
+		var m_email=$('#m_email').val()
+		
+		$.ajax({
+			url:"${contextPath}/account/find_id",
+			type:"POST",
+			data:{"m_name":m_name, "m_email":m_email} ,
+			success:function(data){
+				if(data == 0){
+					$('#id_value').text("회원 정보를 확인해주세요!");
+					$('#m_name').val('');
+					$('#m_email').val('');
+				} else {
+					$('#id_value').text(data);
+					$('#m_name').val('');
+					$('#m_email').val('');
+					
+				}
+			},
+			 error:function(){
+	                alert("에러입니다");
+	            }
+		});
+	};
+
+const modal = document.getElementById("modal")
+const btnModal = document.getElementById("find_id")
+
+btnModal.addEventListener("click", e => {
+    modal.style.display = "flex"
+})
+
+    
+const closeBtn = modal.querySelector(".close-area")
+closeBtn.addEventListener("click", e => {
+    modal.style.display = "none"
+})
+
+modal.addEventListener("click", e => {
+    const evTarget = e.target
+    if(evTarget.classList.contains("modal-overlay")) {
+        modal.style.display = "none"
+    }
+})
+
+
+</script>
+	
 </body>
 </html>

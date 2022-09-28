@@ -1,5 +1,7 @@
 package kr.co.deataworld.dao;
 
+import java.util.List;
+
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,4 +47,31 @@ public class AccountDAOImpl implements AccountDAO{
 		// TODO Auto-generated method stub
 		return sql.selectOne(nameSpace + ".login", loginInfo);
 	}
+
+	@Override
+	public String find_id(String m_name, String m_email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+
+//	public String find_id(String m_name, String m_email) {
+//		// TODO Auto-generated method stub
+//		return sql.selectList(nameSpace + "find_id", m_name, m_email );
+//	}
+	
+	
+//	@Override
+//	public String find_id(String m_name,String m_email)throws Exception{
+//		Map<String,Object> map = new HashMap<String, Object>();
+//		map.put("m_name", m_name);
+//		map.put("m_email", m_email);
+//		.put("memberPw", memberPw);
+//		return sqlsession.update("memberMapper.findPw", map);
+//	}
+	
+
+	
 }

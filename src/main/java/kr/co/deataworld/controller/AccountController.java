@@ -18,6 +18,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -81,6 +82,24 @@ public class AccountController {
 		return "redirect:/";
 	}
 	
+	
+	//아이디 찾기 
+
+	
+			@RequestMapping(value = "account/find_id", method = RequestMethod.POST)
+			@ResponseBody
+			public String find_id(@RequestParam("m_name") String m_name,@RequestParam("m_email") String m_email) throws Exception {
+				
+			String result = service.find_id(m_name, m_email);
+				
+			return result;
+			}
+	
+			
+			
+	
+			
+			
 //	로그아웃
 	@GetMapping(value = "logout")
 	public String logout(HttpSession session) {
@@ -217,6 +236,8 @@ public class AccountController {
 //		}
 		return Integer.toString(checkNum);
 	}
+	
+	
 	
 }
 
