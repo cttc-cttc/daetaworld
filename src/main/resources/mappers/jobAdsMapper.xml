@@ -134,7 +134,7 @@
 		from job_ads j, shop_info s
 		where j.s_number = s.s_number
 		and 
-		s.s_number = #{s_number}
+		j.a_number = #{a_number}
 	</select> 
 
 	<!-- 일반/긴급/농어촌 글 갯수 -->

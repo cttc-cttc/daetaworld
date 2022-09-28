@@ -92,7 +92,6 @@
 														</div>
 															<hr id="profile-hr-1">
 															
-														<form action="resumeRegister" method="post">
 															<div id="article">
 																<h3><strong>제목</strong></h3>
 																<input class="intro-title-box" id="i_title" name="i_title" value="" placeholder="제목을 작성하세요">
@@ -104,9 +103,8 @@
 															</div>
 															<hr>
 															<input type="hidden" name="m_id" id="m_id" value="${loginInfo.m_id}"/>
-															<button type="submit" class="ht-btn theme-btn theme-btn-two mb-xs-20" >저장</button>
+															<button type="button" class="ht-btn theme-btn theme-btn-two mb-xs-20" onclick="saveChk()">저장</button>
 															<button type="button" class="ht-btn theme-btn theme-btn-two mb-xs-20" onclick="location.href='${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}'">취소</button>
-														</form>
 														
 														<hr id="profile-hr-1">
 													</div>
@@ -142,5 +140,77 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	
+	
+	<!-- 자기소개서 작성 유효성 검사 -->
+	<script type="text/javascript">
+		function saveChk() {
+			var i_title_Chk = $("#i_title").val();
+			var i_contents_Chk = $("#i_contents").val();
+			var m_id = $("#m_id").val();
+			
+			
+			if(i_title_Chk == ''){
+				alert('제목을 입력하세요');
+				return;
+			}else if(i_contents_Chk == ''){
+				alert('내용을 입력하세요');
+				return;
+			}else{
+				
+				var url = "${contextPath}/employeeMapper/resumeRegister";
+				var paramData = {
+						"i_title" : i_title_Chk,
+						"i_contents" : i_contents_Chk,
+						"m_id" : m_id
+				};
+				
+				$.ajax({
+					url : url, 
+					data : paramData,
+					type : "POST",
+					dataType : "json",
+						success : function(result){
+							console.log('등록 성공');
+							alert('등록되었습니다');
+							window.location.reload(true);
+							location.href="${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}";
+						}, 
+						error : function(result){
+							console.log('등록 실패');
+							alert('등록 실패');
+							
+						}
+					
+				}); //end of ajax
+				
+			}//end of else
+			
+	}//end of function
+	
+	
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

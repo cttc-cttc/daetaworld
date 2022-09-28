@@ -142,13 +142,12 @@ public class EmployeeController {
 		return "employee/resume/resumeRegister";
 	}
 	
-	
+	//ajax
 	//구직자 자기소개서 작성 저장
+	@ResponseBody
 	@PostMapping(value="employeeMapper/resumeRegister")
-	public String resumeRegister(ResumeDTO resumeDTO, Model model)throws Exception {
-		service.resumeRegister(resumeDTO);
-		model.addAttribute("m_id", resumeDTO.getM_id());
-		return "redirect:resumeManagement";
+	public int resumeRegister(ResumeDTO resumeDTO, Model model)throws Exception {
+		return service.resumeRegister(resumeDTO);
 	}
 	
 	
@@ -269,6 +268,17 @@ public class EmployeeController {
 		return service.requestNo(jobApplyDTO);
 	}
 	
+	//완료된 공고 '확인' 버튼 클릭시 a_status의 상태를 3으로 변경
+	@ResponseBody
+	@PostMapping(value="employeeMapper/pinchChk")
+	public int pinchChk(@RequestParam("m_id") String m_id,
+						@RequestParam("a_number") int a_number)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("m_id", m_id);
+		map.put("a_number", a_number);
+		
+		return service.pinchChk(map);
+	}
 	
 	
 	

@@ -28,9 +28,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
-	@Override //내 정보 수정
+	@Override //내 정보 수정 ajax
 	public int myInfoUpdate(MemberDTO memberDTO) {
-		// TODO Auto-generated method stub
 		return sql.update(NAMESPACE + ".myInfoUpdate",memberDTO);
 	}
 
@@ -59,7 +58,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
-	@Override //자소서 저장
+	@Override //자소서 저장 ajax
 	public int resumeRegister(ResumeDTO resumeDTO) throws Exception {
 		return sql.insert(NAMESPACE + ".resumeRegister", resumeDTO);
 	}
@@ -133,8 +132,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return sql.update(NAMESPACE + ".requestNo", jobApplyDTO);
 	}
 
-
-	
+	@Override //완료한 공고 '확인'버튼 클릭시 상태를 변경
+	public int pinchChk(Map<String, Object> map) throws Exception{
+		return sql.update(NAMESPACE + ".pinchChk", map);	
+	}
 	
 	
 	

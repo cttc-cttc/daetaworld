@@ -27,7 +27,7 @@ public interface EmployeeDAO {
 	//자소서 삭제
 	public int resumeDelete(ResumeDTO resumeDTO)throws Exception;
 	
-	//자소서 저장
+	//자소서 저장 ajax
 	public int resumeRegister(ResumeDTO resumeDTO)throws Exception;
 	
 	//대표 자소서 설정
@@ -65,6 +65,9 @@ public interface EmployeeDAO {
 	
 	//요청받은 공고 거절
 	public int requestNo(JobApplyDTO jobApplyDTO) throws Exception; 
+	
+	//완료한 공고 '확인'버튼 클릭시 상태를 변경
+	public int pinchChk(Map<String, Object> map) throws Exception;
 	
 	
 }

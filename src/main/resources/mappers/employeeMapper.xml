@@ -59,7 +59,7 @@
 	i_number = #{i_number}
 </delete>
 
-<!-- 자소서 작성 -->
+<!-- 자소서 작성 --> <!-- ajax -->
 <insert id="resumeRegister" parameterType="ResumeDTO">
 	INSERT INTO daetaworld.employee_intro
 	(i_number, i_title, i_contents, i_default, i_date, m_id)
@@ -138,10 +138,17 @@
 
 <!-- 종료된(완료한) 공고목록 불러오기 -->
 <select id="pinchExpired" parameterType="String" resultType="Map">
-	SELECT a.*, s.*, ja.*
-	FROM job_ads a, shop_info s, job_apply ja
-	WHERE
-	ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number AND a.a_status = '3'
+	
+	<![CDATA[ 
+	select a.*, ja.*,s.*
+	from job_ads a, job_apply ja, shop_info s
+	where left(a_date, 10)  <= date_format(curdate(), '%m/%d/%Y')
+	and ja.a_number = a.a_number
+	and a.s_number = s.s_number
+	and ja.jar_status = 4
+	and ja.m_id = #{m_id}
+	and (a.a_status =3 or a.a_status = 4);
+	]]>
 </select>
 
 
@@ -183,8 +190,14 @@
 </update>
 
 
-
-
+<!-- 알바 종료 후 '확인' 버튼 클릭 시 a_staus 상태를 3으로 변경 -->
+<update id="pinchChk" parameterType="Map">
+	UPDATE daetaworld.job_ads a
+	SET
+	a.a_status = 3
+	WHERE
+	a.m_id = #{m_id} AND a.a_number = #{a_number}
+</update>
 
 
 

@@ -54,8 +54,7 @@
 															<th>시간</th>
 															<th>시급</th>
 															<th>급구</th>
-															<th>상태</th>
-															<th>후기작성</th>
+															<th></th>
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
@@ -72,28 +71,25 @@
 																		<c:out value="x"></c:out>
 																	</c:if>
 																</td>																																
-																<td>
-																<c:set var="status" value="${adsList.a_status }"/>
-																	<c:if test="${status == 0 }">
-																		<c:out value="구인 중"></c:out>
-																	</c:if>
-																	<c:if test="${status == 1 }">
-																		<c:out value="신청 중"></c:out>
-																	</c:if>
-																	<c:if test="${status == 2 }">
-																		<c:out value="구인 완료"></c:out>
-																	</c:if>
-																	<c:if test="${status == 3 }">
-																		<c:out value="종료"></c:out>
-																	</c:if>
-																	<c:if test="${status == 4 }">
-																		<c:out value="만료"></c:out>
-																	</c:if>
-																</td>
-																<td><button>후기</button></td>
+																
+																<!-- 진행중인 알바가 끝났을 때 확인 -> 버튼이 '리뷰작성' 으로 바뀌고 -> 리뷰작성 -> 구인자에 대한 리뷰를 작성하는 페이지로 이동. -->
+																
+																
+																<c:if test="${adsList.a_status != 3}">
+																	<td><button id="pinchCh" onclick="pinch_Chk()">확인</button></td>
+																</c:if>
+																
+																<c:if test="${adsList.a_status == 3}">
+																	<td><button id="pinchCh" onclick="">후기입력</button></td>
+																</c:if>
 															</tr>
+																<input type="hidden" name="m_id" id="m_id" value="${adsList.m_id}" />
+																<input type="hidden" name="a_number" id="a_number" value="${adsList.a_number}" />
 														</c:forEach>
 													</table>
+													
+													
+													
 												</div>
 											</div>
 										</div>
@@ -122,5 +118,79 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	
+	<script type="text/javascript">
+		function pinch_Chk() {
+			var m_id = $("#m_id").val(); //구인자 아이디
+			var a_number = $("#a_number").val();
+			
+			var url = "${contextPath}/employeeMapper/pinchChk";
+			var paramData = {
+				"m_id" : m_id,
+				"a_number" : a_number 
+			};
+			
+			$.ajax({
+				
+				url : url,
+				data : paramData,
+				type : "POST",
+				dataType : "json",
+					success : function(result){
+						console.log('ajax 성공');
+						window.location.reload(true);
+						location.href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id}";
+						alert('수고하셨습니다! 매장의 후기를 작성하세요!');
+						
+						 changeBtnName();
+						
+					},
+					error : function(result){
+						console.log('ajax 실패');
+					}
+			});
+			
+			
+			
+			
+		}
+	</script>
+	
+	
+	<script type="text/javascript">
+		function changeBtnName()  {
+			  const btnElement = document.getElementById('pinchCh');
+			  btnElement.innerText = '후기작성';
+			}
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

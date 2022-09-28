@@ -56,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 
-	@Override //자소서 저장
+	@Override //자소서 저장 ajax
 	public int resumeRegister(ResumeDTO resumeDTO) throws Exception {
 		return dao.resumeRegister(resumeDTO);
 	}
@@ -131,6 +131,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override //요청받은 공고 거절
 	public int requestNo(JobApplyDTO jobApplyDTO) throws Exception {
 		return dao.requestNo(jobApplyDTO);
+	}
+
+
+	@Override //완료한 공고 '확인'버튼 클릭시 상태를 변경
+	public int pinchChk(Map<String, Object> map) throws Exception {
+		return dao.pinchChk(map);
 	}
 	
 	
