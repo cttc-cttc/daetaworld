@@ -80,7 +80,7 @@
 																</c:if>
 																
 																<c:if test="${adsList.a_status == 3}">
-																	<td><button id="pinchCh" onclick="">후기입력</button></td>
+																	<td><button id="pinchCh" onclick="location.href='${contextPath}/reviewMapper/reviewRegister?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}'">후기입력</button></td>
 																</c:if>
 															</tr>
 																<input type="hidden" name="m_id" id="m_id" value="${adsList.m_id}" />

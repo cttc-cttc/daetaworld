@@ -40,9 +40,4 @@
         or r.w_number = rc.w_number
 	</select>
 	
-  	<insert id="reviewRegister" parameterType="ReviewDTO">
-		insert into review(w_number,w_rate,w_comments,w_date,m_mid
-		values (#{w_number},#{w_rate}, #{w_comments},now(),#{m_id})
-		
-	</insert>
 </mapper>
