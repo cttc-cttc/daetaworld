@@ -35,6 +35,9 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
+	
+	
+	//게시판 리스트
 	@RequestMapping(value = "board/free/free", method = RequestMethod.GET)
 	public ModelAndView list() 	throws Exception{
 		ModelAndView mav = new ModelAndView();
@@ -146,14 +149,14 @@ public class BoardController {
 	
 	
 	
-	    //글쓰기폼
+	    //땜빵 글쓰기폼
 		@RequestMapping(value="board/temping/tempingregister", method = RequestMethod.GET)
 		public String tempingregister() {
 			
 			return "board/temping/tempingregister";
 		}
 		
-		//글쓰기폼 등록과정
+		//땜빵 글쓰기폼 등록과정
 		@RequestMapping(value="board/temping/tempingregister", method = RequestMethod.POST)
 		public String tempingregister(BoardDTO boardDTO, HttpServletRequest request)throws Exception {
 			request.setCharacterEncoding("utf-8");

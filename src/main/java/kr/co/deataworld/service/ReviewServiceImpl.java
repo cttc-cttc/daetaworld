@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.ReviewDAO;
 import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.ReviewDTO;
 
 @Service
 public class ReviewServiceImpl implements ReviewService{
@@ -20,6 +21,13 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return dao.adsCompleted(m_id);
 	}
+
+	@Override
+	public int reviewRegister(ReviewDTO reviewDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reviewRegister(reviewDTO);
+	}
+
 
 
 }
