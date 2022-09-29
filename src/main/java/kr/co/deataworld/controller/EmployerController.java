@@ -279,6 +279,7 @@ public class EmployerController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("m_id", m_id);
 		map.put("i_number", i_number);
+		map.put("a_number", a_number);
 		Map<String, Object> detail = service.canDetail(map);
 		model.addAttribute("detail", detail);
 		model.addAttribute("a_number", a_number);
