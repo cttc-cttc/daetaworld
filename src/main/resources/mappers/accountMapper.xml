@@ -105,7 +105,7 @@
   	
   	
   	
-  	<select id="findId" parameterType="String"  resultType="java.lang.String">
+  	<select id="findId" parameterType="String"  resultType="String">
   		select * 
   		from member 
   		where
