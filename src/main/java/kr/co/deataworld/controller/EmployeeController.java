@@ -30,6 +30,7 @@ import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ResumeDTO;
 import kr.co.deataworld.service.AccountService;
 import kr.co.deataworld.service.EmployeeService;
+import kr.co.deataworld.service.NotificationService;
 import kr.co.deataworld.util.ExtractAreaCode;
 import kr.co.deataworld.util.FileProcess;
 /*
@@ -42,6 +43,9 @@ public class EmployeeController {
 	
 	@Autowired
 	AccountService aService;
+	
+	@Inject
+	NotificationService nService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
@@ -162,10 +166,17 @@ public class EmployeeController {
 	
 	
 	//대타신청 - 신청을 하면 -> m_id 값을 보냄 -> 이미 지원한 공고인지 확인 해야함 -> 구직/구인자 지원상태를 0(지원함)으로 바꿈 -> 구직자 대표 자기소개서를 update해줌. 
+	// 구인자한테 신청했다고 알림 보냄
 	@GetMapping(value="employeeMapper/jobApply")
-	public String jobApply(JobApplyDTO jobapplyDTO)throws Exception {
+	public String jobApply(JobApplyDTO jobapplyDTO, String employer_id, String s_name)throws Exception {
 		service.jobApply(jobapplyDTO); //m_id, 구직&구인자 지원상태를 0(지원함)으로 insert 함
 		service.applyIntro(jobapplyDTO); //구직자가 볼수있게 대표 자기소개서를 update 함
+		
+		// 공고 지원자 알림을 등록할 정보
+		Map<String, String> notiInsertInfo = new HashMap<String, String>();
+		notiInsertInfo.put("m_id", employer_id);
+		notiInsertInfo.put("s_name", s_name);
+		nService.insertAdsApplicant(notiInsertInfo);
 		return "redirect:/jobAds/listAll";
 	}
 	

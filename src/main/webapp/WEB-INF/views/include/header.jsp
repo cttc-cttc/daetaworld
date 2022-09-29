@@ -20,7 +20,7 @@
 						<li><a href="${contextPath }/jobAds/listUrgency">긴급구인</a></li>
 						<li><a href="${contextPath }/jobAds/listRecommendation">직업추천</a></li>
 						<li><a href="${contextPath }/jobAds/listCountry">농어촌</a></li>
-						<li><a href="${contextPath }/jobAds/listCare">랭킹</a></li>
+						<li><a href="${contextPath }/ranking">랭킹</a></li>
 						<li><a>게시판<small class="icon-arrow"></small></a>
 							<ul class="sub-menu">
 								<li><a href="${contextPath }/board/free/free">자유게시판</a></li>
@@ -53,15 +53,8 @@
 							<!-- //알림 토글 --> 
 							<div class="jp-author item">
 								<div class="dropdown notifications-menu">
-									<a id="alarm" data-toggle="dropdown" aria-expanded="false">
-										<i class="lnr lnr-alarm alarm-hover"></i>
-										<span class="label-alarm">1</span>
-									</a>
-									<div class="dropdown-menu" aria-labelledby="alarm">
-										<a class="dropdown-item drdn-item" href="#">나중에 수정</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item drdn-item last" href="#"><i class="lnr lnr-trash"></i>모든 알림 삭제</a>
-									</div>
+									<a id="alarm" data-toggle="dropdown" aria-expanded="false"></a>
+									<div id="notification-area" class="dropdown-menu" aria-labelledby="alarm"></div>
 								</div>
 							</div>
 							<!-- 알림 토글// --> 
@@ -116,3 +109,93 @@
 		</div>
 	</div>
 </div>
+<script>
+	window.addEventListener('load', function() {
+		notificationCnt();
+		notificationList();
+	});
+	
+	// 페이지 로드 시 로그인 유저의 알림목록을 가져옴
+	function notificationList() {
+		$.ajax({
+			url: '${contextPath}/notificationList',
+			data: {'m_id': '${loginInfo.m_id}'},
+			dataType: 'json',
+			type: 'get',
+			success: function(res) {
+				console.log(res);
+				displayNotification(res);
+			},
+			error: function(res) {
+				console.log('실패');
+				console.log(res);
+			}
+		});
+	}
+	// 알림목록 화면 표시
+	function displayNotification(notification) {
+		if(notification.length == 0) {
+			let htmls = `
+				<a class="dropdown-item drdn-item" style="cursor: context-menu; background: #fff">알림이 없습니다.</a>
+			`;
+			$('#notification-area').html(htmls);
+			
+		} else {
+			let htmls = '';
+			Array.from(notification).forEach(noti => {
+				htmls += '<a class="dropdown-item drdn-item" href="'+ noti.m_id +'">'+ noti.s_name+' 지원신청 1건</a>';
+			});
+			htmls += `
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item drdn-item last" href="javascript:deleteNotification()"><i class="lnr lnr-trash"></i>모든 알림 삭제</a>
+			`;
+			
+			$('#notification-area').html(htmls);
+		}
+	}
+	
+	// 알림목록 수
+	function notificationCnt() {
+		$.ajax({
+			url: '${contextPath}/notificationCnt',
+			data: {'m_id': '${loginInfo.m_id}'},
+			dataType: 'json',
+			type: 'get',
+			success: function(res) {
+				console.log(res);
+				displayNotificationCnt(res);
+			},
+			error: function() {
+				console.log('실패');
+			}
+		});
+	}
+	// 알림목록 수 화면 표시
+	function displayNotificationCnt(notiCnt) {
+		if(notiCnt == 0) {
+			$('#alarm').html('<i class="lnr lnr-alarm alarm-hover"></i>');
+		} else {
+			let htmls = 
+				'<i class="lnr lnr-alarm alarm-hover"></i>'+
+				'<span class="label-alarm">'+ notiCnt +'</span>';
+			$('#alarm').html(htmls);
+		}
+	}
+	
+	// 알림목록 삭제
+	function deleteNotification() {
+		$.ajax({
+			url: '${contextPath}/deleteNotification',
+			data: {'m_id': '${loginInfo.m_id}'},
+			dataType: 'json',
+			type: 'get',
+			success: function() {
+				notificationCnt();
+				notificationList();
+			},
+			error: function() {
+				console.log('실패');
+			}
+		});
+	}
+</script>

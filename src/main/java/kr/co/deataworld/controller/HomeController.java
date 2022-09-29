@@ -40,14 +40,6 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping(value="myPage")
-	public String myPage() {
-		logger.info("마이페이지 접속");
-		return "myPage";
-	}
-	
-	
-	
 	@GetMapping(value="daetaFooter/emailFAQ")
 	public String emailFAQ() {
 		return "daetaFooter/emailFAQ";
