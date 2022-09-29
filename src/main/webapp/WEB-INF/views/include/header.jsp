@@ -99,7 +99,7 @@
 										<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/myInfo?m_id=${loginInfo.m_id}">마이페이지</a>
 										<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsRegister?m_id=${loginInfo.m_id}">공고 등록</a>
 										<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsApplied?m_id=${loginInfo.m_id}">지원자 확인</a>
-										<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/adsCompleted?m_id=${loginInfo.m_id}">후기 작성</a>
+										<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/r_adsCompleted?m_id=${loginInfo.m_id}">후기 작성</a>
 									</c:if>
 								</div>
 							</div>

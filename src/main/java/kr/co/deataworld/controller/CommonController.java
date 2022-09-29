@@ -109,25 +109,41 @@ public class CommonController {
 	@PostMapping(value="pointMapper/pointAdd")
 	public int pointAdd(@RequestParam Map<String, Object> map) throws Exception{
 		return pService.pointAdd(map);
-	}
+	}	
 	
-//	리뷰 작성을 위한 완료된 공고 확인
-	@GetMapping(value="reviewMapper/adsCompleted")
-	public String adsCompleted(@RequestParam("m_id")String m_id, Model model) throws Exception {
-		model.addAttribute("leftMenu", "adsCompleted");
-		List<Map<String, Object>> list = rService.adsCompleted(m_id);
-		model.addAttribute("list", list);
-		return "common/review/adsCompleted";
-	}
 	
-//	리뷰 작성된 공고 목록
-	@GetMapping(value="reviewMapper/writtenReviews")	
-	public String writtenReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
-		model.addAttribute("leftMenu", "adsCompleted");
-		List<Map<String, Object>> list = rService.writtenReviews(m_id);
-		model.addAttribute("list", list);
-		return "common/review/writtenReviews";
-	}
+//	구인자	
+	
+	//	리뷰 작성을 위한 완료된 공고 확인
+		@GetMapping(value="reviewMapper/r_adsCompleted")
+		public String r_adsCompleted(@RequestParam("m_id")String m_id, Model model) throws Exception {
+			model.addAttribute("leftMenu", "adsCompleted");
+			List<Map<String, Object>> list = rService.r_adsCompleted(m_id);
+			model.addAttribute("list", list);
+			return "common/review/employer/r_adsCompleted";
+		}
+		
+	//	리뷰 작성한 공고 목록
+		@GetMapping(value="reviewMapper/r_wroteReviews")	
+		public String r_wroteReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
+			model.addAttribute("leftMenu", "adsCompleted");
+			List<Map<String, Object>> list = rService.r_wroteReviews(m_id);
+			model.addAttribute("list", list);
+			return "common/review/employer/r_wroteReviews";
+		}
+		
+	//	리뷰 작성된 공고 목록
+		@GetMapping(value="reviewMapper/r_writtenReviews")
+		public String r_writtenReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
+			model.addAttribute("leftMenu", "adsCompleted");
+			List<Map<String, Object>> list = rService.r_writtenReviews(m_id);
+			model.addAttribute("list", list);
+			return "common/review/employer/r_writtenReviews";
+		}
+		
+		
+//  구직자
+		
 	
 //	작성된 리뷰 내용 확인
 	@GetMapping(value="reviewMapper/reviewDetail")

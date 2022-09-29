@@ -97,7 +97,7 @@
 																					<option>${shop.s_name }	</option>																																																													
 																				</c:forEach>
 																			</select> &nbsp; 또는
-																			<input type="button" onclick="location.href='shopRegister'" value="새 가게 등록">	
+																			<input type="button" onclick="location.href='shopRegister?m_id=${loginInfo.m_id}'" value="새 가게 등록">	
 																		</div>
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
