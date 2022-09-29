@@ -8,15 +8,14 @@ import kr.co.deataworld.dto.AreaCodeDTO;
 import kr.co.deataworld.dto.JobAdsDTO;
 import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.JobCountryCriteria;
-import kr.co.deataworld.dto.MainAdsDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 
 public interface JobAdsService {
 	// 메인화면 - 긴급구인 리스트 6개
-	public List<MainAdsDTO> mainUrgencyList();
+	public List<Map<String, Object>> mainUrgencyList();
 
 	// 메인화면 - 일반구인 리스트 6개
-	public List<MainAdsDTO> mainCommonList();
+	public List<Map<String, Object>> mainCommonList();
 
 	// 구인목록(일반구인)
 	public List<Map<String,Object>> listAds(JobAdsCriteria cri);

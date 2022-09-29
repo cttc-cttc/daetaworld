@@ -39,12 +39,12 @@
 										<div class="col-lg-4">
 											<div class="single-employer-item">
 												<div class="image-featured">
-													<img src="${contextPath}/resources/images/shop_picture/${urgency_ads.s_picture1}" alt="">
+													<img src="${contextPath }/displayShop?fileName=${urgency_ads.s_picture1}" class="urgency-img">
 												</div>
 												<div class="item-content">
 													<div class="avatar"></div>
 													<h4 class="title">
-														<a href="jobAds/detail?num=${urgency_ads.a_number }">${urgency_ads.s_name }</a>
+														<a href="jobAds/listAllDetail?s_name=${urgency_ads.s_name }&s_number=${urgency_ads.s_number }&m_id=${urgency_ads.m_id }&a_number=${urgency_ads.a_number }">${urgency_ads.s_name }</a>
 													</h4>
 													<div class="meta">
 														<div class="star">
@@ -96,7 +96,7 @@
 											<div class="job-info-top">
 												<div class="title-name">
 													<h3 class="job-title">
-														<a href="jobAds/detail?num=${common_ads.a_number }">${common_ads.s_name }</a>
+														<a href="jobAds/listAllDetail?s_name=${common_ads.s_name }&s_number=${common_ads.s_number }&m_id=${common_ads.m_id }&a_number=${common_ads.a_number }">${common_ads.s_name }</a>
 													</h3>
 													<div class="employer-name">
 														<!-- <a href="employer-details.html">구인자id</a> -->
@@ -135,7 +135,7 @@
 										</div>
 									</div>
 									<div class="shop-image">
-										<img src="${contextPath}/resources/images/shop_picture/${common_ads.s_picture1}">
+										<img src="${contextPath }/displayShop?fileName=${common_ads.s_picture1}">
 									</div>
 								</div>
 							</div>

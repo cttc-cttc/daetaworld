@@ -13,7 +13,6 @@ import kr.co.deataworld.dto.JobAdsCriteria;
 import kr.co.deataworld.dto.JobAdsDTO;
 import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.JobCountryCriteria;
-import kr.co.deataworld.dto.MainAdsDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 
 @Service
@@ -23,12 +22,12 @@ public class JobAdsServiceImpl implements JobAdsService {
 	JobAdsDAO dao;
 	
 	@Override
-	public List<MainAdsDTO> mainUrgencyList() {
+	public List<Map<String, Object>> mainUrgencyList() {
 		return dao.mainUrgencyList();
 	}
 	
 	@Override
-	public List<MainAdsDTO> mainCommonList() {
+	public List<Map<String, Object>> mainCommonList() {
 		return dao.mainCommonList();
 	}
 

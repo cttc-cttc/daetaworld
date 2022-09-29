@@ -1,6 +1,7 @@
 package kr.co.deataworld.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.co.deataworld.dto.MainAdsDTO;
 import kr.co.deataworld.service.JobAdsService;
 
 /**
@@ -30,11 +30,11 @@ public class HomeController {
 		logger.info("메인화면 접속");
 		
 		// 메인화면 - 긴급구인 리스트 6개
-		List<MainAdsDTO> urgencyList = service.mainUrgencyList();
+		List<Map<String, Object>> urgencyList = service.mainUrgencyList();
 		model.addAttribute("urgency_list", urgencyList);
 		
 		// 메인화면 - 일반구인 리스트 6개
-		List<MainAdsDTO> commonList = service.mainCommonList();
+		List<Map<String, Object>> commonList = service.mainCommonList();
 		model.addAttribute("common_list", commonList);
 		
 		return "index";
