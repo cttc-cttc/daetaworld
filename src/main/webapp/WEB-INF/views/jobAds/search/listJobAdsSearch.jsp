@@ -46,6 +46,7 @@
 
 
                         <tr>
+                        
                            <th>지역</th> <!-- 지역 카테고리1 -->
                            <td>
                            <select class="form-select" onchange="selectAreaName1(this)">
@@ -130,7 +131,7 @@
 							<th>시급</th>
 							<th>주소</th>
 							<th>구인 인원</th>
-							
+							<th></th>
 
 						</tr>
 					</thead>
@@ -144,6 +145,7 @@
 							<td class="tc">${jobsend.a_wage}</td>
 							<td class="tc">${jobsend.s_address1 }</td>
 							<td class="tc">${jobsend.a_need }</td>
+							<td></td>
 						</tr>
 					</c:forEach>
 				</table>

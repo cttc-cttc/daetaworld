@@ -27,22 +27,91 @@
 			<!-- 윗대가리시작 -->
 			<div class="breadcrumb-section section pt-60 pt-sm-50 pt-xs-40">
 				<div class="container sb-border-two pb-60 pb-sm-50 pb-xs-40">
-					<h1>${map.s_name}</h1>
+					<!-- 상단표시 -->
+					<div
+						class="breadcrumb-section section bg_color--5 pt-60 pt-sm-50 pt-xs-40 pb-60 pb-sm-50 pb-xs-40">
+						<div class="container">
+							<div class="row">
+								<div class="col-12">
+									<div class="page-breadcrumb-content">
+										<ul class="page-breadcrumb">
+											<li><a href="${contextPath}">Home</a></li>
+											
+											
+										</ul>
+										<h1>${map.s_name}</h1>
+									</div>
+									<div class="job-meta-detail">
+										<ul>
+											<li class="posted"><i class="lnr lnr-clock"></i><span
+												class="text">구인공고 올린시간:</span><span class="time">
+												${map.ua_date } </span></li>
+											
+										</ul>
+										<!-- 붙여놓기 시작 -->
+											
 					<div class="row align-items-center">
 						<div class="col-lg-7">
 							<div class="employer-head-info">
 
-								<br> <br> <br> <br> <br>
-								가게등록날짜:${map.s_date } 공고번호:${map.s_number}
-					
+								
+								가게등록날짜:${map.s_date } 가게번호:${map.s_number} 공고번호:${map.a_number}<br>
+								
+
+							</div>
+							<br> <br>
+							<!-- 시급,일하는시간,날짜 -->
+							<div class="row no-gutters">
+
+								<div class="col-lg-4 col-md-6">
+									<!-- Single Meta Field Start -->
+									<div class="single-meta-field">
+										<div class="field-label">
+											<i class="lnr lnr-thumbs-up"></i><span>시급</span>
+										</div>
+										<div class="field-value salary">${map.a_wage }/시간</div>
+									</div>
+									<!-- Single Meta Field Start -->
+								</div>
+								<div class="col-lg-4 col-md-6">
+									<!-- Single Meta Field Start -->
+									<div class="single-meta-field">
+										<div class="field-label">
+											<i class="lnr lnr-briefcase"></i><span>일하는 시간 </span>
+										</div>
+										<div class="field-value">
+											<a class="fw-600">${map.a_time }</a>
+										</div>
+									</div>
+									<!-- Single Meta Field Start -->
+								</div>
+								<div class="col-lg-4 col-md-6">
+									<!-- Single Meta Field Start -->
+									<div class="single-meta-field">
+										<div class="field-label">
+											<i class="lnr lnr-briefcase"></i><span>날짜 </span>
+										</div>
+										<div class="field-value">
+											<a class="fw-600">${map.a_date }</a>
+										</div>
+									</div>
+									<!-- Single Meta Field Start -->
+								</div>
 
 
 							</div>
-							<!-- 본문시작 -->
 
-							<!-- 본문끝 -->
+							<!-- 시급,일하는시간,날짜 끝 -->
 						</div>
 					</div>
+										<!-- 붙여놓기 끝 -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 상단표시끝 -->
+				
 
 				</div>
 			</div>
@@ -67,8 +136,15 @@
 							<h2 class="sidebar-title">가게 위치</h2>
 							<div class="sidebar-map">
 								<!-- 카카오 지도 -->
-								<div id="map" style="width:500px;height:400px;"></div>
-								
+								<div id="map" style="width: 500px; height: 400px;"></div>
+								<div class="single-meta-field">
+									<div class="field-label">
+										<i class="lnr lnr-map-marker"></i><span>주소 </span>
+									</div>
+									<div class="field-value">
+										<a>${map.s_address1}</a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -78,25 +154,34 @@
 					<div class="employer-main-content">
 						<div class="field-description">
 
-							
-							<p>${map.s_intro } </p>
-							${map.s_tag1 } ,${map.s_tag2 } ,${map.s_tag3 } , ${map.s_tag4 }
+							<h3>가게소게</h3>
+							<p>${map.s_intro }</p>
+
 							<ul>
 
-								
+
 								<p>등록된 사진:</p>
-                                                         <c:if test="${map.s_picture1 != null }">
-                                                            <img src="${contextPath }/displayShop?fileName=${map.s_picture1}" style="width: 120px;">
-                                                            <input type="hidden" name="preS_picture1" value="${map.s_picture1 }">
-                                                         </c:if>
-                                                         <c:if test="${map.s_picture2 != null }">
-                                                            <img src="${contextPath }/displayShop?fileName=${map.s_picture2}" style="width: 120px;">
-                                                            <input type="hidden" name="preS_picture2" value="${map.s_picture2 }">
-                                                         </c:if>
-                                                         <c:if test="${map.s_picture3 != null }">
-                                                            <img src="${contextPath }/displayShop?fileName=${map.s_picture3}" style="width: 120px;">
-                                                            <input type="hidden" name="preS_picture3" value="${map.s_picture3 }">
-                                                         </c:if>
+								<c:if test="${map.s_picture1 != null }">
+									<img
+										src="${contextPath }/displayShop?fileName=${map.s_picture1}"
+										style="width: 300px;">
+									<input type="hidden" name="preS_picture1"
+										value="${map.s_picture1 }">
+								</c:if>
+								<c:if test="${map.s_picture2 != null }">
+									<img
+										src="${contextPath }/displayShop?fileName=${map.s_picture2}"
+										style="width: 300px;">
+									<input type="hidden" name="preS_picture2"
+										value="${map.s_picture2 }">
+								</c:if>
+								<c:if test="${map.s_picture3 != null }">
+									<img
+										src="${contextPath }/displayShop?fileName=${map.s_picture3}"
+										style="width: 300px;">
+									<input type="hidden" name="preS_picture3"
+										value="${map.s_picture3 }">
+								</c:if>
 								<li>가게주소:${map.s_address1}</li>
 							</ul>
 						</div>
@@ -106,21 +191,31 @@
 								<li>
 									<h6>${map.a_need }명</h6>
 								</li>
-
+							</ul>
+							<ul>
+								<li>${map.s_tag1 } , ${map.s_tag2 } ,${map.s_tag3 } ,${map.s_tag4 } , ${map.s_tag5 }</li>
+								
 							</ul>
 						</div>
+						<p>
+							<strong>어떻게 지원하면 될까요?</strong>
+						</p>
+						<p>바로 아래의 '지원하기' 버튼을 눌러주세요~!</p>
 						<div class="review-area pb-60 pb-sm-30 pb-xs-30">
 							<div class="review-container">
-									
-									<!-- 구직 신청하기 -->
-									<c:if test="${result == 0}">
-										<a class="ht-btn text-center" type="button" onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">지원하기<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
-									</c:if>
-									
-									<!-- 지원한 공고 = 신청불가 -->
-									<c:if test="${result == 1}">
-										<a class="ht-btn text-center" type="text">이미 지원한 공고입니다<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
-									</c:if>
+
+								<!-- 구직 신청하기 -->
+								<c:if test="${result == 0}">
+									<a class="ht-btn text-center" type="button"
+										onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}'">지원하기<i
+										class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+								</c:if>
+
+								<!-- 지원한 공고 = 신청불가 -->
+								<c:if test="${result == 1}">
+									<a class="ht-btn text-center" type="text">이미 지원한 공고입니다<i
+										class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+								</c:if>
 
 							</div>
 						</div>
@@ -374,47 +469,57 @@
 
 	</div>
 	<!-- 문서 끝에 js를 배치하여 페이지 로딩 속도 향상 -->
-	<%@ include file="../include/plugin.jsp" %>
-	<script src="${contextPath}/resources/assets/js/vendor/modernizr-3.10.0.min.js"></script>
+	<%@ include file="../include/plugin.jsp"%>
+	<script
+		src="${contextPath}/resources/assets/js/vendor/modernizr-3.10.0.min.js"></script>
 
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d6140eb0f3d4e274049880e659b9d48b&libraries=services"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d6140eb0f3d4e274049880e659b9d48b&libraries=services"></script>
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
-		    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		    level: 3 // 지도의 확대 레벨
-		};  
-		
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+
 		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-		
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
 		// 주소-좌표 변환 객체를 생성합니다
 		var geocoder = new kakao.maps.services.Geocoder();
-		
+
 		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('${map.s_address1}', function(result, status) {
-		
-		    // 정상적으로 검색이 완료됐으면 
-		     if (status === kakao.maps.services.Status.OK) {
-		
-		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		
-		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
-		            map: map,
-		            position: coords
-		        });
-		
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div id="s-name" style="text-align:center; padding:0 1rem;">'+ '${map.s_name}' +'</div>'
-		        });
-		        infowindow.open(map, marker);
-				$('#s-name').parent().css('width','100%');
-		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		        map.setCenter(coords);
-		    } 
-		});
+		geocoder
+				.addressSearch(
+						'${map.s_address1}',
+						function(result, status) {
+
+							// 정상적으로 검색이 완료됐으면 
+							if (status === kakao.maps.services.Status.OK) {
+
+								var coords = new kakao.maps.LatLng(result[0].y,
+										result[0].x);
+
+								// 결과값으로 받은 위치를 마커로 표시합니다
+								var marker = new kakao.maps.Marker({
+									map : map,
+									position : coords
+								});
+
+								// 인포윈도우로 장소에 대한 설명을 표시합니다
+								var infowindow = new kakao.maps.InfoWindow(
+										{
+											content : '<div id="s-name" style="text-align:center; padding:0 1rem;">'
+													+ '${map.s_name}'
+													+ '</div>'
+										});
+								infowindow.open(map, marker);
+								$('#s-name').parent().css('width', '100%');
+								// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+								map.setCenter(coords);
+							}
+						});
 	</script>
 </body>
 </html>
