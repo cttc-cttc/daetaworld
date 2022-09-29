@@ -5,7 +5,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <title>완료된 공고</title>
-<%@ include file="../../include/head.jsp"%>
+<%@ include file="../../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -14,7 +14,7 @@
 		<!-- 상단 메뉴 start-->
 		<header
 			class="black-logo-version header-sticky sticky-white d-none d-lg-block">
-			<%@ include file="../../include/header.jsp"%>
+			<%@ include file="../../../include/header.jsp"%>
 		</header>
 		<!-- 상단 메뉴 end-->
 		<hr class="header-hr">
@@ -22,7 +22,7 @@
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
-					<%@ include file="../../include/dashBoard.jsp"%>
+					<%@ include file="../../../include/dashBoard.jsp"%>
 					<div class="col-xl-10 col-lg-9">
 						<div class="dashboard-main-inner">
 							<div class="row">
@@ -38,27 +38,31 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="adsCompleted?m_id=${loginInfo.m_id }">완료된 공고</a></li>											
-													<li><a href="writtenReviews?m_id=${loginInfo.m_id }">후기 작성된 공고</a></li>											
+													<li><a href="r_adsCompleted?m_id=${loginInfo.m_id }">완료된 공고</a></li>											
+													<li><a href="r_wroteReviews?m_id=${loginInfo.m_id }">후기 작성한 공고</a></li>											
+													<li><a class="active" href="r_writtenReviews?m_id=${loginInfo.m_id }">후기 작성된 공고</a></li>											
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<table class="table table-striped">
+													<table class="table table-striped" style="table-layout:fixed">
 														<thead>		
 															<th>가게명</th>													
 															<th>날짜</th>															
 															<th>시간</th>
 															<th>시급</th>	
-															<th></th>
+															<th>알바생</th>
+															<th>후기 작성 날짜</th>
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
-																<td>${adsList.s_name }</td>													
+																<td><a href="reviewDetail?a_number=${adsList.a_number }">
+																	${adsList.s_name }</a></td>													
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
-																<td>${adsList.a_wage }</td>	
-																<td><button onclick="location.href='reviewRegister?a_number=${adsList.a_number}&m_id=${adsList.m_id }'" >후기작성</button></td>
+																<td>${adsList.a_wage }</td>
+																<td>${adsList.m_nick }</td>
+																<td>${adsList.w_date}</td>																
 															</tr>
 														</c:forEach>
 													</table>
@@ -77,7 +81,7 @@
 			</div>
 		</div>
 		<!-- Dashboard Content Section End -->
-		<%@ include file="../../include/footer.jsp"%>
+		<%@ include file="../../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->
