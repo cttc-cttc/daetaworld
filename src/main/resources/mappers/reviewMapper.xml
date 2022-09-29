@@ -37,6 +37,7 @@
 		and a.s_number = s.s_number
 		and a.a_number = ja.a_number
 		and ja.m_id = m.m_id
+		and ja.jar_status not in (7)
   	</select>
   	
   	<!-- 리뷰 작성한 공고 목록 -->
@@ -48,7 +49,8 @@
 		and s.m_id = a.m_id 
 		and r.a_number = a.a_number
 		and a.m_id = r.w_writer and s.m_id = r.w_writer and r.w_writer = #{m_id} 
-		and m.m_id = ja.m_id				
+		and m.m_id = ja.m_id		
+		and ja.jar_status = 7		
 	</select>
 	
 	<!-- 리뷰 작성된 공고 목록-->
@@ -61,6 +63,7 @@
 		and r.a_number = a.a_number
 		and a.m_id = r.id_rated and s.m_id = r.id_rated and r.id_rated = #{m_id}
 		and m.m_id = r.w_writer
+		and ja.jae_status = 7
 	</select>
 	
 
