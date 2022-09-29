@@ -10,12 +10,66 @@
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/etc.css">	
+<style>
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+}
+ 
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
+.star-ratings-fill {
+  color: #fff58c;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-ratings-base {
+  z-index: 0;
+  padding: 0;
+}
+
+</style>
+
+
+
+
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
 		<header
 			class="black-logo-version header-sticky sticky-white d-none d-lg-block">
 			<%@ include file="../../include/header.jsp"%>
+			
 		</header>
 		<!-- 상단 메뉴 end-->
 		<hr class="header-hr">
@@ -44,46 +98,35 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-										
-										
-										
+														
 										<div class="table-responsive">
-								<table class="table table-striped">
-									<div class="box-body">
-										<div class="form-group">
-											<label>내용</label>
-											<textarea name="w_comments" rows="5" 
-												class="form-control">${review.w_contents}</textarea>
-										</div>
-
-									
-									</div>
-									
 								
-	
- 	<form class="mb-3" name="myform" id="myform" method="post">
-	<fieldset>
-		<span class="text-bold">별점을 선택해주세요</span>
-		<input type="radio" name="reviewStar" value="5" id="rate1"><label
-			for="rate1">★</label>
-		<input type="radio" name="reviewStar" value="4" id="rate2"><label
-			for="rate2">★★</label>
-		<input type="radio" name="reviewStar" value="3" id="rate3"><label
-			for="rate3">★★★</label>
-		<input type="radio" name="reviewStar" value="2" id="rate4"><label
-			for="rate4">★★★★</label>
-		<input type="radio" name="reviewStar" value="1" id="rate5"><label
-			for="rate5">★★★★★</label>
-	</fieldset>
-	<div>
-		<textarea class="col-auto form-control" type="text" id="reviewContents"
+									</div>
+							
+			<form name="form" action="reviewRegister" method="post"  >						
+									
+			<div class="star-rating space-x-4 mx-auto">
+			<input type="radio" id="5-stars" name="w_rate" value="5" v-model="ratings"/>
+			<label for="5-stars" class="star pr-4">★</label>
+			<input type="radio" id="4-stars" name="w_rate" value="4" v-model="ratings"/>
+			<label for="4-stars" class="star">★</label>
+			<input type="radio" id="3-stars" name="w_rate" value="3" v-model="ratings"/>
+			<label for="3-stars" class="star">★</label>
+			<input type="radio" id="2-stars" name="w_rate" value="2" v-model="ratings"/>
+			<label for="2-stars" class="star">★</label>
+			<input type="radio" id="1-star" name="w_rate" value="1" v-model="ratings" />
+			<label for="1-star" class="star">★</label>
+			</div>				
+			<div>
+		<textarea class="col-auto form-control" type="text" id="w_comments" name="w_comments"
 				  placeholder="좋은 후기평가를 남겨주시면 노예에게 큰 힘이 됩니다! 포인트 500p도 지급!!"></textarea>
 	</div>
-	
-	
+
+	<div class="wrap">
+  
 	</div>
 		<div class="box-footer"> 
-		<button class="btn btn-info onclick="location.href='${contextPath}/common/review/tempingreply?b_number=${temping.b_number}'">후기 작성</button>
+		<button type="submit" class="btn btn-info" onclick="location.href='${contextPath}/common/review/writtenReviews?b_number=${temping.b_number}'">후기 작성</button>
 	
 	</div>
 	
@@ -125,48 +168,16 @@
 	
 	
 	<!-- j커리 자리 -->
-	<script>
-	function changeQnaState(){
-        var qnaState = $(':radio[name="faqrp_asesment"]:checked').val();
-        var qnaAnswer = $("#faqrp_asesment_content").val();
-        
-        if(qnaState == ""){
-            alert("처리상태를 선택해주세요.");
-            return false;
-        }
-        if(qnaAnswer==""){
-            alert("답변 내용을 입력해주세요.");
-            return false;
-        }
-        
-        var submitObj = new Object();
-        submitObj.faq_idx = "${searchVO.faq_idx }";
-        submitObj.faqrp_asesment= qnaState;
-        submitObj.faqrp_asesment_content= qnaAnswer; 
-        
-        $.ajax({ 
-                url: path+"/onlinecounsel/csfaq/update_qnaState.do", 
-                type: "POST", 
-                contentType: "application/json;charset=UTF-8",
-                data:JSON.stringify(submitObj),
-                dataType : "json",
-                async: false
-               }) 
-               .done(function(resMap) {
-                  alert("등록 완료하였습니다.");
-                  location.reload();
-               }) 
-               .fail(function(e) {  
-                   alert("등록에 실패하였습니다.");
-                  
-               }) 
-               .always(function() { 
-                  
-               }); 
-} 
-
-	</script>
 	
+
+
+	<script>
+	ratingToPercent() {
+      const score = +this.restaurant.averageScore * 20;
+      return score + 1.5;
+ 		}
+	
+	</script>
 </body>
 
 </html>

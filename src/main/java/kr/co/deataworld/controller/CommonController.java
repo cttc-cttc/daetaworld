@@ -148,7 +148,7 @@ public class CommonController {
 	}
 	
 //	리뷰 작성 등록과정
-		@RequestMapping(value="common/reviewRegister", method = RequestMethod.POST)
+		@RequestMapping(value="reviewMapper/reviewRegister", method = RequestMethod.POST)
 		public String reviewRegister(ReviewDTO reviewDTO, HttpServletRequest request)throws Exception {
 			request.setCharacterEncoding("utf-8");
 			logger.info("내용 : " + reviewDTO);
