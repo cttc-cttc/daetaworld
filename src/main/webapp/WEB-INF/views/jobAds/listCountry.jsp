@@ -57,7 +57,10 @@
 									</select>
 									</td>
 									
-									
+									<td><label for="a_urgency">급구 여부<span>*</span></label>                                                            
+                                                            <input type="checkbox" name="a_urgency" value='1' id="input_check"/>
+                                                            <input type="hidden" name="a_urgency" value='0' id="input_check_hidden"/>   </td>
+							
 									
 									
 								</tr>
@@ -73,14 +76,7 @@
                           
                         </tr>
 						</thead>
-							<tr>
-								<td><label for="a_urgency">급구 여부<span>*</span></label>                                                            
-                                                            <input type="checkbox" name="a_urgency" value='1' id="input_check"/>
-                                                            <input type="hidden" name="a_urgency" value='0' id="input_check_hidden"/>   </td>
 							
-							</tr>
-
-
 							</tbody>
 						</table>
 						<input type = "hidden" id = "a_code" name = "a_code" value = "${a_code }">
