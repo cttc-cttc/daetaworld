@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>종료된 공고</h1>
+										<h1>완료된 공고</h1>
 									</div>
 								</div>
 							</div>
@@ -38,18 +38,16 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="pinchHistory?m_id=${loginInfo.m_id}">대타 내역</a></li>
-													<li><a href="pinchStatus?m_id=${loginInfo.m_id}">지원 현황</a></li>
-													<li><a href="requests?m_id=${loginInfo.m_id}">알바 요청 확인</a></li>
-													<li><a class="active" href="pinchExpired?m_id=${loginInfo.m_id}">종료된 공고</a></li>
+													<li><a class="active" href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id}">완료된 공고</a></li>
+													<li><a href="${contextPath}/reviewMapper/e_writtenReviews?w_writer=${loginInfo.m_id}">내가 작성한 후기</a></li>
+													<li><a href="${contextPath}/reviewMapper/e_myReview?id_rated=${loginInfo.m_id}">나를 평가한 후기</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													완료한 공고목록 내역
 													<table class="table table-striped">
 														<thead>		
-															<th>가게명</th>													
+															<th>가게이름</th>													
 															<th>날짜</th>															
 															<th>시간</th>
 															<th>시급</th>
@@ -58,7 +56,7 @@
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
-																<td>${adsList.s_name }</td>													
+																<td><a href="#"></a>${adsList.s_name }</td>													
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
 																<td>${adsList.a_wage }</td>
@@ -80,7 +78,7 @@
 																</c:if>
 																
 																<c:if test="${adsList.a_status == 3}">
-																	<td><button id="pinchCh" onclick="location.href='${contextPath}/reviewMapper/reviewRegister?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}'">후기입력</button></td>
+																	<td><button id="pinchCh" onclick="location.href='${contextPath}/reviewMapper/reviewRegister?w_writer=${loginInfo.m_id}&a_number=${adsList.a_number}&id_rated=${adsList.m_id}'">후기입력</button></td>
 																</c:if>
 															</tr>
 																<input type="hidden" name="m_id" id="m_id" value="${adsList.m_id}" />

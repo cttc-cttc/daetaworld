@@ -29,4 +29,11 @@ public interface ReviewDAO {
 	
 //	리뷰 작성된 공고 목록
 	public List<Map<String, Object>>r_writtenReviews(String m_id) throws Exception;
+
+//	내가 작성한 리뷰
+	public List<Map<String, Object>> e_writtenReviews(String w_writer) throws Exception;
+	
+//	나를 평가한 리뷰
+	public List<Map<String, Object>> e_myReview(String id_rated) throws Exception;
+	
 }

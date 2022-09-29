@@ -16,7 +16,6 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired
 	ReviewDAO dao;
 
-	@Override
 	public int reviewRegister(ReviewDTO reviewDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.reviewRegister(reviewDTO);
@@ -32,6 +31,16 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<Map<String, Object>> r_adsCompleted(String m_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.r_adsCompleted(m_id);
+	}
+	
+	@Override //내가 작성한 리뷰
+	public List<Map<String, Object>> e_writtenReviews(String w_writer) throws Exception {
+		return dao.e_writtenReviews(w_writer);
+	}
+
+	@Override //나를 평가한 리뷰
+	public List<Map<String, Object>> e_myReview(String id_rated) throws Exception {
+		return dao.e_myReview(id_rated);
 	}
 
 	@Override

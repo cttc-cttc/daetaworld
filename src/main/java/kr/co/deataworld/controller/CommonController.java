@@ -1,6 +1,7 @@
 package kr.co.deataworld.controller;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +47,7 @@ public class CommonController {
 	ReviewService rService;
 
 	
-	private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 //	포인트 
 	@GetMapping(value="pointMapper/pointManagement")
 	public String pointManagement(Model model) throws Exception {
@@ -109,82 +110,81 @@ public class CommonController {
 	@PostMapping(value="pointMapper/pointAdd")
 	public int pointAdd(@RequestParam Map<String, Object> map) throws Exception{
 		return pService.pointAdd(map);
+	}
+	
+////구인자
+////	리뷰 작성을 위한 완료된 공고 확인
+//	@GetMapping(value="reviewMapper/adsCompleted")
+//	public String adsCompleted(@RequestParam("m_id")String m_id, Model model) throws Exception {
+//		model.addAttribute("leftMenu", "adsCompleted");
+//		List<Map<String, Object>> list = rService.adsCompleted(m_id);
+//		model.addAttribute("list", list);
+//		return "common/review/adsCompleted";
+//	}
+//	
+////	리뷰 작성된 공고 목록
+//	@GetMapping(value="reviewMapper/writtenReviews")	
+//	public String writtenReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
+//		model.addAttribute("leftMenu", "adsCompleted");
+//		List<Map<String, Object>> list = rService.writtenReviews(m_id);
+//		model.addAttribute("list", list);
+//		return "common/review/writtenReviews";
+//	}
+	
+	
+	
+	
+//구직자
+//	리뷰 내가 작성한 후기
+	@GetMapping(value="reviewMapper/e_writtenReviews")	
+	public String e_writtenReviews(@RequestParam("w_writer") String w_writer, Model model)throws Exception{
+		model.addAttribute("leftMenu", "adsCompleted");
+		List<Map<String, Object>> list = rService.e_writtenReviews(w_writer);
+		model.addAttribute("list", list);
+		return "common/review/employee/writtenReviews";
 	}	
 	
-	
-//	구인자	
-	
-	//	리뷰 작성을 위한 완료된 공고 확인
-		@GetMapping(value="reviewMapper/r_adsCompleted")
-		public String r_adsCompleted(@RequestParam("m_id")String m_id, Model model) throws Exception {
-			model.addAttribute("leftMenu", "adsCompleted");
-			List<Map<String, Object>> list = rService.r_adsCompleted(m_id);
-			model.addAttribute("list", list);
-			return "common/review/employer/r_adsCompleted";
-		}
-		
-	//	리뷰 작성한 공고 목록
-		@GetMapping(value="reviewMapper/r_wroteReviews")	
-		public String r_wroteReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
-			model.addAttribute("leftMenu", "adsCompleted");
-			List<Map<String, Object>> list = rService.r_wroteReviews(m_id);
-			model.addAttribute("list", list);
-			return "common/review/employer/r_wroteReviews";
-		}
-		
-	//	리뷰 작성된 공고 목록
-		@GetMapping(value="reviewMapper/r_writtenReviews")
-		public String r_writtenReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
-			model.addAttribute("leftMenu", "adsCompleted");
-			List<Map<String, Object>> list = rService.r_writtenReviews(m_id);
-			model.addAttribute("list", list);
-			return "common/review/employer/r_writtenReviews";
-		}
-		
-		
-//  구직자
-		
-	
-
-//	작성된 리뷰 내용 확인
-	@GetMapping(value="reviewMapper/wroteDetail")
-	public String wroteDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
+//	나를 평가한 후기
+	@GetMapping(value="reviewMapper/e_myReview")	
+	public String e_myReview(@RequestParam("id_rated")String id_rated, Model model)throws Exception{
 		model.addAttribute("leftMenu", "adsCompleted");
-		Map<String, Object> detail = rService.wroteDetail(w_number);
+		List<Map<String, Object>> list = rService.e_myReview(id_rated);
+		model.addAttribute("list", list);
+		System.out.println("값을 가져왔니? : "+list);
+		return "common/review/employee/myReviews";
+	}		
+	
+	
+	//  작성된 리뷰 내용 확인
+	  @GetMapping(value="reviewMapper/wroteDetail")
+	  public String wroteDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
+	     model.addAttribute("leftMenu", "adsCompleted");
+	     Map<String, Object> detail = rService.wroteDetail(w_number);
+	
+	     model.addAttribute("detail", detail);
+	     return "common/review/wroteDetail";
+	  }
+	
+	
+	
 
-		model.addAttribute("detail", detail);
-		return "common/review/wroteDetail";
-	}
-
-	
-//	작성된 리뷰 내용 확인
-	@GetMapping(value="reviewMapper/writtenDetail")
-	public String writtenDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
-		model.addAttribute("leftMenu", "adsCompleted");
-		Map<String, Object> detail = rService.writtenDetail(w_number);
-		model.addAttribute("detail", detail);
-		return "common/review/writtenDetail";
-	}
-	
-	
 //	리뷰 작성
 	@GetMapping(value = "reviewMapper/reviewRegister")
-	public String reviewRegister(@RequestParam("a_number")int a_number, 
-			@RequestParam("m_id")String w_writer, 
-			@RequestParam("id_rated")String id_rated, Model model) {
+	public String reviewRegister(@RequestParam("a_number")int a_number, @RequestParam("m_id")String m_id, Model model) {
 		model.addAttribute("leftMenu", "adsCompleted");
 		model.addAttribute("a_number", a_number);
-		model.addAttribute("w_writer", w_writer);
-		model.addAttribute("id_rated", id_rated);
+		model.addAttribute("m_id", m_id);
 		return "common/review/reviewRegister";
 	}
 	
-//	리뷰 작성 등록과정
-		@RequestMapping(value="reviewMapper/reviewRegister", method = RequestMethod.POST)
-		public String reviewRegister(ReviewDTO reviewDTO, HttpServletRequest request)throws Exception {
-			request.setCharacterEncoding("utf-8");
-			logger.info("내용 : " + reviewDTO);
-			int r = rService.reviewRegister(reviewDTO);
-			return "redirect:/reviewMapper/r_wroteReviews?m_id="+reviewDTO.getW_writer() ;
-		}
+//  리뷰 작성 등록과정
+    @RequestMapping(value="reviewMapper/reviewRegister", method = RequestMethod.POST)
+    public String reviewRegister(ReviewDTO reviewDTO, HttpServletRequest request)throws Exception {
+       request.setCharacterEncoding("utf-8");
+       logger.info("내용 : " + reviewDTO);
+       int r = rService.reviewRegister(reviewDTO);
+       return "redirect:/reviewMapper/r_wroteReviews?m_id="+reviewDTO.getW_writer() ;
+    }
+		
+		
 }

@@ -141,6 +141,14 @@
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 	
+	script>
+
+function getFocus() {
+
+  document.getElementById("hz").focus();
+
+}
+	
 	
 	<!-- 자기소개서 작성 유효성 검사 -->
 	<script type="text/javascript">

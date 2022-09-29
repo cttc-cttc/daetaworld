@@ -17,6 +17,50 @@
 		WHERE (a_number = #{a_number} and m_id = #{m_id});	
 	</update>
 	
+	
+	<!-- 내가 작성한 리뷰 보기 (가게이름을 받아야한다) -->
+	<select id="e_writtenReviews" parameterType="String" resultType="Map">
+		select r.*, s.s_name, ja.jae_status, m.m_nick
+    	from review r inner join job_ads a
+		on r.a_number = a.a_number
+        inner join member m
+        on a.m_id = m.m_id
+        inner join job_apply ja
+		on ja.m_id = r.w_writer
+        AND ja.jae_status = 7
+        AND ja.a_number = a.a_number
+		inner join shop_info s
+		on a.s_number = s.s_number
+		where r.w_writer = #{w_writer}
+	</select>
+
+	
+	<!-- 작성한 리뷰 클릭시 리뷰페이지 이동 (댓글도 달아야하기 때문에~) -->
+	
+	
+
+	<!-- 나를 평가한 리뷰 보기 -->
+	<select id="e_myReview" parameterType="String" resultType="Map">
+		select r.*, s.s_name, ja.jae_status, m.m_nick
+    	from review r
+        inner join job_ads a
+		on r.a_number = a.a_number
+        inner join member m
+        on a.m_id = m.m_id
+        inner join job_apply ja
+		on ja.m_id = r.id_rated
+        and ja.jar_status = 7
+        and ja.a_number = a.a_number
+		inner join shop_info s
+		on a.s_number = s.s_number
+		where r.id_rated =#{id_rated}
+	</select>
+	
+	<!-- 나를 평가한 리뷰 클릭시 리뷰페이지 이동 (댓글도 달아야하기 때문에~_ -->
+	
+	
+	
+	
 	<!-- 작성된 리뷰 내용 확인 -->
 	<select id="wroteDetail" parameterType="java.lang.Integer" resultType="Map">
 		select r.*, rc.*
