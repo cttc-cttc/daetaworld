@@ -8,15 +8,15 @@
 
 
 
-<!-- 글 전체목록 -->
-	<select id="list" resultType="BoardDTO">
+<!-- 자유게시판 목록 -->
+	<select id="list" parameterType="java.util.Map" resultType="BoardDTO">
 		
 		select *
 		from board
 		where b_code = 0
 		and del = 0
 		order by b_number desc
-		
+		limit #{pageStart}, #{perPageNum}
 		
 	</select>
 	
@@ -71,14 +71,14 @@
 
 	</select>
 	
-	<!-- 땡빵 글보여주기 목록 -->
-	<select id="tempingList" resultType="BoardDTO">
+	<!-- 땡빵 게시판 목록 -->
+	<select id="tempingList" parameterType = "java.util.Map" resultType="BoardDTO">
 		
 		select *
 		from board
 		where b_code = 1 and del = 0
 		order by b_number desc
-		
+		limit #{pageStart}, #{perPageNum}
 	</select>
 	
 	<!-- 땜빵글 내용확인 -->
@@ -140,9 +140,50 @@
 	FROM			
 	board	
 	</select>
-
+	<!-- 게시판 글갯수 -->
+	<select id = "countList" resultType = "java.lang.Integer">
+	select count(*)
+			from board
+			where del = 0
 	
-	
-	
+	</select>
+	<!-- 하단 자유게시판 검색 -->
+	<select id="search" parameterType="java.util.Map" resultType="BoardDTO">		
+		select *
+		from board
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="option == 'b_title'">
+				b_title</if>
+			<if test="option == 'b_contents'">
+				b_contents</if>
+			<if test="option == 'm_id'">
+				m_id</if>
+			
+			<if test="value != null and value != ''">
+			= #{value} 
+			</if>			
+		</trim>
+		and b_code = 0
+	</select>
+	<!-- 하단 땡빵게시판 검색 -->
+	<select id="search2" parameterType="java.util.Map" resultType="BoardDTO">		
+		select *
+		from board
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			
+			<if test="option == 'b_title'">
+				b_title</if>
+			<if test="option == 'b_contents'">
+				b_contents</if>
+			<if test="option == 'm_id'">
+				m_id</if>
+			
+			<if test="value != null and value != ''">
+			= #{value} 
+			</if>			
+		</trim>
+		and b_code = 1
+	</select>
 	
 </mapper>

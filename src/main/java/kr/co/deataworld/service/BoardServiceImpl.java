@@ -1,11 +1,13 @@
 package kr.co.deataworld.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.BoardDAO;
+import kr.co.deataworld.dto.BoardCriteria;
 import kr.co.deataworld.dto.BoardDTO;
 import kr.co.deataworld.dto.CommentsDTO;
 
@@ -15,11 +17,7 @@ public class BoardServiceImpl implements BoardService{
 		@Autowired	
 		BoardDAO dao;
 
-		@Override
-		public List<BoardDTO> list() throws Exception {
-			// TODO Auto-generated method stub
-			return dao.list();
-		}
+		
 
 		@Override
 		public BoardDTO getDetail(int b_number) throws Exception {
@@ -52,11 +50,7 @@ public class BoardServiceImpl implements BoardService{
 			return dao.getDetail1(b_number);
 		}
 
-		@Override
-		public List<BoardDTO> tempingList() throws Exception {
-			// TODO Auto-generated method stub
-			return dao.tempingList();
-		}
+		
 
 		@Override
 		public BoardDTO tempinggetDetail(int b_number) throws Exception {
@@ -80,6 +74,36 @@ public class BoardServiceImpl implements BoardService{
 		public int tempingDelete(int b_number) throws Exception {
 			// TODO Auto-generated method stub
 			return dao.tempingDelete(b_number);
+		}
+
+		@Override
+		public List<BoardDTO> list(BoardCriteria cri) throws Exception {
+			// TODO Auto-generated method stub
+			return dao.list(cri);
+		}
+
+		@Override
+		public List<BoardDTO> tempingList(BoardCriteria cri) throws Exception {
+			// TODO Auto-generated method stub
+			return dao.tempingList(cri);
+		}
+
+		@Override
+		public int countList() throws Exception {
+			// TODO Auto-generated method stub
+			return dao.countList();
+		}
+
+		@Override
+		public List<BoardDTO> search(Map<Object, Object> map) throws Exception{
+			// TODO Auto-generated method stub
+			return dao.search(map);
+		}
+
+		@Override
+		public List<BoardDTO> search2(Map<Object, Object> map) throws Exception{
+			// TODO Auto-generated method stub
+			return dao.search2(map);
 		}
 
 

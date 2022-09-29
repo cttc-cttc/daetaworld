@@ -21,9 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.deataworld.dto.BoardCriteria;
 import kr.co.deataworld.dto.BoardDTO;
+import kr.co.deataworld.dto.BoardPageMaker;
 import kr.co.deataworld.dto.CommentsDTO;
 import kr.co.deataworld.service.BoardService;
+
 
 
 
@@ -39,14 +42,18 @@ public class BoardController {
 	
 	
 	//게시판 리스트
-	@RequestMapping(value = "board/free/free", method = RequestMethod.GET)
-	public ModelAndView list() 	throws Exception{
-		ModelAndView mav = new ModelAndView();
+	@GetMapping(value = "board/free/free" )
+	public String list(Model model , BoardCriteria cri) throws Exception{
 		
-		List<BoardDTO> list = service.list();
-		mav.addObject("list",list);
-		mav.setViewName("board/free/free");
-		return mav;
+		BoardPageMaker boardPageMaker = new BoardPageMaker();
+		boardPageMaker.setCri(cri);
+		boardPageMaker.setTotalCount(service.countList());
+		
+		List<BoardDTO> list = service.list(cri);
+		model.addAttribute("list", list);
+		model.addAttribute("boardPageMaker", boardPageMaker);
+		
+		return "board/free/free";
 		
 	}
 	
@@ -122,15 +129,17 @@ public class BoardController {
 	
 	
 
-	//떙빵 글보여주기
-	@RequestMapping(value = "board/temping/temping", method = RequestMethod.GET)
-	public ModelAndView tempingList() throws Exception{
-		ModelAndView mav = new ModelAndView();
+	//떙빵 글목록
+	@GetMapping(value = "board/temping/temping")
+	public String tempingList(Model model ,BoardCriteria cri ) throws Exception{
+		BoardPageMaker boardPageMaker = new BoardPageMaker();
+		boardPageMaker.setCri(cri);
+		boardPageMaker.setTotalCount(service.countList());
 		
-		List<BoardDTO> tempinglist = service.tempingList();
-		mav.addObject("tempinglist",tempinglist);
-		mav.setViewName("board/temping/temping");
-		return mav;
+		List<BoardDTO> tempinglist = service.tempingList(cri);
+		model.addAttribute("tempinglist", tempinglist);
+		model.addAttribute("boardPageMaker", boardPageMaker);
+		return "board/temping/temping";
 		
 	}
 
@@ -203,9 +212,20 @@ public class BoardController {
 			return "redirect:tempingdetail?b_number=" + b_number;
 		}
 		
-		
-		
-	
+//		자유게시판 조건 검색
+		@GetMapping(value="board/free/search")
+		public String search(@RequestParam Map<Object, Object>map, Model model) throws Exception {
+			List<BoardDTO> list = service.search(map);
+			model.addAttribute("list", list);
+			return "board/free/free";
+		}
+	//땜빵 게시판 조건 검색
+		@GetMapping(value = "board/temping/search2")
+		public String search2(@RequestParam Map<Object, Object>map, Model model) throws Exception {
+			List<BoardDTO> tempinglist = service.search2(map);
+			model.addAttribute("tempinglist", tempinglist);
+			return "board/temping/temping";
+		}
 
 }
 
