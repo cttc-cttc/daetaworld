@@ -1,5 +1,7 @@
 package kr.co.deataworld.service;
 
+import java.util.List;
+
 import java.util.Map;
 
 
@@ -18,6 +20,14 @@ public interface AccountService {
 	public Map<String, Object> login(Map<String, String> loginInfo);
 	
 	// 아이디 찾기
-	public  String find_id(String m_name, String m_email) throws Exception ;
+	public  String findId(String m_email) throws Exception ;
+	
+	
+	
+	
+//	public List<MemberDTO> findId(String m_email)throws Exception;
+	
+	
+	public int findIdCheck(String m_email)throws Exception;
 	
 }

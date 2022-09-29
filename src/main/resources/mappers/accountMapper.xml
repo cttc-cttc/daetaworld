@@ -92,14 +92,40 @@
   	
   	
   	<!-- 아이디 찾기 -->
-  	<select id="find_id" parameterType="String" resultType="java.lang.String">
-  		select
-  			m_id
+<!--   	<select id="find_id" parameterType="String" resultType="java.lang.String"> -->
+<!--   		select -->
+<!--   			m_id -->
+<!--   		from member  -->
+<!--   		where -->
+<!--   			m_name=#{m_name} and m_email=#{m_email} -->
+<!--   	</select> -->
+  	
+  	
+  	
+  	
+  	
+  	
+  	<select id="findId" parameterType="String"  resultType="java.lang.String">
+  		select * 
   		from member 
   		where
-  			m_name=#{m_name} and m_email=#{m_email}
-  	</select>
+  			m_email=#{m_email}
+</select>
+
+
+
+
+<select id="findIdCheck" parameterType="String"  resultType="java.lang.Integer">
+select count(*) from member where m_email = #{m_email}
+</select>
   	
+  	
+  	
+  	<resultMap id="MemberDTOResultMap" type="kr.co.deataworld.dto.MemberDTO">
+
+<result property="m_email" column="m__email"/>
+
+</resultMap>
   	
   	
 </mapper>

@@ -49,11 +49,21 @@ public class AccountDAOImpl implements AccountDAO{
 	}
 
 	@Override
-	public String find_id(String m_name, String m_email) {
+	public String findId(String m_email) {
 		// TODO Auto-generated method stub
-		return null;
+		return sql.selectOne(nameSpace + ".findId", m_email);
 	}
 
+	
+//	@Override
+//	public List<MemberDTO> findId(String m_email)throws Exception{
+//		return sql.selectList(nameSpace + "findId", m_email);
+//	}
+
+	@Override
+	public int findIdCheck(String m_email)throws Exception{
+		return sql.selectOne(nameSpace + "findIdCheck", m_email);
+	}
 	
 	
 

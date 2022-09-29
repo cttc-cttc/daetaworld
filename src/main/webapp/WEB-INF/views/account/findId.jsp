@@ -97,38 +97,21 @@
 						</div>
 					</div>
 					<div class="col-lg-8">
-						<div class="login-instruction">
-							<div class="login-instruction-content">
-								<h3 class="title">아이디 찾기</h3>
-								<p>아래 회원정보를 입력하신 후 찾기 버튼을 클릭해 주세요<br> 
-								</p>
-								<ul class="list-reasons">
-								<li class="name">
-						<div class="colWrap">
-							<label class="searchTitle" for="m_name">이름</label>
-							<input type="text" id="m_name" class="placeholder-input" placeholder="이름을 입력해주세요" name="m_name" value="" maxlength="30" />
-							
-						</div>
-									<li class="id">
-						<div class="colWrap">
-								<label class="searchTitle" for="m_email">이메일</label>
-							<input type="text" id="m_email" class="placeholder-input" name="m_email" placeholder="이메일을 입력해주세요" value="" maxlength="30" />
-						
-						</div>
-					</li>
-					
-								</ul>
-								<br><br><br>
-							
-							<div class="col-12 mb-25">
-													<button type="button" id='find_id' name='find_id' class="ht-btn" onclick="findId_click()">아이디 찾기</button>
-													<p style="margin-top: 1rem; color: red; text-align: center;">${loginFailedMsg }</p>
-												</div>
-							
-							<%@ include file="./findModal.jsp" %>
-							
-							</div>
-						</div>
+ <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-2">아이디 찾기</h1>
+                                        <p class="mb-4">이메일을 입력해주세요!</p>
+                                    </div>
+                                    <br><br>
+                                    <form class="user" action="account/findId" method="">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user"
+                                                id="m_email" aria-describedby="emailHelp" name="m_email"
+                                                placeholder="Enter Email Address...">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Find ID
+                                        </button>
+                                    </form>
 					</div>
 				</div>
 			</div>
