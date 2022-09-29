@@ -5,18 +5,25 @@
 <mapper namespace="kr.co.deataworld.jobAds">
 
 	<!-- 메인화면 - 긴급구인 리스트 6개 -->
-	<select id="main_urgency_ads" resultType="MainAdsDTO">
+	<select id="main_urgency_ads" resultType="java.util.Map">
 		select
 			A.a_number,		<!-- A구인공고.공고번호 -->
 			A.a_wage,		<!-- A구인공고.시급 -->
 			B.s_name,		<!-- B가게정보.가게명 -->
+			B.s_number,		<!-- B가게정보.가게 번호 -->
 			B.s_address1,	<!-- B가게정보.가게 주소1 -->
 			B.s_picture1,	<!-- B가게정보.가게 사진1 -->
-			format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
+			C.m_id,			<!-- C회원.아이디 -->
+			if(D.w_rate is null, <!-- w_rate가 null이면(처음 공고등록한 사장님이면) -->
+				0.0, <!-- 별점을 0.0으로 표시 -->
+		        format(round(avg(D.w_rate), 1), 1) <!-- 아니면 평균 별점 표시 -->
+		    ) as w_rate <!-- D후기.평점 -->
 		from job_ads as A
 		inner join shop_info as B
 			on A.s_number = B.s_number
-		inner join review as D
+		inner join member as C
+			on A.m_id = C.m_id
+		left outer join review as D
 			on A.m_id = D.w_writer
 		where
 			A.a_urgency = 1
@@ -27,7 +34,7 @@
 	</select>
 
 	<!-- 메인화면 - 일반구인 리스트 6개 -->
-	<select id="main_common_ads" resultType="MainAdsDTO">
+	<select id="main_common_ads" resultType="java.util.Map">
 		select
 			A.a_number,		<!-- A구인공고.공고번호 -->
 			A.a_wage,		<!-- A구인공고.시급 -->
@@ -49,6 +56,7 @@
 				end as uptime,
 				]]>
 			B.s_name,		<!-- B가게정보.가게명 -->
+			B.s_number,		<!-- B가게정보.가게 번호 -->
 			B.s_address1,	<!-- B가게정보.가게 주소1 -->
 			B.s_picture1,	<!-- B가게정보.가게 사진1 -->
 			B.s_tag1,		<!-- B가게정보.태그1 -->
@@ -57,13 +65,17 @@
 			B.s_tag4,		<!-- B가게정보.태그4 -->
 			B.s_tag5,		<!-- B가게정보.태그5 -->
 			C.m_nick,		<!-- C회원.닉네임 -->
-			format(round(avg(D.w_rate), 1), 1) as w_rate <!-- D후기.평점 -->
+			C.m_id,			<!-- C회원.아이디 -->
+			if(D.w_rate is null, <!-- w_rate가 null이면(처음 공고등록한 사장님이면) -->
+				0.0, <!-- 별점을 0.0으로 표시 -->
+		        format(round(avg(D.w_rate), 1), 1) <!-- 아니면 평균 별점 표시 -->
+		    ) as w_rate <!-- D후기.평점 -->
 		from job_ads as A
 		inner join shop_info as B
 			on A.s_number = B.s_number
 		inner join member as C
 			on A.m_id = C.m_id
-		inner join review as D
+		left outer join review as D
 			on A.m_id = D.w_writer
 		where
 			A.a_urgency = 0
