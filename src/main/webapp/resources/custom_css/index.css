@@ -35,6 +35,8 @@
 
 .shop-image {
 	width: 20rem;
+	height: 10rem;
+	overflow: hidden;
 }
 
 .tag-cursor {
