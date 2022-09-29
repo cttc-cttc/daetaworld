@@ -145,15 +145,28 @@ public class CommonController {
 //  구직자
 		
 	
+
 //	작성된 리뷰 내용 확인
 	@GetMapping(value="reviewMapper/wroteDetail")
 	public String wroteDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
 		model.addAttribute("leftMenu", "adsCompleted");
 		Map<String, Object> detail = rService.wroteDetail(w_number);
+
 		model.addAttribute("detail", detail);
 		return "common/review/wroteDetail";
 	}
 
+	
+//	작성된 리뷰 내용 확인
+	@GetMapping(value="reviewMapper/writtenDetail")
+	public String writtenDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
+		model.addAttribute("leftMenu", "adsCompleted");
+		Map<String, Object> detail = rService.writtenDetail(w_number);
+		model.addAttribute("detail", detail);
+		return "common/review/writtenDetail";
+	}
+	
+	
 //	리뷰 작성
 	@GetMapping(value = "reviewMapper/reviewRegister")
 	public String reviewRegister(@RequestParam("a_number")int a_number, 
@@ -174,6 +187,4 @@ public class CommonController {
 			int r = rService.reviewRegister(reviewDTO);
 			return "redirect:/reviewMapper/r_wroteReviews?m_id="+reviewDTO.getW_writer() ;
 		}
-		
-		
 }

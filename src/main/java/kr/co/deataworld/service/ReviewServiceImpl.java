@@ -46,4 +46,10 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.r_writtenReviews(m_id);
 	}
 
+	@Override
+	public Map<String, Object> writtenDetail(int w_number) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.writtenDetail(w_number);
+	}
+
 }

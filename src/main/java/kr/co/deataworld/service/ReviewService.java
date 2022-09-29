@@ -22,4 +22,8 @@ public interface ReviewService {
 	
 //	리뷰 작성된 공고 목록
 	public List<Map<String, Object>>r_writtenReviews(String m_id) throws Exception;
+	
+	public Map<String, Object> writtenDetail(int w_number) throws Exception;
+	
+	
 }

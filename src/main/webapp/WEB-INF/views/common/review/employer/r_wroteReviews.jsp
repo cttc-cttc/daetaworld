@@ -57,7 +57,9 @@
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
+
 																<td><a href="wroteDetail?w_number=${adsList.w_number }">
+
 																	${adsList.s_name }</a></td>													
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
