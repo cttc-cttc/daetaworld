@@ -63,6 +63,7 @@
 													
 													
 													<a href="${contextPath}/findId">아이디 찾기 </a>
+													&nbsp | &nbsp
 													<a href="${contextPath}/findPw">비밀번호 찾기</a>
 													
 												</div>
@@ -91,47 +92,29 @@
 					<div class="col-lg-8">
 						<div class="login-instruction">
 							<div class="login-instruction-content">
-								<h3 class="title">비밀번호 찾기</h3>
-								<p>아래 회원정보를 입력하신 후 찾기 버튼을 클릭해 주세요<br> 
-								</p>
-								<ul class="list-reasons">
-								<li class="name">
-						<div class="colWrap">
-							<label class="searchTitle" for="m_name">이름 </label>
-							<input type="text" id="m_name" class="placeholder-input" placeholder="이름을 입력해주세요" name="m_name" value="" maxlength="30" />
-							
-						</div>
-									<li class="id">
-						<div class="colWrap">
-								<label class="searchTitle" for="m_id">아이디</label>
-							<input type="text" id="m_id" class="placeholder-input" name="m_id" placeholder="아이디를 입력해주세요" value="" maxlength="30" />
-						
-						</div>
-					</li>
-					
-					
-					<li class="email">
-						<div class="colWrap">
-									<label class="searchTitle" for="email">이메일</label>
-							<input type="text" id="m_email" name="m_email" value="${myInfo.m_email }" style="width: 220px;">
-						<input type="button" id="mail-Check-Btn" style="background-color: white;" value="인증">
-						<input type="text" class="form-control mail-check-input" placeholder="인증번호 6자리를 입력해주세요!"  maxlength="6">
-																			<span id="mail-check-warn"></span>	
-						</div>
-						
-					</li>
-					
-					
-					
-								</ul>
-								
-								<br>
-							
-							<div class="col-12 mb-25">
-													<button type="button" class="ht-btn" onclick="findform_check()">비밀번호 찾기</button>
-													<p style="margin-top: 1rem; color: red; text-align: center;">${loginFailedMsg }</p>
-												</div>
-							
+								<div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-2">비밀번호 찾기</h1>
+                                        <p class="mb-4">아이디와 이메일을 입력해주세요!</p>
+                                    </div>
+                                    <br><br>
+                                    <form class="user" action="/member/findPw" method="post">
+                                       <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="memberId" aria-describedby="IdHelp" name="memberId"
+                                                placeholder="아이디를 입력해 주세요">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user"
+                                                id="memberEmail" aria-describedby="emailHelp" name="memberEmail"
+                                                placeholder="이메일을 입력해 주세요">
+                                        </div>
+                                         
+                                        <button type="submit" class="ht-btn">
+                                            비밀번호 찾기
+                                        </button>
+                                    </form>
+                                    
 							</div>
 							
 							
