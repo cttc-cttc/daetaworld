@@ -44,9 +44,9 @@ public class ReviewDAOImpl implements ReviewDAO{
 	}
 
 	@Override
-	public Map<String, Object> reviewDetail(int a_number) throws Exception {
+	public Map<String, Object> wroteDetail(int a_number) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + ".reviewDetail", a_number);
+		return sqlSession.selectOne(namespace + ".wroteDetail", a_number);
 	}
 	
 	@Override

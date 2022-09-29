@@ -38,8 +38,9 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="adsCompleted?m_id=${loginInfo.m_id }">완료된 공고</a></li>											
-													<li><a class="active" href="writtenReviews?m_id=${loginInfo.m_id }">후기 작성된 공고</a></li>											
+													<li><a href="r_adsCompleted?m_id=${loginInfo.m_id }">완료된 공고</a></li>											
+													<li><a class="active" href="r_wroteReviews?m_id=${loginInfo.m_id }">후기 작성한 공고</a></li>											
+													<li><a href="r_writtenReviews?m_id=${loginInfo.m_id }">후기 작성된 공고</a></li>											
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">

@@ -146,12 +146,12 @@ public class CommonController {
 		
 	
 //	작성된 리뷰 내용 확인
-	@GetMapping(value="reviewMapper/reviewDetail")
-	public String reviewDetail(@RequestParam("a_number")int a_number, Model model)throws Exception{
+	@GetMapping(value="reviewMapper/wroteDetail")
+	public String wroteDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
 		model.addAttribute("leftMenu", "adsCompleted");
-		Map<String, Object> detail = rService.reviewDetail(a_number);
+		Map<String, Object> detail = rService.wroteDetail(w_number);
 		model.addAttribute("detail", detail);
-		return "common/review/reviewDetail";
+		return "common/review/wroteDetail";
 	}
 
 //	리뷰 작성

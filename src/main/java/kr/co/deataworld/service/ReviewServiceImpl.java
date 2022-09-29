@@ -23,9 +23,9 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public Map<String, Object> reviewDetail(int a_number) throws Exception {
+	public Map<String, Object> wroteDetail(int a_number) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.reviewDetail(a_number);
+		return dao.wroteDetail(a_number);
 	}
 	
 	@Override

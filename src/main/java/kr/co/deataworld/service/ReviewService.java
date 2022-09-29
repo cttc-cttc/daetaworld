@@ -12,7 +12,7 @@ public interface ReviewService {
 	public int reviewRegister(ReviewDTO reviewDTO) throws Exception;
 	
 //	작성된 리뷰 내용 확인
-	public Map<String, Object>reviewDetail(int a_number) throws Exception;
+	public Map<String, Object>wroteDetail(int a_number) throws Exception;
 	
 //	완료된 공고 목록
 	public List<Map<String, Object>> r_adsCompleted(String m_id) throws Exception;
