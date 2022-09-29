@@ -27,8 +27,7 @@
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
-					<%@ include file="../../include/dashBoard.jsp"%>
-					
+					<%@ include file="../../include/dashBoard.jsp"%>				
 					
 					<div class="col-xl-10 col-lg-9">
 						<div class="dashboard-main-inner">
