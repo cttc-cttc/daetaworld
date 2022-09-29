@@ -83,6 +83,10 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
+										
+										
+										
+										
 										<h1>리뷰 작성</h1>
 									</div>
 								</div>
@@ -103,40 +107,20 @@
 								
 									</div>
 							
-			<form name="form" action="reviewRegister" method="post"  >						
+									
 									
 			<div class="star-rating space-x-4 mx-auto">
-			<input type="radio" id="5-stars" name="w_rate" value="5" v-model="ratings"/>
-			<label for="5-stars" class="star pr-4">★</label>
-			<input type="radio" id="4-stars" name="w_rate" value="4" v-model="ratings"/>
-			<label for="4-stars" class="star">★</label>
-			<input type="radio" id="3-stars" name="w_rate" value="3" v-model="ratings"/>
-			<label for="3-stars" class="star">★</label>
-			<input type="radio" id="2-stars" name="w_rate" value="2" v-model="ratings"/>
-			<label for="2-stars" class="star">★</label>
-			<input type="radio" id="1-star" name="w_rate" value="1" v-model="ratings" />
-			<label for="1-star" class="star">★</label>
-
+			<input type="radio" id="5-stars" name="w_rate" value="${detail.w_rate }" v-model="ratings"/>
 			</div>				
 			
 			<div>
 		<textarea class="col-auto form-control" type="text" id="w_comments" name="w_comments"
-				  placeholder="좋은 후기평가를 남겨주시면 노예에게 큰 힘이 됩니다! 포인트 500p도 지급!!"></textarea>
-			
-			<input type="hidden" name="a_number" id="a_number" value="${a_number}">	  
-			<input type="hidden" name="w_writer" id="w_writer" value="${w_writer}">
-			<input type="hidden" name="id_rated" id="id_rated" value="${id_rated}">
+				  value="${detail.w_comments}"></textarea>
 			
 					  
 	</div>
 			
-	<div class="wrap">
-  
-	</div>
-		<div class="box-footer"> 
-		<button type="submit" class="btn btn-info">후기 작성</button>
-	
-	</div>
+
 	
 </form>		
 			

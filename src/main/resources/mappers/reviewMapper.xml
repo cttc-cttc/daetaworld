@@ -6,9 +6,17 @@
 
 	<!-- 리뷰 작성 -->
   	<insert id="reviewRegister" parameterType="ReviewDTO">
-		insert into review(w_number,w_rate,w_comments,w_date,w_status,m_mid,a_number
-		values (#{w_number},#{w_rate}, #{w_comments},now(),0,#{m_id},#{a_number})		
+		insert into review (w_rate,w_comments,w_date,w_status,w_writer,id_rated,a_number)
+		values (#{w_rate}, #{w_comments},now(),0,#{w_writer},#{id_rated},#{a_number})		
 	</insert>
+	
+	<!--  -->
+	<update id="updateStatus" parameterType="Map">
+		UPDATE job_apply
+		SET jar_status = 7 
+		WHERE (a_number = #{a_number} and m_id = #{m_id});
+	
+	</update>
 	
 	<!-- 작성된 리뷰 내용 확인 -->
 	<select id="reviewDetail" parameterType="java.lang.Integer" resultType="Map">
