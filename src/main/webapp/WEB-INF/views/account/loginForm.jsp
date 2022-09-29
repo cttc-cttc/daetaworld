@@ -78,7 +78,8 @@
 											<span class="line"></span><span class="circle">간편 로그인</span>
 										</div>
 										<div class="social-login">
-											<ul class="social-icon">
+											<ul class="social-icon" style="display: flex; align-items: center;">
+												<li><%@ include file="../include/account/join_login/naver.jsp" %></li>
 												<li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
 												<li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
 												<li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
