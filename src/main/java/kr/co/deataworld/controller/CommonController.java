@@ -156,15 +156,18 @@ public class CommonController {
 
 //	리뷰 작성
 	@GetMapping(value = "reviewMapper/reviewRegister")
-	public String reviewRegister(@RequestParam("a_number")int a_number, @RequestParam("m_id")String m_id, Model model) {
+	public String reviewRegister(@RequestParam("a_number")int a_number, 
+			@RequestParam("m_id")String w_writer, 
+			@RequestParam("id_rated")String id_rated, Model model) {
 		model.addAttribute("leftMenu", "adsCompleted");
 		model.addAttribute("a_number", a_number);
-		model.addAttribute("m_id", m_id);
+		model.addAttribute("w_writer", w_writer);
+		model.addAttribute("id_rated", id_rated);
 		return "common/review/reviewRegister";
 	}
 	
 //	리뷰 작성 등록과정
-		@RequestMapping(value="common/reviewRegister", method = RequestMethod.POST)
+		@RequestMapping(value="reviewMapper/reviewRegister", method = RequestMethod.POST)
 		public String reviewRegister(ReviewDTO reviewDTO, HttpServletRequest request)throws Exception {
 			request.setCharacterEncoding("utf-8");
 			logger.info("내용 : " + reviewDTO);

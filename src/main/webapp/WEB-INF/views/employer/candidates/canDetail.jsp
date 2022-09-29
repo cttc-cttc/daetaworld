@@ -125,48 +125,20 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="w_rate">평가<span>*</span></label>
-																				<input type="text" id="w_rate" name="w_rate" 
-																					value="평점을 갖고올거임" readonly="readonly">																					
-																		</div>
-																		<!-- Single Input End -->
-																	</div>																	
-																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
-																		<div class="single-input mb-25">
-																			<label for="ja_status">수락 여부<span>*</span></label>
-																				<div>																																							
-																				<c:set var="stChk" value="${detail.jar_status }"/>
-																					<c:if test="${stChk == 0 }">
-																						<c:out value="신청 중"></c:out>
-																					</c:if>
-																					<c:if test="${stChk == 1 }">
-																						<c:out value="수락됨"></c:out>
-																					</c:if>
-																					<c:if test="${stChk == 2 }">
-																						<c:out value="거절됨"></c:out>
-																					</c:if>																					
-																			</div>
-																		</div>
-																		<!-- Single Input End -->
-																	</div>
-																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
-																		<div class="single-input mb-25">
 																			<label for="ja_status">결정 여부<span>*</span></label>
 																				<div>																																							
 																				<c:set var="stChk" value="${detail.jae_status }"/>
 																					<c:if test="${stChk == 0 }">
-																						<c:out value="결정 전"></c:out>
+																						<c:out value="지원함"></c:out>
 																					</c:if>
 																					<c:if test="${stChk == 1 }">
-																						<c:out value="신청 중"></c:out>
+																						<c:out value="확정 전"></c:out>
 																					</c:if>
 																					<c:if test="${stChk == 2 }">
-																						<c:out value="수락됨"></c:out>
+																						<c:out value="수락"></c:out>
 																					</c:if>	
 																					<c:if test="${stChk == 3 }">
-																						<c:out value="거절됨"></c:out>
+																						<c:out value="거절"></c:out>
 																					</c:if>																				
 																			</div>
 																		</div>
