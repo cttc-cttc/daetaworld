@@ -71,6 +71,7 @@
 													
 													
 													<a href="${contextPath}/findId">아이디 찾기 </a>
+													&nbsp | &nbsp
 													<a href="${contextPath}/findPw">비밀번호 찾기</a>
 													
 												</div>
@@ -97,21 +98,30 @@
 						</div>
 					</div>
 					<div class="col-lg-8">
+					
+					<div class="login-instruction">
+							<div class="login-instruction-content">
+								<div class="p-5">
+					
  <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">아이디 찾기</h1>
                                         <p class="mb-4">이메일을 입력해주세요!</p>
                                     </div>
                                     <br><br>
-                                    <form class="user" action="account/findId" method="">
+                                    <form class="user" action="account/findId" method="POST">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="m_email" aria-describedby="emailHelp" name="m_email"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="이메일을 입력해 주세요">
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Find ID
+                                        <br><br>
+                                        <button type="submit" class="ht-btn">
+                                            아이디 찾기
                                         </button>
                                     </form>
+					</div>
+					</div>
+					</div>
 					</div>
 				</div>
 			</div>
