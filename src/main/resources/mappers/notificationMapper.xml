@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.deataworld.notificationMapper">
+	<!-- 로그인 유저의 알림목록 -->
+	<select id="notificationList" parameterType="java.lang.String" resultType="java.util.Map">
+		select * from notification
+		where m_id = #{m_id}
+		order by n_number desc
+	</select>
+	
+	<!-- (구인자) 구인공고 지원자 알림 등록 -->
+	<insert id="insertAdsApplicant" parameterType="java.util.Map">
+		insert into notification(
+			m_id, s_name
+		)values(
+			#{m_id}, #{s_name}
+		)
+	</insert>
+	
+	<!-- 알림목록 수 -->
+	<select id="notificationCnt" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from notification
+		where m_id = #{m_id}
+	</select>
+	
+	<!-- 알림목록 삭제 -->
+	<delete id="deleteNotification" parameterType="java.lang.String">
+		delete from notification
+		where m_id = #{m_id}
+	</delete>
+</mapper>
