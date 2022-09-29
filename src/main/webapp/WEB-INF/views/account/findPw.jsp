@@ -78,6 +78,7 @@
 										</div>
 										<div class="social-login">
 											<ul class="social-icon">
+												<li><%@ include file="../include/account/join_login/naver.jsp" %></li>
 												<li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
 												<li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
 												<li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
@@ -91,13 +92,13 @@
 					</div>
 					<div class="col-lg-8">
 						<div class="login-instruction">
-							<div class="login-instruction-content">
+							<div class="login-register-form-area">
 								<div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">비밀번호 찾기</h1>
                                         <p class="mb-4">아이디와 이메일을 입력해주세요!</p>
                                     </div>
-                                    <br><br>
+                                    
                                     <form class="user" action="/member/findPw" method="post">
                                        <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
@@ -117,14 +118,7 @@
                                     
 							</div>
 							
-							
-																
-																	<input type="hidden" name="m_id" id="m_id" value="${myInfo.m_id }">
-																	
-																	<input type="hidden" name="m_name" id="m_name" value="${myInfo.m_name }">
-																	<input type="hidden" name="pre_email" id="pre_email" value="${myInfo.m_email}">
-																	<input type="hidden" name="pre_nick" id="pre_nick" value="${myInfo.m_nick}">			
-							
+							</div>
 							
 						</div>
 					</div>

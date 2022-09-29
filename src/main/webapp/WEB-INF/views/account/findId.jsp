@@ -86,6 +86,7 @@
 										</div>
 										<div class="social-login">
 											<ul class="social-icon">
+												<li><%@ include file="../include/account/join_login/naver.jsp" %></li>
 												<li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
 												<li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
 												<li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
@@ -98,16 +99,14 @@
 						</div>
 					</div>
 					<div class="col-lg-8">
-					
 					<div class="login-instruction">
-							<div class="login-instruction-content">
+							<div class="login-register-form-area">
 								<div class="p-5">
-					
- <div class="text-center">
+ 								<div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">아이디 찾기</h1>
                                         <p class="mb-4">이메일을 입력해주세요!</p>
                                     </div>
-                                    <br><br>
+                                    
                                     <form class="user" action="account/findId" method="POST">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
