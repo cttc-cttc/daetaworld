@@ -20,9 +20,9 @@ public class ReviewDAOImpl implements ReviewDAO{
 	String namespace = "kr.co.deataworld.reviewMapper";
 
 	@Override
-	public List<Map<String, Object>> adsCompleted(String m_id) throws Exception {
+	public List<Map<String, Object>>e_adsCompleted(String m_id) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + ".adsCompleted", m_id);
+		return sqlSession.selectList(namespace + ".e_adsCompleted", m_id);
 	}
 
 	@Override
@@ -31,10 +31,14 @@ public class ReviewDAOImpl implements ReviewDAO{
 		return sqlSession.insert(namespace + ".reviewRegister", reviewDTO);
 	}
 
-	@Override
-	public List<Map<String, Object>> writtenReviews(String m_id) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + ".writtenReviews", m_id);
+	@Override //내가 작성한 리뷰
+	public List<Map<String, Object>> e_writtenReviews(String w_writer) throws Exception {
+		return sqlSession.selectList(namespace + ".e_writtenReviews", w_writer);
+	}
+
+	@Override //나를 평가한 리뷰
+	public List<Map<String, Object>> e_myReview(String id_rated) throws Exception {
+		return sqlSession.selectList(namespace + ".e_myReview", id_rated);
 	}
 
 	@Override

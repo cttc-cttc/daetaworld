@@ -17,9 +17,9 @@ public class ReviewServiceImpl implements ReviewService{
 	ReviewDAO dao;
 
 	@Override
-	public List<Map<String, Object>> adsCompleted(String m_id) throws Exception {
+	public List<Map<String, Object>> e_adsCompleted(String m_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.adsCompleted(m_id);
+		return dao.e_adsCompleted(m_id);
 	}
 
 	@Override
@@ -28,10 +28,14 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.reviewRegister(reviewDTO);
 	}
 
-	@Override
-	public List<Map<String, Object>> writtenReviews(String m_id) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.writtenReviews(m_id);
+	@Override //내가 작성한 리뷰
+	public List<Map<String, Object>> e_writtenReviews(String w_writer) throws Exception {
+		return dao.e_writtenReviews(w_writer);
+	}
+
+	@Override //나를 평가한 리뷰
+	public List<Map<String, Object>> e_myReview(String id_rated) throws Exception {
+		return dao.e_myReview(id_rated);
 	}
 
 	@Override

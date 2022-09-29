@@ -145,7 +145,7 @@
 	where left(a_date, 10)  <= date_format(curdate(), '%m/%d/%Y')
 	and ja.a_number = a.a_number
 	and a.s_number = s.s_number
-	and ja.jar_status = 4
+	and (ja.jar_status = 4 or 2)
 	and ja.m_id = #{m_id}
 	and (a.a_status =3 or a.a_status = 4);
 	]]>

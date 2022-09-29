@@ -1,6 +1,7 @@
 package kr.co.deataworld.controller;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -111,23 +112,61 @@ public class CommonController {
 		return pService.pointAdd(map);
 	}
 	
+////구인자
+////	리뷰 작성을 위한 완료된 공고 확인
+//	@GetMapping(value="reviewMapper/adsCompleted")
+//	public String adsCompleted(@RequestParam("m_id")String m_id, Model model) throws Exception {
+//		model.addAttribute("leftMenu", "adsCompleted");
+//		List<Map<String, Object>> list = rService.adsCompleted(m_id);
+//		model.addAttribute("list", list);
+//		return "common/review/adsCompleted";
+//	}
+//	
+////	리뷰 작성된 공고 목록
+//	@GetMapping(value="reviewMapper/writtenReviews")	
+//	public String writtenReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
+//		model.addAttribute("leftMenu", "adsCompleted");
+//		List<Map<String, Object>> list = rService.writtenReviews(m_id);
+//		model.addAttribute("list", list);
+//		return "common/review/writtenReviews";
+//	}
+	
+	
+	
+	
+//구직자
 //	리뷰 작성을 위한 완료된 공고 확인
-	@GetMapping(value="reviewMapper/adsCompleted")
-	public String adsCompleted(@RequestParam("m_id")String m_id, Model model) throws Exception {
+	@GetMapping(value="reviewMapper/e_adsCompleted")
+	public String e_adsCompleted(@RequestParam("m_id")String m_id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsCompleted");
-		List<Map<String, Object>> list = rService.adsCompleted(m_id);
+		List<Map<String, Object>> list = rService.e_adsCompleted(m_id);
 		model.addAttribute("list", list);
-		return "common/review/adsCompleted";
+		return "common/review/employee/adsCompleted";
 	}
 	
-//	리뷰 작성된 공고 목록
-	@GetMapping(value="reviewMapper/writtenReviews")	
-	public String writtenReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
+//	리뷰 내가 작성한 후기
+	@GetMapping(value="reviewMapper/e_writtenReviews")	
+	public String e_writtenReviews(@RequestParam("w_writer") String w_writer, Model model)throws Exception{
 		model.addAttribute("leftMenu", "adsCompleted");
-		List<Map<String, Object>> list = rService.writtenReviews(m_id);
+		List<Map<String, Object>> list = rService.e_writtenReviews(w_writer);
 		model.addAttribute("list", list);
-		return "common/review/writtenReviews";
-	}
+		return "common/review/employee/writtenReviews";
+	}	
+	
+//	나를 평가한 후기
+	@GetMapping(value="reviewMapper/e_myReview")	
+	public String e_myReview(@RequestParam("id_rated")String id_rated, Model model)throws Exception{
+		model.addAttribute("leftMenu", "adsCompleted");
+		List<Map<String, Object>> list = rService.e_myReview(id_rated);
+		model.addAttribute("list", list);
+		System.out.println("값을 가져왔니? : "+list);
+		return "common/review/employee/myReviews";
+	}		
+	
+	
+	
+	
+	
 	
 //	작성된 리뷰 내용 확인
 	@GetMapping(value="reviewMapper/reviewDetail")
