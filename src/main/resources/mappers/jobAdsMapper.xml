@@ -153,12 +153,9 @@
 		select j.*,s.*
 		from job_ads j, shop_info s
 		where j.s_number = s.s_number
-		and 
-
-
-		s.s_number = #{s_number}
+		and s.s_number = #{s_number}
 		and left(j.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
-
+		and j.a_number = #{a_number}
 	</select> 
 
 	<!-- 일반/긴급/농어촌 글 갯수 -->
