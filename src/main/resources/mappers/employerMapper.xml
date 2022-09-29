@@ -155,9 +155,12 @@
 	
 	<!-- 지원자 정보보기 -->
 	<select id="canDetail" parameterType="Map" resultType="Map">
-		select m.*, i.*
-		from member m, employee_intro i
-		where m.m_id = i.m_id and m.m_id = #{m_id} and i.i_number= #{i_number} 
+		select m.*, i.*, ja.*
+		from member m, employee_intro i, job_apply ja, job_ads a
+		where m.m_id = i.m_id and m.m_id = #{m_id} 
+		and m.m_id = ja.m_id
+		and ja.i_number = i.i_number and i.i_number= #{i_number} 
+		and ja.a_number = a.a_number and a.a_number = #{a_number}
 	</select>
 	
 	<!-- 알바 선요청 후 대기 -->

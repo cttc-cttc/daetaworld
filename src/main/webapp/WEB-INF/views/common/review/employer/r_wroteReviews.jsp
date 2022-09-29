@@ -63,7 +63,7 @@
 																<td>${adsList.a_time }</td>
 																<td>${adsList.a_wage }</td>	
 																<td>${adsList.m_nick }</td>
-																<td>${adsList.w_date}</td>													
+																<td>${adsList.date}</td>													
 															</tr>
 														</c:forEach>
 													</table>

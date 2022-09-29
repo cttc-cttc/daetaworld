@@ -22,7 +22,7 @@
 	
 	<!-- 완료된 공고 목록보기 -->	
   	<select id="r_adsCompleted" parameterType="String" resultType="Map">
-  		select s.s_name, a.*, ja.*, m.m_nick
+  		select s.s_name, a.*, ja.*, m.m_nick, ja.m_id as id_rated
 		from job_ads a, shop_info s, job_apply ja, member m
 		where a.m_id = s.m_id and a.m_id = #{m_id} 
 		and a.a_status = 3
@@ -33,7 +33,7 @@
   	
   	<!-- 리뷰 작성한 공고 목록 -->
 	<select id="r_wroteReviews" parameterType="String" resultType="Map">
-		select ja.*, a.*, s.*, r.*, m.m_nick
+		select ja.*, a.*, s.*, r.*, m.m_nick, date(r.w_date) as date
 		from job_apply ja, job_ads a, shop_info s, review r, member m
 		where ja.a_number = a.a_number 
 		and a.s_number = s.s_number 
@@ -45,7 +45,7 @@
 	
 	<!-- 리뷰 작성된 공고 목록-->
 	<select id="r_writtenReviews" parameterType="String" resultType="Map">
-		select ja.*, a.*, s.*, r.*, m.m_nick
+		select ja.*, a.*, s.*, r.*, m.m_nick, date(r.w_date) as date
 		from job_apply ja, job_ads a, shop_info s, review r, member m
 		where ja.a_number = a.a_number 
 		and a.s_number = s.s_number 

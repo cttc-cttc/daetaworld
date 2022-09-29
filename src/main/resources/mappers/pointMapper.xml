@@ -20,6 +20,7 @@
 			m_id
 		from earned_point
 		where m_id = #{id}	
+		order by e_date desc
 	</select>
 	
 	<!-- 차감된 포인트 확인 -->
@@ -31,6 +32,7 @@
 			m_id
 		from deducted_point
 		where m_id = #{id}
+		order by d_date desc
 	</select>
 	
 	<!-- 포인트 인출 및 차감 내역에 추가 -->
