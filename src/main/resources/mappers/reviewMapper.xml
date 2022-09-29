@@ -19,7 +19,7 @@
 	</update>
 	
 	<!-- 작성된 리뷰 내용 확인 -->
-	<select id="reviewDetail" parameterType="java.lang.Integer" resultType="Map">
+	<select id="wroteDetail" parameterType="java.lang.Integer" resultType="Map">
 		select r.*, rc.*
 		from review r
 			left outer join review_comments rc

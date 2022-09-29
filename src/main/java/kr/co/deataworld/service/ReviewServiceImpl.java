@@ -23,9 +23,9 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public Map<String, Object> reviewDetail(int a_number) throws Exception {
+	public Map<String, Object> wroteDetail(int a_number) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.reviewDetail(a_number);
+		return dao.wroteDetail(a_number);
 	}
 	
 	@Override
@@ -44,6 +44,12 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<Map<String, Object>> r_writtenReviews(String m_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.r_writtenReviews(m_id);
+	}
+
+	@Override
+	public Map<String, Object> writtenDetail(int w_number) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.writtenDetail(w_number);
 	}
 
 }
