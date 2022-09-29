@@ -2,11 +2,13 @@ package kr.co.deataworld.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.deataworld.dto.BoardCriteria;
 import kr.co.deataworld.dto.BoardDTO;
 import kr.co.deataworld.dto.CommentsDTO;
 
@@ -18,11 +20,7 @@ public class BoardDAOImpl implements BoardDAO {
 	private static final String namespace = "kr.co.deataworld.boardMapper";
 
 	
-	@Override
-	public List<BoardDTO> list()  throws Exception{
-
-		return sqlSession.selectList(namespace + ".list");
-	}
+	
 
 	@Override
 	public BoardDTO getDetail(int b_number) throws Exception {
@@ -61,11 +59,7 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectList(namespace + ".detail1", b_number);
 	}
 
-	@Override
-	public List<BoardDTO> tempingList() throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + ".tempingList");
-	}
+	
 
 	@Override
 	public BoardDTO tempinggetDetail(int b_number) throws Exception {
@@ -95,6 +89,36 @@ public class BoardDAOImpl implements BoardDAO {
 	public int tempingDelete(int b_number) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace + ".tempingDelete", b_number);
+	}
+
+	@Override
+	public List<BoardDTO> list(BoardCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".list", cri);
+	}
+
+	@Override
+	public List<BoardDTO> tempingList(BoardCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".tempingList", cri);
+	}
+
+	@Override
+	public int countList() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".countList");
+	}
+
+	@Override
+	public List<BoardDTO> search(Map<Object, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".search", map);
+	}
+
+	@Override
+	public List<BoardDTO> search2(Map<Object, Object> map) throws Exception{
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".search2", map);
 	}
 
 	
