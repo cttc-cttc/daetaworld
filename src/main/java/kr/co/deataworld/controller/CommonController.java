@@ -46,7 +46,7 @@ public class CommonController {
 	ReviewService rService;
 
 	
-	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
 //	포인트 
 	@GetMapping(value="pointMapper/pointManagement")
 	public String pointManagement(Model model) throws Exception {
@@ -172,7 +172,7 @@ public class CommonController {
 			request.setCharacterEncoding("utf-8");
 			logger.info("내용 : " + reviewDTO);
 			int r = rService.reviewRegister(reviewDTO);
-			return "common/review/reviewRegister";
+			return "redirect:/reviewMapper/r_wroteReviews?m_id="+reviewDTO.getW_writer() ;
 		}
 		
 		
