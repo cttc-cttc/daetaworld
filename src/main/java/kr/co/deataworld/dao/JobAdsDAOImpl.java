@@ -113,20 +113,10 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 
 	//구인 상단 검색
 	@Override
-	public List<Map<String, Object>> listJobAdsSearch(Map<Object, Object> map) {
+	public List<Map<String, Object>> listJobAdsSearch(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return sql.selectList(NAMESPACE +".listJobAdsSearch", map);
 	}
-	//구인 하단검색
-	@Override
-	public List<Map<Object, Object>> jobAdsSearch(Map<Object, Object> map) {
-		// TODO Auto-generated method stub
-		return sql.selectList(NAMESPACE + ".jobAdsSearch", map);
-	}
-
 	
-	
-	
-
 	
 }

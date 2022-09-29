@@ -28,14 +28,12 @@ public interface JobAdsDAO {
 	public List<Map<String, Object>> listCountry(JobAdsCriteria cri);
 
 	// 구인 직종,지역 검색(상단)
-	public List<Map<String, Object>> listJobAdsSearch(Map<Object, Object> map);
+	public List<Map<String, Object>> listJobAdsSearch(Map<String, Object> map);
 
 
 	// 구인공고 글갯수
 	public int countJobAdsList();
 
-	// 구인 하단 목록검색
-	public List<Map<Object, Object>> jobAdsSearch(Map<Object, Object> map);
 
 	// 직업추천 전체 구인목록 검색
 	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map);

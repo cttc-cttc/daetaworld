@@ -83,7 +83,20 @@
 							${map.s_tag1 } ,${map.s_tag2 } ,${map.s_tag3 } , ${map.s_tag4 }
 							<ul>
 
-								<li><img src="/deataworld/resources/images/shop_picture/${map.s_picture1 }" ></li>
+								
+								<p>등록된 사진:</p>
+                                                         <c:if test="${map.s_picture1 != null }">
+                                                            <img src="${contextPath }/displayShop?fileName=${map.s_picture1}" style="width: 120px;">
+                                                            <input type="hidden" name="preS_picture1" value="${map.s_picture1 }">
+                                                         </c:if>
+                                                         <c:if test="${map.s_picture2 != null }">
+                                                            <img src="${contextPath }/displayShop?fileName=${map.s_picture2}" style="width: 120px;">
+                                                            <input type="hidden" name="preS_picture2" value="${map.s_picture2 }">
+                                                         </c:if>
+                                                         <c:if test="${map.s_picture3 != null }">
+                                                            <img src="${contextPath }/displayShop?fileName=${map.s_picture3}" style="width: 120px;">
+                                                            <input type="hidden" name="preS_picture3" value="${map.s_picture3 }">
+                                                         </c:if>
 								<li>가게주소:${map.s_address1}</li>
 							</ul>
 						</div>

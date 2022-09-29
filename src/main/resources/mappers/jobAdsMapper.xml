@@ -74,53 +74,65 @@
 
 	</select>
 	<!-- 일반 구인목록 -->
-	<select id="listAds" parameterType="java.util.Map"
-		resultType="Map">
+	<select id="listAds" parameterType="java.util.Map" resultType="Map">
+		<![CDATA[ 
 		select a.*, s.*
 		from job_ads a, shop_info s
 		where a.a_urgency = 0
 		and a.a_status not in (3,4)
 		and a.s_number = s.s_number
 		and s.j_code not in (18)
+		and left(a.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
 		order by a.a_number desc
 		limit #{pageStart}, #{perPageNum}
-
+		]]>
 	</select>
 
 	<!-- 급구 구인목록 -->
-	<select id="listUrgency" parameterType="java.util.Map"
-		resultType="Map">
+	<select id="listUrgency" parameterType="java.util.Map" resultType="Map">
+	<![CDATA[ 
 		select a.*, s.*
 		from job_ads a, shop_info s
 		where a.a_urgency = 1
 		and a.a_status not in (3,4)
 		and a.s_number = s.s_number
 		and s.j_code not in (18)
+		and left(a.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
 		order by a.a_number desc
 		limit #{pageStart}, #{perPageNum}
-
+	]]>
 
 	</select>
 
 
 
 	<!-- 농어촌 구인목록 -->
-	<select id="listCountry" parameterType="java.util.Map"
-		resultType="Map">
+	<select id="listCountry" parameterType="java.util.Map" resultType="Map">
+		<![CDATA[ 
 		select a.*, s.*
 		from job_ads a, shop_info s
 		where a_status not in(3,4)
 		and job_code = 18
 		and a.s_number = s.s_number
+		and left(a.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
 		order by a.a_number desc
 		limit
 		#{pageStart}, #{perPageNum}
+		]]>
 	</select>
 
 	<!-- 구인 상단 검색 -->
 	<select id = "listJobAdsSearch" parameterType="java.util.Map" resultType="Map">
+		<![CDATA[
+		SELECT si.* , ja.* 
+		from shop_info si , job_ads ja
+		where si.s_number = ja.s_number
+		and si.a_code = #{a_code}
+		and si.j_code = #{j_code}
+		and ja.a_urgency = #{a_urgency}
+		and left(ja.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
+		]]>
 		
-	
 	</select>
 
 
@@ -130,7 +142,11 @@
 		from job_ads j, shop_info s
 		where j.s_number = s.s_number
 		and 
-		j.a_number = #{a_number}
+
+
+		s.s_number = #{s_number}
+		and left(j.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
+
 	</select> 
 
 	<!-- 일반/긴급/농어촌 글 갯수 -->
@@ -143,26 +159,7 @@
 		
 	
 	
-	<!-- 구인 하단목록검색 -->
-	<select id="jobAdsSearch" parameterType="java.util.Map" resultType="Map">
-		SELECT s_name FROM shop_info
-		UNION
-		SELECT a_wage FROM job_ads 
-		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="option == 's_number'">
-				s_number
-			</if>
-			
-			<if test="option == 'a_wage'">
-				a_wage
-			</if>
-			
-
-			<if test="value != null and value != ''">
-				= #{value}
-			</if>
-		</trim>
-	</select>
+	
 
 	<!-- 직업추천 구인 목록검색 -->
 	<select id="favoriteSearch" parameterType="java.util.Map"

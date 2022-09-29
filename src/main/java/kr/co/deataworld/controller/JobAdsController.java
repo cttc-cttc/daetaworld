@@ -84,7 +84,7 @@ public class JobAdsController {
 	public List<Map<String , Object>>getSelectJob2(@RequestParam("j_type1")String j_type1){
 		return service.getJob2(j_type1);
 	}
-	
+
 	
 	//급구 구인목록
 	@GetMapping(value = "/jobAds/listUrgency")
@@ -131,31 +131,28 @@ public class JobAdsController {
 	
 	//지역,직종 상단검색
 	@GetMapping(value = "jobAds/listJobAdsSearch")
-	public String listJobAdsSearch(@RequestParam Map<Object,Object>map,Model model) {
+	public String listJobAdsSearch(@RequestParam Map<String,Object>map,Model model ) {
 		System.out.println("--------------------받은 값 : " + map);
-		List<Map<String,Object>>list = service.listJobAdsSearch(map);
-		model.addAttribute("list", list);
-		return "jobAds/listJobAdsSearch";
+		
+		
+		List<String> areaName1List = service.getAreaName1(); // 지역 카테고리1 목록
+		List<String> job1List = service.getJob1();//직종 카테고리1 목록
+		
+		List<Map<String,Object>>list1 = service.listJobAdsSearch(map);
+		
+		model.addAttribute("list1", list1);
+		
+		model.addAttribute("areaName1List", areaName1List);
+		model.addAttribute("job1List", job1List);
+		
+		
+		
+		return "jobAds/search/listJobAdsSearch";
 	}
 		
-	//구인하단검색(구인목록에서)
-	@GetMapping(value = "jobAds/jobAdsSearch")//value에 해당하는값은 메소드이름
-	public String jobAdsSearch(@RequestParam Map<Object,Object>map,Model model) {
-		List<Map<Object, Object>>list = service.jobAdsSearch(map);
-		model.addAttribute("list", list);
-		return "jobAds/search/jobAdsSearch";  //return은 경로지정
-	}
-	
-	//구인하단검색(구인목록에서)
-		@GetMapping(value = "jobAds/favoriteSearch")//value에 해당하는값은 메소드이름
-		public String favoriteSearch(@RequestParam Map<Object,Object>map,Model model) {
-			List<JobAdsDTO>list = service.favoriteSearch(map);
-			model.addAttribute("list", list);
-			return "jobAds/search/favoriteSearch";  //return은 경로지정
-		}
 	
 	
-
+	
 
 	
 

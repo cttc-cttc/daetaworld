@@ -36,7 +36,7 @@
 	<br>
 
 	<!-- 셀렉트 박스 start -->
-	<form method="get" action="${contextPath}/search/listJobAdsSearch">
+	<form method="get" action="listJobAdsSearch">
 		<div class="container">
 			<table class="table">
 				<tbody>
@@ -45,7 +45,7 @@
 						<table class="table">
 							<tbody>
 
-
+								<thead>
 								<tr>
 									<th>지역</th> <!-- 지역 카테고리1 -->
 									<td>
@@ -72,25 +72,29 @@
 								<!-- 붙여넣기 끝 -->
 								
 								<tr>
-									<td></td>
-									<td class = "select2"> <!-- 지역 카테고리2 -->
-									<select class="form-select" id="areaName2" onchange="selectAreaName2(this)"></select>
-									</td>
-									<td></td>
-									<td class = "select22"><!-- 직종 카테고리2 -->
-									<select class="form-select" id="job2" onchange="selectJob2(this)"></select>
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-
-
+                           <td></td>
+                           <td class = "select2"> <!-- 지역 카테고리2 -->
+                           <select class="form-select" id="areaName2" onchange="selectAreaName2(this)"></select>
+                           <input type="hidden" id="a_code" name="a_code" value="${row.a_code}">
+                           </td>
+                           <td></td>
+                           <td class = "select22"><!-- 직종 카테고리2 -->
+                           <select class="form-select" id="job2" onchange="selectJob2(this)"></select>
+                           <input type="hidden" id="j_code" name="j_code" value="${row.j_code}">
+                           </td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                        </tr>
+						</thead>
 
 							</tbody>
 						</table>
+						<input type = "hidden" id = "j_code" name = "j_code" value = "${j_code }">
+						<input type = "hidden" id = "a_code" name = "a_code" value = "${a_code }">
+						<input type = "hidden" id = "a_urgency" name = "a_urgency" value = 1>
 						<div class="field-item-submit" align="center">
-							<button class="ht-btn theme-btn theme-btn-two">검색</button>
+							<button class="ht-btn theme-btn theme-btn-two" >검색</button>
 						</div>
 					</div>
 
@@ -105,9 +109,6 @@
 	<!-- 목록보기 -->
 
 	<div class="container">
-		<!-- 로그인양식 -->
-
-		<!-- 로그인양식끝 -->
 		<section class="content">
 			<div class="table-responsive">
 				<table class="table table-striped">
@@ -131,11 +132,12 @@
 							<th>시급</th>
 							<th>주소</th>
 							<th>구인 인원</th>
-
+							<th></th>
 
 						</tr>
 					</thead>
 				<c:forEach var="jobsend" items="${list2}">
+						<tbody>
 						<tr>
 							<td class="tc"><a
 								href="listAllDetail?s_name=${jobsend.s_name}&m_id=${loginInfo.m_id}&s_number=${jobsend.s_number}&a_number=${jobsend.a_number}">
@@ -145,7 +147,9 @@
 							<td class="tc">${jobsend.a_wage}</td>
 							<td class="tc">${jobsend.s_address1 }</td>
 							<td class="tc">${jobsend.a_need }</td>
+							<td></td>
 						</tr>
+						</tbody>
 					</c:forEach>
 				</table>
 
@@ -176,16 +180,7 @@
 			</table>
 
 		</section>
-		<form method="get" action="JobAdsSearch">
-			<select name="option">
-				<option value="s_number">가게번호</option>
-				<option value="a_number">공고번호</option>
-				<option value="a_wage">시급</option>
-				<option value="job_code">직업코드</option>
-
-			</select> <input type="text" name="value"> <input type="submit"
-				value="검색">
-		</form>
+		
 	</div>
 
 	<!-- 목록보기끝 -->
@@ -792,6 +787,7 @@
 		// 지역 카테고리2 선택하면 일단 해당하는 지역코드를 콘솔에 표시
 		function selectAreaName2(target) {
 			let code = target.value;
+			 $('#a_code').val(code);
 			console.log(code);
 		}
 	</script>
@@ -800,51 +796,52 @@
 	
 	
 	<!-- 직종 -->
-	<script>
-	$(function() {
+	 <script>
+   $(function() {
         $('.select22 > .nice-select').css('display','none');
      });
-		
-		// 직종 카테고리1 선택하면 직종 카테고리2 표시
-		function selectJob1(target) {
-			let job1 = target.value;
-			if(job1 == '선택') {
-				$('#job2').css('display', 'none');
-				return;
-			}
-			
-			$.ajax({
-				url: '${contextPath}/jobAds/getJob2',
-				data: {'j_type1': job1},
-				dataType: 'json',
-				type: 'post',
-				success: function(result) {
-					console.log(result);
-					initJob2(); // areaName1을 선택할 때 마다 areaName2 안에 '선택 option' 하나만 있게 초기화
-					$('#job2').css('display', 'block');
-					result.forEach(function(row1) {
-						let option = '<option value="'+ row1.j_code +'">'+ row1.j_type2 +'</option>';
-						$('#job2').append(option);
-					});
-				},
-				error: function(res) {
-					console.log('실패: '+res);
-				}
-			});
-		}
-		
-		// 직종 카테고리2 초기화
-		function initJob2() {
-			const htmls1 = '<option value="선택">선택</option>';
-			$('#job2').html(htmls1);
-		}
-		
-		// 직종 카테고리2 선택하면 일단 해당하는 직종코드를 콘솔에 표시
-		function selectJob2(target) {
-			let code2 = target.value;
-			console.log(code2);
-		}
-	</script>
+      
+      // 직종 카테고리1 선택하면 직종 카테고리2 표시
+      function selectJob1(target) {
+         let job1 = target.value;
+         if(job1 == '선택') {
+            $('#job2').css('display', 'none');
+            return;
+         }
+         
+         $.ajax({
+            url: '${contextPath}/jobAds/getJob2',
+            data: {'j_type1': job1},
+            dataType: 'json',
+            type: 'post',
+            success: function(result) {
+               console.log(result);
+               initJob2(); // areaName1을 선택할 때 마다 areaName2 안에 '선택 option' 하나만 있게 초기화
+               $('#job2').css('display', 'block');
+               result.forEach(function(row1) {
+                  let option = '<option value="'+ row1.j_code +'">'+ row1.j_type2 +'</option>';
+                  $('#job2').append(option);
+               });
+            },
+            error: function(res) {
+               console.log('실패: '+res);
+            }
+         });
+      }
+      
+      // 직종 카테고리2 초기화
+      function initJob2() {
+         const htmls1 = '<option value="선택">선택</option>';
+         $('#job2').html(htmls1);
+      }
+      
+      // 직종 카테고리2 선택하면 일단 해당하는 직종코드를 콘솔에 표시
+      function selectJob2(target) {
+         let code2 = target.value;
+         $('#j_code').val(code2);
+         console.log(code2);
+      }	
+   </script>
 	<!-- ajax 사용end -->
 
 </body>
