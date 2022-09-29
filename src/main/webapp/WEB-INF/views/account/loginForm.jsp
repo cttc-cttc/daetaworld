@@ -66,6 +66,10 @@
 													<a href="${contextPath}/findPw">비밀번호 찾기</a>
 													
 													
+													<a href="${contextPath}/findidView">테스트 1</a>
+													<a href="${contextPath}/findiId2">테스트 2</a>
+													
+													
 												</div>
 												<div class="col-12 mb-25">
 												

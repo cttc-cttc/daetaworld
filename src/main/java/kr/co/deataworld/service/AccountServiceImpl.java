@@ -1,5 +1,6 @@
 package kr.co.deataworld.service;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -51,11 +52,22 @@ public class AccountServiceImpl implements AccountService{
 	
 	
 	// 아이디 찾기
-	public String find_id(String m_name, String m_email) {
+	
+	@Override
+	public String findId(String m_email) {
 			
-		
-		
-		return dao.find_id(m_name, m_email);
+		 return dao.findId(m_email);
 	
 }
+	
+//	@Override
+//	public List<MemberDTO> findId(String m_email)throws Exception{
+//		return dao.findId(m_email);
+//	}
+	
+	@Override
+	public int findIdCheck(String m_email)throws Exception{
+		return dao.findIdCheck(m_email);
+	}
+	
 }

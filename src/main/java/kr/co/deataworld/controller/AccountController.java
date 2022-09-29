@@ -86,16 +86,51 @@ public class AccountController {
 	//아이디 찾기 
 
 	
-			@RequestMapping(value = "account/find_id", method = RequestMethod.POST)
-			@ResponseBody
-			public String find_id(@RequestParam("m_name") String m_name,@RequestParam("m_email") String m_email) throws Exception {
+	@RequestMapping(value="/findIdView", method=RequestMethod.GET)
+	public String findIdView() throws Exception{
+		return"/member/findIdView";
+	}
+	
+	@RequestMapping(value="account/findId", method=RequestMethod.POST)
+	public String findId(@RequestParam("m_email")String m_email, Model model, HttpSession session ) throws Exception{
+		logger.info("m_email"+m_email);
 				
-			String result = service.find_id(m_name, m_email);
-				
-			return result;
-			}
+		if(service.findIdCheck(m_email)==0) {
+		model.addAttribute("msg", "이메일을 확인해주세요");
+		return "account/findIdView";
+		}else {
+		model.addAttribute("member", service.findId(m_email));
+		return
+				"account/findId";
+		}
+	}
+	
+	
+	
+
 	
 			
+			
+//			@RequestMapping(value="/findIdView", method=RequestMethod.GET)
+//			public String findIdView() throws Exception{
+//				return"/member/findIdView";
+//			}
+//			
+//			@RequestMapping(value="account/findId", method=RequestMethod.POST)
+//			public String findId(MemberDTO memberDTO,Model model) throws Exception{
+//				logger.info("m_email"+memberDTO.getM_email());
+//						
+//				if(service.findIdCheck(memberDTO.getM_email())==0) {
+//				model.addAttribute("msg", "이메일을 확인해주세요");
+//				return "account/findIdView";
+//				}else {
+//				model.addAttribute("member", service.findId(memberDTO.getM_email()));
+//				return
+//						"account/findId";
+//				}
+//			}
+			
+	
 			
 	
 			
