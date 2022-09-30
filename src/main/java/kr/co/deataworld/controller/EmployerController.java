@@ -24,6 +24,7 @@ import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ShopInfoDTO;
 import kr.co.deataworld.service.AccountService;
 import kr.co.deataworld.service.EmployerService;
+import kr.co.deataworld.service.NotificationService;
 import kr.co.deataworld.util.ExtractAreaCode;
 import kr.co.deataworld.util.FileProcess;
 /*
@@ -37,6 +38,9 @@ public class EmployerController {
 	
 	@Autowired
 	AccountService aService;
+	
+	@Autowired
+	NotificationService nService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployerController.class);
 		
@@ -238,10 +242,15 @@ public class EmployerController {
 	
 //	지원받은 공고
 	@GetMapping(value="employerMapper/adsApplied")
-	public String adsApplied(@RequestParam("m_id")String m_id, Model model) throws Exception{
+	public String adsApplied(@RequestParam("m_id")String m_id, String pageType, Model model) throws Exception{
 		model.addAttribute("leftMenu", "adsApplied");
 		List<Map<String, Object>> adsApplied = service.adsApplied(m_id);
 		model.addAttribute("adsApplied", adsApplied);
+		
+		// 알림을 클릭해 들어온 경우
+		if(pageType != null) {
+			nService.deleteNotification(m_id);
+		}
 		return "employer/ads/adsApplied";
 	}
 	
