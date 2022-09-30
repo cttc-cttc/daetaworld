@@ -91,6 +91,11 @@ public class AccountController {
 		return"/findIdView";
 	}
 	
+	@RequestMapping(value="/findPwView", method=RequestMethod.GET)
+	public String findPwView() throws Exception{
+		return"/findPwView";
+	}
+	
 	@RequestMapping(value="account/findId", method=RequestMethod.POST)
 	public String findId(@RequestParam("m_email")String m_email, Model model, HttpSession session ) throws Exception{
 		logger.info("m_email"+m_email);
@@ -105,6 +110,26 @@ public class AccountController {
 	}
 	
 	
+	//비밀번호 찾기 
+	
+		
+	@RequestMapping(value="account/findPw", method=RequestMethod.POST)
+	public String findPw(MemberDTO memberDTO,Model model,@RequestParam("m_email")String m_email, @RequestParam("m_id")String m_id) throws Exception{
+		logger.info("memberPw"+memberDTO.getM_id());
+		
+		if(service.findPwCheck(memberDTO)==0) {
+			logger.info("PWCheck");
+			model.addAttribute("msg", "아이디와 이메일를 확인해주세요");
+			
+			return "account/findPwView";
+		}else {
+	
+		service.findPw(memberDTO.getM_email(),memberDTO.getM_id());
+		model.addAttribute("fpw", service.findPw(m_email,m_id));
+		
+		return"account/rs2";
+		}
+	}
 	
 
 	
@@ -174,8 +199,14 @@ public class AccountController {
 	
 	@GetMapping(value = "rs")
 	public String rs() {
-		logger.info("찾기 결과 접속");
+		logger.info("아이디 찾기 결과 접속");
 		return "account/rs";
+	}
+	
+	@GetMapping(value = "rs2")
+	public String rs2() {
+		logger.info("비밀번호 찾기 결과 접속");
+		return "account/rs2";
 	}
 	
 	

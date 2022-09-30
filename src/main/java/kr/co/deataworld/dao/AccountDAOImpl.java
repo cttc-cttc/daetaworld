@@ -1,5 +1,6 @@
 package kr.co.deataworld.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import java.util.Map;
@@ -82,6 +83,25 @@ public class AccountDAOImpl implements AccountDAO{
 //		return sqlsession.update("memberMapper.findPw", map);
 //	}
 	
+	@Override
+	public int findPwCheck(MemberDTO memberDTO)throws Exception{
+	return sql.selectOne(nameSpace + ".findPwCheck", memberDTO);	
+	}
 
+	@Override
+	public int findPw(String m_email, String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectOne(m_email, m_id);
+	}
+
+
+//	@Override
+//	public String findPw(String m_email,String m_id,String m_password)throws Exception{
+//		Map<String,Object> map = new HashMap<String, Object>();
+//		map.put("m_email", m_email);
+//		map.put("m_id", m_id);
+//		map.put("m_password", m_password);
+//		return sql.selectMap(nameSpace + ".findPw", map);
+//	}
 	
 }
