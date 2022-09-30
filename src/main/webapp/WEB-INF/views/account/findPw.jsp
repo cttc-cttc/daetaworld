@@ -99,15 +99,15 @@
                                         <p class="mb-4">아이디와 이메일을 입력해주세요!</p>
                                     </div>
                                     
-                                    <form class="user" action="/member/findPw" method="post">
+                                    <form class="user" action="account/findPw" method="post">
                                        <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="memberId" aria-describedby="IdHelp" name="memberId"
+                                                id="m_id" aria-describedby="IdHelp" name="m_id"
                                                 placeholder="아이디를 입력해 주세요">
                                         </div>
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="memberEmail" aria-describedby="emailHelp" name="memberEmail"
+                                                id="m_email" aria-describedby="emailHelp" name="m_email"
                                                 placeholder="이메일을 입력해 주세요">
                                         </div>
                                          

@@ -16,6 +16,7 @@ import kr.co.deataworld.dto.MemberDTO;
 
 @Service
 public class AccountServiceImpl implements AccountService{
+	private static final String String = null;
 	@Inject AccountDAO dao;	
 	
 	@Override
@@ -69,5 +70,20 @@ public class AccountServiceImpl implements AccountService{
 	public int findIdCheck(String m_email)throws Exception{
 		return dao.findIdCheck(m_email);
 	}
+	
+	
+	
+	@Override
+	public int findPwCheck(MemberDTO memberDTO)throws Exception{
+		return dao.findPwCheck(memberDTO);
+	}
+
+	@Override
+	public int findPw(java.lang.String m_email, java.lang.String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.findPw(m_email, m_id); 
+	}
+
+	
 	
 }

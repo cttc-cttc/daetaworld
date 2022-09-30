@@ -121,11 +121,18 @@ select count(*) from member where m_email = #{m_email}
   	
   	
   	
-  	<resultMap id="MemberDTOResultMap" type="kr.co.deataworld.dto.MemberDTO">
+  	
+  	<select id="findPw" parameterType="MemberDTO"  resultType="java.lang.Integer">
+select m_password from member where m_email = #{m_email} and m_id = #{m_id}
+</select>
 
-<result property="m_email" column="m__email"/>
-
-</resultMap>
+<select id="findPwCheck" parameterType="MemberDTO"  resultType="java.lang.Integer">
+select count(*) from member where m_email = #{m_email} and m_id = #{m_id}
+</select>
+  	
+  	
+  	
+  	
   	
   	
 </mapper>
