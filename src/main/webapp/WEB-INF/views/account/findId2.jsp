@@ -24,7 +24,7 @@
   		</ul>
   	<h2>입니다</h2>
   <button type="button" class="btn btn-primary" onclick="location.href='/member/loginView'">로그인페이지</button>
-  <button type="button" class="btn btn-primary" onclick="location.href='/board/list'">메인페이지</button>
+  <button type="button" class="btn btn-primary" onclick="location.href='${contextPath}'">메인페이지</button>
   
   
 </div>

@@ -52,7 +52,6 @@
 															<th>시간</th>
 															<th>시급</th>
 															<th>급구</th>
-															<th></th>
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
@@ -77,17 +76,15 @@
 																	<td><button id="pinchCh" onclick="pinch_Chk()">확인</button></td>
 																</c:if>
 																
-																<c:if test="${adsList.a_status == 3}">
-																	<td><button id="pinchCh" onclick="location.href='${contextPath}/reviewMapper/reviewRegister?w_writer=${loginInfo.m_id}&a_number=${adsList.a_number}&id_rated=${adsList.m_id}'">후기입력</button></td>
+																<c:if test="${adsList.a_status == 3 && adsList.jae_status != 7 }">
+																	<td><button id="pinchCh" onclick="location.href='${contextPath}/reviewMapper/e_reviewRegister?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}&id_rated=${adsList.id_rated}'">후기입력</button></td>
+																</c:if>
+																
+																<c:if test="${adsList.jae_status == 7}">
 																</c:if>
 															</tr>
-																<input type="hidden" name="m_id" id="m_id" value="${adsList.m_id}" />
-																<input type="hidden" name="a_number" id="a_number" value="${adsList.a_number}" />
 														</c:forEach>
 													</table>
-													
-													
-													
 												</div>
 											</div>
 										</div>
@@ -160,6 +157,10 @@
 			  const btnElement = document.getElementById('pinchCh');
 			  btnElement.innerText = '후기작성';
 			}
+		
+		
+		
+		
 	</script>
 	
 	

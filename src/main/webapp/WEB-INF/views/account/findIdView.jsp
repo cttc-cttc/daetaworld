@@ -132,6 +132,7 @@
                                             아이디 찾기
                                         </button>
                                     </form>
+
 					</div>
 					</div>
 					</div>
@@ -209,6 +210,17 @@
 	            }
 		});
 	};
+
+                                    <hr>
+                                  
+                                    <a href="/member/loginView" class="btn btn-facebook btn-user btn-block">
+                                           Login
+                                        </a>
+                                        <hr>
+                                       <div class="text-center">
+                                        <a class="small" href="${contextPath}">메인페이지</a>
+                                    </div>
+
 
 const modal = document.getElementById("modal")
 const btnModal = document.getElementById("find_id")

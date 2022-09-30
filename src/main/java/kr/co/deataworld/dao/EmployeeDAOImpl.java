@@ -82,6 +82,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override //대타신청
 	public int jobApply(JobApplyDTO jobapplyDTO) throws Exception {
+		//신청을 하면 상태를 신청중 으로 바꾼다.
+		int a_number = jobapplyDTO.getA_number();
+		sql.update(NAMESPACE + ".statusUpdate", a_number);
 		return sql.insert(NAMESPACE + ".jobApply", jobapplyDTO);
 	}
 

@@ -143,7 +143,7 @@
 		} else {
 			let htmls = '';
 			Array.from(notification).forEach(noti => {
-				htmls += '<a class="dropdown-item drdn-item" href="'+ noti.m_id +'">'+ noti.s_name+' 지원신청 1건</a>';
+				htmls += '<a class="dropdown-item drdn-item" href=${contextPath}/employerMapper/adsApplied?m_id='+ noti.m_id +'&pageType=noti">'+ noti.s_name+' 지원신청 1건</a>';
 			});
 			htmls += `
 				<div class="dropdown-divider"></div>

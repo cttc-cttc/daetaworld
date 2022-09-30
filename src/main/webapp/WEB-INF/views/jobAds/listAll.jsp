@@ -67,7 +67,7 @@
                               </c:forEach>
                                  
                            </select></td>
-                           <td></td>
+                        
                         </tr>
                         <!-- 붙여넣기 끝 -->
                         
@@ -82,9 +82,7 @@
                            <select class="form-select" id="job2" onchange="selectJob2(this)"></select>
                            <input type="hidden" id="j_code" name="j_code" value="${row.j_code}">
                            </td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
+                           
                         </tr>
 
 					</thead>
