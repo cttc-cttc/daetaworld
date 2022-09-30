@@ -568,15 +568,14 @@
 							<span>오늘의 대타에서는</span>
 						</h3>
 						<h3 class="title">
-							농어촌 구인 <span>&</span> 돌봄 구인<span>에도 지원할 수 있습니다.</span>
+							농어촌 구인 <span>에도 지원할 수 있습니다.</span>
 						</h3>
 						<p>사회적 인식이 얕은 곳 까지 도움의 손길을 내어 드리고 싶습니다.</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-sm-12 col-12">
 					<div class="call-btn text-center text-lg-right">
-						<a class="ht-btn green-btn link-btn" href="#">농어촌 구인 지원하기</a> <a
-							class="ht-btn green-btn link-btn" href="#">돌봄 구인 지원하기</a>
+						<a class="ht-btn green-btn link-btn" href="#">농어촌 구인 지원하기</a>
 					</div>
 				</div>
 			</div>
