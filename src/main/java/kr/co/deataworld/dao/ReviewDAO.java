@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 
 import kr.co.deataworld.dto.BoardDTO;
 import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.ReviewCommentsDTO;
 import kr.co.deataworld.dto.ReviewDTO;
 
 public interface ReviewDAO {
@@ -39,6 +40,9 @@ public interface ReviewDAO {
 	public Map<String, Object>wroteDetail(int a_number) throws Exception;
 	
 //	작성후 리뷰 내용 확인	
-	public Map<String, Object>writtenDetail(int w_number) throws Exception;
+	public Map<String, Object> writtenDetail(int w_number) throws Exception;
+	
+// 리뷰 댓글 작성
+	public int replyRegister(ReviewCommentsDTO rcDTO) throws Exception;
 	
 }

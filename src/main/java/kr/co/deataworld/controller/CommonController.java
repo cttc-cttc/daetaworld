@@ -28,7 +28,7 @@ import kr.co.deataworld.dto.BoardDTO;
 import kr.co.deataworld.dto.DeductedPointDTO;
 import kr.co.deataworld.dto.EarnedPointDTO;
 import kr.co.deataworld.dto.PointDTO;
-
+import kr.co.deataworld.dto.ReviewCommentsDTO;
 import kr.co.deataworld.service.EmployeeService;
 
 import kr.co.deataworld.dto.ReviewDTO;
@@ -220,8 +220,20 @@ public class CommonController {
 	}
 	  
 	// 작성된 리뷰 내용 확인
-
-
+	@GetMapping(value="reviewMapper/writtenDetail")
+	public String writtenDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
+		model.addAttribute("leftMenu", "adsCompleted");
+		Map<String, Object> detail = rService.writtenDetail(w_number);
+		model.addAttribute("detail", detail);
+		return "common/review/writtenDetail";
+	}
+	
+	@PostMapping(value="reviewMapper/replyRegister")
+	public String replyRegister(ReviewCommentsDTO rcDTO, Model model)throws Exception{
+		model.addAttribute("leftMenu", "adsCompleted");
+		int r = rService.replyRegister(rcDTO);
+		return "redirect:/reviewMapper/writtenDetail?w_number=" + rcDTO.getW_number();
+	}
 		
 		
 }
