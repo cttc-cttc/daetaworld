@@ -42,7 +42,7 @@
                                         </a>
                                         <hr>
                                        <div class="text-center">
-                                        <a class="small" href="/board/list">메인페이지</a>
+                                        <a class="small" href="${contextPath}">메인페이지</a>
                                     </div>
 
 </html>
