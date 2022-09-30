@@ -5,159 +5,110 @@
 <html class="no-js" lang="zxx">
 <title>오늘의 대타</title>
 <%@ include file="../include/head.jsp"%>
-<!-- custom css -->
-<link rel="stylesheet"
-	href="${contextPath}/resources/custom_css/index.css">
+<style>
+	.menu-content {
+		cursor: context-menu;
+	}
+	
+	.inner-style {
+		width: 100%;
+		text-align: center;
+	}
+</style>
 <body class="template-color-3">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
-		<header
-			class="header-absolute black-logo-version header-sticky sticky-white no-padding d-none d-lg-block pt-25 pb-25">
+		<header class="header-absolute black-logo-version header-sticky sticky-white no-padding d-none d-lg-block pt-25 pb-25">
 			<%@ include file="../include/header.jsp"%>
 		</header>
+		<br><br><br><br><br>
 		<!-- 싱딘 메뉴 end-->
-		<div class="contents" style="line-height: 160%; font-size: 12px">
-			<h3 class="termsTitle">
-				<script
-					src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+		<hr style="margin: 0">
+		
+		<!-- 본문 -->
+		<div class="dashboard-content-section section bg_color--3">
+			<div class="container-fluid p-0">
+				<div class="row no-gutters">
+					<!-- 좌측 메뉴 -->
+					<%@ include file="../include/daetaFooter/footer_left_menu.jsp" %>
+					
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="page-breadcrumb-content" style="margin: 2rem 0 4rem;">
+									<ul class="page-breadcrumb">
+										<li><a href="${contextPath}">Home</a></li>
+										<li>고객지원</li>
+										<li>이용가이드</li>
+									</ul>
+									<h1>이용가이드</h1>
+								</div>
+							</div>
+						</div>
 
-				<div
-					style="padding: 0 0 45px 0; min-height: 60px; font-family: 'Noto-B'; font-size: 40px; color: #2d3280; text-align: center"></div>
-			</h3>
-			<!-- Content here -->
-
-			<div class="container">
-				<!-- Content here -->
-				<div style="width: 1024px; margin: 80px auto 0px; display: flex;">
-					<div
-						style="width: 270px; height: 70px; background-color: rgb(113, 162, 255); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
-						<p
-							style="width: 100%; text-align: center; font-size: 18px; font-weight: 600; color: white; letter-spacing: 0.2px; margin: 0px auto;">이용자가이드</p>
+						<div class="container faq-wrapper">
+							<div class="row">
+								<div class="col-lg-6 pr-65 pr-md-15 pr-sm-15 pr-xs-15">
+									<div class="dropdown">
+										<button class="btn btn-primary btn-block dropdown-toggle" type="button"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">결제는 어떻게 해야하나요?</button>
+										<div class="dropdown-menu inner-style">
+											<a class="dropdown-item menu-content">마이페이지>결제 이용해주시면 됩니다.</a>
+										</div>
+									</div><br><br><br>
+									
+									<div class="dropdown">
+										<button class="btn btn-warning btn-block dropdown-toggle" type="button"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">구직자 번호는 어디서 볼수있나요?</button>
+										<div class="dropdown-menu inner-style">
+											<a class="dropdown-item menu-content">마이페이지>지원자 리스트 확인하시면 됩니다.</a>
+										</div>
+									</div><br><br><br>
+									
+									<div class="dropdown">
+										<button class="btn btn-success btn-block dropdown-toggle" type="button"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">구인자/구직자 핸드폰은 어디서 보나요??</button>
+										<div class="dropdown-menu inner-style">
+											<a class="dropdown-item menu-content">마이페이지>구직자/구인자 리스트를 이용해주시면 됩니다.</a>
+										</div>
+									</div><br><br><br>
+								</div>
+								<div class="col-lg-6 pr-65 pr-md-15 pr-sm-15 pr-xs-15">
+									<div class="dropdown">
+										<button class="btn btn-danger btn-block dropdown-toggle" type="button"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">탈퇴는 어떻게 하나요?</button>
+										<div class="dropdown-menu inner-style">
+											<a class="dropdown-item menu-content">마이페이지>개인정보 수정을 이용해주시면 됩니다.</a>
+										</div>
+									</div><br><br><br>
+									
+									<div class="dropdown">
+										<button class="btn btn-info btn-block dropdown-toggle" type="button"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">아이디는 어디서 찾으면 되나요?</button>
+										<div class="dropdown-menu inner-style">
+											<a class="dropdown-item menu-content">로그인>아이디찾기를 이용해주시면 됩니다.</a>
+										</div>
+									</div><br><br><br>
+									
+									<div class="dropdown">
+										<button class="btn btn-secondary btn-block dropdown-toggle" type="button"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">대타가 끝났는데 급여 지급이 안될 땐 어떻게 하나요?</button>
+										<div class="dropdown-menu inner-style">
+											<a class="dropdown-item menu-content">사장님께 전화 걸어서 독촉하시면 됩니다.</a>
+										</div>
+									</div><br><br><br>
+								</div>
+							</div>
+						</div>
 					</div>
+		
 				</div>
 			</div>
 		</div>
-		<br>
-
-
-		<!-- 본문 -->
-		<div class="container">
-		<div class="accordion" id="accordionPanelsStayOpenExample">
-			<div class="dropdown">
-				<button class="btn btn-light dropdown-toggle" type="button"
-					data-bs-toggle="dropdown" aria-expanded="false">결제는 어떻게
-					해야하나요?</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item">마이페이지>결제 이용해주시면 됩니다.</a></li>
-
-				</ul>
-			</div>
-		</div>
-		<br> <br>
-		<!--  -->
-		<div class="container">
-			<div class="dropdown">
-				<button class="btn btn-light dropdown-toggle" type="button"
-					data-bs-toggle="dropdown" aria-expanded="false">구직자 번호는
-					어디서 볼수있나요?</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item">마이페이지>지원자 리스트 확인하시면 됩니다.</a></li>
-
-				</ul>
-			</div>
-		</div>
-		<br> <br>
-		<div class="container">
-			<div class="dropdown">
-				<button class="btn btn-light dropdown-toggle" type="button"
-					data-bs-toggle="dropdown" aria-expanded="false">구인자/구직자
-					핸드폰은 어디서 보나요??</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item">마이페이지>구직자/구인자 리스트를 이용해주시면
-							됩니다.</a></li>
-
-				</ul>
-			</div>
-		</div>
-		<br> <br>
-		<div class="container">
-			<div class="dropdown">
-				<button class="btn btn-light dropdown-toggle" type="button"
-					data-bs-toggle="dropdown" aria-expanded="false">탈퇴는 어떻게
-					하나요?</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item">마이페이지>개인정보 수정을 이용해주시면 됩니다.</a></li>
-
-				</ul>
-			</div>
-		</div>
-		<br> <br>
-		<div class="container">
-			<div class="dropdown">
-				<button class="btn btn-light dropdown-toggle" type="button"
-					data-bs-toggle="dropdown" aria-expanded="false">아이디는 어디서
-					찾으면 되나요?</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item">마이페이지>아이디찾기를 이용해주시면 됩니다.</a></li>
-
-				</ul>
-			</div>
-		</div>
-		<br> <br>
-		<div class="container">
-			<div class="dropdown">
-				<button class="btn btn-light dropdown-toggle" type="button"
-					data-bs-toggle="dropdown" aria-expanded="false">결제는 어떻게
-					해야하나요?</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item">마이페이지>결제 이용해주시면 됩니다.</a></li>
-
-				</ul>
-			</div>
-		</div>
-		<br> <br>
-		<div class="container">
-			<div class="dropdown">
-				<button class="btn btn-light dropdown-toggle" type="button"
-					data-bs-toggle="dropdown" aria-expanded="false">결제는 어떻게
-					해야하나요?</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item">마이페이지>결제 이용해주시면 됩니다.</a></li>
-
-				</ul>
-			</div>
-		</div>
-		<br> <br>
-		<div class="container">
-			<div class="dropdown">
-				<button class="btn btn-light dropdown-toggle" type="button"
-					data-bs-toggle="dropdown" aria-expanded="false">결제는 어떻게
-					해야하나요?</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item">마이페이지>결제 이용해주시면 됩니다.</a></li>
-
-				</ul>
-			</div>
-		</div>
-		
-		</div>
-		
+		<!-- 본문 끝 -->
+		<%@ include file="../include/footer.jsp"%>
 	</div>
-	<!-- 본문 끝 -->
-	<%@ include file="../include/footer.jsp"%>
-
-	<!-- Placed js at the end of the document so the pages load faster -->
-	<!-- Placed js at the end of the document so the pages load faster -->
-	<!-- All jquery file included here -->
-	<script
-		src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-	<script
-		src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-	<script
-		src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-	<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	<!-- 문서 끝에 js를 배치하여 페이지 로딩 속도 향상 -->
+	<%@ include file="../include/plugin.jsp" %>
 </body>
 </html>
