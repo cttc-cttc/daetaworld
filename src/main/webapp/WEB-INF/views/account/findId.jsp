@@ -6,6 +6,20 @@
 <%@ include file="../include/head.jsp" %>
 <!-- custom css -->
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css">
+
+<script type="text/javascript">
+
+
+
+	var msg = "${msg}";
+		 
+		if (msg != "") {
+			alert(msg);
+		}
+
+
+</script>
+
 <body class="template-color-3" onkeydown="onEnterLogin()">
 	<div id="main-wrapper">
 		<!-- header -->
@@ -123,10 +137,12 @@
 					</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<!-- Login Register Section End -->
-		
+				
+				
+        
+               
+                    
+ 
 		
 		
 		

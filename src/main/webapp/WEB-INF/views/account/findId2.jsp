@@ -18,7 +18,7 @@
   		<ul>
   		<c:forEach items="${member}" var="member">
   		  	
-  		  	<li>${member.memberId} </li><br/>
+  		  	<li>${member.m_id} </li><br/>
   		
   		</c:forEach>
   		</ul>

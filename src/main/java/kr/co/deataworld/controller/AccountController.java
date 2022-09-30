@@ -88,7 +88,7 @@ public class AccountController {
 	
 	@RequestMapping(value="/findIdView", method=RequestMethod.GET)
 	public String findIdView() throws Exception{
-		return"/member/findIdView";
+		return"/findIdView";
 	}
 	
 	@RequestMapping(value="account/findId", method=RequestMethod.POST)
@@ -99,9 +99,8 @@ public class AccountController {
 		model.addAttribute("msg", "이메일을 확인해주세요");
 		return "account/findIdView";
 		}else {
-		model.addAttribute("member", service.findId(m_email));
-		return
-				"account/findId";
+		model.addAttribute("fid", service.findId(m_email));
+		return "account/rs";
 		}
 	}
 	
@@ -173,6 +172,11 @@ public class AccountController {
 		return "account/findPw";
 	}
 	
+	@GetMapping(value = "rs")
+	public String rs() {
+		logger.info("찾기 결과 접속");
+		return "account/rs";
+	}
 	
 	
 //	구직자, 구인자 회원가입

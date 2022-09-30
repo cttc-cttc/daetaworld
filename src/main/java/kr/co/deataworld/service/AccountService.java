@@ -29,5 +29,9 @@ public interface AccountService {
 	
 	
 	public int findIdCheck(String m_email)throws Exception;
+
+	
+	
+	
 	
 }

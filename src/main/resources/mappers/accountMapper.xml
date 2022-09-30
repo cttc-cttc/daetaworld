@@ -106,7 +106,7 @@
   	
   	
   	<select id="findId" parameterType="String"  resultType="String">
-  		select * 
+  		select m_id 
   		from member 
   		where
   			m_email=#{m_email}
