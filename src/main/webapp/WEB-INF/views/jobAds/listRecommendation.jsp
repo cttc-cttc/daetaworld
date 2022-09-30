@@ -40,7 +40,9 @@
             <p class="mb-4">나와 꼭맞는 일자리 추천</br>
                아래의 START버튼을 눌러 시작
             </p>
-            <button type="button" class="btn btn-secondary btn-lg">START</button>
+            <button type="button" class="btn btn-secondary btn-lg">START</button> 
+            &nbsp  &nbsp
+            <button type="button" onclick="location.href='${contextPath}'" class="btn btn-secondary btn-lg" >EXIT</button>
         </section>
         <section id="qna">
             <div class="status mx-auto mt-5">  <!--진행상태--> 
@@ -60,15 +62,225 @@
             </div>
             <div class="resultDesc"></div>
             <br>
-<!--             <button type="button"  class="kakao py-2 px-3">바로찾기</button> -->
-            <form method="get" action="favoriteSearch">
-            
-            
-   			<select name="option">	
-			<option value="job_code">직업코드</option> </select>
-			<input type="text"  name="value" placeholder="번호를 입력해주세요."> <input type="submit" value="검색">
-			</form>
+             <button type="button" onclick="location.href='${contextPath}'" class="kakao py-2 px-3" >홈으로</button>
+			
+				
         </section>
+        		<!-- 직업코드 -->
+		<div
+			class="blog-section section pb-120 pb-lg-100 pb-md-80 pb-sm-50 pb-xs-40">
+			<div class="container st-border">
+				<div class="row no-gutters">
+					<div class="col-lg-6">
+						<div class="blog-area">
+							<div class="section-title-two text-left">
+								<h3></h3>
+							</div>
+
+							<div class="blog-wrap ranking">
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										<b> 1.외식음료 </b>
+									</div>
+									<div class="col-lg-8">
+										 '호프', '카페', '음식점'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										<b> 2.유통,판매 </b>
+									</div>
+									<div class="col-lg-8">
+										 '백화점', '마트', '기타매장'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 3.문화,여가 </b>
+									</div>
+									<div class="col-lg-8">
+										  '놀이공원', '숙박', 'pc방', '볼링장'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 4.서비스 </b>
+									</div>
+									<div class="col-lg-8">
+										'주차관리', '보안', '경비', '경호'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										<b> 5.서비스 </b>
+									</div>
+									<div class="col-lg-8">
+										'반려동물케어', '가사도우미', '청소'
+									</div>
+								</div>
+								
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 6.서비스 </b>
+									</div>
+									<div class="col-lg-8">
+										 '헤어', '미용', '피부', '마사지'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 7.서비스 </b>
+									</div>
+									<div class="col-lg-8">
+										 '안내데스크', '이벤트행사', '모델'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 8.사무회계 </b>
+									</div>
+									<div class="col-lg-8">
+										  '사무보조', '마케팅'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 9.고객상담,영업 </b>
+									</div>
+									<div class="col-lg-8">
+										'영업', '설문조사'
+									</div>
+									
+								</div>
+								
+								
+								
+								
+								<div class="col-lg-12">
+									<p class="ranking-info">
+										*본 직업분류는 '오늘의대타'내에서만 사용되는 직업 분류 코드입니다.
+									</p>
+									
+								</div>
+							</div>
+						</div>
+						<!-- 왼쪽 -->
+					</div>
+					
+					
+					
+					<div class="col-lg-6">
+						<div class="blog-area">
+							<div class="section-title-two text-left">
+								<h3></h3>
+							</div>
+
+							<div class="blog-wrap ranking">
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 10.건설,노무 </b>
+									</div>
+									<div class="col-lg-8">
+										 '건설현장', '배관', '용접'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 11.생산 </b>
+									</div>
+									<div class="col-lg-8">
+										  '제조', '가공', '포장', '품질검사'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 12.IT,인터넷 </b>
+									</div>
+									<div class="col-lg-8">
+										  '테스터', 'PC설치', '마케팅', '외주코딩'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 13.교육,강사 </b>
+									</div>
+									<div class="col-lg-8">
+										'학원', '운동트레이너', '레져', '방문교사'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										<b> 14.디자인 </b>
+									</div>
+									<div class="col-lg-8">
+										'외주디자인'
+									</div>
+								</div>
+								
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 15.미디어 </b>
+									</div>
+									<div class="col-lg-8">
+										 '방청객', '촬영보조', '영상편집', '출판'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 16.운전,배달 </b>
+									</div>
+									<div class="col-lg-8">
+										 '이삿짐', '대리운전', '수행기사', '중장비', '퀵'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 17.병원,간호 </b>
+									</div>
+									<div class="col-lg-8">
+										  '간호', '사회복지', '외래보조', '임상시험'
+									</div>
+									
+								</div>
+								<div class="single-list-blog">
+									<div class="col-lg-4">
+										 <b> 18.농어촌 </b>
+									</div>
+									<div class="col-lg-8">
+										'농업', '어업'
+									</div>
+									<div class="single-list-blog"></div>
+							
+								
+					
+							</div>
+						</div>
+						<!-- 오른쪽 -->
+					</div>
+					
+						<!-- 직업코드 끝 -->
+					</div>
+				</div>
+			</div>
+		</div>
+        
+        
+        
+        
+        
     </div>
     
   

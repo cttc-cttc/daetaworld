@@ -62,7 +62,7 @@ public class AccountDAOImpl implements AccountDAO{
 
 	@Override
 	public int findIdCheck(String m_email)throws Exception{
-		return sql.selectOne(nameSpace + "findIdCheck", m_email);
+		return sql.selectOne(nameSpace + ".findIdCheck", m_email);
 	}
 	
 	
