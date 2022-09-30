@@ -83,8 +83,6 @@
 											<div class="candidate-main-content">
 												<div class="field-description"></div>
 												
-												
-												
 												<hr>
 												<c:forEach var="resume" items="${list}" varStatus="status">
 												<c:if test="${resume.i_default == 1}">
@@ -96,8 +94,6 @@
 												번호 : <c:out value="${status.count}" />
 												<input type="hidden" name="count" id="count" value="${status.count}">
 												<input type="hidden" name="i_number" id="i_number" value="${status.index}">
-												
-												
 												
 												<div class="field-experience">
 													<div class="experience-wrap">

@@ -204,22 +204,44 @@ public class CommonController {
 		model.addAttribute("list", list);
 		System.out.println("값을 가져왔니? : "+list);
 		return "common/review/employee/e_myReviews";
-	}		
+	}
+	
+////	구직자 댓글 작성폼 이동	
+//	@GetMapping(value="reviewMapper/e_replyRegist")
+//	public String e_replyRegist()throws Exception{
+//		
+//		
+//		return " ";
+//	}
+//	
+////	구직자 댓글 작성 저장 	
+//	@PostMapping(value="reviewMapper/e_replyRegist")
+//	public String e_replyRegist()throws Exception{
+//		
+//		
+//		return " ";
+//	}
 	
 //	공통
 	
-
-	//  작성한 리뷰 내용 확인
-	@GetMapping(value="reviewMapper/wroteDetail")
-	public String wroteDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
-		model.addAttribute("leftMenu", "adsCompleted");
-		Map<String, Object> detail = rService.wroteDetail(w_number);
 	
-		model.addAttribute("detail", detail);
-		return "common/review/wroteDetail";
-	}
-	  
-	// 작성된 리뷰 내용 확인
+	
+	
+	
+	
+	
+	
+	
+//  작성된 리뷰 내용 확인
+	  @GetMapping(value="reviewMapper/wroteDetail")
+	  public String wroteDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
+	     model.addAttribute("leftMenu", "adsCompleted");
+	     Map<String, Object> detail = rService.wroteDetail(w_number);
+	     model.addAttribute("detail", detail);
+	     return "common/review/wroteDetail";
+	  }
+	
+	
 
 
 		

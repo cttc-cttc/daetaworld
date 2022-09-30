@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>대타 내역</h1>
+										<h1>지원 현황</h1>
 									</div>
 								</div>
 							</div>
