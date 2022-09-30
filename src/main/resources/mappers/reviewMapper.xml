@@ -74,7 +74,8 @@
 	<update id="e_updateStatus" parameterType="Map">
 		UPDATE job_apply
 		SET jae_status = 7
-		WHERE (a_number = #{a_number} and m_id = #{m_id});
+		WHERE (a_number = #{a_number} 
+		and m_id = #{m_id})
 	</update>
 		
 	<!-- 내가 작성한 리뷰 보기 (가게이름을 받아야한다) -->
@@ -108,7 +109,10 @@
 		inner join shop_info s
 		on a.s_number = s.s_number
 		where r.id_rated =#{id_rated}
-	</select>	
+	</select>
+	
+	
+	
 
 <!-- 구직자 끝 -->
 	
@@ -121,7 +125,6 @@
 			left outer join review_comments rc
 			on r.w_number = rc.w_number
 		where r.w_number = #{w_number}
-        or r.w_number = rc.w_number
 	</select>
 	
 	<!-- 작성된 리뷰 내용 확인 -->

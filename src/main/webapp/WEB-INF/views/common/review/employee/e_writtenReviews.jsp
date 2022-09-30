@@ -58,7 +58,7 @@
 														<tbody>
 															<c:forEach var="re" items="${list}">
 																<tr>			
-																	<td><a href="reviewMapper/wroteDetail?w_number=${re.w_number}">${re.s_name }</a></td>														
+																	<td><a href="${contextPath}/reviewMapper/wroteDetail?w_number=${re.w_number}">${re.s_name }</a></td>														
 																	<td>${re.w_rate }</td>														
 																	<td>${re.w_comments }</td>														
 																	<td>${re.date }</td>														

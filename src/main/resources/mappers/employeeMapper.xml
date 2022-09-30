@@ -7,7 +7,8 @@
 <!-- 내 정보 불러오기(구직자) -->
 <select id="myInfo" parameterType="String" resultType="Map">
 	SELECT * FROM daetaworld.member
-	WHERE m_type = '1' AND m_id = #{m_id}
+	WHERE m_type = '1' 
+	AND m_id = #{m_id}
 </select>
 
 
@@ -38,7 +39,8 @@
 <!-- 선택한 자소서 불러오기 -->
 <select id="selectResume" parameterType="ResumeDTO" resultType="ResumeDTO">
 	SELECT * FROM daetaworld.employee_intro
-	WHERE m_id = #{m_id} AND i_number = #{i_number}
+	WHERE m_id = #{m_id} 
+	AND i_number = #{i_number}
 </select>
 
 <!-- 수정한 자소서 저장 ajax -->
@@ -49,7 +51,8 @@
 	i_contents = #{i_contents},
 	i_date = now()
 	WHERE
-	m_id = #{m_id} AND i_number = #{i_number}
+	m_id = #{m_id} 
+	AND i_number = #{i_number}
 </update>
 
 <!-- 자소서 삭제하기 -->
@@ -81,7 +84,8 @@
 	SET
 	i_default = '0'
 	WHERE
-	m_id = #{m_id} AND i_default = 1
+	m_id = #{m_id} 
+	AND i_default = 1
 </update>
 
 
@@ -91,7 +95,8 @@
     join job_ads
     on job_apply.a_number = job_ads.a_number
     where
-    job_apply.a_number = #{a_number} and job_apply.m_id = #{m_id}
+    job_apply.a_number = #{a_number} 
+    and job_apply.m_id = #{m_id}
 </select>	
 
 
@@ -118,8 +123,10 @@
 	update job_apply
     join employee_intro
     on job_apply.m_id = employee_intro.m_id
-    set job_apply.i_number = employee_intro.i_number
-    where employee_intro.m_id = #{m_id} and employee_intro.i_default = 1
+    set 
+    job_apply.i_number = employee_intro.i_number
+    where employee_intro.m_id = #{m_id} 
+    and employee_intro.i_default = 1
 </update>
 
 
@@ -131,7 +138,10 @@
 	FROM 
 	job_ads a, shop_info s, job_apply ja
 	WHERE
-	ja.m_id = 'userTest' AND ja.a_number = a.a_number AND a.s_number = s.s_number AND ja.jae_status != 4
+	ja.m_id = 'userTest' 
+	AND ja.a_number = a.a_number 
+	AND a.s_number = s.s_number 
+	AND ja.jae_status != 4
 </select>
 
 
@@ -141,8 +151,12 @@
 	FROM 
 	job_ads a, shop_info s, job_apply ja
 	WHERE
-	ja.m_id = #{m_id} AND (ja.jae_status ='0' or ja.jae_status = '1' or ja.jae_status = '2')
-	AND ja.a_number = a.a_number AND a.s_number = s.s_number;
+	ja.m_id = #{m_id} 
+	AND (ja.jae_status ='0' 
+	or ja.jae_status = '1' 
+	or ja.jae_status = '2')
+	AND ja.a_number = a.a_number 
+	AND a.s_number = s.s_number;
 </select>
 
 <!-- 종료된(완료한) 공고목록 불러오기 -->
@@ -151,7 +165,8 @@
 	<![CDATA[ 
 	 select s.m_id as id_rated, a.*, ja.*,s.*
 	from job_ads a, job_apply ja, shop_info s
-	where left(a_date, 10)  <= date_format(curdate(), '%m/%d/%Y')
+	where (left(a.a_date, 10) <= date_format(curdate(), '%m/%d/%Y')
+	or date_format(curdate(), '%Y') - substring(a.a_date, 7, 10) = 1)
 	and ja.a_number = a.a_number
 	and a.s_number = s.s_number
 	and (ja.jar_status = 4 or 2)
@@ -167,7 +182,10 @@
 	from 
 	job_ads a, shop_info s, job_apply ja
 	where 
-	ja.m_id = #{m_id} AND ja.a_number = a.a_number AND a.s_number = s.s_number AND ja.jae_status = '4'
+	ja.m_id = #{m_id}
+	AND ja.a_number = a.a_number 
+	AND a.s_number = s.s_number 
+	AND ja.jae_status = '4'
 </select>
 
 
@@ -175,7 +193,11 @@
 <select id="requestList" parameterType="Map" resultType="Map">
 	SELECT ja.*, a.*, s.* from job_apply ja, job_ads a, shop_info s
 	WHERE
-	ja.m_id = #{m_id} AND ja.a_number = #{a_number} AND ja.a_number = a.a_number AND ja.jae_status = 4 AND a.s_number = s.s_number
+	ja.m_id = #{m_id} 
+	AND ja.a_number = #{a_number} 
+	AND ja.a_number = a.a_number 
+	AND ja.jae_status = 4 
+	AND a.s_number = s.s_number
 </select>
 
 
@@ -185,7 +207,8 @@
 	SET
 	jae_status = 2, jar_status = 4
 	WHERE
-	ja.m_id = #{m_id} AND a_number = #{a_number}
+	ja.m_id = #{m_id} 
+	AND a_number = #{a_number}
 </update>
 
 
@@ -195,7 +218,8 @@
 	SET
 	jae_status = 5, jar_status = 2
 	WHERE
-	ja.m_id = #{m_id} AND a_number = #{a_number}
+	ja.m_id = #{m_id} 
+	AND a_number = #{a_number}
 </update>
 
 
@@ -205,7 +229,8 @@
 	SET
 	a.a_status = 3
 	WHERE
-	a.m_id = #{m_id} AND a.a_number = #{a_number}
+	a.m_id = #{m_id} 
+	AND a.a_number = #{a_number}
 </update>
 
 

@@ -94,13 +94,29 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="r_adsCompleted?m_id=${loginInfo.m_id }">완료된
-															공고</a></li>
-													<li><a class="active"
-														href="r_wroteReviews?m_id=${loginInfo.m_id }">후기 작성한
-															공고</a></li>
-													<li><a href="r_writtenReviews?m_id=${loginInfo.m_id }">후기
-															작성된 공고</a></li>
+
+													<c:if test="${loginInfo.m_type == 1 }">
+														<ul class="nav">
+															<li><a class="active" href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id }">완료된 공고</a></li>
+																	
+															<li><a href="e_writtenReviews?w_writer=${loginInfo.m_id }">내가 작성한 후기</a></li>
+																	
+															<li><a
+																	href="e_myReview?id_rated=${loginInfo.m_id }">나를 평가한 후기</a></li> 
+														</ul>
+													</c:if>
+													<c:if test="${loginInfo.m_type == 2 }">
+														<ul class="nav">
+															<li><a href="r_adsCompleted?m_id=${loginInfo.m_id }">
+																	완료된 공고</a></li>
+															<li><a class="active"
+																href="r_wroteReviews?m_id=${loginInfo.m_id }"> 후기
+																	작성한 공고</a></li>
+															<li><a
+																href="r_writtenReviews?m_id=${loginInfo.m_id }"> 후기
+																	작성된 공고</a></li>
+														</ul>
+													</c:if>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
