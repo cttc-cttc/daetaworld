@@ -62,7 +62,11 @@
 																<td>${adsList.a_wage }</td>	
 																<td>${adsList.m_nick }</td>
 																<td>
-																<button onclick="location.href='r_reviewRegister?a_number=${adsList.a_number}&m_id=${adsList.m_id }&id_rated=${adsList.id_rated }'" >후기작성</button></td>
+																<c:set var="status" value="${adsList.jar_status }"></c:set>
+																<c:if test="${status != 7}">																																	
+																<button onclick='location.href="r_reviewRegister?a_number=${adsList.a_number}&m_id=${adsList.m_id }&id_rated=${adsList.id_rated }"' >후기작성</button>																
+																</c:if>
+																</td>
 															</tr>
 														</c:forEach>
 													</table>

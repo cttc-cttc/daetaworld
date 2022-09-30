@@ -296,15 +296,15 @@ public class EmployerController {
 //	지원 수락
 	@ResponseBody
 	@PostMapping(value="employerMapper/applyAccept")
-	public int applyAccept(@RequestParam("m_id")String m_id) throws Exception {		
-		return service.applyAccept(m_id);
+	public int applyAccept(@RequestParam("ja_number")int ja_number) throws Exception {		
+		return service.applyAccept(ja_number);
 	}
 	
 //	지원 거절
 	@ResponseBody
 	@PostMapping(value="employerMapper/applyDeny")
-	public int applyDeny(@RequestParam("m_id")String m_id) throws Exception {
-		return service.applyDeny(m_id);		
+	public int applyDeny(@RequestParam("ja_number")int ja_number) throws Exception {
+		return service.applyDeny(ja_number);		
 	}
 	
 //	가게 관리

@@ -124,7 +124,7 @@
 				  placeholder="좋은 후기평가를 남겨주시면 노예에게 큰 힘이 됩니다! 포인트 500p도 지급!!"></textarea>
 			
 			<input type="hidden" name="a_number" id="a_number" value="${a_number}">	  
-			<input type="hidden" name="w_writer" id="w_writer" value="${w_writer}">
+			<input type="hidden" name="w_writer" id="w_writer" value="${m_id}">
 			<input type="hidden" name="id_rated" id="id_rated" value="${id_rated}">
 			
 					  
