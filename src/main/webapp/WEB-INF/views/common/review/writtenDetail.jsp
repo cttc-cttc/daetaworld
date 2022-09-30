@@ -9,59 +9,7 @@
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
-<link rel="stylesheet" href="${contextPath}/resources/custom_css/etc.css">	
-<style>
-.star-rating {
-  display: flex;
-  flex-direction: row-reverse;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-  justify-content: space-around;
-  padding: 0 0.2em;
-  text-align: center;
-  width: 5em;
-}
- 
-.star-rating input {
-  display: none;
-}
- 
-.star-rating label {
-  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 2.3px;
-  -webkit-text-stroke-color: #2b2a29;
-  cursor: pointer;
-}
- 
-.star-rating :checked ~ label {
-  -webkit-text-fill-color: gold;
-}
- 
-.star-rating label:hover,
-.star-rating label:hover ~ label {
-  -webkit-text-fill-color: #fff58c;
-}
-.star-ratings-fill {
-  color: #fff58c;
-  padding: 0;
-  position: absolute;
-  z-index: 1;
-  display: flex;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  -webkit-text-fill-color: gold;
-}
- 
-.star-ratings-base {
-  z-index: 0;
-  padding: 0;
-}
-
-</style>
-
-
-
+<link rel="stylesheet" href="${contextPath}/resources/custom_css/etc.css">
 
 <body class="template-color-1">
 	<div id="main-wrapper">
@@ -83,11 +31,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										
-										
-										
-										
-										<h1>리뷰 작성</h1>
+										<h1>작성된 리뷰 확인</h1>
 									</div>
 								</div>
 							</div>
@@ -96,31 +40,117 @@
 									<div class="col-xl-12 col-12">
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
+											
+											<c:if test="${loginInfo.m_type == 1 }">
 												<ul class="nav">
-													<li><a class="active" href="adsCompleted">완료된 공고</a></li>														
+													<li><a class="active" href="e_adsCompleted?m_id=${loginInfo.m_id }">
+														완료된 공고</a></li>											
+													<li><a href="e_wroteReviews?m_id=${loginInfo.m_id }">
+														후기 작성한 공고</a></li>											
+													<li><a href="e_writtenReviews?m_id=${loginInfo.m_id }">
+														후기 작성된 공고</a></li>											
 												</ul>
+											</c:if>
+											<c:if test="${loginInfo.m_type == 2 }">
+												<ul class="nav">
+													<li><a href="r_adsCompleted?m_id=${loginInfo.m_id }">
+														완료된 공고</a></li>
+													<li><a href="r_wroteReviews?m_id=${loginInfo.m_id }">
+														후기 작성한 공고</a></li>
+													<li><a class="active" href="r_writtenReviews?m_id=${loginInfo.m_id }">
+														후기 	작성된 공고</a></li>
+												</ul>
+											</c:if>	
+												
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-														
-										<div class="table-responsive">
-								
-									</div>
-							
-									
-									
-			<div class="star-rating space-x-4 mx-auto">
-			<input type="radio" id="5-stars" name="w_rate" value="${detail.w_rate }" v-model="ratings"/>
-			</div>				
-			
-			<div>
-		<textarea class="col-auto form-control" type="text" id="w_comments" name="w_comments"
-				  value="${detail.w_comments}"></textarea>
-			
-					  
-	</div>
+													<form id="rr" action="replyRegister" method="post" onsubmit="return valChk()">
+													<div class="row mb-30">
+														<div class="col-lg-10">
+															<div class="row">																															
+																<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																	<!-- Single Input Start -->
+																	<div class="single-input mb-25">
+																		<label for="w_rate">별점<span> : </span></label>																		
+																		<c:set var="w_rate" value="${detail.w_rate}"></c:set>
+																		<c:if test="${w_rate == 5.0}">
+																			<c:out value="★★★★★">
+																			</c:out>
+																		</c:if>
+																		<c:if test="${w_rate == 4.0}">
+																			<c:out value="★★★★">
+																			</c:out>
+																		</c:if>
+																		<c:if test="${w_rate == 3.0}">
+																			<c:out value="★★★">
+																			</c:out>
+																		</c:if>
+																		<c:if test="${w_rate == 2.0}">
+																			<c:out value="★★">
+																			</c:out>
+																		</c:if>
+																		<c:if test="${w_rate == 1.0}">
+																			<c:out value="★">
+																			</c:out>
+																		</c:if>
+																		<br>
+																		<label for="rc_comments">후기<span>*</span></label>
+																		<textarea class="col-auto form-control" type="text" readonly="readonly">
+																			${detail.w_comments }
+																		</textarea>
+																	</div>
+																	<!-- Single Input End -->
+																</div>		
+																
+																<c:if test="${detail.rc_number eq null}">	
+																<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																	
+																	<div class="single-input mb-25">	
+																		<label for="asdf">후기의 댓글을 작성해주세요<span>  </span></label>	
+																		<br>																
+																		<label for="rc_comment">댓글<span>*</span></label>
+																		<textarea class="col-auto form-control" 
+																			id="rc_comment" name="rc_comment" placeholder="댓글을 써보세요"></textarea>
+																	</div>
+																	
+																	<input type="hidden" id="w_number" name="w_number" value="${detail.w_number}">
+																	<input type="hidden" id="m_id" name="m_id" value="${detail.id_rated }">
 
-												</div>
+																			<div class="row">
+																				<div class="col-12">
+																					<div
+																						class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+																						<button type="submit"
+																							class="ht-btn theme-btn theme-btn-two mb-xs-20">
+																							등록</button>
+																					</div>
+																				</div>
+																			</div>
+																		</div>														
+																
+																</c:if>
+																
+																<c:if test="${detail.rc_number ne null}">
+																<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																	<!-- Single Input Start -->
+																	<div class="single-input mb-25">	
+																		<label for="asdf">후기의 댓글을 작성하셨습니다<span>  </span></label>	
+																		<br>																
+																		<label for="rc_comment">댓글<span>*</span></label>
+																		<textarea class="col-auto form-control" readonly>
+																		${detail.rc_comment }
+																		</textarea>
+																	</div>
+																	<!-- Single Input End -->
+																</div>
+																
+																</c:if>
+															</div>
+														</div>
+													</div>
+													</form>
+												</div>															
 											</div>
 										</div>
 									</div>
@@ -150,18 +180,19 @@
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 	
 	
-	
-	<!-- j커리 자리 -->
-	
-
-
-	<script>
-	ratingToPercent() {
-      const score = +this.restaurant.averageScore * 20;
-      return score + 1.5;
- 		}
-	
+	<script type="text/javascript">
+	function valChk(){
+		if(rr.rc_comment.value == "" || rr.rc_comment.value == " "){
+			alert('댓글 입력을 안하셨습니다');
+			rr.rc_comment.focus();
+			return false;
+		}
+		alert("댓글이 등록되었습니다.");
+		return true;
+	}
 	</script>
+	
+
 </body>
 
 </html>

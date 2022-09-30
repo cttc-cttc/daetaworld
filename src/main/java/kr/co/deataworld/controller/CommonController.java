@@ -28,7 +28,7 @@ import kr.co.deataworld.dto.BoardDTO;
 import kr.co.deataworld.dto.DeductedPointDTO;
 import kr.co.deataworld.dto.EarnedPointDTO;
 import kr.co.deataworld.dto.PointDTO;
-
+import kr.co.deataworld.dto.ReviewCommentsDTO;
 import kr.co.deataworld.service.EmployeeService;
 
 import kr.co.deataworld.dto.ReviewDTO;
@@ -165,35 +165,35 @@ public class CommonController {
 		
 		
 //구직자
-//리뷰 작성
-	@GetMapping(value = "reviewMapper/e_reviewRegister")
-	public String e_reviewRegister(@RequestParam("a_number") int a_number,
-								   @RequestParam("m_id") String m_id, 
-								   @RequestParam("id_rated") String id_rated, Model model) {
-		model.addAttribute("leftMenu", "adsCompleted");
-		model.addAttribute("a_number", a_number);
-		model.addAttribute("id_rated", id_rated);
-		model.addAttribute("m_id", m_id);
-		return "common/review/employee/e_reviewRegister";
+	//리뷰 작성
+		@GetMapping(value = "reviewMapper/e_reviewRegister")
+		public String e_reviewRegister(@RequestParam("a_number") int a_number,
+									   @RequestParam("m_id") String m_id, 
+									   @RequestParam("id_rated") String id_rated, Model model) {
+			model.addAttribute("leftMenu", "adsCompleted");
+			model.addAttribute("a_number", a_number);
+			model.addAttribute("id_rated", id_rated);
+			model.addAttribute("m_id", m_id);
+			return "common/review/employee/e_reviewRegister";
+			}
+		
+		
+	//  리뷰 작성 등록과정
+		@PostMapping(value="reviewMapper/e_reviewRegister")
+		public String e_reviewRegister(ReviewDTO reviewDTO) throws Exception{
+			int r = rService.e_reviewRegister(reviewDTO);
+			return "redirect:/reviewMapper/e_writtenReviews?w_writer="+reviewDTO.getW_writer();
 		}
-	
-	
-//  리뷰 작성 등록과정
-	@PostMapping(value="reviewMapper/e_reviewRegister")
-	public String e_reviewRegister(ReviewDTO reviewDTO) throws Exception{
-		int r = rService.e_reviewRegister(reviewDTO);
-		return "redirect:/reviewMapper/e_writtenReviews?w_writer="+reviewDTO.getW_writer();
-	}
-	
-	
-//	리뷰 내가 작성한 후기
-	@GetMapping(value="reviewMapper/e_writtenReviews")	
-	public String e_writtenReviews(@RequestParam("w_writer") String w_writer, Model model)throws Exception{
-		model.addAttribute("leftMenu", "adsCompleted");
-		List<Map<String, Object>> list = rService.e_writtenReviews(w_writer);
-		model.addAttribute("list", list);
-		return "common/review/employee/e_writtenReviews";
-	}	
+		
+		
+	//	리뷰 내가 작성한 후기
+		@GetMapping(value="reviewMapper/e_writtenReviews")	
+		public String e_writtenReviews(@RequestParam("w_writer") String w_writer, Model model)throws Exception{
+			model.addAttribute("leftMenu", "adsCompleted");
+			List<Map<String, Object>> list = rService.e_writtenReviews(w_writer);
+			model.addAttribute("list", list);
+			return "common/review/employee/e_writtenReviews";
+		}	
 	
 	
 //	나를 평가한 후기
@@ -206,43 +206,32 @@ public class CommonController {
 		return "common/review/employee/e_myReviews";
 	}
 	
-////	구직자 댓글 작성폼 이동	
-//	@GetMapping(value="reviewMapper/e_replyRegist")
-//	public String e_replyRegist()throws Exception{
-//		
-//		
-//		return " ";
-//	}
-//	
-////	구직자 댓글 작성 저장 	
-//	@PostMapping(value="reviewMapper/e_replyRegist")
-//	public String e_replyRegist()throws Exception{
-//		
-//		
-//		return " ";
-//	}
-	
-//	공통
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//  작성된 리뷰 내용 확인
-	  @GetMapping(value="reviewMapper/wroteDetail")
-	  public String wroteDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
-	     model.addAttribute("leftMenu", "adsCompleted");
-	     Map<String, Object> detail = rService.wroteDetail(w_number);
-	     model.addAttribute("detail", detail);
-	     return "common/review/wroteDetail";
-	  }
-	
-	
 
+//	공통		
+	//  작성된 리뷰 내용 확인
+		  @GetMapping(value="reviewMapper/wroteDetail")
+		  public String wroteDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
+		     model.addAttribute("leftMenu", "adsCompleted");
+		     Map<String, Object> detail = rService.wroteDetail(w_number);
+		     model.addAttribute("detail", detail);
+		     return "common/review/wroteDetail";
+		  }
+		  
+		// 작성된 리뷰 내용 확인
+		@GetMapping(value="reviewMapper/writtenDetail")
+		public String writtenDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
+			model.addAttribute("leftMenu", "adsCompleted");
+			Map<String, Object> detail = rService.writtenDetail(w_number);
+			model.addAttribute("detail", detail);
+			return "common/review/writtenDetail";
+		}
+		
+		@PostMapping(value="reviewMapper/replyRegister")
+		public String replyRegister(ReviewCommentsDTO rcDTO, Model model)throws Exception{
+			model.addAttribute("leftMenu", "adsCompleted");
+			int r = rService.replyRegister(rcDTO);
+			return "redirect:/reviewMapper/writtenDetail?w_number=" + rcDTO.getW_number();
+		}
 
 		
 		

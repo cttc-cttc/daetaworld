@@ -131,7 +131,21 @@
 	</select>
 	
 	<!-- 작성된 리뷰 내용 확인 -->
-
+	<select id="writtenDetail" parameterType="java.lang.Integer" resultType="Map">
+		select r.*, rc.*
+		from review r
+			left outer join review_comments rc
+			on r.w_number = rc.w_number
+				and r.w_number = #{w_number}
+		where r.w_number = #{w_number}
+        or r.w_number = rc.w_number
+	</select>
+	
+	<!-- 리뷰 댓글 작성 -->
+	<insert id="replyRegister" parameterType="ReviewCommentsDTO">
+		insert into review_comments (rc_comment, rc_date, w_number, m_id)
+		values (#{rc_comment}, now(), #{w_number}, #{m_id})	
+	</insert>
 	
 
 </mapper>

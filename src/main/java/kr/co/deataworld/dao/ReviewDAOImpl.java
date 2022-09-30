@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
 import kr.co.deataworld.dto.JobAdsDTO;
+import kr.co.deataworld.dto.ReviewCommentsDTO;
 import kr.co.deataworld.dto.ReviewDTO;
 
 @Repository
@@ -101,6 +102,13 @@ public class ReviewDAOImpl implements ReviewDAO{
 	public Map<String, Object> writtenDetail(int w_number) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + ".writtenDetail", w_number);
+	}
+
+
+	@Override
+	public int replyRegister(ReviewCommentsDTO rcDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace + ".replyRegister", rcDTO);
 	}
 
 	
