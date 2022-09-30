@@ -170,17 +170,17 @@
 	</insert>
 	
 	<!-- 지원 수락 -->
-	<update id="applyAccept" parameterType="String">
+	<update id="applyAccept" parameterType="java.lang.Integer">
 		update job_apply
 		set jar_status = 1, jae_status = 1
-		where m_id = #{m_id}
+		where ja_number = #{ja_number}
 	</update>
 	
 	<!-- 지원 거절 -->
-	<update id="applyDeny" parameterType="String">
+	<update id="applyDeny" parameterType="java.lang.Integer">
 		UPDATE job_apply
 		SET jar_status = 2, jae_status = 3
-		WHERE m_id = #{m_id}
+		WHERE ja_number = #{ja_number}
 	</update>
 	
 	<!-- 만료된 가게 목록보기 -->

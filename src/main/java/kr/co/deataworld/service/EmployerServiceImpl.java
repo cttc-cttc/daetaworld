@@ -136,15 +136,15 @@ public class EmployerServiceImpl implements EmployerService{
 	}
 	
 	@Override
-	public int applyAccept(String m_id) throws Exception {
+	public int applyAccept(int ja_number) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.applyAccept(m_id);
+		return dao.applyAccept(ja_number);
 	}
 	
 	@Override
-	public int applyDeny(String m_id) throws Exception {
+	public int applyDeny(int ja_number) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.applyDeny(m_id);
+		return dao.applyDeny(ja_number);
 	}
 
 	@Override

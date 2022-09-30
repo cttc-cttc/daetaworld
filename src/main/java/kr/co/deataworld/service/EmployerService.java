@@ -67,10 +67,10 @@ public interface EmployerService {
 	public int applyRequest(Map<String, Object> map) throws Exception;
 	
 //	지원자 수락 후 대기
-	public int applyAccept(String m_id) throws Exception;
+	public int applyAccept(int ja_number) throws Exception;
 	
 //	지원자 거절
-	public int applyDeny(String m_id) throws Exception;
+	public int applyDeny(int ja_number) throws Exception;
 	
 //	만료된 가게 목록보기
 	public List<Map<String,Object>> adsExpired(String m_id) throws Exception;

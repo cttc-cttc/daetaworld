@@ -9,60 +9,7 @@
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
-<link rel="stylesheet" href="${contextPath}/resources/custom_css/etc.css">	
-
-<style>
-.star-rating {
-  display: flex;
-  flex-direction: row-reverse;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-  justify-content: space-around;
-  padding: 0 0.2em;
-  text-align: center;
-  width: 5em;
-}
- 
-.star-rating input {
-  display: none;
-}
- 
-.star-rating label {
-  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 2.3px;
-  -webkit-text-stroke-color: #2b2a29;
-  cursor: pointer;
-}
- 
-.star-rating :checked ~ label {
-  -webkit-text-fill-color: gold;
-}
- 
-.star-rating label:hover,
-.star-rating label:hover ~ label {
-  -webkit-text-fill-color: #fff58c;
-}
-.star-ratings-fill {
-  color: #fff58c;
-  padding: 0;
-  position: absolute;
-  z-index: 1;
-  display: flex;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  -webkit-text-fill-color: gold;
-}
- 
-.star-ratings-base {
-  z-index: 0;
-  padding: 0;
-}
-
-</style>
-
-
-
+<link rel="stylesheet" href="${contextPath}/resources/custom_css/etc.css">
 
 <body class="template-color-1">
 	<div id="main-wrapper">
@@ -93,15 +40,29 @@
 									<div class="col-xl-12 col-12">
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
+											
+											<c:if test="${loginInfo.m_type == 1 }">
 												<ul class="nav">
-													<li><a href="r_adsCompleted?m_id=${loginInfo.m_id }">완료된
-															공고</a></li>
-													<li><a class="active"
-														href="r_wroteReviews?m_id=${loginInfo.m_id }">후기 작성한
-															공고</a></li>
-													<li><a href="r_writtenReviews?m_id=${loginInfo.m_id }">후기
-															작성된 공고</a></li>
+													<li><a class="active" href="e_adsCompleted?m_id=${loginInfo.m_id }">
+														완료된 공고</a></li>											
+													<li><a href="e_wroteReviews?m_id=${loginInfo.m_id }">
+														후기 작성한 공고</a></li>											
+													<li><a href="e_writtenReviews?m_id=${loginInfo.m_id }">
+														후기 작성된 공고</a></li>											
 												</ul>
+											</c:if>
+											<c:if test="${loginInfo.m_type == 2 }">
+												<ul class="nav">
+													<li><a href="r_adsCompleted?m_id=${loginInfo.m_id }">
+														완료된 공고</a></li>
+													<li><a class="active"
+														href="r_wroteReviews?m_id=${loginInfo.m_id }">
+														후기 작성한 공고</a></li>
+													<li><a href="r_writtenReviews?m_id=${loginInfo.m_id }">
+														후기 	작성된 공고</a></li>
+												</ul>
+											</c:if>	
+												
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
@@ -131,9 +92,7 @@
 													<div>
 														<textarea class="col-auto form-control" type="text"
 															readonly>${detail.w_comments }</textarea>
-													</div>
-													
-													
+													</div>												
 
 												</div>
 											</div>

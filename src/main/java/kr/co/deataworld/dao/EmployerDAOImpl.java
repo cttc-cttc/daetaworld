@@ -142,15 +142,15 @@ public class EmployerDAOImpl implements EmployerDAO{
 	}
 	
 	@Override
-	public int applyAccept(String m_id) throws Exception {
+	public int applyAccept(int ja_number) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update(nameSpace + ".applyAccept", m_id);
+		return sqlSession.update(nameSpace + ".applyAccept", ja_number);
 	}
 	
 	@Override
-	public int applyDeny(String m_id) throws Exception {
+	public int applyDeny(int ja_number) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update(nameSpace + ".applyDeny", m_id);
+		return sqlSession.update(nameSpace + ".applyDeny", ja_number);
 	}
 
 	@Override
