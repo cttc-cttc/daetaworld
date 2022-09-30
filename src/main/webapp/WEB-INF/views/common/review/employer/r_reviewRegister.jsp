@@ -5,7 +5,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <title>리뷰 작성</title>
-<%@ include file="../../include/head.jsp"%>
+<%@ include file="../../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -68,7 +68,7 @@
 		<!-- 상단 메뉴 start-->
 		<header
 			class="black-logo-version header-sticky sticky-white d-none d-lg-block">
-			<%@ include file="../../include/header.jsp"%>
+			<%@ include file="../../../include/header.jsp"%>
 			
 		</header>
 		<!-- 상단 메뉴 end-->
@@ -77,7 +77,7 @@
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
-					<%@ include file="../../include/dashBoard.jsp"%>
+					<%@ include file="../../../include/dashBoard.jsp"%>
 					<div class="col-xl-10 col-lg-9">
 						<div class="dashboard-main-inner">
 							<div class="row">
@@ -103,7 +103,7 @@
 								
 									</div>
 							
-			<form name="form" action="reviewRegister" method="post"  >						
+			<form name="form" action="r_reviewRegister" method="post"  >						
 									
 			<div class="star-rating space-x-4 mx-auto">
 			<input type="radio" id="5-stars" name="w_rate" value="5" v-model="ratings"/>
@@ -157,7 +157,7 @@
 			</div>
 		</div>
 		<!-- Dashboard Content Section End -->
-		<%@ include file="../../include/footer.jsp"%>
+		<%@ include file="../../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->
@@ -183,7 +183,7 @@
 	ratingToPercent() {
       const score = +this.restaurant.averageScore * 20;
       return score + 1.5;
- 		}
+ 	}
 	
 	</script>
 </body>

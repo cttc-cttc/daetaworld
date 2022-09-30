@@ -62,7 +62,7 @@
 																<td>${adsList.a_wage }</td>	
 																<td>${adsList.m_nick }</td>
 																<td>
-																<button onclick="location.href='reviewRegister?a_number=${adsList.a_number}&m_id=${adsList.m_id }&id_rated=${adsList.id_rated }'" >후기작성</button></td>
+																<button onclick="location.href='r_reviewRegister?a_number=${adsList.a_number}&m_id=${adsList.m_id }&id_rated=${adsList.id_rated }'" >후기작성</button></td>
 															</tr>
 														</c:forEach>
 													</table>

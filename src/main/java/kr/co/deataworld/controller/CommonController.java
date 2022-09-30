@@ -45,9 +45,9 @@ public class CommonController {
 	
 	@Autowired
 	ReviewService rService;
-
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	
 //	포인트 
 	@GetMapping(value="pointMapper/pointManagement")
 	public String pointManagement(Model model) throws Exception {
@@ -112,29 +112,56 @@ public class CommonController {
 		return pService.pointAdd(map);
 	}
 	
-////구인자
-////	리뷰 작성을 위한 완료된 공고 확인
-//	@GetMapping(value="reviewMapper/adsCompleted")
-//	public String adsCompleted(@RequestParam("m_id")String m_id, Model model) throws Exception {
-//		model.addAttribute("leftMenu", "adsCompleted");
-//		List<Map<String, Object>> list = rService.adsCompleted(m_id);
-//		model.addAttribute("list", list);
-//		return "common/review/adsCompleted";
-//	}
-//	
-////	리뷰 작성된 공고 목록
-//	@GetMapping(value="reviewMapper/writtenReviews")	
-//	public String writtenReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
-//		model.addAttribute("leftMenu", "adsCompleted");
-//		List<Map<String, Object>> list = rService.writtenReviews(m_id);
-//		model.addAttribute("list", list);
-//		return "common/review/writtenReviews";
-//	}
+//	리뷰 작성	
+//	구인자	
 	
+	//	리뷰 작성
+		@GetMapping(value = "reviewMapper/r_reviewRegister")
+		public String r_reviewRegister(@RequestParam("a_number")int a_number, @RequestParam("m_id")String m_id, Model model) {
+			model.addAttribute("leftMenu", "adsCompleted");
+			model.addAttribute("a_number", a_number);
+			model.addAttribute("m_id", m_id);
+			return "common/review/employer/r_reviewRegister";
+		}
+		
+	//  리뷰 작성 등록과정
+	    @RequestMapping(value="reviewMapper/r_reviewRegister", method = RequestMethod.POST)
+	    public String r_reviewRegister(ReviewDTO reviewDTO, HttpServletRequest request)throws Exception {
+	       request.setCharacterEncoding("utf-8");
+	       logger.info("내용 : " + reviewDTO);
+	       int r = rService.r_reviewRegister(reviewDTO);
+	       return "redirect:/reviewMapper/r_wroteReviews?m_id="+reviewDTO.getW_writer() ;
+	    }
 	
-	
+	//	리뷰 작성을 위한 완료된 공고 확인
+		@GetMapping(value="reviewMapper/r_adsCompleted")
+		public String r_adsCompleted(@RequestParam("m_id")String m_id, Model model) throws Exception {
+			model.addAttribute("leftMenu", "adsCompleted");
+			List<Map<String, Object>> list = rService.r_adsCompleted(m_id);
+			model.addAttribute("list", list);
+			return "common/review/employer/r_adsCompleted";
+		}
+		
+	//	리뷰 작성한 공고 목록
+		@GetMapping(value="reviewMapper/r_wroteReviews")	
+		public String r_wroteReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
+			model.addAttribute("leftMenu", "adsCompleted");
+			List<Map<String, Object>> list = rService.r_wroteReviews(m_id);
+			model.addAttribute("list", list);
+			return "common/review/employer/r_wroteReviews";
+		}
+		
+	//	리뷰 작성된 공고 목록
+		@GetMapping(value="reviewMapper/r_writtenReviews")
+		public String r_writtenReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
+			model.addAttribute("leftMenu", "adsCompleted");
+			List<Map<String, Object>> list = rService.r_writtenReviews(m_id);
+			model.addAttribute("list", list);
+			return "common/review/employer/r_writtenReviews";
+		}	
 	
 //구직자
+		
 //	리뷰 내가 작성한 후기
 	@GetMapping(value="reviewMapper/e_writtenReviews")	
 	public String e_writtenReviews(@RequestParam("w_writer") String w_writer, Model model)throws Exception{
@@ -168,23 +195,7 @@ public class CommonController {
 	
 	
 
-//	리뷰 작성
-	@GetMapping(value = "reviewMapper/reviewRegister")
-	public String reviewRegister(@RequestParam("a_number")int a_number, @RequestParam("m_id")String m_id, Model model) {
-		model.addAttribute("leftMenu", "adsCompleted");
-		model.addAttribute("a_number", a_number);
-		model.addAttribute("m_id", m_id);
-		return "common/review/reviewRegister";
-	}
-	
-//  리뷰 작성 등록과정
-    @RequestMapping(value="reviewMapper/reviewRegister", method = RequestMethod.POST)
-    public String reviewRegister(ReviewDTO reviewDTO, HttpServletRequest request)throws Exception {
-       request.setCharacterEncoding("utf-8");
-       logger.info("내용 : " + reviewDTO);
-       int r = rService.reviewRegister(reviewDTO);
-       return "redirect:/reviewMapper/r_wroteReviews?m_id="+reviewDTO.getW_writer() ;
-    }
+
 		
 		
 }
