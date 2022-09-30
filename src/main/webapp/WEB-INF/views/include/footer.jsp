@@ -34,7 +34,7 @@
 				<div class="col-xl-2 col-lg-2 col-md-6">
 					<!-- Footer Widget Start -->
 					<div class="footer-widget mb-30">
-						<h6 class="title">오늘의 대타</h6>
+						<h6 class="title">오늘의대타</h6>
 						<div class="footer-widget-link">
 							<ul>
 								<li><a href="${contextPath}/daetaFooter/introCom">회사소개</a></li>

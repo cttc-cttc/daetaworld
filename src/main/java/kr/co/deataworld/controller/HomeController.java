@@ -41,32 +41,38 @@ public class HomeController {
 	}
 	
 	@GetMapping(value="daetaFooter/emailFAQ")
-	public String emailFAQ() {
+	public String emailFAQ(Model model) {
+		model.addAttribute("leftMenu", "emailFAQ");
 		return "daetaFooter/emailFAQ";
 		
 	}
 	@GetMapping(value="daetaFooter/introCom")
-	public String introCom() {
+	public String introCom(Model model) {
+		model.addAttribute("leftMenu", "introCom");
 		return "daetaFooter/introCom";
 		
 	}
 	@GetMapping(value="daetaFooter/oftenFAQ")
-	public String oftenFAQ() {
+	public String oftenFAQ(Model model) {
+		model.addAttribute("leftMenu", "oftenFAQ");
 		return "daetaFooter/oftenFAQ";
 		
 	}
 	@GetMapping(value="daetaFooter/psPoli")
-	public String psPoli() {
+	public String psPoli(Model model) {
+		model.addAttribute("leftMenu", "psPoli");
 		return "daetaFooter/psPoli";
 		
 	}
 	@GetMapping(value="daetaFooter/terms")
-	public String terms() {
+	public String terms(Model model) {
+		model.addAttribute("leftMenu", "terms");
 		return "daetaFooter/terms";
 		
 	}
 	@GetMapping(value="daetaFooter/userGuide")
-	public String userGuide() {
+	public String userGuide(Model model) {
+		model.addAttribute("leftMenu", "userGuide");
 		return "daetaFooter/userGuide";
 		
 	}
