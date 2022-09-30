@@ -97,8 +97,8 @@
 								<form method="get" action="search2">
 									<select name="option">
 										<option value="b_title">제목</option>
-										<option value="b_contents">본문</option>
-										<option value="m_id">작성자</option>
+										
+										<option value="m_nick">작성자</option>
 										
 									</select> <input type="text" name="value"> <input type="submit"
 										value="검색">

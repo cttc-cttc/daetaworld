@@ -154,10 +154,9 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="option == 'b_title'">
 				b_title</if>
-			<if test="option == 'b_contents'">
-				b_contents</if>
-			<if test="option == 'm_id'">
-				m_id</if>
+			
+			<if test="option == 'm_nick'">
+				m_nick</if>
 			
 			<if test="value != null and value != ''">
 			= #{value} 
@@ -174,10 +173,9 @@
 			
 			<if test="option == 'b_title'">
 				b_title</if>
-			<if test="option == 'b_contents'">
-				b_contents</if>
-			<if test="option == 'm_id'">
-				m_id</if>
+			
+			<if test="option == 'm_nick'">
+				m_nick</if>
 			
 			<if test="value != null and value != ''">
 			= #{value} 
