@@ -23,7 +23,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 
 
 	@Override
-	public int reviewRegister(ReviewDTO reviewDTO) throws Exception {
+	public int r_reviewRegister(ReviewDTO reviewDTO) throws Exception {
 		// TODO Auto-generated method stub
 		
 			// 포인트 적립 및 적립 내역 추가
@@ -37,11 +37,9 @@ public class ReviewDAOImpl implements ReviewDAO{
 	      Map<String, Object> map2 = new HashMap<String, Object>(); 
 	      map2.put("m_id", reviewDTO.getId_rated());
 	      map2.put("a_number", reviewDTO.getA_number());
-	      sqlSession.update(namespace + ".updateStatus", map2);
-
+	      sqlSession.update(namespace + ".r_updateStatus", map2);		
 		
-		
-		return sqlSession.insert(namespace + ".reviewRegister", reviewDTO);
+		return sqlSession.insert(namespace + ".r_reviewRegister", reviewDTO);
 	}
 
 	

@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>나를 평가한 후기</h1>
+										<h1>완료된 공고</h1>
 									</div>
 								</div>
 							</div>
@@ -38,29 +38,31 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id}">완료된 공고</a></li>
-													<li><a href="${contextPath}/reviewMapper/e_writtenReviews?w_writer=${loginInfo.m_id}">내가 작성한 후기</a></li>											
-													<li><a class="active" href="${contextPath}/reviewMapper/e_myReview?id_rated=${loginInfo.m_id}">나를 평가한 후기</a></li>											
+													<li><a href="r_adsCompleted?m_id=${loginInfo.m_id }">완료된 공고</a></li>											
+													<li><a href="r_wroteReviews?m_id=${loginInfo.m_id }">후기 작성한 공고</a></li>											
+													<li><a class="active" href="r_writtenReviews?m_id=${loginInfo.m_id }">후기 작성된 공고</a></li>											
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<table class="table table-striped">
-														<thead>
-															<th>가게이름</th>
-															<th>내가 받은 평점</th>
-															<th>작성한 후기</th>
-															<th>작성 날짜</th>
-															<th>작성자 닉네임</th>
+													<table class="table table-striped" style="table-layout:fixed">
+														<thead>		
+															<th>가게명</th>													
+															<th>날짜</th>															
+															<th>시간</th>
+															<th>시급</th>	
+															<th>알바생</th>
+															<th>후기 작성 날짜</th>
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
-																<td><a href="#">
+																<td><a href="writtenDetail?w_number=${adsList.w_number }">
 																	${adsList.s_name }</a></td>													
-																<td>${adsList.w_rate }</td>
-																<td>${adsList.w_comments }</td>
-																<td>${adsList.w_date }</td>
-																<td>${adsList.m_nick}</td>															
+																<td>${adsList.a_date }</td>
+																<td>${adsList.a_time }</td>
+																<td>${adsList.a_wage }</td>
+																<td>${adsList.m_nick }</td>
+																<td>${adsList.date}</td>																
 															</tr>
 														</c:forEach>
 													</table>

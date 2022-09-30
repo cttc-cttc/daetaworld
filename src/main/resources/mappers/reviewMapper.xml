@@ -4,73 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.deataworld.reviewMapper">
 
-	<!-- 리뷰 작성 -->
-  	<insert id="reviewRegister" parameterType="ReviewDTO">
-		insert into review (w_rate,w_comments,w_date,w_status,w_writer,id_rated,a_number)
-		values (#{w_rate}, #{w_comments},now(),0,#{w_writer},#{id_rated},#{a_number})		
-	</insert>
-	
-	<!--  -->
-	<update id="updateStatus" parameterType="Map">
-		UPDATE job_apply
-		SET jar_status = 7 
-		WHERE (a_number = #{a_number} and m_id = #{m_id});	
-	</update>
-	
-	
-	<!-- 내가 작성한 리뷰 보기 (가게이름을 받아야한다) -->
-	<select id="e_writtenReviews" parameterType="String" resultType="Map">
-		select r.*, s.s_name, ja.jae_status, m.m_nick
-    	from review r inner join job_ads a
-		on r.a_number = a.a_number
-        inner join member m
-        on a.m_id = m.m_id
-        inner join job_apply ja
-		on ja.m_id = r.w_writer
-        AND ja.jae_status = 7
-        AND ja.a_number = a.a_number
-		inner join shop_info s
-		on a.s_number = s.s_number
-		where r.w_writer = #{w_writer}
-	</select>
-
-	
-	<!-- 작성한 리뷰 클릭시 리뷰페이지 이동 (댓글도 달아야하기 때문에~) -->
-	
-	
-
-	<!-- 나를 평가한 리뷰 보기 -->
-	<select id="e_myReview" parameterType="String" resultType="Map">
-		select r.*, s.s_name, ja.jae_status, m.m_nick
-    	from review r
-        inner join job_ads a
-		on r.a_number = a.a_number
-        inner join member m
-        on a.m_id = m.m_id
-        inner join job_apply ja
-		on ja.m_id = r.id_rated
-        and ja.jar_status = 7
-        and ja.a_number = a.a_number
-		inner join shop_info s
-		on a.s_number = s.s_number
-		where r.id_rated =#{id_rated}
-	</select>
-	
-	<!-- 나를 평가한 리뷰 클릭시 리뷰페이지 이동 (댓글도 달아야하기 때문에~_ -->
-	
-	
-	
-	
-	<!-- 작성된 리뷰 내용 확인 -->
-	<select id="wroteDetail" parameterType="java.lang.Integer" resultType="Map">
-		select r.*, rc.*
-		from review r
-			left outer join review_comments rc
-			on r.w_number = rc.w_number
-		where r.w_number = #{w_number}
-        or r.w_number = rc.w_number
-	</select>
-	
+<!-- 구인자 -->
+	<!-- 구인자 리뷰 작성 -->
+	  	<insert id="r_reviewRegister" parameterType="ReviewDTO">
+			insert into review (w_rate,w_comments,w_date,w_status,w_writer,id_rated,a_number)
+			values (#{w_rate}, #{w_comments},now(),0,#{w_writer},#{id_rated},#{a_number})		
+		</insert>
+		
+		<!-- 리뷰 작성 시 글 쓴 상태 변경 -->
+		<update id="r_updateStatus" parameterType="Map">
+			UPDATE job_apply
+			SET jar_status = 7 
+			WHERE (a_number = #{a_number} and m_id = #{m_id});	
+		</update>
+		
 	<!-- 완료된 공고 목록보기 -->	
   	<select id="r_adsCompleted" parameterType="String" resultType="Map">
   		select s.s_name, a.*, ja.*, m.m_nick, ja.m_id as id_rated
@@ -108,6 +55,64 @@
 		and m.m_id = r.w_writer
 		and ja.jae_status = 7
 	</select>
+	
+<!-- 구인자 끝 -->		
+	
+<!-- 구직자 -->
+	
+	<!-- 구직자 리뷰 작성 -->
+		
+		<!-- 리뷰 작성 시 글 쓴 상태 변경 -->
+	
+	<!-- 내가 작성한 리뷰 보기 (가게이름을 받아야한다) -->
+	<select id="e_writtenReviews" parameterType="String" resultType="Map">
+		select r.*, s.s_name, ja.jae_status, m.m_nick
+    	from review r inner join job_ads a
+		on r.a_number = a.a_number
+        inner join member m
+        on a.m_id = m.m_id
+        inner join job_apply ja
+		on ja.m_id = r.w_writer
+        AND ja.jae_status = 7
+        AND ja.a_number = a.a_number
+		inner join shop_info s
+		on a.s_number = s.s_number
+		where r.w_writer = #{w_writer}
+	</select>	
+
+	<!-- 나를 평가한 리뷰 보기 -->
+	<select id="e_myReview" parameterType="String" resultType="Map">
+		select r.*, s.s_name, ja.jae_status, m.m_nick
+    	from review r
+        inner join job_ads a
+		on r.a_number = a.a_number
+        inner join member m
+        on a.m_id = m.m_id
+        inner join job_apply ja
+		on ja.m_id = r.id_rated
+        and ja.jar_status = 7
+        and ja.a_number = a.a_number
+		inner join shop_info s
+		on a.s_number = s.s_number
+		where r.id_rated =#{id_rated}
+	</select>	
+
+<!-- 구직자 끝 -->
+	
+<!-- 공통 -->
+	
+	<!-- 작성한 리뷰 내용 확인 -->
+	<select id="wroteDetail" parameterType="java.lang.Integer" resultType="Map">
+		select r.*, rc.*
+		from review r
+			left outer join review_comments rc
+			on r.w_number = rc.w_number
+		where r.w_number = #{w_number}
+        or r.w_number = rc.w_number
+	</select>
+	
+	<!-- 작성된 리뷰 내용 확인 -->
+
 	
 
 </mapper>

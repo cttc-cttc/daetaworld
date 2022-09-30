@@ -16,9 +16,9 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired
 	ReviewDAO dao;
 
-	public int reviewRegister(ReviewDTO reviewDTO) throws Exception {
+	public int r_reviewRegister(ReviewDTO reviewDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.reviewRegister(reviewDTO);
+		return dao.r_reviewRegister(reviewDTO);
 	}
 
 	@Override
