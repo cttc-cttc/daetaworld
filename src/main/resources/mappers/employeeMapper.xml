@@ -104,6 +104,15 @@
 </insert>
 
 
+<!-- 신청시 상태가 7로 바뀜 -->
+<update id="statusUpdate" parameterType="java.lang.Integer">
+	update job_ads
+	set
+	a_status = 1
+	where a_number = #{a_number}
+</update>
+
+
 <!-- 신청시 대표자소서 저장시켜야함 (m_id를 보내서) -->
 <update id="applyIntro" parameterType="JobApplyDTO">
 	update job_apply
@@ -140,7 +149,7 @@
 <select id="pinchExpired" parameterType="String" resultType="Map">
 	
 	<![CDATA[ 
-	select a.*, ja.*,s.*
+	 select s.m_id as id_rated, a.*, ja.*,s.*
 	from job_ads a, job_apply ja, shop_info s
 	where left(a_date, 10)  <= date_format(curdate(), '%m/%d/%Y')
 	and ja.a_number = a.a_number

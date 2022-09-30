@@ -5,7 +5,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <title>리뷰 작성</title>
-<%@ include file="../../include/head.jsp"%>
+<%@ include file="../../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -68,7 +68,7 @@
 		<!-- 상단 메뉴 start-->
 		<header
 			class="black-logo-version header-sticky sticky-white d-none d-lg-block">
-			<%@ include file="../../include/header.jsp"%>
+			<%@ include file="../../../include/header.jsp"%>
 			
 		</header>
 		<!-- 상단 메뉴 end-->
@@ -77,17 +77,13 @@
 		<div class="dashboard-content-section section bg_color--5">
 			<div class="container-fluid p-0">
 				<div class="row no-gutters">
-					<%@ include file="../../include/dashBoard.jsp"%>
+					<%@ include file="../../../include/dashBoard.jsp"%>
 					<div class="col-xl-10 col-lg-9">
 						<div class="dashboard-main-inner">
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										
-										
-										
-										
-										<h1>리뷰 작성</h1>
+										<h1>구직자 리뷰 작성</h1>
 									</div>
 								</div>
 							</div>
@@ -107,18 +103,37 @@
 								
 									</div>
 							
+			<form name="form" action="e_reviewRegister" method="post">						
 									
-									
-			<div class="star-rating space-x-4 mx-auto">
-			<input type="radio" id="5-stars" name="w_rate" value="${detail.w_rate }" v-model="ratings"/>
-			</div>				
+				<div class="star-rating space-x-4 mx-auto">
+					<input type="radio" id="5-stars" name="w_rate" value="5" v-model="ratings"/>
+					<label for="5-stars" class="star pr-4">★</label>
+					<input type="radio" id="4-stars" name="w_rate" value="4" v-model="ratings"/>
+					<label for="4-stars" class="star">★</label>
+					<input type="radio" id="3-stars" name="w_rate" value="3" v-model="ratings"/>
+					<label for="3-stars" class="star">★</label>
+					<input type="radio" id="2-stars" name="w_rate" value="2" v-model="ratings"/>
+					<label for="2-stars" class="star">★</label>
+					<input type="radio" id="1-star" name="w_rate" value="1" v-model="ratings" />
+					<label for="1-star" class="star">★</label>
+				</div>				
 			
-			<div>
-		<textarea class="col-auto form-control" type="text" id="w_comments" name="w_comments"
-				  value="${detail.w_comments}"></textarea>
+				<div>
+					<textarea class="col-auto form-control" type="text" id="w_comments" name="w_comments" placeholder="좋은 후기평가를 남겨주시면 노예에게 큰 힘이 됩니다! 포인트 500p도 지급!!"></textarea>
+				</div>
 			
-					  
-	</div>
+				<div class="box-footer"> 
+					<input type="hidden" name="a_number" id="a_number" value="${a_number}">	  
+					<input type="hidden" name="w_writer" id="w_writer" value="${loginInfo.m_id}">
+					<input type="hidden" name="id_rated" id="id_rated" value="${id_rated}">
+					<button type="submit" class="btn btn-info">후기 작성</button>
+					a_number = ${a_number} / w_writer = ${loginInfo.m_id} / id_rated = ${id_rated}
+				</div>
+			</form>		
+			
+										
+										
+											
 
 												</div>
 											</div>
@@ -133,7 +148,7 @@
 			</div>
 		</div>
 		<!-- Dashboard Content Section End -->
-		<%@ include file="../../include/footer.jsp"%>
+		<%@ include file="../../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->
@@ -159,7 +174,7 @@
 	ratingToPercent() {
       const score = +this.restaurant.averageScore * 20;
       return score + 1.5;
- 		}
+ 	}
 	
 	</script>
 </body>

@@ -58,15 +58,28 @@
 	
 <!-- 구인자 끝 -->		
 	
+	
+	
 <!-- 구직자 -->
-	
+
 	<!-- 구직자 리뷰 작성 -->
+	<insert id="e_reviewRegister" parameterType="ReviewDTO">
+		insert into review
+		(w_rate,w_comments,w_date,w_status,w_writer,id_rated,a_number)
+		values
+		(#{w_rate}, #{w_comments}, now(), 0, #{w_writer}, #{id_rated}, #{a_number})
+	</insert>
+
+	<!-- 리뷰 작성 시 글 쓴 상태 변경 -->
+	<update id="e_updateStatus" parameterType="Map">
+		UPDATE job_apply
+		SET jae_status = 7
+		WHERE (a_number = #{a_number} and m_id = #{m_id});
+	</update>
 		
-		<!-- 리뷰 작성 시 글 쓴 상태 변경 -->
-	
 	<!-- 내가 작성한 리뷰 보기 (가게이름을 받아야한다) -->
 	<select id="e_writtenReviews" parameterType="String" resultType="Map">
-		select r.*, s.s_name, ja.jae_status, m.m_nick
+		select r.*, s.s_name, date(r.w_date) as date  ,ja.jae_status, m.m_nick
     	from review r inner join job_ads a
 		on r.a_number = a.a_number
         inner join member m
@@ -82,7 +95,7 @@
 
 	<!-- 나를 평가한 리뷰 보기 -->
 	<select id="e_myReview" parameterType="String" resultType="Map">
-		select r.*, s.s_name, ja.jae_status, m.m_nick
+		select r.*, s.s_name, date(r.w_date) as date  ,ja.jae_status, m.m_nick
     	from review r
         inner join job_ads a
 		on r.a_number = a.a_number

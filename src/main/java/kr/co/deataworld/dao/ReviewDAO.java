@@ -11,7 +11,9 @@ import kr.co.deataworld.dto.ReviewDTO;
 
 public interface ReviewDAO {
 	
-//	구인자
+//	구직자
+	//	리뷰 작성
+		public int e_reviewRegister(ReviewDTO reviewDTO) throws Exception;	
 
 	//	내가 작성한 리뷰
 		public List<Map<String, Object>> e_writtenReviews(String w_writer) throws Exception;
@@ -19,7 +21,7 @@ public interface ReviewDAO {
 	//	나를 평가한 리뷰
 		public List<Map<String, Object>> e_myReview(String id_rated) throws Exception;
 	
-//	구직자
+//	구인자
 		
 	//	리뷰 작성
 		public int r_reviewRegister(ReviewDTO reviewDTO) throws Exception;	

@@ -61,6 +61,26 @@ public class ReviewDAOImpl implements ReviewDAO{
 		return sqlSession.selectList(namespace + ".r_wroteReviews", m_id);
 	}
 	
+	
+	@Override //구직자 후기작성
+	public int e_reviewRegister(ReviewDTO reviewDTO) throws Exception {
+		
+			// 포인트 적립 및 적립 내역 추가
+		  Map<String, Object> map = new HashMap<String, Object>();	  
+	      map.put("id", reviewDTO.getW_writer());
+	      map.put("point", 500);
+	      sqlSession.insert(namespace2 + ".pointAdd", map);
+	      sqlSession.insert(namespace2 + ".pointEarned", map);
+	      
+	      // 후기 작성 후 상태 변화
+	      Map<String, Object> map2 = new HashMap<String, Object>(); 
+	      map2.put("m_id", reviewDTO.getW_writer());
+	      map2.put("a_number", reviewDTO.getA_number());
+	      sqlSession.update(namespace + ".e_updateStatus", map2);		
+		return sqlSession.insert(namespace + ".e_reviewRegister", reviewDTO);
+	}
+	
+	
 	@Override //내가 작성한 리뷰
 	public List<Map<String, Object>> e_writtenReviews(String w_writer) throws Exception {
 		return sqlSession.selectList(namespace + ".e_writtenReviews", w_writer);
