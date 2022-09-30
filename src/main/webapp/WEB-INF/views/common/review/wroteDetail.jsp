@@ -66,35 +66,63 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-
-													<div class="table-responsive"></div>
-														<c:set var="w_rate" value="${detail.w_rate}"></c:set>
-														<c:if test="${w_rate == 5.0}">
-															<c:out value="★★★★★">											
-															</c:out>
-														</c:if>
-														<c:if test="${w_rate == 4.0}">
-															<c:out value="★★★★">											
-															</c:out>
-														</c:if>
-														<c:if test="${w_rate == 3.0}">
-															<c:out value="★★★">											
-															</c:out>
-														</c:if>
-														<c:if test="${w_rate == 2.0}">
-															<c:out value="★★">											
-															</c:out>
-														</c:if>
-														<c:if test="${w_rate == 1.0}">
-															<c:out value="★">											
-															</c:out>
-														</c:if>
-													<div>
-														<textarea class="col-auto form-control" type="text"
-															readonly>${detail.w_comments }</textarea>
-													</div>												
-
-												</div>
+													<div class="row mb-30">
+														<div class="col-lg-10">
+															<div class="row">																															
+																<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																	<!-- Single Input Start -->
+																	<div class="single-input mb-25">
+																		<label for="w_rate">별점<span> : </span></label>																		
+																		<c:set var="w_rate" value="${detail.w_rate}"></c:set>
+																		<c:if test="${w_rate == 5.0}">
+																			<c:out value="★★★★★">
+																			</c:out>
+																		</c:if>
+																		<c:if test="${w_rate == 4.0}">
+																			<c:out value="★★★★">
+																			</c:out>
+																		</c:if>
+																		<c:if test="${w_rate == 3.0}">
+																			<c:out value="★★★">
+																			</c:out>
+																		</c:if>
+																		<c:if test="${w_rate == 2.0}">
+																			<c:out value="★★">
+																			</c:out>
+																		</c:if>
+																		<c:if test="${w_rate == 1.0}">
+																			<c:out value="★">
+																			</c:out>
+																		</c:if>
+																		<br>
+																		<label for="rc_comments">후기<span>*</span></label>
+																		<textarea class="col-auto form-control" type="text" readonly="readonly">
+																			${detail.w_comments }
+																		</textarea>
+																	</div>
+																	<!-- Single Input End -->
+																</div>
+																
+																
+																<c:if test="${detail.rc_number ne null }">
+																<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+																	<!-- Single Input Start -->
+																	<div class="single-input mb-25">
+																		<label for="m_id">아이디<span> : </span></label>
+																			${detail.m_id }
+																		<br>
+																		<label for="rc_comments">댓글<span>*</span></label>
+																		<textarea class="col-auto form-control" type="text" readonly="readonly">
+																			${detail.rc_comments }
+																		</textarea>
+																	</div>
+																	<!-- Single Input End -->
+																</div>
+																</c:if>
+															</div>
+														</div>
+													</div>
+												</div>															
 											</div>
 										</div>
 									</div>
