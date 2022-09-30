@@ -127,7 +127,6 @@
 					<input type="hidden" name="w_writer" id="w_writer" value="${loginInfo.m_id}">
 					<input type="hidden" name="id_rated" id="id_rated" value="${id_rated}">
 					<button type="submit" class="btn btn-info">후기 작성</button>
-					a_number = ${a_number} / w_writer = ${loginInfo.m_id} / id_rated = ${id_rated}
 				</div>
 			</form>		
 			

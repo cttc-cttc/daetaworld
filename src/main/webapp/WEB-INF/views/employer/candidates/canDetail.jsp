@@ -145,6 +145,7 @@
 																		<!-- Single Input End -->
 																	</div>
 																	<input type="hidden" name="m_id" id="m_id" value="${detail.m_id}">
+																	<input type="hidden" name="ja_number" id="ja_number" value="${detail.ja_number}">
 																	<input type="hidden" name="jar_status" id="jar_status" value="${detail.jar_status}">
 																	<input type="hidden" name="jae_status" id="jae_status" value="${detail.jae_status}">
 																																		
@@ -268,6 +269,8 @@
 		function accept(){
 			
 			var jar_status = $('#jar_status').val();
+			var ja_number = $('#ja_number').val();
+			
 			if(jar_status == 1){
 				alert('이미 수락하셨습니다');
 				return;
@@ -276,7 +279,7 @@
 				$.ajax({
 					url : "${contextPath}/employerMapper/applyAccept",
 					data : {
-						"m_id" : $("#m_id").val()					
+						"ja_number" : ja_number					
 						},
 					dataType : 'json',
 					type : 'POST',
@@ -295,6 +298,8 @@
 		
 		function deny(){
 			var jae_status = $('#jae_status').val();
+			var ja_number = $('#ja_number').val();
+			
 			if(jae_status == 3){
 				alert('이미 거절하셨습니다. 근데 또 한다고?');
 				return;
@@ -303,7 +308,7 @@
 				$.ajax({
 					url : "${contextPath}/employerMapper/applyDeny",
 					data : {
-						"m_id" : $("#m_id").val()					
+						"ja_number" : ja_number				
 						},
 					dataType : 'json',
 					type : 'POST',
