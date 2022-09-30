@@ -113,7 +113,7 @@
 																		<br>
 																		<label for="rc_comments">댓글<span>*</span></label>
 																		<textarea class="col-auto form-control" type="text" readonly="readonly">
-																			${detail.rc_comments }
+																			${detail.rc_comment }
 																		</textarea>
 																	</div>
 																	<!-- Single Input End -->
