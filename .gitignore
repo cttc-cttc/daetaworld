@@ -15,6 +15,7 @@ local.properties
 .recommenders
 .project
 .classpath
+src/main/webapp/WEB-INF/spring/root-context.xml
 
 # Compiled class file
 *.class
