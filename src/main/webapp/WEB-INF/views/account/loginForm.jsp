@@ -6,6 +6,12 @@
 <%@ include file="../include/head.jsp" %>
 <!-- custom css -->
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css">
+<style>
+	.social-icon > li {
+		display: flex;
+		margin: 0;
+	}
+</style>
 <body class="template-color-3" onkeydown="onEnterLogin()">
 	<div id="main-wrapper">
 		<!-- header -->
@@ -62,13 +68,12 @@
 													</div>
 													
 													<a href="${contextPath}/findId">아이디 찾기 </a>
-													&nbsp | &nbsp
+													&nbsp; | &nbsp;
 													<a href="${contextPath}/findPw">비밀번호 찾기</a>
 												
 												</div>
 											
 												<div class="col-12 mb-25">
-												
 													<button type="button" class="ht-btn" onclick="validate()">로그인</button>
 													<p style="margin-top: 1rem; color: red; text-align: center;">${loginFailedMsg }</p>
 												</div>
@@ -80,10 +85,7 @@
 										<div class="social-login">
 											<ul class="social-icon" style="display: flex; align-items: center;">
 												<li><%@ include file="../include/account/join_login/naver.jsp" %></li>
-												<li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-												<li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-												<li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
-												<li><a class="google" href="#"><i class="fab fa-google-plus"></i></a></li>
+												<li><%@ include file="../include/account/join_login/kakao.jsp" %></li>
 											</ul>
 										</div>
 									</div>
@@ -94,14 +96,14 @@
 					<div class="col-lg-8">
 						<div class="login-instruction">
 							<div class="login-instruction-content">
-								<h3 class="title">오늘의 대타로 색다른 일을 해보세요</h3>
-								<p>지금 가입하시어 오늘의 대타를 자유로이 이용해보세요.<br> 
-								주인님 또는 노예놈에게 여러분의 정보를 주어 같이 일하자고 꼬셔보세요</p>
+								<h3 class="title">오늘의대타로 색다른 일을 경험해보세요!</h3>
+								<p>지금 가입하고 오늘의 대타를 자유롭게 이용해보세요.<br>
+								사업체회원 또는 개인회원에게 여러분의 정보를 제공하고 비즈니스 파트너가 되어 보세요.</p>
 								<ul class="list-reasons">
-									<li class="reason">간편한 일부터 색다른 일, 보람찬 일까지</li>
-									<li class="reason">원하는 시간에 골라서 자유롭게 구인과 구직을 할 수 있습니다</li>
-									<li class="reason">한번의 클릭으로 바로 등록 및 지원이 가능합니다</li>
-									<li class="reason">지금 등록하시어 다양한 경험을 해보세요</li>
+									<li class="reason">간편한 일부터 색다른 일, 보람찬 일 까지 모두 찾아 보세요.</li>
+									<li class="reason">원하는 시간에 골라서 자유롭게 구인과 구직을 할 수 있습니다.</li>
+									<li class="reason">한 번의 클릭으로 바로 등록 및 지원이 가능합니다.</li>
+									<li class="reason">지금 등록하셔서 다양한 경험을 즐겨 보세요.</li>
 								</ul>
 								<span class="sale-text theme-color border-color">오늘 가입하시면 500포인트가 자동 지급됩니다!</span>
 							</div>

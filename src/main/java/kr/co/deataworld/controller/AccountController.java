@@ -82,6 +82,20 @@ public class AccountController {
 		return "redirect:/";
 	}
 	
+//	네이버 로그인
+	@GetMapping(value = "naverCallback")
+	public String naverCallback() {
+		logger.info("naver login 처리 페이지 이동");
+		return "include/account/join_login/naverCallback";
+	}
+	
+//	카카오 로그인
+	@GetMapping(value = "kakaoCallback")
+	public String kakaoCallback(String code, Model model) {
+		logger.info("kakao login 처리 페이지 이동");
+		model.addAttribute("code", code);
+		return "include/account/join_login/kakaoCallback";
+	}
 	
 	//아이디 찾기 
 
