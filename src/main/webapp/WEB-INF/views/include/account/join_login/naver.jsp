@@ -18,7 +18,7 @@
   <script type="text/javascript">
     var naverLogin = new naver.LoginWithNaverId({
       clientId: 'eiV54Jtq4SI3YzMlgZcF',
-      callbackUrl: 'http://localhost:8088/deataworld/',
+      callbackUrl: 'http://localhost:8088/deataworld/naverCallback',
       isPopup: false /* 팝업을 통한 연동처리 여부 */,
       loginButton: { color: 'green', type: 1, height: 35 } /* 로그인 버튼의 타입을 지정 */,
     });

@@ -98,7 +98,7 @@
 							</div>
 							<!-- 유저메뉴 토글// -->
 							<div class="jp-author-action-two item logout-width">
-								<a href="${contextPath}/logout"><span>로그아웃</span></a>
+								<a href="javascript:logout()"><span>로그아웃</span></a>
 							</div>
 						</div>
 					</div>
@@ -123,7 +123,6 @@
 			dataType: 'json',
 			type: 'get',
 			success: function(res) {
-				console.log(res);
 				displayNotification(res);
 			},
 			error: function(res) {
@@ -162,7 +161,6 @@
 			dataType: 'json',
 			type: 'get',
 			success: function(res) {
-				console.log(res);
 				displayNotificationCnt(res);
 			},
 			error: function() {
@@ -196,6 +194,29 @@
 			error: function() {
 				console.log('실패');
 			}
+		});
+	}
+</script>
+
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<script type="text/javascript">
+	function logout() {
+		var naverLogin = new naver.LoginWithNaverId({
+			clientId: 'eiV54Jtq4SI3YzMlgZcF',
+			callbackUrl: 'http://localhost:8088/deataworld/naverCallback',
+			isPopup: false,
+			callbackHandle: true,
+		});
+		naverLogin.init();
+		
+		// 네이버 로그인 중인 상태이면
+		naverLogin.getLoginStatus(function (status) {
+			if (status) {
+				// 네이버 로그아웃
+				location.href = 'https://nid.naver.com/nidlogin.logout?returl=https%3A%2F%2Fwww.naver.com';
+			}
+			// 네이버 로그인이 아닌 일반 로그인이면 바로 로그아웃
+			location.href = '${contextPath}/logout';
 		});
 	}
 </script>
