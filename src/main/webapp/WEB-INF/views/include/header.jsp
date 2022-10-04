@@ -111,7 +111,6 @@
 </div>
 <script>
 	window.addEventListener('load', function() {
-		console.log('${loginInfo}');
 		if('${loginInfo}' != '') {
 			notificationCnt();
 			notificationList();
