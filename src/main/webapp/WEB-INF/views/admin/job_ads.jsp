@@ -57,7 +57,7 @@
 																<c:forEach var="jobAdsReport" items="${jobAds }">
 																	<tr class="application-item">
 																		<td class="application-job text-left">
-																			<h3><a class="text-ellipsis" href="${contextPath }/jobAds?num=${jobAdsReport.a_number }">${jobAdsReport.s_name }</a></h3>
+																			<h3><a class="text-ellipsis" href="${contextPath }/jobAds/listAllDetail?s_name=${jobAdsReport.s_name }&m_id=${loginInfo.m_id }&s_number=${jobAdsReport.s_number }&a_number=${jobAdsReport.a_number }">${jobAdsReport.s_name }</a></h3>
 																		</td>
 																		<td class="application-employer">
 																			<a class="dotted" href="${contextPath }/admin/user_profile?id=${jobAdsReport.m_id }">${jobAdsReport.m_id }</a>

@@ -63,8 +63,9 @@
 																		<td class="status">
 																			<c:forEach var="rType_cNumber" items="${list.rType_cNumbers }">
 																				<fmt:parseNumber value="${rType_cNumber[1] }" type="number" var="cNum" /> <%-- 댓글 번호 --%>
-																				<a href="${contextPath }/comments?cNum=${cNum }"> <%-- 댓글 번호 String에서 int로 변환 --%>
-																					<span class="rejected report-tag-hover">${rType_cNumber[0] }</span> <%-- 신고 타입 --%>
+																				<%-- <a href="${contextPath }/comments?cNum=${cNum }"> --%> <%-- 댓글 번호 String에서 int로 변환 --%>
+																				<a style="cursor: context-menu;">
+																					<span class="rejected">${rType_cNumber[0] }</span> <%-- 신고 타입 --%>
 																				</a>
 																			</c:forEach>
 																		</td>
