@@ -1,6 +1,8 @@
 package kr.co.deataworld.dao;
 
 import java.util.HashMap;
+
+
 import java.util.List;
 
 import java.util.Map;
@@ -55,53 +57,23 @@ public class AccountDAOImpl implements AccountDAO{
 		return sql.selectOne(nameSpace + ".findId", m_email);
 	}
 
-	
-//	@Override
-//	public List<MemberDTO> findId(String m_email)throws Exception{
-//		return sql.selectList(nameSpace + "findId", m_email);
-//	}
 
 	@Override
-	public int findIdCheck(String m_email)throws Exception{
-		return sql.selectOne(nameSpace + ".findIdCheck", m_email);
+	public int findEmCheck(String m_email)throws Exception{
+		return sql.selectOne(nameSpace + ".findEmCheck", m_email);
 	}
 	
-	
-
-//	public String find_id(String m_name, String m_email) {
-//		// TODO Auto-generated method stub
-//		return sql.selectList(nameSpace + "find_id", m_name, m_email );
-//	}
-	
-	
-//	@Override
-//	public String find_id(String m_name,String m_email)throws Exception{
-//		Map<String,Object> map = new HashMap<String, Object>();
-//		map.put("m_name", m_name);
-//		map.put("m_email", m_email);
-//		.put("memberPw", memberPw);
-//		return sqlsession.update("memberMapper.findPw", map);
-//	}
-	
 	@Override
-	public int findPwCheck(MemberDTO memberDTO)throws Exception{
-	return sql.selectOne(nameSpace + ".findPwCheck", memberDTO);	
+	public int findIdCheck(String m_id)throws Exception{
+		return sql.selectOne(nameSpace + ".findIdCheck", m_id);
 	}
+	
 
 	@Override
-	public int findPw(String m_email, String m_id) throws Exception {
+	public Map<String, Object> findPw(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return sql.selectOne(m_email, m_id);
+		return sql.selectOne(nameSpace + ".findPw", map);
 	}
 
 
-//	@Override
-//	public String findPw(String m_email,String m_id,String m_password)throws Exception{
-//		Map<String,Object> map = new HashMap<String, Object>();
-//		map.put("m_email", m_email);
-//		map.put("m_id", m_id);
-//		map.put("m_password", m_password);
-//		return sql.selectMap(nameSpace + ".findPw", map);
-//	}
-	
 }

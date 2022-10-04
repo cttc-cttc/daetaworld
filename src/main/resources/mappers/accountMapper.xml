@@ -91,18 +91,6 @@
   	</select>
   	
   	
-  	<!-- 아이디 찾기 -->
-<!--   	<select id="find_id" parameterType="String" resultType="java.lang.String"> -->
-<!--   		select -->
-<!--   			m_id -->
-<!--   		from member  -->
-<!--   		where -->
-<!--   			m_name=#{m_name} and m_email=#{m_email} -->
-<!--   	</select> -->
-  	
-  	
-  	
-  	
   	
   	
   	<select id="findId" parameterType="String"  resultType="String">
@@ -115,24 +103,21 @@
 
 
 
-<select id="findIdCheck" parameterType="String"  resultType="java.lang.Integer">
+<select id="findEmCheck" parameterType="String"  resultType="java.lang.Integer">
 select count(*) from member where m_email = #{m_email}
+</select>
+
+<select id="findIdCheck" parameterType="String"  resultType="java.lang.Integer">
+select count(*) from member where m_id = #{m_id}
 </select>
   	
   	
   	
   	
-  	<select id="findPw" parameterType="MemberDTO"  resultType="java.lang.Integer">
+  	<select id="findPw" parameterType="Map"  resultType="Map">
 select m_password from member where m_email = #{m_email} and m_id = #{m_id}
 </select>
 
-<select id="findPwCheck" parameterType="MemberDTO"  resultType="java.lang.Integer">
-select count(*) from member where m_email = #{m_email} and m_id = #{m_id}
-</select>
-  	
-  	
-  	
-  	
-  	
+
   	
 </mapper>

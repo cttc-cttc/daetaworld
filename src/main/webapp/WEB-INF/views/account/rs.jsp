@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>오늘의 대타 rs </title>
+<title>오늘의 대타 아이디찾기 결과 </title>
 <%@ include file="../include/head.jsp" %>
 <!-- custom css -->
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css">
@@ -41,11 +41,12 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="page-breadcrumb-content">
-							<ul class="page-breadcrumb"></ul>
+							<ul class="page-breadcrumb"> </ul>
 							<br>
 						</div>
 					</div>
 				</div>
+				<br>
 			</div>
 		</div>
 		<!-- 상단 여백 Section end -->
