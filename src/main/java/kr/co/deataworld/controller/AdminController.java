@@ -80,10 +80,9 @@ public class AdminController {
 			model.addAttribute("leftMenu", "employer_list");
 		}
 		
-		String tmpId = "owner";
-		PointDTO point = pService.point(tmpId);
-		List<EarnedPointDTO> earnedPoint = pService.earnedPoint(tmpId);
-		List<DeductedPointDTO> deductedPoint = pService.deductedPoint(tmpId);
+		PointDTO point = pService.point(id);
+		List<EarnedPointDTO> earnedPoint = pService.earnedPoint(id);
+		List<DeductedPointDTO> deductedPoint = pService.deductedPoint(id);
 		
 		model.addAttribute("point", point);
 		model.addAttribute("earnedPoint", earnedPoint);
