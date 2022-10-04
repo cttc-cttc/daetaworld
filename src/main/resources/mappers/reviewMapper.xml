@@ -71,6 +71,8 @@
 		values
 		(#{w_rate}, #{w_comments}, now(), 0, #{w_writer}, #{id_rated}, #{a_number})
 	</insert>
+	
+	
 
 	<!-- 리뷰 작성 시 글 쓴 상태 변경 -->
 	<update id="e_updateStatus" parameterType="Map">
@@ -119,6 +121,14 @@
 <!-- 구직자 끝 -->
 	
 <!-- 공통 -->
+
+	<!-- 리뷰 작성 후 기존평점 + 입력한 평점 합침 -->
+	<update id="addRate" parameterType="ReviewDTO">
+		update review
+		set
+		w_rate = w_rate + #{w_rate}
+		where id_rated = #{id_rated}
+	</update>
 	
 	<!-- 작성한 리뷰 내용 확인 -->
 	<select id="wroteDetail" parameterType="java.lang.Integer" resultType="Map">
