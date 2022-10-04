@@ -41,6 +41,7 @@ import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.service.AccountService;
 import kr.co.deataworld.util.ExtractAreaCode;
 import kr.co.deataworld.util.FileProcess;
+import kr.co.deataworld.util.KakaoLogin;
 
 
 
@@ -75,7 +76,7 @@ public class AccountController {
 		
 		// 헤더 로그인 정보 세션값 등록
 		// m_nick, m_picture, point를 따로 세션값에 지정하는 이유는 회원정보 수정 시 바로 적용하기 위해서
-		session.setAttribute("loginInfo", loginResult); // m_id, m_type (m_nick, m_picture, point 이것도 들어가긴 하지만 정작 안씀)
+		session.setAttribute("loginInfo", loginResult); // m_id, m_type, login_type (m_nick, m_picture, point 이것도 들어가긴 하지만 정작 안씀)
 		session.setAttribute("loginM_nick", loginResult.get("m_nick")); // m_nick
 		session.setAttribute("loginM_picture", loginResult.get("m_picture")); // m_picture
 		session.setAttribute("loginPoint", loginResult.get("point")); // point
@@ -93,7 +94,10 @@ public class AccountController {
 	@GetMapping(value = "kakaoCallback")
 	public String kakaoCallback(String code, Model model) {
 		logger.info("kakao login 처리 페이지 이동");
-		model.addAttribute("code", code);
+		String token = KakaoLogin.getAccessToken(code);
+		Map<String, Object> info = KakaoLogin.getUserInfo(token);
+		model.addAttribute("token", token);
+		model.addAttribute("info", info);
 		return "include/account/join_login/kakaoCallback";
 	}
 	

@@ -8,22 +8,19 @@
   // 아래는 데모를 위한 UI 코드입니다.
   displayToken();
   function displayToken() {
-    var token = '${code}';
+    var token = '${token}';
 
     if(token != 'undefined') {
       Kakao.Auth.setAccessToken(token);
       Kakao.Auth.getStatusInfo()
         .then(function(res) {
-        	alert('res');
         	console.log(res);
           if (res.status === 'connected') {
-        	  alert('login success, token: ' + Kakao.Auth.getAccessToken());
             console.log('login success, token: ' + Kakao.Auth.getAccessToken());
-            // requestUserInfo();
+            requestUserInfo();
           }
         })
         .catch(function(err) {
-        	alert('err');
         	console.log(err);
           Kakao.Auth.setAccessToken(null);
         });
@@ -33,23 +30,42 @@
   function requestUserInfo() {
 	    Kakao.API.request({
 	      url: '/v2/user/me',
+	      data: {
+	    	    property_keys: ['kakao_account.email', 'kakao_account.nickname'],
+	    	  },
 	    })
 	      .then(function(res) {
-	        alert(JSON.stringify(res));
+	    	const info = JSON.stringify(res);
+	    	const id = res.id;
+	        // console.log('${info.nickname}');
+	        
+	     	// 로그인
+			var form = document.createElement('form');
+			form.setAttribute('charset', 'utf-8');
+			form.setAttribute('method', 'post');
+			form.setAttribute('action', 'login');
+         
+			var inputId = document.createElement('input');
+ 			inputId.setAttribute('type', 'text');
+			inputId.setAttribute('name', 'inputId');
+         
+			inputId.setAttribute('value', id);
+			form.appendChild(inputId);
+
+			var inputPassword = document.createElement('input');
+			inputPassword.setAttribute('type', 'text');
+			inputPassword.setAttribute('name', 'inputPassword');
+			inputPassword.setAttribute('value', id);
+			form.appendChild(inputPassword);
+
+			document.body.appendChild(form);
+			form.submit();
+			document.body.removeChild(form);
 	      })
 	      .catch(function(err) {
-	        alert(
+	        console.log(
 	          'failed to request user information: ' + JSON.stringify(err)
 	        );
 	    });
-  }
-
-  function getCookie(name) {
-    var parts = document.cookie.split(name + '=');
-    console.log(document.cookie);
-    console.log(name);
-    console.log(parts);
-    console.log(parts.length);
-    if (parts.length === 2) { return parts[1].split(';')[0]; }
   }
 </script>

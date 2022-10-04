@@ -199,8 +199,20 @@
 </script>
 
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
+  integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	function logout() {
+		switch('${loginInfo.login_type}') {
+			case 'naver': naverLogout();
+				break;
+			case 'kakao': kakaoLogout();
+				break;
+			default: location.href = '${contextPath}/logout';
+		}
+	}
+	
+	function naverLogout() {
 		var naverLogin = new naver.LoginWithNaverId({
 			clientId: 'eiV54Jtq4SI3YzMlgZcF',
 			callbackUrl: 'http://localhost:8088/deataworld/naverCallback',
@@ -212,11 +224,30 @@
 		// 네이버 로그인 중인 상태이면
 		naverLogin.getLoginStatus(function (status) {
 			if (status) {
-				// 네이버 로그아웃
+				// 먼저 네이버 로그아웃 하고
 				location.href = 'https://nid.naver.com/nidlogin.logout?returl=https%3A%2F%2Fwww.naver.com';
 			}
-			// 네이버 로그인이 아닌 일반 로그인이면 바로 로그아웃
+			// 오늘의대타 로그아웃
 			location.href = '${contextPath}/logout';
 		});
+	}
+	
+	function kakaoLogout() {
+		Kakao.init('d6140eb0f3d4e274049880e659b9d48b');
+		Kakao.Auth.logout()
+		  .then(function(response) {
+		    console.log(Kakao.Auth.getAccessToken()); // null (카카오 토큰 삭제)
+		    // 카카오 로그아웃
+		    let uri = 'https://kauth.kakao.com/oauth/logout';
+		    uri += '?client_id=26552c91407061c52cc3a6bb50b32ae9';
+		    uri += '&logout_redirect_uri=http://localhost:8088/deataworld/';
+		    location.href = uri;
+		    
+		  })
+		  .catch(function(error) {
+		    console.log('Not logged in.');
+		  });
+		// 오늘의대타 로그아웃
+		location.href = '${contextPath}/logout';
 	}
 </script>
