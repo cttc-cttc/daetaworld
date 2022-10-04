@@ -1,6 +1,7 @@
 package kr.co.deataworld.controller;
 
 import java.util.HashMap;
+
 import java.util.Map;
 import java.util.Properties;
 
@@ -86,23 +87,15 @@ public class AccountController {
 	//아이디 찾기 
 
 	
-	@RequestMapping(value="/findIdView", method=RequestMethod.GET)
-	public String findIdView() throws Exception{
-		return"/findIdView";
-	}
 	
-	@RequestMapping(value="/findPwView", method=RequestMethod.GET)
-	public String findPwView() throws Exception{
-		return"/findPwView";
-	}
 	
 	@RequestMapping(value="account/findId", method=RequestMethod.POST)
 	public String findId(@RequestParam("m_email")String m_email, Model model, HttpSession session ) throws Exception{
 		logger.info("m_email"+m_email);
 				
-		if(service.findIdCheck(m_email)==0) {
+		if(service.findEmCheck(m_email)==0) {
 		model.addAttribute("msg", "이메일을 확인해주세요");
-		return "account/findIdView";
+		return "account/findId";
 		}else {
 		model.addAttribute("fid", service.findId(m_email));
 		return "account/rs";
@@ -113,26 +106,65 @@ public class AccountController {
 	//비밀번호 찾기 
 	
 		
-	@RequestMapping(value="account/findPw", method=RequestMethod.POST)
-	public String findPw(MemberDTO memberDTO,Model model,@RequestParam("m_email")String m_email, @RequestParam("m_id")String m_id) throws Exception{
-		logger.info("memberPw"+memberDTO.getM_id());
-		
-		if(service.findPwCheck(memberDTO)==0) {
-			logger.info("PWCheck");
-			model.addAttribute("msg", "아이디와 이메일를 확인해주세요");
-			
-			return "account/findPwView";
-		}else {
+//	@RequestMapping(value="account/findPw", method=RequestMethod.POST)
+//	public String findPw(MemberDTO memberDTO,Model model,@RequestParam("m_email")String m_email, @RequestParam("m_id")String m_id) throws Exception{
+//		logger.info("memberPw"+memberDTO.getM_id());
+//		
+//		if(service.findPwCheck(memberDTO)==0) {
+//			logger.info("PWCheck");
+//			model.addAttribute("msg", "아이디와 이메일를 확인해주세요");
+//			
+//			return "account/findPwView";
+//		}else {
+//	
+//		service.findPw(memberDTO.getM_email(),memberDTO.getM_id());
+//		model.addAttribute("fpw", service.findPw(m_email,m_id));
+//		
+//		return"account/rs2";
+//		}
+//	}
+//	
 	
-		service.findPw(memberDTO.getM_email(),memberDTO.getM_id());
-		model.addAttribute("fpw", service.findPw(m_email,m_id));
-		
-		return"account/rs2";
-		}
-	}
-	
+	//비밀번호 찾기
+	   @RequestMapping(value="account/findPw", method=RequestMethod.POST)
+	   public String findPw(@RequestParam("m_id")String m_id,@RequestParam("m_email")String m_email, Model model) throws Exception {
+	      logger.info("m_email"+m_email, "m_id"+m_id);
+	      Map<String, Object> map = new HashMap<String, Object>();
+	      map.put("m_id", m_id);
+	      map.put("m_email", m_email);
+	      
+	      if(service.findEmCheck(m_email)==0) {
+	  		model.addAttribute("msg", "입력정보를 확인해주세요");
+	  		return "account/findPwView";
+	  		}
+	      if(service.findIdCheck(m_id)==0) {
+		  		model.addAttribute("msg", "입력정보를 확인해주세요");
+		  		return "account/findPwView";
+		  		}else {
+	      
+	      Map<String, Object> findPw = service.findPw(map); 
+	      model.addAttribute("fpw", findPw);
+	      return "account/rs2";
+	   }
+	   }
 
-	
+	   
+////		지원자 정보보기
+//		@GetMapping(value="employerMapper/canDetail")
+//		public String canDetail(@RequestParam("m_id")String m_id, 
+//				@RequestParam("a_number")int a_number, 
+//				@RequestParam("i_number")int i_number , Model model) throws Exception {
+//			model.addAttribute("leftMenu", "adsApplied");
+//			Map<String, Object> map = new HashMap<String, Object>();
+//			map.put("m_id", m_id);
+//			map.put("i_number", i_number);
+//			map.put("a_number", a_number);
+//			Map<String, Object> detail = service.canDetail(map);
+//			model.addAttribute("detail", detail);
+//			model.addAttribute("a_number", a_number);
+//			return "employer/candidates/canDetail";
+//		}
+//	
 			
 			
 //			@RequestMapping(value="/findIdView", method=RequestMethod.GET)
@@ -207,6 +239,16 @@ public class AccountController {
 	public String rs2() {
 		logger.info("비밀번호 찾기 결과 접속");
 		return "account/rs2";
+	}
+	
+	@GetMapping(value="findIdView")
+	public String findIdView() {
+		return"account/findIdView";
+	}
+	
+	@GetMapping(value="findPwView")
+	public String findPwView() {
+		return"account/findPwView";
 	}
 	
 	

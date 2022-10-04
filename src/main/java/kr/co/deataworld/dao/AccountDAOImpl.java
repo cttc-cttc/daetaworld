@@ -1,6 +1,8 @@
 package kr.co.deataworld.dao;
 
 import java.util.HashMap;
+
+
 import java.util.List;
 
 import java.util.Map;
@@ -62,8 +64,13 @@ public class AccountDAOImpl implements AccountDAO{
 //	}
 
 	@Override
-	public int findIdCheck(String m_email)throws Exception{
-		return sql.selectOne(nameSpace + ".findIdCheck", m_email);
+	public int findEmCheck(String m_email)throws Exception{
+		return sql.selectOne(nameSpace + ".findEmCheck", m_email);
+	}
+	
+	@Override
+	public int findIdCheck(String m_id)throws Exception{
+		return sql.selectOne(nameSpace + ".findIdCheck", m_id);
 	}
 	
 	
@@ -89,10 +96,13 @@ public class AccountDAOImpl implements AccountDAO{
 	}
 
 	@Override
-	public int findPw(String m_email, String m_id) throws Exception {
+	public Map<String, Object> findPw(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return sql.selectOne(m_email, m_id);
+		return sql.selectOne(nameSpace + ".findPw", map);
 	}
+
+
+	
 
 
 //	@Override

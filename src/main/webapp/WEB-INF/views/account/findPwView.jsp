@@ -116,20 +116,25 @@
 					<div class="login-instruction">
 							<div class="login-register-form-area">
 								<div class="p-5">
- 								<div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">아이디 찾기</h1>
-                                        <p class="mb-4">이메일을 입력해주세요!</p>
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-2">비밀번호 찾기</h1>
+                                        <p class="mb-4">아이디와 이메일을 입력해주세요!</p>
                                     </div>
                                     
-                                    <form class="user" action="account/findId" method="POST">
+                                    <form class="user" action="account/findPw" method="post">
+                                       <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="m_id" aria-describedby="IdHelp" name="m_id"
+                                                placeholder="아이디를 입력해 주세요">
+                                        </div>
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="m_email" aria-describedby="emailHelp" name="m_email"
                                                 placeholder="이메일을 입력해 주세요">
                                         </div>
-                                        <br><br>
+                                         
                                         <button type="submit" class="ht-btn">
-                                            아이디 찾기
+                                            비밀번호 찾기
                                         </button>
                                     </form>
 

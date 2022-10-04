@@ -67,8 +67,12 @@ public class AccountServiceImpl implements AccountService{
 //	}
 	
 	@Override
-	public int findIdCheck(String m_email)throws Exception{
-		return dao.findIdCheck(m_email);
+	public int findEmCheck(String m_email)throws Exception{
+		return dao.findEmCheck(m_email);
+	}
+	@Override
+	public int findIdCheck(String m_id)throws Exception{
+		return dao.findIdCheck(m_id);
 	}
 	
 	
@@ -79,9 +83,9 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public int findPw(java.lang.String m_email, java.lang.String m_id) throws Exception {
+	public Map<String, Object> findPw(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.findPw(m_email, m_id); 
+		return dao.findPw(map); 
 	}
 
 	

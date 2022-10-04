@@ -27,11 +27,14 @@ public interface AccountDAO {
 
 //public List<MemberDTO> findId(String m_email)throws Exception;
 
-	public int findIdCheck(String m_email) throws Exception;
+	public int findEmCheck(String m_email) throws Exception;
+	public int findIdCheck(String m_id) throws Exception;
 
 	//비밀번호 찾기
-		public int findPw(String m_email,String m_id)throws Exception;
+		public Map<String, Object> findPw(Map<String, Object> map)throws Exception;
 		//비밀번호 찾기 체크
 		public int findPwCheck(MemberDTO memberDTO)throws Exception;
+
+		
 		
 }
