@@ -90,7 +90,7 @@
 	<select id="jobAdsCnt" resultType="java.lang.Integer">
 		select count(*) from job_ads
 		where
-			r_code is not null
+			not r_code = 0
 			and del = 0
 	</select>
 	
@@ -98,6 +98,7 @@
 	<select id="jobAds" resultType="java.util.Map">
 		select
 			B.s_name,	<!-- B.가게명 -->
+			B.s_number,	<!-- B.가게 번호 -->
 			A.m_id,		<!-- A.작성자 -->
 			date(B.s_date) as s_date,	<!-- B.작성일 -->
 			D.r_type,	<!-- D.신고 타입 -->
@@ -109,9 +110,9 @@
 		inner join report as C <!-- 글 신고 테이블C -->
 			on A.a_number = C.a_number
 		inner join report_code as D <!-- 신고 코드 테이블D -->
-			on A.r_code = d.r_code
+			on A.r_code = D.r_code
 		where
-			A.r_code is not null
+			not A.r_code = 0
 			and C.del = 0
 		limit #{pageStart}, #{pagePerList}
 	</select>
@@ -134,7 +135,7 @@
 	<update id="cancelJobAds" parameterType="java.lang.Integer">
 		update job_ads as A, report as B
 		set
-			A.r_code = null,
+			A.r_code = 0,
 			B.del = 1
 		where
 			B.re_number = #{re_number}
@@ -146,7 +147,7 @@
 		select count(*) from board
 		where
 			b_code = 0
-			and r_code is not null
+			and not r_code = 0
 			and del = 0
 	</select>
 	
@@ -168,7 +169,7 @@
 		inner join member as D <!-- 회원 테이블D -->
 			on A.m_id = D.m_id
 		where
-			A.r_code is not null
+			not A.r_code = 0
 			and A.b_code = 0
 			and A.del = 0
 		limit #{pageStart}, #{pagePerList}
@@ -192,7 +193,7 @@
 	<update id="cancelFreeBoard" parameterType="java.lang.Integer">
 		update board as A, report as B
 		set
-			A.r_code = null,
+			A.r_code = 0,
 			B.del = 1
 		where
 			B.re_number = #{re_number}
@@ -206,7 +207,7 @@
 			on A.b_number = B.b_number
 		where
 			B.b_code = 0
-			and A.r_code is not null
+			and not A.r_code = 0
 			and A.del = 0
 	</select>
 	
@@ -231,7 +232,7 @@
 		inner join board as E <!-- 게시판 테이블E -->
 			on A.b_number = E.b_number
 		where
-			A.r_code is not null
+			not A.r_code = 0
 			and E.b_code = 0
 			and A.del = 0
 		limit #{pageStart}, #{pagePerList}
@@ -255,7 +256,7 @@
 	<update id="cancelFreeComments" parameterType="java.lang.Integer">
 		update comments as A, comments_report as B
 		set
-			A.r_code = null,
+			A.r_code = 0,
 			B.del = 1
 		where
 			B.cr_number = #{cr_number}
@@ -267,7 +268,7 @@
 		select count(*) from board
 		where
 			b_code = 1
-			and r_code is not null
+			and not r_code = 0
 			and del = 0
 	</select>
 	
@@ -286,7 +287,7 @@
 		inner join report_code as C <!-- 신고 코드 테이블C -->
 			on A.r_code = C.r_code
 		where
-			A.r_code is not null
+			not A.r_code = 0
 			and A.b_code = 1
 			and A.del = 0
 		limit #{pageStart}, #{pagePerList}
@@ -310,7 +311,7 @@
 	<update id="cancelTempingBoard" parameterType="java.lang.Integer">
 		update board as A, report as B
 		set
-			A.r_code = null,
+			A.r_code = 0,
 			B.del = 1
 		where
 			B.re_number = #{re_number}
@@ -324,7 +325,7 @@
 			on A.b_number = B.b_number
 		where
 			B.b_code = 1
-			and A.r_code is not null
+			and not A.r_code = 0
 			and A.del = 0
 	</select>
 	
@@ -346,7 +347,7 @@
 		inner join board as D <!-- 게시판 테이블D -->
 			on A.b_number = D.b_number
 		where
-			A.r_code is not null
+			not A.r_code = 0
 			and D.b_code = 1
 			and A.del = 0
 		limit #{pageStart}, #{pagePerList}
@@ -370,7 +371,7 @@
 	<update id="cancelTempingComments" parameterType="java.lang.Integer">
 		update comments as A, comments_report as B
 		set
-			A.r_code = null,
+			A.r_code = 0,
 			B.del = 1
 		where
 			B.cr_number = #{cr_number}

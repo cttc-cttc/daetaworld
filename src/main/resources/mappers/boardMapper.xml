@@ -39,9 +39,9 @@
 	
 	<!-- 글 쓰기 -->
 	<insert id="register" parameterType="BoardDTO">
-		insert into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id,m_nick ,del)
+		insert into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id,m_nick,r_code,del)
 		values (#{b_number}, 0,
-		#{b_title}, #{b_contents},#{b_hits},curdate(), #{m_id},#{m_nick} ,0)
+		#{b_title}, #{b_contents},#{b_hits},curdate(), #{m_id},#{m_nick},0,0)
 		
 	</insert>
 	
@@ -102,8 +102,8 @@
 	<!-- 떙빵 글 쓰기 -->
 	<insert id="tempingRegister" parameterType="BoardDTO">
 		insert 
-		into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id,m_nick ,del)
-		values (#{b_number}, 1, #{b_title}, #{b_contents},#{b_hits},now(), #{m_id},#{m_nick} ,0)
+		into board(b_number,b_code,b_title,b_contents,b_hits,b_date,m_id,m_nick,r_code,del)
+		values (#{b_number}, 1, #{b_title}, #{b_contents},#{b_hits},now(), #{m_id},#{m_nick},0,0)
 		
 	</insert>
 	

@@ -9,8 +9,8 @@
 	<!-- 댓글 쓰기 -->
 	<insert id="reply" parameterType="CommentsDTO">
 		insert into
-		comments(c_number,  c_contents, c_date, m_id, m_nick , b_number ,del )
-		values (#{c_number},  #{c_contents}, now(), #{m_id}, #{m_nick},#{b_number}, 0)
+		comments(c_number,  c_contents, c_date, m_id, m_nick,r_code, b_number ,del )
+		values (#{c_number},  #{c_contents}, now(), #{m_id}, #{m_nick},0, #{b_number}, 0)
 	</insert>
 	<!-- 해당 댓글 읽기 -->
 	<select id="detailReply" parameterType="java.lang.Integer" resultType="CommentsDTO">
@@ -37,8 +37,8 @@
 		<!-- 땜빵 댓글 쓰기 -->
 	<insert id="tempingReply" parameterType="Map">
 		insert into
-		comments( c_contents, c_date, m_id, m_nick , b_number ,del )
-		values ( #{c_contents}, now(), #{m_id}, #{m_nick} ,#{b_number}, 0)
+		comments( c_contents, c_date, m_id, m_nick,r_code, b_number ,del )
+		values ( #{c_contents}, now(), #{m_id}, #{m_nick},0 ,#{b_number}, 0)
 	</insert>
 	<!-- 해당 댓글 읽기 -->
 	<select id="tempingDetailReply" parameterType="java.lang.Integer"
