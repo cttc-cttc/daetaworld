@@ -8,9 +8,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class RankingController {
 	
-	@GetMapping(value = "ranking")
-	public String ranking() {
+//	@GetMapping(value = "ranking")
+//	public String ranking() {
+//		
+//		return "ranking/ranking";
+//	}
+	
+	
+	//랭킹 조회수 보여주기 1~5위까지
+	@GetMapping(value="ranking")
+	public String ranking()throws Exception{
 		
-		return "ranking/ranking";
+		return "";
+		
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

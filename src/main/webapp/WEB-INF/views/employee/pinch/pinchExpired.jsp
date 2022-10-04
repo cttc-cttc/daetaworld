@@ -38,6 +38,7 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
+													<li><a class="active" href="pinchHistory?m_id=${loginInfo.m_id}">대타 내역</a></li>
 													<li><a class="active" href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id}">완료된 공고</a></li>
 													<li><a href="${contextPath}/reviewMapper/e_writtenReviews?w_writer=${loginInfo.m_id}">내가 작성한 후기</a></li>
 													<li><a href="${contextPath}/reviewMapper/e_myReview?id_rated=${loginInfo.m_id}">나를 평가한 후기</a></li>

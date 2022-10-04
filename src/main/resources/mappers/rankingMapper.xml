@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.deataworld.rankingMapper">
+
+<!-- 랭킹 페이지 접속시 1~5위의 평점 랭킹을 불러온다 -->
+
+
+
+
+
+
+
+
+
+
+</mapper>

@@ -37,6 +37,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 	      Map<String, Object> map2 = new HashMap<String, Object>(); 
 	      map2.put("m_id", reviewDTO.getId_rated());
 	      map2.put("a_number", reviewDTO.getA_number());
+	      sqlSession.update(namespace + ".addRate", map2); //기존 평점 + 새로 받은 평점을 더한다.
 	      sqlSession.update(namespace + ".r_updateStatus", map2);		
 		
 		return sqlSession.insert(namespace + ".r_reviewRegister", reviewDTO);
@@ -76,7 +77,8 @@ public class ReviewDAOImpl implements ReviewDAO{
 	      Map<String, Object> map2 = new HashMap<String, Object>(); 
 	      map2.put("m_id", reviewDTO.getW_writer());
 	      map2.put("a_number", reviewDTO.getA_number());
-	      sqlSession.update(namespace + ".e_updateStatus", map2);		
+	      sqlSession.update(namespace + ".e_updateStatus", map2);
+	      sqlSession.update(namespace + ".addRate", map2); //기존 평점 + 새로 받은 평점을 더한다.
 		return sqlSession.insert(namespace + ".e_reviewRegister", reviewDTO);
 	}
 	
