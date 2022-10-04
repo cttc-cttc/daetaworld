@@ -50,21 +50,12 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	
-	
-	
 	// 아이디 찾기
-	
 	@Override
 	public String findId(String m_email) {
 			
-		 return dao.findId(m_email);
-	
+		 return dao.findId(m_email);	
 }
-	
-//	@Override
-//	public List<MemberDTO> findId(String m_email)throws Exception{
-//		return dao.findId(m_email);
-//	}
 	
 	@Override
 	public int findEmCheck(String m_email)throws Exception{
@@ -75,19 +66,10 @@ public class AccountServiceImpl implements AccountService{
 		return dao.findIdCheck(m_id);
 	}
 	
-	
-	
-	@Override
-	public int findPwCheck(MemberDTO memberDTO)throws Exception{
-		return dao.findPwCheck(memberDTO);
-	}
 
 	@Override
 	public Map<String, Object> findPw(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.findPw(map); 
 	}
-
-	
-	
 }

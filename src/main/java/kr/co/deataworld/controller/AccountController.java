@@ -85,45 +85,18 @@ public class AccountController {
 	
 	
 	//아이디 찾기 
-
-	
-	
-	
 	@RequestMapping(value="account/findId", method=RequestMethod.POST)
 	public String findId(@RequestParam("m_email")String m_email, Model model, HttpSession session ) throws Exception{
 		logger.info("m_email"+m_email);
 				
 		if(service.findEmCheck(m_email)==0) {
-		model.addAttribute("msg", "이메일을 확인해주세요");
+		model.addAttribute("msg", "입력하신 이메일을 확인해주세요");
 		return "account/findId";
 		}else {
 		model.addAttribute("fid", service.findId(m_email));
 		return "account/rs";
 		}
 	}
-	
-	
-	//비밀번호 찾기 
-	
-		
-//	@RequestMapping(value="account/findPw", method=RequestMethod.POST)
-//	public String findPw(MemberDTO memberDTO,Model model,@RequestParam("m_email")String m_email, @RequestParam("m_id")String m_id) throws Exception{
-//		logger.info("memberPw"+memberDTO.getM_id());
-//		
-//		if(service.findPwCheck(memberDTO)==0) {
-//			logger.info("PWCheck");
-//			model.addAttribute("msg", "아이디와 이메일를 확인해주세요");
-//			
-//			return "account/findPwView";
-//		}else {
-//	
-//		service.findPw(memberDTO.getM_email(),memberDTO.getM_id());
-//		model.addAttribute("fpw", service.findPw(m_email,m_id));
-//		
-//		return"account/rs2";
-//		}
-//	}
-//	
 	
 	//비밀번호 찾기
 	   @RequestMapping(value="account/findPw", method=RequestMethod.POST)
@@ -134,11 +107,11 @@ public class AccountController {
 	      map.put("m_email", m_email);
 	      
 	      if(service.findEmCheck(m_email)==0) {
-	  		model.addAttribute("msg", "입력정보를 확인해주세요");
+	  		model.addAttribute("msg", "입력하신 이메일을 확인해주세요");
 	  		return "account/findPwView";
 	  		}
 	      if(service.findIdCheck(m_id)==0) {
-		  		model.addAttribute("msg", "입력정보를 확인해주세요");
+		  		model.addAttribute("msg", "입력하신 아이디를 확인해주세요");
 		  		return "account/findPwView";
 		  		}else {
 	      
@@ -148,48 +121,6 @@ public class AccountController {
 	   }
 	   }
 
-	   
-////		지원자 정보보기
-//		@GetMapping(value="employerMapper/canDetail")
-//		public String canDetail(@RequestParam("m_id")String m_id, 
-//				@RequestParam("a_number")int a_number, 
-//				@RequestParam("i_number")int i_number , Model model) throws Exception {
-//			model.addAttribute("leftMenu", "adsApplied");
-//			Map<String, Object> map = new HashMap<String, Object>();
-//			map.put("m_id", m_id);
-//			map.put("i_number", i_number);
-//			map.put("a_number", a_number);
-//			Map<String, Object> detail = service.canDetail(map);
-//			model.addAttribute("detail", detail);
-//			model.addAttribute("a_number", a_number);
-//			return "employer/candidates/canDetail";
-//		}
-//	
-			
-			
-//			@RequestMapping(value="/findIdView", method=RequestMethod.GET)
-//			public String findIdView() throws Exception{
-//				return"/member/findIdView";
-//			}
-//			
-//			@RequestMapping(value="account/findId", method=RequestMethod.POST)
-//			public String findId(MemberDTO memberDTO,Model model) throws Exception{
-//				logger.info("m_email"+memberDTO.getM_email());
-//						
-//				if(service.findIdCheck(memberDTO.getM_email())==0) {
-//				model.addAttribute("msg", "이메일을 확인해주세요");
-//				return "account/findIdView";
-//				}else {
-//				model.addAttribute("member", service.findId(memberDTO.getM_email()));
-//				return
-//						"account/findId";
-//				}
-//			}
-			
-	
-			
-	
-			
 			
 //	로그아웃
 	@GetMapping(value = "logout")
