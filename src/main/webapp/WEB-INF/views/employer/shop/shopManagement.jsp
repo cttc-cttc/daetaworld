@@ -45,7 +45,7 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<table class="table table-striped">
+													<table class="table table-striped" style="table-layout:fixed">
 														<thead>
 															<th>가게명</th>
 															<th>가게 주소</th>
@@ -55,8 +55,8 @@
 														<c:forEach var="shop" items="${list}">
 															<tr>
 																<td><a href="shopInfo?s_name=${shop.s_name }">${shop.s_name }</a></td>
-																<td>${shop.s_address1 }</td>
-																<td>${shop.s_intro }</td>
+																<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${shop.s_address1 }</td>
+																<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${shop.s_intro }</td>
 																<td>${shop.s_date }</td>
 															</tr>
 														</c:forEach>

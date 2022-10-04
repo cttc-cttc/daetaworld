@@ -25,6 +25,12 @@ public class EmployerServiceImpl implements EmployerService{
 	}
 	
 	@Override
+	public int signOut(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.signOut(m_id);
+	}
+	
+	@Override
 	public int adsRegister(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.adsRegister(map);
@@ -182,6 +188,8 @@ public class EmployerServiceImpl implements EmployerService{
 		// TODO Auto-generated method stub
 		return dao.shopDelete(s_number);
 	}
+
+
 
 
 

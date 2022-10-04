@@ -24,7 +24,7 @@
   		and a_name2 like concat('%', #{addrName2}, '%')
   	</select>
   	
-	<!-- 회원가입 : member 테이블과 point 테이블 insert -->  	
+	<!-- 회원가입 : member 테이블, point 테이블, earned_point 테이블 insert -->  	
   	<insert id="register" parameterType="MemberDTO">
 	    insert into member(
 			m_id,
@@ -76,6 +76,17 @@
 			500,
 			#{m_id}
 		)
+    </insert>
+    <insert id="addEarnedPoint" parameterType="MemberDTO">
+    	insert into earned_point(
+    		e_point,
+    		e_date,
+    		m_id
+    	)values(
+    		500,
+    		now(),
+    		#{m_id}
+    	)    	
     </insert>
   	
   	<!-- 로그인 -->

@@ -50,9 +50,8 @@ public class CommonController {
 	
 //	포인트 
 	@GetMapping(value="pointMapper/pointManagement")
-	public String pointManagement(Model model) throws Exception {
+	public String pointManagement(@RequestParam("m_id")String id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "pointManagement");	
-		String id = "owner";
 		PointDTO point = pService.point(id);
 		model.addAttribute("point", point);
 		return "common/point/pointManagement";
@@ -60,9 +59,8 @@ public class CommonController {
 
 //	포인트 적립 내역
 	@GetMapping(value="pointMapper/pointEarned")
-	public String pointEarned(Model model) throws Exception {
+	public String pointEarned(@RequestParam("m_id")String id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "pointManagement");
-		String id = "owner";
 		List<EarnedPointDTO> earnedPoint = pService.earnedPoint(id);
 		model.addAttribute("earnedPoint", earnedPoint);
 		return "common/point/pointEarned";
@@ -70,9 +68,8 @@ public class CommonController {
 
 //	포인트 차감 내역
 	@GetMapping(value="pointMapper/pointDeducted")
-	public String pointDeducted(Model model) throws Exception {
+	public String pointDeducted(@RequestParam("m_id")String id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "pointManagement");
-		String id = "owner";
 		List<DeductedPointDTO> deductedPoint = pService.deductedPoint(id);
 		model.addAttribute("deductedPoint", deductedPoint);
 		return "common/point/pointDeducted";
@@ -80,9 +77,8 @@ public class CommonController {
 	
 //	포인트 사용 페이지
 	@GetMapping(value="pointMapper/pointUse")
-	public String pointUse(Model model) throws Exception {
+	public String pointUse(@RequestParam("m_id")String id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "pointManagement");
-		String id = "owner";
 		PointDTO point = pService.point(id);
 		model.addAttribute("point", point);
 		return "common/point/pointUse";
@@ -97,9 +93,8 @@ public class CommonController {
 	
 //	포인트 추가 페이지
 	@GetMapping(value="pointMapper/pointAdd")
-	public String pointAdd(Model model) throws Exception {
+	public String pointAdd(@RequestParam("m_id")String id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "pointManagement");
-		String id = "owner";
 		PointDTO point = pService.point(id);
 		model.addAttribute("point", point);
 		return "common/point/pointAdd";

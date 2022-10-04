@@ -21,4 +21,10 @@ public class FileController {
 		return FileProcess.display(FileProcess.SHOP_IMG_PATH, fileName);
 	}
 	
+//	사업자 등록증 보여주기
+	@GetMapping(value="displayLicense")
+	public ResponseEntity<byte[]> displayLicense(String fileName) {
+		return FileProcess.display(FileProcess.SHOP_LICENSE_PATH, fileName);
+	}
+	
 }

@@ -87,7 +87,7 @@
 									</c:if>
 									<!-- 구인자 -->
 									<c:if test="${loginInfo.m_type == 2 }">
-										<a class="dropdown-item drdn-item" href="${contextPath}/pointMapper/pointManagement">포인트 점수 : <span>${loginInfo.point }</span>점</a>
+										<a class="dropdown-item drdn-item" href="${contextPath}/pointMapper/pointManagement?m_id=${loginInfo.m_id}">포인트 점수 : <span>${loginInfo.point }</span>점</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/myInfo?m_id=${loginInfo.m_id}">마이페이지</a>
 										<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsRegister?m_id=${loginInfo.m_id}">공고 등록</a>

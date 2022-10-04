@@ -77,6 +77,14 @@ public class EmployerController {
 		return service.myInfoUpdate(employerEntity);
 	}
 	
+//	회원 탈퇴	
+	@PostMapping(value="employerMapper/r_signOut")
+	public String r_signOut(@RequestParam("m_id")String m_id, HttpSession session) throws Exception{
+		service.signOut(m_id);
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 //	공고 등록
 	@GetMapping(value="employerMapper/adsRegister")
 	public String adsRegister(@RequestParam("m_id")String m_id, Model model) throws Exception {
@@ -335,6 +343,9 @@ public class EmployerController {
 		// 직종 목록 받아오기
 		List<JobCodeDTO> jobList = service.jobList();
 		model.addAttribute("jobList", jobList);
+		
+		JobCodeDTO jobName = jobList.get(shopInfo.getJ_code()-1);
+		model.addAttribute("jobName", jobName);
 		
 		return "employer/shop/shopInfo";
 	}

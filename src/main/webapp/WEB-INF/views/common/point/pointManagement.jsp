@@ -38,9 +38,9 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="pointManagement">포인트</a></li>
-													<li><a href="pointEarned">포인트 적립 내역</a></li>
-													<li><a href="pointDeducted">포인트 차감 내역</a></li>											
+													<li><a class="active" href="pointManagement?m_id=${loginInfo.m_id}">포인트</a></li>
+													<li><a href="pointEarned?m_id=${loginInfo.m_id}">포인트 적립 내역</a></li>
+													<li><a href="pointDeducted?m_id=${loginInfo.m_id}">포인트 차감 내역</a></li>											
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -64,11 +64,11 @@
 															<div
 																class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
 																<button type="button" id="pointUse" name="pointUse" 
-																	onclick="location.href='${contextPath}/pointMapper/pointUse'"
+																	onclick="location.href='${contextPath}/pointMapper/pointUse?m_id=${loginInfo.m_id}'"
 																	class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트
 																	사용</button>
 																<button type="button" id="pointAdd" name="pointAdd" 
-																	onclick="location.href='${contextPath}/pointMapper/pointAdd'" 
+																	onclick="location.href='${contextPath}/pointMapper/pointAdd?m_id=${loginInfo.m_id}'" 
 																	class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트
 																	충전</button>
 																<button

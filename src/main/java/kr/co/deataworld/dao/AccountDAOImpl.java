@@ -36,6 +36,7 @@ public class AccountDAOImpl implements AccountDAO{
 	public int register(MemberDTO member) {
 		// TODO Auto-generated method stub
 		sql.insert(nameSpace + ".register", member);
+		sql.insert(nameSpace + ".addEarnedPoint", member);
 		return sql.insert(nameSpace + ".registerPoint", member);
 	}
 	

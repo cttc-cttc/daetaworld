@@ -60,7 +60,7 @@
 																		<div class="single-input mb-15">
 																			<label for="s_name">가게 이름 <span>*</span></label> <input
 																				type="text" name="s_name" id="s_name"
-																				placeholder="이름을 입력하세요" />
+																				placeholder="이름을 입력하세요" />																				
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
@@ -91,6 +91,28 @@
 																			<label for="s_intro">가게 소개 <span>*</span></label><br>
 																			<textarea name="s_intro" id="s_intro" rows="3"
 																				placeholder="가게 소개를 해보세요"></textarea>
+																			<label for="j_code">직종 선택<span>*</span></label>
+																			<table>
+																				<tr>
+																					<td>
+																						<button class="btn btn-secondary dropdown-toggle"
+																							id="method_status" type="button"
+																							data-toggle="dropdown" aria-haspopup="true"
+																							aria-expanded="false" style="background-color:white; color:black;">직종 선택</button>
+																						<ul id="method_type" class="dropdown-menu"
+																							role="menu" aria-labelledby="searchType">
+																							<li role="presentation">
+																								<c:forEach var="list" items="${jobList }">
+																									<a class="dropdown-item"
+																										onclick="area(${list.j_code })">${list.j_type2 }</a>
+																								</c:forEach>
+																							</li>
+																						</ul>
+																						<input type="hidden" id="j_code" name="j_code"
+																							value="${list.j_type2 }" readonly="readonly">
+																					</td>
+																				</tr>
+																			</table>	
 																		</div>
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
@@ -124,33 +146,8 @@
 					                                                       <input type="text" id="s_tag5" name ="s_tag5"
 					                                                          value="${shopInfo.s_tag5 }" maxlength="6">
 					                                                    </div>
-					                                                </div>																
-																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
-																		<div class="single-input mb-25">
-																			<label for="j_code">직종 선택<span>*</span></label>
-																			<table>
-																			<tr>																				
-																				<td>
-																					<div class="dropdown">
-																						<button class="btn btn-secondary dropdown-toggle"
-																							type="button" id="dropdownMenuButton"
-																							data-toggle="dropdown" aria-haspopup="true"
-																							aria-expanded="false">직종을 선택해주세요</button>
-																						<div class="dropdown-menu"
-																							aria-labelledby="dropdownMenuButton">
-																							<c:forEach var="list" items="${jobList }">
-																								<a class="dropdown-item" onclick="area(${list.j_code })">${list.j_type2 }</a>																								
-																							</c:forEach>																							
-																						</div>
-																					</div> 
-																					<input type="text" id="j_code" name="j_code" value="${list.j_type2 }" readonly="readonly">
-																				</td>
-																			</tr>
-																			</table>	
-																		</div>																		
-																		<!-- Single Input End -->
-																	</div>
+					                                                </div>												
+																	
 																	<input type="hidden" id="m_id" name="m_id" value="${loginInfo.m_id}">
 																																																														
 																</div>
@@ -210,8 +207,8 @@
 	    });
 	}
 	
-	function area(code){		
-		$('#j_code').val(code);
+	function area(code){
+		$('#j_code').val(code);		
 	}
 	</script>
 	
@@ -275,6 +272,13 @@
 			}
 		}
 	}
+		
+	$('#method_type li > a').on('click', function () {
+	    $('#method_status').text($(this).text());
+		httpMethod = $(this).attr('value');
+		console.log('선택된 메소드: ' + httpMethod);
+	});	
+		
 	</script>
 	
 </body>

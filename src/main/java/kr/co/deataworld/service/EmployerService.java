@@ -15,6 +15,9 @@ public interface EmployerService {
 //	내 정보수정
 	public int myInfoUpdate(MemberDTO employerEntity) throws Exception; 
 	
+//	회원탈퇴
+	public int signOut(String m_id) throws Exception;
+	
 //	공고 등록
 	public int adsRegister(Map<String, Object> map) throws Exception;
 	

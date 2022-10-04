@@ -18,6 +18,9 @@ public interface EmployerDAO {
 //	공고 등록
 	public int adsRegister(Map<String, Object> map) throws Exception;
 	
+//	회원탈퇴
+	public int signOut(String m_id) throws Exception;
+	
 //	주변 구직자 확인 전 가게 목록
 	public List<Map<String, Object>> checkEmployees(String m_id) throws Exception;
 	

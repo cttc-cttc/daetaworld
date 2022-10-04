@@ -28,6 +28,13 @@ public class EmployerDAOImpl implements EmployerDAO{
 	}
 	
 	@Override
+	public int signOut(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".signOutMember", m_id);
+		return sqlSession.update(nameSpace + ".signOutAds", m_id);
+	}
+	
+	@Override
 	public int adsRegister(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(nameSpace + ".adsRegister", map);
@@ -188,10 +195,6 @@ public class EmployerDAOImpl implements EmployerDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.update(nameSpace + ".shopDelete", s_number);
 	}
-
-
-
-
 
 
 

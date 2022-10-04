@@ -76,9 +76,11 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="business_license">사업자 등록증<span>*</span></label><input
-																				type="file" id="license" name="license">
+																			<label for="business_license">사업자 등록증<span>*</span></label>
+																			<input type="file" id="license" name="license">
 																		</div>
+																		<p>등록된 사업자 등록증:</p>
+																			<img src="${contextPath }/displayLicense?fileName=${shopInfo.business_license}" style="width: 120px;">							
 																		<!-- Single Input End -->
 																	</div>
 
@@ -87,6 +89,29 @@
 																		<div class="single-input mb-15">
 																			<label for="s_intro">가게 소개 <span>*</span></label><br>
 																			<textarea name="s_intro" id="s_intro" rows="3">${shopInfo.s_intro }</textarea>
+																			<label for="j_code">직종 선택<span>*</span></label>
+																			<table>
+																				<tr>
+																					<td>
+																						<button class="btn btn-secondary dropdown-toggle"
+																							id="method_status" type="button"
+																							data-toggle="dropdown" aria-haspopup="true"
+																							aria-expanded="false" style="background-color:white; color:black;">
+																							${jobName.j_type2 }</button>
+																						<ul id="method_type" class="dropdown-menu"
+																							role="menu" aria-labelledby="searchType">
+																							<li role="presentation">
+																								<c:forEach var="list" items="${jobList }">
+																									<a class="dropdown-item"
+																										onclick="area(${list.j_code })">${list.j_type2 }</a>
+																								</c:forEach>
+																							</li>
+																						</ul>
+																						<input type="hidden" id="j_code" name="j_code"
+																							value="${list.j_type2 }" readonly="readonly">
+																					</td>
+																				</tr>
+																			</table>
 																		</div>
 																	</div>
 																	
@@ -135,33 +160,7 @@
 																			<input type="text" id="s_tag5" name ="s_tag5"
 																				value="${shopInfo.s_tag5 }">
 																		</div>
-																	</div>
-																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-																		<!-- Single Input Start -->
-																		<div class="single-input mb-25">
-																			<label for="j_code">직종 선택<span>*</span></label>
-																			<table>
-																			<tr>																				
-																				<td>
-																					<div class="dropdown">
-																						<button class="btn btn-secondary dropdown-toggle"
-																							type="button" id="dropdownMenuButton"
-																							data-toggle="dropdown" aria-haspopup="true"
-																							aria-expanded="false">직종을 선택해주세요</button>
-																						<div class="dropdown-menu"
-																							aria-labelledby="dropdownMenuButton">
-																							<c:forEach var="list" items="${jobList }">
-																								<a class="dropdown-item" onclick="area(${list.j_code })">${list.j_type2 }</a>																								
-																							</c:forEach>																							
-																						</div>
-																					</div> 
-																					<input type="text" id="j_code" name="j_code" value="${list.j_type2 }" readonly="readonly">
-																				</td>
-																			</tr>
-																			</table>	
-																		</div>																		
-																		<!-- Single Input End -->
-																	</div>
+																	</div>																	
 																	<input type="hidden" id="s_number" name="s_number" value="${shopInfo.s_number }">
 																	<input type="hidden" id="m_id" name="m_id" value="${shopInfo.m_id }">
 																	<input type="hidden" id="pre_license" name="pre_license" value="${shopInfo.business_license }">
@@ -277,6 +276,11 @@
 		}
 	}		
 	
+	$('#method_type li > a').on('click', function () {
+	    $('#method_status').text($(this).text());
+		httpMethod = $(this).attr('value');
+		console.log('선택된 메소드: ' + httpMethod);
+	});	
 	</script>
 	
 </body>

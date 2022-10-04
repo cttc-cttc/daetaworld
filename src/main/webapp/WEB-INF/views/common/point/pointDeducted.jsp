@@ -38,9 +38,9 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="pointManagement">포인트</a></li>
-													<li><a href="pointEarned">포인트 적립 내역</a></li>
-													<li><a class="active" href="pointDeducted">포인트 차감 내역</a></li>											
+													<li><a href="pointManagement?m_id=${loginInfo.m_id}">포인트</a></li>
+													<li><a href="pointEarned?m_id=${loginInfo.m_id}">포인트 적립 내역</a></li>
+													<li><a class="active" href="pointDeducted?m_id=${loginInfo.m_id}">포인트 차감 내역</a></li>											
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -49,14 +49,12 @@
 														<!-- Single Funfact Start -->
 														<div class="row mb-30">														
 															<table class="table table-striped">
-																<thead>
-																	<th>번호</th>
+																<thead>																	
 																	<th>차감된 포인트</th>
 																	<th>차감된 날짜</th>
 																</thead>
 															<c:forEach var="deducted" items="${deductedPoint}">
-															<tr>
-																<td>${deducted.d_number }</a></td>
+															<tr>																
 																<td>${deducted.d_point }</td>
 																<td>${deducted.d_date }</td>
 															</tr>
@@ -70,11 +68,11 @@
 															<div
 																class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
 																<button type="button" id="pointUse" name="pointUse" 
-																	onclick="location.href='${contextPath}/pointMapper/pointUse'"
+																	onclick="location.href='${contextPath}/pointMapper/pointUse?m_id=${loginInfo.m_id}'"
 																	class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트
 																	사용</button>
 																<button type="button" id="pointAdd" name="pointAdd" 
-																	onclick="location.href='${contextPath}/pointMapper/pointAdd'" 
+																	onclick="location.href='${contextPath}/pointMapper/pointAdd?m_id=${loginInfo.m_id}'" 
 																	class="ht-btn theme-btn theme-btn-two mb-xs-20">포인트
 																	충전</button>
 																<button
