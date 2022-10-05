@@ -93,10 +93,16 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="a_urgency">급구<span>*</span></label>																				 																			
-																				<input type="checkbox" name="a_urgency" value="1" id="input_check">											
-																				<input type="hidden" name="a_urgency" value="0" id="input_check_hidden"/>
-																													
+																			<label for="a_urgency">급구<span>*</span></label>	
+																			<div>	
+																				<c:set var="urgency" value="${detail.a_urgency }"></c:set>																		 																			
+																				<c:if test="${urgency == 0 }">
+																					<c:out value="일반 공고"></c:out>
+																				</c:if>
+																				<c:if test="${urgency == 1 }">
+																					<c:out value="급구 공고"></c:out>
+																				</c:if>
+																			</div>										
 																		</div>
 																		<!-- Single Input End -->
 																	</div>
@@ -225,12 +231,6 @@
 			});
 		})
 	</script>	
-	
-	<script type="text/javascript">
-		if(document.getElementById("input_check").checked) {
-		   document.getElementById("input_check_hidden").disabled = true;		    
-		}
-	</script>
 	
 	<script type="text/javascript">
 		function auChk(){

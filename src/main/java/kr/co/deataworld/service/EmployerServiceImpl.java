@@ -36,6 +36,12 @@ public class EmployerServiceImpl implements EmployerService{
 		return dao.adsRegister(map);
 	}
 	
+	@Override
+	public int pointChk(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.pointChk(m_id);
+	}
+	
 //	내 정보 수정
 	@Override
 	public int myInfoUpdate(MemberDTO employerEntity) throws Exception {
@@ -188,6 +194,8 @@ public class EmployerServiceImpl implements EmployerService{
 		// TODO Auto-generated method stub
 		return dao.shopDelete(s_number);
 	}
+
+
 
 
 

@@ -43,7 +43,7 @@
 												<ul class="nav">
 													<li><a class="active" href="adsRegister?m_id=${loginInfo.m_id}">공고 등록</a></li>
 													<li><a href="countryRegister?m_id=${loginInfo.m_id}">농어촌 등록</a></li>
-													<li><a href="checkEmployees?m_id=${loginInfo.m_id}">주변노예 확인</a></li>
+													<li><a href="checkEmployees?m_id=${loginInfo.m_id}">주변 구직자 확인</a></li>
 												</ul>														
 											</div>
 											<div class="profile-applications-main-block">
@@ -110,6 +110,7 @@
 																		<!-- Single Input End -->
 																	</div>
 																	<input type="hidden" id="m_id" name="m_id" value="${m_id }">																																		
+																	<input type="hidden" id="point" name="point" value="${point }">																																		
 																</div>
 															</div>
 														</div>
@@ -209,13 +210,13 @@
 	</script>
 	
 	<script type="text/javascript">
-		if(document.getElementById("input_check").checked) {
+		if(document.getElementById("input_check").checked) {			
 		    document.getElementById("input_check_hidden").disabled = true;
 		}
 	</script>	
 	
 	<script type="text/javascript">
-		function valChk(){
+		function valChk(){			
 			if(!checkDate(ar.a_date.value)){
 				return false;
 			}else if(!checkTime(ar.a_time.value)){
@@ -225,8 +226,19 @@
 			}else if(!checkNeed(ar.a_need.value)){
 				return false;
 			}
-			alert("공고가 등록되었습니다");
-			return true;
+			
+			if(document.getElementById("input_check").checked){
+				if(ar.point.value < 500){
+					alert("보유하신 포인트가 500포인트 미만입니다. 충전 후 급구 등록해주세요.");
+					return false;
+				}
+				alert("급구 공고로 등록됩니다. 500 포인트가 차감됩니다.");
+				return true;
+			}else {
+				alert("일반 공고로 등록됩니다.");
+				return true;
+			}
+			
 		}
 		
 		function checkExist(value, dataName) {        
@@ -289,8 +301,7 @@
 				ar.a_need.value = "";            
 				ar.a_need.focus();            
 				return false;        
-			}
-			
+			}			
 			return true;
 		}
 		
