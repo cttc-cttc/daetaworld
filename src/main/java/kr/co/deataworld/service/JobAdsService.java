@@ -36,7 +36,8 @@ public interface JobAdsService {
 	// 직업추천 전체 구인목록검색
 	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map);
 
-	
+	// 로그인 상태 아닐때 구인상세 보기
+	public Map<String, Object> nonMember(int a_number);
 
 	// 구인목록(일반구인->상세보기)
 	public JobAdsDTO listAllDetail(Map<String, Object> chk);

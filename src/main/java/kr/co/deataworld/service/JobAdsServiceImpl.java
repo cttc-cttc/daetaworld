@@ -31,7 +31,10 @@ public class JobAdsServiceImpl implements JobAdsService {
 		return dao.mainCommonList();
 	}
 
-	
+	@Override //로그인 상태 아닐때 구인상세 페이지
+	public Map<String, Object> nonMember(int a_number) {
+		return dao.nonMember(a_number);
+	}
 
 	@Override
 	public JobAdsDTO listAllDetail(Map<String, Object> chk) {
@@ -112,6 +115,8 @@ public class JobAdsServiceImpl implements JobAdsService {
 		// TODO Auto-generated method stub
 		return dao.listJobAdsSearch(map);
 	}
+
+	
 
 
 	

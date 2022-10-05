@@ -33,7 +33,10 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 		return sql.selectList(NAMESPACE + ".main_common_ads");
 	}
 
-	
+	@Override // 로그인 상태 아닐때 구인공고 보기
+	public Map<String, Object> nonMember(int a_number) {
+		return sql.selectOne(NAMESPACE + ".nonMember", a_number);
+	}
 
 	@Override
 	public JobAdsDTO listAllDetail(Map<String, Object> chk) {
@@ -116,6 +119,8 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 		// TODO Auto-generated method stub
 		return sql.selectList(NAMESPACE +".listJobAdsSearch", map);
 	}
+
+	
 	
 	
 }

@@ -135,9 +135,28 @@
 
                   </tr>
                </thead>
+				
+               
+			
                <c:forEach var="jobsend" items="${list }">
                <tbody>
                   <tr>
+                  
+                  	<!-- 로그인 상태 아닐때 -->
+                  	<c:if test="${loginInfo.m_id == null}">
+                     <td class="tc"><a
+                        href="nonMember?a_number=${jobsend.a_number}">
+                            ${jobsend.s_name}</a></td>
+                     <td class="tc">${jobsend.a_date}</td>
+                     <td class="tc">${jobsend.a_time}</td>
+                     <td class="tc">${jobsend.a_wage}</td>
+                     <td class="tc">${jobsend.s_address1 }</td>
+                     <td class="tc">${jobsend.a_need }</td>
+                     <td></td>
+                    </c:if>       
+                            
+                  	<!-- 로그인 상태 일때 -->
+                  	<c:if test="${loginInfo.m_id != null}">
                      <td class="tc"><a
                         href="listAllDetail?s_name=${jobsend.s_name}&m_id=${loginInfo.m_id}&s_number=${jobsend.s_number}&a_number=${jobsend.a_number}">
                             ${jobsend.s_name}</a></td>
@@ -146,10 +165,15 @@
                      <td class="tc">${jobsend.a_wage}</td>
                      <td class="tc">${jobsend.s_address1 }</td>
                      <td class="tc">${jobsend.a_need }</td>
-                     <td></td>
+                     <td></td>       
+                    </c:if> 
+                          
                   </tr>
                    </tbody>
                </c:forEach>
+               <!-- 로그인 상태 일때 end-->
+
+
             </table>
             
             <!-- 붙여 넣기시작 -->
