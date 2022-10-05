@@ -197,14 +197,31 @@
 								
 							</ul>
 						</div>
+						
+						<c:if test="${map.m_type == 1 || loginInfo.m_id == null}">
 						<p>
 							<strong>어떻게 지원하면 될까요?</strong>
 						</p>
 						<p>바로 아래의 '지원하기' 버튼을 눌러주세요~!</p>
+						</c:if>
+						
 						<div class="review-area pb-60 pb-sm-30 pb-xs-30">
 							<div class="review-container">
 								
-								<!-- 구직 신청하기 -->
+								<c:choose>
+									<c:when test="${map.m_type == 1 && result == 0 || loginInfo.m_id == null}">
+										<a class="ht-btn text-center" type="button"
+										onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}&employer_id=${map.m_id }&s_name=${map.s_name }'">지원하기<i
+										class="ml-10 mr-0 fa fa-paper-plane"></i></a>										
+									</c:when>
+									<c:when test="${map.m_type == 1 && result == 1}">
+										<a class="ht-btn text-center" type="text">이미 지원한 공고입니다<i
+										class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+									</c:when>
+								</c:choose>
+								
+								
+								<%-- <!-- 구직 신청하기 -->
 								<c:if test="${result == 0}">
 									<a class="ht-btn text-center" type="button"
 										onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}&employer_id=${map.m_id }&s_name=${map.s_name }'">지원하기<i
@@ -215,7 +232,7 @@
 								<c:if test="${result == 1}">
 									<a class="ht-btn text-center" type="text">이미 지원한 공고입니다<i
 										class="ml-10 mr-0 fa fa-paper-plane"></i></a>
-								</c:if>
+								</c:if> --%>
 
 							</div>
 						</div>
