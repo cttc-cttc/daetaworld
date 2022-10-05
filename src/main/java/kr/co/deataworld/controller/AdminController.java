@@ -81,12 +81,7 @@ public class AdminController {
 		}
 		
 		PointDTO point = pService.point(id);
-		List<EarnedPointDTO> earnedPoint = pService.earnedPoint(id);
-		List<DeductedPointDTO> deductedPoint = pService.deductedPoint(id);
-		
 		model.addAttribute("point", point);
-		model.addAttribute("earnedPoint", earnedPoint);
-		model.addAttribute("deductedPoint", deductedPoint);
 		return "admin/user_point";
 	}
 	

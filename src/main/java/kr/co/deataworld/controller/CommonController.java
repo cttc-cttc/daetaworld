@@ -35,6 +35,7 @@ import kr.co.deataworld.dto.ReviewDTO;
 
 import kr.co.deataworld.service.PointService;
 import kr.co.deataworld.service.ReviewService;
+import kr.co.deataworld.util.PageProcess;
 /*
  * 리뷰, 포인트 처리 컨트롤러
  */
@@ -65,6 +66,35 @@ public class CommonController {
 		model.addAttribute("earnedPoint", earnedPoint);
 		return "common/point/pointEarned";
 	}
+//	포인트 적립 내역(페이징 처리 ajax)
+	@ResponseBody
+	@GetMapping(value="pointMapper/pEarnedAjax")
+	public Map<String, Object> pEarnedAjax(String m_id, int page) {
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		int ePointCnt = pService.earnedPointCnt(m_id);
+		if(ePointCnt == 0) {
+			result.put("emptyMsg", "적립 내역이 없습니다.");
+			return result;
+		}
+		
+		PageProcess pp = new PageProcess();
+		pp.setCurrPage(page); // 현재 페이지
+		pp.setPagePerList(10); // 한 페이지에 보여줄 적립 포인트 내역 수
+		pp.setPagePerNavi(10); // 페이지 네비게이터에 표시할 페이지 수
+		pp.setBoardCnt(ePointCnt); // 전체 적립 포인트 내역 수
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", m_id);
+		map.put("pp", pp);
+		
+		List<EarnedPointDTO> list = pService.earnedPointPage(map);
+		result.put("earnedPointList", list);
+		result.put("pp", pp);
+		result.put("pageRange", pp.calcPageRange());
+		result.put("lastPage", pp.calcLastPage());
+		return result;
+	}
 
 //	포인트 차감 내역
 	@GetMapping(value="pointMapper/pointDeducted")
@@ -73,6 +103,35 @@ public class CommonController {
 		List<DeductedPointDTO> deductedPoint = pService.deductedPoint(id);
 		model.addAttribute("deductedPoint", deductedPoint);
 		return "common/point/pointDeducted";
+	}
+//	포인트 차감 내역(페이징 처리 ajax)
+	@ResponseBody
+	@GetMapping(value="pointMapper/pDeductedAjax")
+	public Map<String, Object> pDeductedAjax(String m_id, int page) {
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		int dPointCnt = pService.deductedPointCnt(m_id);
+		if(dPointCnt == 0) {
+			result.put("emptyMsg", "차감 내역이 없습니다.");
+			return result;
+		}
+		
+		PageProcess pp = new PageProcess();
+		pp.setCurrPage(page); // 현재 페이지
+		pp.setPagePerList(10); // 한 페이지에 보여줄 차감 포인트 내역 수
+		pp.setPagePerNavi(10); // 페이지 네비게이터에 표시할 페이지 수
+		pp.setBoardCnt(dPointCnt); // 전체 차감 포인트 내역 수
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", m_id);
+		map.put("pp", pp);
+		
+		List<DeductedPointDTO> list = pService.deductedPointPage(map);
+		result.put("deductedPointList", list);
+		result.put("pp", pp);
+		result.put("pageRange", pp.calcPageRange());
+		result.put("lastPage", pp.calcLastPage());
+		return result;
 	}
 	
 //	포인트 사용 페이지

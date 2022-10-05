@@ -22,6 +22,23 @@
 		where m_id = #{id}	
 		order by e_date desc
 	</select>
+	<!-- 특정 회원의 적립 포인트 전체 수 -->
+	<select id="earnedPointCnt" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from earned_point
+		where m_id = #{id}
+	</select>
+	<!-- 적립 포인트 페이징 처리 -->
+	<select id="earnedPointPage" parameterType="java.util.Map" resultType="EarnedPointDTO">
+		select
+			e_number,
+			e_point,
+			date_format(e_date, '%Y-%m-%d %H시%i분%S초') as e_date,
+			m_id
+		from earned_point
+		where m_id = #{id}	
+		order by e_number desc
+		limit #{pp.pageStart}, #{pp.pagePerList}
+	</select>
 	
 	<!-- 차감된 포인트 확인 -->
 	<select id="deductedPoint" parameterType="String" resultType="DeductedPointDTO">
@@ -33,6 +50,23 @@
 		from deducted_point
 		where m_id = #{id}
 		order by d_date desc
+	</select>
+	<!-- 특정 회원의 차감 포인트 전체 수 -->
+	<select id="deductedPointCnt" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from deducted_point
+		where m_id = #{id}
+	</select>
+	<!-- 차감 포인트 페이징 처리 -->
+	<select id="deductedPointPage" parameterType="java.util.Map" resultType="DeductedPointDTO">
+		select
+			d_number,
+			d_point,
+			date_format(d_date, '%Y-%m-%d %H시%i분%S초') as d_date,
+			m_id
+		from deducted_point
+		where m_id = #{id}
+		order by d_number desc
+		limit #{pp.pageStart}, #{pp.pagePerList}
 	</select>
 	
 	<!-- 포인트 인출 및 차감 내역에 추가 -->

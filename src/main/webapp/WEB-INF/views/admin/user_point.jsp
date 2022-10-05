@@ -62,24 +62,8 @@
 																		<div class="container faq-wrapper padding-zero">
 																			<div class="row">
 																				<div class="col-12">
-																					<div class="cart-table table-responsive mb-30">
-																						<table class="table">
-																							<thead>
-																								<tr>
-																									<th class="pro-price">적립 포인트</th>
-																									<th class="pro-title">적립 날짜</th>
-																								</tr>
-																							</thead>
-																							<tbody>
-																								<c:forEach var="ePoint" items="${earnedPoint }">
-																								<tr>
-																									<td class="pro-price"><span>${ePoint.e_point }</span></td>
-																									<td class="pro-price"><span>${ePoint.e_date }</span></td>
-																								</tr>
-																								</c:forEach>
-																							</tbody>
-																						</table>
-																					</div>
+																					<div class="cart-table table-responsive mb-30" id="epArea"></div>
+																					<ul class="page-pagination justify-content-center" id="epPageNavi"></ul>
 																				</div>
 																			</div>
 																		</div>
@@ -93,24 +77,8 @@
 																		<div class="container faq-wrapper padding-zero">
 																			<div class="row">
 																				<div class="col-12">
-																					<div class="cart-table table-responsive mb-30">
-																						<table class="table">
-																							<thead>
-																								<tr>
-																									<th class="pro-price">차감 포인트</th>
-																									<th class="pro-title">차감 날짜</th>
-																								</tr>
-																							</thead>
-																							<tbody>
-																								<c:forEach var="dPoint" items="${deductedPoint }">
-																								<tr>
-																									<td class="pro-price"><span>${dPoint.d_point }</span></td>
-																									<td class="pro-price"><span>${dPoint.d_date }</span></td>
-																								</tr>
-																								</c:forEach>
-																							</tbody>
-																						</table>
-																					</div>
+																					<div class="cart-table table-responsive mb-30" id="dpArea"></div>
+																					<ul class="page-pagination justify-content-center" id="dpPageNavi"></ul>
 																				</div>
 																			</div>
 																		</div>
@@ -138,5 +106,135 @@
 	</div>
 	<!-- 문서 끝에 js를 배치하여 페이지 로딩 속도 향상 -->
 	<%@ include file="../include/plugin.jsp" %>
+	<script>
+		window.addEventListener('load', function() {
+			const epAreaTable = `
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="pro-price">적립 포인트</th>
+							<th class="pro-title">적립 날짜</th>
+						</tr>
+					</thead>
+					<tbody id="earned-point-area"></tbody>
+				</table>
+			`;
+			$('#epArea').append(epAreaTable);
+			
+			const dpAreaTable = `
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="pro-price">차감 포인트</th>
+							<th class="pro-title">차감 날짜</th>
+						</tr>
+					</thead>
+					<tbody id="deducted-point-area"></tbody>
+				</table>
+			`;
+			$('#dpArea').append(dpAreaTable);
+			
+			// 페이지 첫 로드 시 각각 1페이지로 출력
+			earnedPoint(1);
+			deductedPoint(1);
+		});
+		
+//		적립 포인트 페이지 처리
+		function earnedPoint(page) {
+			$.ajax({
+				url: '${contextPath}/pointMapper/pEarnedAjax',
+				data: {
+					'm_id': '${pointInfo.m_id}',
+					'page': page
+				},
+				dataType: 'json',
+				type: 'get',
+				success: function(res) {
+					// 적립 포인트가 없으면 메시지 표시
+					if(typeof res.emptyMsg != 'undefined') {
+						$('#epArea').html('<p style="margin-top: 1rem;">'+ res.emptyMsg +'</p>');
+						
+					// 적립 포인트가 있으면 목록 표시
+					} else {
+						pointList(res.earnedPointList, 'e', 'earned-point-area');
+						pageNavi(res.pp, res.pageRange, res.lastPage, 'earnedPoint', 'epPageNavi');
+					}
+				},
+				error: function(res) {
+					console.log('적립포인트내역 실패');
+				}
+			});
+		}
+		
+//		차감 포인트 페이지 처리
+		function deductedPoint(page) {
+			$.ajax({
+				url: '${contextPath}/pointMapper/pDeductedAjax',
+				data: {
+					'm_id': '${pointInfo.m_id}',
+					'page': page
+				},
+				dataType: 'json',
+				type: 'get',
+				success: function(res) {
+					// 차감 포인트가 없으면 메시지 표시
+					if(typeof res.emptyMsg != 'undefined') {
+						$('#dpArea').html('<p style="margin-top: 1rem;">'+ res.emptyMsg +'</p>');
+						
+					// 차감 포인트가 있으면 목록 표시
+					} else {
+						pointList(res.deductedPointList, 'd', 'deducted-point-area');
+						pageNavi(res.pp, res.pageRange, res.lastPage, 'deductedPoint', 'dpPageNavi');
+					}
+				},
+				error: function(res) {
+					console.log('차감포인트내역 실패');
+				}
+			});
+		}
+		
+//		적립/차감 포인트 내역 출력
+		function pointList(pList, pType, listAreaId) {
+			let htmls = '';
+			
+			Array.from(pList).forEach(point => {
+				htmls +=
+				'<tr>'+
+					'<td class="pro-price"><span>'+ (pType == 'e' ? '+'+ point.e_point : '-'+ point.d_point) +'</span></td>'+
+					'<td class="pro-price"><span>'+ (pType == 'e' ? point.e_date : point.d_date) +'</span></td>'+
+				'</tr>';
+			});
+			
+			$('#'+ listAreaId).html(htmls);
+		}
+		
+//		적립/차감 포인트 페이지 네비게이터 출력
+		function pageNavi(pp, pageRange, lastPage, ajaxMethod, pageNaviId) {
+			let htmls = '';
+			
+			// 이전 버튼 활성/비활성
+			if(pp.currPage != 1) {
+				htmls += '<li><a href="javascript:'+ ajaxMethod +'('+ Number(pp.currPage-1) +')"><i class="fa fa-angle-left"></i></a></li>';
+			} else {
+				htmls += '<li><a class="disabled-btn"><i class="fa fa-angle-left"></i></a></li>';
+			}
+			// 페이지 버튼 활성/비활성
+			Array.from(pageRange).forEach(pageNaviNum => {
+				if(pageNaviNum == pp.currPage) {
+					htmls += '<li class="active"><a class="current-btn">'+ pageNaviNum +'</a></li>';
+				} else {
+					htmls += '<li><a href="javascript:'+ ajaxMethod +'('+ pageNaviNum +')">'+ pageNaviNum +'</a></li>';
+				}
+			});
+			// 다음 버튼 활성/비활성
+			if(pp.currPage != lastPage) {
+				htmls += '<li><a href="javascript:'+ ajaxMethod +'('+ Number(pp.currPage+1) +')"><i class="fa fa-angle-right"></i></a></li>';
+			} else {
+				htmls += '<li><a class="disabled-btn"><i class="fa fa-angle-right"></i></a></li>';
+			}
+			
+			$('#'+ pageNaviId).html(htmls);
+		}
+	</script>
 </body>
 </html>
