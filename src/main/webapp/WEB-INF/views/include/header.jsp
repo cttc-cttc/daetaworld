@@ -111,8 +111,10 @@
 </div>
 <script>
 	window.addEventListener('load', function() {
-		notificationCnt();
-		notificationList();
+		if('${loginInfo}' != '') {
+			notificationCnt();
+			notificationList();
+		}
 	});
 	
 	// 페이지 로드 시 로그인 유저의 알림목록을 가져옴
