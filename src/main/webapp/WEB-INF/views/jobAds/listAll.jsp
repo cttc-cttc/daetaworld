@@ -123,8 +123,14 @@
                </colgroup>
 
                <thead>
-
-                  <tr>
+				<!-- 상단필터s -->
+				
+				<button class="btn btn-outline-dark float-right" >등록일순</button>
+				<button class="btn btn-outline-dark float-right" >시급순</button>
+				<button class="btn btn-outline-dark float-right" onclick = "loadList()">전체목록</button>
+				<div id = "ajaxList"></div>
+				<!-- 상단필터e -->
+                  <tr id = "title">
                      <th>가게이름</th>
                      <th>날짜</th>
                      <th>시간</th>
@@ -137,7 +143,7 @@
                </thead>
                <c:forEach var="jobsend" items="${list }">
                <tbody>
-                  <tr>
+                  <tr class = "item">
                      <td class="tc"><a
                         href="listAllDetail?s_name=${jobsend.s_name}&m_id=${loginInfo.m_id}&s_number=${jobsend.s_number}&a_number=${jobsend.a_number}">
                             ${jobsend.s_name}</a></td>
@@ -157,7 +163,7 @@
 			<!-- 붙여넣기 끝 -->
          </div>
          <table class="table table-striped">
-            <tr>
+            <tr class = "item2">
                <td>
                   <ul>
                      <c:if test="${pageMaker.prev }">
@@ -713,7 +719,54 @@
       }	
    </script>
    <!-- ajax 사용end -->
-   <!-- 구인 상단 검색 -->
+   <!-- 구인 상단 필터s -->
+   <script type="text/javascript">
+   		function loadList(){
+   			$.ajax({
+   				url:'${contextPath}/jobAds/findAll',
+   				type:'post',
+   				dataType: 'json',
+   				success: function(result){
+   					console.log(result);
+   					ajaxList(result);
+   					$('#title').remove();
+   					$('.item').remove();
+   					$('.item2').remove();
+   					
+   				},
+   				error: function(res){
+   					console.log('실패:' +res);
+   				}
+   			});
+   		}
+   		function ajaxList(data){
+   			console.log(data);
+   			var html = "<table class = 'table'>";
+   			html += "<tr>";
+   			html +="<td>가게이름</td>"
+   			html +="<td>날짜</td>"   			
+   			html +="<td>시간</td>"   			
+   			html +="<td>시급</td>"   			
+   			html +="<td>주소</td>"
+   			html +="<td>구인인원</td>"   			
+   			html += "</tr>";
+   			
+   			$.each(data,(index, obj)=>{
+   				html+="<tr>";
+   				html+="<td><a href='listAllDetail?s_name=${obj.s_name}&m_id=${m_id}&s_number=${obj.s_number}&a_number=${obj.a_number}'>"+obj.s_name+"</a></td>";
+   				
+   				html+="<td>"+obj.a_date+"</td>";
+   				html+="<td>"+obj.a_time+"</td>";
+   				html+="<td>"+obj.a_wage+"</td>";
+   				html+="<td>"+obj.s_address1+"</td>";
+   				html+="<td>"+obj.a_need+"</td>";
+   				html+="</tr>";
+   			})
+   			html+="</table>";
+   			$("#ajaxList").html(html);
+   		}
+   </script>
+   <!-- 구인 상단 필터e -->
    
    
 </body>

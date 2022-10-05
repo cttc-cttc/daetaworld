@@ -58,6 +58,7 @@ public interface JobAdsService {
 
 	// 직종 카테고리2 목록
 	public List<Map<String, Object>> getJob2(String j_type1);
-
+//	상단 필터
+	public List<Map<String, Object>> findAll();//전체목록
 	
 }
