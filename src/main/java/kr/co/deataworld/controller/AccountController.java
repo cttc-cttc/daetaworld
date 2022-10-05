@@ -103,41 +103,41 @@ public class AccountController {
 	}
 	
 	//아이디 찾기 
-	@RequestMapping(value="account/findId", method=RequestMethod.POST)
-	public String findId(@RequestParam("m_email")String m_email, Model model, HttpSession session ) throws Exception{
-		logger.info("m_email"+m_email);
-				
-		if(service.findEmCheck(m_email)==0) {
-		model.addAttribute("msg", "입력하신 이메일을 확인해주세요");
-		return "account/findId";
-		}else {
-		model.addAttribute("fid", service.findId(m_email));
-		return "account/rs";
+	@RequestMapping(value = "findId", method = RequestMethod.POST)
+	public String findId(@RequestParam("m_email") String m_email, Model model, HttpSession session) throws Exception {
+		logger.info("m_email: " + m_email);
+
+		if (service.findEmCheck(m_email) == 0) {
+			model.addAttribute("msg", "입력하신 이메일을 확인해주세요");
+			return "account/findId";
+		} else {
+			model.addAttribute("fid", service.findId(m_email));
+			return "account/rs";
 		}
 	}
 	
 	//비밀번호 찾기
-	   @RequestMapping(value="account/findPw", method=RequestMethod.POST)
-	   public String findPw(@RequestParam("m_id")String m_id,@RequestParam("m_email")String m_email, Model model) throws Exception {
-	      logger.info("m_email"+m_email, "m_id"+m_id);
-	      Map<String, Object> map = new HashMap<String, Object>();
-	      map.put("m_id", m_id);
-	      map.put("m_email", m_email);
-	      
-	      if(service.findEmCheck(m_email)==0) {
-	  		model.addAttribute("msg", "입력하신 이메일을 확인해주세요");
-	  		return "account/findPwView";
-	  		}
-	      if(service.findIdCheck(m_id)==0) {
-		  		model.addAttribute("msg", "입력하신 아이디를 확인해주세요");
-		  		return "account/findPwView";
-		  		}else {
-	      
-	      Map<String, Object> findPw = service.findPw(map); 
-	      model.addAttribute("fpw", findPw);
-	      return "account/rs2";
-	   }
-	   }
+	@RequestMapping(value = "findPw", method = RequestMethod.POST)
+	public String findPw(@RequestParam("m_id") String m_id, @RequestParam("m_email") String m_email, Model model)
+			throws Exception {
+		logger.info("m_email: " + m_email + ", m_id: " + m_id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("m_id", m_id);
+		map.put("m_email", m_email);
+
+		if (service.findEmCheck(m_email) == 0) {
+			model.addAttribute("msg", "입력하신 이메일을 확인해주세요");
+			return "account/findPw";
+		}
+		if (service.findIdCheck(m_id) == 0) {
+			model.addAttribute("msg", "입력하신 아이디를 확인해주세요");
+			return "account/findPw";
+		} else {
+			Map<String, Object> findPw = service.findPw(map);
+			model.addAttribute("fpw", findPw);
+			return "account/rs2";
+		}
+	}
 
 			
 //	로그아웃
@@ -177,29 +177,6 @@ public class AccountController {
 		logger.info("pw 찾기 접속");
 		return "account/findPw";
 	}
-	
-	@GetMapping(value = "rs")
-	public String rs() {
-		logger.info("아이디 찾기 결과 접속");
-		return "account/rs";
-	}
-	
-	@GetMapping(value = "rs2")
-	public String rs2() {
-		logger.info("비밀번호 찾기 결과 접속");
-		return "account/rs2";
-	}
-	
-	@GetMapping(value="findIdView")
-	public String findIdView() {
-		return"account/findIdView";
-	}
-	
-	@GetMapping(value="findPwView")
-	public String findPwView() {
-		return"account/findPwView";
-	}
-	
 	
 //	구직자, 구인자 회원가입
 	@PostMapping(value = "register")
