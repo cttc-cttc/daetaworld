@@ -20,7 +20,7 @@
 			m_id
 		from earned_point
 		where m_id = #{id}	
-		order by e_date desc
+		order by e_number desc
 	</select>
 	<!-- 특정 회원의 적립 포인트 전체 수 -->
 	<select id="earnedPointCnt" parameterType="java.lang.String" resultType="java.lang.Integer">
@@ -86,6 +86,7 @@
 		set point = point + #{point}
 		where m_id = #{id}
 	</update>
+	
 	<insert id="pointEarned" parameterType="Map">
 		insert into earned_point (e_point, e_date, m_id) 
 		values (#{point}, now(), #{id})

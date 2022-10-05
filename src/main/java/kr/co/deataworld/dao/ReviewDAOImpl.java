@@ -31,7 +31,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 		  Map<String, Object> map = new HashMap<String, Object>();	  
 	      map.put("id", reviewDTO.getW_writer());
 	      map.put("point", 500);
-	      sqlSession.insert(namespace2 + ".pointAdd", map);
+	      sqlSession.update(namespace2 + ".pointAdd", map);
 	      sqlSession.insert(namespace2 + ".pointEarned", map);
 	      
 	      // 후기 작성 후 상태 변화
