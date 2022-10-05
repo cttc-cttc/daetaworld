@@ -203,7 +203,7 @@
 						<p>바로 아래의 '지원하기' 버튼을 눌러주세요~!</p>
 						<div class="review-area pb-60 pb-sm-30 pb-xs-30">
 							<div class="review-container">
-									
+								
 								<!-- 구직 신청하기 -->
 								<c:if test="${result == 0}">
 									<a class="ht-btn text-center" type="button"

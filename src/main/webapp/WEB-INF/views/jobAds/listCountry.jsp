@@ -128,6 +128,25 @@
 					</thead>
 			<c:forEach var="jobsend" items="${list3 }">
 						<tbody>
+						
+						<!-- 로그인 상태가 아닐때 -->
+						<c:if test="${loginInfo.m_id == null }">
+						<tr>
+							<td class="tc"><a
+								href="nonMember?a_number=${jobsend.a_number}">
+									 ${jobsend.s_name}</a></td>
+							<td class="tc">${jobsend.a_date}</td>
+							<td class="tc">${jobsend.a_time}</td>
+							<td class="tc">${jobsend.a_wage}</td>
+							<td class="tc">${jobsend.s_address1 }</td>
+							<td class="tc">${jobsend.a_need }</td>
+							<td></td>
+						</tr>
+						</c:if>
+
+
+						<!-- 로그인 상태일때 -->
+						<c:if test="${loginInfo.m_id != null }">
 						<tr>
 							<td class="tc"><a
 								href="listAllDetail?s_name=${jobsend.s_name}&m_id=${loginInfo.m_id}&s_number=${jobsend.s_number}&a_number=${jobsend.a_number}">
@@ -139,6 +158,9 @@
 							<td class="tc">${jobsend.a_need }</td>
 							<td></td>
 						</tr>
+						</c:if>
+						
+						
 						</tbody>
 					</c:forEach>
 				</table>

@@ -135,6 +135,18 @@ public class JobAdsController {
 
 		return "jobAds/search/listJobAdsSearch";
 	}
+	
+	
+	// 일반/긴급/농어촌 구인목록 상세 (로그인 상태가 아닐때)
+	@GetMapping(value = "jobAds/nonMember")
+	public String nonMember(@RequestParam("a_number") int a_number, Model model)throws Exception{
+		Map<String, Object> non = service.nonMember(a_number);
+		int result = 0;
+		model.addAttribute("result", result);
+		model.addAttribute("map", non);
+		return "jobAds/listAllDetail";
+	}
+
 
 	// 구인목록 상세(가게번호 누르고 들어갈때)
 	@GetMapping(value = "jobAds/listAllDetail")

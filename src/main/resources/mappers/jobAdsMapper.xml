@@ -99,7 +99,7 @@
 		limit #{pageStart}, #{perPageNum}
 		]]>
 	</select>
-
+	
 	<!-- 급구 구인목록 -->
 	<select id="listUrgency" parameterType="java.util.Map" resultType="Map">
 	<![CDATA[ 
@@ -146,9 +146,23 @@
 		]]>
 		
 	</select>
+	
+	
+	
+	<!-- 일반 구인목록 (로그인 상태 아닐때) -->
+	<select id="nonMember" parameterType="java.lang.Integer" resultType="Map">
+		select * from job_ads j
+		join shop_info s
+		on j.s_number
+		where
+		j.s_number = s.s_number
+		and left(j.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
+		and
+		j.a_number = #{a_number};
+	</select>
+	
 
-
-	<!-- 구인상세 -->
+	<!-- 구인상세 (로그인 상태일때) -->
 	<select id="listDetail" parameterType="Map" resultType="Map">
 		select j.*,s.*
 		from job_ads j, shop_info s
