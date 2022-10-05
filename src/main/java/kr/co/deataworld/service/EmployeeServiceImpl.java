@@ -54,7 +54,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public int resumeDelete(ResumeDTO resumeDTO) throws Exception {
 		return dao.resumeDelete(resumeDTO);
 	}
-
+	
+	@Override //등록된 자소서가 있는지 검색
+	public Map<String, Object> resumeChk(ResumeDTO resumeDTO) throws Exception {
+		return dao.resumeChk(resumeDTO);
+	}
+	
+	@Override //자소서 작성 > 등록된 자소서가 없으면 대표자소서로 설정한다.
+	public int resumeRegister_1(ResumeDTO resumeDTO) throws Exception {
+		return dao.resumeRegister_1(resumeDTO);
+	}
+	
 
 	@Override //자소서 저장 ajax
 	public int resumeRegister(ResumeDTO resumeDTO) throws Exception {
@@ -83,6 +93,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override //대타신청
 	public int jobApply(JobApplyDTO jobapplyDTO) throws Exception {
 		return dao.jobApply(jobapplyDTO);
+	}
+	
+	@Override //대타 신청 전 자소서가 있나 체크
+	public Map<String, Object> introChk(String m_id)throws Exception{
+		return dao.introChk(m_id);
 	}
 
 
@@ -138,6 +153,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public int pinchChk(Map<String, Object> map) throws Exception {
 		return dao.pinchChk(map);
 	}
+
+
+	@Override //공고 신청 후 (구인자는 수락상태) 수락 선택
+	public int apply_o(int ja_number) throws Exception {
+		return dao.apply_o(ja_number);
+	}
+
+
+	@Override //공고 신청 후 (구인자는 수락상태) 거절 선택
+	public int apply_x(int ja_number) throws Exception {
+		return dao.apply_x(ja_number);
+	}
+
+
+
+
+	
 	
 	
 	

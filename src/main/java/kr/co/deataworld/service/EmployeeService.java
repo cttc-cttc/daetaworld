@@ -31,6 +31,12 @@ public interface EmployeeService {
 	//자소서 삭제
 	public int resumeDelete(ResumeDTO resumeDTO)throws Exception;
 	
+	//등록된 자소서가 있는지 검색
+	public Map<String, Object> resumeChk(ResumeDTO resumeDTO)throws Exception;
+	
+	//자소서 작성 > 등록된 자소서가 없으면 대표자소서로 설정해준다
+	public int resumeRegister_1(ResumeDTO resumeDTO)throws Exception;
+	
 	//자소서 저장 ajax
 	public int resumeRegister(ResumeDTO resumeDTO)throws Exception;
 	
@@ -42,6 +48,9 @@ public interface EmployeeService {
 	
 	// 공고 디테일 접속시 m_id와 s_number(공고번호) 를 이용해 이미 지원한 공고인지 확인
 	public int applyCheck(Map<String, Object> chk)throws Exception;
+	
+	//대타 신청 전 자소서가 있나 체크
+	public Map<String, Object> introChk(String m_id)throws Exception;
 	
 	//대타신청
 	public int jobApply(JobApplyDTO jobapplyDTO)throws Exception;
@@ -73,7 +82,11 @@ public interface EmployeeService {
 	//완료한 공고 '확인'버튼 클릭시 상태를 변경
 	public int pinchChk(Map<String, Object> map) throws Exception;
 	
-	
+	// 공고 신청 후 (구인자는 수락상태) 수락 선택
+	public int apply_o(int ja_number) throws Exception;
+
+	// 공고 신청 후 (구인자는 수락상태) 거절 선택
+	public int apply_x(int ja_number)throws Exception;
 	
 	
 }

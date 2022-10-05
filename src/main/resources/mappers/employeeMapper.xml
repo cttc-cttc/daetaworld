@@ -62,6 +62,19 @@
 	i_number = #{i_number}
 </delete>
 
+<!-- 등록된 자소서가 있는지 확인 -->
+<select id="resumeChk" parameterType="ResumeDTO" resultType="Map">
+	select i.i_number from employee_intro i
+    where i.m_id = #{m_id}
+</select>
+
+<!-- 자소서 작성 > 등록된 자소서가 없다면 대표자소서로 설정. -->
+<insert id="resumeRegister_1" parameterType="ResumeDTO">
+	INSERT INTO daetaworld.employee_intro
+	(i_number, i_title, i_contents, i_default, i_date, m_id)
+	VALUES(#{i_number}, #{i_title}, #{i_contents}, 1, now(), #{m_id})
+</insert>
+
 <!-- 자소서 작성 --> <!-- ajax -->
 <insert id="resumeRegister" parameterType="ResumeDTO">
 	INSERT INTO daetaworld.employee_intro
@@ -98,6 +111,13 @@
     job_apply.a_number = #{a_number} 
     and job_apply.m_id = #{m_id}
 </select>	
+
+
+<!-- 대타 신청 전 자소서가 등록되었는지 확인 -->
+<select id="introChk" parameterType="String" resultType="Map">
+	select i.i_number from employee_intro i
+	where m_id = #{m_id} and i_default = 1
+</select>
 
 
 <!-- 대타신청 -->
@@ -233,8 +253,30 @@
 	AND a.a_number = #{a_number}
 </update>
 
+<!-- 구직 신청 후 (구인자는 수락을 누름) 수락 선택. -->
+<update id="apply_o" parameterType="java.lang.Integer">
+update job_apply
+set
+jar_status = 4,
+jae_status = 2
+where
+ja_number = #{ja_number}
+</update>
 
 
+
+<!-- 구직 신청 후 (구인자는 수락을 누름) 거절 선택. -->
+<update id="apply_x" parameterType="java.lang.Integer">
+update job_apply
+set
+jar_status = 2,
+jae_status = 3
+where
+ja_number = #{ja_number}
+</update>
+
+
+<!-- 신청한 알바 취소하기 -->
 
 
 

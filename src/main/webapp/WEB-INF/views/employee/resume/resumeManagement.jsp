@@ -35,6 +35,12 @@
 		color: green; 
 		text-align: right;"
 	}
+		
+	
+	#intro_small{
+		color: lightgrey;	
+	}
+		
 </style>
 
 
@@ -62,7 +68,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>자기소개서 관리</h1>
+										<h1>자기소개서 관리 &nbsp;<small id="intro_small">자기소개서를 등록하고 공고에 지원하세요!</small></h1>
 									</div>
 								</div>
 							</div>

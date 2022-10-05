@@ -150,7 +150,12 @@ public class EmployeeController {
 	@ResponseBody
 	@PostMapping(value="employeeMapper/resumeRegister")
 	public int resumeRegister(ResumeDTO resumeDTO, Model model)throws Exception {
-		return service.resumeRegister(resumeDTO);
+		Map<String, Object> intro = service.resumeChk(resumeDTO); //m_id를 통해 자기소개서가 등록 되어있는지 확인
+		if(intro == null) { //자기소개서가 등록되어있지 않다면
+			return service.resumeRegister_1(resumeDTO); //작성된 자기소개서를 대표자기소개서(i_default = 1)로 변경후 저장.
+		} else {
+			return service.resumeRegister(resumeDTO); //자기소개서가 등록되어있다면 일반자기소개서(i_default = 0)로 저장.
+		}
 	}
 	
 	
@@ -291,6 +296,35 @@ public class EmployeeController {
 	}
 	
 	
+	//공고 신청 후 (구인자는 수락상태) 수락 선택
+	@GetMapping(value="employeeMapper/apply_o")
+	public String apply_o(@RequestParam("ja_number") int ja_number,
+						  @RequestParam("m_id") String m_id, Model model)throws Exception{
+		service.apply_o(ja_number);
+		model.addAttribute("m_id", m_id);
+		return "redirect:pinchStatus";
+	}
+	
+	
+	//공고 신청 후 (구인자는 수락상태) 거절 선택
+	@GetMapping(value="employeeMapper/apply_x")
+	public String apply_x(@RequestParam("ja_number") int ja_number,
+						  @RequestParam("m_id") String m_id, Model model)throws Exception{
+		service.apply_x(ja_number);
+		model.addAttribute("m_id", m_id);
+		return "redirect:pinchStatus";
+	}
+	
+	
+	
+//	//신청한 공고 취소하기 ajax
+//	@ResponseBody
+//	@PostMapping(value="employeeMapper/applyCancel")
+//	public int applyCancel()throws Exception{
+//		
+//		
+//		return ;
+//	}
 	
 	
 	

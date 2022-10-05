@@ -41,7 +41,7 @@
 													<li><a class="active" href="pinchHistory?m_id=${loginInfo.m_id}">대타 내역</a></li>
 													<li><a href="pinchStatus?m_id=${loginInfo.m_id}">지원 현황</a></li>
 													<li><a href="requests?m_id=${loginInfo.m_id}">알바 요청 확인</a></li>
-													<li><a href="pinchExpired?m_id=${loginInfo.m_id}">종료된 공고</a></li>
+													<li><a href="pinchExpired?m_id=${loginInfo.m_id}">완료된 공고</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -49,7 +49,6 @@
 													구직자의 전체 대타내역
 													<table class="table table-striped">
 														<thead>		
-															<th>가게번호</th>													
 															<th>가게명</th>													
 															<th>날짜</th>															
 															<th>시간</th>
@@ -60,7 +59,6 @@
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
-																<td>${adsList.a_number }</td>
 																<td type="button" onclick="location.href='${contextPath}/jobAds/listAllDetail?m_id=${loginInfo.m_id}&s_number=${adsList.s_number}&a_number=${adsList.a_number}&s_name=${adsList.s_name}'">${adsList.s_name}</td>
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
