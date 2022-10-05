@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -90,13 +91,16 @@ public class EmployerController {
 	public String adsRegister(@RequestParam("m_id")String m_id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");
 		List<ShopInfoDTO>shopList = service.shopManagement(m_id);
+		// 보유 포인트 체크
+		int point = service.pointChk(m_id);
+		model.addAttribute("point", point);
 		model.addAttribute("shopList", shopList);
 		model.addAttribute("m_id", m_id);
 		return "employer/ads/adsRegister";		
 	}
 	
 	@PostMapping(value="employerMapper/adsRegister")
-	public String adsRegister(@RequestParam Map<String, Object> map) throws Exception {
+	public String adsRegister(@RequestParam Map<String, Object> map, HttpServletRequest request) throws Exception {
 		System.out.println(map);		
 		ShopInfoDTO shopInfo = service.shopInfo((String) map.get("s_name"));
 		map.put("s_number", shopInfo.getS_number());
@@ -107,8 +111,10 @@ public class EmployerController {
 	
 //	농어촌 공고 등록
 	@GetMapping(value="employerMapper/countryRegister")
-	public String countryRegister(@RequestParam("m_id")String m_id, Model model) {
+	public String countryRegister(@RequestParam("m_id")String m_id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");
+		int point = service.pointChk(m_id);
+		model.addAttribute("point", point);
 		model.addAttribute("m_id", m_id);
 		return "employer/ads/countryRegister";		
 	}
@@ -152,7 +158,7 @@ public class EmployerController {
 				map.put("s_picture3", FileProcess.insertImg(shopImages[2], FileProcess.SHOP_IMG_PATH));
 				break;
 			}
-		}
+		}	
 		
 		service.countryRegister(map);
 		return "redirect:/employerMapper/adsHistory?m_id=" + map.get("m_id");

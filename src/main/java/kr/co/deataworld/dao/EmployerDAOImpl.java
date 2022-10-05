@@ -35,8 +35,19 @@ public class EmployerDAOImpl implements EmployerDAO{
 	}
 	
 	@Override
-	public int adsRegister(Map<String, Object> map) throws Exception {
+	public int pointChk(String m_id) throws Exception {
 		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".pointChk", m_id);
+	}
+	
+	@Override
+	public int adsRegister(Map<String, Object> map) throws Exception {
+		// 급구 선택 시, 500포인트 차감 및 차감된 포인트 내역 추가	
+		if(Integer.parseInt((String)map.get("a_urgency")) == 1) {
+			sqlSession.update(nameSpace + ".updatePoint", (String)map.get("m_id"));
+			sqlSession.insert(nameSpace + ".deductPoint", (String)map.get("m_id"));
+		}
+		
 		return sqlSession.insert(nameSpace + ".adsRegister", map);
 	}
 	
@@ -49,12 +60,17 @@ public class EmployerDAOImpl implements EmployerDAO{
 	
 	@Override
 	public int countryRegister(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+		// 급구 선택 시, 500포인트 차감 및 차감된 포인트 내역 추가
+		if(Integer.parseInt((String)map.get("a_urgency")) == 1) {
+			sqlSession.update(nameSpace + ".updatePoint", (String)map.get("m_id"));
+			sqlSession.insert(nameSpace + ".deductPoint", (String)map.get("m_id"));
+		}		
+		
 		sqlSession.insert(nameSpace + ".countryShopRegister", map);
 		int s_number = sqlSession.selectOne(nameSpace + ".getS_number", map);
 		map.put("s_number", s_number);
-		sqlSession.insert(nameSpace + ".countryAdsRegister", map);
-		return 0;
+		
+		return sqlSession.insert(nameSpace + ".countryAdsRegister", map);
 	}
 	
 	@Override
@@ -195,6 +211,8 @@ public class EmployerDAOImpl implements EmployerDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.update(nameSpace + ".shopDelete", s_number);
 	}
+
+
 
 
 

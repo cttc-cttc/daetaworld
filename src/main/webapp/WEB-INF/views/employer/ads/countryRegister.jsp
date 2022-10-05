@@ -47,7 +47,7 @@
 												<ul class="nav">
 													<li><a href="adsRegister?m_id=${loginInfo.m_id}">공고 등록</a></li>
 													<li><a class="active" href="countryRegister?m_id=${loginInfo.m_id}">농어촌 등록</a></li>
-													<li><a href="checkEmployees?m_id=${loginInfo.m_id}">주변 노예 확인</a></li>
+													<li><a href="checkEmployees?m_id=${loginInfo.m_id}">주변 구직자 확인</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -149,7 +149,8 @@
 																		</div>
 																	</div>																	
 																	
-																	<input type="hidden" id="m_id" name="m_id" value="${loginInfo.m_id}">
+																	<input type="hidden" id="m_id" name="m_id" value="${m_id}">
+																	<input type="hidden" id="point" name="point" value="${point}">
 																	
 																</div>
 															</div>
@@ -267,7 +268,13 @@
 	</script>
 	
 	<script type="text/javascript">
-	function crChk(){		
+		if(document.getElementById("input_check").checked) {			
+		    document.getElementById("input_check_hidden").disabled = true;
+		}
+	</script>	
+	
+	<script type="text/javascript">
+		function crChk(){		
 			if(!checkName(cr.s_name.value)){
 				return false;
 			}else if(!checkAddress(cr.s_address1.value, cr.s_address2.value)){
@@ -283,9 +290,20 @@
 			}else if(!checkIntro(cr.s_intro.value)){
 				return false;
 			}
-			alert("가게가 등록되었습니다");
-			return true;
-		
+			
+			if(document.getElementById("input_check").checked){
+				if(cr.point.value < 500){
+					alert("보유하신 포인트가 500포인트 미만입니다. 충전 후 급구 등록해주세요.");
+					return false;
+				}
+				alert("급구 공고로 등록됩니다. 500 포인트가 차감됩니다.");
+				return true;
+			}else {
+				alert("일반 공고로 등록됩니다.");
+				return true;
+			}
+		}
+	
 		function checkExist(value, dataName) {        
 			if (value == "" || value == " ") {            
 				alert(dataName + " 입력해주세요");            
@@ -382,7 +400,7 @@
 				return true;
 			}
 		}
-	}	
+		
 	</script>
 </body>
 </html>

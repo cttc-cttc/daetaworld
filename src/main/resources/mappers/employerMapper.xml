@@ -33,6 +33,14 @@
 			set del = 1 
 			where (m_id = #{m_id});
 		</update>
+		
+	<!-- 보유 포인트 체크 -->
+	<select id="pointChk" parameterType="String" resultType="java.lang.Integer">
+		select point
+		from point
+		where m_id = #{m_id}
+	</select>
+		
 	<!-- 공고 등록 -->
 	<insert id="adsRegister" parameterType="Map">
 		insert into job_ads (a_date, a_time, a_wage, a_need, a_urgency, a_status, ua_date, m_id, r_code, s_number, del, job_code) 
@@ -63,6 +71,19 @@
 			values (#{a_date}, #{a_time}, #{a_wage}, #{a_need}, #{a_urgency}, 0, now(), 
 				#{m_id}, 0, #{s_number}, 0, 18)
 		</insert>
+	
+	<!-- 급구 공고 선택 시 전체 포인트 차감 및 차감 포인트 내역 추가 -->
+		<!-- 전체 포인트 차감 -->
+			<update id="updatePoint" parameterType="String">
+				update point
+				set point = point - 500
+				where (m_id = #{m_id})
+			</update>
+		<!-- 차감 포인트 내역 추가 -->
+			<insert id="deductPoint" parameterType="String">
+				insert into deducted_point (d_point, d_date, m_id)
+				values (500, now(), #{m_id})
+			</insert>
 	
 	<!-- 주변 구직자 확인 전 가게 목록 -->
 	<select id="checkEmployees" parameterType="String" resultType="Map">
@@ -122,7 +143,7 @@
 	<update id="adsUpdate" parameterType="Map">
 		update job_ads 
 		set a_date = #{datefilter}, a_time= #{timefilter}, a_wage = #{a_wage}, 
-			a_need = #{a_need}, a_urgency = #{a_urgency}, a_status = 0
+			a_need = #{a_need}, a_status = 0
 		where (a_number = #{a_number}); 
 	</update>
 	

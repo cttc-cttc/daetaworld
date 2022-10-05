@@ -21,6 +21,9 @@ public interface EmployerService {
 //	공고 등록
 	public int adsRegister(Map<String, Object> map) throws Exception;
 	
+//	보유 포인트 체크
+	public int pointChk(String m_id) throws Exception;
+	
 //	농어촌 공고 등록
 	public int countryRegister(Map<String, Object> map) throws Exception;
 	
