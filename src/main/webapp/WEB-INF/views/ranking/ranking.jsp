@@ -12,11 +12,40 @@
 		</header>
 		<br><br><br><br><br><br>
 		<div class="container">
-			<h1>구직자 랭킹</h1>
+
+			<div class="submited-applications mb-50">
+				<div class="applications-heading">
+					<h2>오늘의 랭킹</h2>
+				</div>
+				<div class="applications-main-block">
+					<div class="applications-table">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="width-15">순위</th>
+									<th class="width-15">닉네임</th>
+									<th class="width-12">평점</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="ranking" items="${ranking }">
+								<tr class="application-item">
+									<td class="application-job"><h3>
+											<a>${ranking.num }</a>
+										</h3></td>
+									<td class="application-employer"><a class="dotted"
+										>${ranking.nick }</a></td>
+									<td class="status"><span class="pending">${ranking.sum}</span></td>
+								</tr>
+								</c:forEach>								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
-			
-		
-		
+
+
 		<!-- footer -->
 		<%@ include file="../include/footer.jsp" %>
 		

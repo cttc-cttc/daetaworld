@@ -10,13 +10,13 @@
 		<![CDATA[
 		select ranking.num, ranking.nick, ranking.sum
 		from(        
-		   select rank() over(order by sum(w_rate) desc) as num, sum(w_rate)as sum, m.m_nick as nick    
+		   select rank() over(order by avg(w_rate) desc) as num, round(avg(w_rate), 1) as sum, m.m_nick as nick    
 		   from review r, member m   
 		   where m.m_type = 1 and r.id_rated = m.m_id 
 		   group by r.id_rated
 		   order by num
 		   ) as ranking
-		where ranking.num <= 5
+		where ranking.num <= 50
 		order by ranking.num
 		]]>
 	</select>
