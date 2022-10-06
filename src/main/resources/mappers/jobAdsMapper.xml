@@ -27,6 +27,7 @@
 			on A.m_id = D.w_writer
 		where
 			A.a_urgency = 1
+			and a.del = 0
 			and (A.a_status = 0 or A.a_status = 1)
 		group by A.a_number
 		order by A.a_number desc

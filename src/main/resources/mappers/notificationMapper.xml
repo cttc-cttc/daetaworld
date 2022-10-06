@@ -13,9 +13,9 @@
 	<!-- (구인자) 구인공고 지원자 알림 등록 -->
 	<insert id="insertAdsApplicant" parameterType="java.util.Map">
 		insert into notification(
-			m_id, s_name
+			m_id, s_name, n_type
 		)values(
-			#{m_id}, #{s_name}
+			#{m_id}, #{s_name}, #{n_type}
 		)
 	</insert>
 	

@@ -22,7 +22,7 @@ public class NotificationServiceImpl implements NotificationService {
 	}
 
 	@Override
-	public int insertAdsApplicant(Map<String, String> applicant) {
+	public int insertAdsApplicant(Map<String, Object> applicant) {
 		// TODO Auto-generated method stub
 		return dao.insertAdsApplicant(applicant);
 	}

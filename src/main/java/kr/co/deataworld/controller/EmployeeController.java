@@ -175,11 +175,13 @@ public class EmployeeController {
 	public String jobApply(JobApplyDTO jobapplyDTO, String employer_id, String s_name)throws Exception {
 		service.jobApply(jobapplyDTO); //m_id, 구직&구인자 지원상태를 0(지원함)으로 insert 함
 		service.applyIntro(jobapplyDTO); //구직자가 볼수있게 대표 자기소개서를 update 함
+		ser
 		
 		// 공고 지원자 알림을 등록할 정보
-		Map<String, String> notiInsertInfo = new HashMap<String, String>();
+		Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
 		notiInsertInfo.put("m_id", employer_id);
 		notiInsertInfo.put("s_name", s_name);
+		notiInsertInfo.put("n_type", 0);
 		nService.insertAdsApplicant(notiInsertInfo);
 		return "redirect:/jobAds/listAll";
 	}
@@ -187,18 +189,6 @@ public class EmployeeController {
 	//신청 -> 가게정보 불러오기 -> 대타내역 보여주기
 	//신청 -> 대표 자소서 보내야함
 	
-	
-	//구직자 대타내역 보기 ()
-//	@GetMapping(value="employeeMapper/pinchHistory")
-//	public ModelAndView pinchHistory(Model model)throws Exception {
-//		model.addAttribute("leftMenu", "pinchHistory");
-//		ModelAndView mav = new ModelAndView();
-//		List<JobAdsDTO> list = service.pinchHistory();
-//		mav.addObject("list", list);
-//		mav.setViewName("employee/pinch/pinchHistory");
-//		return mav;
-//	}
-
 	
 	//구직자 신청한 대타내역 모두 불러오기
 	@GetMapping(value="employeeMapper/pinchHistory")

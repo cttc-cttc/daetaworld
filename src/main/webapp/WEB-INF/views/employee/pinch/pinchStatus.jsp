@@ -175,8 +175,6 @@
 																			</c:if>
 																		</td>
 																		<td>
-																		<a>ja_number : ${adsList.ja_number }</a>
-																		<a>a_number : ${adsList.a_number }</a>
 																			<input type="button" value="취소"  onclick="apply_cancel('${adsList.a_number}','${adsList.ja_number}')"/>
 																		</td>
 																	</c:otherwise>

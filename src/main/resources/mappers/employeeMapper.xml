@@ -276,20 +276,33 @@ ja_number = #{ja_number}
 </update>
 
 
-<!-- 공고 신청중인 알바 지원 취소하기 -->
+<!-- 공고 신청중인 알바 지원 취소하기 => job_apply를 삭제해버린다.-->
 <update id="applyCancel" parameterType="Map">
-update job_apply
-set
-jae_status = 3
-where
-a_number = #{a_number}
-and
-ja_number = #{ja_number}
+	update job_apply ja
+	right join job_ads a
+	on ja.a_number = a.a_number
+	set
+	ja.jae_status = 3,
+	a.a_status = 0
+	where
+	a.a_number = #{a_number}
+	and
+	ja.ja_number = #{ja_number}
 </update>
 
-
-
-
+<!-- 공고 신청중인 알바 지원 취소하기 -->
+<!-- <update id="applyCancel" parameterType="Map">
+	update job_apply ja
+	right join job_ads a
+	on ja.a_number = a.a_number
+	set
+	ja.jae_status = 3,
+	a.a_status = 0
+	where
+	a.a_number = #{a_number}
+	and
+	ja.ja_number = #{ja_number}
+</update> -->
 
 
 
