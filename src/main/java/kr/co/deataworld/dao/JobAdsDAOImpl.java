@@ -120,11 +120,11 @@ public class JobAdsDAOImpl implements JobAdsDAO {
 		return sql.selectList(NAMESPACE +".listJobAdsSearch", map);
 	}
 
-	@Override
-	public List<Map<String, Object>> findAll() {
-		// TODO Auto-generated method stub
-		return sql.selectList(NAMESPACE +".findAll");
-	}
-	
+//	@Override
+//	public List<Map<String, Object>> findAll() {
+//		// TODO Auto-generated method stub
+//		return sql.selectList(NAMESPACE +".findAll");
+//	}
+//	
 	
 }

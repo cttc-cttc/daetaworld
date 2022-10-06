@@ -116,11 +116,11 @@ public class JobAdsServiceImpl implements JobAdsService {
 		return dao.listJobAdsSearch(map);
 	}
 
-	@Override
-	public List<Map<String, Object>> findAll() {
-		// TODO Auto-generated method stub
-		return dao.findAll();
-	}
+//	@Override
+//	public List<Map<String, Object>> findAll() {
+//		// TODO Auto-generated method stub
+//		return dao.findAll();
+//	}
 
 
 	
