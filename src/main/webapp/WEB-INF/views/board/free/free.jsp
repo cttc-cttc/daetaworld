@@ -32,17 +32,18 @@
 									</div>
 								</div>
 							</div>
-							<div class="dashboard-overview">자유 게시판 목록</div>
-							<div class="table-responsive">
-								<table class="table table-striped">
+							<div class="table-responsive table-bordered" style="overflow-x: initial;">
+								<table class="table table-striped" style="margin: 0;">
+									<thead class="thead-dark">
 									<tr>
-										<td>글번호</td>
-										<td>제목</td>
-										<td>작성일</td>
-										<td>작성자</td>
-										<td>조회수</td>
-
+										<th>글번호</th>
+										<th>제목</th>
+										<th>작성일</th>
+										<th>작성자</th>
+										<th>조회수</th>
 									</tr>
+									</thead>
+									
 									<c:forEach var="board" items="${list }">
 										<tr>
 											<td>${board.b_number}</td>
@@ -58,6 +59,13 @@
 
 									<tr>
 										<td>
+											<div class="box">
+												<div class="box-header with-border">
+													<a href="${contextPath }/board/free/register" class="btn btn-success">글쓰기</a>
+												</div>
+											</div>
+										</td>
+										<td colspan="2" align="center">
 											<ul>
 												<c:if test="${boardPageMaker.prev }">
 													<a
@@ -78,36 +86,33 @@
 												</c:if>
 											</ul>
 										</td>
-										<td>
-											<div class="box">
-									<div class="box-header with-border">
-										<a href="${contextPath }/board/free/register"><h3
-												class="box-title">게시판 글쓰기</h3></a>
-									</div>
-								</div>
-										</td>
-										<td colspan="5" align="center"><input
-											class="btn btn-success" type="button" value="처음으로" id="index"
+										<td colspan="2" style="text-align: end;"><input
+											class="btn btn-secondary" type="button" value="처음으로" id="index"
 											onclick="location.href='${contextPath}'" /></td>
-
 									</tr>
 
 								</table>
-								<!-- search{s} -->
-								<form method="get" action="search">
-									<select name="option">
-										<option value="b_title">제목</option>
-										
-										<option value="m_nick">작성자</option>
-										
-									</select> <input type="text" name="value"> <input type="submit"
-										value="검색">
-								</form>
-								<!-- search{e} -->
-
-							
-
 							</div>
+							
+							<!-- search{s} -->
+							<div class="row" style="margin-top: 1rem;">
+							<div class="col-3">
+								<form method="get" action="search">
+									<div class="input-group mb-3">
+										<select name="option">
+											<option value="b_title">제목</option>
+											<option value="m_nick">작성자</option>
+										</select>
+										<input type="text" name="value" class="form-control" aria-describedby="basic-addon2">
+										<div class="input-group-append">
+											<button class="btn btn-outline-secondary" type="submit">검색</button>
+										</div>
+									</div>
+								</form>
+							</div>
+							</div>
+							<!-- search{e} -->
+
 						</div>
 
 					</div>

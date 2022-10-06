@@ -10,7 +10,15 @@
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/etc.css">
-
+<style>
+	.star {
+		font-size: 2rem;
+		padding: 0 0.2em;
+		-webkit-text-stroke-width: 2.3px;
+		-webkit-text-stroke-color: #2b2a29;
+		-webkit-text-fill-color: gold;
+	}
+</style>
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -92,24 +100,19 @@
 																		<label for="w_rate">별점<span> : </span></label>																		
 																		<c:set var="w_rate" value="${detail.w_rate}"></c:set>
 																		<c:if test="${w_rate == 5.0}">
-																			<c:out value="★★★★★">
-																			</c:out>
+																			<span class="star"><c:out value="★★★★★"/></span>
 																		</c:if>
 																		<c:if test="${w_rate == 4.0}">
-																			<c:out value="★★★★">
-																			</c:out>
+																			<span class="star"><c:out value="★★★★"/></span>
 																		</c:if>
 																		<c:if test="${w_rate == 3.0}">
-																			<c:out value="★★★">
-																			</c:out>
+															 				<span class="star"><c:out value="★★★"/></span>
 																		</c:if>
 																		<c:if test="${w_rate == 2.0}">
-																			<c:out value="★★">
-																			</c:out>
+																			<span class="star"><c:out value="★★"/></span>
 																		</c:if>
 																		<c:if test="${w_rate == 1.0}">
-																			<c:out value="★">
-																			</c:out>
+																			<span class="star"><c:out value="★"/></span>
 																		</c:if>
 																		<br>
 																		<label for="rc_comments">후기<span>*</span></label>
