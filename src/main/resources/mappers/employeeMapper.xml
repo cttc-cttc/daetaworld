@@ -185,7 +185,7 @@
 	<![CDATA[ 
 	select s.m_id as id_rated, a.*, ja.*,s.*
 	from job_ads a, job_apply ja, shop_info s
-	where (left(a.a_date, 10) <= date_format(curdate(), '%m/%d/%Y')
+	where (left(a.a_date, 10) < date_format(curdate(), '%m/%d/%Y')
 	or date_format(curdate(), '%Y') - substring(a.a_date, 7, 10) = 1)
 	and ja.a_number = a.a_number
 	and a.s_number = s.s_number

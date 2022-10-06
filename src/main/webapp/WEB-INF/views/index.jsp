@@ -96,7 +96,18 @@
 											<div class="job-info-top">
 												<div class="title-name">
 													<h3 class="job-title">
-														<a href="jobAds/listAllDetail?s_name=${common_ads.s_name }&s_number=${common_ads.s_number }&m_id=${common_ads.m_id }&a_number=${common_ads.a_number }">${common_ads.s_name }</a>
+													
+														<!-- 로그인 상태 일때 -->
+														<c:if test="${loginInfo.m_id != null && loginInfo.m_type == 1}">
+										                    <a href="jobAds/listAllDetail?s_name=${common_ads.s_name}&m_id=${loginInfo.m_id}&s_number=${common_ads.s_number}&a_number=${common_ads.a_number}">${common_ads.s_name}</a></td>
+										                </c:if>
+
+														<!-- 로그인 상태 아닐때 -->
+														<c:if test="${loginInfo.m_id == null || loginInfo.m_type == 2}">
+															<td class="tc"><a href="${contextPath}/jobAds/nonMember?a_number=${common_ads.a_number}">${common_ads.s_name}</a></td>
+														</c:if>
+
+
 													</h3>
 													<div class="employer-name">
 														<!-- <a href="employer-details.html">구인자id</a> -->
@@ -140,6 +151,9 @@
 								</div>
 							</div>
 						</div>
+						
+						
+						
 						<!-- 일반구인 항목 End -->
 					</c:forEach>
 				</div>
