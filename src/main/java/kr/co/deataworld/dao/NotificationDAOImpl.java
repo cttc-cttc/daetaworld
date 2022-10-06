@@ -22,7 +22,7 @@ public class NotificationDAOImpl implements NotificationDAO {
 	}
 
 	@Override
-	public int insertAdsApplicant(Map<String, String> applicant) {
+	public int insertAdsApplicant(Map<String, Object> applicant) {
 		// TODO Auto-generated method stub
 		return sql.insert(NAMESPACES + ".insertAdsApplicant", applicant);
 	}

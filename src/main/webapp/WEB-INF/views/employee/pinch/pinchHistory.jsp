@@ -94,6 +94,9 @@
 																	<c:if test="${status == 5 }">
 																		<c:out value="요청거절"></c:out>
 																	</c:if>
+																	<c:if test="${status == 7 }">
+																		<c:out value="후기완료"></c:out>
+																	</c:if>
 																</td>
 																
 																<!-- 대타상태 -->
