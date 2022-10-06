@@ -9,14 +9,15 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.deataworld.dto.BlacklistDTO;
-import kr.co.deataworld.dto.DeductedPointDTO;
-import kr.co.deataworld.dto.EarnedPointDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.PointDTO;
 import kr.co.deataworld.service.AdminService;
@@ -28,7 +29,7 @@ import kr.co.deataworld.util.PageProcess;
  */
 @Controller
 public class AdminController {
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@Inject
 	AdminService service;
@@ -449,5 +450,18 @@ public class AdminController {
 		
 		service.cancelTempingComments(cr_num);
 		return "redirect:temping_comments?page=1";
+	}
+	
+//	신고
+//	신고타입(rType) : 1-자유게시판 글, 2-자유게시판 댓글, 3-땜빵게시판 글, 4-땜빵게시판 댓글, 5-구인공고 글
+	@ResponseBody
+	@PostMapping(value = "boardReport")
+	public int report(int rCode, int rType, int b_number, String m_id, String r_id) {
+		logger.info("rCode: "+ rCode);
+		logger.info("rType: "+ rType);
+		logger.info("b_number: "+ b_number);
+		logger.info("m_id: "+ m_id);
+		logger.info("r_id: "+ r_id);
+		return 0;
 	}
 }

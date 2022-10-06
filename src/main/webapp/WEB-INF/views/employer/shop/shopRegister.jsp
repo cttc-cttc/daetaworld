@@ -101,7 +101,7 @@
 																							aria-expanded="false" style="background-color:white; color:black;">직종 선택</button>
 																						<ul id="method_type" class="dropdown-menu"
 																							role="menu" aria-labelledby="searchType">
-																							<li role="presentation">
+																							<li role="presentation" style="height: 200px; overflow-y: scroll;">
 																								<c:forEach var="list" items="${jobList }">
 																									<a class="dropdown-item"
 																										onclick="area(${list.j_code })">${list.j_type2 }</a>
