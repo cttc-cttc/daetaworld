@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.deataworld.service.JobAdsService;
+import kr.co.deataworld.service.RankingService;
 
 /**
  * Header, 메인화면, Footer 관련 컨트롤러
@@ -25,8 +26,11 @@ public class HomeController {
 	@Inject
 	JobAdsService service;
 	
+	@Inject
+	RankingService rank;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Model model) {
+	public String index(Model model) throws Exception {
 		logger.info("메인화면 접속");
 		
 		// 메인화면 - 긴급구인 리스트 6개
@@ -36,6 +40,10 @@ public class HomeController {
 		// 메인화면 - 일반구인 리스트 6개
 		List<Map<String, Object>> commonList = service.mainCommonList();
 		model.addAttribute("common_list", commonList);
+		
+		// 랭킹 
+		List<Map<String, Object>> ranking = rank.ranking();
+		model.addAttribute("ranking", ranking);
 		
 		return "index";
 	}

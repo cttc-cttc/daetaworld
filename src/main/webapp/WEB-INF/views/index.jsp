@@ -269,40 +269,16 @@
 
 							<div class="blog-wrap ranking">
 								<!-- 랭킹 정보 Start -->
-								<div class="single-list-blog">
-									<div class="col-lg-4"><i class="fas fa-trophy trophy-gold"></i> 1등</div>
-									<div class="col-lg-4"><i class="lnr lnr-user"></i> 대타매니아</div>
-									<div class="col-lg-4"><i class="fas fa-star star-color"></i> 4.8</div>
-								</div>
-								<!-- 랭킹 정보 End -->
-								<!-- 랭킹 정보 Start -->
-								<div class="single-list-blog">
-									<div class="col-lg-4"><i class="fas fa-trophy trophy-silver"></i> 2등</div>
-									<div class="col-lg-4"><i class="lnr lnr-user"></i> 현타왕</div>
-									<div class="col-lg-4"><i class="fas fa-star star-color"></i> 4.6</div>
-								</div>
-								<!-- 랭킹 정보 End -->
-								<!-- 랭킹 정보 Start -->
-								<div class="single-list-blog">
-									<div class="col-lg-4"><i class="fas fa-trophy trophy-bronze"></i> 3등</div>
-									<div class="col-lg-4"><i class="lnr lnr-user"></i> 하루살이</div>
-									<div class="col-lg-4"><i class="fas fa-star star-color"></i> 4.3</div>
-								</div>
-								<!-- 랭킹 정보 End -->
-								<!-- 랭킹 정보 Start -->
-								<div class="single-list-blog">
-									<div class="col-lg-4"><i class="fas fa-trophy icon-hidden"></i> 4등</div>
-									<div class="col-lg-4"><i class="lnr lnr-user"></i> 제발쉬운일z</div>
-									<div class="col-lg-4"><i class="fas fa-star star-color"></i> 4.0</div>
-								</div>
-								<!-- 랭킹 정보 End -->
-								<!-- 랭킹 정보 Start -->
-								<div class="single-list-blog">
-									<div class="col-lg-4"><i class="fas fa-trophy icon-hidden"></i> 5등</div>
-									<div class="col-lg-4"><i class="lnr lnr-user"></i> 의외로열심히함</div>
-									<div class="col-lg-4"><i class="fas fa-star star-color"></i> 3.9</div>
-								</div>
-								<!-- 랭킹 정보 End -->
+								<c:forEach var="ranking" items="${ranking}" end="5">
+								<table style="table-layout:fixed">
+								<tr class="single-list-blog">
+									<td class="col-lg-4" align="left">${ranking.num }등</td>
+									<td class="col-lg-8" align="center" ><i class="lnr lnr-user"></i>${ranking.nick }</td>
+									<td class="col-lg-4" align="right"><i class="fas fa-star star-color"></i>${ranking.sum }</td>
+								</tr>
+								</table>
+								</c:forEach>
+								<!-- 랭킹 정보 End -->								
 								<div class="col-lg-12">
 									<p class="ranking-info">*랭킹은 <strong>매월 1일</strong>에 초기화, <strong>매월 말일</strong>에 정산을 진행합니다.</p>
 									<p class="ranking-info">*정산 직후 랭킹 <strong>1, 2, 3등</strong>의 회원분께는 소정의 상품을 지급합니다.</p>
