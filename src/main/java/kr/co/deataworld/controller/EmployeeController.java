@@ -312,15 +312,13 @@ public class EmployeeController {
 	}
 	
 	
-	
-//	//신청한 공고 취소하기 ajax
-//	@ResponseBody
-//	@PostMapping(value="employeeMapper/applyCancel")
-//	public int applyCancel()throws Exception{
-//		
-//		
-//		return ;
-//	}
+	//신청한 공고 취소하기 ajax
+	@ResponseBody
+	@PostMapping(value="employeeMapper/applyCancel")
+	public int applyCancel(@RequestParam Map<String, Object> map, Model model)throws Exception{
+		System.out.println("값 받았니?" + map);
+		return service.applyCancel(map);
+	}
 	
 	
 	

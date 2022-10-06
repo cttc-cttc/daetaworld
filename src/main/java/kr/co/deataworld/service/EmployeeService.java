@@ -88,5 +88,6 @@ public interface EmployeeService {
 	// 공고 신청 후 (구인자는 수락상태) 거절 선택
 	public int apply_x(int ja_number)throws Exception;
 	
-	
+	//공고 신청중 상태일때 지원 취소하기
+	public int applyCancel(Map<String, Object> map)throws Exception;
 }

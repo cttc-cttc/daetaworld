@@ -175,12 +175,13 @@
 																			</c:if>
 																		</td>
 																		<td>
-																			<input type="button" value="취소" onclick="apply_cancel()"/>
-																			<input type="hidden">
+																		<a>ja_number : ${adsList.ja_number }</a>
+																		<a>a_number : ${adsList.a_number }</a>
+																			<input type="button" value="취소"  onclick="apply_cancel('${adsList.a_number}','${adsList.ja_number}')"/>
 																		</td>
 																	</c:otherwise>
-																</c:choose>
 																
+																</c:choose>
 																
 																
 															</tr>
@@ -215,20 +216,39 @@
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 	
+	<!-- 공고지원 취소하기 -->
 	<script type="text/javascript">
-		function apply_cancel() {
-			alert('공고 지원한거 취소할래?');
+		function apply_cancel(a_number, ja_number) {
+			var url = "${contextPath}/employeeMapper/applyCancel";
+			var paramData = {
+				"a_number" : a_number,
+				"ja_number" : ja_number
+			};
+			$.ajax({
+				url : url,
+				data : paramData,
+				type : "POST",
+				dataType : "json",
+				success : function(result){
+					console.log('ajax 성공');
+					window.location.reload(true);
+					alert('지원하신 공고를 취소하였습니다.');
+				},
+				error : function(result){
+					console.log('ajax실패');
+					alert('공고 취소 실패..')
+				}
+			});
 		}
-	
 	</script>
+	
+	
 	
 	
 	<!-- 확정전 상태에서 수락/거절 체크하러 가자~ -->
 	<script type="text/javascript">
 		function ads_status() {
 			alert('ggg');
-			
-			
 		}
 	
 	</script>

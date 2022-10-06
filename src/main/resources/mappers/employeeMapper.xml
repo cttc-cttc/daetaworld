@@ -276,8 +276,16 @@ ja_number = #{ja_number}
 </update>
 
 
-<!-- 신청한 알바 취소하기 -->
-
+<!-- 공고 신청중인 알바 지원 취소하기 -->
+<update id="applyCancel" parameterType="Map">
+update job_apply
+set
+jae_status = 3
+where
+a_number = #{a_number}
+and
+ja_number = #{ja_number}
+</update>
 
 
 

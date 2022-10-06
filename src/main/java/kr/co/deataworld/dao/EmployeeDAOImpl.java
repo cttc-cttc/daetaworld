@@ -169,6 +169,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return sql.update(NAMESPACE + ".apply_x", ja_number);
 	}
 
+
+	@Override //공고 신청 상태일때 지원 취소하기
+	public int applyCancel(Map<String, Object> map) throws Exception {
+		return sql.update(NAMESPACE + ".applyCancel", map);
+	}
+
 	
 
 	
