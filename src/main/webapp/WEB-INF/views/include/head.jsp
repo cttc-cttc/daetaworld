@@ -18,6 +18,4 @@
 <!-- Use the minified version files listed below for better performance and remove the files listed above -->
 <link rel="stylesheet" href="${contextPath}/resources/assets/css/plugins/plugins.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/assets/css/style.min.css">
-<!-- Modernizr JS -->
-<script src="${contextPath}/resources/assets/js/vendor/modernizr-3.10.0.min.js"></script>
 </head>

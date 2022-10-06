@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
 <title>자유 게시판</title>
@@ -25,16 +24,6 @@
 				<div class="row no-gutters">
 					<%@ include file="../../include/boardSidebar.jsp"%>
 					<div class="col-xl-10 col-lg-9">
-						  <section class="content container-fluid">
-	<div class="box-header with-border">
-		<c:if test="${user==null }">
-		<a href="/${contextPath}account/login"> <h3 class="box-title">로그인</h3></a>
-		</c:if>
-		<c:if test="${user!=null }">
-		${user.name }님 환영합니다. <br />
-		<a href="${contextPath}/board/logout"> <h3 class="box-title">로그아웃</h3></a>
-		</c:if>
-	</div>
 						
 						
 						<div class="dashboard-main-inner">
@@ -47,7 +36,6 @@
 							</div>
 
 							<div class="table-responsive">
-								<table class="table table-striped">
 									<div class="box-body">
 										<div class="f	orm-group">
 											<label>제목</label> <input type="text" name="b_title"
@@ -68,75 +56,120 @@
 										</div>
 									</div>
 
-									<tr>
 										<div class="box-footer">
-											<button id="" class="btn btn-success">메인</button>
-											<button class="btn btn-primary">목록</button>
-										<c:if test="${loginInfo.m_id==board.m_id}">
-											<button class="btn btn-warning">수정</button>
-											<button class="btn btn-danger">삭제</button>
-											<button class="btn btn-info">댓글작성</button>
+											<button id="goMain" class="btn btn-success">메인</button>
+											<button id="goList" class="btn btn-primary">목록</button>
+										<c:if test="${loginInfo.m_id == board.m_id}">
+											<button id="goUpdate" class="btn btn-warning">수정</button>
+											<button id="goDelete" class="btn btn-danger">삭제</button>
+										</c:if>
+										<c:if test="${loginInfo != null}">
+											<button id="goReply" class="btn btn-info">댓글작성</button>
+											
+											<%-- 로그인 유저가 타인의 글을 볼 때만 신고버튼 보임 --%>
+											<c:if test="${loginInfo.m_id != board.m_id}">
+												<div class="dropdown" style="display: inline;">
+												  <button class="btn btn-secondary dropdown-toggle" type="button" id="report" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												    신고
+												  </button>
+												  <div class="dropdown-menu" aria-labelledby="report">
+												    <a class="dropdown-item" href="javascript:report(1)">광고</a>
+												    <a class="dropdown-item" href="javascript:report(2)">비속어 사용</a>
+												    <a class="dropdown-item" href="javascript:report(3)">분쟁 조장</a>
+												    <a class="dropdown-item" href="javascript:report(4)">선정적</a>
+												    <a class="dropdown-item" href="javascript:report(5)">사기 · 도박</a>
+												  </div>
+												</div>
+											</c:if>
 										</c:if>
 										</div>
 
-													<div id="replylist">
-							<%@ include file="detail1.jsp"%>							
-													</div>
+									<div id="replylist">
+										<%@ include file="detail1.jsp"%>							
+									</div>
+							</div>
+						</div>
 
+					</div>
+				</div>
 
-										</div>
-										</div>
+			</div>
+		</div>
+		<%@ include file="../../include/footer.jsp"%>
+	</div>
+	<%@ include file="../../include/plugin.jsp"%>
 
-										</div>
-										</div>
-
-										</div>
-										</div>
-										<!-- Dashboard Content Section End -->
-										<%@ include file="../../include/footer.jsp"%>
-										<!-- Placed js at the end of the document so the pages load faster -->
-										</div>
-										<!-- Placed js at the end of the document so the pages load faster -->
-										<!-- All jquery file included here -->
-
-
-										<script
-											src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-										<script
-											src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-										<script
-											src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-										<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-										<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-										<script
-											src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-										<script src="${contextPath}/resources/assets/js/main.js"></script>
-
-
-										<script>
-											window.onload = (function() {
-												//메인 버튼을 눌렀을 때 처리
-												$(".btn-success").click(function(){
-													console.log ="1";
-													location.href="/deataworld/";
-												});
-												//목록 버튼을 눌렀을 때 처리
-												$(".btn-primary").click(function(){
-													location.href="free";
-												});
-												//삭제 버튼을 눌렀을 때 처리
-												$(".btn-danger").click(function(){
-													location.href="${contextPath}/board/free/delete?b_number=" + ${board.b_number};
-												});
-												//수정 버튼을 눌렀을 때 처리
-												$(".btn-warning").click(function(){
-													location.href="${contextPath}/board/free/update?b_number=" + ${board.b_number};
-												});
-												//댓글작성 버튼을 눌렀을 때 처리
-												$(".btn-info").click(function() {
-													location.href = "${contextPath}/board/free/reply?b_number=" + ${board.b_number};
-												});
-											})
-										</script>
+	<script>
+		window.addEventListener('load', function() {
+			//메인 버튼을 눌렀을 때 처리
+			$("#goMain").click(function(){
+				location.href="/deataworld/";
+			});
+			//목록 버튼을 눌렀을 때 처리
+			$("#goList").click(function(){
+				location.href="free";
+			});
+			//삭제 버튼을 눌렀을 때 처리
+			$("#goDelete").click(function(){
+				location.href="${contextPath}/board/free/delete?b_number=${board.b_number}";
+			});
+			//수정 버튼을 눌렀을 때 처리
+			$("#goUpdate").click(function(){
+				location.href="${contextPath}/board/free/update?b_number=${board.b_number}";
+			});
+			//댓글작성 버튼을 눌렀을 때 처리
+			$("#goReply").click(function() {
+				location.href = "${contextPath}/board/free/reply?b_number=${board.b_number}";
+			});
+		});
+		
+		function report(rCode) {
+			let rCodeText = '';
+			let rType = 0;
+			switch(rCode) {
+				case 1: rCodeText = '광고';
+					rType = 1;
+					break;
+				case 2: rCodeText = '비속어 사용';
+					rType = 2;
+					break;
+				case 3: rCodeText = '분쟁 조장';
+					rType = 3;
+					break;
+				case 4: rCodeText = '선정적';
+					rType = 4;
+					break;
+				case 5: rCodeText = '사기 · 도박';
+					rType = 5;
+			}
+			if(confirm('해당 글을 신고하시겠습니까?\n사유 : '+ rCodeText)) {
+				reportAjax(rCode, rType);
+			}
+		}
+		
+		function reportAjax(rCode, rType) {
+			$.ajax({
+				url: '${contextPath}/boardReport',
+				data: {
+					"rCode": rCode,
+					"rType": rType,
+					"b_number": ${board.b_number},
+					"m_id": '${board.m_id}',
+					"r_id": '${loginInfo.m_id}'
+				},
+				dataType: 'json',
+				type: 'post',
+				success: function(res) {
+					console.log(res);
+					alert('정상적으로 처리 되었습니다.');
+				},
+				error: function(res) {
+					console.log(res);
+					console.log('실패');
+				} 
+			});
+		}
+		
+	</script>
 </body>
 </html>

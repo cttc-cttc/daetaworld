@@ -8,3 +8,5 @@
 <!-- Use the minified version files listed below for better performance and remove the files listed above -->
 <script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 <script src="${contextPath}/resources/assets/js/main.js"></script>
+<!-- Modernizr JS -->
+<script src="${contextPath}/resources/assets/js/vendor/modernizr-3.10.0.min.js"></script>

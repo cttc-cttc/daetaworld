@@ -377,4 +377,30 @@
 			B.cr_number = #{cr_number}
 		    and A.c_number = B.c_number
 	</update>
+	
+	<!-- 글 신고 -->
+		<!-- 게시판 글 신고 -->
+		<!-- <update id="boardReport" parameterType="java.util.Map">
+			update board
+			set
+				r_code = #{r_code}
+			where
+				b_number = #{b_number}
+		</update>
+		구인공고 신고
+		<update id="adsReport" parameterType="java.util.Map">
+			update job_ads
+			set
+				r_code = #{r_code}
+			where
+				a_number = #{a_number}
+		</update>
+		글 신고 테이블에 추가
+		<insert id="insertReport" parameterType="java.util.Map">
+			insert into report(
+				b_number, a_number, m_id, r_id, del
+			)values(
+				#{b_number}, #{a_number}, #{m_id}, #{r_id}, 0
+			)
+		</insert> -->
 </mapper>
