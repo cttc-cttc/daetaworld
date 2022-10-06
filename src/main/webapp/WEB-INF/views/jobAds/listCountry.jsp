@@ -57,8 +57,8 @@
 									</select>
 									</td>
 									
-									<td><label for="a_urgency">급구 여부<span>*</span></label>                                                            
-                                                            <input type="checkbox" name="a_urgency" value='1' id="input_check"/>
+									<td><label for="a_urgency"><span></span></label>                                                            
+                                                            <input type="hidden" name="a_urgency" value='1' id="input_check" />
                                                             <input type="hidden" name="a_urgency" value='0' id="input_check_hidden"/>   </td>
 							
 									
@@ -101,7 +101,7 @@
 		
 		<section class="content">
 			<div class="table-responsive">
-				<table class="table table-striped">
+				<table class="table table-striped" id="myTable">
 					<colgroup>
 						<col style="width: 17%;">
 						<col style="width: 15%;">
@@ -116,12 +116,21 @@
 					<thead>
 
 						<tr>
-							<th>가게이름</th>
-							<th>날짜</th>
-							<th>시간</th>
-							<th>시급</th>
+							<th>가게이름<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+</svg></th>
+							<th>날짜<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+</svg></th>
+							<th>시간<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+</svg></th>
+							<th>시급<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+</svg></th>
 							<th>주소</th>
 							<th>구인 인원</th>
+							<th>급구여부</th>
 							<th></th>
 
 						</tr>
@@ -140,6 +149,12 @@
 							<td class="tc">${jobsend.a_wage}</td>
 							<td class="tc">${jobsend.s_address1 }</td>
 							<td class="tc">${jobsend.a_need }</td>
+							<td class="tc"><c:if test="${jobsend.a_urgency==1 }">
+                                                               <c:out value="o"></c:out>
+                                                            </c:if>
+                                                            <c:if test="${jobsend.a_urgency==0 }">
+                                                               <c:out value="x"></c:out>
+                                                            </c:if></td>
 							<td></td>
 						</tr>
 						</c:if>
@@ -673,13 +688,62 @@
       if(document.getElementById("input_check").checked) {
           document.getElementById("input_check_hidden").disabled = true;
       }
-   </script>
-   
-   
-   
+   </script> 
    <!-- 직종 -->
-   
-	<!-- ajax 사용end -->
+   	<!-- ajax 사용end -->
+<script src="main.js"></script>
+<script>
+th = document.getElementsByTagName('th');
 
+for(let c=0; c < th.length; c++){
+
+    th[c].addEventListener('click',item(c))
+}
+
+
+function item(c){
+
+    return function(){
+      console.log(c)
+      sortTable(c)
+    }
+}
+
+
+function sortTable(c) {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("myTable");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[c];
+      y = rows[i + 1].getElementsByTagName("TD")[c];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+</script>
 </body>
 </html>	

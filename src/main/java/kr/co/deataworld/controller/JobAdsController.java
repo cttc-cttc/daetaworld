@@ -176,11 +176,11 @@ public class JobAdsController {
 		return "jobAds/listRecommendation";
 	}
 
-	// 상단 필터
-	@ResponseBody
-	@PostMapping(value = "/jobAds/findAll")
-	public List<Map<String, Object>> findAll() {
-
-		return service.findAll();
-	}
+//	// 상단 필터
+//	@ResponseBody
+//	@PostMapping(value = "/jobAds/findAll")
+//	public List<Map<String, Object>> findAll() {
+//
+//		return service.findAll();
+//	}
 }

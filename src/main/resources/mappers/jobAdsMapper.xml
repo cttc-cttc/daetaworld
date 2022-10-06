@@ -254,18 +254,6 @@
 	</select>
 	<!-- 상단 필터 s-->
 	<!-- 전체목록선택 -->
-	<select id="findAll" parameterType="java.util.Map" resultType="Map">
-		<![CDATA[ 
-		select a.*, s.*
-		from job_ads a, shop_info s
-		where a.a_urgency = 0
-		and a.a_status not in (3,4)
-		and a.s_number = s.s_number
-		and s.j_code not in (18)
-		and left(a.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
-		order by a.a_number desc
-		
-		]]>
-	</select>
+	
 	<!-- 상단 필터 e -->
 </mapper>
