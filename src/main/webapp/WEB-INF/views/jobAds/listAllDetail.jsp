@@ -154,7 +154,7 @@
 					<div class="employer-main-content">
 						<div class="field-description">
 
-							<h3>가게소게</h3>
+							<h3>가게소개</h3>
 							<p>${map.s_intro }</p>
 
 							<ul>

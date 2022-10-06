@@ -161,7 +161,7 @@
 					<div class="col-12">
 						<div class="all-job">
 							<p>
-								전체 구인공고를 보시려면 우측 링크를 클릭하세요. <a href="#">일반구인 전체보기</a>
+								전체 구인공고를 보시려면 우측 링크를 클릭하세요. <a href="${contextPath }/jobAds/listAll">일반구인 전체보기</a>
 							</p>
 						</div>
 					</div>
