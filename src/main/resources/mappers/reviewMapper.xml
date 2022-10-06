@@ -23,7 +23,7 @@
   		<![CDATA[	
   		select s.s_name, a.*, ja.*, m.m_nick, ja.m_id as id_rated
 		from job_ads a, shop_info s, job_apply ja, member m
-		where (left(a.a_date, 10) <= date_format(curdate(), '%m/%d/%Y') 
+		where (left(a.a_date, 10) < date_format(curdate(), '%m/%d/%Y') 
 			or date_format(curdate(), '%Y') - substring(a.a_date, 7, 10) = 1) 
 		and a.m_id = s.m_id and a.m_id = #{m_id}
 		and a.s_number = s.s_number
