@@ -42,9 +42,19 @@
 													<img src="${contextPath }/displayShop?fileName=${urgency_ads.s_picture1}" class="urgency-img">
 												</div>
 												<div class="item-content">
-													<div class="avatar"></div>
 													<h4 class="title">
-														<a href="jobAds/listAllDetail?s_name=${urgency_ads.s_name }&s_number=${urgency_ads.s_number }&m_id=${urgency_ads.m_id }&a_number=${urgency_ads.a_number }">${urgency_ads.s_name }</a>
+													
+													<!-- 로그인 상태 일때 -->
+														<c:if test="${loginInfo.m_id != null && loginInfo.m_type == 1}">
+										                    <a href="${contextPath}/jobAds/listAllDetail?s_name=${urgency_ads.s_name}&m_id=${loginInfo.m_id}&s_number=${urgency_ads.s_number}&a_number=${urgency_ads.a_number}">${urgency_ads.s_name}</a></td>
+										                </c:if>
+
+														<!-- 로그인 상태 아닐때 -->
+														<c:if test="${loginInfo.m_id == null || loginInfo.m_type == 2}">
+															<td class="tc"><a href="${contextPath}/jobAds/nonMember?a_number=${urgency_ads.a_number}">${urgency_ads.s_name}</a></td>
+														</c:if>
+													
+													
 													</h4>
 													<div class="meta">
 														<div class="star">
@@ -99,12 +109,12 @@
 													
 														<!-- 로그인 상태 일때 -->
 														<c:if test="${loginInfo.m_id != null && loginInfo.m_type == 1}">
-										                    <a href="jobAds/listAllDetail?s_name=${common_ads.s_name}&m_id=${loginInfo.m_id}&s_number=${common_ads.s_number}&a_number=${common_ads.a_number}">${common_ads.s_name}</a></td>
+										                    <a href="${contextPath}/jobAds/listAllDetail?s_name=${common_ads.s_name}&m_id=${loginInfo.m_id}&s_number=${common_ads.s_number}&a_number=${common_ads.a_number}">${common_ads.s_name}</a>
 										                </c:if>
 
 														<!-- 로그인 상태 아닐때 -->
 														<c:if test="${loginInfo.m_id == null || loginInfo.m_type == 2}">
-															<td class="tc"><a href="${contextPath}/jobAds/nonMember?a_number=${common_ads.a_number}">${common_ads.s_name}</a></td>
+															<a href="${contextPath}/jobAds/nonMember?a_number=${common_ads.a_number}">${common_ads.s_name}</a>
 														</c:if>
 
 
