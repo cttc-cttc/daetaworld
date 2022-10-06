@@ -39,14 +39,14 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.e_reviewRegister(reviewDTO);
 	}
 	
-	@Override //구직자 내가 작성한 리뷰
+	@Override //구직자 나를 평가한 리뷰
 	public List<Map<String, Object>> e_writtenReviews(String w_writer) throws Exception {
 		return dao.e_writtenReviews(w_writer);
 	}
 
-	@Override //구직자 나를 평가한 리뷰
-	public List<Map<String, Object>> e_myReview(String id_rated) throws Exception {
-		return dao.e_myReview(id_rated);
+	@Override //구직자 내가 작성한 리뷰
+	public List<Map<String, Object>> e_wroteReviews(String m_id) throws Exception {
+		return dao.e_wroteReviews(m_id);
 	}
 
 	@Override

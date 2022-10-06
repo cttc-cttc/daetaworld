@@ -39,8 +39,8 @@
 											<div class="profile-applications-heading">
 												<ul class="nav">
 													<li><a class="active" href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id}">완료된 공고</a></li>
-													<li><a href="${contextPath}/reviewMapper/e_writtenReviews?w_writer=${loginInfo.m_id}">내가 작성한 후기</a></li>
-													<li><a href="${contextPath}/reviewMapper/e_myReview?id_rated=${loginInfo.m_id}">나를 평가한 후기</a></li>
+													<li><a href="${contextPath}/reviewMapper/e_wroteReviews?m_id=${loginInfo.m_id}">내가 작성한 후기</a></li>
+													<li><a href="${contextPath}/reviewMapper/e_writtenReviews?m_id=${loginInfo.m_id}">나를 평가한 후기</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -73,16 +73,19 @@
 																
 																
 																<c:if test="${adsList.a_status != 3}">
-																	<td><button id="pinchCh" onclick="pinch_Chk()">확인</button></td>
+																	<td><button id="pinch" onclick="pinch_Chk()">확인</button></td>
 																</c:if>
 																
 																<c:if test="${adsList.a_status == 3 && adsList.jae_status != 7 }">
-																	<td><button id="pinchCh" onclick="location.href='${contextPath}/reviewMapper/e_reviewRegister?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}&id_rated=${adsList.id_rated}'">후기입력</button></td>
+																	<td><button id="pinch" onclick="location.href='${contextPath}/reviewMapper/e_reviewRegister?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}&id_rated=${adsList.id_rated}'">후기입력</button></td>
 																</c:if>
 																
 																<c:if test="${adsList.jae_status == 7}">
+																	
 																</c:if>
 															</tr>
+																<input type="hidden" name="m_id" id="m_id" value="${adsList.m_id}"/>
+																<input type="hidden" name="a_number" id="a_number" value="${adsList.a_number}"/>
 														</c:forEach>
 													</table>
 												</div>
@@ -154,13 +157,9 @@
 	
 	<script type="text/javascript">
 		function changeBtnName()  {
-			  const btnElement = document.getElementById('pinchCh');
+			  const btnElement = document.getElementById('pinch');
 			  btnElement.innerText = '후기작성';
 			}
-		
-		
-		
-		
 	</script>
 	
 	

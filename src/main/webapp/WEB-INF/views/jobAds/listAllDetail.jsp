@@ -220,20 +220,6 @@
 									</c:when>
 								</c:choose>
 								
-								
-								<%-- <!-- 구직 신청하기 -->
-								<c:if test="${result == 0}">
-									<a class="ht-btn text-center" type="button"
-										onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}&employer_id=${map.m_id }&s_name=${map.s_name }'">지원하기<i
-										class="ml-10 mr-0 fa fa-paper-plane"></i></a>
-								</c:if>
-								
-								<!-- 지원한 공고 = 신청불가 -->
-								<c:if test="${result == 1}">
-									<a class="ht-btn text-center" type="text">이미 지원한 공고입니다<i
-										class="ml-10 mr-0 fa fa-paper-plane"></i></a>
-								</c:if> --%>
-
 							</div>
 						</div>
 

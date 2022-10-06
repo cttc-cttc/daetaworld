@@ -183,15 +183,14 @@
 <select id="pinchExpired" parameterType="String" resultType="Map">
 	
 	<![CDATA[ 
-	 select s.m_id as id_rated, a.*, ja.*,s.*
+	select s.m_id as id_rated, a.*, ja.*,s.*
 	from job_ads a, job_apply ja, shop_info s
 	where (left(a.a_date, 10) <= date_format(curdate(), '%m/%d/%Y')
 	or date_format(curdate(), '%Y') - substring(a.a_date, 7, 10) = 1)
 	and ja.a_number = a.a_number
 	and a.s_number = s.s_number
-	and (ja.jar_status = 4 or 2)
+	and (ja.jar_status in (4,7) and ja.jae_status in (2,7))
 	and ja.m_id = #{m_id}
-	and (a.a_status =3 or a.a_status = 4);
 	]]>
 </select>
 
@@ -250,7 +249,8 @@
 	a.a_status = 3
 	WHERE
 	a.m_id = #{m_id} 
-	AND a.a_number = #{a_number}
+	AND
+	a.a_number = #{a_number}
 </update>
 
 <!-- 구직 신청 후 (구인자는 수락을 누름) 수락 선택. -->
