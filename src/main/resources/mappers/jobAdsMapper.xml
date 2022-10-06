@@ -93,8 +93,9 @@
 		where a.a_urgency = 0
 		and a.a_status not in (3,4)
 		and a.s_number = s.s_number
-		and s.j_code not in (18)
-		and left(a.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
+		and a.job_code not in (18)
+		and a.del = 0
+		and left(a.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
 		order by a.a_number desc
 		limit #{pageStart}, #{perPageNum}
 		]]>
@@ -108,8 +109,9 @@
 		where a.a_urgency = 1
 		and a.a_status not in (3,4)
 		and a.s_number = s.s_number
-		and s.j_code not in (18)
-		and left(a.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
+		and a.job_code not in (18)
+		and a.del = 0
+		and left(a.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
 		order by a.a_number desc
 		limit #{pageStart}, #{perPageNum}
 	]]>
@@ -124,9 +126,10 @@
 		select a.*, s.*
 		from job_ads a, shop_info s
 		where a_status not in(3,4)
-		and job_code = 18
+		and a.job_code = 18
 		and a.s_number = s.s_number
-		and left(a.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
+		and a.del = 0
+		and left(a.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
 		order by a.a_number desc
 		limit
 		#{pageStart}, #{perPageNum}
@@ -140,9 +143,10 @@
 		from shop_info si , job_ads ja
 		where si.s_number = ja.s_number
 		and si.a_code = #{a_code}
-		and si.j_code = #{j_code}
+		and ja.job_code = #{j_code}
 		and ja.a_urgency = #{a_urgency}
-		and left(ja.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
+		and a.del = 0
+		and left(ja.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
 		]]>
 		
 	</select>
@@ -156,7 +160,7 @@
 		on j.s_number
 		where
 		j.s_number = s.s_number
-		and left(j.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
+		and left(j.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
 		and
 		j.a_number = #{a_number};
 	</select>
@@ -169,7 +173,7 @@
 		where j.s_number = s.s_number
         and m.m_id = #{m_id}
 		and s.s_number = #{s_number}
-		and left(j.a_date ,10) >date_format(curdate(), '%m/%d/%Y')
+		and left(j.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
 		and j.a_number = #{a_number}
 	</select> 
 
@@ -254,6 +258,19 @@
 	</select>
 	<!-- 상단 필터 s-->
 	<!-- 전체목록선택 -->
-	
+	<select id="findAll" parameterType="java.util.Map" resultType="Map">
+		<![CDATA[ 
+		select a.*, s.*
+		from job_ads a, shop_info s
+		where a.a_urgency = 0
+		and a.a_status not in (3,4)
+		and a.s_number = s.s_number
+		and a.job_code not in (18)
+		and a.del = 0
+		and left(a.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+		order by a.a_number desc
+		
+		]]>
+	</select>
 	<!-- 상단 필터 e -->
 </mapper>
