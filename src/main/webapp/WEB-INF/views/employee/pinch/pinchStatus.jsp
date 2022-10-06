@@ -56,7 +56,7 @@
 															<th>급구</th>
 															<th>지원상태</th>
 															<th>공고상태</th>
-															<th></th>
+															<th>수락/거절</th>
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<input type="hidden" name="adsStatus" value="${adsList.jae_status}" />

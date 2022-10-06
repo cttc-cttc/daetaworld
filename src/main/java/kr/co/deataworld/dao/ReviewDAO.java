@@ -16,11 +16,11 @@ public interface ReviewDAO {
 	//	리뷰 작성
 		public int e_reviewRegister(ReviewDTO reviewDTO) throws Exception;	
 
-	//	내가 작성한 리뷰
-		public List<Map<String, Object>> e_writtenReviews(String w_writer) throws Exception;
-		
 	//	나를 평가한 리뷰
-		public List<Map<String, Object>> e_myReview(String id_rated) throws Exception;
+		public List<Map<String, Object>> e_writtenReviews(String m_id) throws Exception;
+		
+	//	내가 평가한 리뷰
+		public List<Map<String, Object>> e_wroteReviews(String m_id) throws Exception;
 	
 //	구인자
 		

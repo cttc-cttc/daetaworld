@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>완료된 공고</h1>
+										<h1>내가 작성한 후기</h1>
 									</div>
 								</div>
 							</div>
@@ -38,35 +38,35 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a class="active" href="r_adsCompleted?m_id=${loginInfo.m_id }">완료된 공고</a></li>											
-													<li><a href="r_wroteReviews?m_id=${loginInfo.m_id }">후기 작성한 공고</a></li>											
-													<li><a href="r_writtenReviews?m_id=${loginInfo.m_id }">후기 작성된 공고</a></li>											
+														<li><a href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id}">완료된 공고</a></li>
+														<li><a class="active" href="${contextPath}/reviewMapper/e_wroteReviews?m_id=${loginInfo.m_id}">내가 작성한 후기</a></li>											
+														<li><a href="${contextPath}/reviewMapper/e_writtenReviews?m_id=${loginInfo.m_id}">나를 평가한 후기</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<table class="table table-striped" style="table-layout:fixed">
-														<thead>		
-															<th>가게명</th>													
-															<th>날짜</th>															
-															<th>시간</th>
-															<th>시급</th>	
-															<th>알바생</th>
-															<th></th>
-														</thead>
-														<c:forEach var="adsList" items="${list}">
-															<tr>			
-																<td>${adsList.s_name }</td>													
-																<td>${adsList.a_date }</td>
-																<td>${adsList.a_time }</td>
-																<td>${adsList.a_wage }</td>	
-																<td>${adsList.m_nick }</td>
-																<td>
-																<button onclick="location.href='reviewRegister?a_number=${adsList.a_number}&m_id=${adsList.m_id }&id_rated=${adsList.id_rated }'" >후기작성</button></td>
+													<table class="table table-striped">
+														<thead>
+															<tr>
+																<th>가게이름</th>
+																<th>내가 준 평점</th>
+																<th>작성한 후기</th>															
+																<th>작성 날짜</th>															
+																<th>구인자 닉네임</th>
 															</tr>
-														</c:forEach>
+														</thead>
+														<tbody>
+															<c:forEach var="re" items="${list}">
+																<tr>			
+																	<td><a href="wroteDetail?w_number=${re.w_number }">${re.s_name }</a></td>														
+																	<td>${re.w_rate }</td>														
+																	<td>${re.w_comments }</td>														
+																	<td>${re.date }</td>														
+																	<td>${re.m_nick }</td>														
+																</tr>
+															</c:forEach>
+														</tbody>
 													</table>
-													
 													
 												</div>
 											</div>

@@ -236,33 +236,33 @@ public class CommonController {
 		@PostMapping(value="reviewMapper/e_reviewRegister")
 		public String e_reviewRegister(ReviewDTO reviewDTO) throws Exception{
 			int r = rService.e_reviewRegister(reviewDTO);
-			return "redirect:/reviewMapper/e_writtenReviews?w_writer="+reviewDTO.getW_writer();
+			return "redirect:/reviewMapper/e_writtenReviews?m_id="+reviewDTO.getW_writer();
 		}
 		
 		
-	//	리뷰 내가 작성한 후기
+		//나를 평가한 리뷰
 		@GetMapping(value="reviewMapper/e_writtenReviews")	
-		public String e_writtenReviews(@RequestParam("w_writer") String w_writer, Model model)throws Exception{
+		public String e_writtenReviews(@RequestParam("m_id") String m_id, Model model)throws Exception{
 			model.addAttribute("leftMenu", "adsCompleted");
-			List<Map<String, Object>> list = rService.e_writtenReviews(w_writer);
+			List<Map<String, Object>> list = rService.e_writtenReviews(m_id);
 			model.addAttribute("list", list);
 			return "common/review/employee/e_writtenReviews";
 		}	
 	
 	
-//	나를 평가한 후기
-	@GetMapping(value="reviewMapper/e_myReview")	
-	public String e_myReview(@RequestParam("id_rated")String id_rated, Model model)throws Exception{
-		model.addAttribute("leftMenu", "adsCompleted");
-		List<Map<String, Object>> list = rService.e_myReview(id_rated);
-		model.addAttribute("list", list);
-		System.out.println("값을 가져왔니? : "+list);
-		return "common/review/employee/e_myReviews";
-	}
+		//내가 평가한 리뷰
+		@GetMapping(value="reviewMapper/e_wroteReviews")	
+		public String e_myReview(@RequestParam("m_id")String m_id, Model model)throws Exception{
+			model.addAttribute("leftMenu", "adsCompleted");
+			List<Map<String, Object>> list = rService.e_wroteReviews(m_id);
+			model.addAttribute("list", list);
+			System.out.println("값을 가져왔니? : "+list);
+			return "common/review/employee/e_wroteReviews";
+		}
 	
 
 //	공통		
-	//  작성된 리뷰 내용 확인
+		  // 작성된 리뷰 내용 확인
 		  @GetMapping(value="reviewMapper/wroteDetail")
 		  public String wroteDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
 		     model.addAttribute("leftMenu", "adsCompleted");

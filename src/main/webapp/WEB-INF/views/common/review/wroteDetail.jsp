@@ -54,12 +54,12 @@
 
 													<c:if test="${loginInfo.m_type == 1 }">
 														<ul class="nav">
-															<li><a class="active" href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id }">완료된 공고</a></li>
+															<li><a href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id }">완료된 공고</a></li>
 																	
-															<li><a href="e_writtenReviews?w_writer=${loginInfo.m_id }">내가 작성한 후기</a></li>
+															<li><a class="active" href="e_wroteReviews?m_id=${loginInfo.m_id }">내가 작성한 후기</a></li>
 																	
 															<li><a
-																	href="e_myReview?id_rated=${loginInfo.m_id }">나를 평가한 후기</a></li> 
+																	href="e_writtenReviews?m_id=${loginInfo.m_id }">나를 평가한 후기</a></li> 
 														</ul>
 													</c:if>
 													<c:if test="${loginInfo.m_type == 2 }">

@@ -84,14 +84,14 @@ public class ReviewDAOImpl implements ReviewDAO{
 	}
 	
 	
-	@Override //내가 작성한 리뷰
-	public List<Map<String, Object>> e_writtenReviews(String w_writer) throws Exception {
-		return sqlSession.selectList(namespace + ".e_writtenReviews", w_writer);
+	@Override //나를 평가한 리뷰
+	public List<Map<String, Object>> e_writtenReviews(String m_id) throws Exception {
+		return sqlSession.selectList(namespace + ".e_writtenReviews", m_id);
 	}
 
-	@Override //나를 평가한 리뷰
-	public List<Map<String, Object>> e_myReview(String id_rated) throws Exception {
-		return sqlSession.selectList(namespace + ".e_myReview", id_rated);
+	@Override //내가 평가한 리뷰
+	public List<Map<String, Object>> e_wroteReviews(String m_id) throws Exception {
+		return sqlSession.selectList(namespace + ".e_wroteReviews", m_id);
 	}
 
 	@Override

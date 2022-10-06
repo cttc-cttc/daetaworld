@@ -286,12 +286,8 @@ public class EmployeeController {
 	//완료된 공고 '확인' 버튼 클릭시 a_status의 상태를 3으로 변경
 	@ResponseBody
 	@PostMapping(value="employeeMapper/pinchChk")
-	public int pinchChk(@RequestParam("m_id") String m_id,
-						@RequestParam("a_number") int a_number)throws Exception{
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("m_id", m_id);
-		map.put("a_number", a_number);
-		
+	public int pinchChk(@RequestParam Map<String, Object> map )throws Exception{
+		System.out.println("asdasds : " + map);
 		return service.pinchChk(map);
 	}
 	
