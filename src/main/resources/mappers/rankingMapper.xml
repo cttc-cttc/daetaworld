@@ -2,17 +2,22 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="kr.co.deataworld.rankingMapper">
 
-<!-- 랭킹 페이지 접속시 1~5위의 평점 랭킹을 불러온다 -->
-
-
-
-
-
-
-
-
-
-
+<!-- 랭킹 페이지 접속시 1~5위의 총점 랭킹을 불러온다 -->
+	<select id="ranking" resultType="Map">
+		<![CDATA[
+		select ranking.num, ranking.nick, ranking.sum
+		from(        
+		   select rank() over(order by sum(w_rate) desc) as num, sum(w_rate)as sum, m.m_nick as nick    
+		   from review r, member m   
+		   where m.m_type = 1 and r.id_rated = m.m_id 
+		   group by r.id_rated
+		   order by num
+		   ) as ranking
+		where ranking.num <= 5
+		order by ranking.num
+		]]>
+	</select>
 </mapper>

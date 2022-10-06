@@ -12,9 +12,9 @@
 		</header>
 		<br><br><br><br><br><br>
 		<div class="container">
-			<h1>랭킹</h1>
+			<h1>구직자 랭킹</h1>
 		</div>
-		
+			
 		
 		
 		<!-- footer -->
