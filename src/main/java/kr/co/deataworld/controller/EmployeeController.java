@@ -158,20 +158,6 @@ public class EmployeeController {
 		}
 	}
 		
-		
-	
-	/*
-	 * // 자기소개서 삭제
-	 * 
-	 * @GetMapping(value = "employeeMapper/resumeDelete") public String
-	 * resumeDelete(ResumeDTO resumeDTO, Model model) throws Exception { int result
-	 * = service.defaultIntro_xDel(resumeDTO); if (result == 0) { // result=0 이면
-	 * 대표자소서 아님 -> 삭제한다 service.resumeDelete(resumeDTO); model.addAttribute("m_id",
-	 * resumeDTO); return "redirect:resumeManagement?m_id="+ resumeDTO.getM_id(); }
-	 * else { // 대표자소서면 0을 리턴 후 처리. int result1 = 0; model.addAttribute("result1",
-	 * result1); return "redirect:resumeManagement?m_id=" + resumeDTO.getM_id(); } }
-	 */	
-	
 	
 	//구직자 자기소개서 작성 폼으로 이동
 	@GetMapping(value="employeeMapper/resumeRegister")
@@ -198,13 +184,23 @@ public class EmployeeController {
 	
 	
 	//자소서 대표 설정
-	@GetMapping(value="employeeMapper/resumeDefault")
-	public String defaultIntro(ResumeDTO resumeDTO, Model model)throws Exception {
+	@ResponseBody
+	@PostMapping(value="employeeMapper/resumeDefault")
+	public int defaultIntro(ResumeDTO resumeDTO)throws Exception {
 		service.resumeDefaultInit(resumeDTO);
-		service.resumeDefault(resumeDTO);
-		model.addAttribute("m_id", resumeDTO.getM_id());
-		return "redirect:resumeManagement";
+		return service.resumeDefault(resumeDTO);
 	}
+	
+	
+	/*
+	 * //자소서 대표 설정
+	 * 
+	 * @GetMapping(value="employeeMapper/resumeDefault") public String
+	 * defaultIntro(ResumeDTO resumeDTO, Model model)throws Exception {
+	 * service.resumeDefaultInit(resumeDTO); service.resumeDefault(resumeDTO);
+	 * model.addAttribute("m_id", resumeDTO.getM_id()); return
+	 * "redirect:resumeManagement"; }
+	 */
 	
 	
 	//대타신청 - 신청을 하면 -> m_id 값을 보냄 -> 이미 지원한 공고인지 확인 해야함 -> 구직/구인자 지원상태를 0(지원함)으로 바꿈 -> 구직자 대표 자기소개서를 update해줌. 

@@ -124,8 +124,8 @@
 																		<p><a href="${contextPath }/employeeMapper/selectResume?i_number=${resume.i_number}&m_id=${loginInfo.m_id}">${resume.i_contents}</a></p>
 																	</div>
 																	<br>
-																	<!-- <a id="content-style" type="text" href="${contextPath}/employeeMapper/resumeDefault?i_number=${resume.i_number}">[대표설정]</a> -->
-																	<a class="content-style-1"  href="${contextPath}/employeeMapper/resumeDefault?i_number=${resume.i_number}&m_id=${loginInfo.m_id }">대표설정</a>
+<%-- 																	<a class="content-style-1"  href="${contextPath}/employeeMapper/resumeDefault?i_number=${resume.i_number}&m_id=${loginInfo.m_id }">대표설정</a> --%>
+																	<input type="button" value="대표설정" onclick="introDefault('${resume.i_number}','${loginInfo.m_id}')" />
 																	<input type="button" value="삭제" onclick="deleteChk('${resume.i_number}','${loginInfo.m_id}')">
 																	<input type="hidden" name="result" id="result" value="${map.re}"/>
 																	
@@ -175,7 +175,7 @@
 		}
 	</script>
 
-	<!-- 자기소개서 삭제 -->
+	<!-- 자기소개서 삭제 ajax -->
 	<script type="text/javascript">
 		function deleteChk(i_number, m_id){
 			
@@ -208,6 +208,33 @@
 		}
 	</script>
 	
+	<!-- 자소서 대표설정 ajax -->
+	<script type="text/javascript">
+		function introDefault(i_number, m_id){
+			
+			var url ="${contextPath}/employeeMapper/resumeDefault";
+			var paramData = {
+					"i_number" : i_number,
+					"m_id" : m_id
+			};
+			
+			$.ajax({
+				url : url,
+				data : paramData,
+				type : "POST",
+				dataType : "json",
+					success : function(rseult){
+						alert('대표자소서로 설정했습니다!');
+						window.location.reload(true);
+						
+					},
+					error : function(result){
+						alert('ajax 실패');
+						
+					}
+			});
+		}
+	</script>
 	
 	
 </body>
