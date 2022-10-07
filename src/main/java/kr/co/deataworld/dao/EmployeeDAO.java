@@ -46,7 +46,7 @@ public interface EmployeeDAO {
 	public int applyCheck(Map<String, Object> chk)throws Exception;
 	
 	//대타 신청 전 자소서가 있나 체크
-	public Map<String, Object> introChk(String m_id)throws Exception;
+	public Map<String, Object> introChk(JobApplyDTO jobapplyDTO)throws Exception;
 	
 	//대타신청
 	public int jobApply(JobApplyDTO jobapplyDTO)throws Exception;

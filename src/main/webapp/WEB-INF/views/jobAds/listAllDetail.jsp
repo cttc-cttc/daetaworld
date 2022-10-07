@@ -218,6 +218,14 @@
 										<a class="ht-btn text-center" type="text">이미 지원한 공고입니다<i
 										class="ml-10 mr-0 fa fa-paper-plane"></i></a>
 									</c:when>
+									<c:when test="${introResult == 9}">
+										<script type="text/javascript">
+											<script>  
+											$(document).ready(function(){
+											  alert("등록된 자기소개서가 없습니다.");
+											});
+										</script>
+									</c:when>
 								</c:choose>
 								
 							</div>
@@ -524,5 +532,23 @@
 							}
 						});
 	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

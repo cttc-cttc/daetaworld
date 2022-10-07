@@ -173,16 +173,26 @@ public class EmployeeController {
 	// 구인자한테 신청했다고 알림 보냄
 	@GetMapping(value="employeeMapper/jobApply")
 	public String jobApply(JobApplyDTO jobapplyDTO, String employer_id, String s_name)throws Exception {
-		service.jobApply(jobapplyDTO); //m_id, 구직&구인자 지원상태를 0(지원함)으로 insert 함
-		service.applyIntro(jobapplyDTO); //구직자가 볼수있게 대표 자기소개서를 update 함
+		//지원하기 누르면 1.대표설정된 자기소개서가 있는지 확인이 필요 - 확인값이 0보다 크면 - 대표자소서가 설정되어 있는것
+		Map<String, Object> chk = new HashMap<String, Object>();
+		chk = service.introChk(jobapplyDTO);
 		
-		// 공고 지원자 알림을 등록할 정보
-		Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
-		notiInsertInfo.put("m_id", employer_id);
-		notiInsertInfo.put("s_name", s_name);
-		notiInsertInfo.put("n_type", 0);
-		nService.insertAdsApplicant(notiInsertInfo);
-		return "redirect:/jobAds/listAll";
+		if(chk != null) {
+			service.jobApply(jobapplyDTO); //m_id, 구직&구인자 지원상태를 0(지원함)으로 insert 함
+			service.applyIntro(jobapplyDTO); //구직자가 볼수있게 대표 자기소개서를 update 함
+			
+			// 공고 지원자 알림을 등록할 정보
+			Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+			notiInsertInfo.put("m_id", employer_id);
+			notiInsertInfo.put("s_name", s_name);
+			notiInsertInfo.put("n_type", 0);
+			nService.insertAdsApplicant(notiInsertInfo);
+			return "redirect:/jobAds/listAll";
+			
+		} else { //0보다 크지않다 - null값이다 - 대표설정된 자소서가 없다.
+			return "redirect:/employeeMapper/resumeManagement?m_id=" + jobapplyDTO.getM_id();
+		}
+		
 	}
 	
 	//신청 -> 가게정보 불러오기 -> 대타내역 보여주기

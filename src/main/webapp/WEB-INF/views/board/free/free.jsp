@@ -1,3 +1,6 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -44,9 +47,11 @@
 									</tr>
 									</thead>
 									
-									<c:forEach var="board" items="${list }">
+									<c:forEach var="board" items="${list }" varStatus="status">
 										<tr>
-											<td>${board.b_number}</td>
+											<td>
+											 ${board.b_number}										
+											</td>
 											<td><a href="detail?b_number=${board.b_number}">
 													${board.b_title} </a></td>
 											<td>${board.b_date}</td>

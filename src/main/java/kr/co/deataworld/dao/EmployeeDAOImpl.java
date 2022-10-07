@@ -91,8 +91,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 	
 	@Override //대타신청 전 자소서 있는지 확인
-	public Map<String, Object> introChk(String m_id) throws Exception {
-		return sql.selectOne(NAMESPACE + ".introChk", m_id);
+	public Map<String, Object> introChk(JobApplyDTO jobapplyDTO) throws Exception {
+		return sql.selectOne(NAMESPACE + ".introChk", jobapplyDTO);
 	}
 
 	@Override //대타신청
