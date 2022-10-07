@@ -71,4 +71,15 @@ public interface AdminDAO {
 	public int warnTempingComments(int c_number) throws Exception;
 	// 땜빵게시판 댓글 신고 취소
 	public int cancelTempingComments(int cr_number) throws Exception;
+	
+	// 자유/땜빵게시판 글 신고
+	public int boardReport(Map<String, Object> reportInfo);
+	// 자유/땜빵게시판 댓글 신고
+	public int commentsReport(Map<String, Object> reportInfo);
+	// 구인공고 글 신고
+	public int adsReport(Map<String, Object> reportInfo);
+	// 로그인 유저가 이미 신고한 글인지 확인
+	public int confirmReport(Map<String, Object> reportInfo);
+	// 로그인 유저가 이미 신고한 댓글인지 확인
+	public int confirmCommentsReport(Map<String, Object> reportInfo);
 }

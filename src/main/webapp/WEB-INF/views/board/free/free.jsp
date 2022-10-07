@@ -33,7 +33,7 @@
 								</div>
 							</div>
 							<div class="table-responsive table-bordered" style="overflow-x: initial;">
-								<table class="table table-striped" style="margin: 0;">
+								<table class="table table-striped" style="margin: 0; background: #fff;">
 									<thead class="thead-dark">
 									<tr>
 										<th>글번호</th>

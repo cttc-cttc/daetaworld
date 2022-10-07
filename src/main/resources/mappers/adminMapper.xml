@@ -380,14 +380,14 @@
 	
 	<!-- 글 신고 -->
 		<!-- 게시판 글 신고 -->
-		<!-- <update id="boardReport" parameterType="java.util.Map">
+		<update id="boardReport" parameterType="java.util.Map">
 			update board
 			set
 				r_code = #{r_code}
 			where
 				b_number = #{b_number}
 		</update>
-		구인공고 신고
+		<!-- 구인공고 신고 -->
 		<update id="adsReport" parameterType="java.util.Map">
 			update job_ads
 			set
@@ -395,12 +395,43 @@
 			where
 				a_number = #{a_number}
 		</update>
-		글 신고 테이블에 추가
+		<!-- 글 신고 테이블에 추가 -->
 		<insert id="insertReport" parameterType="java.util.Map">
 			insert into report(
-				b_number, a_number, m_id, r_id, del
+				b_number, a_number, m_id, r_id, r_type, r_code, del
 			)values(
-				#{b_number}, #{a_number}, #{m_id}, #{r_id}, 0
+				#{b_number}, #{a_number}, #{m_id}, #{r_id}, #{r_type}, #{r_code}, 0
 			)
-		</insert> -->
+		</insert>
+		<!-- 로그인 유저가 이미 신고한 글인지 확인 -->
+		<select id="confirmReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+			select count(*) from report
+			where b_number = #{b_number}
+				and a_number = #{a_number}
+				and r_id = #{r_id}
+		</select>
+	
+	<!-- 댓글 신고 -->
+		<!-- 게시판 댓글 신고 -->
+		<update id="commentsReport" parameterType="java.util.Map">
+			update comments
+			set
+				r_code = #{r_code}
+			where
+				c_number = #{c_number}
+		</update>
+		<!-- 댓글 신고 테이블에 추가 -->
+		<insert id="insertCommentsReport" parameterType="java.util.Map">
+			insert into comments_report(
+				c_number, m_id, r_id, r_type, r_code, del
+			)values(
+				#{c_number}, #{m_id}, #{r_id}, #{r_type}, #{r_code}, 0
+			)
+		</insert>
+		<!-- 로그인 유저가 이미 신고한 댓글인지 확인 -->
+		<select id="confirmCommentsReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+			select count(*) from comments_report
+			where c_number = #{c_number}
+				and r_id = #{r_id}
+		</select>
 </mapper>

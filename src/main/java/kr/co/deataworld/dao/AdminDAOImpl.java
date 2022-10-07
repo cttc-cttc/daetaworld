@@ -154,4 +154,38 @@ public class AdminDAOImpl implements AdminDAO {
 	public int cancelTempingComments(int cr_number) throws Exception {
 		return sql.update(nameSpace + ".cancelTempingComments", cr_number);
 	}
+
+	@Override
+	public int boardReport(Map<String, Object> reportInfo) {
+		// 해당 게시판 글의 r_code 업데이트
+		sql.update(nameSpace + ".boardReport", reportInfo);
+		// report 테이블에 새 레코드 추가 
+		return sql.insert(nameSpace + ".insertReport", reportInfo);
+	}
+
+	@Override
+	public int commentsReport(Map<String, Object> reportInfo) {
+		// 해당 게시판 댓글의 r_code 업데이트
+		sql.update(nameSpace + ".commentsReport", reportInfo);
+		// comments_report 테이블에 새 레코드 추가 
+		return sql.insert(nameSpace + ".insertCommentsReport", reportInfo);
+	}
+
+	@Override
+	public int adsReport(Map<String, Object> reportInfo) {
+		// 해당 공고 글의 r_code 업데이트
+		sql.update(nameSpace + ".adsReport", reportInfo);
+		// report 테이블에 새 레코드 추가 
+		return sql.insert(nameSpace + ".insertReport", reportInfo);
+	}
+
+	@Override
+	public int confirmReport(Map<String, Object> reportInfo) {
+		return sql.selectOne(nameSpace + ".confirmReport", reportInfo);
+	}
+
+	@Override
+	public int confirmCommentsReport(Map<String, Object> reportInfo) {
+		return sql.selectOne(nameSpace + ".confirmCommentsReport", reportInfo);
+	}
 }

@@ -32,7 +32,7 @@
 		select
 			e_number,
 			e_point,
-			date_format(e_date, '%Y-%m-%d %H시%i분%S초') as e_date,
+			date_format(e_date, '%Y-%m-%d %H:%i') as e_date,
 			m_id
 		from earned_point
 		where m_id = #{id}	
@@ -61,7 +61,7 @@
 		select
 			d_number,
 			d_point,
-			date_format(d_date, '%Y-%m-%d %H시%i분%S초') as d_date,
+			date_format(d_date, '%Y-%m-%d %H:%i') as d_date,
 			m_id
 		from deducted_point
 		where m_id = #{id}
