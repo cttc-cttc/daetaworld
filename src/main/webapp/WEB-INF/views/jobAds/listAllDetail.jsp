@@ -11,7 +11,11 @@
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/index.css">
-
+<style>
+	.apply-btn:hover {
+		color: #eee !important;
+	}
+</style>
 <body class="template-color-3">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -119,7 +123,6 @@
 		<!-- 윗대가리끝 -->
 
 		<!-- 붙여넣기 끝 -->
-	</div>
 
 
 	<br>
@@ -210,12 +213,12 @@
 								
 								<c:choose>
 									<c:when test="${map.m_type == 1 && result == 0 || loginInfo.m_id == null}">
-										<a class="ht-btn text-center" type="button"
+										<a class="ht-btn text-center apply-btn" type="button"
 										onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}&employer_id=${map.m_id }&s_name=${map.s_name }'">지원하기<i
 										class="ml-10 mr-0 fa fa-paper-plane"></i></a>										
 									</c:when>
 									<c:when test="${map.m_type == 1 && result == 1}">
-										<a class="ht-btn text-center" type="text">이미 지원한 공고입니다<i
+										<a class="ht-btn text-center apply-btn" type="text">이미 지원한 공고입니다<i
 										class="ml-10 mr-0 fa fa-paper-plane"></i></a>
 									</c:when>
 									<c:when test="${introResult == 9}">
@@ -234,255 +237,35 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-
-
-	</div>
-
-	</div>
-	</div>
-	<!-- 일반구인 리스트 End -->
-
-	<!-- 최저시급 Start -->
-	<div
-		class="featured-employer section bg-image-proparty bg_image--2 pt-110 pt-lg-90 pt-md-70 pt-sm-50 pt-xs-45 pb-120 pb-lg-100 pb-md-80 pb-sm-60 pb-xs-50 balance-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="section-title-two mb-45 mb-xs-30">
-						<h3 class="title">
-							2022년도 최저시급 : <span id="balance" class="counter">9,160</span>원
-						</h3>
+			<div class="row" style="justify-content: end;">
+				<button class="btn btn-success" type="button" style="margin-right: 5px;">목록</button>
+				<%-- 로그인 유저가 타인의 공고를 볼 때만 신고버튼 보임 --%>
+				<c:if test="${loginInfo != null && loginInfo.m_id != map.m_id}">
+					<div class="dropdown" style="display: inline;">
+					  <button class="btn btn-secondary dropdown-toggle" type="button" id="report" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    신고
+					  </button>
+					  <div class="dropdown-menu" aria-labelledby="report">
+					    <%-- 넘기는 파라미터 : rCode, rType, (bNumber), (cNumber), aNumber, mId, rId --%>
+					    <a class="dropdown-item" href="javascript:report(1, 5, -1, -1, ${map.a_number}, '${map.m_id}', '${loginInfo.m_id}')">광고</a>
+					    <a class="dropdown-item" href="javascript:report(2, 5, -1, -1, ${map.a_number}, '${map.m_id}', '${loginInfo.m_id}')">비속어 사용</a>
+					    <a class="dropdown-item" href="javascript:report(3, 5, -1, -1, ${map.a_number}, '${map.m_id}', '${loginInfo.m_id}')">분쟁 조장</a>
+					    <a class="dropdown-item" href="javascript:report(4, 5, -1, -1, ${map.a_number}, '${map.m_id}', '${loginInfo.m_id}')">선정적</a>
+					    <a class="dropdown-item" href="javascript:report(5, 5, -1, -1, ${map.a_number}, '${map.m_id}', '${loginInfo.m_id}')">사기 · 도박</a>
+					  </div>
 					</div>
-				</div>
-				<div class="col-lg-12 middle-align">
-					<div class="col-lg-6">
-						<table class="table table-bordered" id="balance-table">
-							<thead class="thead-dark">
-								<tr>
-									<th scope="col"></th>
-									<th scope="col">주간</th>
-									<th scope="col">야간</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="tr-background">
-									<th scope="row">시급</th>
-									<td><strong class="counter" id="money1">9,160</strong>원</td>
-									<td><strong class="counter" id="money2">13,740</strong>원</td>
-								</tr>
-								<tr class="tr-background">
-									<th scope="row">일급</th>
-									<td><strong class="counter" id="money3">73,280</strong>원</td>
-									<td><strong class="counter" id="money4">109,920</strong>원</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div class="col-lg-12 middle-align">
-					<div class="col-lg-6">
-						<span>*<strong>일급</strong> 하루 8시간 근무 기준
-						</span>
-					</div>
-				</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
-	<!-- 최저시급 End -->
 
-	<!-- 직업추천 & 대타자 평점 랭킹 Start -->
-	<div
-		class="blog-section section pb-120 pb-lg-100 pb-md-80 pb-sm-50 pb-xs-40">
-		<div class="container st-border">
-			<div class="row no-gutters">
-				<div class="col-lg-6">
-					<!-- 직업추천 Start -->
-					<div class="simple-work">
-						<div class="section-title-two text-left">
-							<h3 class="title">직업 추천</h3>
-						</div>
-						<div class="work-list-wrap">
-							<div class="single-list-work mb-20">
-								<div class="work-content">
-									<h4 class="title">오늘 당신에게 맞는 직업은?</h4>
-								</div>
-								<div class="work-content margin-left-auto">
-									<a class="ht-btn header-btn btn-style" href="#">직업 추천받기</a>
-								</div>
-							</div>
-
-							<!-- Single List Work Start -->
-							<div class="single-list-work mb-20">
-								<div class="work-icon">
-									<img
-										src="${contextPath}/resources/assets/images/work/work-icon1.png"
-										alt="">
-								</div>
-								<div class="work-content">
-									<h4 class="title">활동성</h4>
-									<p>당신은 몸을 많이 움직이는 활동적인 일을 원하거나, 그렇지 않은 사무적인 일을 원할 수 있습니다.</p>
-								</div>
-							</div>
-							<!-- Single List Work End -->
-
-							<!-- Single List Work Start -->
-							<div class="single-list-work mb-20">
-								<div class="work-icon">
-									<img
-										src="${contextPath}/resources/assets/images/work/work-icon2.png"
-										alt="">
-								</div>
-								<div class="work-content">
-									<h4 class="title">고객 응대</h4>
-									<p>당신은 고객들을 직접 응대하는 일을 원하거나, 그렇지 않은 비대면 업무를 원할 수 있습니다.</p>
-								</div>
-							</div>
-							<!-- Single List Work End -->
-
-							<!-- Single List Work Start -->
-							<div class="single-list-work mb-20">
-								<div class="work-icon">
-									<img
-										src="${contextPath}/resources/assets/images/work/work-icon3.png"
-										alt="">
-								</div>
-								<div class="work-content">
-									<h4 class="title">접근성</h4>
-									<p>당신은 거주지 주변의 가까운 곳을 선호하거나, 오늘 하루는 멀리 나가보는 것을 선호할 수 있습니다.</p>
-								</div>
-							</div>
-							<!-- Single List Work End -->
-
-						</div>
-					</div>
-					<!-- 직업추천 End -->
-				</div>
-				<div class="col-lg-6">
-					<!-- 대타자 평점 랭킹 Start -->
-					<div class="blog-area">
-						<div class="section-title-two text-left">
-							<h3>대타자 평점 랭킹</h3>
-						</div>
-
-						<div class="blog-wrap ranking">
-							<!-- 랭킹 정보 Start -->
-							<div class="single-list-blog">
-								<div class="col-lg-4">
-									<i class="fas fa-trophy trophy-gold"></i> 1등
-								</div>
-								<div class="col-lg-4">
-									<i class="lnr lnr-user"></i> 대타매니아
-								</div>
-								<div class="col-lg-4">
-									<i class="fas fa-star star-color"></i> 4.8
-								</div>
-							</div>
-							<!-- 랭킹 정보 End -->
-							<!-- 랭킹 정보 Start -->
-							<div class="single-list-blog">
-								<div class="col-lg-4">
-									<i class="fas fa-trophy trophy-silver"></i> 2등
-								</div>
-								<div class="col-lg-4">
-									<i class="lnr lnr-user"></i> 현타왕
-								</div>
-								<div class="col-lg-4">
-									<i class="fas fa-star star-color"></i> 4.6
-								</div>
-							</div>
-							<!-- 랭킹 정보 End -->
-							<!-- 랭킹 정보 Start -->
-							<div class="single-list-blog">
-								<div class="col-lg-4">
-									<i class="fas fa-trophy trophy-bronze"></i> 3등
-								</div>
-								<div class="col-lg-4">
-									<i class="lnr lnr-user"></i> 하루살이
-								</div>
-								<div class="col-lg-4">
-									<i class="fas fa-star star-color"></i> 4.3
-								</div>
-							</div>
-							<!-- 랭킹 정보 End -->
-							<!-- 랭킹 정보 Start -->
-							<div class="single-list-blog">
-								<div class="col-lg-4">
-									<i class="fas fa-trophy icon-hidden"></i> 4등
-								</div>
-								<div class="col-lg-4">
-									<i class="lnr lnr-user"></i> 제발쉬운일z
-								</div>
-								<div class="col-lg-4">
-									<i class="fas fa-star star-color"></i> 4.0
-								</div>
-							</div>
-							<!-- 랭킹 정보 End -->
-							<!-- 랭킹 정보 Start -->
-							<div class="single-list-blog">
-								<div class="col-lg-4">
-									<i class="fas fa-trophy icon-hidden"></i> 5등
-								</div>
-								<div class="col-lg-4">
-									<i class="lnr lnr-user"></i> 의외로열심히함
-								</div>
-								<div class="col-lg-4">
-									<i class="fas fa-star star-color"></i> 3.9
-								</div>
-							</div>
-							<!-- 랭킹 정보 End -->
-							<div class="col-lg-12">
-								<p class="ranking-info">
-									*랭킹은 <strong>매월 1일</strong>에 초기화, <strong>매월 말일</strong>에 정산을
-									진행합니다.
-								</p>
-								<p class="ranking-info">
-									*정산 직후 랭킹 <strong>1, 2, 3등</strong>의 회원분께는 소정의 상품을 지급합니다.
-								</p>
-							</div>
-						</div>
-					</div>
-					<!-- 대타자 평점 랭킹 End -->
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 직업추천 & 대타자 평점 랭킹 End -->
-
-	<!-- 농어촌 & 돌봄 구인 Start -->
-	<div class="cta-section section bg_color--4 pt-50 pb-50">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-8 col-sm-12 col-12">
-					<div class="call-content text-center text-lg-left">
-						<h3 class="title">
-							<span>오늘의 대타에서는</span>
-						</h3>
-						<h3 class="title">
-							농어촌 구인 <span>&</span> 돌봄 구인<span>에도 지원할 수 있습니다.</span>
-						</h3>
-						<p>사회적 인식이 얕은 곳 까지 도움의 손길을 내어 드리고 싶습니다.</p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-12 col-12">
-					<div class="call-btn text-center text-lg-right">
-						<a class="ht-btn green-btn link-btn" href="#">농어촌 구인 지원하기</a> <a
-							class="ht-btn green-btn link-btn" href="#">돌봄 구인 지원하기</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 농어촌 & 돌봄 구인 End -->
 
 	<%@ include file="../include/footer.jsp"%>
 
 	</div>
 	<!-- 문서 끝에 js를 배치하여 페이지 로딩 속도 향상 -->
 	<%@ include file="../include/plugin.jsp"%>
-	<script
-		src="${contextPath}/resources/assets/js/vendor/modernizr-3.10.0.min.js"></script>
+	<script src="${contextPath}/resources/custom_js/report_process.js"></script>
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d6140eb0f3d4e274049880e659b9d48b&libraries=services"></script>

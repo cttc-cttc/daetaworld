@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.deataworld.dto.BlacklistDTO;
@@ -452,16 +451,61 @@ public class AdminController {
 		return "redirect:temping_comments?page=1";
 	}
 	
-//	신고
-//	신고타입(rType) : 1-자유게시판 글, 2-자유게시판 댓글, 3-땜빵게시판 글, 4-땜빵게시판 댓글, 5-구인공고 글
+	/*
+	 * 신고 확인 & 신고
+	 * 
+	 * Map<String, Object> reportInfo
+	 * 신고 코드(r_code) : 1-광고, 2-비속어 사용, 3-분쟁 조장, 4-선정적, 5-사기 · 도박
+	 * 신고 타입(r_type) : 1-자유게시판 글, 2-자유게시판 댓글, 3-땜빵게시판 글, 4-땜빵게시판 댓글, 5-구인공고 글
+	 * 게시글 번호(b_number) : 없으면 -1
+	 * 댓글 번호(c_number) : 없으면 -1
+	 * 구인공고 번호(a_number) : 없으면 -1
+	 * 피신고인(m_id) : 해당 글/댓글 작성자
+	 * 신고인(r_id) : 로그인 유저
+	 */
 	@ResponseBody
-	@PostMapping(value = "boardReport")
-	public int report(int rCode, int rType, int b_number, String m_id, String r_id) {
-		logger.info("rCode: "+ rCode);
-		logger.info("rType: "+ rType);
-		logger.info("b_number: "+ b_number);
-		logger.info("m_id: "+ m_id);
-		logger.info("r_id: "+ r_id);
-		return 0;
+	@PostMapping(value = "reportProcess")
+	public int report(@RequestBody Map<String, Object> reportInfo) {
+		logger.info("신고정보: "+ reportInfo);
+		int r_type = (Integer) reportInfo.get("r_type");
+		
+		// 신고하기 전, 로그인 유저가 이미 신고했는지 확인
+		switch(r_type) {
+		case 1: case 3: case 5:
+			int reportResult = service.confirmReport(reportInfo);
+			if(reportResult != 0) {
+				logger.info("해당 글 이미 신고됨");
+				return 1;
+			}
+			break;
+		case 2: case 4:
+			int reportCommentsResult = service.confirmCommentsReport(reportInfo);
+			if(reportCommentsResult != 0) {
+				logger.info("해당 댓글 이미 신고됨");
+				return 2;
+			}
+		}
+		
+		// 신고
+		switch(r_type) {
+		case 1: case 3:
+			// 해당 게시판 글의 r_code 업데이트
+			// report 테이블에 새 레코드 추가 
+			service.boardReport(reportInfo);
+			logger.info("해당 게시판 글 신고완료");
+			break;
+		case 2: case 4:
+			// 해당 게시판 댓글의 r_code 업데이트
+			// comments_report 테이블에 새 레코드 추가
+			service.commentsReport(reportInfo);
+			logger.info("해당 게시판 댓글 신고완료");
+			break;
+		case 5:
+			// 해당 구인공고 글의 r_code 업데이트
+			// report 테이블에 새 레코드 추가
+			service.adsReport(reportInfo);
+			logger.info("해당 구인공고 글 신고완료");
+		}
+		return 3;
 	}
 }

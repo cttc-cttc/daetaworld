@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
 <title>떔빵 게시판</title>
@@ -29,103 +28,96 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>땡빵 게시판</h1>
+										<h1>땜빵게시판</h1>
 									</div>
 								</div>
 							</div>
 
 							<div class="table-responsive">
-								<table class="table table-striped">
-									<div class="box-body">
-										<div class="f	orm-group">
-											<label>제목</label> <input type="text" name="b_title"
-												class="form-control" value="${temping.b_title}"
-												readonly="readonly" />
-										</div>
-
-										<div class="form-group">
-											<label>내용</label>
-											<textarea name="b_contents" rows="5" readonly="readonly"
-												class="form-control">${temping.b_contents}</textarea>
-										</div>
-
-										<div class="form-group">
-											<label>작성자</label> <input type="text" name="m_id"
-												class="form-control" value="${temping.m_nick}"
-												readonly="readonly" />
-										</div>
+								<div class="box-body">
+									<div class="form-group">
+										<label>제목</label> <input type="text" name="b_title"
+											class="form-control" value="${temping.b_title}"
+											readonly="readonly" />
 									</div>
 
-									<tr>
-										<div class="box-footer">
-											<button id="" class="btn btn-success" onclick="location.href='${contextPath}'">메인</button>
-											<button class="btn btn-primary onclick="location.href='${contextPath}/board/temping/tempin'">목록</button>
-											<c:if test="${loginInfo.m_id==temping.m_id}">
-											<button class="btn btn-warning" onclick="location.href='${contextPath}/board/temping/tempingupdate?b_number=${temping.b_number}'">수정</button>
-											<button class="btn btn-danger onclick="location.href='${contextPath}/board/temping/tempingdelete?b_number=${temping.b_number}'">삭제</button>
-											<button class="btn btn-info onclick="location.href='${contextPath}/board/temping/tempingreply?b_number=${temping.b_number}'">댓글작성</button>
-											</c:if>
-											
-										</div>
+									<div class="form-group">
+										<label>내용</label>
+										<textarea name="b_contents" rows="5" readonly="readonly"
+											class="form-control">${temping.b_contents}</textarea>
+									</div>
 
-											
-							<%@ include file="tempingdetail1.jsp"%>							
-													</div>
+									<div class="form-group">
+										<label>작성자</label> <input type="text" name="m_id"
+											class="form-control" value="${temping.m_nick}"
+											readonly="readonly" />
+									</div>
+								</div>
 
-
-										</div>
-										</div>
-
-										</div>
-										</div>
-
-										</div>
-										</div>
-										<!-- Dashboard Content Section End -->
-										<%@ include file="../../include/footer.jsp"%>
-										<!-- Placed js at the end of the document so the pages load faster -->
-										</div>
-										<!-- Placed js at the end of the document so the pages load faster -->
-										<!-- All jquery file included here -->
-
-
-
-<script
-src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-<script
-		src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-		script src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-<script
-		src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-<script src="${contextPath}/resources/assets/js/main.js"></script>
-
-
-</body>
-<script>
-		window.onload = (function() {
-				//메인 버튼을 눌렀을 때 처리
-				$(".btn-success").click(function(){
-				console.log ="1";
-				location.href="/deataworld/";
-				});
-				//목록 버튼을 눌렀을 때 처리
-				$(".btn-primary").click(function(){
+								<div class="box-footer">
+									<button id="goList" class="btn btn-success">목록</button>
+									<c:if test="${loginInfo.m_id == temping.m_id}">
+										<button id="goUpdate" class="btn btn-warning">수정</button>
+										<button id="goDelete" class="btn btn-danger">삭제</button>
+									</c:if>
+									<c:if test="${loginInfo != null}">
+										<button id="goReply" class="btn btn-primary">댓글작성</button>
+										
+										<%-- 로그인 유저가 타인의 글을 볼 때만 신고버튼 보임 --%>
+										<c:if test="${loginInfo.m_id != temping.m_id}">
+											<div class="dropdown" style="display: inline;">
+											  <button class="btn btn-secondary dropdown-toggle" type="button" id="report" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    신고
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="report">
+											    <%-- 넘기는 파라미터 : rCode, rType, bNumber, (cNumber), (aNumber), mId, rId --%>
+											    <a class="dropdown-item" href="javascript:report(1, 3, ${temping.b_number}, -1, -1, '${temping.m_id}', '${loginInfo.m_id}')">광고</a>
+											    <a class="dropdown-item" href="javascript:report(2, 3, ${temping.b_number}, -1, -1, '${temping.m_id}', '${loginInfo.m_id}')">비속어 사용</a>
+											    <a class="dropdown-item" href="javascript:report(3, 3, ${temping.b_number}, -1, -1, '${temping.m_id}', '${loginInfo.m_id}')">분쟁 조장</a>
+											    <a class="dropdown-item" href="javascript:report(4, 3, ${temping.b_number}, -1, -1, '${temping.m_id}', '${loginInfo.m_id}')">선정적</a>
+											    <a class="dropdown-item" href="javascript:report(5, 3, ${temping.b_number}, -1, -1, '${temping.m_id}', '${loginInfo.m_id}')">사기 · 도박</a>
+											  </div>
+											</div>
+										</c:if>
+									</c:if>
+								</div>
+								
+								<div>
+									<%@ include file="tempingdetail1.jsp"%>							
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%@ include file="../../include/footer.jsp"%>
+	</div>
+	<%@ include file="../../include/plugin.jsp"%>
+	<script src="${contextPath}/resources/custom_js/report_process.js"></script>
+	<script>
+		window.addEventListener('load', function() {
+			//목록 버튼을 눌렀을 때 처리
+			$("#goList").click(function(){
 				location.href="temping";
-				});
-				//삭제 버튼을 눌렀을 때 처리
-				$(".btn-danger").click(function(){
-				location.href="${contextPath}/board/temping/tempingdelete?b_number=" + ${temping.b_number};
-				});
-				//수정 버튼을 눌렀을 때 처리
-				$(".btn-warning").click(function(){
-				location.href="${contextPath}/board/temping/tempingupdate?b_number=" + ${temping.b_number};
-				});
-				//댓글작성 버튼을 눌렀을 때 처리
-				$(".btn-info").click(function() {
-				location.href = "${contextPath}/board/temping/tempingreply?b_number=" + ${temping.b_number};
-				});
-											})
-										</script>
+			});
+			//삭제 버튼을 눌렀을 때 처리
+			$("#goDelete").click(function(){
+				location.href="${contextPath}/board/temping/tempingdelete?b_number=${temping.b_number}";
+			});
+			//수정 버튼을 눌렀을 때 처리
+			$("#goUpdate").click(function(){
+				location.href="${contextPath}/board/temping/tempingupdate?b_number=${temping.b_number}";
+			});
+			//댓글작성 버튼을 눌렀을 때 처리
+			$("#goReply").click(function() {
+				if('${loginInfo.m_type}' == '2') {
+					alert('개인회원만 이용 가능한 서비스입니다.');
+					return;
+				}
+				location.href = "${contextPath}/board/temping/tempingreply?b_number=${temping.b_number}";
+			});
+		});
+	</script>
+</body>
 </html>

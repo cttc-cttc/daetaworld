@@ -31,12 +31,12 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>자유 게시판</h1>
+										<h1>자유게시판</h1>
 									</div>
 								</div>
 							</div>
 							<div class="table-responsive table-bordered" style="overflow-x: initial;">
-								<table class="table table-striped" style="margin: 0;">
+								<table class="table table-striped" style="margin: 0; background: #fff;">
 									<thead class="thead-dark">
 									<tr>
 										<th>글번호</th>
@@ -92,7 +92,7 @@
 											</ul>
 										</td>
 										<td colspan="2" style="text-align: end;"><input
-											class="btn btn-secondary" type="button" value="처음으로" id="index"
+											class="btn btn-secondary" type="button" value="홈으로" id="index"
 											onclick="location.href='${contextPath}'" /></td>
 									</tr>
 
@@ -122,28 +122,12 @@
 
 					</div>
 				</div>
+				</div>
 			</div>
 			<!-- Dashboard Content Section End -->
 			<%@ include file="../../include/footer.jsp"%>
 			<!-- Placed js at the end of the document so the pages load faster -->
 		</div>
-		<!-- Placed js at the end of the document so the pages load faster -->
-		<!-- All jquery file included here -->
-		<script
-			src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-		<script
-			src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-		<script
-			src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-		<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-		<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-		<script
-			src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-		<script src="${contextPath}/resources/assets/js/main.js"></script>
+		<%@ include file="../../include/plugin.jsp"%>
 </body>
-<script>
-	   // 생략		
-	
-</script>
-
 </html>

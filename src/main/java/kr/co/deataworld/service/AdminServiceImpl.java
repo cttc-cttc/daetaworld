@@ -153,6 +153,31 @@ public class AdminServiceImpl implements AdminService {
 	public int cancelTempingComments(int cr_number) throws Exception {
 		return dao.cancelTempingComments(cr_number);
 	}
+
+	@Override
+	public int boardReport(Map<String, Object> reportInfo) {
+		return dao.boardReport(reportInfo);
+	}
+
+	@Override
+	public int commentsReport(Map<String, Object> reportInfo) {
+		return dao.commentsReport(reportInfo);
+	}
+
+	@Override
+	public int adsReport(Map<String, Object> reportInfo) {
+		return dao.adsReport(reportInfo);
+	}
+
+	@Override
+	public int confirmReport(Map<String, Object> reportInfo) {
+		return dao.confirmReport(reportInfo);
+	}
+
+	@Override
+	public int confirmCommentsReport(Map<String, Object> reportInfo) {
+		return dao.confirmCommentsReport(reportInfo);
+	}
 	
 	
 }
