@@ -6,36 +6,11 @@
 <html class="no-js" lang="zxx">
 <title>자기소개서 관리</title>
 <%@ include file="../../include/head.jsp"%>
-
-<style>
-	table {
-		border-collapse: collapse;
-		text-align: center;
-	}
-	
-	td {
-		border: 1px solid black;
-		padding: 10px;
-		text-align: center;
-	}
-	
-	.resume-th {
-		border: 1px solid black;
-		padding: 10px;
-		background-color: lightgrey;
-		text-align: center;
-	}
-	
-	#content-style{
-		color: red; 
-		text-align: right;"
-	}
-</style>
-
-
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet" href="${contextPath }/resources/custom_css/etc.css"> 
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -69,39 +44,33 @@
 													<li><a href="${contextPath}/employeeMapper/resumeRegister">자기소개서 작성</a></li>
 												</ul>
 											</div>
-											<div class="candidate-main-content">
-												<div class="field-description"></div>
-												
-												
-												<hr>
-												<div class="field-experience">
-													<div class="experience-wrap">
-														<div class="experience-item">
-															<div class="row">
-																<div class="col-lg-4 col-md-4">
-																	<div class="content-left">
-																		<h5 class="company-name theme-color">${resume.i_title}</h5>
-																		<span class="date"> 작성시간 : ${resume.i_date}</span>
-																	</div>
-																</div>
-																<div class="col-lg-8 col-md-8">
-																	<div class="content-right">
-																		<h5 class="position-company bottom">내용</h5>
-																		<p>${resume.i_contents}</p>
-																	</div>
-																	
-																	<div class="content-right">
-																		<a id="content-style" type="text" href="${contextPath}/employeeMapper/resumeUpdate?i_number=${resume.i_number}&m_id=${loginInfo.m_id}">[수정]</a>
-																	</div>
-																
-																</div>
-															</div>
-														</div>
-													</div>
+											<div class="profile-applications-main-block">
+												<div class="profile-applications-form">
+													<table class="table table-striped">
+														<thead>
+															<th>대표</th>													
+															<th>제목</th>													
+															<th>내용*</th>															
+															<th>작성시간</th>
+															<th></th>
+														</thead>
+															<tr>
+																<td><c:if test="${resume.i_default == 1}">
+																		<svg xmlns="http://www.w3.org/2000/svg" color="orange" width="30" height="30" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+					  														<path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+																		</svg>
+																	</c:if>
+																</td>
+																<td>${resume.i_title}</td>
+																<td>${resume.i_contents}</td>
+																<td>${resume.i_date}</td>
+															<td>
+																<button class="ht-btn theme-btn theme-btn-two transparent-btn-two" value="수정" onclick="location.href='${contextPath}/employeeMapper/resumeUpdate?i_number=${resume.i_number}&m_id=${loginInfo.m_id}'">수정</button>
+																<button class="ht-btn theme-btn theme-btn-two transparent-btn-two" value="삭제" onclick="deleteChk('${resume.i_number}','${loginInfo.m_id}')">삭제</button>
+															</td>
+															</tr>
+													</table>
 												</div>
-												<hr>
-
-												
 											</div>
 										</div>
 									</div>
@@ -110,9 +79,11 @@
 						</div>
 					</div>
 				</div>
-				<!-- Dashboard Content Section End -->
-		<%@ include file="../../include/footer.jsp"%>
-		<!-- Placed js at the end of the document so the pages load faster -->
+			</div>
+		</div>
+	<!-- Dashboard Content Section End -->
+	<%@ include file="../../include/footer.jsp"%>
+	<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->
 	<!-- All jquery file included here -->
@@ -126,5 +97,41 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	
+	<!-- 자기소개서 삭제 ajax -->
+	<script type="text/javascript">
+		function deleteChk(i_number, m_id){
+			
+			var url = "${contextPath}/employeeMapper/resumeDelete";
+			var paramData = {
+				"m_id" : m_id,
+				"i_number" : i_number
+			};
+			
+			$.ajax({
+				url : url,
+				data : paramData,
+				type : "POST",
+				dataType : "json",
+					success : function(result){
+						if(result != 9){
+							alert('삭제되었습니다.');
+							window.location.reload(true);
+							location.href="${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}";
+						}
+						else{
+							alert('대표자소서는 삭제가 불가능합니다.')
+							window.location.reload(true);
+						}
+					},
+					error : function(result){
+						alert('ajax실패');
+						window.location.reload(true);
+					}
+			});
+		}
+	</script>
+	
+	
 </body>
 </html>

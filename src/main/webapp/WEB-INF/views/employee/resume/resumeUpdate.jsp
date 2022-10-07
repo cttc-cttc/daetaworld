@@ -4,38 +4,13 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>자기소개서 관리</title>
+<title>자기소개서 수정</title>
 <%@ include file="../../include/head.jsp"%>
-
-<style>
-	table {
-		border-collapse: collapse;
-		text-align: center;
-	}
-	
-	td {
-		border: 1px solid black;
-		padding: 10px;
-		text-align: center;
-	}
-	
-	.resume-th {
-		border: 1px solid black;
-		padding: 10px;
-		background-color: lightgrey;
-		text-align: center;
-	}
-	
-	#content-style{
-		color: red; 
-		text-align: right;"
-	}
-</style>
-
-
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet" href="${contextPath }/resources/custom_css/etc.css"> 
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -71,39 +46,25 @@
 											</div>
 											<hr>
 											
-											
-											<div class="candidate-main-content">
-												<div class="field-experience">
-													<div class="experience-wrap">
-														<div class="experience-item">
-															<div class="row">
-																<div class="col-lg-4 col-md-4">
-																	<div class="content-left">
-																	</div>
-																</div>
-																<div class="col-lg-8 col-md-8">
-																	<div class="content-right">
-																		<h5 class="company-name theme-color">제목
-																			<input id="n_title" name="n_title" value="${resume.i_title}">
-																		</h5>
-																		<span class="date"> 작성시간 : ${resume.i_date}</span>
-																		<h5 class="position-company bottom">내용</h5>
-																			<textarea  id="n_contents" name="n_contents" rows="10" cols="100">${resume.i_contents}</textarea>
-																	</div>
-																</div>
-															</div>
-														</div>
+											<div class="profile-applications-main-block">
+												<div class="profile-applications-form">
+													<table class="table table-striped">
+														<thead>
+															<th><h3>제목</h3></th>
+															<tr>
+																<td><input id="n_title" name="n_title" value="${resume.i_title}" placeholder="제목을 작성하세요!"></td>
+															
+															</tr>
+															<th><h3>내용</h3></th>	
+														</thead>
+																<td><textarea placeholder="내용을 작성하세요!" id="n_contents" name="n_contents" rows="10" cols="100">${resume.i_contents}</textarea></td>
+													
+													</table>
+													<div class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+														<button class="ht-btn theme-btn theme-btn-two mb-xs-20" type="button" onclick="resumeSave()" >저장</button>
+														<button class="ht-btn theme-btn theme-btn-two mb-xs-20" type="button" onclick="location.href='${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}'">취소</button>
 													</div>
 												</div>
-												
-												
-												<hr>
-												<div class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
-													<button class="ht-btn theme-btn theme-btn-two mb-xs-20" type="button" onclick="resumeSave()" >저장</button>
-													<button class="ht-btn theme-btn theme-btn-two mb-xs-20" type="button" onclick="location.href='${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}'">취소</button>
-												</div>
-
-
 											</div>
 										</div>
 									</div>
@@ -111,11 +72,10 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
-		
+	</div>
 		
 		<input type="hidden" name="i_number" id="i_number" value="${resume.i_number }">
 		<input type="hidden" name="i_date" id="i_date" value="${resume.i_date }">
