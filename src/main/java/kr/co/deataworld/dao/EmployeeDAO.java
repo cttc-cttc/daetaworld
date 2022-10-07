@@ -28,7 +28,7 @@ public interface EmployeeDAO {
 	public int resumeDelete(ResumeDTO resumeDTO)throws Exception;
 	
 	//등록된 자소서가 있는지 검색
-	public Map<String, Object> resumeChk(ResumeDTO resumeDTO)throws Exception;
+	public List<Map<String, Object>> resumeChk(ResumeDTO resumeDTO)throws Exception;
 	
 	//자소서 작성 > 등록된 자소서가 없으면 대표자소서로 설정해준다
 	public int resumeRegister_1(ResumeDTO resumeDTO)throws Exception;
@@ -87,4 +87,9 @@ public interface EmployeeDAO {
 	//공고 신청중 상태일때 지원 취소하기
 	public int applyCancel(Map<String, Object> map)throws Exception;
 	
+	//자소서 삭제시 등록된 자소서가 1개(대표자소서)라면 삭제 불가능
+	public int introDeleteCheck(String m_id) throws Exception;
+	
+	//자소서 삭제시 등록된 자소서가 1개(대표자소서) 일때 삭제 불가능
+	public int defaultIntro_xDel(ResumeDTO resumeDTO)throws Exception;
 }

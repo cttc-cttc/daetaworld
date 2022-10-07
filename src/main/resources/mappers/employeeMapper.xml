@@ -305,7 +305,19 @@ ja_number = #{ja_number}
 </update> -->
 
 
+<!-- 자소서 삭제시 등록된 자소서가 1개(대표자소서) 일때 삭제 불가능 -->
+<select id="defaultIntro_xDel" parameterType="ResumeDTO" resultType="java.lang.Integer">
+	select count(*) from employee_intro i
+	where i.i_number
+	and i.m_id = #{m_id} and i.i_default = 1 and i.i_number = #{i_number}
+</select>
 
+
+<!-- <select id="introDeleteCheck" parameterType="String" resultType="java.lang.Integer">
+	select count(*) from employee_intro i
+	where i.i_number
+	and i.m_id = #{m_id} ; 
+</select> -->
 
 
 

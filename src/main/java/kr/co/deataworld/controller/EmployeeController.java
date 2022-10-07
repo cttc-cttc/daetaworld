@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,14 +86,25 @@ public class EmployeeController {
 	
 	
 	//구직자 자기소개서 관리
-	@GetMapping(value="employeeMapper/resumeManagement")
-	public ModelAndView resumeManagement(@RequestParam("m_id")String m_id)throws Exception {
+	@GetMapping(value = "employeeMapper/resumeManagement")
+	public ModelAndView resumeManagement(@RequestParam("m_id") String m_id, ResumeDTO resumeDTO) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		List<ResumeDTO> list = service.resumeManagement(m_id);
-		System.out.println("값이 있나? : " + list);
-		mav.addObject("list", list);
-		mav.setViewName("employee/resume/resumeManagement");
-		return mav;
+		// 자소서 3개까지 등록가능
+		List<Map<String, Object>> intro = service.resumeChk(resumeDTO);
+		if (intro.size() >= 3) { // 작성불가능
+			List<ResumeDTO> list = service.resumeManagement(m_id);
+			int result = 9;
+			mav.addObject("result", result);
+			mav.addObject("list", list);
+			mav.setViewName("employee/resume/resumeManagement");
+			return mav;
+		} else {
+			List<ResumeDTO> list = service.resumeManagement(m_id);
+			System.out.println("값이 있나? : " + list);
+			mav.addObject("list", list);
+			mav.setViewName("employee/resume/resumeManagement");
+			return mav;
+		}
 	}
 	
 	
@@ -129,32 +141,58 @@ public class EmployeeController {
 		return service.resumeUpdate(resumDTO);
 	}
 	
-	
-	//자기소개서 삭제
-	@GetMapping(value="employeeMapper/resumeDelete")
-	public String resumeDelete(ResumeDTO resumeDTO, Model model)throws Exception {
-		service.resumeDelete(resumeDTO);
-		model.addAttribute("m_id", resumeDTO.getM_id());
-		return "redirect:resumeManagement";
+	//ajax
+	// 자기소개서 삭제
+	@ResponseBody
+	@PostMapping(value = "employeeMapper/resumeDelete")
+	public int resumeDelete(ResumeDTO resumeDTO, Model model) throws Exception {
+		int res = service.defaultIntro_xDel(resumeDTO);
+		System.out.println("111111111111111");
+		if(res == 0) {//대표자소서가 아니면 삭제 성공
+			System.out.println("22222222");
+			return service.resumeDelete(resumeDTO);
+		}else{
+			int result = 9;
+			System.out.println(result + "33333333");
+			return result;
+		}
 	}
+		
+		
+	
+	/*
+	 * // 자기소개서 삭제
+	 * 
+	 * @GetMapping(value = "employeeMapper/resumeDelete") public String
+	 * resumeDelete(ResumeDTO resumeDTO, Model model) throws Exception { int result
+	 * = service.defaultIntro_xDel(resumeDTO); if (result == 0) { // result=0 이면
+	 * 대표자소서 아님 -> 삭제한다 service.resumeDelete(resumeDTO); model.addAttribute("m_id",
+	 * resumeDTO); return "redirect:resumeManagement?m_id="+ resumeDTO.getM_id(); }
+	 * else { // 대표자소서면 0을 리턴 후 처리. int result1 = 0; model.addAttribute("result1",
+	 * result1); return "redirect:resumeManagement?m_id=" + resumeDTO.getM_id(); } }
+	 */	
 	
 	
 	//구직자 자기소개서 작성 폼으로 이동
 	@GetMapping(value="employeeMapper/resumeRegister")
 	public String resumeRegister()throws Exception {
-		return "employee/resume/resumeRegister";
-	}
+			return "employee/resume/resumeRegister";
+		}
+	
 	
 	//ajax
 	//구직자 자기소개서 작성 저장
 	@ResponseBody
 	@PostMapping(value="employeeMapper/resumeRegister")
 	public int resumeRegister(ResumeDTO resumeDTO, Model model)throws Exception {
-		Map<String, Object> intro = service.resumeChk(resumeDTO); //m_id를 통해 자기소개서가 등록 되어있는지 확인
-		if(intro == null) { //자기소개서가 등록되어있지 않다면
-			return service.resumeRegister_1(resumeDTO); //작성된 자기소개서를 대표자기소개서(i_default = 1)로 변경후 저장.
-		} else {
+		List<Map<String, Object>> intro = service.resumeChk(resumeDTO); //m_id를 통해 자기소개서가 등록 되어있는지 확인
+		System.out.println("왜 도대체 왜 안나오냐1:" + intro);
+		if(intro.size() > 0) { //자기소개서가 등록되어있다면
+			System.out.println("왜 도대체 왜 안나오냐2:" + intro);
 			return service.resumeRegister(resumeDTO); //자기소개서가 등록되어있다면 일반자기소개서(i_default = 0)로 저장.
+		} else {
+			System.out.println("왜 도대체 왜 안나오냐3:" + intro);
+			return service.resumeRegister_1(resumeDTO); //작성된 자기소개서를 대표자기소개서(i_default = 1)로 변경후 저장.
 		}
 	}
 	
