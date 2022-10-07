@@ -18,63 +18,52 @@
 			<%@ include file="../../include/header.jsp"%>
 		</header>
 		<!-- 상단 메뉴 end-->
-
- <!-- Main content -->
-    <section class="content container-fluid">
-		<div class="box-header">
-		
-		
-			<h3 class="box-title">댓글쓰기</h3>
-		</div>
+		<hr class="header-hr">
+		<div class="dashboard-content-section section bg_color--5">
+			<div class="container-fluid p-0">
+				<div class="row no-gutters">
+					<%@ include file="../../include/boardSidebar.jsp"%>
+					<div class="col-xl-10 col-lg-9">
+						<div class="dashboard-main-inner">
+							<div class="row">
+								<div class="col-12">
+									<div class="page-breadcrumb-content mb-40">
+										<h1>자유게시판 댓글쓰기</h1>
+									</div>
+								</div>
+							</div>
+							
+							<div class="table-responsive">
 	
-		<form name="form" method="post" onsubmit="return rreply()">
-			<div class="box-body">
-				<div class="form-group">
-					<label>작성자</label> <input class="from-control"  name="m_nick" value="${loginM_nick}" readonly="readonly">
-					<input type="hidden" name="m_id" value="${loginInfo.m_id}">
-					
-				</div>
-				<div class="form-group">
-					<textarea class="form-control" name="c_contents" rows="3"
-						placeholder="댓글을 입력하세요"></textarea>
-				</div>
-				<input type="hidden" name="b_number" />
+<form name="form" method="post" onsubmit="return rreply()">
+	<div class="box-body">
+		<div class="form-group">
+			<label>작성자</label> <input class="from-control"  name="m_nick" value="${loginM_nick}" readonly="readonly">
+			<input type="hidden" name="m_id" value="${loginInfo.m_id}">
 			
-	
-			<div class="box-footer">
-				<button type="submit" class="btn btn-primary">작성완료</button>
+		</div>
+		<div class="form-group">
+			<textarea class="form-control" name="c_contents" rows="3"
+				placeholder="댓글을 입력하세요"></textarea>
+		</div>
+		<input type="hidden" name="b_number" />
+	</div>
+
+	<div class="box-footer">
+		<button type="submit" class="btn btn-primary">작성완료</button>
+	</div>
+</form>
+							</div>
+							
+						</div>
+					</div>
+				</div>
 			</div>
-		</form>
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-
-
-
-	
-		<!-- Dashboard Content Section End -->
+		</div>
 		<%@ include file="../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
-	<!-- Placed js at the end of the document so the pages load faster -->
-	<!-- All jquery file included here -->
-
-	
-	<script	src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-	<script	src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-	<script	src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-	<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/main.js"></script>
-	
-	
-	
-	</script>
-
-
+	<%@ include file="../../include/plugin.jsp"%>
 
 <script type="text/javascript">
 	
@@ -85,7 +74,7 @@
 			return false;
 		}
 		
-		alert('새 글쓰기 완료');
+		alert('새 댓글쓰기 완료');
 		return true;		
 	}
 	
@@ -122,10 +111,6 @@
 	
 	
 </script>
-
-
-
-
 
 </body>
 </html>

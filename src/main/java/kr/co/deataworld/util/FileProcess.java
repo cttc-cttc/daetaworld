@@ -27,7 +27,8 @@ public class FileProcess {
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.CREATED);
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			System.err.println(fileName + " 사진이 없어요");
 		}
 		return result;
 	}

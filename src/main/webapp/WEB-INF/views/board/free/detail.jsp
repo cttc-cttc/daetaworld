@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>자유 게시판</h1>
+										<h1>자유게시판</h1>
 									</div>
 								</div>
 							</div>
@@ -55,14 +55,13 @@
 								</div>
 
 								<div class="box-footer">
-									<button id="goMain" class="btn btn-success">메인</button>
-									<button id="goList" class="btn btn-primary">목록</button>
+									<button id="goList" class="btn btn-success">목록</button>
 									<c:if test="${loginInfo.m_id == board.m_id}">
 										<button id="goUpdate" class="btn btn-warning">수정</button>
 										<button id="goDelete" class="btn btn-danger">삭제</button>
 									</c:if>
 									<c:if test="${loginInfo != null}">
-										<button id="goReply" class="btn btn-info">댓글작성</button>
+										<button id="goReply" class="btn btn-primary">댓글작성</button>
 										
 										<%-- 로그인 유저가 타인의 글을 볼 때만 신고버튼 보임 --%>
 										<c:if test="${loginInfo.m_id != board.m_id}">
@@ -87,6 +86,7 @@
 									<%@ include file="detail1.jsp"%>							
 								</div>
 							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -98,10 +98,6 @@
 	<script src="${contextPath}/resources/custom_js/report_process.js"></script>
 	<script>
 		window.addEventListener('load', function() {
-			//메인 버튼을 눌렀을 때 처리
-			$("#goMain").click(function(){
-				location.href="/deataworld/";
-			});
 			//목록 버튼을 눌렀을 때 처리
 			$("#goList").click(function(){
 				location.href="free";
