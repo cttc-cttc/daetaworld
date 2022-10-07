@@ -48,19 +48,22 @@
 												<div class="profile-applications-form">
 													<table class="table table-striped">
 														<thead>
-															<th>대표</th>													
+															<c:if test="${resume.i_default == 1}">
+																<th>대표</th>													
+															</c:if>
 															<th>제목</th>													
 															<th>내용*</th>															
 															<th>작성시간</th>
 															<th></th>
 														</thead>
 															<tr>
-																<td><c:if test="${resume.i_default == 1}">
+																<c:if test="${resume.i_default == 1}">
+																<td>
 																		<svg xmlns="http://www.w3.org/2000/svg" color="orange" width="30" height="30" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
 					  														<path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
 																		</svg>
-																	</c:if>
 																</td>
+																</c:if>
 																<td>${resume.i_title}</td>
 																<td>${resume.i_contents}</td>
 																<td>${resume.i_date}</td>

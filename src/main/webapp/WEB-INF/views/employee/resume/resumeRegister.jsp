@@ -7,49 +7,10 @@
 <title>자기소개서 등록</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
-<style>
-	#header{
-	}
-	
-	#article{
-	}
-	
-	#footer{
-	}
-	
-	#profile-hr-1{
-		height : 2px;
-		background-color: black;
-	}
-	
-	#header-small-text{
-		color: lightgrey;
-		font-size: 13px;
-	}
-	
-	#newcomer{
-		text-align: center;
-	}
-	
-	#career{
-		text-align: center;
-	}
-	
-	#regi{
-		size : 1024;
-		height : 500px;
-		width: 500px;
-	}
-
-	.intro-title-box{
-		width: 665px;
-		height: 50px;		
-	}
-		
-</style>
-
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet" href="${contextPath }/resources/custom_css/etc.css"> 
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -85,33 +46,22 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<!-- 기본정보 -->
-													<div id="section">
-														<div id="header">
-															<span><h3><strong>기본정보</strong><small id="header-small-text">개인정보는 공개 설정 여부와 관계없이 지원한 공고에 모두 공개됩니다.</small></h3></span>
-														</div>
-															<hr id="profile-hr-1">
-															
-															<div id="article">
-																<h3><strong>제목</strong></h3>
-																<input class="intro-title-box" id="i_title" name="i_title" value="" placeholder="제목을 작성하세요">
-															</div>
-																<hr id="profile-hr-1">
-															<div id="footer">
-																<h3><strong>자기소개서</strong></h3>
-																<textarea id="i_contents" name="i_contents" value="" rows="10" cols="80" style="resize: none;" placeholder="나의 강점과 특징에 대해 소개하고 어떤 사람인지 설명해 보세요."></textarea>
-															</div>
-															<hr>
-															<input type="hidden" name="m_id" id="m_id" value="${loginInfo.m_id}"/>
-															<button type="button" class="ht-btn theme-btn theme-btn-two mb-xs-20" onclick="saveChk()">저장</button>
-															<button type="button" class="ht-btn theme-btn theme-btn-two mb-xs-20" onclick="location.href='${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}'">취소</button>
-														
-														<hr id="profile-hr-1">
+													<table class="table table-striped">
+														<thead>
+															<th><h3>제목</h3></th>
+															<tr>
+																<td><input type="text" id="i_title" name="i_title" style="width:900px;height:60px;font-size:20px;" placeholder="제목을 작성하세요"></td>
+															</tr>
+															<th><h3>내용</h3></th>	
+														</thead>
+																<td><textarea id="i_contents" name="i_contents" rows="10" cols="80" style="resize: none;font-size:20px;" placeholder="나의 강점과 특징에 대해 소개하고 어떤 사람인지 설명해 보세요."></textarea></td>
+													
+													</table>
+													<div class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
+														<input type="hidden" name="m_id" id="m_id" value="${loginInfo.m_id}"/>
+														<button type="button" class="ht-btn theme-btn theme-btn-two mb-xs-20" onclick="saveChk()">저장</button>
+														<button type="button" class="ht-btn theme-btn theme-btn-two mb-xs-20" onclick="location.href='${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}'">취소</button>
 													</div>
-													
-													<!-- 기본정보 End -->
-													<hr>
-													
 												</div>
 											</div>
 										</div>
@@ -140,14 +90,6 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
-	
-	script>
-
-function getFocus() {
-
-  document.getElementById("hz").focus();
-
-}
 	
 	
 	<!-- 자기소개서 작성 유효성 검사 -->

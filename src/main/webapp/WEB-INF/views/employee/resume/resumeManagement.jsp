@@ -74,7 +74,7 @@
 																<td type="button" style="color: orange" onclick="location.href='${contextPath }/employeeMapper/selectResume?i_number=${resume.i_number}&m_id=${loginInfo.m_id}'">${resume.i_contents}</td>
 																<td>${resume.i_date}</td>
 																<td>
-																	<button class="ht-btn theme-btn theme-btn-two mb-xs-20" value="대표설정" onclick="introDefault('${resume.i_number}','${loginInfo.m_id}')">대표설정</button>
+																	<button class="ht-btn theme-btn theme-btn-two transparent-btn-two" value="대표설정" onclick="introDefault('${resume.i_number}','${loginInfo.m_id}')">대표설정</button>
 																</td>
 															</tr>
 															<input type="hidden" name="result" id="result" value="${map.re}"/>

@@ -52,12 +52,12 @@
 														<thead>
 															<th><h3>제목</h3></th>
 															<tr>
-																<td><input id="n_title" name="n_title" value="${resume.i_title}" placeholder="제목을 작성하세요!"></td>
+																<td><input type="text" style="width:900px;height:60px;font-size:20px;" id="n_title" name="n_title" value="${resume.i_title}" placeholder="제목을 작성하세요!"></td>
 															
 															</tr>
 															<th><h3>내용</h3></th>	
 														</thead>
-																<td><textarea placeholder="내용을 작성하세요!" id="n_contents" name="n_contents" rows="10" cols="100">${resume.i_contents}</textarea></td>
+																<td><textarea placeholder="내용을 작성하세요!" id="n_contents" name="n_contents" rows="10" cols="80" style="resize: none;font-size:20px;">${resume.i_contents}</textarea></td>
 													
 													</table>
 													<div class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
