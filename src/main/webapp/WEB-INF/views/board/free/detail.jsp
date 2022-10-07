@@ -24,8 +24,6 @@
 				<div class="row no-gutters">
 					<%@ include file="../../include/boardSidebar.jsp"%>
 					<div class="col-xl-10 col-lg-9">
-						
-						
 						<div class="dashboard-main-inner">
 							<div class="row">
 								<div class="col-12">
@@ -36,69 +34,68 @@
 							</div>
 
 							<div class="table-responsive">
-									<div class="box-body">
-										<div class="f	orm-group">
-											<label>제목</label> <input type="text" name="b_title"
-												class="form-control" value="${board.b_title}"
-												readonly="readonly" />
-										</div>
-
-										<div class="form-group">
-											<label>내용</label>
-											<textarea name="b_contents" rows="5" readonly="readonly"
-												class="form-control">${board.b_contents}</textarea>
-										</div>
-
-										<div class="form-group">
-											<label>작성자</label> <input type="text" name="m_id"
-												class="form-control" value="${board.m_nick}"
-												readonly="readonly" />
-										</div>
+								<div class="box-body">
+									<div class="form-group">
+										<label>제목</label> <input type="text" name="b_title"
+											class="form-control" value="${board.b_title}"
+											readonly="readonly" />
 									</div>
 
-										<div class="box-footer">
-											<button id="goMain" class="btn btn-success">메인</button>
-											<button id="goList" class="btn btn-primary">목록</button>
-										<c:if test="${loginInfo.m_id == board.m_id}">
-											<button id="goUpdate" class="btn btn-warning">수정</button>
-											<button id="goDelete" class="btn btn-danger">삭제</button>
-										</c:if>
-										<c:if test="${loginInfo != null}">
-											<button id="goReply" class="btn btn-info">댓글작성</button>
-											
-											<%-- 로그인 유저가 타인의 글을 볼 때만 신고버튼 보임 --%>
-											<c:if test="${loginInfo.m_id != board.m_id}">
-												<div class="dropdown" style="display: inline;">
-												  <button class="btn btn-secondary dropdown-toggle" type="button" id="report" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												    신고
-												  </button>
-												  <div class="dropdown-menu" aria-labelledby="report">
-												    <a class="dropdown-item" href="javascript:report(1)">광고</a>
-												    <a class="dropdown-item" href="javascript:report(2)">비속어 사용</a>
-												    <a class="dropdown-item" href="javascript:report(3)">분쟁 조장</a>
-												    <a class="dropdown-item" href="javascript:report(4)">선정적</a>
-												    <a class="dropdown-item" href="javascript:report(5)">사기 · 도박</a>
-												  </div>
-												</div>
-											</c:if>
-										</c:if>
-										</div>
-
-									<div id="replylist">
-										<%@ include file="detail1.jsp"%>							
+									<div class="form-group">
+										<label>내용</label>
+										<textarea name="b_contents" rows="5" readonly="readonly"
+											class="form-control">${board.b_contents}</textarea>
 									</div>
+
+									<div class="form-group">
+										<label>작성자</label> <input type="text" name="m_id"
+											class="form-control" value="${board.m_nick}"
+											readonly="readonly" />
+									</div>
+								</div>
+
+								<div class="box-footer">
+									<button id="goMain" class="btn btn-success">메인</button>
+									<button id="goList" class="btn btn-primary">목록</button>
+									<c:if test="${loginInfo.m_id == board.m_id}">
+										<button id="goUpdate" class="btn btn-warning">수정</button>
+										<button id="goDelete" class="btn btn-danger">삭제</button>
+									</c:if>
+									<c:if test="${loginInfo != null}">
+										<button id="goReply" class="btn btn-info">댓글작성</button>
+										
+										<%-- 로그인 유저가 타인의 글을 볼 때만 신고버튼 보임 --%>
+										<c:if test="${loginInfo.m_id != board.m_id}">
+											<div class="dropdown" style="display: inline;">
+											  <button class="btn btn-secondary dropdown-toggle" type="button" id="report" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    신고
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="report">
+											    <%-- 넘기는 파라미터 : rCode, rType, bNumber, (cNumber), (aNumber), mId, rId --%>
+											    <a class="dropdown-item" href="javascript:report(1, 1, ${board.b_number}, -1, -1, '${board.m_id}', '${loginInfo.m_id}')">광고</a>
+											    <a class="dropdown-item" href="javascript:report(2, 1, ${board.b_number}, -1, -1, '${board.m_id}', '${loginInfo.m_id}')">비속어 사용</a>
+											    <a class="dropdown-item" href="javascript:report(3, 1, ${board.b_number}, -1, -1, '${board.m_id}', '${loginInfo.m_id}')">분쟁 조장</a>
+											    <a class="dropdown-item" href="javascript:report(4, 1, ${board.b_number}, -1, -1, '${board.m_id}', '${loginInfo.m_id}')">선정적</a>
+											    <a class="dropdown-item" href="javascript:report(5, 1, ${board.b_number}, -1, -1, '${board.m_id}', '${loginInfo.m_id}')">사기 · 도박</a>
+											  </div>
+											</div>
+										</c:if>
+									</c:if>
+								</div>
+
+								<div id="replylist">
+									<%@ include file="detail1.jsp"%>							
+								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
-
 			</div>
 		</div>
 		<%@ include file="../../include/footer.jsp"%>
 	</div>
 	<%@ include file="../../include/plugin.jsp"%>
-
+	<script src="${contextPath}/resources/custom_js/report_process.js"></script>
 	<script>
 		window.addEventListener('load', function() {
 			//메인 버튼을 눌렀을 때 처리
@@ -122,54 +119,6 @@
 				location.href = "${contextPath}/board/free/reply?b_number=${board.b_number}";
 			});
 		});
-		
-		function report(rCode) {
-			let rCodeText = '';
-			let rType = 0;
-			switch(rCode) {
-				case 1: rCodeText = '광고';
-					rType = 1;
-					break;
-				case 2: rCodeText = '비속어 사용';
-					rType = 2;
-					break;
-				case 3: rCodeText = '분쟁 조장';
-					rType = 3;
-					break;
-				case 4: rCodeText = '선정적';
-					rType = 4;
-					break;
-				case 5: rCodeText = '사기 · 도박';
-					rType = 5;
-			}
-			if(confirm('해당 글을 신고하시겠습니까?\n사유 : '+ rCodeText)) {
-				reportAjax(rCode, rType);
-			}
-		}
-		
-		function reportAjax(rCode, rType) {
-			$.ajax({
-				url: '${contextPath}/boardReport',
-				data: {
-					"rCode": rCode,
-					"rType": rType,
-					"b_number": ${board.b_number},
-					"m_id": '${board.m_id}',
-					"r_id": '${loginInfo.m_id}'
-				},
-				dataType: 'json',
-				type: 'post',
-				success: function(res) {
-					console.log(res);
-					alert('정상적으로 처리 되었습니다.');
-				},
-				error: function(res) {
-					console.log(res);
-					console.log('실패');
-				} 
-			});
-		}
-		
 	</script>
 </body>
 </html>

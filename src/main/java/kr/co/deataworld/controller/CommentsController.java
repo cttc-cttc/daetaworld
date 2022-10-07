@@ -122,20 +122,15 @@ public class CommentsController {
 		
 		//땜빵 댓글 삭제하기
 			@RequestMapping(value="board/temping/tempingreplydelete",method = RequestMethod.GET)
-			public String tempingReplyDelete(@RequestParam("c_number") int c_number, RedirectAttributes rttr) throws Exception {
+			public String tempingReplyDelete(@RequestParam("c_number") int c_number, 
+					@RequestParam("b_number") int b_number, RedirectAttributes rttr) throws Exception {
 				int r = service.tempingReplyDelete(c_number);
 				
 				if(r > 0) {
 					rttr.addFlashAttribute("msg","글삭제에 성공하였습니다.");
-					return "redirect:tempingdetail?b_number=" + c_number;
+					return "redirect:tempingdetail?b_number=" + b_number;
 				}
-				return "redirect:tempingdetail?b_number=" + c_number;
+				return "redirect:tempingdetail?b_number=" + b_number;
 			}
-			
-			
-			
-			
-		
-		
 
 }
