@@ -56,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override //등록된 자소서가 있는지 검색
-	public Map<String, Object> resumeChk(ResumeDTO resumeDTO) throws Exception {
+	public List<Map<String, Object>> resumeChk(ResumeDTO resumeDTO) throws Exception {
 		return dao.resumeChk(resumeDTO);
 	}
 	
@@ -170,6 +170,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override //공고 신청 상태일때 지원 취소하기
 	public int applyCancel(Map<String, Object> map) throws Exception {
 		return dao.applyCancel(map);
+	}
+
+
+	@Override //자소서 삭제시 등록된 자소서가 1개(대표자소서)라면 삭제 불가능
+	public int introDeleteCheck(String m_id) throws Exception {
+		return dao.introDeleteCheck(m_id);
+	}
+
+
+	@Override //자소서 삭제시 등록된 자소서가 1개(대표자소서) 일때 삭제 불가능
+	public int defaultIntro_xDel(ResumeDTO resumeDTO) throws Exception {
+		return dao.defaultIntro_xDel(resumeDTO);
 	}
 
 

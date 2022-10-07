@@ -81,14 +81,20 @@
 												
 												<ul class="nav">
 													<li><a class="active" href="${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}">등록된 자기소개서 목록 </a></li>
-															
-														<li><a id="cntCheck" href="${contextPath}/employeeMapper/resumeRegister">자기소개서 작성 </a></li>
+													
+													<c:choose>
+														<c:when test="${result== 9}">
+															<li><a id="cntCheck" onclick="regist_x()">자기소개서 작성 </a></li>
+														</c:when>
+														<c:otherwise>
+															<li><a id="cntCheck" href="${contextPath}/employeeMapper/resumeRegister?m_id=${loginInfo.m_id}">자기소개서 작성 </a></li>
+														</c:otherwise>
+													</c:choose>
 														
 												</ul>
 											</div>
 											<div class="candidate-main-content">
 												<div class="field-description"></div>
-												
 												<hr>
 												<c:forEach var="resume" items="${list}" varStatus="status">
 												<c:if test="${resume.i_default == 1}">
@@ -120,7 +126,10 @@
 																	<br>
 																	<!-- <a id="content-style" type="text" href="${contextPath}/employeeMapper/resumeDefault?i_number=${resume.i_number}">[대표설정]</a> -->
 																	<a class="content-style-1"  href="${contextPath}/employeeMapper/resumeDefault?i_number=${resume.i_number}&m_id=${loginInfo.m_id }">대표설정</a>
-																	<a class="content-style" type="text" href="${contextPath}/employeeMapper/resumeDelete?i_number=${resume.i_number}&m_id=${loginInfo.m_id }">[삭제]</a>
+																	<input type="button" value="삭제" onclick="deleteChk('${resume.i_number}','${loginInfo.m_id}')">
+																	<input type="hidden" name="result" id="result" value="${map.re}"/>
+																	
+
 																</div>
 															</div>
 														</div>
@@ -154,8 +163,50 @@
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 	
+	<script type="text/javascript">
+		function regist_x(){
+			alert('자기소개서는 3개만 등록 가능합니다');
+		}
+	</script>
 	
-	
+	<script type="text/javascript">
+		function intro_xDel(){
+			alert("대표자소서는 삭제가 불가능합니다");
+		}
+	</script>
+
+	<!-- 자기소개서 삭제 -->
+	<script type="text/javascript">
+		function deleteChk(i_number, m_id){
+			
+			var url = "${contextPath}/employeeMapper/resumeDelete";
+			var paramData = {
+				"m_id" : m_id,
+				"i_number" : i_number
+			};
+			
+			$.ajax({
+				url : url,
+				data : paramData,
+				type : "POST",
+				dataType : "json",
+					success : function(result){
+						if(result != 9){
+							alert('삭제되었습니다.');
+							window.location.reload(true);
+						}
+						else{
+							alert('대표자소서는 삭제가 불가능합니다.')
+							window.location.reload(true);
+						}
+					},
+					error : function(result){
+						alert('ajax실패');
+						window.location.reload(true);
+					}
+			});
+		}
+	</script>
 	
 	
 	
