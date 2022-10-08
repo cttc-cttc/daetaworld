@@ -129,8 +129,8 @@
 																<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																	<!-- Single Input Start -->
 																	<div class="single-input mb-25">
-																		<label for="m_id">아이디<span> : </span></label>
-																			${detail.m_id }
+																		<label for="m_id">알바생<span> : </span></label>
+																			${detail.m_nick }
 																		<br>
 																		<label for="rc_comments">댓글<span>*</span></label>
 																		<textarea class="col-auto form-control" type="text" readonly="readonly">

@@ -236,7 +236,7 @@ public class CommonController {
 		@PostMapping(value="reviewMapper/e_reviewRegister")
 		public String e_reviewRegister(ReviewDTO reviewDTO) throws Exception{
 			int r = rService.e_reviewRegister(reviewDTO);
-			return "redirect:/reviewMapper/e_writtenReviews?m_id="+reviewDTO.getW_writer();
+			return "redirect:/reviewMapper/e_wroteReviews?m_id="+reviewDTO.getW_writer();
 		}
 		
 		

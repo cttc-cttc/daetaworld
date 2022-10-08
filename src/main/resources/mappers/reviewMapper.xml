@@ -132,10 +132,12 @@
 	
 	<!-- 작성한 리뷰 내용 확인 -->
 	<select id="wroteDetail" parameterType="java.lang.Integer" resultType="Map">
-		select r.*, rc.*
+		select m.m_nick, r.*, rc.*
 		from review r
 			left outer join review_comments rc
 			on r.w_number = rc.w_number
+			join member m
+            on rc.m_id = m.m_id
 				and r.w_number = #{w_number}
 		where r.w_number = #{w_number}
 	</select>
