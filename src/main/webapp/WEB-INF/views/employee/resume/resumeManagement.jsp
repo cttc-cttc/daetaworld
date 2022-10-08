@@ -77,7 +77,6 @@
 																	<button class="ht-btn theme-btn theme-btn-two transparent-btn-two" value="대표설정" onclick="introDefault('${resume.i_number}','${loginInfo.m_id}')">대표설정</button>
 																</td>
 															</tr>
-															<input type="hidden" name="result" id="result" value="${map.re}"/>
 														</c:forEach>
 													</table>
 												</div>

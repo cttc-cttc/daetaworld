@@ -19,7 +19,7 @@ public interface EmployeeDAO {
 	public List<ResumeDTO> resumeManagement(String m_id)throws Exception;
 	
 	//선택한 자소서 불러오기
-	public ResumeDTO selectResume(Map<String, Object> map)throws Exception;
+	public ResumeDTO selectResume(ResumeDTO resumeDTO)throws Exception;
 	
 	//수정한 자소서 저장 ajax
 	public int resumeUpdate(ResumeDTO resumeDTO)throws Exception;

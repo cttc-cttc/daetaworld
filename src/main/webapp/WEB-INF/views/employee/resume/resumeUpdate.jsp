@@ -41,7 +41,14 @@
 											<div class="profile-applications-heading">
 												<ul class="nav">
 													<li><a class="active" href="resumeManagement?m_id=${loginInfo.m_id}">등록된 자기소개서 목록</a></li>
-													<li><a class="active" href="resumeRegister">자기소개서작성</a></li>
+													<c:choose>
+														<c:when test="${result== 9}">
+															<li><a id="cntCheck" onclick="regist_x()">자기소개서 작성 </a></li>
+														</c:when>
+														<c:otherwise>
+															<li><a id="cntCheck" href="${contextPath}/employeeMapper/resumeRegister?m_id=${loginInfo.m_id}">자기소개서 작성 </a></li>
+														</c:otherwise>
+													</c:choose>
 												</ul>
 											</div>
 											<hr>
@@ -100,6 +107,11 @@
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 	
+	<script type="text/javascript">
+		function regist_x(){
+			alert('자기소개서는 3개만 등록 가능합니다');
+		}
+	</script>
 	
 	<script type="text/javascript">
 		function resumeSave(){

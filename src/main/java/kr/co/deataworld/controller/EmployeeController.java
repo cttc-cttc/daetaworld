@@ -85,37 +85,39 @@ public class EmployeeController {
 	}
 	
 	
+	//등록된 자소서 체크하는 메소드
+	public int commonResumeChk(ResumeDTO resumeDTO)throws Exception{
+		List<Map<String, Object>> map = service.resumeChk(resumeDTO);
+		if(map.size() >= 3) {//작성 불가능 (자소서 3개이상) 9리턴
+			int result = 9;
+			return result;
+		}else {
+			int result = 8;
+			return result;
+		}
+	}
+	
+	//수정중
 	//구직자 자기소개서 관리
 	@GetMapping(value = "employeeMapper/resumeManagement")
-	public ModelAndView resumeManagement(@RequestParam("m_id") String m_id, ResumeDTO resumeDTO) throws Exception {
+	public ModelAndView resumeManagement(ResumeDTO resumeDTO) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		// 자소서 3개까지 등록가능
-		List<Map<String, Object>> intro = service.resumeChk(resumeDTO);
-		if (intro.size() >= 3) { // 작성불가능
-			List<ResumeDTO> list = service.resumeManagement(m_id);
-			int result = 9;
+		int result = commonResumeChk(resumeDTO); 
+			List<ResumeDTO> list = service.resumeManagement(resumeDTO.getM_id());
 			mav.addObject("result", result);
 			mav.addObject("list", list);
 			mav.setViewName("employee/resume/resumeManagement");
 			return mav;
-		} else {
-			List<ResumeDTO> list = service.resumeManagement(m_id);
-			System.out.println("값이 있나? : " + list);
-			mav.addObject("list", list);
-			mav.setViewName("employee/resume/resumeManagement");
-			return mav;
 		}
-	}
-	
+
 	
 	//자소서 글 읽기
 	@GetMapping(value="employeeMapper/selectResume")
-	public String selectResume(@RequestParam("m_id")String m_id,
-							@RequestParam("i_number")int i_number, Model model) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("m_id", m_id);
-		map.put("i_number", i_number);
-		ResumeDTO resume = service.selectResume(map);
+	public String selectResume(ResumeDTO resumeDTO, Model model) throws Exception {
+		int result = commonResumeChk(resumeDTO); //게시글 갯수 확인 메소드 리턴이 9면 작성불가, 리턴이 8이면 작성가능
+		ResumeDTO resume = service.selectResume(resumeDTO);
+		model.addAttribute("result", result);
 		model.addAttribute("resume", resume);
 		return "employee/resume/selectResume";
 	}
@@ -123,12 +125,10 @@ public class EmployeeController {
 	
 	//선택한 자소서 수정 폼으로 이동
 		@GetMapping(value="employeeMapper/resumeUpdate")
-		public String resumeUpdate(@RequestParam("i_number")int i_number,
-								   @RequestParam("m_id")String m_id, Model model)throws Exception {
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("m_id", m_id);
-			map.put("i_number", i_number);
-			ResumeDTO resume = service.selectResume(map);
+		public String resumeUpdate(ResumeDTO resumeDTO, Model model)throws Exception {
+			int result = commonResumeChk(resumeDTO);
+			ResumeDTO resume = service.selectResume(resumeDTO);
+			model.addAttribute("result", result);
 			model.addAttribute("resume", resume);
 			return "employee/resume/resumeUpdate";
 		}
@@ -147,13 +147,10 @@ public class EmployeeController {
 	@PostMapping(value = "employeeMapper/resumeDelete")
 	public int resumeDelete(ResumeDTO resumeDTO, Model model) throws Exception {
 		int res = service.defaultIntro_xDel(resumeDTO);
-		System.out.println("111111111111111");
 		if(res == 0) {//대표자소서가 아니면 삭제 성공
-			System.out.println("22222222");
 			return service.resumeDelete(resumeDTO);
 		}else{
 			int result = 9;
-			System.out.println(result + "33333333");
 			return result;
 		}
 	}
@@ -192,17 +189,6 @@ public class EmployeeController {
 	}
 	
 	
-	/*
-	 * //자소서 대표 설정
-	 * 
-	 * @GetMapping(value="employeeMapper/resumeDefault") public String
-	 * defaultIntro(ResumeDTO resumeDTO, Model model)throws Exception {
-	 * service.resumeDefaultInit(resumeDTO); service.resumeDefault(resumeDTO);
-	 * model.addAttribute("m_id", resumeDTO.getM_id()); return
-	 * "redirect:resumeManagement"; }
-	 */
-	
-	
 	//대타신청 - 신청을 하면 -> m_id 값을 보냄 -> 이미 지원한 공고인지 확인 해야함 -> 구직/구인자 지원상태를 0(지원함)으로 바꿈 -> 구직자 대표 자기소개서를 update해줌. 
 	// 구인자한테 신청했다고 알림 보냄
 	@GetMapping(value="employeeMapper/jobApply")
@@ -228,9 +214,6 @@ public class EmployeeController {
 		}
 		
 	}
-	
-	//신청 -> 가게정보 불러오기 -> 대타내역 보여주기
-	//신청 -> 대표 자소서 보내야함
 	
 	
 	//구직자 신청한 대타내역 모두 불러오기

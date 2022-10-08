@@ -41,8 +41,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
 	@Override //선택한 자소서 불러오기
-	public ResumeDTO selectResume(Map<String, Object> map) throws Exception {
-		return sql.selectOne(NAMESPACE + ".selectResume", map);
+	public ResumeDTO selectResume(ResumeDTO resumeDTO) throws Exception {
+		return sql.selectOne(NAMESPACE + ".selectResume", resumeDTO);
 	}
 
 

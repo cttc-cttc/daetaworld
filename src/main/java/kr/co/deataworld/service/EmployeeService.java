@@ -23,7 +23,7 @@ public interface EmployeeService {
 	public List<ResumeDTO> resumeManagement(String m_id)throws Exception;
 	
 	//선택한 자소서 읽기
-	public ResumeDTO selectResume(Map<String, Object> map)throws Exception;
+	public ResumeDTO selectResume(ResumeDTO resumeDTO)throws Exception;
 	
 	//자소서 수정내용 저장 ajax
 	public int resumeUpdate(ResumeDTO resumeDTO)throws Exception;
