@@ -51,7 +51,8 @@ public class EmployeeController {
 	
 	//내 정보 불러오기
 	@GetMapping(value="employeeMapper/myInfo")
-	public ModelAndView myInfo(@RequestParam("m_id")String m_id, HttpSession session)throws Exception {
+	public ModelAndView myInfo(@RequestParam("m_id")String m_id, Model model, HttpSession session)throws Exception {
+		model.addAttribute("leftMenu", "myInfo");
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> myInfo = service.myInfo(m_id);
 		mav.addObject("myInfo", myInfo);
@@ -100,7 +101,8 @@ public class EmployeeController {
 	//수정중
 	//구직자 자기소개서 관리
 	@GetMapping(value = "employeeMapper/resumeManagement")
-	public ModelAndView resumeManagement(ResumeDTO resumeDTO) throws Exception {
+	public ModelAndView resumeManagement(ResumeDTO resumeDTO, Model model) throws Exception {
+		model.addAttribute("leftMenu", "resumeManagement");
 		ModelAndView mav = new ModelAndView();
 		// 자소서 3개까지 등록가능
 		int result = commonResumeChk(resumeDTO); 
@@ -247,6 +249,7 @@ public class EmployeeController {
 	//구직자 종료된 공고
 	@GetMapping(value="employeeMapper/pinchExpired")
 	public ModelAndView pinchExpired(@RequestParam("m_id") String m_id, Model model)throws Exception {
+		model.addAttribute("leftMenu", "pinchExpired");
 		ModelAndView mav = new ModelAndView();
 		List<Map> list = service.pinchExpired(m_id);
 		mav.addObject("list", list);

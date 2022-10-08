@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
 <div class="col-xl-2 col-lg-3">
 	<div class="dashboard-sidebar">
@@ -10,18 +11,18 @@
 				<li>
 					<h3>마이페이지 (노예)</h3>
 					<ul>
-						<li><a id="myInfo_e" href="${contextPath}/employeeMapper/myInfo?m_id=${loginInfo.m_id}"><i 
-								class="lnr lnr-users"></i>내 정보</a></li>
-						<li><a id="resumeManagement" href="${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}"><i 
-								class="lnr lnr-thumbs-down"></i>자기소개서 관리</a></li>												
-						<li><a id="pinchStatus" href="${contextPath}/employeeMapper/pinchStatus?m_id=${loginInfo.m_id}"><i 
-								class="lnr lnr-thumbs-down"></i>지원 현황</a></li>
-						<li><a id="pinchHistory" href="${contextPath}/employeeMapper/pinchHistory?m_id=${loginInfo.m_id}"><i 
-								class="lnr lnr-thumbs-down"></i>대타 내역</a></li>
-						<li><a id="pinchHistory" href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id}"><i 
-								class="lnr lnr-thumbs-down"></i>후기작성</a></li>								
-						<li><a id="pointManagement_e" href="${contextPath}/pointMapper/pointManagement?m_id=${loginInfo.m_id}"><i 
-								class="lnr lnr-thumbs-down"></i>포인트</a></li>
+						<li><a id="myInfo_e" href="${contextPath}/employeeMapper/myInfo?m_id=${loginInfo.m_id}">
+								<i class="lnr lnr-users"></i>내 정보</a></li>
+						<li><a id="resumeManagement" href="${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}"> 
+								<i class="bi bi-file-text"></i>자기소개서 관리</a></li>												
+						<li><a id="pinchStatus" href="${contextPath}/employeeMapper/pinchStatus?m_id=${loginInfo.m_id}"> 
+								<i class="bi bi-clipboard-check"></i>지원 현황</a></li>
+						<li><a id="pinchHistory" href="${contextPath}/employeeMapper/pinchHistory?m_id=${loginInfo.m_id}">
+								<i class="bi bi-journals"></i>대타 내역</a></li>
+						<li><a id="pinchExpired" href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id}">
+								<i class="bi bi-pencil"></i>후기작성</a></li>								
+						<li><a id="pointManagement_e" href="${contextPath}/pointMapper/pointManagement?m_id=${loginInfo.m_id}"> 
+								<i class="bi bi-coin"></i>포인트</a></li>
 					</ul>
 				</li>
 				</c:if>
@@ -60,6 +61,9 @@
 			break;
 		case "pinchHistory":
 			$("#pinchHistory").addClass("active");
+			break;
+		case "pinchExpired":
+			$("#pinchExpired").addClass("active");
 			break;
 		// 구인자
 		case "adsApplied":
