@@ -6,14 +6,10 @@
 <html class="no-js" lang="zxx">
 <title>내 정보</title>
 <%@ include file="../../include/head.jsp"%>
-
 <!-- custom css -->
 <link rel="stylesheet"
    href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
-<link rel="stylesheet"
-	href="${contextPath }/resources/custom_css/etc.css">   
-
 <body class="template-color-1">
    <div id="main-wrapper">
       <!-- 상단 메뉴 start-->

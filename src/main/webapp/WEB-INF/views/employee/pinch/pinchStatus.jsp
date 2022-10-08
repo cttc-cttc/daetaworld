@@ -7,8 +7,7 @@
 <title>대타 내역</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
-<link rel="stylesheet"
-	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+<link rel="stylesheet" href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
