@@ -6,7 +6,10 @@
 <table class="table">
 	<c:forEach var="commentsDTO" items="${list}">
 		<tr>
-			<td colspan="2">작성자 : ${commentsDTO.m_nick}&nbsp;&nbsp;&nbsp;&nbsp;작성일자 : ${commentsDTO.c_date} </td>
+			<td colspan="2">작성자 : ${commentsDTO.m_nick}&nbsp;&nbsp;&nbsp;&nbsp;작성일자 : ${commentsDTO.c_date}
+				<%-- 관리자 페이지에서 신고 댓글 위치로 바로 가기 위한 설정 --%>
+				<a id="anc${commentsDTO.c_number}"></a>
+			</td>
 		</tr>
 		<tr>
 			<td><textarea name="c_contents" rows="5" cols="80"

@@ -247,7 +247,7 @@
 				</div>
 			</div>
 			<div class="row" style="justify-content: end;">
-				<button class="btn btn-success" type="button" style="margin-right: 5px;">목록</button>
+				<a class="btn btn-success" href="javascript:history.back()" style="margin-right: 5px;">목록</a>
 				<%-- 로그인 유저가 타인의 공고를 볼 때만 신고버튼 보임 --%>
 				<c:if test="${loginInfo != null && loginInfo.m_id != map.m_id}">
 					<div class="dropdown" style="display: inline;">

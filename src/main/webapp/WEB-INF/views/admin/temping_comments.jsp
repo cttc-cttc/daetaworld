@@ -57,7 +57,7 @@
 																<c:forEach var="list" items="${tempingComments }">
 																	<tr class="application-item">
 																		<td class="application-job text-left">
-																			<h3><a class="text-ellipsis" href="${contextPath }/board/temping/tempingdetail?b_number=${list.b_number }">${list.c_contents }</a></h3>
+																			<h3><a class="text-ellipsis" href="${contextPath }/board/temping/tempingdetail?b_number=${list.b_number }#anc${list.c_number}">${list.c_contents }</a></h3>
 																		</td>
 																		<td class="application-employer">
 																			<a class="dotted" href="${contextPath }/admin/user_profile?id=${list.m_id }">${list.m_id }</a>
