@@ -88,9 +88,9 @@
 	
 	<!-- 전체 구인공고 신고 수 -->
 	<select id="jobAdsCnt" resultType="java.lang.Integer">
-		select count(*) from job_ads
+		select count(*) from report
 		where
-			not r_code = 0
+			r_type = 5
 			and del = 0
 	</select>
 	
@@ -103,7 +103,8 @@
 			date(B.s_date) as s_date,	<!-- B.작성일 -->
 			D.r_type,	<!-- D.신고 타입 -->
 			A.a_number,	<!-- A.공고 번호 -->
-			C.re_number	<!-- C.공고 신고 번호 -->
+			C.re_number,<!-- C.공고 신고 번호 -->
+			C.r_date	<!-- C.신고 날짜 -->
 		from job_ads as A <!-- 구인공고 테이블A -->
 		inner join shop_info as B <!-- 가게정보 테이블B -->
 			on A.s_number = B.s_number
@@ -112,8 +113,9 @@
 		inner join report_code as D <!-- 신고 코드 테이블D -->
 			on A.r_code = D.r_code
 		where
-			not A.r_code = 0
+			C.r_type = 5
 			and C.del = 0
+		order by C.r_date desc
 		limit #{pageStart}, #{pagePerList}
 	</select>
 	
@@ -144,10 +146,9 @@
 	
 	<!-- 전체 자유게시판 글 신고 수 -->
 	<select id="freeBoardCnt" resultType="java.lang.Integer">
-		select count(*) from board
+		select count(*) from report
 		where
-			b_code = 0
-			and not r_code = 0
+			r_type = 1
 			and del = 0
 	</select>
 	
@@ -160,18 +161,16 @@
 			C.r_type,	<!-- C.신고 타입 -->
 			A.b_number,	<!-- A.게시글 번호 -->
 			B.re_number,<!-- B.글 신고 번호 -->
-			D.m_type	<!-- D.회원 구분 -->
+			B.r_date	<!-- B.신고 날짜 -->
 		from board as A <!-- 게시판 테이블A -->
 		inner join report as B <!-- 글 신고 테이블B -->
 			on A.b_number = B.b_number
 		inner join report_code as C <!-- 신고 코드 테이블C -->
 			on A.r_code = C.r_code
-		inner join member as D <!-- 회원 테이블D -->
-			on A.m_id = D.m_id
 		where
-			not A.r_code = 0
-			and A.b_code = 0
-			and A.del = 0
+			B.r_type = 1
+			and B.del = 0
+		order by B.r_date desc
 		limit #{pageStart}, #{pagePerList}
 	</select>
 	
@@ -202,13 +201,10 @@
 	
 	<!-- 전체 자유게시판 댓글 신고 수 -->
 	<select id="freeCommentsCnt" resultType="java.lang.Integer">
-		select count(*) from comments as A
-		inner join board as B
-			on A.b_number = B.b_number
+		select count(*) from comments_report
 		where
-			B.b_code = 0
-			and not A.r_code = 0
-			and A.del = 0
+			r_type = 2
+			and del = 0
 	</select>
 	
 	<!-- 자유게시판 댓글 신고 조회(페이징 처리) -->
@@ -221,20 +217,16 @@
 			A.b_number,	<!-- A.게시글 번호 -->
 			A.c_number,	<!-- A.댓글 번호 -->
 			B.cr_number,<!-- B.댓글 신고 번호 -->
-			D.m_type	<!-- D.회원 구분 -->
+			B.r_date	<!-- B.신고 날짜 -->
 		from comments as A <!-- 댓글 테이블A -->
 		inner join comments_report as B <!-- 댓글 신고 테이블B -->
 			on A.c_number = B.c_number
 		inner join report_code as C <!-- 신고 코드 테이블C -->
 			on A.r_code = C.r_code
-		inner join member as D <!-- 회원 테이블D -->
-			on A.m_id = D.m_id
-		inner join board as E <!-- 게시판 테이블E -->
-			on A.b_number = E.b_number
 		where
-			not A.r_code = 0
-			and E.b_code = 0
-			and A.del = 0
+			B.r_type = 2
+			and B.del = 0
+		order by B.r_date desc
 		limit #{pageStart}, #{pagePerList}
 	</select>
 	
@@ -265,10 +257,9 @@
 	
 	<!-- 전체 땜빵게시판 글 신고 수 -->
 	<select id="tempingBoardCnt" resultType="java.lang.Integer">
-		select count(*) from board
+		select count(*) from report
 		where
-			b_code = 1
-			and not r_code = 0
+			r_type = 3
 			and del = 0
 	</select>
 	
@@ -280,16 +271,17 @@
 			date(A.b_date) as b_date,	<!-- A.게시글 작성 날짜 -->
 			C.r_type,	<!-- C.신고 타입 -->
 			A.b_number,	<!-- A.게시글 번호 -->
-			B.re_number	<!-- B.글 신고 번호 -->
+			B.re_number,<!-- B.글 신고 번호 -->
+			B.r_date	<!-- B.신고 날짜 -->
 		from board as A <!-- 게시판 테이블A -->
 		inner join report as B <!-- 글 신고 테이블B -->
 			on A.b_number = B.b_number
 		inner join report_code as C <!-- 신고 코드 테이블C -->
 			on A.r_code = C.r_code
 		where
-			not A.r_code = 0
-			and A.b_code = 1
-			and A.del = 0
+			B.r_type = 3
+			and B.del = 0
+		order by B.r_date desc
 		limit #{pageStart}, #{pagePerList}
 	</select>
 	
@@ -320,13 +312,10 @@
 	
 	<!-- 전체 땜빵게시판 댓글 신고 수 -->
 	<select id="tempingCommentsCnt" resultType="java.lang.Integer">
-		select count(*) from comments as A
-		inner join board as B
-			on A.b_number = B.b_number
+		select count(*) from comments_report
 		where
-			B.b_code = 1
-			and not A.r_code = 0
-			and A.del = 0
+			r_type = 4
+			and del = 0
 	</select>
 	
 	<!-- 땜빵게시판 댓글 신고 조회(페이징 처리) -->
@@ -338,18 +327,17 @@
 			C.r_type,	<!-- C.신고 타입 -->
 			A.b_number,	<!-- A.게시글 번호 -->
 			A.c_number,	<!-- A.댓글 번호 -->
-			B.cr_number	<!-- B.댓글 신고 번호 -->
+			B.cr_number,<!-- B.댓글 신고 번호 -->
+			B.r_date	<!-- B.신고 날짜 -->
 		from comments as A <!-- 댓글 테이블A -->
 		inner join comments_report as B <!-- 댓글 신고 테이블B -->
 			on A.c_number = B.c_number
 		inner join report_code as C <!-- 신고 코드 테이블C -->
 			on A.r_code = C.r_code
-		inner join board as D <!-- 게시판 테이블D -->
-			on A.b_number = D.b_number
 		where
-			not A.r_code = 0
-			and D.b_code = 1
-			and A.del = 0
+			B.r_type = 4
+			and B.del = 0
+		order by B.r_date desc
 		limit #{pageStart}, #{pagePerList}
 	</select>
 	
@@ -398,9 +386,9 @@
 		<!-- 글 신고 테이블에 추가 -->
 		<insert id="insertReport" parameterType="java.util.Map">
 			insert into report(
-				b_number, a_number, m_id, r_id, r_type, r_code, del
+				b_number, a_number, m_id, r_id, r_type, r_code, r_date, del
 			)values(
-				#{b_number}, #{a_number}, #{m_id}, #{r_id}, #{r_type}, #{r_code}, 0
+				#{b_number}, #{a_number}, #{m_id}, #{r_id}, #{r_type}, #{r_code}, now(), 0
 			)
 		</insert>
 		<!-- 로그인 유저가 이미 신고한 글인지 확인 -->
@@ -423,9 +411,9 @@
 		<!-- 댓글 신고 테이블에 추가 -->
 		<insert id="insertCommentsReport" parameterType="java.util.Map">
 			insert into comments_report(
-				c_number, m_id, r_id, r_type, r_code, del
+				c_number, m_id, r_id, r_type, r_code, r_date, del
 			)values(
-				#{c_number}, #{m_id}, #{r_id}, #{r_type}, #{r_code}, 0
+				#{c_number}, #{m_id}, #{r_id}, #{r_type}, #{r_code}, now(), 0
 			)
 		</insert>
 		<!-- 로그인 유저가 이미 신고한 댓글인지 확인 -->

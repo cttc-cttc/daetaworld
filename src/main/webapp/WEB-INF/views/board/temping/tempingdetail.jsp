@@ -117,6 +117,9 @@
 				}
 				location.href = "${contextPath}/board/temping/tempingreply?b_number=${temping.b_number}";
 			});
+			
+			// 페이지 로드 시 스크롤을 200만큼 위로 올림(관리자 페이지에서 신고 댓글 위치로 바로 가기 위해)
+			document.documentElement.scrollTop -= 200;
 		});
 	</script>
 </body>
