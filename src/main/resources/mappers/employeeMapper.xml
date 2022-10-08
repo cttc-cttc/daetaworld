@@ -158,7 +158,7 @@
 	FROM 
 	job_ads a, shop_info s, job_apply ja
 	WHERE
-	ja.m_id = 'userTest' 
+	ja.m_id = #{m_id} 
 	AND ja.a_number = a.a_number 
 	AND a.s_number = s.s_number 
 	AND ja.jae_status != 4

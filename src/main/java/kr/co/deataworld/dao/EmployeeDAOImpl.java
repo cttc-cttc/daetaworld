@@ -194,8 +194,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 	
 	
-	@Override //신청 취소한 공고 재신청하기
+	@Override // 신청 취소한 공고 재신청하기
 	public int reApply(JobApplyDTO jobApplyDTO) throws Exception {
+		// 신청을 하면 상태를 신청중 으로 바꾼다.
+		int a_number = jobApplyDTO.getA_number();
+		sql.update(NAMESPACE + ".statusUpdate", a_number);
 		return sql.update(NAMESPACE + ".reApply", jobApplyDTO);
 	}
 

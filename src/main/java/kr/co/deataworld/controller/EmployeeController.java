@@ -304,28 +304,24 @@ public class EmployeeController {
 		return service.pinchChk(map);
 	}
 	
-	
+	//ajax
 	//공고 신청 후 (구인자는 수락상태) 수락 선택
-	@GetMapping(value="employeeMapper/apply_o")
-	public String apply_o(@RequestParam("ja_number") int ja_number,
-						  @RequestParam("m_id") String m_id, Model model)throws Exception{
-		service.apply_o(ja_number);
-		model.addAttribute("m_id", m_id);
-		return "redirect:pinchStatus";
+	@ResponseBody
+	@PostMapping(value="employeeMapper/apply_o")
+	public int apply_o(@RequestParam("ja_number") int ja_number,@RequestParam("m_id") String m_id, Model model)throws Exception{
+		return service.apply_o(ja_number);
 	}
 	
-	
+	//ajax
 	//공고 신청 후 (구인자는 수락상태) 거절 선택
-	@GetMapping(value="employeeMapper/apply_x")
-	public String apply_x(@RequestParam("ja_number") int ja_number,
-						  @RequestParam("m_id") String m_id, Model model)throws Exception{
-		service.apply_x(ja_number);
-		model.addAttribute("m_id", m_id);
-		return "redirect:pinchStatus";
+	@ResponseBody
+	@PostMapping(value="employeeMapper/apply_x")
+	public int apply_x(@RequestParam("ja_number") int ja_number,@RequestParam("m_id") String m_id, Model model)throws Exception{
+		return service.apply_x(ja_number);
 	}
 	
-	
-	//신청한 공고 취소하기 ajax
+	//ajax
+	//신청한 공고 취소하기
 	@ResponseBody
 	@PostMapping(value="employeeMapper/applyCancel")
 	public int applyCancel(@RequestParam Map<String, Object> map, Model model)throws Exception{

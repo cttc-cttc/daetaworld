@@ -58,8 +58,23 @@
 															<th>공고상태</th>
 														</thead>
 														<c:forEach var="adsList" items="${list}">
-															<tr>			
-																<td type="button" onclick="location.href='${contextPath}/jobAds/listAllDetail?m_id=${loginInfo.m_id}&s_number=${adsList.s_number}&a_number=${adsList.a_number}&s_name=${adsList.s_name}'">${adsList.s_name}</td>
+															<tr>
+															<c:choose>
+																<c:when test="${adsList.a_status == 3}">
+																	<td type="button" onclick="expiredPinch()">${adsList.s_name}</td>
+																</c:when>
+																<c:otherwise>
+																	<td type="button" onclick="location.href='${contextPath}/jobAds/listAllDetail?m_id=${loginInfo.m_id}&s_number=${adsList.s_number}&a_number=${adsList.a_number}&s_name=${adsList.s_name}'">${adsList.s_name}</td>
+																</c:otherwise>
+															</c:choose>	
+																		
+															
+															
+															
+															
+															
+															
+															
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
 																<td>${adsList.a_wage }원</td>
@@ -149,5 +164,16 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	
+	<script type="text/javascript">
+		function expiredPinch(){
+			alert('완료한 공고입니다.');
+		}
+	</script>
+	
+	
+	
+	
+	
 </body>
 </html>

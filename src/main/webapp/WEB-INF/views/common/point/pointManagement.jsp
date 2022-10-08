@@ -52,7 +52,7 @@
 															class="single-funfact funfact-style-two text-center justify-content-center width-100 mb-30">
 															<div class="funfact-content">
 																<span class="counter theme-color">${point.point }</span><span
-																	class="text">${point.m_id }님의 현재 포인트</span>
+																	class="text">${loginInfo.m_nick}님의 현재 포인트</span>
 															</div>
 															
 														</div>				

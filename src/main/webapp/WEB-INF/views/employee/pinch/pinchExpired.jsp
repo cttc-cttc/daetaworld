@@ -52,6 +52,7 @@
 															<th>시간</th>
 															<th>시급</th>
 															<th>급구</th>
+															<th></th>
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
