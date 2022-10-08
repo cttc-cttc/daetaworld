@@ -211,16 +211,25 @@
 						<div class="review-area pb-60 pb-sm-30 pb-xs-30">
 							<div class="review-container">
 								
+									<!-- 신청 - 신청취소 - 재신청 할때  -->
 								<c:choose>
+									<c:when test="${map.m_type == 1 && result == 9}">
+										<a class="ht-btn text-center apply-btn" type="button"
+										onclick="location.href='${contextPath}/employeeMapper/reApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}&employer_id=${map.m_id }&s_name=${map.s_name }'">다시 지원하기<i
+										class="ml-10 mr-0 fa fa-paper-plane"></i></a>										
+									</c:when>
+									
 									<c:when test="${map.m_type == 1 && result == 0 || loginInfo.m_id == null}">
 										<a class="ht-btn text-center apply-btn" type="button"
 										onclick="location.href='${contextPath}/employeeMapper/jobApply?a_number=${map.a_number}&m_id=${loginInfo.m_id}&employer_id=${map.m_id }&s_name=${map.s_name }'">지원하기<i
 										class="ml-10 mr-0 fa fa-paper-plane"></i></a>										
 									</c:when>
+									
 									<c:when test="${map.m_type == 1 && result == 1}">
 										<a class="ht-btn text-center apply-btn" type="text">이미 지원한 공고입니다<i
 										class="ml-10 mr-0 fa fa-paper-plane"></i></a>
 									</c:when>
+									
 									<c:when test="${introResult == 9}">
 										<script type="text/javascript">
 											<script>  

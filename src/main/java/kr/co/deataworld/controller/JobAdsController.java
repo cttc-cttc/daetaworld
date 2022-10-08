@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.deataworld.dto.JobAdsCriteria;
 import kr.co.deataworld.dto.JobAdsPageMaker;
+import kr.co.deataworld.dto.JobApplyDTO;
 import kr.co.deataworld.dto.JobCountryCriteria;
 import kr.co.deataworld.dto.JobCountryPageMaker;
 import kr.co.deataworld.dto.AreaCodeDTO;
@@ -151,17 +152,44 @@ public class JobAdsController {
 	// 구인목록 상세(가게번호 누르고 들어갈때)
 	@GetMapping(value = "jobAds/listAllDetail")
 	public String listAdsDetail(@RequestParam("s_name") String s_name, @RequestParam("s_number") String s_number,
-			@RequestParam("m_id") String m_id, @RequestParam("a_number") int a_number, Model model) throws Exception {
+			@RequestParam("m_id") String m_id, @RequestParam("a_number") int a_number, Model model, JobApplyDTO jobApplyDTO) throws Exception {
 		Map<String, Object> chk = new HashMap<String, Object>();
 		chk.put("s_number", s_number);
 		chk.put("m_id", m_id);
 		chk.put("s_name", s_name);
 		chk.put("a_number", a_number);
 		int result = eService.applyCheck(chk);
-		Map<String, Object> map = service.listDetail(chk);
-		model.addAttribute("result", result);
-		model.addAttribute("map", map);
-		return "jobAds/listAllDetail";
+		System.out.println("신청한 공고인지 조회좀 해볼게");
+		
+		if(result == 0) { //지원한거 없네? 그럼 지원신청해줄게
+			Map<String, Object> map = service.listDetail(chk);
+			model.addAttribute("result", result);
+			model.addAttribute("map", map);
+			System.out.println("지원신청 할까?");
+			return "jobAds/listAllDetail";
+			
+		} else { //지원했었네? 그럼 거절한건지 볼까?
+			//result1 은 0=거절한거 아님, 1=거절했었네
+			int result1 = eService.cancelAdsCheck(jobApplyDTO);
+			
+			if(result1 == 0) { //지원은 했지만 거절하지않음 -> 신청중인 상태
+				int result2 = 1;
+				System.out.println("너 이미 신청했잖아 " + result2 + " 이거 가지고 가버려");
+				Map<String, Object> map = service.listDetail(chk);
+				model.addAttribute("result", result2);
+				model.addAttribute("map", map);
+				return "jobAds/listAllDetail";
+			}else { //지원했다가 거절했네?.. 근데 다시 신청하려고?
+				System.out.println("너 거절했었는데?");
+				int result3 = 9;
+				Map<String, Object> map = service.listDetail(chk);
+				model.addAttribute("map", map);
+				model.addAttribute("result", result3);
+//				eService.reApply(jobApplyDTO); //거절상태를 신청중 으로 업데이트 -> 재신청 완료
+				System.out.println("거절했었네? 근데 다시 신청해줘? " + result3 + " 이거 가져가서 다시 신청해봐");
+				return "jobAds/listAllDetail";
+			}
+		}
 	}
 
 	@GetMapping(value = "/jobAds/listFavorite")
