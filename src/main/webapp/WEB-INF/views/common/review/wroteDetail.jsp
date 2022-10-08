@@ -14,6 +14,7 @@
 	.star {
 		font-size: 2rem;
 		padding: 0 0.2em;
+		line-height: 1rem;
 		-webkit-text-stroke-width: 2.3px;
 		-webkit-text-stroke-color: #2b2a29;
 		-webkit-text-fill-color: gold;
