@@ -97,5 +97,11 @@ public interface EmployeeService {
 	//자소서 삭제시 등록된 자소서가 1개(대표자소서) 일때 삭제 불가능
 	public int defaultIntro_xDel(ResumeDTO resumeDTO)throws Exception;
 	
+	//거절했던 공고인지 확인
+	public int cancelAdsCheck(JobApplyDTO jobApplyDTO)throws Exception;	
+	
+	//신청 취소한 공고 재신청하기
+	public int reApply(JobApplyDTO jobApplyDTO)throws Exception;
+	
 	
 }

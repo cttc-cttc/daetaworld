@@ -184,6 +184,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return dao.defaultIntro_xDel(resumeDTO);
 	}
 
+	@Override //거절했던 공고인지 조회
+	public int cancelAdsCheck(JobApplyDTO jobApplyDTO) throws Exception {
+		return dao.cancelAdsCheck(jobApplyDTO);
+	}
+
+	@Override //신청 취소한 공고 재신청하기
+	public int reApply(JobApplyDTO jobApplyDTO) throws Exception {
+		return dao.reApply(jobApplyDTO);
+	}
+
+
+
 
 
 

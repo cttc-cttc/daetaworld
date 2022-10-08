@@ -312,12 +312,23 @@ ja_number = #{ja_number}
 	and i.m_id = #{m_id} and i.i_default = 1 and i.i_number = #{i_number}
 </select>
 
+<!-- 거절했던 공고인지 확인 -->
+<select id="cancelAdsCheck" parameterType="Map" resultType="java.lang.Integer">
+	select count(*) from job_apply ja
+    where ja.m_id = #{m_id}
+    and ja.a_number = #{a_number}
+    and ja.jae_status = 3
+</select>
 
-<!-- <select id="introDeleteCheck" parameterType="String" resultType="java.lang.Integer">
-	select count(*) from employee_intro i
-	where i.i_number
-	and i.m_id = #{m_id} ; 
-</select> -->
+
+<!-- 신청중 취소한 공고 다시 지원하기 -->
+<update id="reApply" parameterType="JobApplyDTO">
+	update job_apply
+    set
+    jae_status = 0
+    where 
+    m_id = #{m_id} and a_number = #{a_number}; 
+</update>
 
 
 

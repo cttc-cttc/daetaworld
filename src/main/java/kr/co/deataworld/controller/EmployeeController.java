@@ -196,11 +196,9 @@ public class EmployeeController {
 		//지원하기 누르면 1.대표설정된 자기소개서가 있는지 확인이 필요 - 확인값이 0보다 크면 - 대표자소서가 설정되어 있는것
 		Map<String, Object> chk = new HashMap<String, Object>();
 		chk = service.introChk(jobapplyDTO);
-		
 		if(chk != null) {
 			service.jobApply(jobapplyDTO); //m_id, 구직&구인자 지원상태를 0(지원함)으로 insert 함
 			service.applyIntro(jobapplyDTO); //구직자가 볼수있게 대표 자기소개서를 update 함
-			
 			// 공고 지원자 알림을 등록할 정보
 			Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
 			notiInsertInfo.put("m_id", employer_id);
@@ -208,7 +206,6 @@ public class EmployeeController {
 			notiInsertInfo.put("n_type", 0);
 			nService.insertAdsApplicant(notiInsertInfo);
 			return "redirect:/jobAds/listAll";
-			
 		} else { //0보다 크지않다 - null값이다 - 대표설정된 자소서가 없다.
 			return "redirect:/employeeMapper/resumeManagement?m_id=" + jobapplyDTO.getM_id();
 		}
@@ -336,7 +333,13 @@ public class EmployeeController {
 		return service.applyCancel(map);
 	}
 	
-	
+	//신청 취소한 공고 재신청하기
+	@GetMapping(value="employeeMapper/reApply")
+	public String reApply(JobApplyDTO jobApply)throws Exception {
+		service.reApply(jobApply);
+		System.out.println("내가 재신청 넣어줬다??");
+		return "redirect:/jobAds/listAll";
+	}
 	
 	
 	
