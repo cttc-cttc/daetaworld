@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,6 +20,8 @@ import kr.co.deataworld.dto.CommentsDTO;
 public class BoardDAOImpl implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
+	@Inject
+	HttpServletRequest request;
 
 	private static final String namespace = "kr.co.deataworld.boardMapper";
 
@@ -56,6 +62,15 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<CommentsDTO> getDetail1(int b_number) throws Exception{
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		@SuppressWarnings("unchecked")
+		Map<String, Object> loginInfo = (Map<String, Object>) session.getAttribute("loginInfo");
+		
+		// 관리자가 접근 시 삭제된 댓글들도 보여줌
+		if(loginInfo != null && (int) loginInfo.get("m_type") == 0) {
+			return sqlSession.selectList(namespace + ".adminReply", b_number);
+		}
+		
 		return sqlSession.selectList(namespace + ".detail1", b_number);
 	}
 

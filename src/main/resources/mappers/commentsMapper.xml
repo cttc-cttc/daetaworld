@@ -61,7 +61,4 @@
 		where c_number = #{c_number}
 	</update>
 	
-
-
-
 </mapper>

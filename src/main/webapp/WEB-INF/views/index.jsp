@@ -50,7 +50,7 @@
 										                </c:if>
 
 														<!-- 로그인 상태 아닐때 -->
-														<c:if test="${loginInfo.m_id == null || loginInfo.m_type == 2}">
+														<c:if test="${loginInfo.m_id == null || loginInfo.m_type == 2 || loginInfo.m_type == 0}">
 															<td class="tc"><a href="${contextPath}/jobAds/nonMember?a_number=${urgency_ads.a_number}">${urgency_ads.s_name}</a></td>
 														</c:if>
 													
@@ -113,7 +113,7 @@
 										                </c:if>
 
 														<!-- 로그인 상태 아닐때 -->
-														<c:if test="${loginInfo.m_id == null || loginInfo.m_type == 2}">
+														<c:if test="${loginInfo.m_id == null || loginInfo.m_type == 2 || loginInfo.m_type == 0}">
 															<a href="${contextPath}/jobAds/nonMember?a_number=${common_ads.a_number}">${common_ads.s_name}</a>
 														</c:if>
 

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.deataworld.dao.AdminDAO;
-import kr.co.deataworld.dto.BlacklistDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
 
@@ -50,7 +49,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<BlacklistDTO> blacklist(PageProcess pp) throws Exception {
+	public List<Map<String, Object>> blacklist(PageProcess pp) throws Exception {
 		return dao.blacklist(pp);
 	}
 
@@ -65,8 +64,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int warnJobAds(int a_number) throws Exception {
-		return dao.warnJobAds(a_number);
+	public int warnJobAds(int a_number, String m_id) throws Exception {
+		return dao.warnJobAds(a_number, m_id);
 	}
 
 	@Override
@@ -85,8 +84,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int warnFreeBoard(int b_number) throws Exception {
-		return dao.warnFreeBoard(b_number);
+	public int warnFreeBoard(int b_number, String m_id) throws Exception {
+		return dao.warnFreeBoard(b_number, m_id);
 	}
 
 	@Override
@@ -105,8 +104,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int warnFreeComments(int c_number) throws Exception {
-		return dao.warnFreeComments(c_number);
+	public int warnFreeComments(int c_number, String m_id) throws Exception {
+		return dao.warnFreeComments(c_number, m_id);
 	}
 
 	@Override
@@ -125,8 +124,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int warnTempingBoard(int b_number) throws Exception {
-		return dao.warnTempingBoard(b_number);
+	public int warnTempingBoard(int b_number, String m_id) throws Exception {
+		return dao.warnTempingBoard(b_number, m_id);
 	}
 
 	@Override
@@ -145,8 +144,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int warnTempingComments(int c_number) throws Exception {
-		return dao.warnTempingComments(c_number);
+	public int warnTempingComments(int c_number, String m_id) throws Exception {
+		return dao.warnTempingComments(c_number, m_id);
 	}
 
 	@Override
