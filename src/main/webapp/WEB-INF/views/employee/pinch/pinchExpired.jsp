@@ -4,7 +4,11 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
+<!-- 툴팁 link -->
+<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
 <title>종료된 공고</title>
+
+
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
@@ -55,6 +59,7 @@
 															<th>급구</th>
 															<th></th>
 														</thead>
+														
 														<c:forEach var="adsList" items="${list}">
 															<tr>			
 																<td><a href="#"></a>${adsList.s_name }</td>													
@@ -75,11 +80,16 @@
 																
 																
 																<c:if test="${adsList.a_status != 3}">
-																	<td><button id="pinch" onclick="pinch_Chk()">확인</button></td>
+																	<td><button class="btn btn-outline-danger" id="pinch" onclick="pinch_Chk()">확인</button></td>
 																</c:if>
 																
 																<c:if test="${adsList.a_status == 3 && adsList.jae_status != 7 }">
-																	<td><button id="pinch" onclick="location.href='${contextPath}/reviewMapper/e_reviewRegister?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}&id_rated=${adsList.id_rated}'">후기입력</button></td>
+																	<td>
+																	<button class="btn btn-outline-danger" id="tool" title="소중한 후기작성시 500포인트 적립!"  onclick="location.href='${contextPath}/reviewMapper/e_reviewRegister?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}&id_rated=${adsList.id_rated}'">
+																	후기입력
+																	</button>
+																	</td>
+																	
 																</c:if>
 																
 																<c:if test="${adsList.jae_status == 7}">
@@ -118,9 +128,15 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	<!-- 툴팁 스크립트  -->
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	
 	
 	<script type="text/javascript">
 		function pinch_Chk() {
+			if(confirm("급여가 정상적으로 입금됐는지 확인 후 버튼을 눌러주세요!") == true){//confirm 취소
 			var m_id = $("#m_id").val(); //구인자 아이디
 			var a_number = $("#a_number").val();
 			
@@ -140,7 +156,7 @@
 						console.log('ajax 성공');
 						window.location.reload(true);
 						location.href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id}";
-						alert('수고하셨습니다! 매장의 후기를 작성하세요!');
+						alert('수고하셨습니다! 매장의 후기를 작성하세요! 후기 작성시 500포인트 증정!');
 						
 						 changeBtnName();
 						
@@ -149,10 +165,9 @@
 						console.log('ajax 실패');
 					}
 			});
-			
-			
-			
-			
+			}else{//confirm 취소
+				return false;
+			}
 		}
 	</script>
 	
@@ -163,34 +178,46 @@
 			  btnElement.innerText = '후기작성';
 			}
 	</script>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+<script type="text/javascript">
+$(function(){
+  $('#pinch_1').mouseenter(function(){
+    $('.msg').show('마우스 포인터가 노란색원 안에 있습니다. ');
+  });
+  $('#pinch_1').mouseleave(function(){
+    $('.msg').hide();
+  });
+});
+</script>
+
+<!-- 툴팁 함수 이용 마우스 올렸을시 말풍선 -->
+<script type="text/javascript">
+$(function(){
+	$(document).tooltip();
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
