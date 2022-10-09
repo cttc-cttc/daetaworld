@@ -149,16 +149,24 @@
 	
 	<!-- 등록 중인 가게 목록보기 -->
 	<select id="adsPending" parameterType="String" resultType="Map">
-		select j.*, s.s_name
-		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{m_id} and j.a_status in (0, 1, 2) and j.del = 0 and s.del = 0
+		<![CDATA[
+		select a.*, s.s_name
+		from job_ads a, shop_info s
+		where a.s_number = s.s_number and a.m_id = #{m_id} and a.a_status in (0, 1, 2) 
+		and a.del = 0 and s.del = 0
+		and left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y')
+		]]>
 	</select>
 	
 	<!-- 지원받은 가게 및 구인완료된 가게 목록보기 -->
 	<select id="adsApplied" parameterType="String" resultType="Map">
-		select j.*, s.s_name
-		from job_ads j, shop_info s
-		where j.s_number = s.s_number and j.m_id = #{m_id} and (j.a_status = 1 or j.a_status = 2) and j.del = 0 and s.del = 0
+		<![CDATA[
+		select a.*, s.s_name
+		from job_ads a, shop_info s
+		where a.s_number = s.s_number and a.m_id = #{m_id} and (a.a_status = 1 or a.a_status = 2) 
+		and a.del = 0 and s.del = 0
+		and left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y')
+		]]>
 	</select>
 	
 	<!-- 요청한 공고 목록보기 -->
@@ -219,9 +227,16 @@
 	
 	<!-- 만료된 가게 목록보기 -->
 	<select id="adsExpired" parameterType="String" resultType="Map">
-		SELECT j.*, s.s_name
-		FROM job_ads j, shop_info s
-		WHERE j.s_number = s.s_number AND j.m_id = #{m_id} AND j.a_status = 4 AND j.del = 0 and s.del = 0
+		<![CDATA[
+		select distinct a.*, s.s_name
+		from job_ads a, shop_info s, job_apply ja
+		where a.s_number = s.s_number and a.m_id = #{m_id}		
+		and a.del = 0 and s.del = 0
+		and ja.a_number = a.a_number 
+		and ja.jar_status not in (4) 
+		and ja.jae_status not in(2) 
+		and left(a.a_date, 10) < date_format(curdate(), '%m/%d/%Y')
+		]]>
 	</select>
 	
 	<!-- 직업 코드 목록보기 -->
