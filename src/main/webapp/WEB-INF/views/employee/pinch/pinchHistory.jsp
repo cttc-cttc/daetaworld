@@ -117,19 +117,22 @@
 																<!-- 대타상태 -->
 																<td>
 																<c:set var="a_status" value="${adsList.a_status }"/>
-																	<c:if test="${a_status == 0 }">
+																	<c:if test="${a_status != 3 && adsList.jae_status == 2}">
+																		<c:out value="알바확정"></c:out>
+																	</c:if>
+																	<c:if test="${a_status == 0 && adsList.jae_status != 2 }">
 																		<c:out value="구인중"></c:out>
 																	</c:if>
-																	<c:if test="${a_status == 1 }">
+																	<c:if test="${a_status == 1 && adsList.jae_status != 2 }">
 																		<c:out value="신청중"></c:out>
 																	</c:if>
-																	<c:if test="${a_status == 2 }">
+																	<c:if test="${a_status == 2 && adsList.jae_status != 2 }">
 																		<c:out value="구인완료"></c:out>
 																	</c:if>
 																	<c:if test="${a_status == 3 }">
 																		<c:out value="알바완료"></c:out>
 																	</c:if>
-																	<c:if test="${a_status == 4 }">
+																	<c:if test="${a_status == 4 && adsList.jae_status != 2 }">
 																		<c:out value="기간만료"></c:out>
 																	</c:if>
 																</td>

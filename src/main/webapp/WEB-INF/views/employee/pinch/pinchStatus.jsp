@@ -59,7 +59,7 @@
 															<th>급구</th>
 															<th>지원상태</th>
 															<th>공고상태</th>
-															<th>확정하기</th>
+															<th>결정하기</th>
 														</thead>
 														<c:forEach var="adsList" items="${list}">
 															<input type="hidden" name="adsStatus"
@@ -93,19 +93,26 @@
 																	</c:if> <c:if test="${status == 4 }">
 																		<c:out value="요청받음"></c:out>
 																	</c:if></td>
-																<td><c:set var="a_status"
-																		value="${adsList.a_status }" /> <c:if
-																		test="${a_status == 0 }">
+																<td><c:set var="a_status" value="${adsList.a_status }" />
+																	 <c:if test="${adsList.jae_status == 2}">
+																		<c:out value="알바확정"></c:out>
+																	 </c:if>
+																	 <c:if test="${a_status == 0 && adsList.jae_status != 2 }">
 																		<c:out value="구인중"></c:out>
-																	</c:if> <c:if test="${a_status == 1 }">
+																	</c:if>
+																	 <c:if test="${a_status == 1 && adsList.jae_status != 2 }">
 																		<c:out value="신청중"></c:out>
-																	</c:if> <c:if test="${a_status == 2 }">
+																	</c:if>
+																	 <c:if test="${a_status == 2 && adsList.jae_status != 2 }">
 																		<c:out value="구인완료"></c:out>
-																	</c:if> <c:if test="${a_status == 3 }">
+																	</c:if>
+																	 <c:if test="${a_status == 3 && adsList.jae_status != 2 }">
 																		<c:out value="알바완료"></c:out>
-																	</c:if> <c:if test="${a_status == 4 }">
+																	</c:if>
+																	 <c:if test="${a_status == 4 && adsList.jae_status != 2 }">
 																		<c:out value="기간만료"></c:out>
-																	</c:if></td>
+																	</c:if>
+																</td>
 																<c:choose>
 																	<c:when test="${adsList.jae_status == 1}">
 																		<td><a style="color: blue;" type="button"
@@ -155,6 +162,8 @@
 	<!-- 공고지원 취소하기 -->
 	<script type="text/javascript">
 		function apply_cancel(a_number, ja_number) {
+			if (confirm("지원을 취소할까요?") == true){ //confirm 확인
+				
 			var url = "${contextPath}/employeeMapper/applyCancel";
 			var paramData = {
 				"a_number" : a_number,
@@ -175,6 +184,9 @@
 					alert('공고 취소 실패..')
 				}
 			});
+			}else{ //confirm 취소
+				return false;
+			}
 		}
 	</script>
 
@@ -183,7 +195,7 @@
 	<!-- 알바 확정 ajax 처리-->
 	<script type="text/javascript">
 	function yes(ja_number, m_id) {
-		 if (confirm("확인을 누를 시 알바가 확정됩니다.") == true){//확인
+		 if (confirm("확인을 누를 시 알바가 확정됩니다.") == true){//confirm 확인
 			var url = "${contextPath}/employeeMapper/apply_o";
 			var paramData = {
 					"ja_number" : ja_number,
@@ -205,7 +217,7 @@
 						alert('오류 - ajax통신 실패');
 					}
 			});
-		 } else {//취소
+		 } else {//confirm 취소
 		     return false;
 		 }
 		}

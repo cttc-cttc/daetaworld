@@ -129,13 +129,28 @@
 																<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																	<!-- Single Input Start -->
 																	<div class="single-input mb-25">
-																		<label for="m_id">알바생<span> : </span></label>
-																			${detail.m_nick }
-																		<br>
-																		<label for="rc_comments">댓글<span>*</span></label>
-																		<textarea class="col-auto form-control" type="text" readonly="readonly">
-																			${detail.rc_comment }
-																		</textarea>
+																		
+																	<c:choose>
+																		<c:when test="${loginInfo.m_type == 1 }">
+																			<label for="m_id">사장님<span> : </span></label>
+																				${detail.m_id }
+																			<br>
+																			<label for="rc_comments">댓글<span>*</span></label>
+																			<textarea class="col-auto form-control" type="text" readonly="readonly">
+																				${detail.rc_comment }
+																			</textarea>
+																		</c:when>
+																		<c:otherwise>
+																			<label for="m_id">알바생<span> : </span></label>
+																				${detail.m_id }
+																			<br>
+																			<label for="rc_comments">댓글<span>*</span></label>
+																			<textarea class="col-auto form-control" type="text" readonly="readonly">
+																				${detail.rc_comment }
+																			</textarea>
+																		
+																		</c:otherwise>
+																	</c:choose>	
 																	</div>
 																	<!-- Single Input End -->
 																</div>
