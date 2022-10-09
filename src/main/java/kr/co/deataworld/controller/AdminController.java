@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.deataworld.dto.BlacklistDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.PointDTO;
 import kr.co.deataworld.service.AdminService;
@@ -179,22 +178,35 @@ public class AdminController {
 		int lastPage = pp.calcLastPage();
 		if(page > lastPage)
 			return "redirect:blacklist?page=" + lastPage;
+		
+		// 정지된 유저의 신고 사유들을 표시하고 그 사유에 해당하는 본문을 링크를 하기 위한 처리
+		List<Map<String, Object>> blacklistTmp = service.blacklist(pp);
+		List<Map<String, Object>> blacklist = new ArrayList<Map<String,Object>>();
+		
+		for(Map<String, Object> blackMap : blacklistTmp) {
+			String[] r_types = ((String) blackMap.get("r_types")).split(",");
+			String[] b_numbers = ((String) blackMap.get("b_numbers")).split(",");
+			String[] a_numbers = ((String) blackMap.get("a_numbers")).split(",");
+			String[] c_numbers = ((String) blackMap.get("c_numbers")).split(",");
+			String[] r_kind_types = ((String) blackMap.get("r_kind_types")).split(",");
 			
-		List<BlacklistDTO> blacklist = service.blacklist(pp);
-		for(BlacklistDTO bList : blacklist) { // r_types와 c_numbers를 분할해서 배열에 각각 따로 저장
-			bList.setR_type(bList.getR_types().split(","));
-			bList.setC_number(bList.getC_numbers().split(","));
-			
-			// [[신고타입1, 댓글번호1], [신고타입2, 댓글번호2], [신고타입3, 댓글번호3]] 형식으로 저장
-			ArrayList<ArrayList<String>> rType_cNumbers = new ArrayList<ArrayList<String>>();
-			for(int i=0; i<bList.getR_type().length; i++) {
-				ArrayList<String> rType_cNumber = new ArrayList<String>();
-				rType_cNumber.add(bList.getR_type()[i]); // 신고 타입
-				rType_cNumber.add(bList.getC_number()[i]); // 해당 댓글 번호
-				rType_cNumbers.add(rType_cNumber);
+			List<Map<String, Object>> r_types_info = new ArrayList<Map<String,Object>>();
+			for(int i=0; i<r_types.length; i++) {
+				if(i > 2) // 3개 까지만 처리
+					break;
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("r_type", r_types[i]);
+				map.put("b_number", Integer.parseInt(b_numbers[i]));
+				map.put("a_number", Integer.parseInt(a_numbers[i]));
+				map.put("c_number", Integer.parseInt(c_numbers[i]));
+				map.put("r_kind_type", Integer.parseInt(r_kind_types[i]));
+				r_types_info.add(map);
 			}
-			bList.setrType_cNumbers(rType_cNumbers);
+			blackMap.put("r_types_info", r_types_info);
+			blacklist.add(blackMap);
 		}
+		
 		model.addAttribute("blacklist", blacklist);
 		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "blacklist");
@@ -236,10 +248,10 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/warn_job_ads")
-	public String warnJobAds(int a_num) throws Exception {
+	public String warnJobAds(int a_num, String m_id) throws Exception {
 		logger.info("관리자화면 : 구인공고 신고 삭제");
 		
-		service.warnJobAds(a_num);
+		service.warnJobAds(a_num, m_id);
 		return "redirect:job_ads?page=1";
 	}
 	
@@ -286,10 +298,10 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/warn_free_board")
-	public String warnFreeBoard(int b_num) throws Exception {
+	public String warnFreeBoard(int b_num, String m_id) throws Exception {
 		logger.info("관리자화면 : 자유게시판 신고 글 삭제");
 		
-		service.warnFreeBoard(b_num);
+		service.warnFreeBoard(b_num, m_id);
 		return "redirect:free_board?page=1";
 	}
 	
@@ -336,10 +348,10 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/warn_free_comments")
-	public String warnFreeComments(int c_num) throws Exception {
+	public String warnFreeComments(int c_num, String m_id) throws Exception {
 		logger.info("관리자화면 : 자유게시판 신고 댓글 삭제");
 		
-		service.warnFreeComments(c_num);
+		service.warnFreeComments(c_num, m_id);
 		return "redirect:free_comments?page=1";
 	}
 	
@@ -386,10 +398,10 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/warn_temping_board")
-	public String warnTempingBoard(int b_num) throws Exception {
+	public String warnTempingBoard(int b_num, String m_id) throws Exception {
 		logger.info("관리자화면 : 땜빵게시판 신고 글 삭제");
 		
-		service.warnTempingBoard(b_num);
+		service.warnTempingBoard(b_num, m_id);
 		return "redirect:temping_board?page=1";
 	}
 	
@@ -436,10 +448,10 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/warn_temping_comments")
-	public String warnTempingComments(int c_num) throws Exception {
+	public String warnTempingComments(int c_num, String m_id) throws Exception {
 		logger.info("관리자화면 : 땜빵게시판 신고 댓글 삭제");
 		
-		service.warnTempingComments(c_num);
+		service.warnTempingComments(c_num, m_id);
 		return "redirect:temping_comments?page=1";
 	}
 	

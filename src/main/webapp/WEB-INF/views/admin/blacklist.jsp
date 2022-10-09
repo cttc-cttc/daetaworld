@@ -61,12 +61,38 @@
 																		<td class="application-employer"><span>${list.m_nick }</span></td>
 																		<td class="application-created"><span>${list.m_regdate }</span></td>
 																		<td class="status">
-																			<c:forEach var="rType_cNumber" items="${list.rType_cNumbers }">
-																				<fmt:parseNumber value="${rType_cNumber[1] }" type="number" var="cNum" /> <%-- 댓글 번호 --%>
-																				<%-- <a href="${contextPath }/comments?cNum=${cNum }"> --%> <%-- 댓글 번호 String에서 int로 변환 --%>
-																				<a style="cursor: context-menu;">
-																					<span class="rejected">${rType_cNumber[0] }</span> <%-- 신고 타입 --%>
-																				</a>
+																			<c:forEach var="r_type_info" items="${list.r_types_info }">
+																				<%-- 글번호, 공고번호, 댓글번호 중 신고됐을 때 작성했던 글로 이동 --%>
+																				<%-- 자유게시판 글 신고였던 경우 --%>
+																				<c:if test="${r_type_info.r_kind_type == 1 }">
+																					<a href="${contextPath }/board/free/detail?b_number=${r_type_info.b_number }">
+																						<span class="rejected report-tag-hover">${r_type_info.r_type }</span>
+																					</a>
+																				</c:if>
+																				<%-- 자유게시판 댓글 신고였던 경우 --%>
+																				<c:if test="${r_type_info.r_kind_type == 2 }">
+																					<a href="${contextPath }/board/free/detail?b_number=${r_type_info.b_number }#anc${r_type_info.c_number}">
+																						<span class="rejected report-tag-hover">${r_type_info.r_type }</span>
+																					</a>
+																				</c:if>
+																				<%-- 땜빵게시판 글 신고였던 경우 --%>
+																				<c:if test="${r_type_info.r_kind_type == 3 }">
+																					<a href="${contextPath }/board/temping/tempingdetail?b_number=${r_type_info.b_number }">
+																						<span class="rejected report-tag-hover">${r_type_info.r_type }</span>
+																					</a>
+																				</c:if>
+																				<%-- 땜빵게시판 댓글 신고였던 경우 --%>
+																				<c:if test="${r_type_info.r_kind_type == 4 }">
+																					<a href="${contextPath }/board/temping/tempingdetail?b_number=${r_type_info.b_number }#anc${r_type_info.c_number}">
+																						<span class="rejected report-tag-hover">${r_type_info.r_type }</span>
+																					</a>
+																				</c:if>
+																				<%-- 구인공고 글 신고였던 경우 --%>
+																				<c:if test="${r_type_info.r_kind_type == 5 }">
+																					<a href="${contextPath }/jobAds/nonMember?a_number=${r_type_info.a_number }">
+																						<span class="rejected report-tag-hover">${r_type_info.r_type }</span>
+																					</a>
+																				</c:if>
 																			</c:forEach>
 																		</td>
 																		<td class="view-application">
@@ -132,14 +158,7 @@
 		<%@ include file="../include/footer.jsp" %>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
-	<!-- Placed js at the end of the document so the pages load faster -->
-	<!-- All jquery file included here -->
-	<script src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-	<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	<%@ include file="../include/plugin.jsp" %>
+	
 </body>
 </html>

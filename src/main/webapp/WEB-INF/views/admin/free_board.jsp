@@ -65,7 +65,7 @@
 																		<td class="application-created"><span>${list.b_date }</span></td>
 																		<td class="status">${list.r_type }</td>
 																		<td class="view-application">
-																			<a href="javascript:deleteBoard(${list.b_number})" class="view-application">글삭제</a>&nbsp;&nbsp;
+																			<a href="javascript:deleteBoard(${list.b_number}, '${list.m_id }')" class="view-application">글삭제</a>&nbsp;&nbsp;
 																			<a href="javascript:cancelBoard(${list.re_number})" class="view-application">신고취소</a>
 																		</td>
 																	</tr>
@@ -128,20 +128,12 @@
 		<%@ include file="../include/footer.jsp" %>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
-	<!-- Placed js at the end of the document so the pages load faster -->
-	<!-- All jquery file included here -->
-	<script src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-	<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	<%@ include file="../include/plugin.jsp" %>
 	
 	<script>
-		function deleteBoard(b_num) {
+		function deleteBoard(b_num, m_id) {
 			if(confirm('신고된 자유게시판 글을 삭제할까요?'))
-				location.href = '${contextPath }/admin/warn_free_board?b_num='+b_num;
+				location.href = '${contextPath }/admin/warn_free_board?b_num='+b_num+ '&m_id='+m_id;
 		}
 		
 		function cancelBoard(re_num) {

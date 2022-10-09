@@ -40,8 +40,6 @@ import kr.co.deataworld.dto.CommentsDTO;
 		// 땜빵 댓글 삭제
 		public int tempingReplyDelete(int c_number) throws Exception;
 
-		
-		
 }
 		
 		

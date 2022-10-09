@@ -41,9 +41,19 @@
 										<ul class="page-breadcrumb">
 											<li><a href="${contextPath}">Home</a></li>
 											
+											<c:if test="${map.del != 0 }">
+												<li>
+												<span style="background-color: #ff2626;
+															display: inline-block;
+															padding: 0 7px;
+															color: #fff;
+															border-radius: 3px;">삭제된 공고</span>
+												</li>
+											</c:if>
 											
 										</ul>
 										<h1>${map.s_name}</h1>
+										
 									</div>
 									<div class="job-meta-detail">
 										<ul>

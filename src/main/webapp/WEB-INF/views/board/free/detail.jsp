@@ -36,7 +36,17 @@
 							<div class="table-responsive">
 								<div class="box-body">
 									<div class="form-group">
-										<label>제목</label> <input type="text" name="b_title"
+										<label>제목</label>
+										
+										<c:if test="${board.del != 0 }">
+											<span style="background-color: #ff2626;
+															display: inline-block;
+															padding: 0 7px;
+															color: #fff;
+															border-radius: 3px;">삭제된 글</span>
+										</c:if>
+										
+										<input type="text" name="b_title"
 											class="form-control" value="${board.b_title}"
 											readonly="readonly" />
 									</div>

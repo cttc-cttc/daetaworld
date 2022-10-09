@@ -7,6 +7,15 @@
 	<c:forEach var="commentsDTO" items="${replylist}">
 		<tr>
 			<td colspan="2">작성자 : ${commentsDTO.m_nick}&nbsp;&nbsp;&nbsp;&nbsp;작성일자 : ${commentsDTO.c_date}
+				
+				<c:if test="${commentsDTO.del != 0 }">
+					<span style="background-color: #ff2626;
+								display: inline-block;
+								padding: 0 7px;
+								color: #fff;
+								border-radius: 3px;">삭제된 댓글</span>
+				</c:if>
+				
 				<%-- 관리자 페이지에서 신고 댓글 위치로 바로 가기 위한 설정 --%>
 				<a id="anc${commentsDTO.c_number}"></a>
 			</td>

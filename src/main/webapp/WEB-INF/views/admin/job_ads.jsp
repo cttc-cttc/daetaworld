@@ -54,19 +54,19 @@
 																</tr>
 															</thead>
 															<tbody>
-																<c:forEach var="jobAdsReport" items="${jobAds }">
+																<c:forEach var="list" items="${jobAds }">
 																	<tr class="application-item">
 																		<td class="application-job text-left">
-																			<h3><a class="text-ellipsis" href="${contextPath }/jobAds/listAllDetail?s_name=${jobAdsReport.s_name }&m_id=${loginInfo.m_id }&s_number=${jobAdsReport.s_number }&a_number=${jobAdsReport.a_number }">${jobAdsReport.s_name }</a></h3>
+																			<h3><a class="text-ellipsis" href="${contextPath }/jobAds/nonMember?a_number=${list.a_number }">${list.s_name }</a></h3>
 																		</td>
 																		<td class="application-employer">
-																			<a class="dotted" href="${contextPath }/admin/user_profile?id=${jobAdsReport.m_id }">${jobAdsReport.m_id }</a>
+																			<a class="dotted" href="${contextPath }/admin/user_profile?id=${list.m_id }">${list.m_id }</a>
 																		</td>
-																		<td class="application-created"><span>${jobAdsReport.s_date }</span></td>
-																		<td class="status">${jobAdsReport.r_type }</td>
+																		<td class="application-created"><span>${list.s_date }</span></td>
+																		<td class="status">${list.r_type }</td>
 																		<td class="view-application">
-																			<a href="javascript:deleteAds(${jobAdsReport.a_number })" class="view-application">공고삭제</a>&nbsp;&nbsp;
-																			<a href="javascript:cancelAds(${jobAdsReport.re_number })" class="view-application">신고취소</a>
+																			<a href="javascript:deleteAds(${list.a_number }, '${list.m_id }')" class="view-application">공고삭제</a>&nbsp;&nbsp;
+																			<a href="javascript:cancelAds(${list.re_number })" class="view-application">신고취소</a>
 																		</td>
 																	</tr>
 																</c:forEach>
@@ -128,20 +128,12 @@
 		<%@ include file="../include/footer.jsp" %>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
-	<!-- Placed js at the end of the document so the pages load faster -->
-	<!-- All jquery file included here -->
-	<script src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-	<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	<%@ include file="../include/plugin.jsp" %>
 	
 	<script>
-		function deleteAds(a_num) {
+		function deleteAds(a_num, m_id) {
 			if(confirm('신고된 공고글을 삭제할까요?'))
-				location.href = '${contextPath }/admin/warn_job_ads?a_num='+a_num;
+				location.href = '${contextPath }/admin/warn_job_ads?a_num='+a_num +'&m_id='+m_id;
 		}
 		
 		function cancelAds(re_num) {

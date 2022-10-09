@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import kr.co.deataworld.dto.BlacklistDTO;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.util.PageProcess;
 
@@ -51,7 +50,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<BlacklistDTO> blacklist(PageProcess pp) throws Exception {
+	public List<Map<String, Object>> blacklist(PageProcess pp) throws Exception {
 		return sql.selectList(nameSpace + ".blacklist", pp);
 	}
 
@@ -66,8 +65,9 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public int warnJobAds(int a_number) throws Exception {
-		return sql.update(nameSpace + ".warnJobAds", a_number);
+	public int warnJobAds(int a_number, String m_id) throws Exception {
+		sql.update(nameSpace + ".warnJobAds", a_number);
+		return sql.update(nameSpace + ".banUpdate", m_id);
 	}
 
 	@Override
@@ -86,8 +86,9 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public int warnFreeBoard(int b_number) throws Exception {
-		return sql.update(nameSpace + ".warnFreeBoard", b_number);
+	public int warnFreeBoard(int b_number, String m_id) throws Exception {
+		sql.update(nameSpace + ".warnFreeBoard", b_number);
+		return sql.update(nameSpace + ".banUpdate", m_id);
 	}
 
 	@Override
@@ -106,8 +107,9 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public int warnFreeComments(int c_number) throws Exception {
-		return sql.update(nameSpace + ".warnFreeComments", c_number);
+	public int warnFreeComments(int c_number, String m_id) throws Exception {
+		sql.update(nameSpace + ".warnFreeComments", c_number);
+		return sql.update(nameSpace + ".banUpdate", m_id);
 	}
 
 	@Override
@@ -126,8 +128,9 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public int warnTempingBoard(int b_number) throws Exception {
-		return sql.update(nameSpace + ".warnTempingBoard", b_number);
+	public int warnTempingBoard(int b_number, String m_id) throws Exception {
+		sql.update(nameSpace + ".warnTempingBoard", b_number);
+		return sql.update(nameSpace + ".banUpdate", m_id);
 	}
 
 	@Override
@@ -146,8 +149,9 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public int warnTempingComments(int c_number) throws Exception {
-		return sql.update(nameSpace + ".warnTempingComments", c_number);
+	public int warnTempingComments(int c_number, String m_id) throws Exception {
+		sql.update(nameSpace + ".warnTempingComments", c_number);
+		return sql.update(nameSpace + ".banUpdate", m_id);
 	}
 
 	@Override

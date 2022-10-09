@@ -64,25 +64,41 @@
 	</select>
 	
 	<!-- 블랙리스트 조회(페이징 처리) -->
-	<select id="blacklist" resultType="BlacklistDTO">
-		select
-			A.m_id,		<!-- A.회원 ID -->
-			A.m_nick,	<!-- A.회원 닉네임 -->
-			date(A.m_regdate) as m_regdate, <!-- A.회원 가입날짜 -->
-			group_concat(D.r_type) as r_types, <!-- D.신고사유 -->
-			group_concat(C.c_number) as c_numbers, <!-- C.해당 댓글번호 -->
-			A.m_number,	<!-- A.회원 번호 -->
-			A.m_type	<!-- A.회원 구분 -->
-		from member as A <!-- 회원 테이블A -->
-		inner join comments_report as B	<!-- 댓글 신고 테이블B -->
-			on A.m_id = B.m_id
-		inner join comments as C	<!-- 댓글 테이블C -->
-			on B.c_number = C.c_number
-		inner join report_code as D	<!-- 신고 코드 테이블D -->
-			on C.r_code = D.r_code
-		where A.m_banned = 1
-		group by A.m_id
-		order by A.m_number desc
+	<select id="blacklist" resultType="java.util.Map">
+		select 
+			m.m_id,		<!-- m.회원 ID -->
+			m.m_nick,	<!-- m.회원 닉네임 -->
+			date(m.m_regdate) as m_regdate,	<!-- m.회원 가입날짜 -->
+			group_concat(rc.r_type) as r_types, <!-- rc.신고사유 -->
+			group_concat(ur.b_number) as b_numbers, <!-- ur.해당 글번호 -->
+			group_concat(ur.a_number) as a_numbers, <!-- ur.해당 공고번호 -->
+			group_concat(ur.c_number) as c_numbers, <!-- ur.해당 댓글번호 -->
+			group_concat(ur.r_type) as r_kind_types, <!-- ur.해당 신고종류 타입 -->
+			m.m_number,	<!-- m.회원 번호 -->
+			m.m_type	<!-- m.회원 구분 -->
+		from member as m	<!-- 회원 테이블m -->
+		inner join
+		(
+			(select m_id, b_number, a_number, -1 as c_number, r_type, r_code 
+			from report
+	        where del = 2)
+		union
+	        (select cr.m_id, ( <!-- 댓글번호에 해당하는 글 번호를 가져오기 위한 서브쿼리 -->
+				select A.b_number from comments as A
+				inner join comments_report as B
+					on A.c_number = B.c_number
+				where A.c_number = cr.c_number
+				), -1, cr.c_number, cr.r_type, cr.r_code
+			from comments_report as cr
+			where del = 2)
+		) as ur		<!-- 글신고, 댓글신고 테이블을 합친 union 테이블ur -->
+			on m.m_id = ur.m_id
+		inner join report_code as rc <!-- 신고 코드 테이블rc -->
+			on ur.r_code = rc.r_code
+		where
+			m.m_banned = 1
+		group by m.m_id
+		order by m.m_number desc
 		limit #{pageStart}, #{pagePerList}
 	</select>
 	
@@ -125,8 +141,7 @@
 		set
 			A.del = 1,
 			B.m_warned = if(B.m_warned = 3, 3, B.m_warned + 1),
-			B.m_banned = if(B.m_warned = 2, 1, 0),
-		    C.del = 1
+		    C.del = 2
 		where
 			A.a_number = #{a_number}
 		    and A.m_id = B.m_id
@@ -180,8 +195,7 @@
 		set
 			A.del = 1,
 			B.m_warned = if(B.m_warned = 3, 3, B.m_warned + 1),
-			B.m_banned = if(B.m_warned = 2, 1, 0),
-		    C.del = 1
+		    C.del = 2
 		where
 			A.b_number = #{b_number}
 		    and A.m_id = B.m_id
@@ -236,8 +250,7 @@
 		set
 			A.del = 1,
 			B.m_warned = if(B.m_warned = 3, 3, B.m_warned + 1),
-			B.m_banned = if(B.m_warned = 2, 1, 0),
-		    C.del = 1
+		    C.del = 2
 		where
 			A.c_number = #{c_number}
 		    and A.m_id = B.m_id
@@ -291,8 +304,7 @@
 		set
 			A.del = 1,
 			B.m_warned = if(B.m_warned = 3, 3, B.m_warned + 1),
-			B.m_banned = if(B.m_warned = 2, 1, 0),
-		    C.del = 1
+		    C.del = 2
 		where
 			A.b_number = #{b_number}
 		    and A.m_id = B.m_id
@@ -347,8 +359,7 @@
 		set
 			A.del = 1,
 			B.m_warned = if(B.m_warned = 3, 3, B.m_warned + 1),
-			B.m_banned = if(B.m_warned = 2, 1, 0),
-		    C.del = 1
+		    C.del = 2
 		where
 			A.c_number = #{c_number}
 		    and A.m_id = B.m_id
@@ -422,4 +433,14 @@
 			where c_number = #{c_number}
 				and r_id = #{r_id}
 		</select>
+	
+	<!-- 정지할 회원인지 확인하고 업데이트 -->
+	<update id="banUpdate" parameterType="java.lang.String">
+		update member
+		set
+			m_banned = if(m_warned = 3, 1, 0)
+		where
+			m_id = #{m_id}
+	</update>
+	
 </mapper>

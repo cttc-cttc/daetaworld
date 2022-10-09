@@ -29,6 +29,9 @@
 			A.a_urgency = 1
 			and A.del = 0
 			and (A.a_status = 0 or A.a_status = 1)
+			<![CDATA[
+			and left(A.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+			]]>
 		group by A.a_number
 		order by A.a_number desc
 		limit 0, 6
@@ -82,6 +85,9 @@
 			A.a_urgency = 0
 			and A.del = 0
 			and (A.a_status = 0 or A.a_status = 1)
+			<![CDATA[
+			and left(A.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+			]]>
 		group by A.a_number
 		order by A.a_number desc
 		limit 0, 6
