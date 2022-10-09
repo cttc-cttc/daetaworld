@@ -8,7 +8,6 @@
 <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
 <title>종료된 공고</title>
 
-
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
@@ -77,8 +76,6 @@
 																</td>																																
 																
 																<!-- 진행중인 알바가 끝났을 때 확인 -> 버튼이 '리뷰작성' 으로 바뀌고 -> 리뷰작성 -> 구인자에 대한 리뷰를 작성하는 페이지로 이동. -->
-																
-																
 																<c:if test="${adsList.a_status != 3}">
 																	<td><button class="btn btn-outline-danger" id="pinch" onclick="pinch_Chk()">확인</button></td>
 																</c:if>
@@ -89,7 +86,6 @@
 																	후기입력
 																	</button>
 																	</td>
-																	
 																</c:if>
 																
 																<c:if test="${adsList.jae_status == 7}">
@@ -118,18 +114,14 @@
 	</div>
 	<!-- Placed js at the end of the document so the pages load faster -->
 	<!-- All jquery file included here -->
-	<script
-		src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-	<script
-		src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-	<script
-		src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
+	<script src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
+	<script src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+	<script src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
 	<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
 	<!-- 툴팁 스크립트  -->
-	
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	
@@ -145,9 +137,7 @@
 				"m_id" : m_id,
 				"a_number" : a_number 
 			};
-			
 			$.ajax({
-				
 				url : url,
 				data : paramData,
 				type : "POST",
@@ -157,9 +147,7 @@
 						window.location.reload(true);
 						location.href="${contextPath}/employeeMapper/pinchExpired?m_id=${loginInfo.m_id}";
 						alert('수고하셨습니다! 매장의 후기를 작성하세요! 후기 작성시 500포인트 증정!');
-						
 						 changeBtnName();
-						
 					},
 					error : function(result){
 						console.log('ajax 실패');
@@ -171,7 +159,6 @@
 		}
 	</script>
 	
-	
 	<script type="text/javascript">
 		function changeBtnName()  {
 			  const btnElement = document.getElementById('pinch');
@@ -179,24 +166,12 @@
 			}
 	</script>
 
-
-<script type="text/javascript">
-$(function(){
-  $('#pinch_1').mouseenter(function(){
-    $('.msg').show('마우스 포인터가 노란색원 안에 있습니다. ');
-  });
-  $('#pinch_1').mouseleave(function(){
-    $('.msg').hide();
-  });
-});
-</script>
-
-<!-- 툴팁 함수 이용 마우스 올렸을시 말풍선 -->
-<script type="text/javascript">
-$(function(){
-	$(document).tooltip();
-})
-</script>
+	<!-- 툴팁 함수 이용 마우스 올렸을시 말풍선 -->
+	<script type="text/javascript">
+	$(function(){
+		$(document).tooltip();
+	})
+	</script>
 
 
 
