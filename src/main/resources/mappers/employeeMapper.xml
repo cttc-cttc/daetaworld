@@ -267,10 +267,13 @@ ja_number = #{ja_number}
 
 <!-- 구직 신청 후 (구인자는 수락을 누름) 거절 선택. -->
 <update id="apply_x" parameterType="java.lang.Integer">
-update job_apply
+update job_apply ja
+right join job_ads a
+on(ja.a_number = a.a_number)
 set
-jar_status = 2,
-jae_status = 3
+ja.jar_status = 2,
+ja.jae_status = 3,
+a.a_status = 0 
 where
 ja_number = #{ja_number}
 </update>
