@@ -66,3 +66,21 @@
 .logout-width {
 	width: 5em;
 }
+
+.tooltip-text {
+    display: none;
+    position: absolute;
+    border: 2px solid;
+    border-radius: 5px;
+    border-color: #bbb;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: 500;
+    background: #fff;
+    text-align: center;
+    z-index: 2;
+}
+
+.drdn-item:hover .tooltip-text {
+  display: block;
+}

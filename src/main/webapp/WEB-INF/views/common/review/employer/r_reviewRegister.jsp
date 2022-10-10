@@ -126,7 +126,7 @@
 			<input type="hidden" name="a_number" id="a_number" value="${a_number}">	  
 			<input type="hidden" name="w_writer" id="w_writer" value="${m_id}">
 			<input type="hidden" name="id_rated" id="id_rated" value="${id_rated}">
-			
+			<input type="hidden" name="s_name" id="s_name" value="${s_name}">
 					  
 	</div>
 			

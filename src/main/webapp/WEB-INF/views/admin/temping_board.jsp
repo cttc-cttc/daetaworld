@@ -65,7 +65,7 @@
 																		<td class="application-created"><span>${list.b_date }</span></td>
 																		<td class="status">${list.r_type }</td>
 																		<td class="view-application">
-																			<a href="javascript:deleteBoard(${list.b_number}, '${list.m_id }')" class="view-application">글삭제</a>&nbsp;&nbsp;
+																			<a href="javascript:deleteBoard(${list.b_number}, '${list.m_id }', '${list.r_type }')" class="view-application">글삭제</a>&nbsp;&nbsp;
 																			<a href="javascript:cancelBoard(${list.re_number})" class="view-application">신고취소</a>
 																		</td>
 																	</tr>
@@ -131,9 +131,9 @@
 	<%@ include file="../include/plugin.jsp" %>
 	
 	<script>
-		function deleteBoard(b_num, m_id) {
+		function deleteBoard(b_num, m_id, r_type) {
 			if(confirm('신고된 땜빵게시판 글을 삭제할까요?'))
-				location.href = '${contextPath }/admin/warn_temping_board?b_num='+b_num +'&m_id='+m_id;
+				location.href = '${contextPath }/admin/warn_temping_board?b_num='+b_num +'&m_id='+m_id +'&r_type='+r_type;
 		}
 		
 		function cancelBoard(re_num) {

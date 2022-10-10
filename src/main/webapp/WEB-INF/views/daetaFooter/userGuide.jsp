@@ -50,7 +50,7 @@
 							<div class="row">
 								<div class="col-lg-6 pr-65 pr-md-15 pr-sm-15 pr-xs-15">
 									<div class="dropdown">
-										<button class="btn btn-primary btn-block dropdown-toggle" type="button"
+										<button class="btn btn-outline-primary btn-block dropdown-toggle" type="button"
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">결제는 어떻게 해야하나요?</button>
 										<div class="dropdown-menu inner-style">
 											<a class="dropdown-item menu-content">마이페이지>결제 이용해주시면 됩니다.</a>
@@ -58,7 +58,7 @@
 									</div><br><br><br>
 									
 									<div class="dropdown">
-										<button class="btn btn-warning btn-block dropdown-toggle" type="button"
+										<button class="btn btn-outline-warning btn-block dropdown-toggle" type="button"
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">구직자 번호는 어디서 볼수있나요?</button>
 										<div class="dropdown-menu inner-style">
 											<a class="dropdown-item menu-content">마이페이지>지원자 리스트 확인하시면 됩니다.</a>
@@ -66,7 +66,7 @@
 									</div><br><br><br>
 									
 									<div class="dropdown">
-										<button class="btn btn-success btn-block dropdown-toggle" type="button"
+										<button class="btn btn-outline-success btn-block dropdown-toggle" type="button"
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">구인자/구직자 핸드폰은 어디서 보나요??</button>
 										<div class="dropdown-menu inner-style">
 											<a class="dropdown-item menu-content">마이페이지>구직자/구인자 리스트를 이용해주시면 됩니다.</a>
@@ -75,7 +75,7 @@
 								</div>
 								<div class="col-lg-6 pr-65 pr-md-15 pr-sm-15 pr-xs-15">
 									<div class="dropdown">
-										<button class="btn btn-danger btn-block dropdown-toggle" type="button"
+										<button class="btn btn-outline-danger btn-block dropdown-toggle" type="button"
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">탈퇴는 어떻게 하나요?</button>
 										<div class="dropdown-menu inner-style">
 											<a class="dropdown-item menu-content">마이페이지>개인정보 수정을 이용해주시면 됩니다.</a>
@@ -83,7 +83,7 @@
 									</div><br><br><br>
 									
 									<div class="dropdown">
-										<button class="btn btn-info btn-block dropdown-toggle" type="button"
+										<button class="btn btn-outline-info btn-block dropdown-toggle" type="button"
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">아이디는 어디서 찾으면 되나요?</button>
 										<div class="dropdown-menu inner-style">
 											<a class="dropdown-item menu-content">로그인>아이디찾기를 이용해주시면 됩니다.</a>
@@ -91,7 +91,7 @@
 									</div><br><br><br>
 									
 									<div class="dropdown">
-										<button class="btn btn-secondary btn-block dropdown-toggle" type="button"
+										<button class="btn btn-outline-secondary btn-block dropdown-toggle" type="button"
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">대타가 끝났는데 급여 지급이 안될 땐 어떻게 하나요?</button>
 										<div class="dropdown-menu inner-style">
 											<a class="dropdown-item menu-content">사장님께 전화 걸어서 독촉하시면 됩니다.</a>

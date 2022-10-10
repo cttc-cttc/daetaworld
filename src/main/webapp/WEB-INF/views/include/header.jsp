@@ -145,11 +145,62 @@
 		} else {
 			let htmls = '';
 			Array.from(notification).forEach(noti => {
-				htmls += '<a class="dropdown-item drdn-item" href=${contextPath}/employerMapper/adsApplied?m_id='+ noti.m_id +'&pageType=noti">'+ noti.s_name+' 지원신청 1건</a>';
+				
+				switch(noti.n_type) {
+				// 구인자 알림
+				case 1:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsApplied?m_id='+ noti.m_id +'&pageType=noti">'+ noti.s_name+' 지원신청 1건</a>';
+					break;
+				case 2:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsRequested?m_id='+ noti.m_id +'&pageType=noti">주변노예 요청 결과 : '+ (noti.ja_status == 'y' ? '수락' : '거절') +'</a>';
+					break;
+				case 3:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/r_writtenReviews?m_id='+ noti.m_id +'&pageType=noti">'+ noti.s_name +' 후기 작성됨</a>';
+					break;
+				case 4:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/r_wroteReviews?m_id='+ noti.m_id +'&pageType=noti">'+ noti.s_name +' 후기 댓글 작성됨</a>';
+					break;
+					
+				// 구직자 알림
+				case 6:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/requests?m_id='+ noti.m_id +'&pageType=noti">주변노예 요청 1건</a>';
+					break;
+				case 7:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/pinchStatus?m_id='+ noti.m_id +'&pageType=noti">'+ noti.s_name +' 공고지원 결과 : '+ (noti.ja_status == 'y' ? '수락' : '거절') +'</a>';
+					break;
+				case 8:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/e_writtenReviews?m_id='+ noti.m_id +'&pageType=noti">'+ noti.s_name +' 후기 작성됨</a>';
+					break;
+				case 9:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/e_wroteReviews?m_id='+ noti.m_id +'&pageType=noti">'+ noti.s_name +' 후기 댓글 작성됨</a>';
+					break;
+				
+				// 구인자 & 구직자 공통알림
+				case 10:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/deletePart?m_id='+ noti.m_id +'">'+ noti.r_kind +' 신고 1회, 사유: '+ noti.r_type;
+					htmls += '<span class="tooltip-text"><i class="bi bi-exclamation-triangle-fill" style="-webkit-text-fill-color: #ffb100;"></i>경고 3회 누적 시 사이트 이용이 제한됩니다.<br>글 작성 시 주의하세요.</span></a>';
+					break;
+					
+				// 관리자 알림
+				case 11:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/admin/free_board?page=1&pageType=noti">자유게시판 '+ noti.b_number +'번 글 신고됨</a>';
+					break;
+				case 12:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/admin/free_comments?page=1&pageType=noti">자유게시판 '+ noti.c_number +'번 댓글 신고됨</a>';
+					break;
+				case 13:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/admin/temping_board?page=1&pageType=noti">땜빵게시판 '+ noti.b_number +'번 글 신고됨</a>';
+					break;
+				case 14:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/admin/temping_comments?page=1&pageType=noti">땜빵게시판 '+ noti.c_number +'번 댓글 신고됨</a>';
+					break;
+				case 15:
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/admin/job_ads?page=1&pageType=noti">구인공고 '+ noti.a_number +'번 글 신고됨</a>';
+				}
 			});
 			htmls += `
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item drdn-item last" href="javascript:deleteNotification()"><i class="lnr lnr-trash"></i>모든 알림 삭제</a>
+				<a class="dropdown-item drdn-item last" href="javascript:deleteAll()"><i class="lnr lnr-trash"></i>모든 알림 삭제</a>
 			`;
 			
 			$('#notification-area').html(htmls);
@@ -183,10 +234,10 @@
 		}
 	}
 	
-	// 알림목록 삭제
-	function deleteNotification() {
+	// 알림목록 전체 삭제
+	function deleteAll() {
 		$.ajax({
-			url: '${contextPath}/deleteNotification',
+			url: '${contextPath}/deleteAll',
 			data: {'m_id': '${loginInfo.m_id}'},
 			dataType: 'json',
 			type: 'get',

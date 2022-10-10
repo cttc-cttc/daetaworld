@@ -22,9 +22,90 @@ public class NotificationServiceImpl implements NotificationService {
 	}
 
 	@Override
-	public int insertAdsApplicant(Map<String, Object> applicant) {
+	public int insertNotiType1(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return dao.insertAdsApplicant(applicant);
+		return dao.insertNotiType1(map);
+	}
+	
+	@Override
+	public int insertNotiType2(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType2(map);
+	}
+	
+	@Override
+	public int insertNotiType3(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType3(map);
+	}
+	
+	@Override
+	public int insertNotiType4(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType4(map);
+	}
+	
+	
+	@Override
+	public int insertNotiType6(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType6(map);
+	}
+	
+	@Override
+	public int insertNotiType7(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType7(map);
+	}
+	
+	@Override
+	public int insertNotiType8(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType8(map);
+	}
+	
+	@Override
+	public int insertNotiType9(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType9(map);
+	}
+	
+	
+	@Override
+	public int insertNotiType10(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType10(map);
+	}
+	
+	
+	@Override
+	public int insertNotiType11(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType11(map);
+	}
+	
+	@Override
+	public int insertNotiType12(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType12(map);
+	}
+	
+	@Override
+	public int insertNotiType13(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType13(map);
+	}
+	
+	@Override
+	public int insertNotiType14(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType14(map);
+	}
+	
+	@Override
+	public int insertNotiType15(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.insertNotiType15(map);
 	}
 	
 	@Override
@@ -34,9 +115,14 @@ public class NotificationServiceImpl implements NotificationService {
 	}
 
 	@Override
-	public int deleteNotification(String m_id) {
+	public int deleteAll(String m_id) {
 		// TODO Auto-generated method stub
-		return dao.deleteNotification(m_id);
+		return dao.deleteAll(m_id);
 	}
 
+	@Override
+	public int deletePart(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.deletePart(map);
+	}
 }

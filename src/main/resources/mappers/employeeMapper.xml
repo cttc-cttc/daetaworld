@@ -210,7 +210,8 @@
 
 <!-- 요청받은 공고 상세정보 보기 -->
 <select id="requestList" parameterType="Map" resultType="Map">
-	SELECT ja.*, a.*, s.* from job_apply ja, job_ads a, shop_info s
+	SELECT ja.*, a.*, s.*, a.m_id as owner_id
+	from job_apply ja, job_ads a, shop_info s
 	WHERE
 	ja.m_id = #{m_id} 
 	AND ja.a_number = #{a_number} 

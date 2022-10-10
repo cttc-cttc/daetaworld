@@ -119,13 +119,14 @@
 				</div>				
 			
 				<div>
-					<textarea class="col-auto form-control" type="text" id="w_comments" name="w_comments" placeholder="좋은 후기평가를 남겨주시면 노예에게 큰 힘이 됩니다! 포인트 500p도 지급!!"></textarea>
+					<textarea class="col-auto form-control" type="text" id="w_comments" name="w_comments" placeholder="좋은 후기평가를 남겨주시면 사장님께 큰 힘이 됩니다! 포인트 500p도 지급!!"></textarea>
 				</div>
 			
 				<div class="box-footer"> 
 					<input type="hidden" name="a_number" id="a_number" value="${a_number}">	  
 					<input type="hidden" name="w_writer" id="w_writer" value="${loginInfo.m_id}">
 					<input type="hidden" name="id_rated" id="id_rated" value="${id_rated}">
+					<input type="hidden" name="s_name" id="s_name" value="${s_name}">
 					<button type="submit" class="btn btn-info">후기 작성</button>
 				</div>
 			</form>		

@@ -91,6 +91,12 @@ public class EmployerDAOImpl implements EmployerDAO{
 		return sqlSession.selectOne(nameSpace + ".nearCanDetail", map);
 	}
 	
+	@Override
+	public int nearCanDetailCnt(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".nearCanDetailCnt", map);
+	}
+	
 //	등록한 가게 목록보기
 	@Override
 	public List<ShopInfoDTO> shopManagement(String m_id) throws Exception {

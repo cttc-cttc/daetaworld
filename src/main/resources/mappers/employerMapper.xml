@@ -108,6 +108,11 @@
 		where m.m_id = i.m_id and m.m_id = #{m_id} 
 		and a.a_number = #{a_number} and i.i_default = 1  
 	</select>
+	<!-- 가게 주변 구직자 정보 (이미 요청했는지 확인) -->
+	<select id="nearCanDetailCnt" parameterType="Map" resultType="java.lang.Integer">
+		select count(*) from job_apply
+		where m_id = #{m_id} and a_number = #{a_number} 
+	</select>
 	
 	<!-- 등록한 가게 목록보기 -->
 	<select id="shopManagement" parameterType="String" resultType="ShopInfoDTO">
@@ -197,12 +202,13 @@
 	
 	<!-- 지원자 정보보기 -->
 	<select id="canDetail" parameterType="Map" resultType="Map">
-		select m.*, i.*, ja.*
-		from member m, employee_intro i, job_apply ja, job_ads a
+		select m.*, i.*, ja.*, s.s_name
+		from member m, employee_intro i, job_apply ja, job_ads a, shop_info s
 		where m.m_id = i.m_id and m.m_id = #{m_id} 
 		and m.m_id = ja.m_id
 		and ja.i_number = i.i_number and i.i_number= #{i_number} 
 		and ja.a_number = a.a_number and a.a_number = #{a_number}
+		and a.s_number = s.s_number
 	</select>
 	
 	<!-- 알바 선요청 후 대기 -->

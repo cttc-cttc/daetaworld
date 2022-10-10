@@ -12,6 +12,24 @@
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/index.css">
 <style>
+	.info {
+		list-style: none !important;
+	}
+	.info > li {
+		margin-top: 0.5rem;
+	}
+	.info-tag {
+	    display: inline-block;
+	    font-size: 14px;
+	    font-weight: 700;
+	    padding: 0 10px;
+	    line-height: 24px;
+	    margin-top: 5px;
+	    margin-right: 5px;
+	    border-radius: 3px;
+	    background: #eff1f8;
+	    color: #999;
+	}
 	.apply-btn:hover {
 		color: #eee !important;
 	}
@@ -83,7 +101,7 @@
 										<div class="field-label">
 											<i class="lnr lnr-thumbs-up"></i><span>시급</span>
 										</div>
-										<div class="field-value salary">${map.a_wage }/시간</div>
+										<div class="field-value salary">${map.a_wage }&#8361;</div>
 									</div>
 									<!-- Single Meta Field Start -->
 								</div>
@@ -170,10 +188,10 @@
 							<h3>가게소개</h3>
 							<p>${map.s_intro }</p>
 
-							<ul>
+							<ul class="info">
 
 
-								<p>등록된 사진:</p>
+								<li>등록된 사진:</li>
 								<c:if test="${map.s_picture1 != null }">
 									<img
 										src="${contextPath }/displayShop?fileName=${map.s_picture1}"
@@ -195,7 +213,7 @@
 									<input type="hidden" name="preS_picture3"
 										value="${map.s_picture3 }">
 								</c:if>
-								<li>가게주소:${map.s_address1}</li>
+								<li>가게주소: ${map.s_address1}</li>
 							</ul>
 						</div>
 						<div class="field-skills">
@@ -205,9 +223,14 @@
 									<h6>${map.a_need }명</h6>
 								</li>
 							</ul>
-							<ul>
-								<li>${map.s_tag1 } , ${map.s_tag2 } ,${map.s_tag3 } ,${map.s_tag4 } , ${map.s_tag5 }</li>
-								
+							<ul class="info">
+								<li>
+									<span class="info-tag">${map.s_tag1 }</span>
+									<span class="info-tag">${map.s_tag2 }</span>
+									<span class="info-tag">${map.s_tag3 }</span>
+									<span class="info-tag">${map.s_tag4 }</span>
+									<span class="info-tag">${map.s_tag5 }</span>
+								</li>
 							</ul>
 						</div>
 						

@@ -207,7 +207,9 @@ public class EmployerController {
 	public String nearCanDetail(@RequestParam Map<String, Object> map, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");
 		Map<String, Object> detail = service.nearCanDetail(map); 
-		model.addAttribute("detail", detail);		
+		int detailCnt = service.nearCanDetailCnt(map); 
+		model.addAttribute("detail", detail);
+		model.addAttribute("detailCnt", detailCnt);
 		return "employer/candidates/nearCanDetail";
 	}
 	
@@ -261,19 +263,30 @@ public class EmployerController {
 		List<Map<String, Object>> adsApplied = service.adsApplied(m_id);
 		model.addAttribute("adsApplied", adsApplied);
 		
-		// 알림을 클릭해 들어온 경우
+		// 타입 1 알림을 클릭해 들어온 경우
 		if(pageType != null) {
-			nService.deleteNotification(m_id);
+			Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+			delNotiInfo.put("m_id", m_id);
+			delNotiInfo.put("n_type", 1);
+			nService.deletePart(delNotiInfo);
 		}
 		return "employer/ads/adsApplied";
 	}
 	
 //	요청한 공고 목록
 	@GetMapping(value="employerMapper/adsRequested")
-	public String adsRequested(@RequestParam("m_id")String m_id, Model model)throws Exception{
+	public String adsRequested(@RequestParam("m_id")String m_id, String pageType, Model model)throws Exception{
 		model.addAttribute("leftMenu", "adsApplied");
 		List<Map<String, Object>> adsRequested = service.adsRequested(m_id);
-		model.addAttribute("adsRequested", adsRequested);		
+		model.addAttribute("adsRequested", adsRequested);
+		
+		// 타입 2 알림을 클릭해 들어온 경우
+		if(pageType != null) {
+			Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+			delNotiInfo.put("m_id", m_id);
+			delNotiInfo.put("n_type", 2);
+			nService.deletePart(delNotiInfo);
+		}
 		return "employer/ads/adsRequested";
 	}
 	
@@ -313,21 +326,45 @@ public class EmployerController {
 	@ResponseBody
 	@PostMapping(value="employerMapper/applyRequest")
 	public int applyRequest(@RequestParam Map<String, Object> map) throws Exception {
-		return service.applyRequest(map);		
+		service.applyRequest(map);
+		
+		// 알림타입 6: 구인자가 구직자에게 주변노예 요청을 하면 해당 구직자에게 알림발송
+		Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+		notiInsertInfo.put("m_id", map.get("m_id"));
+		notiInsertInfo.put("n_type", 6);
+		return nService.insertNotiType6(notiInsertInfo);
 	}
 	
 //	지원 수락
 	@ResponseBody
 	@PostMapping(value="employerMapper/applyAccept")
-	public int applyAccept(@RequestParam("ja_number")int ja_number) throws Exception {		
-		return service.applyAccept(ja_number);
+	public int applyAccept(@RequestParam("ja_number")int ja_number, 
+						  String user_id, String s_name) throws Exception {		
+		service.applyAccept(ja_number);
+		
+		// 알림타입 7: 구인자가 구직자의 공고지원을 수락/거절하면 구직자에게 알림발송
+		Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+		notiInsertInfo.put("m_id", user_id);
+		notiInsertInfo.put("n_type", 7);
+		notiInsertInfo.put("s_name", s_name);
+		notiInsertInfo.put("ja_status", "y");
+		return nService.insertNotiType7(notiInsertInfo);
 	}
 	
 //	지원 거절
 	@ResponseBody
 	@PostMapping(value="employerMapper/applyDeny")
-	public int applyDeny(@RequestParam("ja_number")int ja_number) throws Exception {
-		return service.applyDeny(ja_number);		
+	public int applyDeny(@RequestParam("ja_number")int ja_number, 
+						String user_id, String s_name) throws Exception {
+		service.applyDeny(ja_number);
+		
+		// 알림타입 7: 구인자가 구직자의 공고지원을 수락/거절하면 구직자에게 알림발송
+		Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+		notiInsertInfo.put("m_id", user_id);
+		notiInsertInfo.put("n_type", 7);
+		notiInsertInfo.put("s_name", s_name);
+		notiInsertInfo.put("ja_status", "n");
+		return nService.insertNotiType7(notiInsertInfo);
 	}
 	
 //	가게 관리

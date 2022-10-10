@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,7 +31,7 @@ import kr.co.deataworld.dto.EarnedPointDTO;
 import kr.co.deataworld.dto.PointDTO;
 import kr.co.deataworld.dto.ReviewCommentsDTO;
 import kr.co.deataworld.service.EmployeeService;
-
+import kr.co.deataworld.service.NotificationService;
 import kr.co.deataworld.dto.ReviewDTO;
 
 import kr.co.deataworld.service.PointService;
@@ -46,6 +47,9 @@ public class CommonController {
 	
 	@Autowired
 	ReviewService rService;
+	
+	@Inject
+	NotificationService nService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
@@ -182,38 +186,62 @@ public class CommonController {
 		@GetMapping(value = "reviewMapper/r_reviewRegister")
 		public String r_reviewRegister(@RequestParam("a_number")int a_number, 
 				@RequestParam("id_rated")String id_rated, 
-				@RequestParam("m_id")String m_id, Model model) {
+				@RequestParam("m_id")String m_id, String s_name, Model model) {
 			model.addAttribute("leftMenu", "adsCompleted");
 			model.addAttribute("a_number", a_number);
 			model.addAttribute("m_id", m_id);
 			model.addAttribute("id_rated", id_rated);
+			model.addAttribute("s_name", s_name);
 			return "common/review/employer/r_reviewRegister";
 		}
 		
 	//  리뷰 작성 등록과정
 	    @RequestMapping(value="reviewMapper/r_reviewRegister", method = RequestMethod.POST)
-	    public String r_reviewRegister(ReviewDTO reviewDTO, HttpServletRequest request)throws Exception {
+	    public String r_reviewRegister(ReviewDTO reviewDTO, String s_name, HttpServletRequest request)throws Exception {
 	       request.setCharacterEncoding("utf-8");
 	       logger.info("내용 : " + reviewDTO);
 	       int r = rService.r_reviewRegister(reviewDTO);
+	       
+	       // 알림타임 8: 구인자가 후기 작성 시 구직자에게 알림발송
+	       Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+	       notiInsertInfo.put("m_id", reviewDTO.getId_rated());
+	       notiInsertInfo.put("n_type", 8);
+	       notiInsertInfo.put("s_name", s_name);
+	       nService.insertNotiType8(notiInsertInfo);
 	       return "redirect:/reviewMapper/r_wroteReviews?m_id="+reviewDTO.getW_writer() ;
 	    }
 		
 	//	리뷰 작성한 공고 목록
 		@GetMapping(value="reviewMapper/r_wroteReviews")	
-		public String r_wroteReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
+		public String r_wroteReviews(@RequestParam("m_id")String m_id, String pageType, Model model)throws Exception{
 			model.addAttribute("leftMenu", "adsCompleted");
 			List<Map<String, Object>> list = rService.r_wroteReviews(m_id);
 			model.addAttribute("list", list);
+			
+			// 타입 4 알림을 클릭해 들어온 경우
+			if(pageType != null) {
+				Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+				delNotiInfo.put("m_id", m_id);
+				delNotiInfo.put("n_type", 4);
+				nService.deletePart(delNotiInfo);
+			}
 			return "common/review/employer/r_wroteReviews";
 		}
 		
 	//	리뷰 작성된 공고 목록
 		@GetMapping(value="reviewMapper/r_writtenReviews")
-		public String r_writtenReviews(@RequestParam("m_id")String m_id, Model model)throws Exception{
+		public String r_writtenReviews(@RequestParam("m_id")String m_id, String pageType, Model model)throws Exception{
 			model.addAttribute("leftMenu", "adsCompleted");
 			List<Map<String, Object>> list = rService.r_writtenReviews(m_id);
 			model.addAttribute("list", list);
+			
+			// 타입 3 알림을 클릭해 들어온 경우
+			if(pageType != null) {
+				Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+				delNotiInfo.put("m_id", m_id);
+				delNotiInfo.put("n_type", 3);
+				nService.deletePart(delNotiInfo);
+			}
 			return "common/review/employer/r_writtenReviews";
 		}		
 		
@@ -223,40 +251,64 @@ public class CommonController {
 		@GetMapping(value = "reviewMapper/e_reviewRegister")
 		public String e_reviewRegister(@RequestParam("a_number") int a_number,
 									   @RequestParam("m_id") String m_id, 
-									   @RequestParam("id_rated") String id_rated, Model model) {
+									   @RequestParam("id_rated") String id_rated, String s_name, Model model) {
 			model.addAttribute("leftMenu", "adsCompleted");
 			model.addAttribute("a_number", a_number);
 			model.addAttribute("id_rated", id_rated);
 			model.addAttribute("m_id", m_id);
+			model.addAttribute("s_name", s_name);
 			return "common/review/employee/e_reviewRegister";
 			}
 		
 		
 	//  리뷰 작성 등록과정
 		@PostMapping(value="reviewMapper/e_reviewRegister")
-		public String e_reviewRegister(ReviewDTO reviewDTO) throws Exception{
+		public String e_reviewRegister(ReviewDTO reviewDTO, String s_name) throws Exception{
 			int r = rService.e_reviewRegister(reviewDTO);
+			
+			// 알림타입 3: 구직자가 후기 작성 시 구인자에게 알림발송
+			Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+		    notiInsertInfo.put("m_id", reviewDTO.getId_rated());
+		    notiInsertInfo.put("n_type", 3);
+		    notiInsertInfo.put("s_name", s_name);
+		    nService.insertNotiType3(notiInsertInfo);
 			return "redirect:/reviewMapper/e_wroteReviews?m_id="+reviewDTO.getW_writer();
 		}
 		
 		
 		//나를 평가한 리뷰
 		@GetMapping(value="reviewMapper/e_writtenReviews")	
-		public String e_writtenReviews(@RequestParam("m_id") String m_id, Model model)throws Exception{
+		public String e_writtenReviews(@RequestParam("m_id") String m_id, String pageType, Model model)throws Exception{
 			model.addAttribute("leftMenu", "adsCompleted");
 			List<Map<String, Object>> list = rService.e_writtenReviews(m_id);
 			model.addAttribute("list", list);
+			
+			// 타입 8 알림을 클릭해 들어온 경우
+			if(pageType != null) {
+				Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+				delNotiInfo.put("m_id", m_id);
+				delNotiInfo.put("n_type", 8);
+				nService.deletePart(delNotiInfo);
+			}
 			return "common/review/employee/e_writtenReviews";
 		}	
 	
 	
 		//내가 평가한 리뷰
 		@GetMapping(value="reviewMapper/e_wroteReviews")	
-		public String e_myReview(@RequestParam("m_id")String m_id, Model model)throws Exception{
+		public String e_myReview(@RequestParam("m_id")String m_id, String pageType, Model model)throws Exception{
 			model.addAttribute("leftMenu", "adsCompleted");
 			List<Map<String, Object>> list = rService.e_wroteReviews(m_id);
 			model.addAttribute("list", list);
 			System.out.println("값을 가져왔니? : "+list);
+			
+			// 타입 9 알림을 클릭해 들어온 경우
+			if(pageType != null) {
+				Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+				delNotiInfo.put("m_id", m_id);
+				delNotiInfo.put("n_type", 9);
+				nService.deletePart(delNotiInfo);
+			}
 			return "common/review/employee/e_wroteReviews";
 		}
 	
@@ -273,17 +325,36 @@ public class CommonController {
 		  
 		// 작성된 리뷰 내용 확인
 		@GetMapping(value="reviewMapper/writtenDetail")
-		public String writtenDetail(@RequestParam("w_number")int w_number, Model model)throws Exception{
+		public String writtenDetail(@RequestParam("w_number")int w_number, String s_name, Model model)throws Exception{
 			model.addAttribute("leftMenu", "adsCompleted");
 			Map<String, Object> detail = rService.writtenDetail(w_number);
 			model.addAttribute("detail", detail);
+			model.addAttribute("s_name", s_name);
 			return "common/review/writtenDetail";
 		}
 		
 		@PostMapping(value="reviewMapper/replyRegister")
-		public String replyRegister(ReviewCommentsDTO rcDTO, Model model)throws Exception{
+		public String replyRegister(ReviewCommentsDTO rcDTO, 
+									String w_writer, String s_name, int m_type, Model model)throws Exception{
 			model.addAttribute("leftMenu", "adsCompleted");
 			int r = rService.replyRegister(rcDTO);
+			
+			if(m_type == 1) {
+				// 알림타입 4: 구직자가 구인자 후기에 대한 댓글 작성 시 구인자에게 알림발송
+				Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+			    notiInsertInfo.put("m_id", w_writer);
+			    notiInsertInfo.put("n_type", 4);
+			    notiInsertInfo.put("s_name", s_name);
+			    nService.insertNotiType4(notiInsertInfo);
+			    
+			} else if(m_type == 2) {
+				// 알림타입 9: 구인자가 구직자 후기에 대한 댓글 작성 시 구직자에게 알림발송
+				Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+			    notiInsertInfo.put("m_id", w_writer);
+			    notiInsertInfo.put("n_type", 9);
+			    notiInsertInfo.put("s_name", s_name);
+			    nService.insertNotiType9(notiInsertInfo);
+			}
 			return "redirect:/reviewMapper/writtenDetail?w_number=" + rcDTO.getW_number();
 		}
 

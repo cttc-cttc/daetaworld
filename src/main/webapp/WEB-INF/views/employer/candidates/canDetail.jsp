@@ -56,8 +56,12 @@
 															<div class="col-lg-2">
 																<div class="profile-avatar mb-30">																					
 																	<label class="d-block" for="m_picture">지원자 면상<span>*</span></label>
-																	<img																	
-																		src="${contextPath}/resources/images/${detail.m_picture}">																																																			
+																	<c:if test="${detail.m_picture == 'default'}">
+																		<img src="${contextPath}/resources/images/default_profile.png">																																																			
+																	</c:if>
+																	<c:if test="${detail.m_picture != 'default'}">
+																		<img src="${contextPath}/displayProfile?fileName=${detail.m_picture}">																																																			
+																	</c:if>																																																		
 																</div>
 															</div>
 															<div class="col-lg-10">
@@ -104,16 +108,40 @@
 																			<label for="m_intro">자기소개서<span>*</span></label>
 																			<table>
 																			<tr>
-																				<td><input type="text" id="i_title" name="i_title" 
+																				<td style="width: 100%;">
+																					<input type="text" id="i_title" name="i_title" 
 																					value="${detail.i_title }" readonly="readonly"
-																					style="width: 315px;"></td>
+																					></td>
 																				<td>
-																					<input type="button" id="modal_btn" value="보기">
+																					<%-- <input type="button" id="modal_btn" value="보기">
 																					<div class="black_bg"></div>
 																					<div class="modal_wrap">																							    
 																						<div class="modal_close">
 																							<a href="#">close</a></div>																							    
-																					<div>${detail.i_contents }</div>
+																						<div>${detail.i_contents }</div>
+																					</div> --%>
+																					
+																					<!-- 자소서 modal -->
+																					<input type="button" value="보기" class="single-input" data-toggle="modal" data-target="#contents">
+																					
+																					<!-- Modal -->
+																					<div class="modal fade" id="contents" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																					  <div class="modal-dialog modal-dialog-centered" role="document">
+																					    <div class="modal-content">
+																					      <div class="modal-header">
+																					        <h5 class="modal-title" id="exampleModalLabel">자기소개서</h5>
+																					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																					          <span aria-hidden="true">&times;</span>
+																					        </button>
+																					      </div>
+																					      <div class="modal-body" style="height: 500px;">
+																					      ${detail.i_contents }
+																					      </div>
+																					      <div class="modal-footer">
+																					        <button type="button" class="btn btn-outline-success" data-dismiss="modal">확인</button>
+																					      </div>
+																					    </div>
+																					  </div>
 																					</div>
 																				</td>																																										
 																			</tr>																			
@@ -186,20 +214,9 @@
 		<%@ include file="../../include/footer.jsp"%>
 		<!-- Placed js at the end of the document so the pages load faster -->
 	</div>
-	<!-- Placed js at the end of the document so the pages load faster -->
-	<!-- All jquery file included here -->
-	<script
-		src="${contextPath}/resources/assets/js/vendor/jquery-3.5.0.min.js"></script>
-	<script
-		src="${contextPath}/resources/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-	<script
-		src="${contextPath}/resources/assets/js/vendor/bootstrap.bundle.min.js"></script>
-	<!-- <script src="${contextPath}/resources/assets/js/plugins/plugins.js"></script>-->
-	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
-	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
-	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	<%@ include file="../../include/plugin.jsp"%>
 	
-		<script type="text/javascript"
+	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -267,7 +284,6 @@
 	
 	<script type="text/javascript">
 		function accept(){
-			
 			var jar_status = $('#jar_status').val();
 			var ja_number = $('#ja_number').val();
 			
@@ -279,14 +295,16 @@
 				$.ajax({
 					url : "${contextPath}/employerMapper/applyAccept",
 					data : {
-						"ja_number" : ja_number					
+						"ja_number" : ja_number,
+						"user_id"	: '${detail.m_id}',
+						"s_name"	: '${detail.s_name}'
 						},
 					dataType : 'json',
 					type : 'POST',
 					success : function(result){
 						console.log(result);					
 						alert('수락하였습니다. 노예의 결정을 기다리세요');	
-						window.location.reload(true);
+						location.href = '${contextPath}/employerMapper/adsApplied?m_id=${loginInfo.m_id}';
 					},
 					error : function(result){
 						console.log(result);
@@ -308,14 +326,16 @@
 				$.ajax({
 					url : "${contextPath}/employerMapper/applyDeny",
 					data : {
-						"ja_number" : ja_number				
+						"ja_number" : ja_number,
+						"user_id"	: '${detail.m_id}',
+						"s_name"	: '${detail.s_name}'
 						},
 					dataType : 'json',
 					type : 'POST',
 					success : function(result){
 						console.log(result);					
 						alert('거절하였습니다. 야멸차시네.....');
-						window.location.reload(true);
+						location.href = '${contextPath}/employerMapper/adsApplied?m_id=${loginInfo.m_id}';
 					},
 					error : function(result){
 						console.log(result);

@@ -91,7 +91,7 @@
 																	</c:if>
 																</td>
 																<td>
-																	<button id="" name="" 
+																	<button id="" name="" class="btn btn-outline-success"
 																		onclick="location.href='candidates?a_number=${adsList.a_number}'">
 																		신청자 확인</button>
 																</td>

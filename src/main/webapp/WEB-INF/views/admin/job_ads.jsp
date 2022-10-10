@@ -65,7 +65,7 @@
 																		<td class="application-created"><span>${list.s_date }</span></td>
 																		<td class="status">${list.r_type }</td>
 																		<td class="view-application">
-																			<a href="javascript:deleteAds(${list.a_number }, '${list.m_id }')" class="view-application">공고삭제</a>&nbsp;&nbsp;
+																			<a href="javascript:deleteAds(${list.a_number }, '${list.m_id }', '${list.r_type }')" class="view-application">공고삭제</a>&nbsp;&nbsp;
 																			<a href="javascript:cancelAds(${list.re_number })" class="view-application">신고취소</a>
 																		</td>
 																	</tr>
@@ -131,9 +131,9 @@
 	<%@ include file="../include/plugin.jsp" %>
 	
 	<script>
-		function deleteAds(a_num, m_id) {
+		function deleteAds(a_num, m_id, r_type) {
 			if(confirm('신고된 공고글을 삭제할까요?'))
-				location.href = '${contextPath }/admin/warn_job_ads?a_num='+a_num +'&m_id='+m_id;
+				location.href = '${contextPath }/admin/warn_job_ads?a_num='+a_num +'&m_id='+m_id +'&r_type='+r_type;
 		}
 		
 		function cancelAds(re_num) {

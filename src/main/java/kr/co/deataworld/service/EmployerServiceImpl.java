@@ -72,6 +72,12 @@ public class EmployerServiceImpl implements EmployerService{
 		// TODO Auto-generated method stub
 		return dao.nearCanDetail(map);
 	}
+	
+	@Override
+	public int nearCanDetailCnt(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.nearCanDetailCnt(map);
+	}
 
 	
 //	등록한 가게 목록보기

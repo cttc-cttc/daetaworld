@@ -85,8 +85,8 @@
 																	</c:if>
 																</td>
 																<td>
-																	<button 
-																		onclick="location.href='cancelRequest?ja_number=${adsList.ja_number}$m_id=${adsList.m_id }'">
+																	<button class="btn btn-outline-danger"
+																		onclick="location.href='cancelRequest?ja_number=${adsList.ja_number}&m_id=${adsList.m_id }'">
 																		취소</button>
 																</td>
 															</tr>

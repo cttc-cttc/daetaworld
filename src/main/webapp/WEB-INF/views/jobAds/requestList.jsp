@@ -11,6 +11,29 @@
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/index.css">
+<style>
+	.info {
+		list-style: none !important;
+	}
+	.info > li {
+		margin-top: 0.5rem;
+	}
+	.info-tag {
+	    display: inline-block;
+	    font-size: 14px;
+	    font-weight: 700;
+	    padding: 0 10px;
+	    line-height: 24px;
+	    margin-top: 5px;
+	    margin-right: 5px;
+	    border-radius: 3px;
+	    background: #eff1f8;
+	    color: #999;
+	}
+	.apply-btn:hover {
+		color: #eee !important;
+	}
+</style>
 
 <body class="template-color-3">
 	<div id="main-wrapper">
@@ -81,11 +104,17 @@
 
 							
 							<p>${map.s_intro } </p>
-							${map.s_tag1 } ,${map.s_tag2 } ,${map.s_tag3 } , ${map.s_tag4 }
-							<ul>
-
-								<li><img src="/deataworld/resources/images/shop_picture/${map.s_picture1 }" style="width:50%; height:20%"></li>
-								<li>가게주소:${map.s_address1}</li>
+							
+							<ul class="info">
+								<li><img src="${contextPath }/displayShop?fileName=${map.s_picture1 }" style="width:50%; height:20%"></li>
+								<li>가게주소: ${map.s_address1}</li>
+								<li>
+									<span class="info-tag">${map.s_tag1 }</span>
+									<span class="info-tag">${map.s_tag2 }</span>
+									<span class="info-tag">${map.s_tag3 }</span>
+									<span class="info-tag">${map.s_tag4 }</span>
+									<span class="info-tag">${map.s_tag5 }</span>
+								</li>
 							</ul>
 						</div>
 						<div class="field-skills">
@@ -108,10 +137,10 @@
 									<table>
 										<tr>
 											<td>														
-												<a class="ht-btn text-center" type="button" onclick="requestChk_y()">수락<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+												<a class="ht-btn text-center apply-btn" type="button" onclick="requestChk_y()">수락<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
 											</td>
 											<td>
-												<a class="ht-btn text-center" type="button" onclick="requestChk_n()">거절<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
+												<a class="ht-btn text-center apply-btn" type="button" onclick="requestChk_n()">거절<i class="ml-10 mr-0 fa fa-paper-plane"></i></a>
 											</td>
 										</tr>
 									</table>
@@ -189,7 +218,8 @@
 		var url = "${contextPath}/employeeMapper/requestYes";
 		var paramData = {
 				"m_id" : m_id_c,
-				"a_number" : a_number_c
+				"a_number" : a_number_c,
+				"owner_id" : '${map.owner_id}'
 		};
 		$.ajax({
 			url : url,
@@ -221,7 +251,8 @@
 		var url = "${contextPath}/employeeMapper/requestNo";
 		var paramData = {
 				"m_id" : m_id_c,
-				"a_number" : a_number_c
+				"a_number" : a_number_c,
+				"owner_id" : '${map.owner_id}'
 		};
 		$.ajax({
 			url : url,

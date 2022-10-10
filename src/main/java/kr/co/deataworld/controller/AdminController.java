@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.PointDTO;
 import kr.co.deataworld.service.AdminService;
+import kr.co.deataworld.service.NotificationService;
 import kr.co.deataworld.service.PointService;
 import kr.co.deataworld.util.PageProcess;
 
@@ -34,6 +35,9 @@ public class AdminController {
 	
 	@Inject
 	PointService pService;
+	
+	@Inject
+	NotificationService nService;
 	
 	@GetMapping(value = "admin/user_profile")
 	public String userProfile(Model model, String num, String id) {
@@ -214,7 +218,7 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/job_ads")
-	public String jobAds(Model model, int page) throws Exception {
+	public String jobAds(Model model, int page, String pageType) throws Exception {
 		logger.info("관리자화면 접속 : 구인공고 신고");
 		
 		// 레코드가 없으면 목록이 없다는 메시지 표시
@@ -244,14 +248,30 @@ public class AdminController {
 		model.addAttribute("jobAds", jobAds);
 		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "job_ads");
+		
+		// 타입 15 알림을 클릭해 들어온 경우
+		if(pageType != null) {
+			Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+			delNotiInfo.put("m_id", "admin");
+			delNotiInfo.put("n_type", 15);
+			nService.deletePart(delNotiInfo);
+		}
 		return "admin/job_ads";
 	}
 	
 	@GetMapping(value = "admin/warn_job_ads")
-	public String warnJobAds(int a_num, String m_id) throws Exception {
+	public String warnJobAds(int a_num, String m_id, String r_type) throws Exception {
 		logger.info("관리자화면 : 구인공고 신고 삭제");
 		
 		service.warnJobAds(a_num, m_id);
+		
+		// 알림타임 10: 회원이 자유게시판 글/댓글, 땜빵게시판 글/댓글, 구인공고 5가지 중 신고를 당해 경고처리가 되면 신고내용 알림발송
+        Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+        notiInsertInfo.put("m_id", m_id);
+        notiInsertInfo.put("n_type", 10);
+        notiInsertInfo.put("r_type", r_type);
+        notiInsertInfo.put("r_kind", "구인공고");
+        nService.insertNotiType10(notiInsertInfo);
 		return "redirect:job_ads?page=1";
 	}
 	
@@ -264,7 +284,7 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/free_board")
-	public String freeBoard(Model model, int page) throws Exception {
+	public String freeBoard(Model model, int page, String pageType) throws Exception {
 		logger.info("관리자화면 접속 : 자유게시판 글 신고");
 		
 		// 레코드가 없으면 목록이 없다는 메시지 표시
@@ -294,14 +314,30 @@ public class AdminController {
 		model.addAttribute("freeBoard", freeBoard);
 		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "free_board");
+		
+		// 타입 11 알림을 클릭해 들어온 경우
+		if(pageType != null) {
+			Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+			delNotiInfo.put("m_id", "admin");
+			delNotiInfo.put("n_type", 11);
+			nService.deletePart(delNotiInfo);
+		}
 		return "admin/free_board";
 	}
 	
 	@GetMapping(value = "admin/warn_free_board")
-	public String warnFreeBoard(int b_num, String m_id) throws Exception {
+	public String warnFreeBoard(int b_num, String m_id, String r_type) throws Exception {
 		logger.info("관리자화면 : 자유게시판 신고 글 삭제");
 		
 		service.warnFreeBoard(b_num, m_id);
+		
+		// 알림타임 10: 회원이 자유게시판 글/댓글, 땜빵게시판 글/댓글, 구인공고 5가지 중 신고를 당해 경고처리가 되면 신고내용 알림발송
+        Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+        notiInsertInfo.put("m_id", m_id);
+        notiInsertInfo.put("n_type", 10);
+        notiInsertInfo.put("r_type", r_type);
+        notiInsertInfo.put("r_kind", "자유게시판 글");
+        nService.insertNotiType10(notiInsertInfo);
 		return "redirect:free_board?page=1";
 	}
 	
@@ -314,7 +350,7 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/free_comments")
-	public String freeComment(Model model, int page) throws Exception {
+	public String freeComment(Model model, int page, String pageType) throws Exception {
 		logger.info("관리자화면 접속 : 자유게시판 댓글 신고");
 		
 		// 레코드가 없으면 목록이 없다는 메시지 표시
@@ -344,14 +380,30 @@ public class AdminController {
 		model.addAttribute("freeComments", freeComments);
 		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "free_comments");
+		
+		// 타입 12 알림을 클릭해 들어온 경우
+		if(pageType != null) {
+			Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+			delNotiInfo.put("m_id", "admin");
+			delNotiInfo.put("n_type", 12);
+			nService.deletePart(delNotiInfo);
+		}
 		return "admin/free_comments";
 	}
 	
 	@GetMapping(value = "admin/warn_free_comments")
-	public String warnFreeComments(int c_num, String m_id) throws Exception {
+	public String warnFreeComments(int c_num, String m_id, String r_type) throws Exception {
 		logger.info("관리자화면 : 자유게시판 신고 댓글 삭제");
 		
 		service.warnFreeComments(c_num, m_id);
+		
+		// 알림타임 10: 회원이 자유게시판 글/댓글, 땜빵게시판 글/댓글, 구인공고 5가지 중 신고를 당해 경고처리가 되면 신고내용 알림발송
+        Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+        notiInsertInfo.put("m_id", m_id);
+        notiInsertInfo.put("n_type", 10);
+        notiInsertInfo.put("r_type", r_type);
+        notiInsertInfo.put("r_kind", "자유게시판 댓글");
+        nService.insertNotiType10(notiInsertInfo);
 		return "redirect:free_comments?page=1";
 	}
 	
@@ -364,7 +416,7 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/temping_board")
-	public String tempingBoard(Model model, int page) throws Exception {
+	public String tempingBoard(Model model, int page, String pageType) throws Exception {
 		logger.info("관리자화면 접속 : 땜빵게시판 글 신고");
 		
 		// 레코드가 없으면 목록이 없다는 메시지 표시
@@ -394,14 +446,30 @@ public class AdminController {
 		model.addAttribute("tempingBoard", tempingBoard);
 		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "temping_board");
+		
+		// 타입 13 알림을 클릭해 들어온 경우
+		if(pageType != null) {
+			Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+			delNotiInfo.put("m_id", "admin");
+			delNotiInfo.put("n_type", 13);
+			nService.deletePart(delNotiInfo);
+		}
 		return "admin/temping_board";
 	}
 	
 	@GetMapping(value = "admin/warn_temping_board")
-	public String warnTempingBoard(int b_num, String m_id) throws Exception {
+	public String warnTempingBoard(int b_num, String m_id, String r_type) throws Exception {
 		logger.info("관리자화면 : 땜빵게시판 신고 글 삭제");
 		
 		service.warnTempingBoard(b_num, m_id);
+		
+		// 알림타임 10: 회원이 자유게시판 글/댓글, 땜빵게시판 글/댓글, 구인공고 5가지 중 신고를 당해 경고처리가 되면 신고내용 알림발송
+        Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+        notiInsertInfo.put("m_id", m_id);
+        notiInsertInfo.put("n_type", 10);
+        notiInsertInfo.put("r_type", r_type);
+        notiInsertInfo.put("r_kind", "땜빵게시판 글");
+        nService.insertNotiType10(notiInsertInfo);
 		return "redirect:temping_board?page=1";
 	}
 	
@@ -414,7 +482,7 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "admin/temping_comments")
-	public String tempingComment(Model model, int page) throws Exception {
+	public String tempingComment(Model model, int page, String pageType) throws Exception {
 		logger.info("관리자화면 접속 : 땜빵게시판 댓글 신고");
 		
 		// 레코드가 없으면 목록이 없다는 메시지 표시
@@ -444,14 +512,30 @@ public class AdminController {
 		model.addAttribute("tempingComments", tempingComments);
 		model.addAttribute("pp", pp);
 		model.addAttribute("leftMenu", "temping_comments");
+		
+		// 타입 14 알림을 클릭해 들어온 경우
+		if(pageType != null) {
+			Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+			delNotiInfo.put("m_id", "admin");
+			delNotiInfo.put("n_type", 14);
+			nService.deletePart(delNotiInfo);
+		}
 		return "admin/temping_comments";
 	}
 	
 	@GetMapping(value = "admin/warn_temping_comments")
-	public String warnTempingComments(int c_num, String m_id) throws Exception {
+	public String warnTempingComments(int c_num, String m_id, String r_type) throws Exception {
 		logger.info("관리자화면 : 땜빵게시판 신고 댓글 삭제");
 		
 		service.warnTempingComments(c_num, m_id);
+		
+		// 알림타임 10: 회원이 자유게시판 글/댓글, 땜빵게시판 글/댓글, 구인공고 5가지 중 신고를 당해 경고처리가 되면 신고내용 알림발송
+        Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+        notiInsertInfo.put("m_id", m_id);
+        notiInsertInfo.put("n_type", 10);
+        notiInsertInfo.put("r_type", r_type);
+        notiInsertInfo.put("r_kind", "땜빵게시판 댓글");
+        nService.insertNotiType10(notiInsertInfo);
 		return "redirect:temping_comments?page=1";
 	}
 	
@@ -518,6 +602,40 @@ public class AdminController {
 			service.adsReport(reportInfo);
 			logger.info("해당 구인공고 글 신고완료");
 		}
+		
+		// 관리자에게 알림 보내기
+		// 알림타입 11: 구직자, 구인자가 자유게시판 글 신고를 받으면 해당 게시글 번호로 관리자에게 신고내용 알림발송
+		// 알림타입 12: 구직자, 구인자가 자유게시판 댓글 신고를 받으면 해당 댓글 번호로 관리자에게 신고내용 알림발송
+		// 알림타입 13: 구직자가 땜빵게시판 글 신고를 받으면 해당 게시글 번호로 관리자에게 신고내용 알림발송
+		// 알림타입 14: 구직자가 땜빵게시판 댓글 신고를 받으면 해당 댓글 번호로 관리자에게 신고내용 알림발송
+		// 알림타입 15: 구인자가 구인공고 글 신고를 받으면 해당 게시글 번호로 관리자에게 신고내용 알림발송
+		Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+	    notiInsertInfo.put("m_id", "admin");
+	    notiInsertInfo.put("b_number", (int) reportInfo.get("b_number"));
+	    notiInsertInfo.put("c_number", (int) reportInfo.get("c_number"));
+	    notiInsertInfo.put("a_number", (int) reportInfo.get("a_number"));
+	    
+	    switch(r_type) {
+	    case 1:
+	    	notiInsertInfo.put("n_type", 11);
+	    	nService.insertNotiType11(notiInsertInfo);
+	    	break;
+	    case 2:
+	    	notiInsertInfo.put("n_type", 12);
+	    	nService.insertNotiType12(notiInsertInfo);
+	    	break;
+	    case 3:
+	    	notiInsertInfo.put("n_type", 13);
+	    	nService.insertNotiType13(notiInsertInfo);
+	    	break;
+	    case 4:
+	    	notiInsertInfo.put("n_type", 14);
+	    	nService.insertNotiType14(notiInsertInfo);
+	    	break;
+	    case 5:
+	    	notiInsertInfo.put("n_type", 15);
+	    	nService.insertNotiType15(notiInsertInfo);
+	    }
 		return 3;
 	}
 }

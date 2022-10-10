@@ -192,7 +192,6 @@ public class EmployeeController {
 	
 	
 	//대타신청 - 신청을 하면 -> m_id 값을 보냄 -> 이미 지원한 공고인지 확인 해야함 -> 구직/구인자 지원상태를 0(지원함)으로 바꿈 -> 구직자 대표 자기소개서를 update해줌. 
-	// 구인자한테 신청했다고 알림 보냄
 	@GetMapping(value="employeeMapper/jobApply")
 	public String jobApply(JobApplyDTO jobapplyDTO, String employer_id, String s_name)throws Exception {
 		//지원하기 누르면 1.대표설정된 자기소개서가 있는지 확인이 필요 - 확인값이 0보다 크면 - 대표자소서가 설정되어 있는것
@@ -201,12 +200,13 @@ public class EmployeeController {
 		if(chk != null) {
 			service.jobApply(jobapplyDTO); //m_id, 구직&구인자 지원상태를 0(지원함)으로 insert 함
 			service.applyIntro(jobapplyDTO); //구직자가 볼수있게 대표 자기소개서를 update 함
-			// 공고 지원자 알림을 등록할 정보
+			
+			// 알림타입 1: 구직자가 공고지원 신청 시 구인자에게 알림발송
 			Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
 			notiInsertInfo.put("m_id", employer_id);
 			notiInsertInfo.put("s_name", s_name);
-			notiInsertInfo.put("n_type", 0);
-			nService.insertAdsApplicant(notiInsertInfo);
+			notiInsertInfo.put("n_type", 1);
+			nService.insertNotiType1(notiInsertInfo);
 			return "redirect:/jobAds/listAll";
 		} else { //0보다 크지않다 - null값이다 - 대표설정된 자소서가 없다.
 			return "redirect:/employeeMapper/resumeManagement?m_id=" + jobapplyDTO.getM_id();
@@ -236,12 +236,20 @@ public class EmployeeController {
 	
 	//구직자 지원현황
 	@GetMapping(value="employeeMapper/pinchStatus")
-	public ModelAndView pinchStatus(@RequestParam("m_id") String m_id ,Model model)throws Exception {
+	public ModelAndView pinchStatus(@RequestParam("m_id") String m_id, String pageType, Model model)throws Exception {
 		model.addAttribute("leftMenu", "pinchStatus");
 		ModelAndView mav = new ModelAndView();
 		List<Map> list = service.pinchStatus(m_id);
 		mav.addObject("list", list);
 		mav.setViewName("employee/pinch/pinchStatus");
+		
+		// 타입 7 알림을 클릭해 들어온 경우
+		if(pageType != null) {
+			Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+			delNotiInfo.put("m_id", m_id);
+			delNotiInfo.put("n_type", 7);
+			nService.deletePart(delNotiInfo);
+		}
 		return mav;
 	}
 	
@@ -260,11 +268,20 @@ public class EmployeeController {
 	
 	//구직자 알바요청받은 목록 검색(주변노예검색)
 	@GetMapping(value="employeeMapper/requests")
-	public ModelAndView requests(@RequestParam("m_id") String m_id, Model model)throws Exception {
+	public ModelAndView requests(@RequestParam("m_id") String m_id,
+									String pageType, Model model)throws Exception {
 		ModelAndView mav = new ModelAndView();
 		List<Map> list = service.requests(m_id);
 		mav.addObject("list", list);
 		mav.setViewName("employee/pinch/requests");
+		
+		// 타입 6 알림을 클릭해 들어온 경우
+		if(pageType != null) {
+			Map<String, Object> delNotiInfo = new HashMap<String, Object>();
+			delNotiInfo.put("m_id", m_id);
+			delNotiInfo.put("n_type", 6);
+			nService.deletePart(delNotiInfo);
+		}
 		return mav;
 	}
 	
@@ -286,8 +303,15 @@ public class EmployeeController {
 	//구직자 요청받은 공고 수락버튼 클릭(m_id, a_number 가지고 가야함) -> job_apply의 jae_status, jar_status 상태를 변경하고 -> 대타내역으로 이동함.(m_id를 가지고 가야함)
 	@ResponseBody
 	@PostMapping(value="employeeMapper/requestYes")
-	public int requestYes(JobApplyDTO jobApplyDTO)throws Exception {
-		return service.requestYes(jobApplyDTO);
+	public int requestYes(JobApplyDTO jobApplyDTO, String owner_id)throws Exception {
+		service.requestYes(jobApplyDTO);
+		
+		// 알림타입 2: 구직자가 구인자의 주변노예 요청을 수락/거절하면 구인자에게 알림발송
+		Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+		notiInsertInfo.put("m_id", owner_id);
+		notiInsertInfo.put("n_type", 2);
+		notiInsertInfo.put("ja_status", "y");
+		return nService.insertNotiType2(notiInsertInfo);
 	}
 
 	
@@ -295,8 +319,15 @@ public class EmployeeController {
 	//구직자 요청받은 공고 거절버튼 클릭(m_id, a_number 가지고 가야함) -> job_apply의 jae_status, jar_status 상태를 변경하고 -> 대타내역으로 이동함.(m_id를 가지고 가야함)
 	@ResponseBody
 	@PostMapping(value="employeeMapper/requestNo")
-	public int requestNo(JobApplyDTO jobApplyDTO)throws Exception {
-		return service.requestNo(jobApplyDTO);
+	public int requestNo(JobApplyDTO jobApplyDTO, String owner_id)throws Exception {
+		service.requestNo(jobApplyDTO);
+		
+		// 알림타입 2: 구직자가 구인자의 주변노예 요청을 수락/거절하면 구인자에게 알림발송
+		Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
+		notiInsertInfo.put("m_id", owner_id);
+		notiInsertInfo.put("n_type", 2);
+		notiInsertInfo.put("ja_status", "n");
+		return nService.insertNotiType2(notiInsertInfo);
 	}
 	
 	//완료된 공고 '확인' 버튼 클릭시 a_status의 상태를 3으로 변경

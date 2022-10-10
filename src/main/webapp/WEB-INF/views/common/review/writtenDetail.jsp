@@ -100,9 +100,8 @@
 																		</c:if>
 																		<br>
 																		<label for="rc_comments">후기<span>*</span></label>
-																		<textarea class="col-auto form-control" type="text" readonly="readonly">
-																			${detail.w_comments }
-																		</textarea>
+																		<textarea class="col-auto form-control" type="text" 
+																			readonly="readonly">${detail.w_comments }</textarea>
 																	</div>
 																	<!-- Single Input End -->
 																</div>		
@@ -120,6 +119,9 @@
 																	
 																	<input type="hidden" id="w_number" name="w_number" value="${detail.w_number}">
 																	<input type="hidden" id="m_id" name="m_id" value="${detail.id_rated }">
+																	<input type="hidden" id="w_writer" name="w_writer" value="${detail.w_writer }">
+																	<input type="hidden" id="s_name" name="s_name" value="${s_name }">
+																	<input type="hidden" id="m_type" name="m_type" value="${loginInfo.m_type }">
 
 																			<div class="row">
 																				<div class="col-12">
@@ -142,9 +144,7 @@
 																		<label for="asdf">후기의 댓글을 작성하셨습니다<span>  </span></label>	
 																		<br>																
 																		<label for="rc_comment">댓글<span>*</span></label>
-																		<textarea class="col-auto form-control" readonly>
-																		${detail.rc_comment }
-																		</textarea>
+																		<textarea class="col-auto form-control" readonly>${detail.rc_comment }</textarea>
 																	</div>
 																	<!-- Single Input End -->
 																</div>

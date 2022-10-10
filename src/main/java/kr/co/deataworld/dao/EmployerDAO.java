@@ -35,6 +35,8 @@ public interface EmployerDAO {
 	
 //	가게 주변 구직자 정보
 	public Map<String, Object> nearCanDetail(Map<String, Object> map) throws Exception;
+//	가게 주변 구직자 정보(이미 요청했는지 확인용)
+	public int nearCanDetailCnt(Map<String, Object> map) throws Exception;
 	
 //	등록한 가게 목록보기
 	public List<ShopInfoDTO> shopManagement(String m_id) throws Exception;	
