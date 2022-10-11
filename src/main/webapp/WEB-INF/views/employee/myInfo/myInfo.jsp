@@ -9,6 +9,23 @@
 <!-- custom css -->
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
+
+<style>
+.file-label {
+   margin-top: 30px;
+   background-color: #5b975b;
+   color: #fff;
+   text-align: center;
+   padding: 10px 0;
+   width: 100%;
+   border-radius: 6px;
+   cursor: pointer;
+   }
+   
+   .file {
+     display: none;
+   }
+</style>
 <body class="template-color-1">
    <div id="main-wrapper">
       <!-- 상단 메뉴 start-->

@@ -165,23 +165,26 @@
 </select>
 
 
-<!-- 지원함, 확정정, 수락 알바목록 불어오기  -->
+<!-- 지원함, 확정정, 수락 알바목록 불어오기 +(완료한 공고 불러오기 x) -->
 <select id="pinchStatus" parameterType="String"	resultType="Map">
+	<![CDATA[ 
 	SELECT a.*, s.*, ja.*
 	FROM 
 	job_ads a, shop_info s, job_apply ja
 	WHERE
-	ja.m_id = #{m_id} 
-	AND (ja.jae_status ='0' 
+	not ((left(a.a_date, 10) < date_format(curdate(), '%m/%d/%Y')
+	or date_format(curdate(), '%Y') - substring(a.a_date, 7, 10) = 1))
+	and ja.m_id = #{m_id} 
+	and (ja.jae_status ='0' 
 	or ja.jae_status = '1' 
 	or ja.jae_status = '2')
-	AND ja.a_number = a.a_number 
-	AND a.s_number = s.s_number;
+	and ja.a_number = a.a_number 
+	and a.s_number = s.s_number;
+	]]>
 </select>
 
 <!-- 종료된(완료한) 공고목록 불러오기 -->
 <select id="pinchExpired" parameterType="String" resultType="Map">
-	
 	<![CDATA[ 
 	select s.m_id as id_rated, a.*, ja.*,s.*
 	from job_ads a, job_apply ja, shop_info s
@@ -193,7 +196,6 @@
 	and ja.m_id = #{m_id}
 	]]>
 </select>
-
 
 <!-- (주변노예찾기)로 요청받은 공고목록 불러오기 -->
 <select id="requests" parameterType="String" resultType="Map">
@@ -225,7 +227,7 @@
 <update id="requestYes" parameterType="JobApplyDTO">
 	UPDATE daetaworld.job_apply ja
 	SET
-	jae_status = 2, jar_status = 4
+	jae_status = 5, jar_status = 5
 	WHERE
 	ja.m_id = #{m_id} 
 	AND a_number = #{a_number}
@@ -236,7 +238,7 @@
 <update id="requestNo" parameterType="JobApplyDTO">
 	UPDATE daetaworld.job_apply ja
 	SET
-	jae_status = 5, jar_status = 2
+	jae_status = 6, jar_status = 6
 	WHERE
 	ja.m_id = #{m_id} 
 	AND a_number = #{a_number}
@@ -252,29 +254,32 @@
 	a.a_number = #{a_number}
 </update>
 
-<!-- 구직 신청 후 (구인자는 수락을 누름) 수락 선택. -->
+<!-- 구직 신청 후 (구인자는 수락을 누름) + (a_filled 추가) 수락 선택. -->
 <update id="apply_o" parameterType="java.lang.Integer">
-update job_apply
-set
-jar_status = 4,
-jae_status = 2
-where
-ja_number = #{ja_number}
+	update job_apply ja
+	right join job_ads a
+	on(ja.a_number = a.a_number)
+	set
+	jar_status = 4,
+	jae_status = 2,
+	a.a_filled = a.a_filled + 1
+	where
+	ja.a_number = #{ja_number}
 </update>
-
 
 
 <!-- 구직 신청 후 (구인자는 수락을 누름) 거절 선택. -->
 <update id="apply_x" parameterType="java.lang.Integer">
-update job_apply ja
-right join job_ads a
-on(ja.a_number = a.a_number)
-set
-ja.jar_status = 2,
-ja.jae_status = 3,
-a.a_status = 0 
-where
-ja_number = #{ja_number}
+	update job_apply ja
+	right join job_ads a
+	on(ja.a_number = a.a_number)
+	set
+	ja.jar_status = 2,
+	ja.jae_status = 3,
+	a.a_filled = a.a_filled - 1,
+	a.a_status = 0 
+	where
+	ja_number = #{ja_number}
 </update>
 
 
@@ -292,20 +297,6 @@ ja_number = #{ja_number}
 	ja.ja_number = #{ja_number}
 </update>
 
-<!-- 공고 신청중인 알바 지원 취소하기 -->
-<!-- <update id="applyCancel" parameterType="Map">
-	update job_apply ja
-	right join job_ads a
-	on ja.a_number = a.a_number
-	set
-	ja.jae_status = 3,
-	a.a_status = 0
-	where
-	a.a_number = #{a_number}
-	and
-	ja.ja_number = #{ja_number}
-</update> -->
-
 
 <!-- 자소서 삭제시 등록된 자소서가 1개(대표자소서) 일때 삭제 불가능 -->
 <select id="defaultIntro_xDel" parameterType="ResumeDTO" resultType="java.lang.Integer">
@@ -313,6 +304,7 @@ ja_number = #{ja_number}
 	where i.i_number
 	and i.m_id = #{m_id} and i.i_default = 1 and i.i_number = #{i_number}
 </select>
+
 
 <!-- 거절했던 공고인지 확인 -->
 <select id="cancelAdsCheck" parameterType="Map" resultType="java.lang.Integer">

@@ -121,6 +121,9 @@
 																			onclick="no('${adsList.ja_number}','${loginInfo.m_id}')">NO</a>
 																		</td>
 																	</c:when>
+																	<c:when test="">
+																	
+																	</c:when>
 																	<c:otherwise>
 																		<td><a style="color: red;" type="button"
 																			onclick="apply_cancel('${adsList.a_number}','${adsList.ja_number}')">지원취소</a>
