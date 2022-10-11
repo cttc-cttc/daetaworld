@@ -2,23 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-
-<style>
-	.gold{
-		color: gold;
-	}
-	.silver{
-		color: silver;
-	}
-	.bronze{
-		color: sienna;
-	}
-	
-</style>
-
 <title>랭킹</title>
 <%@ include file="../include/head.jsp" %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="${contextPath}/resources/custom_css/index.css">
 <body class="template-color-3">
     <div id="main-wrapper">
 		<!-- header -->
@@ -43,29 +30,47 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="ranking" items="${ranking }">
-								<tr class="application-item">
-									<td class="application-job"><h3>
-											<a>${ranking.num }</a>
-										</h3></td>
-									<td class="application-employer">
-									<a class="dotted"></a>
+						<!-- 대타자 평점 랭킹 Start -->
+							<div class="blog-area">
+								<div class="blog-wrap ranking">
+									<!-- 랭킹 정보 Start -->
+									<c:forEach var="ranking" items="${ranking}" end="50">
 									<c:choose>
-										<c:when test="${ranking.num == 1}">
-											<a class="dotted"><i class="bi bi-star-fill gold"></i>${ranking.nick }</a>
-										</c:when>
-										<c:when test="${ranking.num == 2 }">
-											<a class="dotted"><i class="bi bi-star-fill silver"></i>${ranking.nick }</a>
-										</c:when>
-										<c:when test="${ranking.num == 3 }">
-											<a class="dotted"><i class="bi bi-star-fill bronze"></i>${ranking.nick }</a>
-										</c:when>
-									</c:choose> 
-										</td>
-										
-									<td class="status"><span class="pending">${ranking.sum}</span></td>
-								</tr>
-								</c:forEach>								
+									<c:when test="${ranking.num == 1}">
+										<div class="single-list-blog">
+											<div class="col-lg-4"><i class="fas fa-trophy trophy-gold"></i>${ranking.num}등</div>
+											<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
+											<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+										</div>
+									</c:when >
+									<c:when test="${ranking.num == 2}">
+										<div class="single-list-blog">
+											<div class="col-lg-4"><i class="fas fa-trophy trophy-silver"></i>${ranking.num }등</div>
+											<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
+											<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+										</div>
+									</c:when >
+									<c:when test="${ranking.num == 3}">
+										<div class="single-list-blog">
+											<div class="col-lg-4"><i class="fas fa-trophy trophy-bronze"></i>${ranking.num}등</div>
+											<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
+											<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+										</div>
+									</c:when >
+									<c:otherwise>
+										<div class="single-list-blog">
+											<div class="col-lg-4">${ranking.num }등</div>
+											<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
+											<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+										</div>
+									</c:otherwise>
+									</c:choose>
+									
+									</c:forEach>
+									<!-- 랭킹 정보 End -->								
+								</div>
+								</div>
+							
 							</tbody>
 						</table>
 					</div>
@@ -80,7 +85,6 @@
 	</div>
     <!-- 문서 끝에 js를 배치하여 페이지 로딩 속도 향상 -->
 	<%@ include file="../include/plugin.jsp" %>
-	<script src="${contextPath}/resources/custom_js/account/register.js"></script>
 
 </body>
 </html>

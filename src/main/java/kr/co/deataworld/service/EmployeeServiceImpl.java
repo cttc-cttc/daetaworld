@@ -123,7 +123,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Map> pinchExpired(String m_id) throws Exception {
 		return dao.pinchExpired(m_id);
 	}
-
+	
 
 	@Override //주변노예검색을 통해 요청받은 목록 불러오기
 	public List<Map> requests(String m_id) throws Exception {
@@ -195,6 +195,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 
+	
 
 
 

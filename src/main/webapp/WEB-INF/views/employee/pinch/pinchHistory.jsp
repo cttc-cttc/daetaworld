@@ -130,7 +130,7 @@
 																		<c:out value="구인완료"></c:out>
 																	</c:if>
 																	<c:if test="${a_status == 3 }">
-																		<c:out value="알바완료"></c:out>
+																		<span style="color: red;"><c:out value="알바완료"></c:out></span>
 																	</c:if>
 																	<c:if test="${a_status == 4 && adsList.jae_status != 2 }">
 																		<c:out value="기간만료"></c:out>

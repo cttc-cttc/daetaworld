@@ -126,8 +126,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public List<Map> pinchExpired(String m_id) throws Exception {
 		return sql.selectList(NAMESPACE + ".pinchExpired", m_id);
 	}
-
-
+	
+	
 	@Override //주변노예검색을 통해 요청받은 목록 불러오기
 	public List<Map> requests(String m_id) throws Exception {
 		return sql.selectList(NAMESPACE + ".requests", m_id);
@@ -201,6 +201,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		sql.update(NAMESPACE + ".statusUpdate", a_number);
 		return sql.update(NAMESPACE + ".reApply", jobApplyDTO);
 	}
+
+
+	
 
 
 

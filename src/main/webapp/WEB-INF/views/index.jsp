@@ -293,14 +293,38 @@
 
 							<div class="blog-wrap ranking">
 								<!-- 랭킹 정보 Start -->
-								<c:forEach var="ranking" items="${ranking}" end="5">
-								<table style="table-layout:fixed">
-								<tr class="single-list-blog">
-									<td class="col-lg-4" align="left">${ranking.num }등</td>
-									<td class="col-lg-8" align="center" ><i class="lnr lnr-user"></i>${ranking.nick }</td>
-									<td class="col-lg-4" align="right"><i class="fas fa-star star-color"></i>${ranking.sum }</td>
-								</tr>
-								</table>
+								<c:forEach var="ranking" items="${ranking}" end="4">
+								<c:choose>
+								<c:when test="${ranking.num == 1}">
+									<div class="single-list-blog">
+										<div class="col-lg-4"><i class="fas fa-trophy trophy-gold"></i>${ranking.num}등</div>
+										<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
+										<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+									</div>
+								</c:when >
+								<c:when test="${ranking.num == 2}">
+									<div class="single-list-blog">
+										<div class="col-lg-4"><i class="fas fa-trophy trophy-silver"></i>${ranking.num }등</div>
+										<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
+										<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+									</div>
+								</c:when >
+								<c:when test="${ranking.num == 3}">
+									<div class="single-list-blog">
+										<div class="col-lg-4"><i class="fas fa-trophy trophy-bronze"></i>${ranking.num}등</div>
+										<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
+										<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+									</div>
+								</c:when >
+								<c:otherwise>
+									<div class="single-list-blog">
+										<div class="col-lg-4">${ranking.num }등</div>
+										<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
+										<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+									</div>
+								</c:otherwise>
+								</c:choose>
+								
 								</c:forEach>
 								<!-- 랭킹 정보 End -->								
 								<div class="col-lg-12">
