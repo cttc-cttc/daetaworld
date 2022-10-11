@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>지원자 확인</title>
+<title>확정자 확인</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>지원자 확인</h1>
+										<h1>확정자 확인</h1>
 									</div>
 								</div>
 							</div>
@@ -53,7 +53,6 @@
 															<th>나이</th>															
 															<th>성별</th>
 															<th>신청한 날짜</th>
-															<th>상태</th>
 														</thead>
 														<c:forEach var="canList" items="${candidates}">
 															<tr>			
@@ -64,18 +63,7 @@
 																	${canList.m_name }</a></td>													
 																<td>${canList.m_age }</td>
 																<td>${canList.m_gender }</td>
-																<td>${canList.ja_date }</td>
-																<td>
-																	<c:if test="${canList.jae_status == 0 }">
-																		<c:out value="지원함"></c:out>
-																	</c:if>
-																	<c:if test="${canList.jae_status == 1 }">
-																		<c:out value="확정 전"></c:out>
-																	</c:if>
-																	<c:if test="${canList.jae_status == 2 }">
-																		<c:out value="최종 수락"></c:out>
-																	</c:if>
-																</td>																
+																<td>${canList.ja_date }</td>																
 															</tr>
 														</c:forEach>
 													</table>

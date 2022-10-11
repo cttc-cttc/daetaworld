@@ -43,8 +43,8 @@
 		
 	<!-- 공고 등록 -->
 	<insert id="adsRegister" parameterType="Map">
-		insert into job_ads (a_date, a_time, a_wage, a_need, a_urgency, a_status, ua_date, m_id, r_code, s_number, del, job_code) 
-		values (#{a_date}, #{a_time}, #{a_wage}, #{a_need}, #{a_urgency}, 0, now(), #{m_id}, 0, #{s_number}, 0, #{job_code})
+		insert into job_ads (a_date, a_time, a_wage, a_need, a_filled, a_urgency, a_status, ua_date, m_id, r_code, s_number, del, job_code) 
+		values (#{a_date}, #{a_time}, #{a_wage}, #{a_need}, 0, #{a_urgency}, 0, now(), #{m_id}, 0, #{s_number}, 0, #{job_code})
 	</insert>
 	
 	<!-- 농어촌 공고 등록 -->
@@ -66,9 +66,9 @@
 		
 		<!-- job_ads에 등록 -->
 		<insert id="countryAdsRegister" parameterType="Map">
-			insert into job_ads (a_date, a_time, a_wage, a_need, a_urgency, a_status, ua_date, 
+			insert into job_ads (a_date, a_time, a_wage, a_need, a_filled, a_urgency, a_status, ua_date, 
 				m_id, r_code, s_number, del, job_code)
-			values (#{a_date}, #{a_time}, #{a_wage}, #{a_need}, #{a_urgency}, 0, now(), 
+			values (#{a_date}, #{a_time}, #{a_wage}, #{a_need}, 0, #{a_urgency}, 0, now(), 
 				#{m_id}, 0, #{s_number}, 0, 18)
 		</insert>
 	
@@ -132,9 +132,10 @@
 	
 	<!-- 공고등록한 가게 목록보기 -->
 	<select id="adsHistory" parameterType="String" resultType="Map">
-		select j.*, s.s_name
+		select j.*, s.s_name, date_format(j.ua_date, '%m/%d/%Y') as update_date
 		from job_ads j, shop_info s
 		where j.s_number = s.s_number and j.m_id = #{m_id} and j.del = 0 and s.del = 0
+		order by date(j.ua_date) desc
 	</select> 
 	
 	<!-- 가게 정보 -->
@@ -160,6 +161,7 @@
 		where a.s_number = s.s_number and a.m_id = #{m_id} and a.a_status in (0, 1, 2) 
 		and a.del = 0 and s.del = 0
 		and left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y')
+		order by date(a.ua_date) desc
 		]]>
 	</select>
 	
@@ -168,11 +170,27 @@
 		<![CDATA[
 		select a.*, s.s_name
 		from job_ads a, shop_info s
-		where a.s_number = s.s_number and a.m_id = #{m_id} and (a.a_status = 1 or a.a_status = 2) 
+		where a.s_number = s.s_number and a.m_id = #{m_id} 
+		and (a.a_status in (1, 2, 3)) 
 		and a.del = 0 and s.del = 0
 		and left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y')
+		order by date(a.ua_date) desc
 		]]>
 	</select>
+	
+	<!-- 구인완료 -->
+	<update id="adsComplete" parameterType="java.lang.Integer">
+		update job_ads 
+		set a_status = 3
+		where a_number = #{a_number}
+	</update>
+	
+	<!-- 구인재개 -->
+	<update id="reAdsRegister" parameterType="java.lang.Integer">
+		update job_ads 
+		set a_status = 1
+		where a_number = #{a_number}	
+	</update>
 	
 	<!-- 요청한 공고 목록보기 -->
 	<select id="adsRequested" parameterType="String" resultType="Map">
@@ -183,7 +201,7 @@
     		on a.m_id = s.m_id and a.m_id = #{m_id}
 			and a.s_number = s.s_number
 		where a.a_number = ja.a_number  
-		and ja.jae_status in (2,4,5)
+		and ja.jar_status in (3, 5, 6)
 		and left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y')
 		]]>
 	</select>
@@ -193,11 +211,20 @@
 		delete from job_apply 
 		where (ja_number = #{ja_number});
 	</delete>
+	
 	<!-- 지원자 목록보기 -->
 	<select id="candidates" parameterType="java.lang.Integer" resultType="Map">
 		SELECT a.*, m.*
 		FROM job_apply a, member m
-		WHERE a.m_id = m.m_id AND a.a_number = #{a_number}
+		WHERE a.m_id = m.m_id AND a.a_number = #{a_number}		
+	</select>
+	
+	<!-- 확정자 목록보기 -->
+	<select id="confirmedCandidates" parameterType="java.lang.Integer" resultType="Map">
+		select a.*, m.*
+		from job_apply a, member m
+		where a.m_id = m.m_id and a.a_number = #{a_number}
+		and a.jar_status = 4
 	</select>
 	
 	<!-- 지원자 정보보기 -->
@@ -225,11 +252,10 @@
 	</update>
 	
 	<!-- 지원 거절 -->
-	<update id="applyDeny" parameterType="java.lang.Integer">
-		UPDATE job_apply
-		SET jar_status = 2, jae_status = 3
-		WHERE ja_number = #{ja_number}
-	</update>
+	<delete id="applyDeny" parameterType="java.lang.Integer">
+		delete from job_apply
+		where ja_number = #{ja_number}
+	</delete>
 	
 	<!-- 만료된 가게 목록보기 -->
 	<select id="adsExpired" parameterType="String" resultType="Map">
