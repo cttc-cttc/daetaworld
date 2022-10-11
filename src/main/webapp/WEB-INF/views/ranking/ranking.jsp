@@ -21,19 +21,15 @@
 				</div>
 				<div class="applications-main-block">
 					<div class="applications-table">
-						<table class="table">
-							<thead>
-								<tr>
-									<th class="width-15">순위</th>
-									<th class="width-15">닉네임</th>
-									<th class="width-12">평점</th>
-								</tr>
-							</thead>
-							<tbody>
+								<table>
+									<tr>
+										<td><h5><strong>순위</strong></h5></td>
+										<td><h5><strong>닉네임</strong></h5></td>
+										<td><h5><strong>평점</strong></h5></td>
+									</tr>
+								</table>
+								
 						<!-- 대타자 평점 랭킹 Start -->
-							<div class="blog-area">
-								<div class="blog-wrap ranking">
-									<!-- 랭킹 정보 Start -->
 									<c:forEach var="ranking" items="${ranking}" end="50">
 									<c:choose>
 									<c:when test="${ranking.num == 1}">
@@ -67,12 +63,7 @@
 									</c:choose>
 									
 									</c:forEach>
-									<!-- 랭킹 정보 End -->								
-								</div>
-								</div>
-							
-							</tbody>
-						</table>
+								<!-- 랭킹 정보 End -->	
 					</div>
 				</div>
 			</div>

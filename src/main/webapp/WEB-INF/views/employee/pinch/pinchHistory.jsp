@@ -107,6 +107,9 @@
 																		<c:out value="요청받음"></c:out>
 																	</c:if>
 																	<c:if test="${status == 5 }">
+																		<c:out value="요청수락"></c:out>
+																	</c:if>
+																	<c:if test="${status == 6 }">
 																		<c:out value="요청거절"></c:out>
 																	</c:if>
 																	<c:if test="${status == 7 }">

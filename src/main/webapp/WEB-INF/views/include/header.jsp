@@ -70,7 +70,7 @@
 										</c:if>
 									</div>
 									<a id="userMenu">
-										&nbsp;<span class="user-hover">${loginInfo.m_nick }님</span>
+										&nbsp;<span class="user-hover">${loginInfo.m_nick }님!!</span>
 									</a>
 								</div>
 								<div class="dropdown-menu" aria-labelledby="userMenu">

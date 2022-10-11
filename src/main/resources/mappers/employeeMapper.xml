@@ -175,11 +175,9 @@
 	not ((left(a.a_date, 10) < date_format(curdate(), '%m/%d/%Y')
 	or date_format(curdate(), '%Y') - substring(a.a_date, 7, 10) = 1))
 	and ja.m_id = #{m_id} 
-	and (ja.jae_status ='0' 
-	or ja.jae_status = '1' 
-	or ja.jae_status = '2')
+	and ja.jae_status in (0,1,2,5) 
 	and ja.a_number = a.a_number 
-	and a.s_number = s.s_number;
+	and a.s_number = s.s_number
 	]]>
 </select>
 
@@ -227,7 +225,7 @@
 <update id="requestYes" parameterType="JobApplyDTO">
 	UPDATE daetaworld.job_apply ja
 	SET
-	jae_status = 5, jar_status = 5
+	jae_status = 5
 	WHERE
 	ja.m_id = #{m_id} 
 	AND a_number = #{a_number}
@@ -264,7 +262,7 @@
 	jae_status = 2,
 	a.a_filled = a.a_filled + 1
 	where
-	ja.a_number = #{ja_number}
+	ja.ja_number = #{ja_number}
 </update>
 
 
@@ -289,7 +287,7 @@
 	right join job_ads a
 	on ja.a_number = a.a_number
 	set
-	ja.jae_status = 3,
+	ja.jae_status = 6,
 	a.a_status = 0
 	where
 	a.a_number = #{a_number}

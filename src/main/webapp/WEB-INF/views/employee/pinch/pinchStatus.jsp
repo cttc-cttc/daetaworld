@@ -92,7 +92,12 @@
 																		<c:out value="거절"></c:out>
 																	</c:if> <c:if test="${status == 4 }">
 																		<c:out value="요청받음"></c:out>
-																	</c:if></td>
+																	</c:if>
+																	<c:if test="${status == 5 }">
+																		<c:out value="요청수락"></c:out>
+																	</c:if>
+																</td>
+																	
 																<td><c:set var="a_status" value="${adsList.a_status }" />
 																	 <c:if test="${adsList.jae_status == 2}">
 																		<c:out value="알바확정"></c:out>
