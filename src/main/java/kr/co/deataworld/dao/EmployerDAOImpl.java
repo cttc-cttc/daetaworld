@@ -197,7 +197,7 @@ public class EmployerDAOImpl implements EmployerDAO{
 	@Override
 	public int applyDeny(int ja_number) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.delete(nameSpace + ".applyDeny", ja_number);
+		return sqlSession.update(nameSpace + ".applyDeny", ja_number);
 	}
 
 	@Override

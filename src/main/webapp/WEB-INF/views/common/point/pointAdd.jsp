@@ -57,7 +57,7 @@
 																	value="${point.m_id }">
 															</div>
 															<div class="col-12">
-																<button type="button" id="pointAdd"
+																<button type="button" id="pointAdd" class="btn btn-outline-primary"
 																	name="pointAdd" onclick="AddCheck()">추가하기</button>
 															</div>
 														</div>

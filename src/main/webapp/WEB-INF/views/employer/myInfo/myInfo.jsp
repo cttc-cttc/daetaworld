@@ -8,6 +8,7 @@
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+
 <style>
 	.normal {
 	    display: inline-block;
@@ -34,7 +35,22 @@
 	    padding: 0 7px;
 	    color: #fff;
 	    border-radius: 3px;
-		background-color: #ff2626;
+		background-color: #ff2626;		
+	}
+	
+	.file-label {
+	margin-top: 30px;
+	background-color: #5b975b;
+	color: #fff;
+	text-align: center;
+	padding: 10px 0;
+	width: 100%;
+	border-radius: 6px;
+	cursor: pointer;
+	}
+	
+	.file {
+	  display: none;
 	}
 </style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
@@ -486,7 +502,8 @@
 	      }
 	   });
 	   
-	function signOut(){			
+	function signOut(){		
+		if(confirm("탈퇴하시겠습니까?") == true){
 		var m_password = $('#m_password').val();
 		var confirm_password = $('#confirm_password').val();		
 		
@@ -495,9 +512,12 @@
 			form.confirm_password.focus();
 			return false;
 		}else{
-			alert('탈퇴 되셨습니다.');
+			alert('탈퇴되셨습니다. 다음에 또 이용해주세요.');
 			return true;
 		}		
+		}else{
+			return false;
+		}
 	}   
 	</script>
 	

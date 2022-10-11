@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />		
 <link rel="stylesheet"
 	href="${contextPath }/resources/custom_css/etc.css">
-	
+
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -55,7 +55,7 @@
 														<div class="row mb-30">
 															<div class="col-lg-2">
 																<div class="profile-avatar mb-30">																					
-																	<label class="d-block" for="m_picture">지원자 면상<span>*</span></label>
+																	<label class="d-block" for="m_picture">지원자 사진<span>*</span></label>
 																	<c:if test="${detail.m_picture == 'default'}">
 																		<img src="${contextPath}/resources/images/default_profile.png">																																																			
 																	</c:if>
@@ -153,21 +153,14 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="ja_status">결정 여부<span>*</span></label>
+																			<label for="m_phone">전화번호<span>*</span></label>
 																				<div>																																							
-																				<c:set var="stChk" value="${detail.jae_status }"/>
-																					<c:if test="${stChk == 0 }">
-																						<c:out value="지원함"></c:out>
-																					</c:if>
-																					<c:if test="${stChk == 1 }">
-																						<c:out value="확정 전"></c:out>
-																					</c:if>
-																					<c:if test="${stChk == 2 }">
-																						<c:out value="수락"></c:out>
-																					</c:if>	
-																					<c:if test="${stChk == 3 }">
-																						<c:out value="거절"></c:out>
-																					</c:if>																				
+																				<c:if test="${detail.m_terms1 == 0}">
+																					<c:out value='이 회원은 전화번호 공개에 동의하지 않았습니다.'></c:out>
+																				</c:if>
+																				<c:if test="${detail.m_terms1 == 1}">
+																					<c:out value='${detail.m_phone }'></c:out>
+																				</c:if>																			
 																			</div>
 																		</div>
 																		<!-- Single Input End -->
@@ -303,7 +296,7 @@
 					type : 'POST',
 					success : function(result){
 						console.log(result);					
-						alert('수락하였습니다. 노예의 결정을 기다리세요');	
+						alert('수락하였습니다. 구직자의 결정을 기다려주세요.');	
 						location.href = '${contextPath}/employerMapper/adsApplied?m_id=${loginInfo.m_id}';
 					},
 					error : function(result){
@@ -319,7 +312,7 @@
 			var ja_number = $('#ja_number').val();
 			
 			if(jae_status == 3){
-				alert('이미 거절하셨습니다. 근데 또 한다고?');
+				alert('이미 거절하셨습니다.');
 				return;
 			}else{
 				
@@ -334,7 +327,7 @@
 					type : 'POST',
 					success : function(result){
 						console.log(result);					
-						alert('거절하였습니다. 야멸차시네.....');
+						alert('거절하였습니다.');
 						location.href = '${contextPath}/employerMapper/adsApplied?m_id=${loginInfo.m_id}';
 					},
 					error : function(result){

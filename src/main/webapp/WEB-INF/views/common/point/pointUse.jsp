@@ -57,7 +57,7 @@
 																	<input type="hidden" id="pre_point" name="pre_point" value="${point.point }">
 															</div>
 															<div class="col-12">	
-															<button type="button" id="pointDeduct" name="pointDeduct"
+															<button type="button" id="pointDeduct" name="pointDeduct" class="btn btn-outline-primary"
 																onclick="deductCheck()">인출하기</button>
 															</div>
 														</div>
@@ -136,7 +136,7 @@
 				success : function(result){
 					console.log(result);					
 					alert('인출이 완료되었습니다');
-					window.location.reload(true);
+					window.location.reload(true);					
 				},
 				error : function(result){
 					console.log(result);
