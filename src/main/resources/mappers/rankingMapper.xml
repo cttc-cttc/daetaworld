@@ -8,10 +8,13 @@
 <!-- 랭킹 페이지 접속시 1~5위의 총점 랭킹을 불러온다 -->
 	<select id="ranking" resultType="Map">
 		<![CDATA[
-		select ranking.num, ranking.nick, ranking.sum
+		select ranking.num, ranking.nick, ranking.sum, ranking.picture
 		from(        
-		   select rank() over(order by avg(w_rate) desc) as num, round(avg(w_rate), 1) as sum, m.m_nick as nick    
-		   from review r, member m   
+		   select rank() over(order by avg(w_rate) desc) as num, 
+		   		round(avg(w_rate), 1) as sum, 
+		   		m.m_nick as nick,
+		   		m.m_picture as picture
+		   from review r, member m
 		   where m.m_type = 1 and r.id_rated = m.m_id 
 		   group by r.id_rated
 		   order by num
