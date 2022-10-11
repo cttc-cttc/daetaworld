@@ -210,7 +210,7 @@
 	<!-- 요청 취소 -->
 	<update id="cancelRequest" parameterType="java.lang.Integer">
 		update job_apply
-		set jar_status = 6, jae_status = 6
+		set jar_status = 6
 		where ja_number = #{ja_number};
 	</update>
 	

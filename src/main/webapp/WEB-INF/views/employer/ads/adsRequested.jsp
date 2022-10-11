@@ -82,12 +82,12 @@ td { text-align: center; }
 																	</c:if>
 																</td>
 																<td>
-																	<c:if test="${adsList.jar_status ne 6 }">
+																	<c:if test="${adsList.jae_status ne 6 }">
 																	<button class="btn btn-outline-primary" 
 																		onclick="location.href='cancelRequest?ja_number=${adsList.ja_number}&m_id=${adsList.m_id }'">
 																		취소</button>
 																	</c:if>	
-																	<c:if test="${adsList.jar_status == 6 }">
+																	<c:if test="${adsList.jae_status == 6 }">
 																	</c:if>	
 																</td>
 															</tr>
