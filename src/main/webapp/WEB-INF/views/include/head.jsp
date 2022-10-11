@@ -18,4 +18,7 @@
 <!-- Use the minified version files listed below for better performance and remove the files listed above -->
 <link rel="stylesheet" href="${contextPath}/resources/assets/css/plugins/plugins.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/assets/css/style.min.css">
+
+<link rel="favicon" href="${contextPath}/resources/assets/images/favicon1.ico">
+<link rel="icon" href="${contextPath}/resources/assets/images/favicon1.ico" type="image/x-icon" sizes="16x16">
 </head>
