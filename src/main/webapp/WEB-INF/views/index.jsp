@@ -297,30 +297,62 @@
 								<c:choose>
 								<c:when test="${ranking.num == 1}">
 									<div class="single-list-blog">
-										<div class="col-lg-4"><i class="fas fa-trophy trophy-gold"></i>${ranking.num}등</div>
-										<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
-										<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+										<div class="col-lg-3"><i class="fas fa-trophy trophy-gold"></i>&nbsp;${ranking.num}등</div>
+										<div class="col-lg-6 ranking-picture-parent">
+											<c:if test="${ranking.picture == 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/resources/images/default_profile.png">
+											</c:if>
+											<c:if test="${ranking.picture != 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/displayProfile?fileName=${ranking.picture}">
+											</c:if>
+											<span>&nbsp;${ranking.nick }</span>
+										</div>
+										<div class="col-lg-3"><i class="fas fa-star star-color"></i>&nbsp;${ranking.sum }</div>
 									</div>
 								</c:when >
 								<c:when test="${ranking.num == 2}">
 									<div class="single-list-blog">
-										<div class="col-lg-4"><i class="fas fa-trophy trophy-silver"></i>${ranking.num }등</div>
-										<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
-										<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+										<div class="col-lg-3"><i class="fas fa-trophy trophy-silver"></i>&nbsp;${ranking.num }등</div>
+										<div class="col-lg-6 ranking-picture-parent">
+											<c:if test="${ranking.picture == 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/resources/images/default_profile.png">
+											</c:if>
+											<c:if test="${ranking.picture != 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/displayProfile?fileName=${ranking.picture}">
+											</c:if>
+											<span>&nbsp;${ranking.nick }</span>
+										</div>
+										<div class="col-lg-3"><i class="fas fa-star star-color"></i>&nbsp;${ranking.sum }</div>
 									</div>
 								</c:when >
 								<c:when test="${ranking.num == 3}">
 									<div class="single-list-blog">
-										<div class="col-lg-4"><i class="fas fa-trophy trophy-bronze"></i>${ranking.num}등</div>
-										<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
-										<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+										<div class="col-lg-3"><i class="fas fa-trophy trophy-bronze"></i>&nbsp;${ranking.num}등</div>
+										<div class="col-lg-6 ranking-picture-parent">
+											<c:if test="${ranking.picture == 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/resources/images/default_profile.png">
+											</c:if>
+											<c:if test="${ranking.picture != 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/displayProfile?fileName=${ranking.picture}">
+											</c:if>
+											<span>&nbsp;${ranking.nick }</span>
+										</div>
+										<div class="col-lg-3"><i class="fas fa-star star-color"></i>&nbsp;${ranking.sum }</div>
 									</div>
 								</c:when >
 								<c:otherwise>
 									<div class="single-list-blog">
-										<div class="col-lg-4">${ranking.num }등</div>
-										<div class="col-lg-4"><i class="lnr lnr-user"></i>${ranking.nick }</div>
-										<div class="col-lg-4"><i class="fas fa-star star-color"></i>${ranking.sum }</div>
+										<div class="col-lg-3"><i class="fas fa-trophy trophy-bronze" style="visibility: hidden;"></i>&nbsp;${ranking.num }등</div>
+										<div class="col-lg-6 ranking-picture-parent">
+											<c:if test="${ranking.picture == 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/resources/images/default_profile.png">
+											</c:if>
+											<c:if test="${ranking.picture != 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/displayProfile?fileName=${ranking.picture}">
+											</c:if>
+											<span>&nbsp;${ranking.nick }</span>
+										</div>
+										<div class="col-lg-3"><i class="fas fa-star star-color"></i>&nbsp;${ranking.sum }</div>
 									</div>
 								</c:otherwise>
 								</c:choose>

@@ -99,6 +99,16 @@
 	color: #ffbf02;
 }
 
+.ranking-picture-parent {
+	text-align: left;
+	padding-left: 5rem;
+}
+
+.ranking-picture {
+	width: 1.5rem;
+	overflow: hidden;
+}
+
 .ranking-info {
 	margin: 0;
 	font-size: 14px;
