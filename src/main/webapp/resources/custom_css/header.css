@@ -36,7 +36,7 @@
 }
 
 .profile-image {
-	width: 2rem;
+	width: 1.7rem;
 }
 
 .user-hover:hover {
@@ -45,8 +45,8 @@
 
 .profile-container {
 	display: flex;
-	width: 2.2rem;
-	height: 2.2rem;
+	width: 1.7rem;
+	height: 1.7rem;
 	overflow: hidden;
 	align-items: center;
 	cursor: pointer;
