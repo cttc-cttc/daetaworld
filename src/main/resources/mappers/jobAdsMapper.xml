@@ -153,7 +153,7 @@
 		and si.a_code = #{a_code}
 		and ja.job_code = #{j_code}
 		and ja.a_urgency = #{a_urgency}
-		and a.del = 0
+		and ja.del = 0
 		and left(ja.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
 		]]>
 		
