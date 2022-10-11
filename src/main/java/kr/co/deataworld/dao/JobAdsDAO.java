@@ -34,9 +34,6 @@ public interface JobAdsDAO {
 	public int countJobAdsList();
 
 
-	// 직업추천 전체 구인목록 검색
-	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map);
-
 	// 로그인 상태 아닐때 구인상세 보기
 	public Map<String, Object> nonMember(int a_number);
 

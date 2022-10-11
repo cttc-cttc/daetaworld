@@ -121,9 +121,7 @@ select count(*) from member where m_email = #{m_email}
 <select id="findIdCheck" parameterType="String"  resultType="java.lang.Integer">
 select count(*) from member where m_id = #{m_id}
 </select>
-  	
-  	
-  	
+
   	
   	<select id="findPw" parameterType="Map"  resultType="Map">
 select m_password from member where m_email = #{m_email} and m_id = #{m_id}

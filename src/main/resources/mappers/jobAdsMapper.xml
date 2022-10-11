@@ -193,48 +193,7 @@
 			
 		</select>	
 		
-	
-	
-	
 
-	<!-- 직업추천 구인 목록검색 -->
-	<select id="favoriteSearch" parameterType="java.util.Map"
-		resultType="JobAdsDTO">
-		select *
-		from job_ads
-		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="option == 's_number'">
-				s_number
-			</if>
-			<if test="option == 'a_number'">
-				a_number
-			</if>
-			<if test="option == 'a_wage'">
-				a_wage
-			</if>
-			<if test="option == 'job_code'">
-				job_code
-			</if>
-
-			<if test="value != null and value != ''">
-				= #{value}
-			</if>
-		</trim>
-	</select>
-
-
-	
-
-
-	<!-- 직업추천 -->
-	<!-- <select id="Recommendation" parameterType="java.util.Map" resultType="RecommendationDTO"> -->
-	<!-- select * -->
-	<!-- from shop_info -->
-	<!-- <trim prefix="WHERE" prefixOverrides="AND|OR"> -->
-	<!-- <if test="option == 'job_code'"> -->
-	<!-- job_code</if> -->
-	<!-- </trim> -->
-	<!-- </select> -->
 
 	<!-- 지역 카테고리1 목록 -->
 	<select id="getAreaName1" resultType="java.lang.String">

@@ -27,7 +27,7 @@ public class JobAdsDTO {
 	private int s_number;
 	private int del;
 
-	// 추가함 이성원
+	
 	private int job_code;
 	
 

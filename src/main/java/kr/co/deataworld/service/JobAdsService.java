@@ -31,10 +31,7 @@ public interface JobAdsService {
 	// 일반/긴급-글갯수
 	public int countJobAdsList();
 
-	
-	
-	// 직업추천 전체 구인목록검색
-	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map);
+
 
 	// 로그인 상태 아닐때 구인상세 보기
 	public Map<String, Object> nonMember(int a_number);

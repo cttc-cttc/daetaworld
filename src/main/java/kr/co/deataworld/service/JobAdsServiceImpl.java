@@ -52,16 +52,6 @@ public class JobAdsServiceImpl implements JobAdsService {
 	}
 
 	
-
-	@Override
-	public List<JobAdsDTO> favoriteSearch(Map<Object, Object> map) {
-		// TODO Auto-generated method stub
-		return dao.favoriteSearch(map);
-	}
-	
-	
-	
-
 	@Override
 	public List<String> getAreaName1() {
 		// TODO Auto-generated method stub
