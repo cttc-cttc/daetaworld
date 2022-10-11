@@ -73,7 +73,10 @@
 																		<c:out value="확정 전"></c:out>
 																	</c:if>
 																	<c:if test="${canList.jae_status == 2 }">
-																		<c:out value="최종 수락"></c:out>
+																		<c:out value="수락함"></c:out>
+																	</c:if>
+																	<c:if test="${canList.jar_status == 3 }">
+																		<c:out value="거절"></c:out>
 																	</c:if>
 																</td>																
 															</tr>

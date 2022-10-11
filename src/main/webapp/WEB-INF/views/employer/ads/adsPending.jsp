@@ -9,6 +9,11 @@
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+<style>
+th { text-align: center; }
+td { text-align: center; }
+</style>		
+	
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->

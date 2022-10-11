@@ -9,6 +9,11 @@
 <!-- custom css -->
 <link rel="stylesheet"
 	href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+<style>
+th { text-align: center; }
+td { text-align: center; }
+</style>		
+	
 <body class="template-color-1">
 	<div id="main-wrapper">
 		<!-- 상단 메뉴 start-->
@@ -52,8 +57,8 @@
 															<th>가게명</th>													
 															<th>날짜</th>															
 															<th>시간</th>
-															<th>시급</th>
-															<th>급구</th>
+															<th>시급</th>	
+															<th>구직자</th>														
 															<th>상태</th>
 															<th></th>
 														</thead>
@@ -62,32 +67,28 @@
 																<td>${adsList.s_name }</td>													
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
-																<td>${adsList.a_wage }</td>
-																<td>
-																<c:set var="urgency" value="${adsList.a_urgency }"/>
-																	<c:if test="${urgency == 1 }">
-																		<c:out value="o"></c:out>
-																	</c:if>
-																	<c:if test="${urgency == 0 }">
-																		<c:out value="x"></c:out>
-																	</c:if>
-																</td>																																
+																<td>${adsList.a_wage }</td>									
+																<td>${adsList.m_nick }</td>
 																<td>
 																<c:set var="status" value="${adsList.jae_status }"/>
-																	<c:if test="${status == 2 }">
-																		<c:out value="수락함"></c:out>
+																	<c:if test="${status == 4 }">
+																		<c:out value="대기중"></c:out>
 																	</c:if>
 																	<c:if test="${status == 5 }">
-																		<c:out value="거절함"></c:out>
+																		<c:out value="수락함"></c:out>
 																	</c:if>
-																	<c:if test="${status == 4 }">
-																		<c:out value="대기 중"></c:out>
+																	<c:if test="${status == 6 }">
+																		<c:out value="거절함"></c:out>
 																	</c:if>
 																</td>
 																<td>
-																	<button class="btn btn-outline-danger"
+																	<c:if test="${adsList.jar_status ne 6 }">
+																	<button class="btn btn-outline-primary" 
 																		onclick="location.href='cancelRequest?ja_number=${adsList.ja_number}&m_id=${adsList.m_id }'">
 																		취소</button>
+																	</c:if>	
+																	<c:if test="${adsList.jar_status == 6 }">
+																	</c:if>	
 																</td>
 															</tr>
 														</c:forEach>

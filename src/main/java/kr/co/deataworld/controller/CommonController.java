@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -140,10 +141,14 @@ public class CommonController {
 	
 //	포인트 사용 페이지
 	@GetMapping(value="pointMapper/pointUse")
-	public String pointUse(@RequestParam("m_id")String id, Model model) throws Exception {
+	public String pointUse(@RequestParam("m_id")String id, Model model, HttpServletRequest request) throws Exception {
 		model.addAttribute("leftMenu", "pointManagement");
 		PointDTO point = pService.point(id);
 		model.addAttribute("point", point);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("loginPoint", point.getPoint());
+		
 		return "common/point/pointUse";
 	}
 	
@@ -156,10 +161,14 @@ public class CommonController {
 	
 //	포인트 추가 페이지
 	@GetMapping(value="pointMapper/pointAdd")
-	public String pointAdd(@RequestParam("m_id")String id, Model model) throws Exception {
+	public String pointAdd(@RequestParam("m_id")String id, Model model, HttpServletRequest request) throws Exception {
 		model.addAttribute("leftMenu", "pointManagement");
 		PointDTO point = pService.point(id);
 		model.addAttribute("point", point);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("loginPoint", point.getPoint());
+		
 		return "common/point/pointAdd";
 	}
 	
