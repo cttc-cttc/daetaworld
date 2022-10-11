@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'GowunDodum-Regular';
+    font-family: '';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
@@ -8,7 +8,7 @@
 *{
     box-sizing: border-box;
     margin:0;
-    font-family: 'GowunDodum-Regular', sans-serif;
+    font-family: '';
 }
 
 body{
