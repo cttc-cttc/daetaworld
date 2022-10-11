@@ -11,11 +11,11 @@
 <!-- 자유게시판 목록 -->
 	<select id="list" parameterType="java.util.Map" resultType="BoardDTO">
 		
-		select *
-		from board
+		select @rownum:=@rownum+1 as rownum, b.*
+		from board b, (select @rownum:=0) rn
 		where b_code = 0
 		and del = 0
-		order by b_number desc
+		order by rownum desc
 		limit #{pageStart}, #{perPageNum}
 		
 	</select>
@@ -74,10 +74,10 @@
 	<!-- 땡빵 게시판 목록 -->
 	<select id="tempingList" parameterType = "java.util.Map" resultType="BoardDTO">
 		
-		select *
-		from board
+		select @rownum:=@rownum+1 as rownum, b.*
+		from board b, (select @rownum:=0) rn
 		where b_code = 1 and del = 0
-		order by b_number desc
+		order by rownum desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
 	

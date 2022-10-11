@@ -46,7 +46,10 @@
 									
 									<c:forEach var="board" items="${tempinglist}">
 										<tr>
-											<td>${board.b_number}</td>
+											<td>
+											<%-- ${board.b_number} --%>
+											${board.rownum}
+											</td>
 											<td><a
 												href="${contextPath}/board/temping/tempingdetail?b_number=${board.b_number}">
 													${board.b_title} </a></td>

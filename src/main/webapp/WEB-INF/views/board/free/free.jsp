@@ -50,7 +50,8 @@
 									<c:forEach var="board" items="${list }" varStatus="status">
 										<tr>
 											<td>
-											 ${board.b_number}										
+											 <%-- ${board.b_number} --%>
+											 ${board.rownum}								
 											</td>
 											<td><a href="detail?b_number=${board.b_number}">
 													${board.b_title} </a></td>
