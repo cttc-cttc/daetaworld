@@ -69,8 +69,7 @@
 									</c:forEach>
 									<!-- 랭킹 정보 End -->								
 								</div>
-								</div>
-							
+							</div>							
 							</tbody>
 						</table>
 					</div>

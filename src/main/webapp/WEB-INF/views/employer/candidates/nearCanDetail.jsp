@@ -151,9 +151,15 @@
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
 																		<div class="single-input mb-25">
-																			<label for="w_rate">평가<span>*</span></label>
-																				<input type="text" id="w_rate" name="w_rate" 
-																					value="평점을 갖고올거임" readonly="readonly">																					
+																			<label for="m_phone">전화번호<span>*</span></label>
+																				<div>
+																				<c:if test="${detail.m_terms1 == 0 }">
+																					<c:out value="이 회원은 전화번호 공개에 동의하지 않았습니다."></c:out>
+																				</c:if>		
+																				<c:if test="${detail.m_terms1 == 1 }">
+																					<c:out value="${detail.m_phone }"></c:out>
+																				</c:if>
+																				</div>																				
 																		</div>
 																		<!-- Single Input End -->
 																	</div>												
