@@ -36,7 +36,7 @@
 	<br>
 
 	<!-- 셀렉트 박스 start -->
-	<form method="get" action="listJobAdsSearch"  >
+	<form method="get" action="listJobAdsSearch"  name="validForm">
 		<div class="container">
 			<table class="table">
 				<tbody>
@@ -49,7 +49,7 @@
 								<tr>
 									<th>지역</th> <!-- 지역 카테고리1 -->
 									<td>
-									<select class="form-select" onchange="selectAreaName1(this)">
+									<select class="form-select" onchange="selectAreaName1(this)" name = "a1">
 										<option value="선택">선택</option>
 										<c:forEach var="areaName1" items="${areaName1ListCountry }">
 											<option value="${areaName1 }">${areaName1 }</option>
@@ -69,7 +69,7 @@
 								<tr>
                            <td></td>
                            <td class = "select2"> <!-- 지역 카테고리2 -->
-                           <select class="form-select" id="areaName2" onchange="selectAreaName2(this)"></select>
+                           <select class="form-select" id="areaName2" onchange="selectAreaName2(this)" name="a2"></select>
                            <input type="hidden" id="a_code" name="a_code" value="${row.a_code}">
                            </td>
                            <td></td>
@@ -83,7 +83,7 @@
 						<input type = "hidden" id = "j_code" name = "j_code" value = 18 >
 						
 						<div class="field-item-submit" align="center">
-							<button class="ht-btn theme-btn theme-btn-two">검색</button>
+							<button class="ht-btn theme-btn theme-btn-two" onclick = "return checkForm()">검색</button>
 						</div>
 					</div>
 
@@ -335,5 +335,19 @@ function sortTable(c) {
   }
 }
 </script>
+	<!-- 유효성검사 -->
+<script type="text/javascript">
+	function checkForm(){
+		var form = document.validForm;
+		if(form.a2.value == ""||form.a1.value == "선택"){
+			alert("지역을 선택해주세요.");
+			
+			return false;
+		}
+		form.submit();
+	}
+
+</script>
+
 </body>
 </html>	

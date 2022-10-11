@@ -39,7 +39,13 @@ public interface EmployerDAO {
 	public int nearCanDetailCnt(Map<String, Object> map) throws Exception;
 	
 //	등록한 가게 목록보기
-	public List<ShopInfoDTO> shopManagement(String m_id) throws Exception;	
+	public List<ShopInfoDTO> shopManagement(String m_id) throws Exception;
+	
+//	구인완료
+	public int adsComplete(int a_number) throws Exception;
+	
+//	구인재개
+	public int reAdsRegister(int a_number) throws Exception;
 	
 //	등록한 가게 정보보기
 	public ShopInfoDTO shopInfo(String s_name) throws Exception;
@@ -67,6 +73,9 @@ public interface EmployerDAO {
 	
 //	지원자 목록보기
 	public List<Map<String, Object>> candidates(int a_number) throws Exception;
+	
+//	확정자 목록보기
+	public List<Map<String, Object>> confirmedCandidates(int a_number) throws Exception;
 	
 //	지원자 정보보기
 	public Map<String, Object> canDetail(Map<String, Object> map) throws Exception;

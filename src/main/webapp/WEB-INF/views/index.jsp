@@ -341,8 +341,41 @@
 		
 		<!-- footer -->
 		<%@ include file="include/footer.jsp" %>
+		
+		
+		<!-- 정지회원 알림용 모달 -->
+		<button type="button" id="bmBtn" data-toggle="modal" data-target="#bannedMsg" style="display: none;">
+		  .
+		</button>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="bannedMsg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        ${bannedMsg}
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 	</div>
 	<!-- 문서 끝에 js를 배치하여 페이지 로딩 속도 향상 -->
 	<%@ include file="include/plugin.jsp" %>
+	<script>
+		window.addEventListener('load', function() {
+			if('${bannedMsg}' != '') {
+				$('#bmBtn').click();
+			}
+		});
+	</script>
 </body>
 </html>

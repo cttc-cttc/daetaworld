@@ -13,6 +13,7 @@ r_code int
  */
 
 public class BoardDTO {
+	private int rownum;
 	private int b_number;
 	private int b_code;
 	private String b_title;
@@ -23,6 +24,13 @@ public class BoardDTO {
 	private String m_nick;
 	private int r_code;
 	private int del;
+	
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	public int getB_number() {
 		return b_number;
 	}
@@ -85,11 +93,10 @@ public class BoardDTO {
 	}
 	@Override
 	public String toString() {
-		return "BoardDTO [b_number=" + b_number + ", b_code=" + b_code + ", b_title=" + b_title + ", b_contents="
-				+ b_contents + ", b_hits=" + b_hits + ", b_date=" + b_date + ", m_id=" + m_id + ", m_nick=" + m_nick
-				+ ", r_code=" + r_code + ", del=" + del + "]";
+		return "BoardDTO [rownum=" + rownum + ", b_number=" + b_number + ", b_code=" + b_code + ", b_title=" + b_title
+				+ ", b_contents=" + b_contents + ", b_hits=" + b_hits + ", b_date=" + b_date + ", m_id=" + m_id
+				+ ", m_nick=" + m_nick + ", r_code=" + r_code + ", del=" + del + "]";
 	}
-	
 	
 }
 

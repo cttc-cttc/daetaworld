@@ -261,7 +261,7 @@ public class EmployerController {
 	public String adsApplied(@RequestParam("m_id")String m_id, String pageType, Model model) throws Exception{
 		model.addAttribute("leftMenu", "adsApplied");
 		List<Map<String, Object>> adsApplied = service.adsApplied(m_id);
-		model.addAttribute("adsApplied", adsApplied);
+		model.addAttribute("adsApplied", adsApplied);				
 		
 		// 타입 1 알림을 클릭해 들어온 경우
 		if(pageType != null) {
@@ -271,6 +271,20 @@ public class EmployerController {
 			nService.deletePart(delNotiInfo);
 		}
 		return "employer/ads/adsApplied";
+	}
+	
+//	구인완료
+	@ResponseBody
+	@PostMapping(value="employerMapper/adsComplete")
+	public int adsComplete(@RequestParam("a_number")int a_number) throws Exception{
+		return service.adsComplete(a_number);
+	}
+	
+//	구인재개
+	@ResponseBody
+	@PostMapping(value="employerMapper/reAdsRegister")
+	public int reAdsRegister(@RequestParam("a_number")int a_number) throws Exception{
+		return service.reAdsRegister(a_number);
 	}
 	
 //	요청한 공고 목록
@@ -305,6 +319,15 @@ public class EmployerController {
 		model.addAttribute("candidates", candidates);
 		return "employer/candidates/candidates";
 	}	
+	
+//	확정자 목록
+	@GetMapping(value="employerMapper/confirmedCandidates")
+	public String confirmedCandidates(@RequestParam("a_number")int a_number, Model model) throws Exception{
+		model.addAttribute("leftMenu", "adsApplied");
+		List<Map<String, Object>> candidates = service.confirmedCandidates(a_number);
+		model.addAttribute("candidates", candidates);
+		return "employer/candidates/confirmedCandidates";
+	}
 	
 //	지원자 정보보기
 	@GetMapping(value="employerMapper/canDetail")

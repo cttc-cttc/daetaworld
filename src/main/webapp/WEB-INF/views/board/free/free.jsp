@@ -50,7 +50,8 @@
 									<c:forEach var="board" items="${list }" varStatus="status">
 										<tr>
 											<td>
-											 ${board.b_number}										
+											 <%-- ${board.b_number} --%>
+											 ${board.rownum}								
 											</td>
 											<td><a href="detail?b_number=${board.b_number}">
 													${board.b_title} </a></td>
@@ -74,7 +75,7 @@
 											<ul>
 												<c:if test="${boardPageMaker.prev }">
 													<a
-														href='<c:url value="/board/free/free?page=${boardPageMaker.makeSearch(boardPageMaker.startPage-1) }"/>'>
+														href='<c:url value="/board/free/free?page=${boardPageMaker.startPage-1}"/>'>
 														이전</a>
 												</c:if>
 												<c:forEach begin="${boardPageMaker.startPage }"
@@ -87,7 +88,7 @@
 													test="${boardPageMaker.next && boardPageMaker.endPage > 0 }">
 													<a
 														href='<c:url value="/board/free/free?page=${boardPageMaker.endPage+1 }"/>'>
-														</a>
+														다음</a>
 												</c:if>
 											</ul>
 										</td>

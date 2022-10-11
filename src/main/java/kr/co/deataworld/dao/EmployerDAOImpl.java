@@ -141,6 +141,18 @@ public class EmployerDAOImpl implements EmployerDAO{
 	}
 	
 	@Override
+	public int adsComplete(int a_number) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".adsComplete", a_number);
+	}
+	
+	@Override
+	public int reAdsRegister(int a_number) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".reAdsRegister", a_number);
+	}
+	
+	@Override
 	public List<Map<String, Object>> adsRequested(String m_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".adsRequested", m_id);
@@ -156,6 +168,12 @@ public class EmployerDAOImpl implements EmployerDAO{
 	public List<Map<String, Object>> candidates(int a_number) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".candidates", a_number);
+	}
+	
+	@Override
+	public List<Map<String, Object>> confirmedCandidates(int a_number) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".confirmedCandidates", a_number);
 	}
 	
 	@Override
@@ -179,7 +197,7 @@ public class EmployerDAOImpl implements EmployerDAO{
 	@Override
 	public int applyDeny(int ja_number) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update(nameSpace + ".applyDeny", ja_number);
+		return sqlSession.delete(nameSpace + ".applyDeny", ja_number);
 	}
 
 	@Override
@@ -217,8 +235,6 @@ public class EmployerDAOImpl implements EmployerDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.update(nameSpace + ".shopDelete", s_number);
 	}
-
-
 
 
 

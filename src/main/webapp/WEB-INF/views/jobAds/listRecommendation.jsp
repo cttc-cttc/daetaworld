@@ -37,8 +37,8 @@
                 <img src="${contextPath}/resources/images/listRecommendation/logo100.png"  class="img-fluid"/> <!--img-fluid: col값을 따라가게 됨-->
             </div>
             <br>
-            <p class="mb-4">나와 꼭맞는 일자리 추천</br>
-               아래의 START버튼을 눌러 시작
+            <p class="mb-4">나와 꼭 맞는 일자리 찾기</br>
+               아래의 START 버튼을 눌러 시작
             </p>
             <button type="button" class="btn btn-secondary btn-lg">START</button> 
             &nbsp  &nbsp
@@ -55,7 +55,7 @@
             </div>
         </section>
         <section id="result" class="mx-auto my-4 py-5 px-3">
-            <h3>오늘 당신의 추천 일자리는!</h3>
+            <h3>오늘의 추천 일자리는!</h3>
             <br><br>
             <div class="resultName"></div>
             <div id="resultImg" class="col-lg-6 col-md-6 col-sm-8 col-8 mx-auto my-3 mb-2">  <!--해상도에 맞는 크기 선언-->

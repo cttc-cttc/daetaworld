@@ -192,11 +192,6 @@ public class JobAdsController {
 		}
 	}
 
-	@GetMapping(value = "/jobAds/listFavorite")
-	public String listFavorite() {
-		logger.info("직업추천 전체 구인목록 페이지 접속");
-		return "jobAds/listFavorite";
-	}
 
 	@GetMapping(value = "/jobAds/listRecommendation")
 	public String listRecommendation() {

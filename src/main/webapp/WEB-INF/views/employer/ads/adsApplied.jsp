@@ -53,6 +53,7 @@
 															<th>날짜</th>															
 															<th>시간</th>
 															<th>시급</th>
+															<th>구인 인원 / 구인된 인원</th>
 															<th>급구</th>
 															<th>상태</th>
 															<th></th>
@@ -63,6 +64,7 @@
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
 																<td>${adsList.a_wage }</td>
+																<td>${adsList.a_need } / ${adsList.a_filled }</td>
 																<td>
 																<c:set var="urgency" value="${adsList.a_urgency }"/>
 																	<c:if test="${urgency == 1 }">
@@ -71,7 +73,7 @@
 																	<c:if test="${urgency == 0 }">
 																		<c:out value="x"></c:out>
 																	</c:if>
-																</td>																																
+																</td>																												
 																<td>
 																<c:set var="status" value="${adsList.a_status }"/>
 																	<c:if test="${status == 0 }">
@@ -84,21 +86,30 @@
 																		<c:out value="구인완료"></c:out>
 																	</c:if>
 																	<c:if test="${status == 3 }">
-																		<c:out value="종료"></c:out>
-																	</c:if>
-																	<c:if test="${status == 4 }">
-																		<c:out value="만료"></c:out>
+																		<c:out value="구인종료"></c:out>
 																	</c:if>
 																</td>
 																<td>
-																	<button id="" name="" class="btn btn-outline-success"
+																	<c:if test="${adsList.a_status != 3}">
+																	<button class="btn btn-outline-success"
 																		onclick="location.href='candidates?a_number=${adsList.a_number}'">
-																		신청자 확인</button>
+																		신청자 확인</button> / 
+																	<button class="btn btn-outline-success"
+																		onclick="adsComplete('${adsList.a_number}')"
+																		>구인 종료</button>
+																	</c:if>	
+																	<c:if test="${adsList.a_status == 3 }">
+																		<button class="btn btn-outline-success"
+																		onclick="location.href='confirmedCandidates?a_number=${adsList.a_number}'"
+																		>확정자 확인</button> / 
+																	<button class="btn btn-outline-success"
+																		onclick="reAdsRegister('${adsList.a_number}')"
+																		>구인 재개</button>	
+																	</c:if>
 																</td>
-															</tr>
+															</tr>															
 														</c:forEach>
-													</table>
-													
+													</table>													
 												</div>
 											</div>
 										</div>
@@ -127,5 +138,62 @@
 	<!-- Use the minified version files listed below for better performance and remove the files listed above -->
 	<script src="${contextPath}/resources/assets/js/plugins/plugins.min.js"></script>
 	<script src="${contextPath}/resources/assets/js/main.js"></script>
+	
+	<script type="text/javascript">
+	function adsComplete(a_number) {
+		if(confirm("구인을 마치시겠습니까?") == true){		
+		
+		var url = "${contextPath}/employerMapper/adsComplete";
+		var paramData = {			
+			"a_number" : a_number 
+		};
+		$.ajax({
+			url : url,
+			data : paramData,
+			type : "POST",
+			dataType : "json",
+				success : function(result){
+					console.log('ajax 성공');
+					window.location.reload(true);
+					location.href="${contextPath}/employerMapper/adsApplied?m_id=${loginInfo.m_id}";
+					alert('해당 공고의 구인을 종료합니다. 전 날까지 구직자가 취소할 수 있으니 참고해주세요.');					 
+				},
+				error : function(result){
+					console.log('ajax 실패');
+				}
+		});
+		}else{
+			return false;
+		}
+	}
+	
+	function reAdsRegister(a_number) {
+		if(confirm("구인공고를 다시 올리시겠습니까?") == true){		
+		
+		var url = "${contextPath}/employerMapper/reAdsRegister";
+		var paramData = {			
+			"a_number" : a_number 
+		};
+		$.ajax({
+			url : url,
+			data : paramData,
+			type : "POST",
+			dataType : "json",
+				success : function(result){
+					console.log('ajax 성공');
+					window.location.reload(true);
+					location.href="${contextPath}/employerMapper/adsApplied?m_id=${loginInfo.m_id}";
+					alert('해당 공고의 구인을 재개합니다.');					 
+				},
+				error : function(result){
+					console.log('ajax 실패');
+				}
+		});
+		}else{
+			return false;
+		}
+	}
+	</script>
+	
 </body>
 </html>

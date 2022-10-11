@@ -92,7 +92,7 @@
   	<!-- 로그인 -->
   	<select id="login" parameterType="java.util.Map" resultType="java.util.Map">
   		select
-  			A.m_id, A.m_nick, A.m_picture, A.m_type, A.login_type, B.point
+  			A.m_id, A.m_nick, A.m_picture, A.m_type, A.m_warned, A.login_type, B.point
   		from member as A
   		inner join point as B
   			on A.m_id = B.m_id
@@ -121,9 +121,7 @@ select count(*) from member where m_email = #{m_email}
 <select id="findIdCheck" parameterType="String"  resultType="java.lang.Integer">
 select count(*) from member where m_id = #{m_id}
 </select>
-  	
-  	
-  	
+
   	
   	<select id="findPw" parameterType="Map"  resultType="Map">
 select m_password from member where m_email = #{m_email} and m_id = #{m_id}
