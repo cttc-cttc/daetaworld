@@ -248,8 +248,6 @@
 	SET
 	a.a_status = 3
 	WHERE
-	a.m_id = #{m_id} 
-	AND
 	a.a_number = #{a_number}
 </update>
 

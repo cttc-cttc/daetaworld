@@ -77,12 +77,12 @@
 																
 																<!-- 진행중인 알바가 끝났을 때 확인 -> 버튼이 '리뷰작성' 으로 바뀌고 -> 리뷰작성 -> 구인자에 대한 리뷰를 작성하는 페이지로 이동. -->
 																<c:if test="${adsList.a_status != 3}">
-																	<td><button class="btn btn-outline-danger" id="pinch" onclick="pinch_Chk()">확인</button></td>
+																	<td><button class="btn btn-outline-danger" id="pinch" onclick="pinch_Chk('${adsList.a_number}')">확인</button></td>
 																</c:if>
 																
 																<c:if test="${adsList.a_status == 3 && adsList.jae_status != 7 }">
 																	<td>
-																	<button class="btn btn-outline-danger" id="tool" title="소중한 후기작성시 500포인트 적립!"  onclick="location.href='${contextPath}/reviewMapper/e_reviewRegister?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}&id_rated=${adsList.id_rated}'">
+																	<button class="btn btn-outline-danger" id="pinch" title="소중한 후기작성시 500포인트 적립!"  onclick="location.href='${contextPath}/reviewMapper/e_reviewRegister?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}&id_rated=${adsList.id_rated}'">
 																	후기입력
 																	</button>
 																	</td>
@@ -92,8 +92,6 @@
 																	
 																</c:if>
 															</tr>
-																<input type="hidden" name="m_id" id="m_id" value="${adsList.m_id}"/>
-																<input type="hidden" name="a_number" id="a_number" value="${adsList.a_number}"/>
 														</c:forEach>
 													</table>
 												</div>
@@ -127,14 +125,11 @@
 	
 	
 	<script type="text/javascript">
-		function pinch_Chk() {
+		function pinch_Chk(a_number) {
 			if(confirm("급여가 정상적으로 입금됐는지 확인 후 버튼을 눌러주세요!") == true){//confirm 취소
-			var m_id = $("#m_id").val(); //구인자 아이디
-			var a_number = $("#a_number").val();
 			
 			var url = "${contextPath}/employeeMapper/pinchChk";
 			var paramData = {
-				"m_id" : m_id,
 				"a_number" : a_number 
 			};
 			$.ajax({
