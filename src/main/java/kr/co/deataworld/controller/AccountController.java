@@ -75,6 +75,11 @@ public class AccountController {
 			return "redirect:login";
 		}
 		
+		if((int) loginResult.get("m_warned") == 3) {
+			attr.addFlashAttribute("bannedMsg", "경고 횟수가 3회 누적되어 사이트 이용이 제한된 계정입니다.");
+			return "redirect:/";
+		}
+		
 		// 헤더 로그인 정보 세션값 등록
 		// m_nick, m_picture, point를 따로 세션값에 지정하는 이유는 회원정보 수정 시 바로 적용하기 위해서
 		session.setAttribute("loginInfo", loginResult); // m_id, m_type, login_type (m_nick, m_picture, point 이것도 들어가긴 하지만 정작 안씀)

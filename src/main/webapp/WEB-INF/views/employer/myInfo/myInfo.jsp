@@ -7,8 +7,36 @@
 <title>내 정보</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
-<link rel="stylesheet"
-   href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+<link rel="stylesheet" href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
+<style>
+	.normal {
+	    display: inline-block;
+	    font-size: 14px;
+	    line-height: 20px;
+	    padding: 0 7px;
+	    color: #fff;
+	    border-radius: 3px;
+        background-color: #1dae0e;
+	}
+	.warning {
+	    display: inline-block;
+	    font-size: 14px;
+	    line-height: 20px;
+	    padding: 0 7px;
+	    color: #fff;
+	    border-radius: 3px;
+	    background-color: #ffa302;
+	}
+	.banned {
+	    display: inline-block;
+	    font-size: 14px;
+	    line-height: 20px;
+	    padding: 0 7px;
+	    color: #fff;
+	    border-radius: 3px;
+		background-color: #ff2626;
+	}
+</style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 <body class="template-color-1">
    <div id="main-wrapper">
@@ -39,13 +67,30 @@
 									<div class="col-xl-12 col-12">
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
-												<ul class="nav">
-													<li><a style="color: green" class="active"
-														href="myInfo?m_id=${loginInfo.m_id}">내 정보</a></li>
-
-													<li><a href="shopManagement?m_id=${loginInfo.m_id}">내 가게</a></li>
-													<li><a href="shopRegister?m_id=${loginInfo.m_id}">새 가게</a></li>
-												</ul>
+												<div class="col-lg-2">
+													<ul class="nav">
+														<li><a style="color: green" class="active"
+															href="myInfo?m_id=${loginInfo.m_id}">내 정보</a></li>
+	
+														<li><a href="shopManagement?m_id=${loginInfo.m_id}">내 가게</a></li>
+														<li><a href="shopRegister?m_id=${loginInfo.m_id}">새 가게</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-10">
+													<label style="margin: 0;">상태: 
+														<c:choose>
+															<c:when test="${myInfo.m_warned == 0 }">
+																<span class="normal">정상</span>
+															</c:when>
+															<c:when test="${myInfo.m_warned == 3 }">
+																<span class="banned">정지</span>
+															</c:when>
+															<c:otherwise>
+																<span class="warning">경고 ${myInfo.m_warned }회</span>
+															</c:otherwise>
+														</c:choose>
+													</label>
+												</div>
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
@@ -147,21 +192,21 @@
 																	</div>
 																	<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 																		<!-- Single Input Start -->
-																		<div class="single-input mb-25">
-																			<label for="m_terms1">선택약관1</label><input
+																		<div class="single-input mb-25" style="margin-top: 2.8rem;">
+																			<label for="m_terms1">선택약관1</label><input style="width: 50px;"
 																				type="checkbox" id="m_terms1" name="m_terms1"
 																				<c:set var="terms1" value="${myInfo.m_terms1 }"/>																				
 																					<c:if test="${terms1 == 1}">
 																						<c:out value="checked"/>
 																					</c:if>
-																				>																			
-																			<label for="m_terms2">선택약관2</label><input
+																			><br><br>																	
+																			<label for="m_terms2">선택약관2</label><input style="width: 50px;"
 																				type="checkbox" id="m_terms2" name="m_terms2"
 																				<c:set var="terms2" value="${myInfo.m_terms2 }"/>																				
 																					<c:if test="${terms2 == 1}">
 																						<c:out value="checked"/>
 																					</c:if>
-																				>	
+																			>	
 																			<!-- Single Input End -->
 																		</div>
 																	</div>

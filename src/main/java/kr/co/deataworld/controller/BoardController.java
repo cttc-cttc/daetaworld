@@ -60,11 +60,12 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="board/free/detail", method = RequestMethod.GET)
-	public String detail(@RequestParam("b_number") int b_number, Model model) throws Exception {
+	public String detail(@RequestParam("b_number") int b_number,
+						Model model, HttpServletRequest request) throws Exception {
 		BoardDTO board = service.getDetail(b_number);
 		model.addAttribute("board", board);
 		// 댓글목록
-				List<CommentsDTO> list = service.getDetail1(b_number);
+				List<CommentsDTO> list = service.getDetail1(b_number, request);
 				System.out.println(list);
 				model.addAttribute("list", list);
 		return "board/free/detail";
@@ -145,12 +146,13 @@ public class BoardController {
 
 	
 	@RequestMapping(value="board/temping/tempingdetail", method = RequestMethod.GET)
-	public String tempingDetail(@RequestParam("b_number") int b_number, Model model) throws Exception {
+	public String tempingDetail(@RequestParam("b_number") int b_number,
+								Model model, HttpServletRequest request) throws Exception {
 		BoardDTO temping = service.getDetail(b_number);
 		model.addAttribute("temping", temping);
 	
 		// 댓글목록
-		List<CommentsDTO> replylist = service.getDetail1(b_number);
+		List<CommentsDTO> replylist = service.getDetail1(b_number, request);
 		System.out.println(replylist);
 		model.addAttribute("replylist", replylist);
 

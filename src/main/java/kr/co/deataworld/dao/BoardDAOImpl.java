@@ -20,8 +20,6 @@ import kr.co.deataworld.dto.CommentsDTO;
 public class BoardDAOImpl implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
-	@Inject
-	HttpServletRequest request;
 
 	private static final String namespace = "kr.co.deataworld.boardMapper";
 
@@ -60,7 +58,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<CommentsDTO> getDetail1(int b_number) throws Exception{
+	public List<CommentsDTO> getDetail1(int b_number, HttpServletRequest request) throws Exception{
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		@SuppressWarnings("unchecked")
