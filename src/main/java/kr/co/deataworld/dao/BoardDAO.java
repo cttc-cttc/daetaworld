@@ -3,6 +3,8 @@ package kr.co.deataworld.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.co.deataworld.dto.BoardCriteria;
 import kr.co.deataworld.dto.BoardDTO;
 import kr.co.deataworld.dto.CommentsDTO;
@@ -31,7 +33,7 @@ public interface BoardDAO {
 
 	public int delete(int b_number) throws Exception;
 
-	public List<CommentsDTO> getDetail1(int b_number) throws Exception;
+	public List<CommentsDTO> getDetail1(int b_number, HttpServletRequest request) throws Exception;
 
 	// 땜빵 게시판 목록
 	public List<BoardDTO> tempingList(BoardCriteria cri) throws Exception;

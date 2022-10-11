@@ -3,6 +3,8 @@ package kr.co.deataworld.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,9 +47,9 @@ public class BoardServiceImpl implements BoardService{
 		}
 
 		@Override
-		public List<CommentsDTO> getDetail1(int b_number) throws Exception {
+		public List<CommentsDTO> getDetail1(int b_number, HttpServletRequest request) throws Exception {
 			// TODO Auto-generated method stub
-			return dao.getDetail1(b_number);
+			return dao.getDetail1(b_number, request);
 		}
 
 		

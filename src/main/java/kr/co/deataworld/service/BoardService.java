@@ -3,6 +3,8 @@ package kr.co.deataworld.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.co.deataworld.dto.BoardCriteria;
 import kr.co.deataworld.dto.BoardDTO;
 import kr.co.deataworld.dto.CommentsDTO;
@@ -35,7 +37,7 @@ public interface BoardService {
 	
 	public int delete(int b_number) throws Exception;
 
-	public List<CommentsDTO> getDetail1(int b_number) throws Exception;
+	public List<CommentsDTO> getDetail1(int b_number, HttpServletRequest request) throws Exception;
 	
 	
 	public BoardDTO tempinggetDetail(int b_number) throws Exception;

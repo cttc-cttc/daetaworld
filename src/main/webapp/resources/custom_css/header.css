@@ -79,6 +79,7 @@
     background: #fff;
     text-align: center;
     z-index: 2;
+    left: -1.5rem;
 }
 
 .drdn-item:hover .tooltip-text {

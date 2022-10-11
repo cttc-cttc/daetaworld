@@ -178,7 +178,7 @@
 				// 구인자 & 구직자 공통알림
 				case 10:
 					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/deletePart?m_id='+ noti.m_id +'">'+ noti.r_kind +' 신고 1회, 사유: '+ noti.r_type;
-					htmls += '<span class="tooltip-text"><i class="bi bi-exclamation-triangle-fill" style="-webkit-text-fill-color: #ffb100;"></i>경고 3회 누적 시 사이트 이용이 제한됩니다.<br>글 작성 시 주의하세요.</span></a>';
+					htmls += '<span class="tooltip-text"><i class="lnr lnr-warning" style="-webkit-text-fill-color: #ffb100;"></i>경고 3회 누적 시 사이트 이용이 제한됩니다.<br>글 작성 시 주의하세요.</span></a>';
 					break;
 					
 				// 관리자 알림
