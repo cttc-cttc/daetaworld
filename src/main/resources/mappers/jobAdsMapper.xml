@@ -30,7 +30,8 @@
 			and A.del = 0
 			and (A.a_status = 0 or A.a_status = 1)
 			<![CDATA[
-			and left(A.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+			and (left(A.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+ 			or substring(A.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 			]]>
 		group by A.a_number
 		order by A.a_number desc
@@ -86,7 +87,8 @@
 			and A.del = 0
 			and (A.a_status = 0 or A.a_status = 1)
 			<![CDATA[
-			and left(A.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+			and (left(A.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+ 			or substring(A.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 			]]>
 		group by A.a_number
 		order by A.a_number desc
@@ -103,7 +105,8 @@
 		and a.s_number = s.s_number
 		and a.job_code not in (18)
 		and a.del = 0
-		and left(a.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+		and (left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y') 
+         or substring(a.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 		order by a.a_number desc
 		limit #{pageStart}, #{perPageNum}
 		]]>
@@ -119,7 +122,8 @@
 		and a.s_number = s.s_number
 		and a.job_code not in (18)
 		and a.del = 0
-		and left(a.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+		and (left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y') 
+         or substring(a.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 		order by a.a_number desc
 		limit #{pageStart}, #{perPageNum}
 	]]>
@@ -137,7 +141,8 @@
 		and a.job_code = 18
 		and a.s_number = s.s_number
 		and a.del = 0
-		and left(a.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+		and (left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y') 
+         or substring(a.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 		order by a.a_number desc
 		limit
 		#{pageStart}, #{perPageNum}
@@ -154,7 +159,8 @@
 		and ja.job_code = #{j_code}
 		and ja.a_urgency = #{a_urgency}
 		and ja.del = 0
-		and left(ja.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+		and (left(ja.a_date, 10) > date_format(curdate(), '%m/%d/%Y') 
+         or substring(ja.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 		]]>
 		
 	</select>
@@ -168,7 +174,8 @@
 		on j.s_number
 		where
 		j.s_number = s.s_number
-		and left(j.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+		and (left(j.a_date, 10) > date_format(curdate(), '%m/%d/%Y') 
+         or substring(j.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 		and
 		j.a_number = #{a_number};
 	</select>
@@ -181,7 +188,8 @@
 		where j.s_number = s.s_number
         and m.m_id = #{m_id}
 		and s.s_number = #{s_number}
-		and left(j.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+		and (left(j.a_date, 10) > date_format(curdate(), '%m/%d/%Y') 
+         or substring(j.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 		and j.a_number = #{a_number}
 	</select> 
 
@@ -234,7 +242,8 @@
 		and a.s_number = s.s_number
 		and a.job_code not in (18)
 		and a.del = 0
-		and left(a.a_date ,10) >= date_format(curdate(), '%m/%d/%Y')
+		and (left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y') 
+         or substring(a.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 		order by a.a_number desc
 		
 		]]>

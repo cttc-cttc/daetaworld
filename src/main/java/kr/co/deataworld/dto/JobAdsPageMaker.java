@@ -4,18 +4,26 @@ package kr.co.deataworld.dto;
 
 public class JobAdsPageMaker {
 
-	private int totalCount;//일반/긴급구인목록 데이터 갯수
-	private int startPage;//첫페이지
+private JobAdsCriteria cri;
+	
+	private int totalCount;//자유+땜빵 데이터 갯수
+	
+	private int startPage;//시작페이지
 	private int endPage;//끝 페이지
-	private boolean prev;//이전
-	private boolean next;//다음
+	private boolean prev;//이전버튼
+	private boolean next;//다음버튼
 	
-	private int displayPageNum = 3;
+	private int displayPageNum = 3;//화면에 표시되는 버튼 갯수
 	
-	private JobAdsCriteria cri;
+	public JobAdsCriteria getCri() {
+		return cri;
+	}
 	
 	public void setCri(JobAdsCriteria cri) {
 		this.cri = cri;
+	}
+	public int getTotalCount() {
+		return totalCount;
 	}
 	
 	public void setTotalCount(int totalCount) {
@@ -23,14 +31,16 @@ public class JobAdsPageMaker {
 		calcData();
 	}
 
-	//페이징 계산할것들
+	//페이징의 버튼들을 생성하는 계산식
 	private void calcData() {
-		
+		// TODO Auto-generated method stub
+		//끝 페이지번호
 		endPage = (int)(Math.ceil(cri.getPage()/
 				(double)displayPageNum)*displayPageNum);
-		
+		//시작 페이지번호
 		startPage = (endPage - displayPageNum) + 1;
-		
+		if(startPage <=0) startPage = 1;
+		//마지막 페이지번호
 		int tempEndPage = (int)(Math.ceil(totalCount/
 			(double)cri.getPerPageNum()	));
 		
@@ -40,11 +50,8 @@ public class JobAdsPageMaker {
 		
 		prev = startPage == 1 ? false : true;
 		
-		next = endPage * cri.getPerPageNum() >=totalCount ? false:true;
-		
+		next = endPage * cri.getPerPageNum() < totalCount ? true:false;
 	}
-	
-	
 
 	public int getStartPage() {
 		return startPage;
@@ -86,17 +93,14 @@ public class JobAdsPageMaker {
 		this.displayPageNum = displayPageNum;
 	}
 
-	public int getTotalCount() {
-		return totalCount;
-	}
+	
 
-	public JobAdsCriteria getCri() {
-		return cri;
-	}
+	
 
-	@Override
+@Override
 	public String toString() {
 		return "JobAdsPageMaker [totalCount=" + totalCount + ", startPage=" + startPage + ", endPage=" + endPage
 				+ ", prev=" + prev + ", next=" + next + ", displayPageNum=" + displayPageNum + ", cri=" + cri + "]";
 	}
+	
 }
