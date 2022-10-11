@@ -59,6 +59,12 @@ public interface EmployerService {
 //	지원받은 가게 목록보기
 	public List<Map<String, Object>> adsApplied(String m_id) throws Exception;
 	
+//	구인완료
+	public int adsComplete(int a_number) throws Exception;
+	
+//	구인재개
+	public int reAdsRegister(int a_number) throws Exception;
+	
 //	요청한 공고 목록보기
 	public List<Map<String, Object>>adsRequested(String m_id) throws Exception;
 	
@@ -67,6 +73,9 @@ public interface EmployerService {
 	
 //	지원자 목록보기
 	public List<Map<String, Object>> candidates(int a_number) throws Exception;
+	
+//	확정자 목록보기
+	public List<Map<String, Object>> confirmedCandidates(int a_number) throws Exception;
 	
 //	지원자 정보보기
 	public Map<String, Object> canDetail(Map<String, Object> map) throws Exception;
