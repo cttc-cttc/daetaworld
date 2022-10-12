@@ -12,7 +12,7 @@ public class JobAdsCriteria {
 
 	public JobAdsCriteria() {
 		this.page = 1;
-		this.perPageNum = 10;
+		this.perPageNum = 3;
 	}
 
 	public int getPage() {
