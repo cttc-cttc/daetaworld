@@ -6,7 +6,7 @@ public class JobAdsPageMaker {
 
 private JobAdsCriteria cri;
 	
-	private int totalCount;//자유+땜빵 데이터 갯수
+	private int totalCount;//
 	
 	private int startPage;//시작페이지
 	private int endPage;//끝 페이지
@@ -51,7 +51,7 @@ private JobAdsCriteria cri;
 		
 		prev = startPage == 1 ? false : true;
 		
-		next = endPage * cri.getPerPageNum() >= totalCount ? true:false;
+		next = endPage * cri.getPerPageNum() > totalCount ? true:false;
 	}
 
 	public int getStartPage() {

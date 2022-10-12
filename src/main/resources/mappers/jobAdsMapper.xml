@@ -144,8 +144,8 @@
 		and (left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y') 
          or substring(a.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 		order by a.a_number desc
-		limit
-		#{pageStart}, #{perPageNum}
+		limit #{pageStart}, #{perPageNum}
+		
 		]]>
 	</select>
 
