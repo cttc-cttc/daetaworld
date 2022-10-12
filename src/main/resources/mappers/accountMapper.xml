@@ -99,6 +99,7 @@
   		where
   			A.m_id = #{inputId}
   			and A.m_password = #{inputPassword}
+  			and A.m_quitted = 0
   	</select>
   	
   	
