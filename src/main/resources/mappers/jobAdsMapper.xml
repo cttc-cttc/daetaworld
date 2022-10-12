@@ -100,13 +100,13 @@
 		<![CDATA[ 
 		select a.*, s.*
 		from job_ads a, shop_info s
-		where a.a_urgency = 0
-		and a.a_status not in (3,4)
-		and a.s_number = s.s_number
-		and a.job_code not in (18)
+		where a.s_number = s.s_number
+		and a_urgency = 0
+		and job_code not in (18)
+		and a.a_status not in (3, 4)
 		and a.del = 0
 		and (left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y') 
-         or substring(a.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
+		         or substring(a.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 		order by a.a_number desc
 		limit #{pageStart}, #{perPageNum}
 		]]>
@@ -117,13 +117,13 @@
 	<![CDATA[ 
 		select a.*, s.*
 		from job_ads a, shop_info s
-		where a.a_urgency = 1
-		and a.a_status not in (3,4)
-		and a.s_number = s.s_number
-		and a.job_code not in (18)
+		where a.s_number = s.s_number
+		and a_urgency = 1
+		and job_code not in (18)
+		and a.a_status not in (3, 4)
 		and a.del = 0
 		and (left(a.a_date, 10) > date_format(curdate(), '%m/%d/%Y') 
-         or substring(a.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
+		         or substring(a.a_date, 7, 10) - date_format(curdate(), '%Y') = 1)
 		order by a.a_number desc
 		limit #{pageStart}, #{perPageNum}
 	]]>
