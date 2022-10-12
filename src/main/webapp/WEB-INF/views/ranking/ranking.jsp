@@ -25,6 +25,10 @@
 		border: solid thin #ccc;
 		border-radius: 10px;
 	}
+	.login-user {
+	    background: #dde4ff;
+	    pointer-events: none;
+	}
 </style>
 <body class="template-color-3">
     <div id="main-wrapper">
@@ -55,73 +59,74 @@
 								</thead>
 									
 								<!-- 대타자 평점 랭킹 Start -->
+								<!-- 로그인 회원 본인 순위 -->
+								<c:if test="${loginRankInfo != null }">
+									<tr class="login-user">
+										<td><h2><span class="first-text">
+										
+										<c:choose>
+										<c:when test="${loginRankInfo.num == 1}">
+											<i class="fas fa-trophy trophy-gold"></i>
+										</c:when>
+										<c:when test="${loginRankInfo.num == 2}">
+											<i class="fas fa-trophy trophy-silver"></i>
+										</c:when>
+										<c:when test="${loginRankInfo.num == 3}">
+											<i class="fas fa-trophy trophy-bronze"></i>
+										</c:when>
+										<c:otherwise>
+											<i class="fas fa-trophy trophy-bronze" style="visibility: hidden;"></i>
+										</c:otherwise>
+										</c:choose>
+										
+										&nbsp;${loginRankInfo.num}등</span></h2></td>
+										<td></td>
+										<td class="nick-area"><p class="nick-area-inner">
+											<c:if test="${loginRankInfo.picture == 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/resources/images/default_profile.png">
+											</c:if>
+											<c:if test="${loginRankInfo.picture != 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/displayProfile?fileName=${loginRankInfo.picture}">
+											</c:if>
+										&nbsp;${loginRankInfo.nick }</p></td>
+										<td></td>
+										<td><i class="fas fa-star star-color"></i> ${loginRankInfo.sum }</td>
+									</tr>
+								</c:if>
+								
+								<!-- 다른 회원 랭킹 -->
 								<c:forEach var="ranking" items="${ranking}" end="50">
-									<c:choose>
-									<c:when test="${ranking.num == 1}">
-										<tr class="application-item">
-											<td><h2><span class="first-text"><i class="fas fa-trophy trophy-gold"></i> ${ranking.num}등</span></h2></td>
-											<td></td>
-											<td class="nick-area"><p class="nick-area-inner">
-												<c:if test="${ranking.picture == 'default' }">
-													<img class="rounded-circle ranking-picture" src="${contextPath}/resources/images/default_profile.png">
-												</c:if>
-												<c:if test="${ranking.picture != 'default' }">
-													<img class="rounded-circle ranking-picture" src="${contextPath}/displayProfile?fileName=${ranking.picture}">
-												</c:if>
-											&nbsp;${ranking.nick }</p></td>
-											<td></td>
-											<td><i class="fas fa-star star-color"></i> ${ranking.sum }</td>
-										</tr>
-									</c:when>
-									<c:when test="${ranking.num == 2}">
-										<tr class="application-item">
-											<td><h2><span class="first-text"><i class="fas fa-trophy trophy-silver"></i> ${ranking.num }등</span></h2></td>
-											<td></td>
-											<td class="nick-area"><p class="nick-area-inner">
-												<c:if test="${ranking.picture == 'default' }">
-													<img class="rounded-circle ranking-picture" src="${contextPath}/resources/images/default_profile.png">
-												</c:if>
-												<c:if test="${ranking.picture != 'default' }">
-													<img class="rounded-circle ranking-picture" src="${contextPath}/displayProfile?fileName=${ranking.picture}">
-												</c:if>
-											&nbsp;${ranking.nick }</p></td>
-											<td></td>
-											<td><i class="fas fa-star star-color"></i> ${ranking.sum }</td>
-										</tr>
-									</c:when>
-									<c:when test="${ranking.num == 3}">
-										<tr class="application-item">
-											<td><h2><span class="first-text"><i class="fas fa-trophy trophy-bronze"></i> ${ranking.num}등</span></h2></td>
-											<td></td>
-											<td class="nick-area"><p class="nick-area-inner">
-												<c:if test="${ranking.picture == 'default' }">
-													<img class="rounded-circle ranking-picture" src="${contextPath}/resources/images/default_profile.png">
-												</c:if>
-												<c:if test="${ranking.picture != 'default' }">
-													<img class="rounded-circle ranking-picture" src="${contextPath}/displayProfile?fileName=${ranking.picture}">
-												</c:if>
-											&nbsp;${ranking.nick }</p></td>
-											<td></td>
-											<td><i class="fas fa-star star-color"></i> ${ranking.sum }</td>
-										</tr>
-									</c:when>
-									<c:otherwise>
-										<tr class="application-item">
-											<td><h2><span class="first-text"><i class="fas fa-trophy trophy-bronze" style="visibility: hidden;"></i> ${ranking.num }등</span></h2></td>
-											<td></td>
-											<td class="nick-area"><p class="nick-area-inner">
-												<c:if test="${ranking.picture == 'default' }">
-													<img class="rounded-circle ranking-picture" src="${contextPath}/resources/images/default_profile.png">
-												</c:if>
-												<c:if test="${ranking.picture != 'default' }">
-													<img class="rounded-circle ranking-picture" src="${contextPath}/displayProfile?fileName=${ranking.picture}">
-												</c:if>
-											&nbsp;${ranking.nick }</p></td>
-											<td></td>
-											<td><i class="fas fa-star star-color"></i> ${ranking.sum }</td>
-										</tr>
-									</c:otherwise>
-									</c:choose>
+									<tr class="application-item">
+										<td><h2><span class="first-text">
+										
+										<c:choose>
+										<c:when test="${ranking.num == 1}">
+											<i class="fas fa-trophy trophy-gold"></i>
+										</c:when>
+										<c:when test="${ranking.num == 2}">
+											<i class="fas fa-trophy trophy-silver"></i>
+										</c:when>
+										<c:when test="${ranking.num == 3}">
+											<i class="fas fa-trophy trophy-bronze"></i>
+										</c:when>
+										<c:otherwise>
+											<i class="fas fa-trophy trophy-bronze" style="visibility: hidden;"></i>
+										</c:otherwise>
+										</c:choose>
+										
+										&nbsp;${ranking.num}등</span></h2></td>
+										<td></td>
+										<td class="nick-area"><p class="nick-area-inner">
+											<c:if test="${ranking.picture == 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/resources/images/default_profile.png">
+											</c:if>
+											<c:if test="${ranking.picture != 'default' }">
+												<img class="rounded-circle ranking-picture" src="${contextPath}/displayProfile?fileName=${ranking.picture}">
+											</c:if>
+										&nbsp;${ranking.nick }</p></td>
+										<td></td>
+										<td><i class="fas fa-star star-color"></i> ${ranking.sum }</td>
+									</tr>
 								</c:forEach>
 								<!-- 랭킹 정보 End -->	
 							</table>

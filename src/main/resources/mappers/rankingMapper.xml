@@ -23,4 +23,21 @@
 		order by ranking.num
 		]]>
 	</select>
+	
+	<!-- 로그인 유저의 랭킹정보 -->
+	<select id="loginUserRanking" parameterType="java.lang.String" resultType="java.util.Map">
+		select ranking.num, ranking.nick, ranking.sum, ranking.picture
+		from(        
+		   select rank() over(order by avg(w_rate) desc) as num, 
+		   		round(avg(w_rate), 1) as sum, 
+		   		m.m_nick as nick,
+		   		m.m_picture as picture,
+		   		m.m_id as id
+		   from review r, member m
+		   where m.m_type = 1 and r.id_rated = m.m_id 
+		   group by r.id_rated
+		   order by num
+		   ) as ranking
+		where ranking.id = #{loginId}
+	</select>
 </mapper>

@@ -20,7 +20,11 @@ public class RankingDAOImpl implements RankingDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".ranking");
 	}
-	
-	
+
+	@Override
+	public Map<String, Object> loginUserRanking(String loginId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".loginUserRanking", loginId);
+	}
 
 }

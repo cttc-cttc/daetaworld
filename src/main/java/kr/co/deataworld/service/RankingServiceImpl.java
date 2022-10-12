@@ -20,4 +20,10 @@ public class RankingServiceImpl implements RankingService{
 		return dao.ranking();
 	}
 
+	@Override
+	public Map<String, Object> loginUserRanking(String loginId) {
+		// TODO Auto-generated method stub
+		return dao.loginUserRanking(loginId);
+	}
+
 }
