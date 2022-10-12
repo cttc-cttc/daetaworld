@@ -24,7 +24,7 @@
 		inner join member as C
 			on A.m_id = C.m_id
 		left outer join review as D
-			on A.m_id = D.w_writer
+			on A.m_id = D.id_rated
 		where
 			A.a_urgency = 1
 			and A.del = 0
@@ -81,7 +81,7 @@
 		inner join member as C
 			on A.m_id = C.m_id
 		left outer join review as D
-			on A.m_id = D.w_writer
+			on A.m_id = D.id_rated
 		where
 			A.a_urgency = 0
 			and A.del = 0

@@ -95,7 +95,7 @@
 								</c:if>
 								
 								<!-- 다른 회원 랭킹 -->
-								<c:forEach var="ranking" items="${ranking}" end="50">
+								<c:forEach var="ranking" items="${ranking}" end="29">
 									<tr class="application-item">
 										<td><h2><span class="first-text">
 										

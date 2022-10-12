@@ -68,19 +68,36 @@ public class DBTest {
 //		}
 //	}
 	
+//	@Test
+//	public void testOwnerReviewInsert() throws Exception {
+//		ReviewDTO dto;
+//		for(int i=0; i<10; i++) {
+//			int rnd = (int)(Math.random()*5+1);
+//			dto = new ReviewDTO();
+//			dto.setW_rate(5);
+//			dto.setW_comments("후기내용");
+//			dto.setW_writer("testOwner");
+//			dto.setId_rated("albaman1"); // 랭킹에 표시할 유저의 id
+//			dto.setA_number(1);
+//			
+//			reviewDao.r_reviewRegister(dto); // 공고등록
+//			Thread.sleep(1000); // 1초간 쉬기
+//		}
+//	}
+	
 	@Test
-	public void testOwnerReviewInsert() throws Exception {
+	public void testUserReviewInsert() throws Exception {
 		ReviewDTO dto;
 		for(int i=0; i<10; i++) {
 			int rnd = (int)(Math.random()*5+1);
 			dto = new ReviewDTO();
-			dto.setW_rate(5);
+			dto.setW_rate(rnd);
 			dto.setW_comments("후기내용");
-			dto.setW_writer("testOwner");
-			dto.setId_rated("albaman1"); // 랭킹에 표시할 유저의 id
+			dto.setW_writer("testUser");
+			dto.setId_rated("asdasdasd"); // 메인화면에 표시할 구인자 id
 			dto.setA_number(1);
 			
-			reviewDao.r_reviewRegister(dto); // 공고등록
+			reviewDao.e_reviewRegister(dto); // 공고등록
 			Thread.sleep(1000); // 1초간 쉬기
 		}
 	}
