@@ -34,7 +34,7 @@
   	
   	<!-- 리뷰 작성한 공고 목록 -->
 	<select id="r_wroteReviews" parameterType="String" resultType="Map">
-		select ja.*, a.*, s.*, r.*, m.m_nick, date(r.w_date) as date
+		select distinct ja.*, a.*, s.*, r.*, m.m_nick, date(r.w_date) as date
 		from job_apply ja, job_ads a, shop_info s, review r, member m
 		where ja.a_number = a.a_number 
 		and a.s_number = s.s_number 
@@ -42,12 +42,13 @@
 		and r.a_number = a.a_number
 		and a.m_id = r.w_writer and s.m_id = r.w_writer and r.w_writer = #{m_id} 
 		and m.m_id = ja.m_id		
-		and ja.jar_status = 7		
+		and ja.jar_status = 7	
+		group by ja.ja_number
 	</select>
 	
 	<!-- 리뷰 작성된 공고 목록-->
 	<select id="r_writtenReviews" parameterType="String" resultType="Map">
-		select ja.*, a.*, s.*, r.*, m.m_nick, date(r.w_date) as date
+		select distinct ja.*, a.*, s.*, r.*, m.m_nick, date(r.w_date) as date
 		from job_apply ja, job_ads a, shop_info s, review r, member m
 		where ja.a_number = a.a_number 
 		and a.s_number = s.s_number 
@@ -56,6 +57,7 @@
 		and a.m_id = r.id_rated and s.m_id = r.id_rated and r.id_rated = #{m_id}
 		and m.m_id = r.w_writer
 		and ja.jae_status = 7
+		group by ja.ja_number
 	</select>
 	
 <!-- 구인자 끝 -->		
