@@ -181,7 +181,7 @@
 	<!-- 구인완료 -->
 	<update id="adsComplete" parameterType="java.lang.Integer">
 		update job_ads 
-		set a_status = 3
+		set a_status = 2
 		where a_number = #{a_number}
 	</update>
 	

@@ -95,7 +95,7 @@ td { text-align: center; }
 																	</c:if>
 																</td>
 																<td>
-																	<c:if test="${adsList.a_status != 3}">
+																	<c:if test="${adsList.a_status != 2}">
 																	<button class="btn btn-outline-success"
 																		onclick="location.href='candidates?a_number=${adsList.a_number}'">
 																		신청자 확인</button> / 
@@ -103,7 +103,7 @@ td { text-align: center; }
 																		onclick="adsComplete('${adsList.a_number}')"
 																		>구인 종료</button>
 																	</c:if>	
-																	<c:if test="${adsList.a_status == 3 }">
+																	<c:if test="${adsList.a_status == 2 }">
 																		<button class="btn btn-outline-success"
 																		onclick="location.href='confirmedCandidates?a_number=${adsList.a_number}'"
 																		>확정자 확인</button> / 
