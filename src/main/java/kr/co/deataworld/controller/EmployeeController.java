@@ -207,7 +207,7 @@ public class EmployeeController {
 			notiInsertInfo.put("s_name", s_name);
 			notiInsertInfo.put("n_type", 1);
 			nService.insertNotiType1(notiInsertInfo);
-			return "redirect:/jobAds/listAll";
+			return "redirect:/employeeMapper/pinchStatus?m_id=" + jobapplyDTO.getM_id();
 		} else { //0보다 크지않다 - null값이다 - 대표설정된 자소서가 없다.
 			return "redirect:/employeeMapper/resumeManagement?m_id=" + jobapplyDTO.getM_id();
 		}
@@ -322,7 +322,7 @@ public class EmployeeController {
 	public int requestNo(JobApplyDTO jobApplyDTO, String owner_id)throws Exception {
 		service.requestNo(jobApplyDTO);
 		
-		// 알림타입 2: 구직자가 구인자의 주변노예 요청을 수락/거절하면 구인자에게 알림발송
+		// 알림타입 2: 구직자가 구인자의 주변 구직자 요청을 수락/거절하면 구인자에게 알림발송
 		Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
 		notiInsertInfo.put("m_id", owner_id);
 		notiInsertInfo.put("n_type", 2);
@@ -333,7 +333,7 @@ public class EmployeeController {
 	//완료된 공고 '확인' 버튼 클릭시 a_status의 상태를 3으로 변경
 	@ResponseBody
 	@PostMapping(value="employeeMapper/pinchChk")
-	public int pinchChk(@RequestParam Map<String, Object> map )throws Exception{
+	public int pinchChk(@RequestParam Map<String, Object> map)throws Exception{
 		System.out.println("asdasds : " + map);
 		return service.pinchChk(map);
 	}
@@ -342,7 +342,7 @@ public class EmployeeController {
 	//공고 신청 후 (구인자는 수락상태) 수락 선택
 	@ResponseBody
 	@PostMapping(value="employeeMapper/apply_o")
-	public int apply_o(@RequestParam("ja_number") int ja_number,@RequestParam("m_id") String m_id, Model model)throws Exception{
+	public int apply_o(@RequestParam("ja_number") int ja_number, @RequestParam("m_id") String m_id, Model model)throws Exception{
 		return service.apply_o(ja_number);
 	}
 	
@@ -350,7 +350,7 @@ public class EmployeeController {
 	//공고 신청 후 (구인자는 수락상태) 거절 선택
 	@ResponseBody
 	@PostMapping(value="employeeMapper/apply_x")
-	public int apply_x(@RequestParam("ja_number") int ja_number,@RequestParam("m_id") String m_id, Model model)throws Exception{
+	public int apply_x(@RequestParam("ja_number") int ja_number, @RequestParam("m_id") String m_id, Model model)throws Exception{
 		return service.apply_x(ja_number);
 	}
 	
@@ -368,7 +368,7 @@ public class EmployeeController {
 	public String reApply(JobApplyDTO jobApply)throws Exception {
 		service.reApply(jobApply);
 		System.out.println("내가 재신청 넣어줬다??");
-		return "redirect:/jobAds/listAll";
+		return "redirect:/employeeMapper/resumeManagement?m_id=" + jobApply.getM_id();
 	}
 	
 	

@@ -265,7 +265,6 @@
 									
 									<c:when test="${introResult == 9}">
 										<script type="text/javascript">
-											<script>  
 											$(document).ready(function(){
 											  alert("등록된 자기소개서가 없습니다.");
 											});
