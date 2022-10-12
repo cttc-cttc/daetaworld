@@ -40,6 +40,7 @@ private JobAdsCriteria cri;
 		//시작 페이지번호
 		startPage = (endPage - displayPageNum) + 1;
 		if(startPage <=0) startPage = 1;
+		
 		//마지막 페이지번호
 		int tempEndPage = (int)(Math.ceil(totalCount/
 			(double)cri.getPerPageNum()	));
@@ -50,7 +51,7 @@ private JobAdsCriteria cri;
 		
 		prev = startPage == 1 ? false : true;
 		
-		next = endPage * cri.getPerPageNum() < totalCount ? true:false;
+		next = endPage * cri.getPerPageNum() >= totalCount ? true:false;
 	}
 
 	public int getStartPage() {
