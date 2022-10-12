@@ -199,6 +199,9 @@
 						</ul>
 					</td>
 					<td><a href="${contextPath }/">홈으로</a></td>
+					<c:if test="${loginInfo.m_type == 2 }">
+					<td><a href="${contextPath}/employerMapper/adsRegister?m_id=${loginInfo.m_id}">공고등록하기</a></td>
+					</c:if>
 				</tr>
 			</table>
 
