@@ -380,7 +380,7 @@
 				return false;
 			}
 			
-			var needReg = /^[0-9]$/;
+			var needReg = /^[0-9]{0,6}$/;
 			if (!needReg.test(a_need)) {            
 				alert("필요 인원은 숫자로만 써주세요");            
 				cr.a_need.value = "";            
