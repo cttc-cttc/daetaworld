@@ -87,7 +87,7 @@
 							<div class="employer-head-info">
 
 								
-								가게등록날짜:${map.s_date } 가게번호:${map.s_number} 공고번호:${map.a_number}<br>
+								가게등록날짜:${map.s_date } <br>
 								
 
 							</div>
