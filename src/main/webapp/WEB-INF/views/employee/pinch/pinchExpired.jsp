@@ -82,7 +82,7 @@
 																
 																<c:if test="${adsList.a_status == 3 && adsList.jae_status != 7 }">
 																	<td>
-																	<button class="btn btn-outline-danger" id="pinch" title="소중한 후기작성시 500포인트 적립!"  onclick="location.href='${contextPath}/reviewMapper/e_reviewRegister?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}&id_rated=${adsList.id_rated}'">
+																	<button class="btn btn-outline-danger" id="pinch" title="소중한 후기작성시 500포인트 적립!"  onclick="location.href='${contextPath}/reviewMapper/e_reviewRegister?m_id=${loginInfo.m_id}&a_number=${adsList.a_number}&id_rated=${adsList.id_rated}&s_name=${adsList.s_name }'">
 																	후기입력
 																	</button>
 																	</td>
