@@ -73,7 +73,8 @@
 																	<c:if test="${urgency == 0 }">
 																		<c:out value="x"></c:out>
 																	</c:if>
-																</td>																																
+																</td>
+																<td></td>																																
 																
 																<!-- 진행중인 알바가 끝났을 때 확인 -> 버튼이 '리뷰작성' 으로 바뀌고 -> 리뷰작성 -> 구인자에 대한 리뷰를 작성하는 페이지로 이동. -->
 																<c:if test="${adsList.a_status != 3}">
