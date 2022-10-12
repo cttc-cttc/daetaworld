@@ -57,7 +57,7 @@
 		and a.m_id = r.id_rated and s.m_id = r.id_rated and r.id_rated = #{m_id}
 		and m.m_id = r.w_writer
 		and ja.jae_status = 7
-		group by ja.ja_number
+		group by r.w_number
 	</select>
 	
 <!-- 구인자 끝 -->		
