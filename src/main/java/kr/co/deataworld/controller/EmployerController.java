@@ -88,17 +88,15 @@ public class EmployerController {
 	
 //	공고 등록
 	@GetMapping(value="employerMapper/adsRegister")
-	public String adsRegister(@RequestParam("m_id")String m_id, Model model, HttpServletRequest request) throws Exception {
+	public String adsRegister(@RequestParam("m_id")String m_id, Model model) throws Exception {
 		model.addAttribute("leftMenu", "adsRegister");
 		List<ShopInfoDTO>shopList = service.shopManagement(m_id);
 		// 보유 포인트 체크
 		int point = service.pointChk(m_id);
 		model.addAttribute("point", point);
 		model.addAttribute("shopList", shopList);
-		model.addAttribute("m_id", m_id);
+		model.addAttribute("m_id", m_id);		
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("loginPoint", point);
 		return "employer/ads/adsRegister";		
 	}
 	
@@ -218,10 +216,15 @@ public class EmployerController {
 	
 //	공고 내역
 	@GetMapping(value="employerMapper/adsHistory")
-	public String adsHistory(@RequestParam("m_id")String m_id, Model model) throws Exception {
+	public String adsHistory(@RequestParam("m_id")String m_id, Model model, HttpServletRequest request) throws Exception {
 		model.addAttribute("leftMenu", "adsHistory");
 		List<Map<String, Object>> adsList = service.adsHistory(m_id);
 		model.addAttribute("adsList", adsList);
+		
+		int point = service.pointChk(m_id);
+		HttpSession session = request.getSession();
+		session.setAttribute("loginPoint", point);
+		
 		return "employer/ads/adsHistory";
 	}
 	
