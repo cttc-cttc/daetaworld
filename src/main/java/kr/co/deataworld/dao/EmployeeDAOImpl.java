@@ -85,15 +85,28 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return sql.update(NAMESPACE + ".resumeDefaultInit", resumeDTO);
 	}
 
+	@Override //대타신청 전 자소서 있는지 확인
+	public Map<String, Object> introChk(JobApplyDTO jobapplyDTO) throws Exception {
+		return sql.selectOne(NAMESPACE + ".introChk", jobapplyDTO);
+	}
+	
+	@Override //자소서 삭제시 등록된 자소서가 1개(대표자소서)라면 삭제 불가능
+	public int introDeleteCheck(String m_id) throws Exception {
+		return sql.selectOne(NAMESPACE + ".introDeleteCheck", m_id);
+	}
+
+
+	@Override //자소서 삭제시 등록된 자소서가 1개(대표자소서) 일때 삭제 불가능
+	public int defaultIntro_xDel(ResumeDTO resumeDTO) throws Exception {
+		return sql.selectOne(NAMESPACE + ".defaultIntro_xDel", resumeDTO);
+	}
+	
+	
 	@Override // 공고 디테일 접속시 m_id와 s_number(공고번호) 를 이용해 이미 지원한 공고인지 확인
 	public int applyCheck(Map<String, Object> chk) throws Exception {
 		return sql.selectOne(NAMESPACE + ".applyCheck", chk);
 	}
 	
-	@Override //대타신청 전 자소서 있는지 확인
-	public Map<String, Object> introChk(JobApplyDTO jobapplyDTO) throws Exception {
-		return sql.selectOne(NAMESPACE + ".introChk", jobapplyDTO);
-	}
 
 	@Override //대타신청
 	public int jobApply(JobApplyDTO jobapplyDTO) throws Exception {
@@ -128,7 +141,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 	
 	
-	@Override //주변노예검색을 통해 요청받은 목록 불러오기
+	@Override //주변구직자 검색을 통해 요청받은 목록 불러오기
 	public List<Map> requests(String m_id) throws Exception {
 		return sql.selectList(NAMESPACE + ".requests", m_id);
 	}
@@ -156,13 +169,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
-	
 	@Override //공고 신청 후 (구인자는 수락상태) 수락 선택
 	public int apply_o(int ja_number) throws Exception {
 		return sql.update(NAMESPACE + ".apply_o", ja_number);
 	}
 
-	
 	
 	@Override //공고 신청 후 (구인자는 수락상태) 거절 선택
 	public int apply_x(int ja_number) throws Exception {
@@ -175,19 +186,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return sql.update(NAMESPACE + ".applyCancel", map);
 	}
 
-
-	@Override //자소서 삭제시 등록된 자소서가 1개(대표자소서)라면 삭제 불가능
-	public int introDeleteCheck(String m_id) throws Exception {
-		return sql.selectOne(NAMESPACE + ".introDeleteCheck", m_id);
-	}
-
-
-	@Override //자소서 삭제시 등록된 자소서가 1개(대표자소서) 일때 삭제 불가능
-	public int defaultIntro_xDel(ResumeDTO resumeDTO) throws Exception {
-		return sql.selectOne(NAMESPACE + ".defaultIntro_xDel", resumeDTO);
-	}
-
-
+	
 	@Override //거절했던 공고인지 조회
 	public int cancelAdsCheck(JobApplyDTO jobApplyDTO) throws Exception {
 		return sql.selectOne(NAMESPACE + ".cancelAdsCheck", jobApplyDTO);

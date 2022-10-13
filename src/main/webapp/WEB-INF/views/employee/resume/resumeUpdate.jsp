@@ -115,14 +115,20 @@
 	
 	<script type="text/javascript">
 		function resumeSave(){
-			
 			var i_number = $("#i_number").val();
 			var i_date = $("#i_date").val();
 			var m_id = $("#m_id").val();
-			
-			
 			var n_title = $("#n_title").val();
 			var n_contents = $("#n_contents").val();
+			
+			
+			if(n_title == ''){
+				alert('수정할 제목을 입력하세요');
+				return;
+			}else if(n_contents == ''){
+				alert('수정할 내용을 입력하세요');
+				return;
+			}else{
 			
 			
 				var url = "${contextPath}/employeeMapper/resumeUpdate";
@@ -153,6 +159,7 @@
 						}
 						
 				});
+			}
 			
 		} //end of resumeSave
 	

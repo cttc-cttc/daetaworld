@@ -7,7 +7,7 @@
 <!-- 내 정보 불러오기(구직자) -->
 <select id="myInfo" parameterType="String" resultType="Map">
 	SELECT * FROM daetaworld.member
-	WHERE m_type = '1' 
+	WHERE m_type = 1 
 	AND m_id = #{m_id}
 </select>
 
@@ -321,24 +321,5 @@
     where 
     m_id = #{m_id} and a_number = #{a_number}; 
 </update>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </mapper>

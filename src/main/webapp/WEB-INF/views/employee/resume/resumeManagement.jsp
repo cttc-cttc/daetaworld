@@ -56,8 +56,7 @@
 													<table class="table table-striped">
 														<thead>
 															<th>대표</th>													
-															<th>제목</th>															
-															<th>내용*</th>
+															<th>제목*</th>															
 															<th>작성시간</th>
 															<th>대표설정/삭제</th>
 														</thead>
@@ -69,8 +68,7 @@
 																		</svg>
 																	</c:if>
 																</td>
-																<td>${resume.i_title}</td>
-																<td type="button" style="color: orange" onclick="location.href='${contextPath }/employeeMapper/selectResume?i_number=${resume.i_number}&m_id=${loginInfo.m_id}'">${resume.i_contents}</td>
+																<td  type="button" style="color: green" onclick="location.href='${contextPath }/employeeMapper/selectResume?i_number=${resume.i_number}&m_id=${loginInfo.m_id}'">${resume.i_title}</td>
 																<td>${resume.i_date}</td>
 																<td>
 																	<button class="ht-btn theme-btn theme-btn-two transparent-btn-two" value="대표설정" onclick="introDefault('${resume.i_number}','${loginInfo.m_id}')">대표설정</button>

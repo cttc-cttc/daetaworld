@@ -42,6 +42,12 @@ public interface EmployeeDAO {
 	//자소서 대표 초기화
 	public int resumeDefaultInit(ResumeDTO resumeDTO)throws Exception;
 	
+	// 자소서 삭제시 등록된 자소서가 1개(대표자소서)라면 삭제 불가능
+	public int introDeleteCheck(String m_id) throws Exception;
+
+	// 자소서 삭제시 등록된 자소서가 1개(대표자소서) 일때 삭제 불가능
+	public int defaultIntro_xDel(ResumeDTO resumeDTO)throws Exception;
+	
 	// 공고 디테일 접속시 m_id와 s_number(공고번호) 를 이용해 이미 지원한 공고인지 확인
 	public int applyCheck(Map<String, Object> chk)throws Exception;
 	
@@ -63,7 +69,7 @@ public interface EmployeeDAO {
 	//종료된(완료한) 공고목록 불러오기
 	public List<Map> pinchExpired(String m_id)throws Exception;
 	
-	//주변노예검색을 통해 요청받은 목록 불러오기
+	//주변구직자 검색을 통해 요청받은 목록 불러오기
 	public List<Map> requests(String m_id)throws Exception;
 	
 	//요청받은 공고 상세정보 보기
@@ -86,12 +92,6 @@ public interface EmployeeDAO {
 	
 	//공고 신청중 상태일때 지원 취소하기
 	public int applyCancel(Map<String, Object> map)throws Exception;
-	
-	//자소서 삭제시 등록된 자소서가 1개(대표자소서)라면 삭제 불가능
-	public int introDeleteCheck(String m_id) throws Exception;
-	
-	//자소서 삭제시 등록된 자소서가 1개(대표자소서) 일때 삭제 불가능
-	public int defaultIntro_xDel(ResumeDTO resumeDTO)throws Exception;
 	
 	//거절했던 공고인지 확인
 	public int cancelAdsCheck(JobApplyDTO jobApplyDTO)throws Exception;

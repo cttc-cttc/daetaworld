@@ -67,14 +67,6 @@
 																	<td type="button" onclick="location.href='${contextPath}/jobAds/listAllDetail?m_id=${loginInfo.m_id}&s_number=${adsList.s_number}&a_number=${adsList.a_number}&s_name=${adsList.s_name}'">${adsList.s_name}</td>
 																</c:otherwise>
 															</c:choose>	
-																		
-															
-															
-															
-															
-															
-															
-															
 																<td>${adsList.a_date }</td>
 																<td>${adsList.a_time }</td>
 																<td>${adsList.a_wage }원</td>

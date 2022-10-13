@@ -104,7 +104,7 @@
 											</div>
 											<div class="profile-applications-main-block">
 												<div class="profile-applications-form">
-													<form id="form" action="uploadForm" method="post" enctype="multipart/form-data">
+													<form id="form" action="e_signOut" method="post" onsubmit="return signOut()" enctype="multipart/form-data">
 														<div class="row mb-30">
 															<div class="col-lg-2">
 																<div class="profile-avatar mb-30">																					
@@ -240,7 +240,7 @@
 																<div class="col-12">
 																	<div class="profile-action-btn d-flex flex-wrap align-content-center justify-content-between">
 																		<button type="button" id="myInfoUpdate" name="myInfoUpdate" onclick="infoUpdate()" class="ht-btn theme-btn theme-btn-two mb-xs-20">정보수정</button> 
-																		<button class="ht-btn theme-btn theme-btn-two transparent-btn-two">회원탈퇴</button>
+																		<button type="submit" class="ht-btn theme-btn theme-btn-two transparent-btn-two">회원탈퇴</button>
 																	</div>
 																</div>
 															</div>														
@@ -478,8 +478,27 @@
 	         veriCheck = false;
 	      }
 	   });
-
+	   
+	   //회원 탈퇴
+	   function signOut(){		
+			if(confirm("탈퇴하시겠습니까?") == true){
+			var m_password = $('#m_password').val();
+			var confirm_password = $('#confirm_password').val();		
+			
+			if(m_password != confirm_password){
+				alert('비밀번호가 일치하지 않습니다.');
+				form.confirm_password.focus();
+				return false;
+			}else{
+				alert('탈퇴되셨습니다. 다음에 또 이용해주세요.');
+				return true;
+			}		
+			}else{
+				return false;
+			}
+		}   
 	</script>
+	
 	
 </body>
 </html>

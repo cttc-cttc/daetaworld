@@ -30,12 +30,13 @@ import kr.co.deataworld.dto.MemberDTO;
 import kr.co.deataworld.dto.ResumeDTO;
 import kr.co.deataworld.service.AccountService;
 import kr.co.deataworld.service.EmployeeService;
+import kr.co.deataworld.service.EmployerService;
 import kr.co.deataworld.service.NotificationService;
 import kr.co.deataworld.util.ExtractAreaCode;
 import kr.co.deataworld.util.FileProcess;
-/*
- * 구직자 컨트롤러 (마이페이지)
- */
+
+// 구직자 컨트롤러 (마이페이지)
+ 
 @Controller
 public class EmployeeController {
 	@Inject
@@ -46,6 +47,9 @@ public class EmployeeController {
 	
 	@Inject
 	NotificationService nService;
+	
+	@Inject
+	EmployerService rService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
@@ -64,6 +68,14 @@ public class EmployeeController {
 		return mav;
 	}
 	
+	
+	//회원 탈퇴
+	@PostMapping(value = "employeeMapper/e_signOut")
+	public String e_signOut(@RequestParam("m_id")String m_id, HttpSession session) throws Exception{
+		rService.signOut(m_id);
+		session.invalidate();
+		return "redirect:/";
+	}
 	
 	// 내 정보 수정하기
 	@ResponseBody
@@ -126,14 +138,14 @@ public class EmployeeController {
 	
 	
 	//선택한 자소서 수정 폼으로 이동
-		@GetMapping(value="employeeMapper/resumeUpdate")
-		public String resumeUpdate(ResumeDTO resumeDTO, Model model)throws Exception {
-			int result = commonResumeChk(resumeDTO);
-			ResumeDTO resume = service.selectResume(resumeDTO);
-			model.addAttribute("result", result);
-			model.addAttribute("resume", resume);
-			return "employee/resume/resumeUpdate";
-		}
+	@GetMapping(value="employeeMapper/resumeUpdate")
+	public String resumeUpdate(ResumeDTO resumeDTO, Model model)throws Exception {
+		int result = commonResumeChk(resumeDTO);
+		ResumeDTO resume = service.selectResume(resumeDTO);
+		model.addAttribute("result", result);
+		model.addAttribute("resume", resume);
+		return "employee/resume/resumeUpdate";
+	}
 	
 	
 	//ajax를 이용한 자기소개서 수정 저장
@@ -211,7 +223,6 @@ public class EmployeeController {
 		} else { //0보다 크지않다 - null값이다 - 대표설정된 자소서가 없다.
 			return "redirect:/employeeMapper/resumeManagement?m_id=" + jobapplyDTO.getM_id();
 		}
-		
 	}
 	
 	
@@ -305,8 +316,7 @@ public class EmployeeController {
 	@PostMapping(value="employeeMapper/requestYes")
 	public int requestYes(JobApplyDTO jobApplyDTO, String owner_id)throws Exception {
 		service.requestYes(jobApplyDTO);
-		
-		// 알림타입 2: 구직자가 구인자의 주변노예 요청을 수락/거절하면 구인자에게 알림발송
+		// 알림타입 2: 구직자가 구인자의 요청을 수락/거절하면 구인자에게 알림발송
 		Map<String, Object> notiInsertInfo = new HashMap<String, Object>();
 		notiInsertInfo.put("m_id", owner_id);
 		notiInsertInfo.put("n_type", 2);

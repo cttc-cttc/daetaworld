@@ -46,6 +46,12 @@ public interface EmployeeService {
 	//자소서 대표 초기화
 	public int resumeDefaultInit(ResumeDTO resumeDTO)throws Exception;
 	
+	// 자소서 삭제시 등록된 자소서가 1개(대표자소서)라면 삭제 불가능
+	public int introDeleteCheck(String m_id) throws Exception;
+
+	// 자소서 삭제시 등록된 자소서가 1개(대표자소서) 일때 삭제 불가능
+	public int defaultIntro_xDel(ResumeDTO resumeDTO)throws Exception;
+		
 	// 공고 디테일 접속시 m_id와 s_number(공고번호) 를 이용해 이미 지원한 공고인지 확인
 	public int applyCheck(Map<String, Object> chk)throws Exception;
 	
@@ -90,12 +96,6 @@ public interface EmployeeService {
 	
 	//공고 신청중 상태일때 지원 취소하기
 	public int applyCancel(Map<String, Object> map)throws Exception;
-	
-	//자소서 삭제시 등록된 자소서가 1개(대표자소서)라면 삭제 불가능
-	public int introDeleteCheck(String m_id) throws Exception;
-	
-	//자소서 삭제시 등록된 자소서가 1개(대표자소서) 일때 삭제 불가능
-	public int defaultIntro_xDel(ResumeDTO resumeDTO)throws Exception;
 	
 	//거절했던 공고인지 확인
 	public int cancelAdsCheck(JobApplyDTO jobApplyDTO)throws Exception;	
