@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>노예 확인</h1>
+										<h1>구직자 확인</h1>
 									</div>
 								</div>
 							</div>
@@ -40,7 +40,7 @@
 												<ul class="nav">
 													<li><a href="adsRegister?m_id=${loginInfo.m_id}">공고 등록</a></li>
 													<li><a href="countryRegister?m_id=${loginInfo.m_id}">농어촌 등록</a></li>
-													<li><a class="active" href="checkEmployees?m_id=${loginInfo.m_id}">주변 노예 확인</a></li>
+													<li><a class="active" href="checkEmployees?m_id=${loginInfo.m_id}">주변 구직자 확인</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">

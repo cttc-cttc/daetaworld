@@ -44,7 +44,7 @@
 												<ul class="nav">
 													<li><a href="adsRegister?m_id=${loginInfo.m_id}">공고 등록</a></li>
 													<li><a href="countryRegister?m_id=${loginInfo.m_id}">농어촌 등록</a></li>
-													<li><a class="active" href="checkEmployees?m_id=${loginInfo.m_id}">주변 노예 확인</a></li>
+													<li><a class="active" href="checkEmployees?m_id=${loginInfo.m_id}">주변 구직자 확인</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
@@ -53,7 +53,7 @@
 														<div class="row mb-30">
 															<div class="col-lg-2">
 																<div class="profile-avatar mb-30">																					
-																	<label class="d-block" for="m_picture">지원자 면상<span>*</span></label>
+																	<label class="d-block" for="m_picture">지원자 프로필<span>*</span></label>
 																	<c:if test="${detail.m_picture == 'default'}">
 																		<img src="${contextPath}/resources/images/default_profile.png">																																																			
 																	</c:if>
@@ -223,7 +223,7 @@
 	<script type="text/javascript">
 		function request(){
 			if('${detailCnt}' != 0) {
-				alert('이미 요청한 노예입니다.');
+				alert('이미 요청한 구직자입니다.');
 				return;
 			}
 			
@@ -238,7 +238,7 @@
 				type : 'POST',
 				success : function(result){
 					console.log(result);					
-					alert('요청하였습니다. 노예의 결정을 기다리세요');	
+					alert('요청하였습니다. 구직자의 결정을 기다리세요');	
 					location.href = '${contextPath}/employerMapper/adsRequested?m_id=${loginInfo.m_id}';
 				},
 				error : function(result){
