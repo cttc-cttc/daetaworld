@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>지원받은 공고</title>
+<title>요청한 공고</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"
@@ -33,7 +33,7 @@ td { text-align: center; }
 							<div class="row">
 								<div class="col-12">
 									<div class="page-breadcrumb-content mb-40">
-										<h1>지원받은 공고</h1>
+										<h1>요청한 공고</h1>
 									</div>
 								</div>
 							</div>
