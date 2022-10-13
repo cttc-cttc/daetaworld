@@ -378,9 +378,8 @@ public class EmployeeController {
 	public String reApply(JobApplyDTO jobApply)throws Exception {
 		service.reApply(jobApply);
 		System.out.println("내가 재신청 넣어줬다??");
-		return "redirect:/employeeMapper/resumeManagement?m_id=" + jobApply.getM_id();
+		return "redirect:/employeeMapper/pinchHistory?m_id=" + jobApply.getM_id();
 	}
-	
 	
 	
 	

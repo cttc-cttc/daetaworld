@@ -93,7 +93,7 @@
 																		<c:out value="수락"></c:out>
 																	</c:if>
 																	<c:if test="${status == 3 }">
-																		<c:out value="거절"></c:out>
+																		<c:out value="신청취소"></c:out>
 																	</c:if>
 																	<c:if test="${status == 4 }">
 																		<c:out value="요청받음"></c:out>
