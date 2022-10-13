@@ -42,10 +42,10 @@
 													<li><a class="active" href="${contextPath}/employeeMapper/resumeManagement?m_id=${loginInfo.m_id}">등록된 자기소개서 목록 </a></li>
 													<c:choose>
 														<c:when test="${result== 9}">
-															<li><a id="cntCheck" onclick="regist_x()">자기소개서 작성 </a></li>
+															<li><a id="cntCheck" onclick="regist_x()">자기소개서 등록 </a></li>
 														</c:when>
 														<c:otherwise>
-															<li><a id="cntCheck" href="${contextPath}/employeeMapper/resumeRegister?m_id=${loginInfo.m_id}">자기소개서 작성 </a></li>
+															<li><a id="cntCheck" href="${contextPath}/employeeMapper/resumeRegister?m_id=${loginInfo.m_id}">자기소개서 등록 </a></li>
 														</c:otherwise>
 													</c:choose>
 												</ul>

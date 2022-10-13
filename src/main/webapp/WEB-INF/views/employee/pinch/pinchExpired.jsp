@@ -6,7 +6,7 @@
 <html class="no-js" lang="zxx">
 <!-- 툴팁 link -->
 <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
-<title>종료된 공고</title>
+<title>완료된 공고</title>
 
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->

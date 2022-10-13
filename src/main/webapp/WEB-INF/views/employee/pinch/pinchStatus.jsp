@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>대타 내역</title>
+<title>지원 현황</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet" href="${contextPath}/resources/custom_css/adminPage/admin_page.css">
@@ -37,14 +37,11 @@
 										<div class="profile-applications mb-50">
 											<div class="profile-applications-heading">
 												<ul class="nav">
-													<li><a href="pinchHistory?m_id=${loginInfo.m_id}">대타
-															내역</a></li>
+													<li><a href="pinchHistory?m_id=${loginInfo.m_id}">대타 내역</a></li>
 													<li><a class="active"
 														href="pinchStatus?m_id=${loginInfo.m_id}">지원 현황</a></li>
-													<li><a href="requests?m_id=${loginInfo.m_id}">알바
-															요청 확인</a></li>
-													<li><a href="pinchExpired?m_id=${loginInfo.m_id}">완료된
-															공고</a></li>
+													<li><a href="requests?m_id=${loginInfo.m_id}">요청받은 공고</a></li>
+													<li><a href="pinchExpired?m_id=${loginInfo.m_id}">완료된 공고</a></li>
 												</ul>
 											</div>
 											<div class="profile-applications-main-block">
