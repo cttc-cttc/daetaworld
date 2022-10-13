@@ -281,13 +281,13 @@
 </update>
 
 
-<!-- 공고 신청중인 알바 지원 취소하기 => job_apply를 삭제해버린다.-->
+<!-- 공고 신청중인 알바 지원 취소하기 -->
 <update id="applyCancel" parameterType="Map">
 	update job_apply ja
 	right join job_ads a
 	on ja.a_number = a.a_number
 	set
-	ja.jae_status = 6,
+	ja.jae_status = 3,
 	a.a_status = 0
 	where
 	a.a_number = #{a_number}
