@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>오늘의 대타</title>
+<title>개인정보 처리방침</title>
 <%@ include file="../include/head.jsp" %>
 <style>
 	ol {

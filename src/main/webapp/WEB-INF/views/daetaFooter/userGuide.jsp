@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>오늘의 대타</title>
+<title>이용가이드</title>
 <%@ include file="../include/head.jsp"%>
 <style>
 	.menu-content {
