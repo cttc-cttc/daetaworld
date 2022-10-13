@@ -128,7 +128,7 @@
 </svg></th>
 							<th>주소</th>
 							<th>구인 인원</th>
-							<th></th>
+							<th>급구여부</th>
 
 						</tr>
 					</thead>

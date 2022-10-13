@@ -121,7 +121,10 @@
 		} else if(pre_point < 10000){
 			alert('인출은 보유 포인트가 10000포인트 이상부터 가능합니다.');
 			return;
-		} else{
+		}else if(point < 10000){
+			alert('인출은 10000포인트 이상부터 가능합니다.');
+			return;
+		}else{
 			var url = "${contextPath}/pointMapper/pointDeduct";
 			var paramData = {
 				"id" : id,

@@ -152,7 +152,7 @@
 					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsApplied?m_id='+ noti.m_id +'&pageType=noti">'+ noti.s_name+' 지원신청 1건</a>';
 					break;
 				case 2:
-					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsRequested?m_id='+ noti.m_id +'&pageType=noti">주변노예 요청 결과 : '+ (noti.ja_status == 'y' ? '수락' : '거절') +'</a>';
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/employerMapper/adsRequested?m_id='+ noti.m_id +'&pageType=noti">주변 알바 요청 결과 : '+ (noti.ja_status == 'y' ? '수락' : '거절') +'</a>';
 					break;
 				case 3:
 					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/reviewMapper/r_writtenReviews?m_id='+ noti.m_id +'&pageType=noti">'+ noti.s_name +' 후기 작성됨</a>';
@@ -163,7 +163,7 @@
 					
 				// 구직자 알림
 				case 6:
-					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/requests?m_id='+ noti.m_id +'&pageType=noti">주변노예 요청 1건</a>';
+					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/requests?m_id='+ noti.m_id +'&pageType=noti">주변 알바 요청 1건</a>';
 					break;
 				case 7:
 					htmls += '<a class="dropdown-item drdn-item" href="${contextPath}/employeeMapper/pinchStatus?m_id='+ noti.m_id +'&pageType=noti">'+ noti.s_name +' 공고지원 결과 : '+ (noti.ja_status == 'y' ? '수락' : '거절') +'</a>';
