@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-<title>리뷰 작성</title>
+<title>리뷰 확인</title>
 <%@ include file="../../include/head.jsp"%>
 <!-- custom css -->
 <link rel="stylesheet"

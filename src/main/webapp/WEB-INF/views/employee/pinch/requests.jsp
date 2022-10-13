@@ -40,7 +40,7 @@
 												<ul class="nav">
 													<li><a href="pinchHistory?m_id=${loginInfo.m_id}">대타 내역</a></li>
 													<li><a href="pinchStatus?m_id=${loginInfo.m_id}">지원 현황</a></li>
-													<li><a class="active" href="requests?m_id=${loginInfo.m_id}">알바 요청 확인</a></li>
+													<li><a class="active" href="requests?m_id=${loginInfo.m_id}">요청받은 공고</a></li>
 													<li><a href="pinchExpired?m_id=${loginInfo.m_id}">완료된 공고</a></li>
 												</ul>
 											</div>
